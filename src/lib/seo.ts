@@ -351,6 +351,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         inLanguage: 'ja-JP',
 
+        dateModified: new Date().toISOString(),
+
         isPartOf: {
 
             '@id': `${SITE_URL}/#website`,
@@ -395,7 +397,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@context': 'https://schema.org',
 
-        '@type': 'AutoBodyShop',
+        '@type': ['AutoBodyShop', 'LocalBusiness'],
 
         '@id': `${url}#localbusiness`,
 
@@ -407,6 +409,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         description: localBusinessDescription,
 
+        dateModified: new Date().toISOString(),
+
         url,
 
         telephone: '070-8428-0866',
@@ -414,6 +418,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         priceRange: isTruck ? '¥35,000〜' : '¥22,000〜',
 
         brand: STORE_NAME,
+
+        sameAs: [SITE_URL, INSTAGRAM_URL, LINE_URL],
 
         address: {
 
@@ -563,6 +569,14 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             availableLanguage: 'Japanese',
 
+        },
+
+        audience: {
+
+            '@type': 'Audience',
+
+            audienceType: '車内クリーニングを希望する個人・家族',
+
         }
 
     };
@@ -666,6 +680,14 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         datePublished: '2024-01-01T00:00:00+09:00',
 
         dateModified: new Date().toISOString(),
+
+        mainEntity: {
+
+            '@id': `${url}#localbusiness`,
+
+            '@type': ['AutoBodyShop', 'LocalBusiness']
+
+        },
 
         mainEntityOfPage: {
 
@@ -821,7 +843,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             '@id': `${SITE_URL}/#organization`
         },
         description: '年間300台以上の車内クリーニング、嘔吐・ペット臭・灯油消臭を手掛ける専門技術者。',
-        url: SITE_URL
+        url: SITE_URL,
+        sameAs: [SITE_URL, INSTAGRAM_URL, LINE_URL],
+        knowsAbout: ['車内クリーニング', '嘔吐消臭', '灯油除去', 'ペット臭対策']
     };
 
     // ---- スキーマ配列の組み立て ----

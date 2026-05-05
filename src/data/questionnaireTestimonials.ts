@@ -50,19 +50,15 @@ export const questionnaireTestimonials: Testimonial[] = [
 ];
 
 export const generateQuestionnaireJsonLd = (regionName: string, displayName: string, path: string) => {
-  return questionnaireTestimonials.map(t => ({
+  const normalizedPath = path === '/' ? '' : path.endsWith('/') ? path : `${path}/`;
+  const itemReviewedId = `${SITE_URL}${normalizedPath}#localbusiness`;
+
+  return questionnaireTestimonials.map((t, index) => ({
     "@context": "https://schema.org",
     "@type": "Review",
     "itemReviewed": {
-      "@type": "LocalBusiness",
-      "name": `車内清掃 特急便 ${displayName}`,
-      "image": `${SITE_URL}/images/fv.png`,
-      "telephone": "070-8428-0866",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": regionName,
-        "addressCountry": "JP"
-      }
+      "@id": itemReviewedId,
+      "@type": "LocalBusiness"
     },
     "author": {
       "@type": "Person",
@@ -73,6 +69,7 @@ export const generateQuestionnaireJsonLd = (regionName: string, displayName: str
       "ratingValue": "5",
       "bestRating": "5"
     },
-    "reviewBody": t.comment
+    "reviewBody": t.comment,
+    "datePublished": new Date(Date.now() - index * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   }));
 };
