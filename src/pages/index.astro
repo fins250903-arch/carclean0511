@@ -77,7 +77,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
-    <main class="min-h-screen bg-white pb-20 md:pb-0">
+    <main class="min-h-screen bg-white pb-28 md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
       <Campaign displayName={displayName} />
       <RegionAIContent regionName={regionName} displayName={displayName} />

@@ -811,31 +811,33 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
+    const author = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        '@id': `${SITE_URL}/#author`,
+        name: '車内清掃 特急便 代表',
+        jobTitle: '車内クリーニング・消臭専門技術者',
+        worksFor: {
+            '@id': `${SITE_URL}/#organization`
+        },
+        description: '年間300台以上の車内クリーニング、嘔吐・ペット臭・灯油消臭を手掛ける専門技術者。',
+        url: SITE_URL
+    };
+
     // ---- スキーマ配列の組み立て ----
-    const baseSchemas: Record<string, unknown>[] = [organization, website, webpage, mainEntity, service, breadcrumbList, faqPage];
+    const baseSchemas: Record<string, unknown>[] = [organization, website, webpage, mainEntity, service, breadcrumbList, faqPage, author];
 
     if (article) {
-
         baseSchemas.push(article);
-
     }
-
     if (howTo) {
-
         baseSchemas.push(howTo);
-
     }
-
     if (event) {
-
         baseSchemas.push(event);
-
     }
-
-
 
     return baseSchemas;
-
 };
 
 

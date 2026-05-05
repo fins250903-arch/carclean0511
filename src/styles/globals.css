@@ -1,6 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0066CC;
+  --color-primary-dark: #004C99;
+  --color-accent: #FF6600;
+  --color-accent-hover: #CC5200;
+  --font-sans: 'Noto Sans JP', sans-serif;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -15,12 +21,24 @@ body {
   line-height: 1.6;
 }
 
-@layer utilities {
-  .mobile-text {
-    text-align: justify;
-    text-justify: inter-character;
-    line-break: strict;
-    overflow-wrap: break-word;
-    word-break: normal;
+@utility mobile-text {
+  text-align: justify;
+  text-justify: inter-character;
+  line-break: strict;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* 中途半端な1文字改行を防ぐユーティリティ */
+@utility nowrap-phrase {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* FloatingCTA の高さ分のパディング確保 */
+@utility pb-floating {
+  padding-bottom: 5.5rem;
+  @media (min-width: 768px) {
+    padding-bottom: 4.5rem;
   }
 }

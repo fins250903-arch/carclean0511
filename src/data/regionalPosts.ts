@@ -923,5 +923,62 @@ export const regionalPosts: Record<string, RegionalPost> = {
             ],
             "description": "東京都全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
         }
-    }
-};
+        },
+    "福井県": {
+        title: "【福井市】ホンダ・フリードの嘔吐トラブルを即日解決！越前海岸ドライブ中の急な車酔い事例",
+        excerpt: "越前海岸の美しい景色を楽しむドライブの途中、カーブの多い道でお子さまが突然の車酔い。シートに染み込んだ嘔吐汚れを、出張専門スタッフが即日で完全除去しました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">越前海岸ドライブでの急な車酔い</h3>
+            <p class="mb-4">越前海岸の美しい景色を楽しむドライブの途中、カーブの多い海沿いの道でお子さまが突然の車酔い。週末の家族サービスが一転、車内に広がる嘔吐物の臭いに途方に暮れてしまったとのこと。すぐにお電話をいただき、福井市内のご自宅駐車場へ急行しました。</p>
+            <p class="mb-4">シートの繊維の奥まで染み込んだ嘔吐物を、アルカリ電解水で中和した後、業務用リンサーで温水洗浄を繰り返し。福井の冬場に備えた除菌コーティングも施しました。</p>
+            
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：2時間 / 費用：31,000円。<br>お客様の感想：大満足！「翌日には全く臭いがしなくなって本当に助かった」とのお言葉をいただきました。</p>
+            </div>
+        `,
+        image: getImage(4),
+        aiSummary: `福井県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。福井市・敦賀市・鯖江市など県内各所へ最短即日で伺い、「急な嘔吐（ゲロ）」や「灯油こぼし」「ペット臭」「タバコのヤニ汚れ」を業務用リンサーの温水抽出洗浄で根本から解決。冬場の灯油トラブルや、越前海岸ドライブ中の車酔いなど、福井ならではの緊急トラブルにも迅速に対応します。`,
+        specs: [
+            { label: "主な対応エリア", value: "福井市、敦賀市、鯖江市、越前市、坂井市、あわら市ほか福井県全域" },
+            { label: "主な解決悩み", value: "嘔吐（車酔い）、灯油こぼし、加齢臭、タバコ臭、ペット臭、雪解け後の泥汚れ" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
+            { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "福井の車内クリーニング・シート洗浄専門店",
+            "image": "https://carclean2026.vercel.app/images/fv.png",
+            "@id": "https://carclean2026.vercel.app/regions/fukui/",
+            "url": "https://carclean2026.vercel.app/regions/fukui/",
+            "telephone": "070-8428-0866",
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Fukui",
+                "addressCountry": "JP"
+            },
+            "geo": {
+                "@type": "GeoShape",
+                "addressRegion": "Fukui"
+            },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "福井市"},
+                {"@type": "AdministrativeArea", "name": "敦賀市"},
+                {"@type": "AdministrativeArea", "name": "鯖江市"},
+                {"@type": "AdministrativeArea", "name": "越前市"},
+                {"@type": "AdministrativeArea", "name": "坂井市"},
+                {"@type": "AdministrativeArea", "name": "あわら市"},
+                {"@type": "AdministrativeArea", "name": "大野市"},
+                {"@type": "AdministrativeArea", "name": "勝山市"},
+                {"@type": "AdministrativeArea", "name": "小浜市"},
+                {"@type": "AdministrativeArea", "name": "越前町"},
+                {"@type": "AdministrativeArea", "name": "南越前町"},
+                {"@type": "AdministrativeArea", "name": "美浜町"},
+                {"@type": "AdministrativeArea", "name": "若狭町"}
+            ],
+            "description": "福井県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
+        }
+    }
+};

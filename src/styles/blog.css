@@ -1,0 +1,74 @@
+/* Blog-specific styles (from cainteriroBLOG) */
+/* These styles are scoped to blog pages via the .blog-content wrapper */
+
+.blog-content {
+  font-family: var(--font-atkinson), sans-serif;
+  line-height: 1.7;
+  color: #22293a;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  margin: 0 0 0.5rem 0;
+  color: #0f1219;
+  line-height: 1.2;
+}
+
+.blog-content h1 { font-size: 2.5em; }
+.blog-content h2 { font-size: 2em; }
+.blog-content h3 { font-size: 1.6em; }
+.blog-content h4 { font-size: 1.3em; }
+
+.blog-content a {
+  color: #2337ff;
+}
+
+.blog-content p {
+  margin-bottom: 1em;
+}
+
+.blog-content .prose p {
+  margin-bottom: 2em;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.blog-content code {
+  padding: 2px 5px;
+  background-color: #e5e9f0;
+  border-radius: 2px;
+}
+
+.blog-content pre {
+  padding: 1.5em;
+  border-radius: 8px;
+}
+
+.blog-content pre > code {
+  all: unset;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid #2337ff;
+  padding: 0 0 0 20px;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid #e5e9f0;
+  margin: 2em 0;
+}
+
+.blog-content table {
+  width: 100%;
+}

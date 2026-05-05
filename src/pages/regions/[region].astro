@@ -8,6 +8,7 @@ import JsonLd from '../../components/seo/JsonLd.astro';
 
 // Astro Components
 import Hero from '../../components/sections/Hero.astro';
+import AIOContent from '../../components/sections/AIOContent.astro';
 import RegionAIContent from '../../components/sections/RegionAIContent.astro';
 import Problem from '../../components/sections/Problem.astro';
 import Solution from '../../components/sections/Solution.astro';
@@ -95,8 +96,9 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
-    <main class="min-h-screen bg-white pb-20 md:pb-0">
+    <main class="min-h-screen bg-white pb-28 md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
+      <AIOContent regionName={regionName} niche={niche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={niche} />
       <Solution regionName={regionName} displayName={displayName} niche={niche} />

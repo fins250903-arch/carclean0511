@@ -32,6 +32,7 @@ export const regionSlugMap: Record<string, string> = {
     '奈良県': 'nara',
     '和歌山県': 'wakayama',
     '佐賀県': 'saga',
+    '福井県': 'fukui',
 };
 
 export const regionAreaData: Record<string, RegionAreaConfig> = {
@@ -281,5 +282,16 @@ export const regionAreaData: Record<string, RegionAreaConfig> = {
             { label: '武雄・鹿島エリア', cities: ['武雄市', '鹿島市', '嬉野市', '小城市', '多久市', '白石町', '江北町'] },
         ],
         ctaText: '＼佐賀県全域対応！／ 無料見積もり・お問い合わせはこちら',
+    },
+    '福井県': {
+        headline: '福井県内ならどこでも！最短当日お伺いします',
+        reassurance: '「自分の家は対応してくれるかな？」という方もご安心ください。当店は福井県内全域をカバー。ご自宅や職場まで、専用機材を積んで迅速に出張いたします！',
+        areas: [
+            { label: '福井・坂井エリア', cities: ['福井市', '坂井市', 'あわら市', '永平寺町'] },
+            { label: '丹南エリア', cities: ['鯖江市', '越前市', '越前町', '南越前町', '池田町'] },
+            { label: '奥越エリア', cities: ['大野市', '勝山市'] },
+            { label: '嶺南（若狭）エリア', cities: ['敦賀市', '小浜市', '美浜町', '若狭町', 'おおい町', '高浜町'] },
+        ],
+        ctaText: '＼福井県全域対応！／ 無料見積もり・お問い合わせはこちら',
     },
 };

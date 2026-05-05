@@ -27,67 +27,82 @@ const fvImage = isTruck ? "/images/truck-fv.png" : "/images/fv_change_v2.png";
         <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent z-10"></div>
     </div>
 
-    <div class="container mx-auto px-8 md:px-16 z-20 relative">
+    <div class="container mx-auto px-6 md:px-16 z-20 relative pt-8 md:pt-0">
         <div class="max-w-3xl">
+            {/* 0. 最上部テキスト */}
+            <div class="mb-4">
+                <span class="inline-block bg-red-600 text-white text-sm md:text-base font-bold px-4 py-1.5 rounded-full mr-2 mb-2 whitespace-nowrap">
+                    ３６５日２４時間受付中
+                </span>
+                <span class="inline-block bg-blue-900 text-white text-sm md:text-base font-bold px-4 py-1.5 rounded-full mb-2 whitespace-nowrap">
+                    "出張"車内クリーニング業者
+                </span>
+            </div>
+
             {/* 1. 小見出し */}
-            <p class="text-lg md:text-2xl font-bold text-gray-800 mb-2">
+            <p class="text-base md:text-2xl font-bold text-gray-800 mb-2">
                 {subtitle}
             </p>
 
             {/* 2. メインキャッチコピー */}
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-blue-900 leading-tight mb-4 tracking-tighter">
-                早急に解決！
+            <h1 class="text-[clamp(2.5rem,10vw,7rem)] md:text-8xl lg:text-9xl font-black text-blue-900 leading-tight mb-2 tracking-tighter">
+                早急に解決！特急便
             </h1>
 
+            {/* 2.5 メイン訴求 */}
+            <div class="bg-red-600 text-white py-3 px-5 rounded-2xl shadow-lg mb-4 inline-block">
+                <p class="text-xl md:text-3xl font-black tracking-wide">
+                    <span class="whitespace-nowrap">おうと（嘔吐）、</span><span class="whitespace-nowrap">におい、</span><span class="whitespace-nowrap">灯油こぼし</span>
+                </p>
+            </div>
+
             {/* 3. サブキャッチ */}
-            <p class="text-2xl md:text-4xl font-bold text-gray-700 mb-8">
-                {displayName}の車内クリーニング・消臭洗浄
+            <p class="text-lg md:text-3xl font-bold text-gray-700 mb-6">
+                <span class="whitespace-nowrap">{displayName}の</span><span class="whitespace-nowrap">車内クリーニング・</span><span class="whitespace-nowrap">消臭洗浄</span>
             </p>
             
             {/* 4. キャンペーンボックス（黄色） */}
-            <div class="bg-yellow-100 border-4 border-yellow-400 p-6 md:p-8 rounded-3xl shadow-xl mb-6 inline-block w-full max-w-xl">
-                <p class="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-                    今なら、通常2,000円の
+            <div class="bg-yellow-100 border-4 border-yellow-400 p-4 md:p-8 rounded-3xl shadow-xl mb-4 inline-block w-full max-w-xl">
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mb-1">
+                    <span class="whitespace-nowrap">今なら、</span><span class="whitespace-nowrap">通常2,000円の</span>
                 </p>
-                <p class="text-4xl md:text-6xl font-black text-red-600 animate-pulse">
-                    抗菌コート 無料！
+                <p class="text-3xl md:text-6xl font-black text-red-600 animate-pulse">
+                    <span class="whitespace-nowrap">抗菌コート</span> <span class="whitespace-nowrap">無料！</span>
                 </p>
             </div>
 
             {/* 5. 緊急トラブルボックス（白背景・赤枠） */}
-            <div class="bg-white border-4 border-red-500 p-6 md:p-8 rounded-3xl shadow-2xl mb-10 w-full max-w-xl">
-                <p class="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-                    ディーラーで5日待てますか？
+            <div class="bg-white border-4 border-red-500 p-4 md:p-8 rounded-3xl shadow-2xl mb-8 w-full max-w-xl">
+                <p class="text-lg md:text-2xl font-bold text-gray-800 mb-1">
+                    <span class="whitespace-nowrap">ディーラーで</span><span class="whitespace-nowrap">5日待てますか？</span>
                 </p>
-                <p class="text-5xl md:text-7xl font-black text-red-600">
+                <p class="text-4xl md:text-7xl font-black text-red-600">
                     絶対ムリ！
                 </p>
             </div>
 
             {/* 6. CTAボタン */}
-            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
                 <a
                     href="https://lin.ee/Xs8Orp2"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="bg-[#06C755] hover:bg-[#05a346] text-white font-black py-5 px-10 rounded-full shadow-2xl text-2xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-3"
+                    class="bg-[#06C755] hover:bg-[#05a346] text-white font-black py-5 px-10 rounded-full shadow-2xl text-xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-3"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                    LINEで見積もり
+                    <span class="whitespace-nowrap">LINEで見積もり</span>
                 </a>
                 <a
-                    href="https://www.instagram.com/carinterierclean/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] hover:opacity-90 text-white font-black py-5 px-10 rounded-full shadow-2xl text-2xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-3"
+                    href="tel:07084280866"
+                    class="bg-red-600 hover:bg-red-700 text-white font-black py-5 px-10 rounded-full shadow-2xl text-xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-3 animate-pulse ring-4 ring-red-300"
                 >
-                    📸 インスタDM相談
+                    📞 <span class="whitespace-nowrap">電話 070-8428-0866</span>
                 </a>
             </div>
 
             {/* 7. 補足テキスト */}
-            <p class="text-xl md:text-2xl font-black text-gray-800 leading-relaxed bg-white/60 inline-block px-4 py-2 rounded-lg">
-                嘔吐・灯油こぼしの緊急トラブル <span class="text-red-600 underline decoration-4">すぐ対応</span> 駆けつけます
+            <p class="text-lg md:text-2xl font-black text-gray-800 leading-relaxed bg-white/60 inline-block px-4 py-2 rounded-lg">
+                <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span> <span class="whitespace-nowrap">駆けつけます</span>
             </p>
         </div>
     </div>

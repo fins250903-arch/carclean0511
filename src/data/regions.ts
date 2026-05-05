@@ -18,5 +18,6 @@ export const regions = [
   { id: 'shizuoka', name: '静岡県' },
   { id: 'nara', name: '奈良県' },
   { id: 'wakayama', name: '和歌山県' },
-  { id: 'saga', name: '佐賀県' }
+  { id: 'saga', name: '佐賀県' },
+  { id: 'fukui', name: '福井県' }
 ];

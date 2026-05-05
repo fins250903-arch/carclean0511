@@ -1,0 +1,129 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { regions } from '../../data/regions';
+import '../../styles/blog.css';
+
+type BlogPost = CollectionEntry<'blog'>;
+const posts: BlogPost[] = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const getSlug = (post: BlogPost) => post.id.replace(/\/index$/, '');
+const getImageSrc = (post: BlogPost) =>
+	post.data.coverImage ? `/posts/${getSlug(post)}/images/${post.data.coverImage}` : null;
+---
+
+<MainLayout
+	title="ブログ | 車内清掃「特急便」"
+	description="車内クリーニング・消臭洗浄の施工事例やお役立ち情報をお届けするブログです。"
+>
+	<main class="blog-content min-h-screen bg-gray-50 py-12 pb-32 md:pb-12">
+		<div class="max-w-5xl mx-auto px-4 sm:px-6">
+			<!-- ヘッダー -->
+			<div class="text-center mb-12">
+				<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">施工事例ブログ</h1>
+				<p class="text-lg text-gray-600">実際のクリーニング事例をご紹介しています</p>
+				<a href="http://carinteriorcleaning.jp/" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium transition-colors">← トップページへ戻る</a>
+			</div>
+
+			<!-- 地域別 記事一覧 -->
+			<div class="space-y-16">
+				{regions.map(region => {
+					const regionPosts = posts.filter(post => post.data.categories?.includes(region.id));
+					if (regionPosts.length === 0) return null;
+					
+					return (
+						<section>
+							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-2 inline-block pr-8">
+								📍 {region.name}の施工実績
+							</h2>
+							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+								{regionPosts.map((post) => {
+									const slug = getSlug(post);
+									const imageSrc = getImageSrc(post);
+									return (
+										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+											<a href={`http://carinteriorcleaning.jp/blog/${slug}/`} class="block group flex-1 flex flex-col">
+												{imageSrc ? (
+													<div class="overflow-hidden h-48">
+														<img
+															src={imageSrc}
+															alt={post.data.title ?? ''}
+															class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+															loading="lazy"
+														/>
+													</div>
+												) : (
+													<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
+														<span class="text-4xl">🚗</span>
+													</div>
+												)}
+												<div class="p-5 flex-1 flex flex-col">
+													<p class="text-sm text-gray-500 mb-2">
+														<FormattedDate date={post.data.date} />
+													</p>
+													<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+														{post.data.title}
+													</h3>
+												</div>
+											</a>
+										</article>
+									);
+								})}
+							</div>
+						</section>
+					);
+				})}
+
+				{/* その他の実績 */}
+				{(() => {
+					const otherPosts = posts.filter(post => !post.data.categories?.some(cat => regions.some(r => r.id === cat)));
+					if (otherPosts.length === 0) return null;
+					return (
+						<section>
+							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-gray-400 pb-2 inline-block pr-8">
+								🚙 その他の実績・お知らせ
+							</h2>
+							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+								{otherPosts.map((post) => {
+									const slug = getSlug(post);
+									const imageSrc = getImageSrc(post);
+									return (
+										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+											<a href={`http://carinteriorcleaning.jp/blog/${slug}/`} class="block group flex-1 flex flex-col">
+												{imageSrc ? (
+													<div class="overflow-hidden h-48">
+														<img
+															src={imageSrc}
+															alt={post.data.title ?? ''}
+															class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+															loading="lazy"
+														/>
+													</div>
+												) : (
+													<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
+														<span class="text-4xl">🚗</span>
+													</div>
+												)}
+												<div class="p-5 flex-1 flex flex-col">
+													<p class="text-sm text-gray-500 mb-2">
+														<FormattedDate date={post.data.date} />
+													</p>
+													<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+														{post.data.title}
+													</h3>
+												</div>
+											</a>
+										</article>
+									);
+								})}
+							</div>
+						</section>
+					);
+				})()}
+			</div>
+		</div>
+	</main>
+</MainLayout>

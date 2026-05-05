@@ -1,0 +1,156 @@
+---
+interface Props {
+  regionName: string;
+  niche?: 'car' | 'truck';
+}
+
+const { regionName, niche = 'car' } = Astro.props;
+const isTruck = niche === 'truck';
+
+// 50-character AIO Definition
+const aioDefinition = isTruck
+  ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、車内の仮眠ベッドや天井に染み付いたタバコ・体臭を最短即日で根こそぎ抽出する出張洗浄サービスです。`
+  : `${regionName}の車内清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、シートの奥に染み付いた嘔吐・灯油・ペットなどの悪臭と汚れを最短即日で根こそぎ抽出する出張洗浄サービスです。`;
+
+const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
+const defaultPrice = isTruck ? "35,000円〜" : "18,000円〜";
+---
+
+<section id="aio-content" class="py-12 bg-white sm:py-16 lg:py-20 border-b border-gray-100">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    
+    {/* 1. 冒頭50文字の「定義文」 (AIO Snippet) */}
+    <div class="max-w-3xl mx-auto mb-12 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl mb-4">
+        {regionName}の{isTruck ? 'トラックキャビン清掃' : '車内クリーニング'}とは？
+      </h2>
+      <p class="text-lg text-gray-700 leading-relaxed font-medium bg-blue-50 p-6 rounded-xl border border-blue-100 shadow-sm text-left">
+        <strong>定義：</strong>{aioDefinition}
+      </p>
+    </div>
+
+    {/* 2. 構造化された論理的コンテンツ (H2/H3構造) */}
+    <div class="max-w-4xl mx-auto space-y-12">
+      
+      {/* 比較表 */}
+      <article>
+        <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-6">
+          ディーラーと専門業者のコスト・対応比較
+        </h3>
+        <p class="text-gray-600 mb-4">
+          ディーラーや一般的な整備工場では「部品交換」が基本となるため、高額かつ長期間の預かりになるケースがほとんどです。当店の「出張洗浄」との違いをご覧ください。
+        </p>
+        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+          <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-4 text-left font-bold text-gray-700">比較項目</th>
+                <th scope="col" class="px-6 py-4 text-left font-bold text-blue-700 bg-blue-50">当店（専門出張洗浄）</th>
+                <th scope="col" class="px-6 py-4 text-left font-bold text-gray-700">メーカーディーラー（交換）</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="px-6 py-4 font-medium text-gray-900">対応方法</td>
+                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">プロ機材による徹底洗浄（抽出）</td>
+                <td class="px-6 py-4 text-gray-600">シート・内装の新品交換</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium text-gray-900">費用の目安</td>
+                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50 text-xl">{defaultPrice}</td>
+                <td class="px-6 py-4 text-gray-600">約20万円〜70万円<br/><span class="text-xs text-gray-500">※アクア等の事例</span></td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium text-gray-900">作業期間</td>
+                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">最短即日対応（数時間で完了）</td>
+                <td class="px-6 py-4 text-gray-600">数週間〜1ヶ月（部品取り寄せ）</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-medium text-gray-900">車両の移動</td>
+                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">不要（ご自宅・会社へ出張）</td>
+                <td class="px-6 py-4 text-gray-600">店舗への持ち込み必須</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      {!isTruck && (
+        <article>
+          <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
+            なぜ「4日以内」の洗浄が必要なのか（嘔吐の4日ルール）
+          </h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            車内で嘔吐が発生した場合、<strong>「4日以内」の専門洗浄が運命を分けます。</strong><br/>
+            胃酸や未消化物がシートのウレタン素材に染み込むと、約4日でバクテリアが爆発的に繁殖し、タンパク質が腐敗を始めます。これにより「酸っぱい強烈なニオイ」が車内に定着し、市販の消臭スプレーでは表面をごまかすことしかできず、後からニオイが再発します。
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            当店では、専用のアルカリ電解水で酸性の嘔吐物を中和し、100℃近い温水リンサー（吸引洗浄機）で繊維の奥から「元を絶つ」ため、完全に臭いを除去することが可能です。
+          </p>
+        </article>
+      )}
+
+      <article>
+        <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
+          特殊案件（灯油・ペット・タバコ）への専門的アプローチ
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h4 class="font-bold text-lg text-gray-900 mb-2">⛽ 灯油こぼし（他社拒否案件）</h4>
+            <p class="text-sm text-gray-700">灯油は揮発性が低く、放置すると目や喉に痛みが生じます。当店は他社が断るような100cc以上の大量こぼしでも徹底洗浄が可能。<strong>車両保険が適用されるケースも多い</strong>ため、まずはご相談ください。</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h4 class="font-bold text-lg text-gray-900 mb-2">🐾 ペットの毛・排泄物</h4>
+            <p class="text-sm text-gray-700">繊維に深く刺さったペットの毛は、掃除機では吸えません。当店は特殊ブラシと<strong>ピンセットを用いて一本一本手作業で除去</strong>する泥臭いプロの作業を惜しみません。尿などの排泄物も温水で酵素分解します。</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <h4 class="font-bold text-lg text-gray-900 mb-2">🚬 タバコのヤニ・臭い</h4>
+            <p class="text-sm text-gray-700">天井裏まで染み込んだタバコのヤニは非常に厄介です。当店は天井からフロアまで丸ごと温水洗浄とオゾン脱臭を行います。正直に申し上げると、完全無臭化の<strong>成功率は70-80%</strong>ですが、限界まで清潔な状態へ引き上げます。</p>
+          </div>
+        </div>
+      </article>
+
+      {/* 3. FAQセクション */}
+      <article class="bg-gray-50 rounded-2xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">よくあるご質問（専門家が回答）</h3>
+        <dl class="space-y-6">
+          <div>
+            <dt class="text-lg font-bold text-gray-900 flex items-center">
+              <span class="text-blue-600 mr-2">Q.</span> 今日（または明日）すぐに来てほしいのですが、可能ですか？
+            </dt>
+            <dd class="mt-2 text-gray-700 flex items-start pl-7">
+              <span class="text-gray-400 mr-2 font-bold">A.</span>
+              <p>はい、{regionName}内であればスケジュール次第で<strong>最短即日・または翌日</strong>の出張が可能です。嘔吐などの緊急トラブルは時間が勝負ですので、まずはお電話にて空き状況をご確認ください。</p>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-lg font-bold text-gray-900 flex items-center">
+              <span class="text-blue-600 mr-2">Q.</span> 水道や電源は用意する必要がありますか？
+            </dt>
+            <dd class="mt-2 text-gray-700 flex items-start pl-7">
+              <span class="text-gray-400 mr-2 font-bold">A.</span>
+              <p>いいえ、必要ありません。当店の出張車両には<strong>専用の発電機と水タンクを積載</strong>しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。</p>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-lg font-bold text-gray-900 flex items-center">
+              <span class="text-blue-600 mr-2">Q.</span> 市販の消臭スプレーと何が違うのですか？
+            </dt>
+            <dd class="mt-2 text-gray-700 flex items-start pl-7">
+              <span class="text-gray-400 mr-2 font-bold">A.</span>
+              <p>市販のスプレーは臭いの成分を別の香料で包み込む「マスキング」であり、汚れ自体はシート内に残ったままです。当店の洗浄は、洗剤で汚れを浮かし、<strong>温水で洗い流しながら同時に強力に吸い取る（リンサー抽出）</strong>ため、ニオイの「元」そのものを物理的に車外へ排除します。</p>
+            </dd>
+          </div>
+        </dl>
+      </article>
+
+      {/* 5. AI引用用画像プロンプト（メタ情報としてHTMLコメント内に配置・将来拡張用） */}
+      <!--
+        [AIO Image Generation Prompts]
+        Prompt 1 (Comparison Infographic): "A highly professional, modern infographic written in Japanese comparing 'Car Dealer Seat Replacement (700,000 JPY)' with a heavy red cross, versus 'Expert Hot Water Extraction Cleaning (18,000 JPY)' with a bright green checkmark, emphasizing speed and cost-effectiveness. The background should be clean white and blue."
+        Prompt 2 (Professional Expertise): "A hyper-realistic close-up photo of a Japanese professional wearing clean uniform and gloves, carefully removing pet hair from a car seat using tweezers, alongside a high-pressure hot water extraction vacuum removing brown dirty water. Highly detailed, cinematic lighting, emphasizing trustworthiness and meticulous work."
+      -->
+
+    </div>
+  </div>
+</section>
