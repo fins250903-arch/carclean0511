@@ -18,8 +18,8 @@ const {
 	ogImage = '/images/fv.png'
 } = Astro.props;
 
-const canonicalUrl = canonical || new URL(Astro.url.pathname, Astro.site).toString();
-const fullOgImage = new URL(ogImage, Astro.site).toString();
+const canonicalUrl = canonical || new URL(Astro.url.pathname, SITE_URL).toString();
+const fullOgImage = new URL(ogImage, SITE_URL).toString();
 ---
 
 <!doctype html>

@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://carclean2026.vercel.app';
+export const SITE_URL = 'https://carinteriorcleaning.jp';
 
 export const STORE_NAME = '車内清掃「特急便」';
 

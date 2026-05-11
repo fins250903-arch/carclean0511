@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://carclean2026.vercel.app',
+  site: 'https://carinteriorcleaning.jp',
   output: 'static',
   integrations: [react(), sitemap(), mdx()],
   fonts: [
