@@ -1,0 +1,191 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { regions } from '../../../data/regions';
+import {
+  AD_KEYWORD_PAGES,
+  getAdKeywordPage,
+} from '../../../data/adKeywordPages';
+import {
+  generateAdKeywordRegionMetadata,
+  generateJsonLd,
+} from '../../../lib/seo';
+import { regionalPosts } from '../../../data/regionalPosts';
+import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+
+import Hero from '../../../components/sections/Hero.astro';
+import AIOContent from '../../../components/sections/AIOContent.astro';
+import RegionAIContent from '../../../components/sections/RegionAIContent.astro';
+import Problem from '../../../components/sections/Problem.astro';
+import Solution from '../../../components/sections/Solution.astro';
+import Comparison from '../../../components/sections/Comparison.astro';
+import Campaign from '../../../components/sections/Campaign.astro';
+import CTA from '../../../components/sections/CTA.astro';
+import FAQ from '../../../components/sections/FAQ.astro';
+import Reasons from '../../../components/sections/Reasons.astro';
+import Benefits from '../../../components/sections/Benefits.astro';
+import Roadmap from '../../../components/sections/Roadmap.astro';
+import RegionalAchievements from '../../../components/sections/RegionalAchievements.astro';
+import Targets from '../../../components/sections/Targets.astro';
+import AreaCoverage from '../../../components/sections/AreaCoverage.astro';
+import Flow from '../../../components/sections/Flow.astro';
+import Profile from '../../../components/sections/Profile.astro';
+import Expertise from '../../../components/sections/Expertise.astro';
+import Pricing from '../../../components/sections/Pricing.astro';
+import Closing from '../../../components/sections/Closing.astro';
+import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
+
+import { RegionProvider } from '../../../lib/RegionContext';
+import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
+import Testimonials from '../../../components/sections/Testimonials';
+import Blog from '../../../components/sections/Blog';
+import ContactForm from '../../../components/sections/ContactForm';
+import FloatingCTA from '../../../components/sections/FloatingCTA';
+
+export async function getStaticPaths() {
+  const paths: {
+    params: { region: string; kw: string };
+    props: { regionName: string; regionId: string };
+  }[] = [];
+  for (const region of regions) {
+    for (const page of AD_KEYWORD_PAGES) {
+      paths.push({
+        params: { region: region.id, kw: page.slug },
+        props: { regionName: region.name, regionId: region.id },
+      });
+    }
+  }
+  return paths;
+}
+
+const { regionName, regionId } = Astro.props;
+const kwSlug = Astro.params.kw!;
+const kw = getAdKeywordPage(kwSlug);
+if (!kw) {
+  throw new Error(`Unknown ad keyword slug: ${kwSlug}`);
+}
+
+const path = `/regions/${regionId}/${kwSlug}`;
+const regionBasePath = `/regions/${regionId}`;
+
+const post =
+  regionalPosts[regionName] ||
+  regionalPosts[regionName.replace('府', '').replace('県', '')];
+const displayName = post?.displayName || regionName;
+const questionnaireStructuredData = generateQuestionnaireJsonLd(
+  regionName,
+  displayName,
+  path,
+);
+const regionOverrides = {
+  displayName,
+  aiSummary: post?.aiSummary,
+  article:
+    post?.title && post?.excerpt && post?.image
+      ? {
+          headline: post.title,
+          description: post.excerpt,
+          image: post.image,
+        }
+      : undefined,
+  localBusiness: post?.structuredData
+    ? {
+        areaServed: post.structuredData.areaServed,
+        description: post.structuredData.description,
+        geo: post.structuredData.geo
+          ? {
+              ...post.structuredData.geo,
+              addressRegion: regionName,
+            }
+          : undefined,
+      }
+    : undefined,
+};
+
+const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
+const jsonLdData = generateJsonLd(
+  regionName,
+  path,
+  regionOverrides,
+  'car',
+  {
+    adKeywordSchema: {
+      webPageName: metadata.title!,
+      webPageDescription: metadata.description!,
+      heroImagePath: kw.fvImage,
+    },
+  },
+);
+const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+
+const adHero = {
+  subtitle: kw.heroSubtitle(displayName),
+  highlightLine1: kw.heroHighlight[0],
+  highlightLine2: kw.heroHighlight[1],
+  subcatch: kw.heroSubcatch(displayName),
+  fvImage: kw.fvImage,
+  footerText: kw.heroFooter(displayName),
+};
+
+const adProblem = {
+  header: kw.problemHeader,
+  subHeader: kw.problemSubHeader,
+  dealerQuote: kw.problemDealerQuote,
+  bodyHtml: kw.problemBodyHtml(regionName, displayName),
+  empathyImage: kw.problemEmpathyImage,
+  empathyAlt: kw.problemEmpathyAlt,
+};
+---
+
+<MainLayout
+  title={metadata.title}
+  description={metadata.description}
+  keywords={metadata.keywords}
+  canonical={metadata.alternates?.canonical}
+  ogImage={kw.ogImage}
+>
+  <JsonLd slot="head" data={combinedJsonLd} />
+
+  <RegionProvider client:load regionName={regionName} displayName={displayName} niche="car" path={path}>
+    <main class="min-h-screen bg-white pb-28 md:pb-20">
+      <Hero regionName={regionName} displayName={displayName} niche="car" adHero={adHero} />
+      <AIOContent regionName={regionName} niche="car" />
+      <RegionAIContent regionName={regionName} displayName={displayName} />
+      <Problem regionName={regionName} displayName={displayName} niche="car" adProblem={adProblem} />
+      <Solution regionName={regionName} displayName={displayName} niche="car" />
+      <Comparison displayName={displayName} />
+
+      <Campaign displayName={displayName} />
+      <CTA />
+      <Reasons displayName={displayName} regionName={regionName} />
+      <Benefits />
+      <Roadmap displayName={displayName} />
+
+      <QuestionnaireTestimonials client:visible displayName={displayName} />
+      <RegionalAchievements regionName={regionName} displayName={displayName} niche="car" />
+      <Targets />
+      <Campaign displayName={displayName} />
+      <AreaCoverage regionName={regionName} />
+      <CTA />
+      <Flow niche="car" />
+      <Profile displayName={displayName} />
+      <Expertise />
+      <Pricing regionName={regionName} niche="car" />
+      <Campaign displayName={displayName} />
+      <AreaCoverage regionName={regionName} />
+      <CTA />
+      <FAQ niche="car" />
+      <Blog client:visible regionName={regionName} displayName={displayName} />
+      <ServiceMutualLink
+        regionName={regionName}
+        displayName={displayName}
+        niche="car"
+        path={path}
+        regionBasePath={regionBasePath}
+      />
+      <ContactForm client:visible regionName={regionName} />
+      <Closing regionName={regionName} displayName={displayName} niche="car" path={path} />
+      <FloatingCTA client:visible />
+    </main>
+  </RegionProvider>
+</MainLayout>

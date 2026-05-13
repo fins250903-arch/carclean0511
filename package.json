@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "sync:513": "node ./scripts/sync-513-to-public.mjs",
+    "dev": "npm run sync:513 && astro dev",
+    "start": "npm run sync:513 && astro dev",
+    "build": "npm run sync:513 && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

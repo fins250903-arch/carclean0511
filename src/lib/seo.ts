@@ -86,6 +86,8 @@ import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME } from '@/lib/site';
 
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
+import type { AdKeywordPageDef } from '@/data/adKeywordPages';
+
 
 
 type RegionOverrides = {
@@ -128,6 +130,17 @@ type SchemaOptions = {
 
     /** キャンペーン終了日（ISO 8601 形式: 'YYYY-MM-DD'）。デフォルト: '2026-12-31' */
     campaignEndDate?: string;
+
+    /** 広告キーワードLP：WebPage / LocalBusiness の文言・画像 */
+    adKeywordSchema?: {
+
+        webPageName: string;
+
+        webPageDescription: string;
+
+        heroImagePath: string;
+
+    };
 
 };
 
@@ -281,6 +294,110 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 
 
+export const generateAdKeywordRegionMetadata = (regionName: string, path: string, kw: AdKeywordPageDef): Metadata => {
+
+    const title = `${regionName}の${kw.seoTitle}｜${STORE_NAME}`;
+
+    const description = kw.seoDescription(regionName);
+
+    const keywords = kw.seoKeywords(regionName);
+
+    const normalizedPath = (path.endsWith('/') ? path.slice(0, -1) : path) || path;
+
+    const url = `${SITE_URL}${normalizedPath}/`;
+
+    const ogPath = kw.ogImage;
+
+
+
+    return {
+
+        title,
+
+        description,
+
+        keywords,
+
+        metadataBase: new URL(SITE_URL),
+
+        alternates: {
+
+            canonical: url,
+
+        },
+
+        openGraph: {
+
+            title,
+
+            description,
+
+            url,
+
+            siteName: STORE_NAME,
+
+            locale: 'ja_JP',
+
+            type: 'website',
+
+            images: [
+
+                {
+
+                    url: ogPath,
+
+                    width: 1200,
+
+                    height: 630,
+
+                    alt: `${regionName} ${kw.seoTitle} ${STORE_NAME}`,
+
+                },
+
+            ],
+
+        },
+
+        twitter: {
+
+            card: 'summary_large_image',
+
+            title,
+
+            description,
+
+            images: [ogPath],
+
+        },
+
+        robots: {
+
+            index: true,
+
+            follow: true,
+
+            googleBot: {
+
+                index: true,
+
+                follow: true,
+
+                'max-video-preview': -1,
+
+                'max-image-preview': 'large',
+
+                'max-snippet': -1,
+
+            },
+
+        },
+
+    };
+
+};
+
+
+
 export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: 'car' | 'truck' = 'car', schemaOptions?: SchemaOptions) => {
 
     const isTruck = niche === 'truck';
@@ -290,6 +407,14 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     const normalizedPath = isOsaka ? '' : path;
 
     const url = `${SITE_URL}${normalizedPath}${normalizedPath.endsWith('/') ? '' : '/'}`;
+
+    const adKwSchema = schemaOptions?.adKeywordSchema;
+
+    const absHeroImageForSchema = adKwSchema?.heroImagePath
+
+        ? (adKwSchema.heroImagePath.startsWith('http') ? adKwSchema.heroImagePath : `${SITE_URL}${adKwSchema.heroImagePath}`)
+
+        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'fv.png'}`;
 
     const displayName = regionOverrides?.displayName || regionName;
 
@@ -345,9 +470,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         url,
 
-        name: isTruck ? `${regionName}の大型トラック・バス キャビン洗浄専門店` : `${displayName}の${STORE_NAME}`,
+        name: adKwSchema?.webPageName ?? (isTruck ? `${regionName}の大型トラック・バス キャビン洗浄専門店` : `${displayName}の${STORE_NAME}`),
 
-        description: isTruck ? truckDescription : `${regionName}で車内クリーニング、シート洗浄、嘔吐消臭、灯油こぼし清掃に対応する出張LPです。`,
+        description: adKwSchema?.webPageDescription ?? (isTruck ? truckDescription : `${regionName}で車内クリーニング、シート洗浄、嘔吐消臭、灯油こぼし清掃に対応する出張LPです。`),
 
         inLanguage: 'ja-JP',
 
@@ -405,7 +530,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         alternateName: `${displayName}対応 ${STORE_NAME}${isTruck ? '（トラック清掃）' : ''}`,
 
-        image: `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'fv.png'}`,
+        image: absHeroImageForSchema,
 
         description: localBusinessDescription,
 

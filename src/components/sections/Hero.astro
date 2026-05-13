@@ -1,20 +1,31 @@
 ---
 import { STORE_NAME } from '../../lib/site';
+import { IMG513 } from '../../lib/assets513';
+
+interface AdHeroOverrides {
+  subtitle: string;
+  highlightLine1: string;
+  highlightLine2: string;
+  subcatch: string;
+  fvImage: string;
+  footerText: string;
+}
 
 interface Props {
   regionName: string;
   displayName: string;
   niche?: 'car' | 'truck';
+  adHero?: AdHeroOverrides;
 }
 
-const { regionName, displayName, niche = 'car' } = Astro.props;
+const { regionName, displayName, niche = 'car', adHero } = Astro.props;
 const isTruck = niche === 'truck';
 
-const subtitle = isTruck 
+const subtitle = adHero?.subtitle ?? (isTruck 
     ? `${displayName}トラックキャビン清掃専門店/キャビン洗浄`
-    : `${displayName}車内クリーニング専門店/シート洗浄`;
+    : `${displayName}車内クリーニング専門店/シート洗浄`);
 
-const fvImage = isTruck ? "/images/truck-fv.png" : "/images/fv_change_v2.png";
+const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fvCar);
 ---
 
 <section class="relative w-full min-h-screen md:h-[95vh] flex items-center bg-white overflow-hidden">
@@ -52,13 +63,27 @@ const fvImage = isTruck ? "/images/truck-fv.png" : "/images/fv_change_v2.png";
             {/* 2.5 メイン訴求 */}
             <div class="bg-red-600 text-white py-2.5 sm:py-3 px-4 sm:px-5 rounded-2xl shadow-lg mb-4 inline-block max-w-full">
                 <p class="text-lg sm:text-xl md:text-3xl font-black tracking-wide leading-tight">
-                    <span class="whitespace-nowrap">おうと（嘔吐）、</span><wbr /><span class="whitespace-nowrap">におい、</span><wbr /><span class="whitespace-nowrap">灯油こぼし</span>
+                    {adHero ? (
+                        <>
+                            <span class="whitespace-nowrap">{adHero.highlightLine1}</span><wbr /><span class="whitespace-nowrap">{adHero.highlightLine2}</span>
+                        </>
+                    ) : (
+                        <>
+                            <span class="whitespace-nowrap">おうと（嘔吐）、</span><wbr /><span class="whitespace-nowrap">におい、</span><wbr /><span class="whitespace-nowrap">灯油こぼし</span>
+                        </>
+                    )}
                 </p>
             </div>
 
             {/* 3. サブキャッチ */}
             <p class="text-base sm:text-lg md:text-3xl font-bold text-gray-700 mb-5 sm:mb-6 leading-snug">
-                <span class="whitespace-nowrap">{displayName}の</span><wbr /><span class="whitespace-nowrap">車内クリーニング・</span><wbr /><span class="whitespace-nowrap">消臭洗浄</span>
+                {adHero ? (
+                    <span class="whitespace-nowrap">{adHero.subcatch}</span>
+                ) : (
+                    <>
+                        <span class="whitespace-nowrap">{displayName}の</span><wbr /><span class="whitespace-nowrap">車内クリーニング・</span><wbr /><span class="whitespace-nowrap">消臭洗浄</span>
+                    </>
+                )}
             </p>
             
             {/* 4. キャンペーンボックス（黄色） */}
@@ -102,7 +127,13 @@ const fvImage = isTruck ? "/images/truck-fv.png" : "/images/fv_change_v2.png";
 
             {/* 7. 補足テキスト */}
             <p class="text-base sm:text-lg md:text-2xl font-black text-gray-800 leading-snug bg-white/70 inline-block px-3 sm:px-4 py-2 rounded-lg max-w-full">
-                <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                {adHero ? (
+                    <span>{adHero.footerText}</span>
+                ) : (
+                    <>
+                        <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                    </>
+                )}
             </p>
         </div>
     </div>

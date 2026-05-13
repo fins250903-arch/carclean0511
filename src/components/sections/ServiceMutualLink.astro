@@ -4,9 +4,11 @@ interface Props {
   displayName: string;
   niche?: 'car' | 'truck' | 'coating';
   path: string;
+  /** 例: /regions/osaka — キーワードLPで相互リンク用 */
+  regionBasePath?: string;
 }
 
-const { regionName, displayName, niche = 'car', path } = Astro.props;
+const { regionName, displayName, niche = 'car', path, regionBasePath } = Astro.props;
 
 if (niche === 'coating') return null;
 
@@ -15,13 +17,14 @@ const isTruck = niche === 'truck';
 // 相互リンク先URLを構築
 let targetLink = '';
 const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
+const mutualBase = (regionBasePath ?? cleanPath).replace(/\/$/, '');
 
-if (cleanPath === '/' || cleanPath === '') {
+if (mutualBase === '/' || mutualBase === '') {
     targetLink = isTruck ? '/' : '/regions/osaka-truck';
 } else {
     targetLink = isTruck
-        ? cleanPath.replace(/-truck$/, '')
-        : `${cleanPath}-truck`;
+        ? mutualBase.replace(/-truck$/, '')
+        : `${mutualBase}-truck`;
 }
 
 const targetImage = isTruck ? '/images/fv_change_v2.png' : '/images/truck-fv.png';
