@@ -240,7 +240,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
                 {
 
-                    url: isTruck ? '/images/truck-fv.png' : '/images/representative_new.webp',
+                    url: isTruck ? '/images/truck-fv.png' : '/images/fv-passenger-hero.png',
 
                     width: 1200,
 
@@ -262,7 +262,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
             description,
 
-            images: [isTruck ? '/images/truck-fv.png' : '/images/representative_new.webp'],
+            images: [isTruck ? '/images/truck-fv.png' : '/images/fv-passenger-hero.png'],
 
         },
 
@@ -414,7 +414,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         ? (adKwSchema.heroImagePath.startsWith('http') ? adKwSchema.heroImagePath : `${SITE_URL}${adKwSchema.heroImagePath}`)
 
-        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'representative_new.webp'}`;
+        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'fv-passenger-hero.png'}`;
 
     const displayName = regionOverrides?.displayName || regionName;
 

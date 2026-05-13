@@ -3,7 +3,8 @@
  * 本番では `/513images` に依存せず、ビルド成果物に必ず含まれる静的ファイルを参照する。
  */
 export const IMG513 = {
-  fvCar: '/images/representative_new.webp',
+  /** 乗用車LP・FV背景（指定の出張施工イメージ） */
+  fvCar: '/images/fv-passenger-hero.png',
   empathyPetOdor: '/images/empathy.webp',
   cargoOdor: '/images/cases/nbox_odor_3.webp',
   rinser: '/images/rinser.webp',
