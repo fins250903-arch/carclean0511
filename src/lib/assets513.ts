@@ -1,31 +1,24 @@
 /**
- * Images from repo `513images/`, copied into `public/513images/` by `npm run sync:513`.
- * Use `url513()` for filenames with spaces or non-ASCII.
+ * LP用の画像パス（`public/images/` 配下のみ）。
+ * 本番では `/513images` に依存せず、ビルド成果物に必ず含まれる静的ファイルを参照する。
  */
-const BASE = '/513images';
-
-export function url513(filename: string): string {
-  return `${BASE}/${filename.split('/').map((seg) => encodeURIComponent(seg)).join('/')}`;
-}
-
-/** Named assets (UTF-8 filenames on disk) */
 export const IMG513 = {
-  fvCar: url513('voxy3.jpg'),
-  empathyPetOdor: url513('Nワゴンpet臭3.jpg'),
-  cargoOdor: url513('hizcargo nioi1.jpg'),
-  rinser: url513('rinser.webp'),
-  steam: url513('steam.webp'),
-  sientaBefore: url513('sienta3retume before.jpg'),
-  sientaAfter: url513('sienta3retumeafter.jpg'),
-  landcruiserCeilingYani: url513('トヨタランドクルーザープラド天井ヤニ.jpg'),
-  landcruiserYaniToru: url513('トヨタランドクルーザープラドヤニ取.jpg'),
-  landcruiserTennjyou: url513('トヨタランドクルーザープラドtennjyou.jpg'),
-  priusYani: url513('プリウスやに汚れ画像。.jpg'),
-  audiPet: url513('アウディA3後ろペットシッコ2.jpg'),
-  voiceFamily: url513('voice_family.webp'),
-  voiceYoungMan: url513('voice_young_man.webp'),
-  voiceBusinessman: url513('voice_businessman.webp'),
-  voiceTimeSaved: url513('voice_time_saved.png'),
-  voiceCheapFail: url513('voice_cheap_fail.png'),
-  voiceDiyFail: url513('voice_diy_fail.png'),
+  fvCar: '/images/representative_new.webp',
+  empathyPetOdor: '/images/empathy.webp',
+  cargoOdor: '/images/cases/nbox_odor_3.webp',
+  rinser: '/images/rinser.webp',
+  steam: '/images/steam.webp',
+  sientaBefore: '/images/cases/sienta_vomit_2.webp',
+  sientaAfter: '/images/cases/sienta_vomit_5.webp',
+  landcruiserCeilingYani: '/images/cases/nbox_odor_4.webp',
+  landcruiserYaniToru: '/images/cases/seat_cleaning_rinser.jpg',
+  landcruiserTennjyou: '/images/cases/nbox_odor_5.webp',
+  priusYani: '/images/coffee_stain.webp',
+  audiPet: '/images/questionnaires/dogsit.jpg',
+  voiceFamily: '/images/voice_family.webp',
+  voiceYoungMan: '/images/voice_young_man.webp',
+  voiceBusinessman: '/images/voice_businessman.webp',
+  voiceTimeSaved: '/images/voice_time_saved.png',
+  voiceCheapFail: '/images/voice_cheap_fail.png',
+  voiceDiyFail: '/images/voice_diy_fail.png',
 } as const;

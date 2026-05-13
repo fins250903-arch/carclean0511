@@ -1,6 +1,6 @@
 import { IMG513 } from '@/lib/assets513';
 
-/** 広告LP（乗用車・1キーワード1URL）。画像は project 内 513images（sync:513）を参照 */
+/** 広告LP（乗用車・1キーワード1URL）。画像は `public/images/` の静的アセット（IMG513）を参照 */
 export type AdKeywordPageDef = {
   slug: string;
   /** <title> 用の短い訴求（地域名は別途付与） */

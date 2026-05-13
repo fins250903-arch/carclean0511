@@ -240,7 +240,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
                 {
 
-                    url: isTruck ? '/images/truck-fv.png' : '/images/fv.png',
+                    url: isTruck ? '/images/truck-fv.png' : '/images/representative_new.webp',
 
                     width: 1200,
 
@@ -262,7 +262,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
             description,
 
-            images: [isTruck ? '/images/truck-fv.png' : '/images/fv.png'],
+            images: [isTruck ? '/images/truck-fv.png' : '/images/representative_new.webp'],
 
         },
 
@@ -414,7 +414,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         ? (adKwSchema.heroImagePath.startsWith('http') ? adKwSchema.heroImagePath : `${SITE_URL}${adKwSchema.heroImagePath}`)
 
-        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'fv.png'}`;
+        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'representative_new.webp'}`;
 
     const displayName = regionOverrides?.displayName || regionName;
 
@@ -452,7 +452,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         telephone: '070-8428-0866',
 
-        logo: `${SITE_URL}/images/fv.png`,
+        logo: `${SITE_URL}/images/representative_new.webp`,
 
         sameAs: [INSTAGRAM_URL, LINE_URL],
 
