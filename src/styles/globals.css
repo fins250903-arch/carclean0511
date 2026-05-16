@@ -37,7 +37,7 @@ body {
 
 /* FloatingCTA の高さ分のパディング確保 */
 @utility pb-floating {
-  padding-bottom: 5.5rem;
+  padding-bottom: 5.75rem;
   @media (min-width: 768px) {
     padding-bottom: 4.5rem;
   }

@@ -3,26 +3,32 @@ import React from 'react';
 export default function FloatingCTA() {
     return (
         <>
-            {/* モバイル: LINE + 電話 2ボタン */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-[0_-4px_6px_rgba(0,0,0,0.1)] px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:hidden">
-                <div className="flex gap-2 sm:gap-3 max-w-4xl mx-auto">
-                    <a href="https://lin.ee/Xs8Orp2" target="_blank" rel="noopener noreferrer" className="min-w-0 flex-1 bg-green-500 hover:bg-green-600 text-white rounded-xl py-3 flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
-                        <div className="text-center leading-tight">
-                            <span className="block text-xs font-bold opacity-90">必ずお返事！</span>
-                            <span className="block text-base sm:text-lg font-black whitespace-nowrap">LINEで見積もり</span>
-                        </div>
+            {/* スマホ：LINE・電話を左右に並べて表示 */}
+            <div className="fixed bottom-0 left-0 right-0 z-[100] max-md:block md:hidden bg-white border-t-2 border-gray-200 shadow-[0_-6px_20px_rgba(0,0,0,0.15)] px-2 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+                <div className="flex gap-2 max-w-lg mx-auto w-full">
+                    <a
+                        href="https://lin.ee/Xs8Orp2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 min-w-0 bg-[#06C755] hover:bg-[#05a346] text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5"
+                    >
+                        <span className="text-[10px] font-bold leading-none opacity-95">必ずお返事！</span>
+                        <span className="text-[15px] font-black leading-tight text-center">LINEで見積もり</span>
+                        <span className="text-[10px] font-bold leading-none opacity-90">写真で即見積</span>
                     </a>
-                    <a href="tel:07084280866" className="min-w-0 flex-1 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform animate-shine ring-2 ring-white/50 ring-offset-2 ring-offset-red-600">
-                        <div className="text-center leading-tight">
-                            <span className="block text-xs font-bold opacity-90">最速確認</span>
-                            <span className="block text-base sm:text-lg font-black whitespace-nowrap">電話相談</span>
-                        </div>
+                    <a
+                        href="tel:07084280866"
+                        className="flex-1 min-w-0 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5 animate-pulse"
+                    >
+                        <span className="text-[10px] font-bold leading-none opacity-95">３６５日受付</span>
+                        <span className="text-[15px] font-black leading-tight text-center">今すぐ電話</span>
+                        <span className="text-[11px] font-black leading-none tracking-tight">070-8428-0866</span>
                     </a>
                 </div>
             </div>
 
             {/* PC: 画面底部に大きな電話番号を常時表示 */}
-            <div className="hidden md:block fixed bottom-0 left-0 right-0 z-50">
+            <div className="max-md:hidden hidden md:block fixed bottom-0 left-0 right-0 z-50">
                 <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white shadow-[0_-4px_12px_rgba(0,0,0,0.2)]">
                     <div className="max-w-6xl mx-auto flex items-center justify-between px-8 py-3">
                         <div className="flex items-center gap-4">

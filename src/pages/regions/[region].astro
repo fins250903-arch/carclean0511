@@ -96,7 +96,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
-    <main class="min-h-screen bg-white pb-28 md:pb-20">
+    <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
       <AIOContent regionName={regionName} niche={niche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
@@ -128,7 +128,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <ContactForm client:visible regionName={regionName} />
       <Closing regionName={regionName} displayName={displayName} niche={niche} path={path} />
-      <FloatingCTA client:visible />
+      <FloatingCTA client:load />
     </main>
   </RegionProvider>
 </MainLayout>

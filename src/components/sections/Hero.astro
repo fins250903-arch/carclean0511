@@ -26,71 +26,78 @@ const subtitle = adHero?.subtitle ?? (isTruck
     : `${displayName}車内クリーニング専門店/シート洗浄`);
 
 const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fvCar);
+
+/** FVブロック間の余白（モバイルは詰めて最上部から表示） */
+const gap = 'mb-1.5 max-md:mb-1 sm:mb-2 md:mb-3';
+const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
 ---
 
-<section class="relative w-full min-h-[100svh] md:min-h-0 md:h-[95vh] flex items-center bg-white overflow-hidden max-md:pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+<section class="relative w-full min-h-0 md:min-h-[95vh] flex items-start bg-white overflow-hidden max-md:pb-2 md:pb-0">
     <div class="absolute inset-0 w-full h-full z-0">
         <img
             src={fvImage}
             alt={`${displayName}対応 ${STORE_NAME}`}
             class="w-full h-full object-cover max-md:object-[center_35%] md:object-[center_bottom] md:object-right opacity-90"
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent z-10 max-md:via-white/90"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent z-10 max-md:from-white/70 max-md:via-white/50 max-md:to-transparent"></div>
     </div>
 
-    <div class="container mx-auto px-4 sm:px-6 md:px-16 z-20 relative max-md:pt-3 max-md:pb-2 md:pt-0">
+    <div class="container mx-auto px-3 sm:px-6 md:px-16 z-20 relative w-full max-md:pt-[max(0.25rem,env(safe-area-inset-top))] md:pt-8 max-md:pb-1">
         <div class="max-w-3xl">
-            {/* 0. 最上部テキスト */}
-            <div class="mb-2 sm:mb-3 flex flex-wrap gap-2">
-                <span class="inline-flex bg-red-600 text-white text-xs sm:text-sm md:text-base font-bold px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full">
+            {/* ── 全LP共通 ── */}
+            {/* 1. バッジ */}
+            <div class:list={[gapTight, 'flex flex-wrap gap-1.5 sm:gap-2']}>
+                <span class="inline-flex bg-red-600 text-white text-xs sm:text-sm md:text-base font-bold px-2 sm:px-4 py-0.5 sm:py-1.5 rounded-full">
                     ３６５日２４時間受付中
                 </span>
-                <span class="inline-flex bg-blue-900 text-white text-xs sm:text-sm md:text-base font-bold px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full">
+                <span class="inline-flex bg-blue-900 text-white text-xs sm:text-sm md:text-base font-bold px-2 sm:px-4 py-0.5 sm:py-1.5 rounded-full">
                     "出張"車内クリーニング業者
                 </span>
             </div>
 
-            {/* 1. キーワードLP：ラベル＋キーワードを大きく / 通常LP：小見出し */}
+            {/* 2. 小見出し（キーワードLPのみ：ご指定のキーワード） */}
             {adHero ? (
-                <div class="mb-2 sm:mb-3 space-y-1.5">
-                    <p class="text-xl sm:text-2xl md:text-4xl font-black text-blue-900 leading-tight tracking-tight drop-shadow-sm">
+                <div class:list={[gap, 'space-y-0.5 sm:space-y-1']}>
+                    <p class="text-lg sm:text-2xl md:text-4xl font-black text-blue-900 leading-tight tracking-tight drop-shadow-sm">
                         ご指定のキーワード
                     </p>
-                    <p class="text-2xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-[1.15] tracking-tight border-b-[3px] sm:border-b-4 border-blue-600 inline-block pr-1 max-w-full">
+                    <p class="text-xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-[1.12] tracking-tight border-b-[3px] sm:border-b-4 border-blue-600 inline-block pr-1 max-w-full">
                         {subtitle}
                     </p>
                 </div>
             ) : (
-                <p class="text-sm sm:text-base md:text-2xl font-bold text-gray-800 mb-2 leading-snug">
+                <p class:list={[gap, 'text-sm sm:text-base md:text-2xl font-bold text-gray-800 leading-snug']}>
                     {subtitle}
                 </p>
             )}
 
-            {/* 特典リボン（キーワードLP・モバイルでFV確実） */}
+            {/* 3. キーワードLPのみ：特典リボン */}
             {adHero && (
-                <div class="mb-2 sm:mb-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 rounded-2xl border-[3px] border-amber-400 bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-50 px-3 py-2.5 sm:px-4 sm:py-3 shadow-md max-w-full">
-                    <span class="shrink-0 rounded-md bg-amber-500 px-2 py-0.5 text-xs sm:text-sm font-black text-white">特典</span>
-                    <span class="font-black text-gray-900 text-base sm:text-lg md:text-xl whitespace-nowrap">通常</span>
-                    <span class="font-black text-red-600 text-xl sm:text-2xl md:text-3xl whitespace-nowrap">2,000円</span>
-                    <span class="font-black text-gray-900 text-base sm:text-lg md:text-xl">の</span>
-                    <span class="font-black text-red-600 text-lg sm:text-2xl md:text-3xl">抗菌コート</span>
-                    <span class="font-black text-blue-900 text-base sm:text-xl md:text-2xl whitespace-nowrap">→ 今なら無料</span>
+                <div class:list={[gap, 'flex flex-wrap items-baseline gap-x-2 gap-y-0.5 rounded-xl sm:rounded-2xl border-[3px] border-amber-400 bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-50 px-2.5 py-2 sm:px-4 sm:py-3 shadow-md max-w-full']}>
+                    <span class="shrink-0 rounded-md bg-amber-500 px-1.5 py-0.5 text-[10px] sm:text-sm font-black text-white">特典</span>
+                    <span class="font-black text-gray-900 text-sm sm:text-lg md:text-xl whitespace-nowrap">通常</span>
+                    <span class="font-black text-red-600 text-lg sm:text-2xl md:text-3xl whitespace-nowrap">2,000円</span>
+                    <span class="font-black text-gray-900 text-sm sm:text-lg md:text-xl">の</span>
+                    <span class="font-black text-red-600 text-base sm:text-2xl md:text-3xl">抗菌コート</span>
+                    <span class="font-black text-blue-900 text-sm sm:text-xl md:text-2xl whitespace-nowrap">→ 今月末まで無料</span>
                 </div>
             )}
 
-            {/* 2. メインキャッチコピー */}
+            {/* 4. メインキャッチ（2行）— 全LP共通 */}
             <h1 class:list={[
-                'font-black text-blue-900 leading-[1.08] mb-1.5 sm:mb-2 tracking-tight',
+                gap,
+                'font-black text-blue-900 leading-[1.05] tracking-tight',
                 adHero
-                    ? 'text-[clamp(1.65rem,7.2vw,3.4rem)] md:text-8xl lg:text-9xl'
-                    : 'text-[clamp(2rem,10vw,7rem)] md:text-8xl lg:text-9xl',
+                    ? 'text-[clamp(1.5rem,6.8vw,3.4rem)] md:text-8xl lg:text-9xl'
+                    : 'text-[clamp(1.85rem,9vw,7rem)] md:text-8xl lg:text-9xl',
             ]}>
-                早急に解決！特急便
+                <span class="block">早急に解決！</span>
+                <span class="block">特急便</span>
             </h1>
 
-            {/* 2.5 メイン訴求 */}
-            <div class="bg-red-600 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-5 rounded-2xl shadow-lg mb-3 sm:mb-4 inline-block max-w-full">
-                <p class="text-lg sm:text-xl md:text-3xl font-black tracking-wide leading-tight">
+            {/* 5. メイン訴求（赤帯）— 全LP共通 */}
+            <div class:list={[gap, 'bg-red-600 text-white py-2 max-md:py-2 sm:py-2.5 md:py-3 px-3 sm:px-5 rounded-xl sm:rounded-2xl shadow-lg inline-block max-w-full']}>
+                <p class="text-[clamp(1.35rem,5.5vw,1.75rem)] sm:text-xl md:text-3xl font-black tracking-wide leading-tight max-md:leading-snug">
                     {adHero ? (
                         <>
                             <span class="whitespace-nowrap">{adHero.highlightLine1}</span><wbr /><span class="whitespace-nowrap">{adHero.highlightLine2}</span>
@@ -103,18 +110,18 @@ const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fv
                 </p>
             </div>
 
-            {/* 4. キャンペーンボックス（黄色）— 赤帯の直後に配置してFV内に収めやすく */}
-            <div class="bg-yellow-100 border-4 border-yellow-400 p-3 sm:p-4 md:p-8 rounded-3xl shadow-xl mb-3 sm:mb-4 inline-block w-full max-w-xl">
-                <p class="text-sm sm:text-base md:text-2xl font-bold text-gray-800 mb-0.5 sm:mb-1 leading-tight">
-                    <span class="whitespace-nowrap">今なら、</span><wbr /><span class="whitespace-nowrap">通常2,000円の</span>
+            {/* 6. キャンペーン（黄色）— 全LP共通 */}
+            <div class:list={[gap, 'bg-yellow-100 border-[3px] sm:border-4 border-yellow-400 p-2.5 sm:p-4 md:p-8 rounded-2xl sm:rounded-3xl shadow-xl inline-block w-full max-w-xl']}>
+                <p class="text-sm sm:text-base md:text-2xl font-bold text-gray-800 mb-0.5 leading-tight">
+                    <span class="whitespace-nowrap">今月末まで、</span><wbr /><span class="whitespace-nowrap">通常2,000円の</span>
                 </p>
-                <p class="text-2xl sm:text-4xl md:text-6xl font-black text-red-600 animate-pulse leading-[1.1]">
+                <p class="text-xl sm:text-4xl md:text-6xl font-black text-red-600 animate-pulse leading-[1.1]">
                     <span class="whitespace-nowrap">抗菌コート</span><wbr /> <span class="whitespace-nowrap">無料！</span>
                 </p>
             </div>
 
-            {/* 3. サブキャッチ */}
-            <p class="text-base sm:text-lg md:text-3xl font-bold text-gray-700 mb-4 sm:mb-5 md:mb-6 leading-snug">
+            {/* 7. サブキャッチ — 全LP共通 */}
+            <p class:list={[gap, 'text-base sm:text-lg md:text-3xl font-bold text-gray-700 leading-snug']}>
                 {adHero ? (
                     <span class="whitespace-nowrap">{adHero.subcatch}</span>
                 ) : (
@@ -124,37 +131,8 @@ const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fv
                 )}
             </p>
 
-            {/* 5. 緊急トラブルボックス（白背景・赤枠） */}
-            <div class="bg-white border-4 border-red-500 p-3 sm:p-4 md:p-8 rounded-3xl shadow-2xl mb-5 sm:mb-6 md:mb-8 w-full max-w-xl">
-                <p class="text-base sm:text-lg md:text-2xl font-bold text-gray-800 mb-1 leading-tight">
-                    <span class="whitespace-nowrap">ディーラーで</span><wbr /><span class="whitespace-nowrap">5日待てますか？</span>
-                </p>
-                <p class="text-3xl sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
-                    絶対ムリ！
-                </p>
-            </div>
-
-            {/* 6. CTAボタン */}
-            <div class="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-5">
-                <a
-                    href="https://lin.ee/Xs8Orp2"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full bg-[#06C755] hover:bg-[#05a346] text-white font-black py-3.5 sm:py-5 px-5 sm:px-10 rounded-2xl sm:rounded-full shadow-2xl text-base sm:text-xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-2 sm:gap-3"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="lucide lucide-message-circle shrink-0"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                    <span class="whitespace-nowrap">LINEで見積もり</span><span class="text-xs sm:text-sm font-bold opacity-90">（写真で即見積）</span>
-                </a>
-                <a
-                    href="tel:07084280866"
-                    class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-3.5 sm:py-5 px-5 sm:px-10 rounded-2xl sm:rounded-full shadow-2xl text-base sm:text-xl md:text-3xl transition-transform hover:scale-105 text-center flex items-center justify-center gap-2 sm:gap-3 animate-pulse ring-4 ring-red-300"
-                >
-                    <span class="shrink-0">📞</span><span class="whitespace-nowrap">今すぐ電話 070-8428-0866</span>
-                </a>
-            </div>
-
-            {/* 7. 補足テキスト */}
-            <p class="text-sm sm:text-base md:text-2xl font-black text-gray-800 leading-snug bg-white/80 inline-block px-3 sm:px-4 py-2 rounded-lg max-w-full">
+            {/* 8. 緊急対応テキスト — 全LP共通 */}
+            <p class:list={[gap, 'text-sm sm:text-base md:text-2xl font-black text-gray-800 leading-snug bg-white/80 inline-block px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg max-w-full']}>
                 {adHero ? (
                     <span>{adHero.footerText}</span>
                 ) : (
@@ -163,6 +141,16 @@ const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fv
                     </>
                 )}
             </p>
+
+            {/* 9. ディーラー比較 — 全LP共通 */}
+            <div class="bg-white/55 max-md:border max-md:border-red-400/50 max-md:shadow-md border-4 border-red-500 p-2 max-md:py-1.5 sm:p-4 md:p-8 rounded-xl sm:rounded-2xl max-md:rounded-xl shadow-2xl max-md:shadow-none mb-2 sm:mb-6 md:mb-8 w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm">
+                <p class="text-sm max-md:text-gray-700/90 sm:text-lg md:text-2xl font-bold text-gray-800 mb-0.5 max-md:mb-0 leading-tight">
+                    <span class="whitespace-nowrap">ディーラーで</span><wbr /><span class="whitespace-nowrap">5日待てますか？</span>
+                </p>
+                <p class="text-sm max-md:font-semibold max-md:text-red-600/35 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
+                    絶対ムリ！
+                </p>
+            </div>
         </div>
     </div>
 </section>

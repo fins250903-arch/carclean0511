@@ -150,7 +150,7 @@ const adProblem = {
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche="car" path={path}>
-    <main class="min-h-screen bg-white pb-28 md:pb-20">
+    <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche="car" adHero={adHero} />
       <AIOContent regionName={regionName} niche="car" />
       <RegionAIContent regionName={regionName} displayName={displayName} />
@@ -188,7 +188,7 @@ const adProblem = {
       />
       <ContactForm client:visible regionName={regionName} />
       <Closing regionName={regionName} displayName={displayName} niche="car" path={path} />
-      <FloatingCTA client:visible />
+      <FloatingCTA client:load />
     </main>
   </RegionProvider>
 </MainLayout>
