@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import { canonicalUrl } from '../../lib/site';
 import { STORE_NAME } from '../../lib/site';
 
 const gold = "#d4a853";
@@ -8,7 +9,7 @@ const gold = "#d4a853";
 <MainLayout 
   title="福岡 ガラスコーティング＋車内クリーニング｜出張対応・24時間受付"
   description="福岡県で出張ガラスコーティング＋車内クリーニングのセットプラン。軽自動車55,000円〜。6ヶ月メンテナンス無料＋フロントガラス撥水コーティング無料の2大特典付き。24時間365日受付。"
-  canonical="https://carinteriorcleaning.jp/coating/fukuoka/"
+  canonical={canonicalUrl('/coating/fukuoka')}
   ogImage="/images/coating/fv_bg_ai.png"
 >
   <div class="bg-[#0a1628] text-[#e2e8f0] font-sans leading-relaxed">

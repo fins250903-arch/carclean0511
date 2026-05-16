@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import '../../styles/blog.css';
+import { canonicalUrl } from '../../lib/site';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -25,6 +26,7 @@ const { Content } = await render(post);
 <MainLayout
 	title={`${post.data.title} | 車内清掃「特急便」`}
 	description={post.data.description || post.data.title}
+	canonical={canonicalUrl(`/blog/${postSlug}`)}
 >
 	<main class="blog-content min-h-screen bg-white pb-32 md:pb-12">
 		<article>

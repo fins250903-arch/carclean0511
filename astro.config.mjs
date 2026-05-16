@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://carinteriorcleaning.jp',
+  trailingSlash: 'always',
   output: 'static',
   integrations: [react(), sitemap(), mdx()],
   fonts: [

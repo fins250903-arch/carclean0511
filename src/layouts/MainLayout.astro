@@ -1,6 +1,6 @@
 ---
 import '../styles/globals.css';
-import { STORE_NAME, SITE_URL } from '@/lib/site';
+import { STORE_NAME, SITE_URL, canonicalUrl } from '@/lib/site';
 
 interface Props {
 	title?: string;
@@ -18,7 +18,7 @@ const {
 	ogImage = '/images/fv-passenger-hero.png'
 } = Astro.props;
 
-const canonicalUrl = canonical || new URL(Astro.url.pathname, SITE_URL).toString();
+const resolvedCanonical = canonical ? canonicalUrl(canonical) : canonicalUrl(Astro.url.pathname);
 const fullOgImage = new URL(ogImage, SITE_URL).toString();
 ---
 
@@ -34,13 +34,13 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
-		<link rel="canonical" href={canonicalUrl} />
+		<link rel="canonical" href={resolvedCanonical} />
 		
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:url" content={resolvedCanonical} />
 		<meta property="og:site_name" content={STORE_NAME} />
 		<meta property="og:image" content={fullOgImage} />
 		

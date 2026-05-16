@@ -82,7 +82,7 @@ export interface Metadata {
 
 import { faqData, truckFaqData, flowData, truckFlowData, serviceData, truckServiceData } from '@/data/seoData';
 
-import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME } from '@/lib/site';
+import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
@@ -198,9 +198,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 
 
-    const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
-
-    const url = `${SITE_URL}${normalizedPath}/`;
+    const url = canonicalUrl(path);
 
 
 
@@ -300,9 +298,7 @@ export const generateAdKeywordRegionMetadata = (regionName: string, path: string
 
     const keywords = kw.seoKeywords(regionName);
 
-    const normalizedPath = (path.endsWith('/') ? path.slice(0, -1) : path) || path;
-
-    const url = `${SITE_URL}${normalizedPath}/`;
+    const url = canonicalUrl(path);
 
     const ogPath = kw.ogImage;
 
@@ -400,9 +396,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const isTruck = niche === 'truck';
 
-    const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
-
-    const url = `${SITE_URL}${normalizedPath}/`;
+    const url = canonicalUrl(path);
 
     const adKwSchema = schemaOptions?.adKeywordSchema;
 

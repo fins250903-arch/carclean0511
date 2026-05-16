@@ -209,6 +209,30 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyAlt: '車内のスチーム洗浄・臭い対策のイメージ',
   },
   {
+    slug: 'ac-kusai',
+    seoTitle: 'エアコン 臭い・クサイ対策',
+    seoDescription: (r) =>
+      `${r}対応。エアコンが臭い・クサイときは車内洗浄とセットで。カビ臭・酸っぱいニオイの原因を洗浄で減らします。`,
+    seoKeywords: (r) =>
+      `エアコン 臭い ${r}, エアコン クサイ ${r}, 車エアコン 臭い ${r}, エアコン カビ臭 ${r}, 車内クリーニング ${r}`,
+    ogImage: KW_IMAGES.acNioi,
+    heroSubtitle: (d) => `${d}｜エアコン 臭い・クサイ`,
+    heroHighlight: ['エアコン クサイ', '車内洗浄で改善'],
+    heroSubcatch: (d) => `${d}のエアコン臭い・クサイ対策`,
+    fvImage: KW_IMAGES.acNioi,
+    heroFooter: (d) =>
+      `${d}で「エアコンをつけるとクサイ」と感じたら、内装洗浄とあわせてご相談ください`,
+    problemHeader: '「エアコンをつけるとクサイ・酸っぱい臭いがする…」',
+    problemSubHeader:
+      'フィルター交換や消臭剤だけでは、内装やダクトに残った汚れ・カビが原因のことがあります。',
+    problemDealerQuote:
+      '「エアコンクリーニングを頼んでも、すぐにクサイ臭が戻ってきた…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
+    problemEmpathyImage: KW_IMAGES.acNioi,
+    problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
+  },
+  {
     slug: 'ase',
     seoTitle: '汗・皮脂汚れの車内洗浄',
     seoDescription: (r) =>
@@ -388,10 +412,9 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.petKe,
     problemEmpathyAlt: '後部座席にペットの毛が付着したイメージ',
   },
-  // --- 重点5地域（千葉・愛知・大阪・兵庫・福岡）向け 追加キーワードLP ---
+  // --- 追加キーワードLP（全地域） ---
   {
     slug: 'kyuto-cleaning',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: '車 嘔吐 クリーニング',
     seoDescription: (r) =>
       `${r}対応の車内嘔吐クリーニング。胃酸・未消化物をシート奥まで洗い流し、臭いの再発を防ぎます。最短即日出張。`,
@@ -415,7 +438,6 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'car-ac-cleaning',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: '車 エアコンクリーニング',
     seoDescription: (r) =>
       `${r}対応。車エアコンクリーニングと車内洗浄をセットで。カビ臭・酸っぱい臭いの原因を減らします。`,
@@ -439,7 +461,6 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'pet-unko',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: 'ペットうんち・車内除菌洗浄',
     seoDescription: (r) =>
       `${r}対応。ペットのうんち汚れは除菌と洗浄をセットで。臭いと菌リスクを早急に解消します。`,
@@ -463,7 +484,6 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'shutchou-senmon',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: '出張 車内クリーニング 専門店',
     seoDescription: (r) =>
       `${r}の出張車内クリーニング専門店。電源・水道不要で駐車場があれば施工。嘔吐・臭い・灯油こぼしも即日対応。`,
@@ -487,7 +507,6 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'shanai-shoshu',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: '車内 消臭・脱臭洗浄',
     seoDescription: (r) =>
       `${r}対応の車内消臭。マスキングではなく汚れと臭い分子を洗い流す本格洗浄です。`,
@@ -511,7 +530,6 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'kuruma-nioi-keshi',
-    targetRegionIds: ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'],
     seoTitle: '車 匂い 消し・消臭洗浄',
     seoDescription: (r) =>
       `${r}対応。車の匂い消しは汚れを落とす洗浄が基本。中古車・生活臭も出張で対応。`,

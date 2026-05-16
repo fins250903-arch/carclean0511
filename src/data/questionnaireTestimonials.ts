@@ -1,4 +1,4 @@
-import { SITE_URL } from '@/lib/site';
+import { canonicalUrl } from '@/lib/site';
 
 export interface Testimonial {
   id: string;
@@ -50,8 +50,7 @@ export const questionnaireTestimonials: Testimonial[] = [
 ];
 
 export const generateQuestionnaireJsonLd = (regionName: string, displayName: string, path: string) => {
-  const normalizedPath = path === '/' ? '' : path.endsWith('/') ? path : `${path}/`;
-  const itemReviewedId = `${SITE_URL}${normalizedPath}#localbusiness`;
+  const itemReviewedId = `${canonicalUrl(path)}#localbusiness`;
 
   return questionnaireTestimonials.map((t, index) => ({
     "@context": "https://schema.org",
