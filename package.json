@@ -5,9 +5,11 @@
   "private": true,
   "scripts": {
     "sync:513": "node ./scripts/sync-513-to-public.mjs",
-    "dev": "npm run sync:513 && astro dev",
-    "start": "npm run sync:513 && astro dev",
-    "build": "npm run sync:513 && astro build",
+    "sync:kw": "node ./scripts/sync-kw-images.mjs",
+    "sync:images": "npm run sync:513 && npm run sync:kw",
+    "dev": "npm run sync:images && astro dev",
+    "start": "npm run sync:images && astro dev",
+    "build": "npm run sync:images && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

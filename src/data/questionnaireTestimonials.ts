@@ -18,7 +18,7 @@ export const questionnaireTestimonials: Testimonial[] = [
     service: "嘔吐クリーニング",
     title: "子どもが酔ってしまって...",
     comment: "子どもが車内で酔ってしまい、急ぎでお願いしました。手書きのアンケートにも書きましたが、本当に綺麗になって助かりました。",
-    image: "/513images/sienta3retume-before.jpg"
+    image: "/images/questionnaires/kodomo.jpg"
   },
   {
     id: "testimonial-02",
@@ -27,7 +27,7 @@ export const questionnaireTestimonials: Testimonial[] = [
     service: "灯油消臭",
     title: "灯油をこぼして絶望してました",
     comment: "ポリタンクを倒してしまい、車内が灯油臭くて乗れない状態に。洗浄後、驚くほど臭いが消えました。",
-    image: "/513images/touyu-kobosi.webp"
+    image: "/images/questionnaires/touyu.jpg"
   },
   {
     id: "testimonial-03",
@@ -36,7 +36,7 @@ export const questionnaireTestimonials: Testimonial[] = [
     service: "中古車消臭",
     title: "タバコの臭いが気にならなくなった",
     comment: "中古で購入した車のタバコ臭が気になっていましたが、プロに頼んで正解でした。アンケートの通り満足です。",
-    image: "/513images/chuko-tabako.jpg"
+    image: "/images/questionnaires/used2.jpg"
   },
   {
     id: "testimonial-04",
@@ -45,7 +45,7 @@ export const questionnaireTestimonials: Testimonial[] = [
     service: "ペット粗相",
     title: "犬の粗相もきれいに",
     comment: "ワンちゃんを病院に連れて行く途中で粗相してしまい...。すぐに来ていただけて本当に助かりました。",
-    image: "/513images/pet-ke.jpg"
+    image: "/images/questionnaires/dogsit.jpg"
   }
 ];
 

@@ -198,11 +198,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 
 
-    const isOsaka = path === '/regions/osaka' || path === '/regions/osaka/';
+    const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
 
-    const normalizedPath = isOsaka ? '' : path;
-
-    const url = `${SITE_URL}${normalizedPath}${normalizedPath.endsWith('/') ? '' : '/'}`;
+    const url = `${SITE_URL}${normalizedPath}/`;
 
 
 
@@ -402,11 +400,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const isTruck = niche === 'truck';
 
-    const isOsaka = path === '/regions/osaka' || path === '/regions/osaka/';
+    const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
 
-    const normalizedPath = isOsaka ? '' : path;
-
-    const url = `${SITE_URL}${normalizedPath}${normalizedPath.endsWith('/') ? '' : '/'}`;
+    const url = `${SITE_URL}${normalizedPath}/`;
 
     const adKwSchema = schemaOptions?.adKeywordSchema;
 

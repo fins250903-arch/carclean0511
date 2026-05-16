@@ -49,6 +49,9 @@ export async function getStaticPaths() {
   }[] = [];
   for (const region of regions) {
     for (const page of AD_KEYWORD_PAGES) {
+      if (page.targetRegionIds && !page.targetRegionIds.includes(region.id)) {
+        continue;
+      }
       paths.push({
         params: { region: region.id, kw: page.slug },
         props: { regionName: region.name, regionId: region.id },

@@ -19,8 +19,8 @@ let targetLink = '';
 const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
 const mutualBase = (regionBasePath ?? cleanPath).replace(/\/$/, '');
 
-if (mutualBase === '/' || mutualBase === '') {
-    targetLink = isTruck ? '/' : '/regions/osaka-truck';
+if (mutualBase === '/' || mutualBase === '' || mutualBase === '/regions/osaka') {
+    targetLink = isTruck ? '/regions/osaka' : '/regions/osaka-truck';
 } else {
     targetLink = isTruck
         ? mutualBase.replace(/-truck$/, '')

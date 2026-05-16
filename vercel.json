@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "/regions/osaka/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
