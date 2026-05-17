@@ -24,6 +24,11 @@ export type AdKeywordPageDef = {
   problemEmpathyAlt: string;
 };
 
+/** FV：「◯◯の△△　まとめて対応します。」（洗車機・分解の誤解を避ける短文） */
+function kwFooter(topic: string) {
+  return (displayName: string) => `${displayName}の${topic}　まとめて対応します。`;
+}
+
 export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   {
     slug: 'seat-senjo',
@@ -37,8 +42,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['シート深部まで', 'プロの洗浄＆乾燥'],
     heroSubcatch: (d) => `${d}の車シート洗浄を出張で`,
     fvImage: KW_IMAGES.sienta3Before,
-    heroFooter: (d) =>
-      `${d}のシート汚れ・臭い。洗車機では届かない部分も、分解洗浄でまとめて対応します`,
+    heroFooter: kwFooter('シート汚れ・臭い'),
     problemHeader: '「シートが黄ばんで、見た目も臭いも気になる…」',
     problemSubHeader: '市販クリーナーでは落ちない油汚れや染み抜きにお困りではありませんか？',
     problemDealerQuote:
@@ -60,8 +64,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['座席まるごと', 'クリーニング施工'],
     heroSubcatch: (d) => `${d}の車シートクリーニング`,
     fvImage: KW_IMAGES.sienta3After,
-    heroFooter: (d) =>
-      `${d}で「シートだけ何とかしたい」というご要望に、部位に合わせた洗剤と工程で応えます`,
+    heroFooter: kwFooter('シート汚れ・臭い'),
     problemHeader: '「シート全体がベタついて、臭いもする…」',
     problemSubHeader: '座席に溜まった皮脂や汚れが、加齢臭や酸化臭の原因になっていませんか？',
     problemDealerQuote:
@@ -83,8 +86,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
     fvImage: KW_IMAGES.petKe,
-    heroFooter: (d) =>
-      `${d}で「すぐにプロに見てほしい」というご相談、写真送付で即日見積もり可能です`,
+    heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
     problemDealerQuote:
@@ -106,8 +108,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['おもらしシミ', 'すぐプロ洗浄'],
     heroSubcatch: (d) => `${d}の車内おもらしトラブル`,
     fvImage: KW_IMAGES.omorashi,
-    heroFooter: (d) =>
-      `${d}のご家族向けに、プライバシーに配慮した出張と迅速スケジュールをご用意しています`,
+    heroFooter: kwFooter('おもらし・シミ'),
     problemHeader: '「おもらしがシートに染みて、車に乗るたび気になる…」',
     problemSubHeader: '乾いてからでは臭いとシミが固定化しやすい。早めの洗浄がカギです。',
     problemDealerQuote:
@@ -129,8 +130,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['うんち汚れ', '除菌までセット'],
     heroSubcatch: (d) => `${d}の車内うんち対応`,
     fvImage: KW_IMAGES.unko,
-    heroFooter: (d) =>
-      `${d}で嘔吐・排泄トラブルは最短スケジュールを優先。写真で状況共有いただけます`,
+    heroFooter: kwFooter('うんち汚れ・臭い'),
     problemHeader: '「うんちがシートやフロアに…菌が心配で動けない」',
     problemSubHeader: '早急な除去と除菌が、臭い固定化と二次被害を防ぎます。',
     problemDealerQuote:
@@ -151,8 +151,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['車内の臭い', '原因から洗浄'],
     heroSubcatch: (d) => `${d}の車内消臭・洗浄`,
     fvImage: KW_IMAGES.shanaiNioi,
-    heroFooter: (d) =>
-      `${d}の「何の臭いかわからない」というご相談も、現地確認で洗浄プランをご提案します`,
+    heroFooter: kwFooter('車内の臭い'),
     problemHeader: '「車内がなんとなく臭くて、窓を開けても消えない…」',
     problemSubHeader: '生活臭・エアコン臭・シート臭が混ざると、自分では原因切り分けが難しいものです。',
     problemDealerQuote:
@@ -174,8 +173,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['匂いの元を', '洗浄で除去'],
     heroSubcatch: (d) => `${d}の車の匂い取り出張`,
     fvImage: KW_IMAGES.kurumaNioitori,
-    heroFooter: (d) =>
-      `${d}で中古車購入直後や、長年放置した生活臭にも対応可能です`,
+    heroFooter: kwFooter('車の匂い'),
     problemHeader: '「香水や消臭剤ではごまかせない、根強い臭い…」',
     problemSubHeader: '臭いは「付け足し」より「洗い出し」が根本対策になります。',
     problemDealerQuote:
@@ -197,8 +195,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['エアコン臭い', '車内洗浄で改善'],
     heroSubcatch: (d) => `${d}の車エアコン臭い`,
     fvImage: KW_IMAGES.acNioi,
-    heroFooter: (d) =>
-      `${d}の「冷暖房をつけると臭う」症状は、内装洗浄とセットで相談ください`,
+    heroFooter: kwFooter('エアコン臭い'),
     problemHeader: '「エアコンをつけると酸っぱい臭いがする…」',
     problemSubHeader: 'カビ臭・排気混入・内装の古い汚れが重なるケースがあります。',
     problemDealerQuote:
@@ -220,8 +217,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['エアコン クサイ', '車内洗浄で改善'],
     heroSubcatch: (d) => `${d}のエアコン臭い・クサイ対策`,
     fvImage: KW_IMAGES.acNioi,
-    heroFooter: (d) =>
-      `${d}で「エアコンをつけるとクサイ」と感じたら、内装洗浄とあわせてご相談ください`,
+    heroFooter: kwFooter('エアコン臭い'),
     problemHeader: '「エアコンをつけるとクサイ・酸っぱい臭いがする…」',
     problemSubHeader:
       'フィルター交換や消臭剤だけでは、内装やダクトに残った汚れ・カビが原因のことがあります。',
@@ -239,13 +235,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。汗や皮脂がシートやハンドルに蓄積し酸化臭になる前に、プロ洗浄でリセットします。`,
     seoKeywords: (r) =>
       `車 汗 臭い ${r}, 皮脂 車 シート ${r}, 車内クリーニング ${r}, シート洗浄 ${r}`,
-    ogImage: FV_PASSENGER_HERO,
+    ogImage: KW_IMAGES.sienta3Before,
     heroSubtitle: (d) => `${d}｜汗・皮脂汚れ`,
     heroHighlight: ['汗・皮脂', '酸化臭の元を洗浄'],
     heroSubcatch: (d) => `${d}の汗ジミ・車内洗浄`,
-    fvImage: FV_PASSENGER_HERO,
-    heroFooter: (d) =>
-      `${d}のスポーツ・外仕事の方の車内も、座席と天井裏まで丁寧に`,
+    fvImage: KW_IMAGES.sienta3Before,
+    heroFooter: kwFooter('汗ジミ・皮脂汚れ'),
     problemHeader: '「汗の臭いが車内に染み付いて、自分でも気になる…」',
     problemSubHeader: '革・布ともに皮脂は蓄積しやすく、放置すると臭いが強まります。',
     problemDealerQuote:
@@ -262,13 +257,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。加齢臭は天井・シートに吸着しやすいため、広範囲の洗浄と消臭でアプローチします。`,
     seoKeywords: (r) =>
       `加齢臭 車 ${r}, 車内 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}, 天井 洗浄 ${r}`,
-    ogImage: FV_PASSENGER_HERO,
+    ogImage: KW_IMAGES.chukoKareisyu,
     heroSubtitle: (d) => `${d}｜加齢臭・車内消臭`,
     heroHighlight: ['加齢臭対策', '天井まで洗浄'],
     heroSubcatch: (d) => `${d}の車内加齢臭`,
-    fvImage: FV_PASSENGER_HERO,
-    heroFooter: (d) =>
-      `${d}の家族送迎や共用車の「ニオイ気配」も、内装洗浄で改善を目指します`,
+    fvImage: KW_IMAGES.chukoKareisyu,
+    heroFooter: kwFooter('車内加齢臭'),
     problemHeader: '「家族に『車が臭い』と言われてハッとした…」',
     problemSubHeader: '加齢臭成分は布天井やシートに付着し、エアコン循環で広がります。',
     problemDealerQuote:
@@ -289,8 +283,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['ペット臭', '洗浄＋消臭'],
     heroSubcatch: (d) => `${d}の車内ペット臭`,
     fvImage: KW_IMAGES.petNioi,
-    heroFooter: (d) =>
-      `${d}のドッグラン帰りや長距離移動の愛犬同乗車にも対応します`,
+    heroFooter: kwFooter('ペット臭'),
     problemHeader: '「ワンちゃん同乗が多くて、車がペット臭に…」',
     problemSubHeader: '毛と皮脂がセットで臭いの原因になり、ブラシだけでは限界があります。',
     problemDealerQuote:
@@ -312,8 +305,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['タバコ臭・ヤニ', '天井まで洗浄'],
     heroSubcatch: (d) => `${d}のタバコ臭い・ヤニ`,
     fvImage: KW_IMAGES.tabakoYani,
-    heroFooter: (d) =>
-      `${d}の禁煙後リセールや、中古車仕入直後のヤニ対策に`,
+    heroFooter: kwFooter('タバコ臭・ヤニ'),
     problemHeader: '「タバコ臭とヤニで、天井が黄色くなっている…」',
     problemSubHeader: 'ヤニ汚れは油性で固着し、拭き取りだけでは広がることもあります。',
     problemDealerQuote:
@@ -334,8 +326,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['中古車タバコ臭', '内装まるごと'],
     heroSubcatch: (d) => `${d}の中古車タバコ臭`,
     fvImage: KW_IMAGES.chukoTabako,
-    heroFooter: (d) =>
-      `${d}で購入直後の「前オーナー喫煙」トラブルもご相談ください`,
+    heroFooter: kwFooter('中古車タバコ臭'),
     problemHeader: '「中古車を買ったら、タバコ臭がひどかった…」',
     problemSubHeader: '前オーナーの喫煙習慣は、フィルター以外にも臭いが残ります。',
     problemDealerQuote:
@@ -356,8 +347,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['中古車加齢臭', '生活臭を洗浄'],
     heroSubcatch: (d) => `${d}の中古車加齢臭対策`,
     fvImage: KW_IMAGES.chukoKareisyu,
-    heroFooter: (d) =>
-      `${d}で外装はきれいでも内装臭が気になる方へ、出張一本で対応`,
+    heroFooter: kwFooter('中古車加齢臭'),
     problemHeader: '「中古車なのに、なんとなく『生活臭』がする…」',
     problemSubHeader: '前オーナーの皮脂・汗・加齢臭成分が内装に残っているケースがあります。',
     problemDealerQuote:
@@ -378,8 +368,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['灯油こぼし', '早急プロ洗浄'],
     heroSubcatch: (d) => `${d}の車内灯油対応`,
     fvImage: KW_IMAGES.touyuKobosi,
-    heroFooter: (d) =>
-      `${d}の灯油トラブルは火気厳禁・換気を優先し、到着後すぐ洗浄工程へ`,
+    heroFooter: kwFooter('灯油こぼし'),
     problemHeader: '「車内に灯油をこぼして、臭いがキツすぎる…」',
     problemSubHeader: '灯油は揮発し続け、シートやフロアに染み込むと長期化しやすいトラブルです。',
     problemDealerQuote:
@@ -401,8 +390,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['車ペット毛', '吸引＋洗浄'],
     heroSubcatch: (d) => `${d}の車ペット毛対応`,
     fvImage: KW_IMAGES.petKe,
-    heroFooter: (d) =>
-      `${d}の多頭飼い・大型犬の毛量にも、時間をかけて丁寧に`,
+    heroFooter: kwFooter('ペット毛・臭い'),
     problemHeader: '「ペットの毛が車内のあちこちに…掃除機では限界」',
     problemSubHeader: '毛が油分と混ざるとシートに絡み、臭いの原因にもなります。',
     problemDealerQuote:
@@ -425,8 +413,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['嘔吐・ゲロ', '早急プロ洗浄'],
     heroSubcatch: (d) => `${d}の車内嘔吐クリーニング`,
     fvImage: KW_IMAGES.sienta3Before,
-    heroFooter: (d) =>
-      `${d}の嘔吐トラブルは4日ルール。早めの専門洗浄で臭い固定化を防ぎます`,
+    heroFooter: kwFooter('嘔吐汚れ・臭い'),
     problemHeader: '「子どもや同乗者の嘔吐で、車内が使えない…」',
     problemSubHeader: '放置するとウレタン奥まで染み、酸っぱい腐敗臭が定着します。',
     problemDealerQuote:
@@ -448,8 +435,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['エアコン臭い', '車内洗浄セット'],
     heroSubcatch: (d) => `${d}の車エアコンクリーニング`,
     fvImage: KW_IMAGES.acNioi,
-    heroFooter: (d) =>
-      `${d}の「冷暖房をつけると臭う」症状に、内装洗浄とあわせて対応`,
+    heroFooter: kwFooter('エアコン臭い'),
     problemHeader: '「エアコンをつけると酸っぱい・カビ臭がする…」',
     problemSubHeader: 'フィルター交換だけでは、内装に残った汚れ・湿度が原因のことも。',
     problemDealerQuote:
@@ -471,8 +457,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['ペットうんち', '除菌までセット'],
     heroSubcatch: (d) => `${d}のペットうんちトラブル`,
     fvImage: KW_IMAGES.unko,
-    heroFooter: (d) =>
-      `${d}のペット同乗車の排泄トラブル、写真送付で即日見積もり`,
+    heroFooter: kwFooter('ペットうんち汚れ'),
     problemHeader: '「ペットのうんちがシートに…菌が心配」',
     problemSubHeader: '早急な除去と除菌が、臭い固定化を防ぎます。',
     problemDealerQuote:
@@ -489,13 +474,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}の出張車内クリーニング専門店。電源・水道不要で駐車場があれば施工。嘔吐・臭い・灯油こぼしも即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 クリーニング 専門店 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 ${r}, シート洗浄 ${r}`,
-    ogImage: FV_PASSENGER_HERO,
+    ogImage: KW_IMAGES.steam,
     heroSubtitle: (d) => `${d}｜出張車内クリーニング専門`,
     heroHighlight: ['出張専門', '即日対応'],
     heroSubcatch: (d) => `${d}の出張車内クリーニング`,
-    fvImage: FV_PASSENGER_HERO,
-    heroFooter: (d) =>
-      `${d}へ機材を積んで伺う出張専門店。持ち込み不要です`,
+    fvImage: KW_IMAGES.steam,
+    heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: '「店に預けられない・すぐ直したい車内トラブル」',
     problemSubHeader: '出張専門だから、ご自宅・職場の駐車場でそのまま施工できます。',
     problemDealerQuote:
@@ -517,8 +501,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['車内消臭', '原因から洗浄'],
     heroSubcatch: (d) => `${d}の車内消臭出張`,
     fvImage: KW_IMAGES.shanaiNioi,
-    heroFooter: (d) =>
-      `${d}の生活臭・ペット臭・タバコ臭など複合臭にも対応`,
+    heroFooter: kwFooter('車内の臭い'),
     problemHeader: '「車内がなんとなく臭くて、消臭剤では治らない…」',
     problemSubHeader: '消臭スプレーは一時的。臭いの元である汚れを洗い出すのが根本策です。',
     problemDealerQuote:
@@ -540,8 +523,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroHighlight: ['車の匂い消し', '洗浄で根本対策'],
     heroSubcatch: (d) => `${d}の車 匂い 消し出張`,
     fvImage: KW_IMAGES.kurumaNioitori,
-    heroFooter: (d) =>
-      `${d}で「香水ではごまかせない臭い」もプロ洗浄で改善を目指します`,
+    heroFooter: kwFooter('車の匂い'),
     problemHeader: '「車の匂いが消えなくて、乗るのがつらい…」',
     problemSubHeader: '臭いの分子は汚れに吸着しているため、洗浄による除去が効果的です。',
     problemDealerQuote:

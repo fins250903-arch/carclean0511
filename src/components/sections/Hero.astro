@@ -55,35 +55,18 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 </span>
             </div>
 
-            {/* 2. 小見出し（キーワードLPのみ：ご指定のキーワード） */}
+            {/* 2. 小見出し（キーワードLPは地域｜訴求のみ） */}
             {adHero ? (
-                <div class:list={[gap, 'space-y-0.5 sm:space-y-1']}>
-                    <p class="text-lg sm:text-2xl md:text-4xl font-black text-blue-900 leading-tight tracking-tight drop-shadow-sm">
-                        ご指定のキーワード
-                    </p>
-                    <p class="text-xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-[1.12] tracking-tight border-b-[3px] sm:border-b-4 border-blue-600 inline-block pr-1 max-w-full">
-                        {subtitle}
-                    </p>
-                </div>
+                <p class:list={[gap, 'text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-[1.12] tracking-tight border-b-[3px] sm:border-b-4 border-blue-600 inline-block pr-1 max-w-full']}>
+                    {subtitle}
+                </p>
             ) : (
                 <p class:list={[gap, 'text-sm sm:text-base md:text-2xl font-bold text-gray-800 leading-snug']}>
                     {subtitle}
                 </p>
             )}
 
-            {/* 3. キーワードLPのみ：特典リボン */}
-            {adHero && (
-                <div class:list={[gap, 'flex flex-wrap items-baseline gap-x-2 gap-y-0.5 rounded-xl sm:rounded-2xl border-[3px] border-amber-400 bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-50 px-2.5 py-2 sm:px-4 sm:py-3 shadow-md max-w-full']}>
-                    <span class="shrink-0 rounded-md bg-amber-500 px-1.5 py-0.5 text-[10px] sm:text-sm font-black text-white">特典</span>
-                    <span class="font-black text-gray-900 text-sm sm:text-lg md:text-xl whitespace-nowrap">通常</span>
-                    <span class="font-black text-red-600 text-lg sm:text-2xl md:text-3xl whitespace-nowrap">2,000円</span>
-                    <span class="font-black text-gray-900 text-sm sm:text-lg md:text-xl">の</span>
-                    <span class="font-black text-red-600 text-base sm:text-2xl md:text-3xl">抗菌コート</span>
-                    <span class="font-black text-blue-900 text-sm sm:text-xl md:text-2xl whitespace-nowrap">→ 今月末まで無料</span>
-                </div>
-            )}
-
-            {/* 4. メインキャッチ（2行）— 全LP共通 */}
+            {/* 3. メインキャッチ（2行）— 全LP共通 */}
             <h1 class:list={[
                 gap,
                 'font-black text-blue-900 leading-[1.05] tracking-tight',
@@ -142,12 +125,12 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 )}
             </p>
 
-            {/* 9. ディーラー比較 — 全LP共通 */}
-            <div class="bg-white/55 max-md:border max-md:border-red-400/50 max-md:shadow-md border-4 border-red-500 p-2 max-md:py-1.5 sm:p-4 md:p-8 rounded-xl sm:rounded-2xl max-md:rounded-xl shadow-2xl max-md:shadow-none mb-2 sm:mb-6 md:mb-8 w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm">
-                <p class="text-sm max-md:text-gray-700/90 sm:text-lg md:text-2xl font-bold text-gray-800 mb-0.5 max-md:mb-0 leading-tight">
+            {/* 9. ディーラー比較 — スマホは2行程度のコンパクト表示 */}
+            <div class="bg-white/55 max-md:border max-md:border-red-400/40 border-4 border-red-500 p-1.5 max-md:px-2 max-md:py-1 sm:p-4 md:p-8 rounded-lg max-md:rounded-md shadow-2xl max-md:shadow-none mb-2 sm:mb-6 md:mb-8 w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm">
+                <p class="text-xs max-md:text-[11px] sm:text-lg md:text-2xl font-bold text-gray-800 max-md:mb-0 mb-0.5 leading-tight">
                     <span class="whitespace-nowrap">ディーラーで</span><wbr /><span class="whitespace-nowrap">5日待てますか？</span>
                 </p>
-                <p class="text-sm max-md:font-semibold max-md:text-red-600/35 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
+                <p class="text-sm max-md:text-base max-md:font-bold max-md:text-red-600/40 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
                     絶対ムリ！
                 </p>
             </div>

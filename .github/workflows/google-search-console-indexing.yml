@@ -1,0 +1,76 @@
+# push 後: ビルド → サイトマップ送信 → Indexing API（重点地域キーワードLP優先・日次上限）
+# Vercel の本番デプロイは GitHub 連携のまま。本 workflow は SEO 登録のみ担当。
+
+name: Google Search Console & Indexing
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      skip_indexing:
+        description: 'Indexing API をスキップ（サイトマップ送信のみ）'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+jobs:
+  google_seo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Restore indexing progress
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: google-indexing-state
+          path: scripts/google/
+
+      - name: Build site (sitemap生成)
+        run: npm run build
+
+      - name: Submit sitemap to Search Console
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          SITEMAP_URL: ${{ vars.SITEMAP_URL }}
+          SKIP_GSC_VERIFICATION: 'true'
+        run: node ./scripts/google/ensure-search-console.mjs
+
+      - name: Publish URLs via Indexing API (priority queue)
+        if: github.event.inputs.skip_indexing != 'true'
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          INDEXING_DAILY_QUOTA: ${{ vars.INDEXING_DAILY_QUOTA }}
+        run: node ./scripts/google/submit-indexing-queue.mjs
+
+      - name: Save indexing progress
+        if: github.event.inputs.skip_indexing != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-indexing-state
+          path: scripts/google/.indexing-state.json
+          retention-days: 400
+          if-no-files-found: warn
