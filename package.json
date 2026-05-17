@@ -14,6 +14,7 @@
     "astro": "astro",
     "export:lp-urls": "node ./scripts/export-lp-urls.mjs",
     "gsc:queue": "node ./scripts/google/build-indexing-queue.mjs",
+    "gsc:sites": "node ./scripts/google/list-search-console-sites.mjs",
     "gsc:sync": "node ./scripts/google/ensure-search-console.mjs",
     "gsc:index": "node ./scripts/google/submit-indexing-queue.mjs"
   },

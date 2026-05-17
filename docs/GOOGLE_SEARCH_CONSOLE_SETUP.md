@@ -30,13 +30,20 @@ Vercel への本番デプロイは従来どおり Vercel の Git 連携が担当
 3. **鍵** → **鍵を追加** → **JSON** をダウンロード  
    → この JSON の中身を **GitHub Secret** に登録します（リポジトリにコミットしない）
 
-### 3. Google Search Console
+### 3. Google Search Console（重要：「所有者」必須）
 
-1. [Search Console](https://search.google.com/search-console) で  
-   プロパティ **`https://carinteriorcleaning.jp`** を確認済みにする
-2. **設定** → **ユーザーと権限** → **ユーザーを追加**
-3. サービスアカウントのメール（JSON 内の `client_email`）を **所有者** で追加  
-   例: `carclean-search-console@xxxx.iam.gserviceaccount.com`
+1. [Search Console](https://search.google.com/search-console) を開く
+2. プロパティ **`https://carinteriorcleaning.jp/`**（URLプレフィックス・末尾スラッシュ付き）を選択  
+   ※ ドメイン版 `carinteriorcleaning.jp` だけ登録している場合は、GitHub Variable `SITE_URL` を合わせるか、URLプレフィックス版を追加してください
+3. **設定** → **ユーザーと権限** → **ユーザーを追加**
+4. 次のメールを **所有者**（Full user や Restricted では不可）で追加:
+
+   `gi-api-service-account@instant-index-487111.iam.gserviceaccount.com`
+
+5. 保存後、Actions の **Re-run all jobs**
+
+**403 が出る場合:** 権限が「所有者」になっていないか、プロパティ URL が `https://carinteriorcleaning.jp/` と一致していません。  
+ローカル確認: `npm run gsc:sites`（`GOOGLE_SERVICE_ACCOUNT_JSON` を環境変数に設定）
 
 ### 4. GitHub リポジトリ（`fins250903-arch/carclean0511`）
 

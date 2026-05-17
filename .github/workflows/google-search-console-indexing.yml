@@ -50,7 +50,14 @@ jobs:
       - name: Build site (sitemap生成)
         run: npm run build
 
+      - name: List Search Console permissions (debug)
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: node ./scripts/google/list-search-console-sites.mjs
+        continue-on-error: true
+
       - name: Submit sitemap to Search Console
+        id: gsc_sitemap
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           SITE_URL: ${{ vars.SITE_URL }}
@@ -59,7 +66,7 @@ jobs:
         run: node ./scripts/google/ensure-search-console.mjs
 
       - name: Publish URLs via Indexing API (priority queue)
-        if: github.event.inputs.skip_indexing != 'true'
+        if: github.event.inputs.skip_indexing != 'true' && steps.gsc_sitemap.outcome != 'failure'
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           SITE_URL: ${{ vars.SITE_URL }}
