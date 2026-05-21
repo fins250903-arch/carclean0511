@@ -3,7 +3,7 @@ title: "【世田谷区】スズキ・スペーシアの腐敗した牛乳のニ
 date: 2026-03-24
 categories: 
   - "jisseki"
-  - "toukyou"
+  - "tokyo"
   - "tokublo"
 coverImage: "スペーシアカスタム.jpg"
 ---

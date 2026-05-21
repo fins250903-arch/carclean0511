@@ -533,6 +533,37 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
   },
+  // ===== バス専門LP =====
+  {
+    slug: 'bus-senmon',
+    targetRegionIds: ['ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shiga', 'kyoto', 'hyogo', 'osaka', 'fukuoka', 'okinawa'],
+    seoTitle: 'バス専門 車内洗浄・嘔吐消臭',
+    seoDescription: (r) =>
+      `${r}のバス専門 出張車内洗浄。観光バス・レンタカーバス・送迎バスの嘔吐・尿漏れ・飲食物汚染を最短即日対応。次の運行に間に合わせます。`,
+    seoKeywords: (r) =>
+      `バス 車内洗浄 ${r}, バス 嘔吐 清掃 ${r}, 観光バス 消臭 ${r}, バス 車内クリーニング ${r}, バス 出張清掃 ${r}`,
+    ogImage: KW_IMAGES.busFv,
+    heroSubtitle: (d) => `${d}｜バス専門 車内洗浄・消臭`,
+    heroHighlight: ['バス車内洗浄', '嘔吐・汚染を即日解決'],
+    heroSubcatch: (d) => `${d} バス専門・出張で即対応`,
+    fvImage: KW_IMAGES.busFv,
+    heroFooter: (d) => `次の運行までに、プロが${d}へ急行します`,
+    problemHeader: '「運行中に乗客が嘔吐してしまった…次の出発まで時間がない」',
+    problemSubHeader: 'バスならではの車内汚染トラブル、一人で抱え込んでいませんか？',
+    problemDealerQuote:
+      '「従業員にゲロの処理を頼んだら、次から出勤を渋るようになってしまった…」',
+    problemBodyHtml: (rn, dn) =>
+      `観光バス・レンタカーバス・送迎バスの運行中、こんな<strong>悪夢のようなトラブル</strong>が突然起きることがあります。<br /><br />
+      <strong>① 乗客が車内で突然嘔吐（ゲロ）してしまった</strong><br />
+      胃液・未消化物がシートのウレタン奥まで染み込み、酸っぱい腐敗臭が車内全体に広がります。放置すれば時間が経つほど臭いは固着し、除去が困難になっていきます。<br /><br />
+      <strong>② ジュース・アルコール・油分の多い弁当を大量にこぼされた</strong><br />
+      バスは車内が広いぶん、汚染が床・通路・隣席・窓際まで一気に拡大します。「あの席だけ」では済まないのがバスの怖さです。<br /><br />
+      <strong>③ シートに尿漏れ（粗相）をされてしまった</strong><br />
+      長時間の乗車中に起きやすいこのトラブル。シート奥に染み込んだ尿の臭いは独特で強烈です。次の乗客に気づかれれば、会社の信頼に関わります。<br /><br />
+      「次の運行まで2時間しかない」「スタッフが少なくて手が回らない」——<strong>${dn}</strong>でこんな状況に追い込まれたとき、私たちがプロの技術で現場へ急行します。`,
+    problemEmpathyImage: KW_IMAGES.steam,
+    problemEmpathyAlt: 'バス車内クリーニング・消臭洗浄のプロ施工イメージ',
+  },
 ];
 
 /** 重点広告地域（千葉・愛知・大阪・兵庫・福岡） */

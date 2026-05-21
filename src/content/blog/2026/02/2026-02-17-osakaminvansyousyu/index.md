@@ -3,7 +3,7 @@ title: "[大阪市] 小型ミニバンのシエンタ 嘔吐 消臭"
 date: 2026-02-17
 categories: 
   - "jisseki"
-  - "oosaka"
+  - "osaka"
 coverImage: "シエンタ-家族旅行1-e1771336762154.jpg"
 ---
 

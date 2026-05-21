@@ -3,7 +3,7 @@ title: "【吹田市】ホンダ・フィットの「ペットの粗相による
 date: 2026-03-27
 categories: 
   - "jisseki"
-  - "oosaka"
+  - "osaka"
 coverImage: "ホンダ-フィット22-1-e1774615609480.jpg"
 ---
 

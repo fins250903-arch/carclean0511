@@ -2,7 +2,7 @@
 title: "【宇治市】トヨタ プリウスの長年の加齢臭を徹底的にリセット"
 date: 2026-04-30
 categories: 
-  - "kyouto"
+  - "kyoto"
   - "jisseki"
 coverImage: "puriusu-usirou-e1777539162618.jpg"
 ---

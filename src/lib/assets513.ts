@@ -22,6 +22,7 @@ export const KW_IMAGES = {
   tabakoYani: kw('tabako-yani.png'),
   touyuKobosi: kw('touyu-kobosi.webp'),
   unko: kw('unko.png'),
+  busFv: kw('bus-fv.png'),
 } as const;
 
 /** @deprecated 互換エイリアス */

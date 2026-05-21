@@ -14,12 +14,13 @@ interface AdHeroOverrides {
 interface Props {
   regionName: string;
   displayName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
   adHero?: AdHeroOverrides;
 }
 
 const { regionName, displayName, niche = 'car', adHero } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
 const subtitle = adHero?.subtitle ?? (isTruck 
     ? `${displayName}トラックキャビン清掃専門店/キャビン洗浄`

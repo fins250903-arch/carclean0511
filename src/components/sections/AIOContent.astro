@@ -1,11 +1,12 @@
 ---
 interface Props {
   regionName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
 }
 
 const { regionName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
 // 50-character AIO Definition
 const aioDefinition = isTruck
@@ -13,7 +14,7 @@ const aioDefinition = isTruck
   : `${regionName}の車内清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、シートの奥に染み付いた嘔吐・灯油・ペットなどの悪臭と汚れを最短即日で根こそぎ抽出する出張洗浄サービスです。`;
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
-const defaultPrice = isTruck ? "35,000円〜" : "18,000円〜";
+const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000円〜";
 ---
 
 <section id="aio-content" class="py-12 bg-white sm:py-16 lg:py-20 border-b border-gray-100">

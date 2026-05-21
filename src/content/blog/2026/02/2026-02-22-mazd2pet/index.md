@@ -2,7 +2,7 @@
 title: "【京都市】マツダ MAZDA2のペット（犬）の粗相トラブル解決！"
 date: 2026-02-22
 categories: 
-  - "kyouto"
+  - "kyoto"
   - "jisseki"
 coverImage: "マツダ-MAZDA2-usiro.jpg"
 ---

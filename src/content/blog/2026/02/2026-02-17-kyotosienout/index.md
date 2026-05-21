@@ -2,7 +2,7 @@
 title: "[京都市] 家族の愛車シエンタ 嘔吐 消臭"
 date: 2026-02-17
 categories: 
-  - "kyouto"
+  - "kyoto"
   - "jisseki"
 coverImage: "1759578725524-e1771336426437.jpg"
 ---

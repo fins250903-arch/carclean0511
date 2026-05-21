@@ -1,11 +1,12 @@
 ---
 interface Props {
   regionName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
 }
 
 const { regionName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 ---
 
 <section class="py-20 bg-white" id="pricing">
@@ -13,9 +14,149 @@ const isTruck = niche === 'truck';
         <div class="text-center mb-14">
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">料金プラン</h2>
             <p class="text-lg md:text-xl text-gray-600">
-                {regionName}エリアは出張費無料！プロの機材と技術で、車内の悩みを根本解決します。
+                {regionName}エリアは出張費無料！プロの機材と技術で、{isBus ? 'バス車内の汚染トラブルを根本解決' : '車内の悩みを根本解決'}します。
             </p>
         </div>
+
+        {/* ===== バス専用料金テーブル（niche=bus時のみ表示） ===== */}
+        {isBus && (
+          <>
+            {/* ベネフィット訴求ブロック */}
+            <div class="mb-10 grid md:grid-cols-2 gap-6">
+              <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+                <div class="flex items-start gap-4">
+                  <div class="bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-black text-blue-900 mb-2">人手不足・時間不足を解消</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">次の運行まで時間がない。スタッフが少なく手が回らない。そんなバス事業者様の現場に、プロが直接出張してスピード対応します。運行スケジュールに影響を出さない「特急対応」が私たちの強みです。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-red-50 border border-red-200 rounded-2xl p-6">
+                <div class="flex items-start gap-4">
+                  <div class="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-black text-red-700 mb-2">従業員のメンタルを守るために</h3>
+                    <p class="text-gray-700 text-sm leading-relaxed">他人の嘔吐物・排泄物の処理は、ベテランのドライバーでさえ強い嫌悪感と精神的ダメージを受けます。「もうこの仕事は無理かも…」——そう感じてしまう従業員を守るため、汚物処理はプロに任せてください。離職防止・採用コスト削減にも繋がります。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* バス専用料金テーブル */}
+            <div class="mb-10 bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm">
+              <h3 class="text-2xl md:text-3xl font-black text-blue-900 mb-2 flex items-center gap-3">
+                <span class="w-1.5 h-10 bg-primary rounded-full inline-block"></span>
+                バス専用 清掃料金表
+              </h3>
+              <p class="text-gray-500 text-sm mb-6">観光バス・レンタカーバス・送迎バス対応。嘔吐・尿漏れ・飲食物汚染の徹底除去・除菌。</p>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-blue-900 text-white">
+                      <th class="px-4 py-3 text-sm md:text-base font-bold rounded-tl-xl">対象区画・清掃箇所</th>
+                      <th class="px-4 py-3 text-sm md:text-base font-bold text-center">基本料金<br /><span class="text-xs font-normal">(税込)</span></th>
+                      <th class="px-4 py-3 text-sm md:text-base font-bold text-center rounded-tr-xl">対応範囲</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr class="hover:bg-blue-50 transition-colors bg-orange-50/60 border-2 border-orange-300">
+                      <td class="px-4 py-4">
+                        <p class="font-black text-gray-900 text-base md:text-lg">2連席 1区画（基本）</p>
+                        <p class="text-gray-500 text-xs md:text-sm mt-0.5">観光バス・レンタカーバス・送迎バス共通</p>
+                      </td>
+                      <td class="px-4 py-4 text-center">
+                        <span class="text-2xl md:text-3xl font-black text-orange-500">22,000</span>
+                        <span class="text-sm text-orange-500 font-bold">円〜</span>
+                      </td>
+                      <td class="px-4 py-4 text-sm text-gray-700">
+                        該当シート＋周辺の床・壁・窓付近の拭き取り
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-4 py-4">
+                        <p class="font-bold text-gray-900 text-base md:text-lg">追加区画（2区画目以降）</p>
+                        <p class="text-gray-500 text-xs md:text-sm mt-0.5">汚染が複数箇所に及ぶ場合</p>
+                      </td>
+                      <td class="px-4 py-4 text-center">
+                        <span class="text-xl md:text-2xl font-black text-primary">別途</span>
+                        <span class="text-xs text-primary font-bold">お見積もり</span>
+                      </td>
+                      <td class="px-4 py-4 text-sm text-gray-700">
+                        区画数・汚染範囲に応じてご案内
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors bg-blue-50/30">
+                      <td class="px-4 py-4">
+                        <p class="font-bold text-gray-900 text-base md:text-lg">空間全体 消臭作業</p>
+                        <p class="text-gray-500 text-xs md:text-sm mt-0.5">車内全体に臭いが広がっている場合</p>
+                      </td>
+                      <td class="px-4 py-4 text-center">
+                        <span class="text-xl md:text-2xl font-black text-primary">+5,000</span>
+                        <span class="text-xs text-primary font-bold">円</span>
+                      </td>
+                      <td class="px-4 py-4 text-sm text-gray-700">
+                        オゾン装置による空間脱臭・除菌
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-blue-50 transition-colors">
+                      <td class="px-4 py-4">
+                        <p class="font-bold text-gray-900 text-base md:text-lg">バス車内 全席クリーニング</p>
+                        <p class="text-gray-500 text-xs md:text-sm mt-0.5">定期メンテナンス・全体清掃</p>
+                      </td>
+                      <td class="px-4 py-4 text-center">
+                        <span class="text-xl md:text-2xl font-black text-primary">要</span>
+                        <span class="text-xs text-primary font-bold">お見積もり</span>
+                      </td>
+                      <td class="px-4 py-4 text-sm text-gray-700">
+                        全席・全フロア・天井・窓まで丸ごと対応
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-6 bg-yellow-50 border border-yellow-300 rounded-xl p-4">
+                <p class="text-sm text-gray-700 font-bold mb-1">✅ 料金に含まれる対応範囲</p>
+                <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+                  <li>該当シートの洗浄・除菌・消臭</li>
+                  <li>周辺の床・壁・窓付近に飛び散った汚れの拭き取り</li>
+                  <li>空間への消臭作業（基本プラン内）</li>
+                </ul>
+              </div>
+              <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。汚染状況により変動する場合があります。</p>
+            </div>
+
+            {/* 追加オプション */}
+            <div class="mb-14 bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm">
+              <h3 class="text-2xl md:text-3xl font-black text-blue-900 mb-6 flex items-center gap-3">
+                <span class="w-1.5 h-10 bg-primary rounded-full inline-block"></span>
+                追加オプション費用
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  { name: '消臭・脱臭（嘔吐・糞尿・激臭）', price: '3,000円〜7,000円' },
+                  { name: '抗菌コート', price: '2,000円' },
+                  { name: '防臭＋抗菌コート', price: '5,000円' },
+                  { name: 'オゾン装置使用', price: '5,000円' },
+                  { name: '発電機等 電源持込', price: '5,000円' },
+                  { name: '革張りシート（洗剤保湿剤変更）', price: '5,000円' },
+                  { name: 'エアコン内部洗浄（簡易洗浄）', price: '10,000円' },
+                ].map((opt) => (
+                  <div class="flex justify-between items-center bg-white border border-gray-200 rounded-xl px-4 py-3 gap-4">
+                    <span class="text-gray-700 text-sm md:text-base font-medium">{opt.name}</span>
+                    <span class="text-primary font-black text-base md:text-lg whitespace-nowrap">{opt.price}</span>
+                  </div>
+                ))}
+              </div>
+              <p class="text-xs text-gray-400 mt-4">※ 料金はすべて税込表示です。車両の状態により変動する場合があります。</p>
+            </div>
+          </>
+        )}
 
         {/* ===== 車種別 基本料金テーブル ===== */}
         <div class="mb-10 bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm">

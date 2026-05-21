@@ -3,7 +3,7 @@ title: "【東京 練馬区】トヨタ・レクサスの「長年のタバコ�
 date: 2026-03-31
 categories: 
   - "jisseki"
-  - "toukyou"
+  - "tokyo"
 coverImage: "ct200-e1774947400667.jpg"
 ---
 

@@ -3,7 +3,7 @@ title: "【吹田市】トヨタ・ヤリスの灯油こぼれ除去"
 date: 2026-03-24
 categories: 
   - "jisseki"
-  - "oosaka"
+  - "osaka"
   - "tokublo"
 coverImage: "トヨタ-ヤリス.jpg"
 ---

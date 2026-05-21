@@ -4,13 +4,16 @@ import { STORE_NAME } from '../../lib/site';
 interface Props {
   regionName: string;
   displayName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
 }
 
 const { regionName, displayName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
-const solutionTitle = isTruck
+const solutionTitle = isBus
+    ? "次の運行に間に合わせます。バス専門プロが現場へ急行。"
+    : isTruck
     ? "現場に急行し、早急にキャビンの環境を整えます。"
     : "現場に急行し、早急に臭いの問題を解決します。";
 ---
@@ -23,12 +26,15 @@ const solutionTitle = isTruck
         </h2>
 
         <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto mb-8 text-center md:text-left lg:text-center">
-            {isTruck ? (
+            {isBus ? (
+              <>社長様、運行管理者様、従業員の皆様の代わりに、プロが{displayName}の現場へ出張して対応します。<br />バスは「次の運行」という厳しい時間制約があります。<br />スタッフが汚物処理に追われてスケジュールが狂う——そのリスクをゼロにするために、私たちがいます。<br /><span class="font-bold text-accent">運行スケジュールに影響を出さない、スピード解決が私たちの使命です。</span></>
+            ) : isTruck ? (
               <>お店に持ち込む必要も、業務を止める必要もありません。<br />当店のプロスタッフが、{displayName}の貴社の車庫・拠点の駐車場まで出張し、<br />その場で専門的な機材を使ったキャビンクリーニング・シート洗浄を行います。<br /><span class="font-bold text-accent">長距離走行での蓄積汚れやタバコの臭いもスピード解決。</span></>
             ) : (
               <>お店に持ち込む必要も、何日も待つ必要もありません。<br />当店のプロスタッフが、{displayName}のお客様の駐車場まで出張し、<br />その場で専門的な機材を使った車内クリーニング・シート洗浄を行います。<br /><span class="font-bold text-accent">嘔吐などの緊急クリーニングもスピード対応いたします。</span></>
             )}
         </p>
+
 
         <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div class="bg-blue-50 p-6 rounded-xl text-center border border-blue-100">

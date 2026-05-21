@@ -3,7 +3,7 @@ title: "【堺市】トヨタ・アクアの「お子様の嘔吐トラブル」
 date: 2026-03-27
 categories: 
   - "jisseki"
-  - "oosaka"
+  - "osaka"
 coverImage: "トヨタ-アクア-e1774615269951.jpg"
 ---
 

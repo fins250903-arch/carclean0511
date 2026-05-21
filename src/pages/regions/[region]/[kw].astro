@@ -136,8 +136,11 @@ const adProblem = {
   dealerQuote: kw.problemDealerQuote,
   bodyHtml: kw.problemBodyHtml(regionName, displayName),
   empathyImage: kw.problemEmpathyImage,
-  empathyAlt: kw.problemEmpathyAlt,
+  empathyAlt: kw.problemEmpathyAlt ?? '',
 };
+
+/** slug から niche を解決 */
+const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'car';
 ---
 
 <MainLayout
@@ -149,13 +152,13 @@ const adProblem = {
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
-  <RegionProvider client:load regionName={regionName} displayName={displayName} niche="car" path={path}>
+  <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
-      <Hero regionName={regionName} displayName={displayName} niche="car" adHero={adHero} />
-      <AIOContent regionName={regionName} niche="car" />
+      <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
+      <AIOContent regionName={regionName} niche={pageNiche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
-      <Problem regionName={regionName} displayName={displayName} niche="car" adProblem={adProblem} />
-      <Solution regionName={regionName} displayName={displayName} niche="car" />
+      <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
+      <Solution regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Comparison displayName={displayName} />
 
       <Campaign displayName={displayName} />
@@ -165,29 +168,29 @@ const adProblem = {
       <Roadmap displayName={displayName} />
 
       <QuestionnaireTestimonials client:visible displayName={displayName} />
-      <RegionalAchievements regionName={regionName} displayName={displayName} niche="car" />
+      <RegionalAchievements regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Targets />
       <Campaign displayName={displayName} />
       <AreaCoverage regionName={regionName} />
       <CTA />
-      <Flow niche="car" />
+      <Flow niche={pageNiche} />
       <Profile displayName={displayName} />
       <Expertise />
-      <Pricing regionName={regionName} niche="car" />
+      <Pricing regionName={regionName} niche={pageNiche} />
       <Campaign displayName={displayName} />
       <AreaCoverage regionName={regionName} />
       <CTA />
-      <FAQ niche="car" />
+      <FAQ niche={pageNiche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink
         regionName={regionName}
         displayName={displayName}
-        niche="car"
+        niche={pageNiche}
         path={path}
         regionBasePath={regionBasePath}
       />
       <ContactForm client:visible regionName={regionName} />
-      <Closing regionName={regionName} displayName={displayName} niche="car" path={path} />
+      <Closing regionName={regionName} displayName={displayName} niche={pageNiche} path={path} />
       <FloatingCTA client:load />
     </main>
   </RegionProvider>

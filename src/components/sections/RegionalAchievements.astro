@@ -4,7 +4,7 @@ import { localCaseStudies } from '../../data/localCaseStudies';
 interface Props {
   regionName: string;
   displayName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
 }
 
 const { regionName, displayName, niche = 'car' } = Astro.props;
@@ -20,14 +20,15 @@ const regionCases = nicheCases.filter(c =>
     c.region === regionName.replace('府', '').replace('県', '')
 );
 
-// Get up to 3 cases
-const displayCases = regionCases.length > 0 ? regionCases.slice(0, 3) : nicheCases.slice(0, 3);
+// Get up to 2 cases
+const displayCases = regionCases.slice(0, 2);
 ---
 
+{displayCases.length > 0 && (
 <section class="py-20 bg-white border-t border-gray-100">
     <div class="container mx-auto px-8 max-w-6xl">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
                 {displayName}周辺の施工事例
             </h2>
             <p class="text-xl text-gray-600 font-bold">
@@ -91,7 +92,7 @@ const displayCases = regionCases.length > 0 ? regionCases.slice(0, 3) : nicheCas
                     各地域での様々なトラブル解決事例や、実際のビフォーアフターを公式ブログで詳しくご紹介しています。
                 </p>
                 <a 
-                    href="http://carinteriorcleaning.jp/blog/" 
+                    href={`/blog/?region=${encodeURIComponent(regionName)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-block bg-primary hover:bg-primary/90 text-white font-black py-5 px-12 rounded-full shadow-2xl transition-transform hover:scale-105 text-xl"
@@ -102,3 +103,4 @@ const displayCases = regionCases.length > 0 ? regionCases.slice(0, 3) : nicheCas
         </div>
     </div>
 </section>
+)}

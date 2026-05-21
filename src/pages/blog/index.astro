@@ -37,7 +37,7 @@ const getImageSrc = (post: BlogPost) =>
 					if (regionPosts.length === 0) return null;
 					
 					return (
-						<section>
+						<section data-region-name={region.name} class="region-section">
 							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-2 inline-block pr-8">
 								📍 {region.name}の施工実績
 							</h2>
@@ -84,7 +84,7 @@ const getImageSrc = (post: BlogPost) =>
 					const otherPosts = posts.filter(post => !post.data.categories?.some(cat => regions.some(r => r.id === cat)));
 					if (otherPosts.length === 0) return null;
 					return (
-						<section>
+						<section class="other-section">
 							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-gray-400 pb-2 inline-block pr-8">
 								🚙 その他の実績・お知らせ
 							</h2>
@@ -128,4 +128,28 @@ const getImageSrc = (post: BlogPost) =>
 			</div>
 		</div>
 	</main>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const urlParams = new URLSearchParams(window.location.search);
+			const targetRegion = urlParams.get('region');
+			
+			if (targetRegion) {
+				const container = document.querySelector('.space-y-16');
+				const targetSection = container?.querySelector(`section[data-region-name="${targetRegion}"]`);
+				
+				if (container && targetSection) {
+					// 指定された地域のセクションを先頭に移動
+					container.insertBefore(targetSection, container.firstChild);
+					
+					// スクロール位置を調整（少し上部に余裕を持たせる）
+					setTimeout(() => {
+						targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+						// ヘッダーなどのオフセット調整
+						window.scrollBy(0, -50);
+					}, 100);
+				}
+			}
+		});
+	</script>
 </MainLayout>

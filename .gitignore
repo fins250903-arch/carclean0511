@@ -4,3 +4,4 @@ public/513images/
 # Google Indexing API progress (GitHub Actions artifact; local runs)
 scripts/google/.indexing-state.json
 
+node_modules

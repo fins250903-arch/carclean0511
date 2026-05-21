@@ -56,10 +56,14 @@ export default function Blog({ regionName: propRegionName, displayName: propDisp
         }
     ];
 
-    const displayPosts = [
-        ...Object.values(regionalPosts).filter(post => post.displayName === displayName || post.title.includes(regionName.replace('府', '').replace('県', ''))),
-        ...basePosts.filter(post => post.niche === context.niche).map(post => ({ ...post, regionName: displayName }))
-    ];
+    const currentRegionPost = regionalPosts[regionName] || regionalPosts[regionName.replace('府', '').replace('県', '')];
+    const regionalDisplayPosts = currentRegionPost 
+        ? [{ ...currentRegionPost, category: '実例・実績', date: '2024.05.20' }]
+        : [];
+
+    const usefulPosts = basePosts
+        .filter(post => post.niche === context.niche)
+        .map(post => ({ ...post, regionName: displayName }));
 
     const handlePostClick = (post: BlogPost) => {
         if (post.url) {
@@ -69,62 +73,68 @@ export default function Blog({ regionName: propRegionName, displayName: propDisp
         }
     };
 
+    const renderPostCard = (post: any, index: number) => (
+        <article 
+            key={index} 
+            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
+            onClick={() => handlePostClick(post as BlogPost)}
+        >
+            <div className="h-48 overflow-hidden">
+                <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover transition-transform hover:scale-110"
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/images/rinser.webp';
+                    }}
+                />
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xs font-bold text-primary px-2 py-1 bg-blue-50 rounded">
+                        {post.category || "コラム"}
+                    </span>
+                    <span className="text-gray-400 text-xs">{post.date}</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
+                    {post.excerpt}
+                </p>
+                <span className="text-primary font-bold text-sm flex items-center gap-1">
+                    詳しく見る <span className="text-lg">→</span>
+                </span>
+            </div>
+        </article>
+    );
+
     return (
-        <section className="py-10 bg-gray-50 border-t border-gray-200" id="blog">
-            <div className="container mx-auto px-8">
-                <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                        お役立ちコラム
+        <section className="py-12 bg-gray-50 border-t border-gray-200" id="blog">
+            <div className="container mx-auto px-4 md:px-8 max-w-6xl">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                        施工実例・お役立ち情報
                     </h2>
-                    <p className="text-gray-600">
-                        車内クリーニングのプロが教える、愛車をきれいに保つための情報
+                    <p className="text-gray-600 text-lg">
+                        {regionName}での活動実績と、プロが教える車内清掃のノウハウ
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {displayPosts.slice(0, 3).map((post, index) => (
-                        <article 
-                            key={index} 
-                            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-                            onClick={() => handlePostClick(post as BlogPost)}
-                        >
-                            <div className="h-48 overflow-hidden">
-                                <img 
-                                    src={post.image} 
-                                    alt={post.title} 
-                                    className="w-full h-full object-cover transition-transform hover:scale-110"
-                                    onError={(e) => {
-                                        (e.target as HTMLImageElement).src = '/images/rinser.webp';
-                                    }}
-                                />
-                            </div>
-                            <div className="p-6 flex-1 flex flex-col">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <span className="text-xs font-bold text-primary px-2 py-1 bg-blue-50 rounded">
-                                        {post.category || "コラム"}
-                                    </span>
-                                    <span className="text-gray-400 text-xs">{post.date}</span>
-                                </div>
-                                <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors">
-                                    {post.title}
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
-                                    {post.excerpt}
-                                </p>
-                                <span className="text-primary font-bold text-sm flex items-center gap-1">
-                                    詳しく見る <span className="text-lg">→</span>
-                                </span>
-                            </div>
-                        </article>
-                    ))}
-                </div>
+                {regionalDisplayPosts.length > 0 && (
+                    <div className="mb-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {regionalDisplayPosts.slice(0, 2).map((post, index) => renderPostCard(post, index))}
+                        </div>
+                    </div>
+                )}
 
                 <div className="text-center mt-12">
                     <a 
-                        href="https://carinteriorcleaning.jp/blog/" 
+                        href={`/blog/?region=${encodeURIComponent(regionName)}`}
                         className="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-8 rounded-full transition-all"
                     >
-                        最新ブログ一覧はこちら →
+                        最新の施工事例一覧を見る →
                     </a>
                 </div>
             </div>

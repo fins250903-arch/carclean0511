@@ -14,12 +14,13 @@ interface AdProblemOverrides {
 interface Props {
   regionName: string;
   displayName: string;
-  niche?: 'car' | 'truck';
+  niche?: 'car' | 'truck' | 'bus';
   adProblem?: AdProblemOverrides;
 }
 
 const { regionName, displayName, niche = 'car', adProblem } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
 const header = adProblem?.header ?? (isTruck
     ? "「キャビンが臭くて、休憩中も休まらない…」"
