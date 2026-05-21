@@ -104,7 +104,21 @@ type RegionOverrides = {
 
         image: string;
 
+        url?: string;
+
     };
+
+    articles?: Array<{
+
+        headline: string;
+
+        description: string;
+
+        image: string;
+
+        url?: string;
+
+    }>;
 
     localBusiness?: {
 
@@ -668,7 +682,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         },
 
-        areaServed: {
+        areaServed: regionOverrides?.localBusiness?.areaServed ?? {
 
             '@type': 'AdministrativeArea',
 
@@ -762,55 +776,113 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    const article = regionOverrides?.article ? {
+    const articleSources = regionOverrides?.articles?.length
+        ? regionOverrides.articles
+        : regionOverrides?.article
+          ? [regionOverrides.article]
+          : [];
+
+    const articles = articleSources.map((src, index) => {
+
+        const articleId = `${url}#article-${index + 1}`;
+
+        const absImage = src.image.startsWith('http') ? src.image : `${SITE_URL}${src.image}`;
+
+        return {
+
+            '@context': 'https://schema.org',
+
+            '@type': 'Article',
+
+            '@id': articleId,
+
+            headline: src.headline,
+
+            description: src.description,
+
+            image: absImage,
+
+            url: src.url,
+
+            author: {
+
+                '@type': 'Organization',
+
+                name: STORE_NAME,
+
+                url: SITE_URL,
+
+            },
+
+            publisher: {
+
+                '@id': `${SITE_URL}/#organization`,
+
+            },
+
+            datePublished: '2024-01-01T00:00:00+09:00',
+
+            dateModified: new Date().toISOString(),
+
+            about: {
+
+                '@id': `${url}#localbusiness`,
+
+            },
+
+            mainEntity: {
+
+                '@id': `${url}#localbusiness`,
+
+                '@type': ['AutoBodyShop', 'LocalBusiness'],
+
+            },
+
+            mainEntityOfPage: {
+
+                '@type': 'WebPage',
+
+                '@id': `${url}#webpage`,
+
+            },
+
+        };
+
+    });
+
+    const caseStudyList = articleSources.length > 0 ? {
 
         '@context': 'https://schema.org',
 
-        '@type': 'Article',
+        '@type': 'ItemList',
 
-        '@id': `${url}#article`,
+        '@id': `${url}#regional-casestudies`,
 
-        headline: regionOverrides.article.headline,
+        name: `${regionName}の施工実例`,
 
-        description: regionOverrides.article.description,
+        description: `${regionName}で実際に施工した車内クリーニング・消臭洗浄の事例です。`,
 
-        image: regionOverrides.article.image.startsWith('http') ? regionOverrides.article.image : `${SITE_URL}${regionOverrides.article.image}`,
+        numberOfItems: articleSources.length,
 
-        author: {
+        itemListElement: articleSources.map((src, index) => ({
 
-            '@type': 'Organization',
+            '@type': 'ListItem',
 
-            name: STORE_NAME,
+            position: index + 1,
 
-            url: SITE_URL
+            item: {
 
-        },
+                '@type': 'Article',
 
-        publisher: {
+                headline: src.headline,
 
-            '@id': `${SITE_URL}/#organization`,
+                description: src.description,
 
-        },
+                url: src.url ?? url,
 
-        datePublished: '2024-01-01T00:00:00+09:00',
+            },
 
-        dateModified: new Date().toISOString(),
-
-        mainEntity: {
-
-            '@id': `${url}#localbusiness`,
-
-            '@type': ['AutoBodyShop', 'LocalBusiness']
-
-        },
-
-        mainEntityOfPage: {
-
-            '@type': 'WebPage',
-
-            '@id': `${url}#webpage`
-
-        }
+        })),
 
     } : null;
 
@@ -966,8 +1038,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     // ---- スキーマ配列の組み立て ----
     const baseSchemas: Record<string, unknown>[] = [organization, website, webpage, mainEntity, service, breadcrumbList, faqPage, author];
 
-    if (article) {
-        baseSchemas.push(article);
+    if (articles.length > 0) {
+        baseSchemas.push(...articles);
+    }
+    if (caseStudyList) {
+        baseSchemas.push(caseStudyList);
     }
     if (howTo) {
         baseSchemas.push(howTo);

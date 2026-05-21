@@ -9,7 +9,9 @@ import {
   generateAdKeywordRegionMetadata,
   generateJsonLd,
 } from '../../../lib/seo';
-import { regionalPosts } from '../../../data/regionalPosts';
+import { getRegionalPost } from '../../../lib/getRegionalPost';
+import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
+import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 
@@ -71,39 +73,19 @@ if (!kw) {
 const path = `/regions/${regionId}/${kwSlug}`;
 const regionBasePath = `/regions/${regionId}`;
 
-const post =
-  regionalPosts[regionName] ||
-  regionalPosts[regionName.replace('府', '').replace('県', '')];
+const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
 const questionnaireStructuredData = generateQuestionnaireJsonLd(
   regionName,
   displayName,
   path,
 );
-const regionOverrides = {
+const regionOverrides = buildRegionSeoOverrides({
+  regionName,
   displayName,
-  aiSummary: post?.aiSummary,
-  article:
-    post?.title && post?.excerpt && post?.image
-      ? {
-          headline: post.title,
-          description: post.excerpt,
-          image: post.image,
-        }
-      : undefined,
-  localBusiness: post?.structuredData
-    ? {
-        areaServed: post.structuredData.areaServed,
-        description: post.structuredData.description,
-        geo: post.structuredData.geo
-          ? {
-              ...post.structuredData.geo,
-              addressRegion: regionName,
-            }
-          : undefined,
-      }
-    : undefined,
-};
+  blogCases,
+});
 
 const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
 const jsonLdData = generateJsonLd(

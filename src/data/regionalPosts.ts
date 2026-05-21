@@ -216,7 +216,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             "description": "兵庫県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
         }
     },
-    "大阪": {
+    "大阪府": {
         title: "【箕面市】トヨタ・シエンタの嘔吐汚れを徹底除菌！車酔いの苦い思い出を消し去る事例",
         excerpt: "箕面大滝へ続く道は景色が素晴らしい反面、カーブも多く、小さなお子さんには少し厳しい時があります。楽しいはずの家族ドライブの帰り道、5歳の息子さんが突然の嘔吐...",
         content: `
@@ -243,8 +243,8 @@ export const regionalPosts: Record<string, RegionalPost> = {
             "@type": "LocalBusiness",
             "name": "大阪の車内クリーニング・シート洗浄専門店",
             "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
-            "@id": "https://carinteriorcleaning.jp/",
-            "url": "https://carinteriorcleaning.jp/",
+            "@id": "https://carinteriorcleaning.jp/regions/osaka/",
+            "url": "https://carinteriorcleaning.jp/regions/osaka/",
             "telephone": "070-8428-0866",
             "address": {
                 "@type": "PostalAddress",

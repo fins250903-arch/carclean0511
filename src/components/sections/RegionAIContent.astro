@@ -1,5 +1,5 @@
 ---
-import { regionalPosts } from '../../data/regionalPosts';
+import { getRegionalPost } from '../../lib/getRegionalPost';
 
 interface Props {
   regionName: string;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { regionName, displayName } = Astro.props;
-const post = regionalPosts[regionName];
+const post = getRegionalPost(regionName);
 
 if (!post || !post.aiSummary || !post.specs) {
     return null;

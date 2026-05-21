@@ -2,7 +2,9 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import { regions } from '../../data/regions';
 import { generateRegionMetadata, generateJsonLd } from '../../lib/seo';
-import { regionalPosts } from '../../data/regionalPosts';
+import { getRegionalPost } from '../../lib/getRegionalPost';
+import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPosts';
+import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../data/questionnaireTestimonials';
 import JsonLd from '../../components/seo/JsonLd.astro';
 
@@ -57,28 +59,16 @@ export async function getStaticPaths() {
 const { regionName, niche, path } = Astro.props;
 const isTruck = niche === 'truck';
 
-const post = regionalPosts[regionName] || regionalPosts[regionName.replace('府', '').replace('県', '')];
+const regionId = Astro.params.region?.replace(/-truck$/, '');
+const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
 const questionnaireStructuredData = generateQuestionnaireJsonLd(regionName, displayName, path);
-const regionOverrides = {
+const regionOverrides = buildRegionSeoOverrides({
+    regionName,
     displayName,
-    aiSummary: post?.aiSummary,
-    article: post?.title && post?.excerpt && post?.image ? {
-        headline: post.title,
-        description: post.excerpt,
-        image: post.image,
-    } : undefined,
-    localBusiness: post?.structuredData ? {
-        areaServed: post.structuredData.areaServed,
-        description: post.structuredData.description,
-        geo: post.structuredData.geo
-            ? {
-                ...post.structuredData.geo,
-                addressRegion: regionName,
-            }
-            : undefined,
-    } : undefined,
-};
+    blogCases,
+});
 
 const metadata = generateRegionMetadata(regionName, path, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche);
