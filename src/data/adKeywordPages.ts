@@ -22,6 +22,8 @@ export type AdKeywordPageDef = {
   problemBodyHtml: (regionName: string, displayName: string) => string;
   problemEmpathyImage: string;
   problemEmpathyAlt: string;
+  mainTitle?: (regionName: string, displayName: string) => string;
+  deepTroubles?: string[];
 };
 
 /** FV：「◯◯の△△　まとめて対応します。」（洗車機・分解の誤解を避ける短文） */
@@ -51,6 +53,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車シート洗浄</strong>でお悩みの方へ。飲食のシミ、子どもの汚れ、汗や皮脂の黄ばみは、表面拭きでは根が残りやすいトラブルです。<br /><strong>${dn}</strong>へ出張し、シート素材に合わせた泡洗い・すすぎ・乾燥まで一気通貫で施工します。<br />ガソリンスタンドの簡易清掃では落ちにくい「染み込んだ汚れ」も、プロの車内クリーニングにお任せください。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: 'シート洗浄前の汚れが目立つ車内シート（施工イメージ）',
+    mainTitle: (r, d) => `【${r}】車シート洗浄・黄ばみシミ抜き！蓄積汚れをプロの泡洗いで一元解決`,
+    deepTroubles: [
+      '長年乗っている車のシートが、汗や皮脂で黒ずみ・黄ばんでいて見栄えが悪い',
+      'ジュースやコーヒーをこぼした跡が、何年も放置されて茶色い輪染みになっている',
+      '市販のシートクリーナーを使ったら、かえってシミが広がってムラになってしまった'
+    ],
   },
   {
     slug: 'seat-cleaning',
@@ -95,6 +103,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
     problemEmpathyImage: KW_IMAGES.petKe,
     problemEmpathyAlt: '後部座席のペットおしっこ汚れのイメージ（施工関連）',
+    mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
+    deepTroubles: [
+      'ペットやお子様がおしっこをシートに…乾いてしまってどこから臭うか分からない',
+      '車内にムッとする尿臭が充満し、エアコンをかけるとさらに臭いが循環する',
+      'ウレタン内部まで尿が染み込んで、市販クリーナーではアンモニア臭が消えない'
+    ],
   },
   {
     slug: 'omorashi',
@@ -117,6 +131,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>おもらし</strong>後は、まず水分を吸わせたうえで、残った尿成分を洗い出すのが基本です。<br />私たちは<strong>${dn}</strong>まで出張し、状況に合わせた泡洗い・消臭・乾燥まで行います。<br />ご自身では難しい「奥までのニオイ」も、車内クリーニングのプロにお任せください。`,
     problemEmpathyImage: KW_IMAGES.petNioi,
     problemEmpathyAlt: '座席の染み・生活臭が気になる車内のイメージ',
+    mainTitle: (r, d) => `【${r}】車のおもらし・シートの尿染みを早急解決！無かったことに`,
+    deepTroubles: [
+      '子供や高齢の家族がおもらし…シートに黄色いシミと独特のアンモニア臭が…',
+      'アルカリ性の尿汚れは水拭きだけでは中和できず、乾くとさらに臭う',
+      'レンタカーや知人の車で粗相してしまい、一刻も早く痕跡を消したい'
+    ],
   },
   {
     slug: 'unko',
@@ -138,6 +158,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>うんち</strong>汚れは見た目以上に繊維の奥へ入り込み、臭いと菌の両方が問題になります。<br /><strong>${dn}</strong>へ出張し、汚物除去後に洗浄・すすぎ・乾燥・消臭まで一貫対応します。<br /><strong>${rn}</strong>内の緊急案件も、可能な限り早い枠でご案内します。`,
     problemEmpathyImage: KW_IMAGES.unko,
+    mainTitle: (r, d) => `【${r}】車のうんち汚れ・強力除菌！徹底消臭で菌リスクを完全リセット`,
+    deepTroubles: [
+      'ペットや赤ちゃんがシートで粗相…大腸菌などの衛生面・感染リスクが心配',
+      'シートの細かい隙間やフロアマットにこびりついて、自分では絶対に触りたくない',
+      '汚物は取り除いたものの、車内に漂う強烈な便臭がエアコンや天井にまで染み付いている'
+    ],
   },
   {
     slug: 'shanai-nioi',
@@ -291,7 +317,13 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>ペット臭</strong>は、シートやトランク、天井にまで広がっていることがあります。<br /><strong>${dn}</strong>へ出張し、毛の除去から洗浄・乾燥・消臭まで一括で対応します。<br /><strong>${rn}</strong>のペットファミリーに選ばれる車内クリーニングです。`,
     problemEmpathyImage: KW_IMAGES.petKe,
-    problemEmpathyAlt: 'ペット同乗後の後部座席のイメージ',
+    problemEmpathyAlt: 'ペット同乗後の後部座席 of the image',
+    mainTitle: (r, d) => `【${r}】車のペット臭・獣臭を徹底消臭！プロの除菌洗浄で愛車を快適に`,
+    deepTroubles: [
+      '愛犬をいつも車に乗せているため、車内全体にペット特有の獣臭や体臭が染み付いている',
+      '自分は慣れているけれど、他人や友人を乗せた時に「動物の臭いがする」と言われショック',
+      'シートや天井の繊維にペットの唾液や皮脂汚れが蓄積し、通常の洗車では臭いが取れない'
+    ],
   },
   {
     slug: 'tabako-yani',
@@ -313,6 +345,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>タバコの匂い</strong>と<strong>ヤニ汚れ</strong>は、天井・柱・シートに付着し複合的に臭います。<br /><strong>${dn}</strong>へ出張し、付着度に合わせた洗剤濃度と工程で洗浄します。<br />見えにくい部分まで、プロの車内クリーニングでケアします。`,
     problemEmpathyImage: KW_IMAGES.tabakoYani,
+    mainTitle: (r, d) => `【${r}】車のタバコ臭・ヤニ汚れ洗浄！天井の黄ばみと頑固な臭いを徹底除去`,
+    deepTroubles: [
+      'タバコの煙で天井が茶色くベタベタにヤニ汚れ…車内が常にヤニ臭い',
+      '中古車を購入したら前オーナーの喫煙臭が染み付いていて、乗るたびに頭が痛くなる',
+      '芳香剤を置いたらヤニ臭と混ざって、余計に複雑でクサイ悪臭に変化してしまった'
+    ],
   },
   {
     slug: 'chuko-tabako',
@@ -334,6 +372,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>中古車タバコ臭</strong>は、ヤニ付着箇所が広いほど、部分消臭では限界が出ます。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアを中心に洗浄・消臭します。<br /><strong>${rn}</strong>の納車前・納車直後どちらにも対応可能です。`,
     problemEmpathyImage: KW_IMAGES.chukoTabako,
+    mainTitle: (r, d) => `【${r}】中古車のタバコ臭を完全退治！内装丸ごと洗浄で新車のような快適空間へ`,
+    deepTroubles: [
+      'せっかく買った中古車なのに、エアコンやシートから染み出るタバコの臭いが我慢できない',
+      '子供やタバコ嫌いの家族を乗せたいが、「臭くて乗りたくない」と拒否されてしまう',
+      '前オーナーの長年のヤニがシートや天井の繊維奥深くに固着し、セルフ消臭では効果ゼロ'
+    ],
   },
   {
     slug: 'chuko-kareisyu',
@@ -377,6 +421,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内 灯油 こぼし</strong>は、安全確認のうえ、染み出しを最小化する手順が重要です。<br /><strong>${dn}</strong>へ急行し、吸油・洗浄・乾燥・消臭までプロの工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼を優先して受け付けています。`,
     problemEmpathyImage: KW_IMAGES.rinser,
     problemEmpathyAlt: '洗浄・すすぎ工程のイメージ',
+    mainTitle: (r, d) => `【${r}】車内の灯油こぼし緊急消臭！頭痛がする強烈な油臭さをプロが元から分解`,
+    deepTroubles: [
+      '冬場にポリタンクから灯油が漏れ、フロアマットの下までベタベタに染み込んでしまった',
+      '車内に充満する強烈な灯油の臭いで、運転中に吐き気や頭痛がして非常に危険',
+      '拭き取ろうとして水をかけたら、灯油の油分が周囲に広がってさらに被害が悪化した'
+    ],
   },
   {
     slug: 'pet-ke',
@@ -399,6 +449,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車ペット毛</strong>は、見えない溝やシートバックにも溜まります。<br /><strong>${dn}</strong>へ出張し、毛の除去から洗浄・乾燥までセットで行い、<strong>ペット臭</strong>の元も減らします。<br /><strong>${rn}</strong>の愛犬家の方に選ばれる車内クリーニングです。`,
     problemEmpathyImage: KW_IMAGES.petKe,
     problemEmpathyAlt: '後部座席にペットの毛が付着したイメージ',
+    mainTitle: (r, d) => `【${r}】車のペット毛・抜け毛を根こそぎ強力吸引！絡みついた毛も完全除去`,
+    deepTroubles: [
+      'シートの織り目やフロアマットの奥にペットの細い毛が絡まり、掃除機では全く吸い取れない',
+      'エアコンの風で車内にペットの毛が舞い散り、目や鼻がムズムズしてアレルギーが心配',
+      '粘着ローラーを何本使ってもキリがなく、車内の隅々まで毛だらけで諦めかけている'
+    ],
   },
   // --- 追加キーワードLP（全地域） ---
   {
@@ -422,6 +478,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 嘔吐 クリーニング</strong>は、シート深部までの洗浄が必須です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。<br /><strong>${rn}</strong>の緊急ご依頼を優先して受け付けています。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: '嘔吐汚れのシート洗浄前イメージ',
+    mainTitle: (r, d) => `【${r}】車の嘔吐クリーニング緊急特急便！今すぐ消臭・除菌で元通り`,
+    deepTroubles: [
+      '子供が急に車酔いしてシートに嘔吐…胃酸の酸っぱい臭いが取れない',
+      '自分で拭き取ったけれど、時間が経つにつれて腐敗臭が強くなってきた',
+      'ウレタンの奥まで染み込んでしまい、市販の消臭スプレーでは効果がない'
+    ],
   },
   {
     slug: 'car-ac-cleaning',
@@ -466,6 +528,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>ペットうんち</strong>は繊維の奥へ入り込みやすいトラブルです。<br /><strong>${dn}</strong>へ出張し、洗浄・すすぎ・乾燥・消臭まで対応します。`,
     problemEmpathyImage: KW_IMAGES.unko,
     problemEmpathyAlt: 'ペット排泄トラブル後の車内イメージ',
+    mainTitle: (r, d) => `【${r}】ペットのうんち汚れ緊急対応！除菌＆消臭洗浄で痕跡も臭いも完全抹消`,
+    deepTroubles: [
+      'ドライブ中に愛犬・愛猫が緊張や興奮でうんちを…下痢便がシートに染みてしまった',
+      'シートの細かいメッシュ地や隙間に汚れが入り込んで取れない',
+      'ペット可のレンタカーやマイカーで、雑菌繁殖や寄生虫による二次感染リスクが不安'
+    ],
   },
   {
     slug: 'shutchou-senmon',

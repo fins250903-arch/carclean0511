@@ -1,0 +1,146 @@
+---
+import { LINE_URL } from '../../lib/site';
+
+interface Props {
+  displayName: string;
+  deepTroubles?: string[];
+}
+
+const { displayName, deepTroubles } = Astro.props;
+
+// 共通4大トラブル
+const commonTroubles = [
+  {
+    icon: '🤮',
+    title: '嘔吐・お漏らし',
+    desc: '除菌・消臭まで徹底',
+    bg: 'bg-red-50/50',
+    border: 'border-red-100',
+  },
+  {
+    icon: '🚬',
+    title: 'タバコ・ヤニ汚れ',
+    desc: '天井まで丸ごと洗浄',
+    bg: 'bg-orange-50/50',
+    border: 'border-orange-100',
+  },
+  {
+    icon: '🛢️',
+    title: '灯油こぼし',
+    desc: '強烈な臭いも分解',
+    bg: 'bg-amber-50/50',
+    border: 'border-amber-100',
+  },
+  {
+    icon: '🐾',
+    title: 'ペットの粗相・毛',
+    desc: '奥の毛まで強力吸引',
+    bg: 'bg-yellow-50/50',
+    border: 'border-yellow-100',
+  },
+];
+---
+
+<section class="w-full py-8 md:py-12 bg-white border-b border-gray-100 relative">
+  <div class="container mx-auto px-4 max-w-5xl">
+    
+    {/* セクションタイトル */}
+    <div class="text-center mb-6 md:mb-8">
+      <span class="inline-block bg-red-600 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider uppercase animate-pulse">
+        緊急対応エリア拡大中！
+      </span>
+      <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
+        こんなトラブル、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">お任せください！</span>
+      </h2>
+      <p class="text-sm md:text-base text-gray-600 mt-2 font-medium">
+        {displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決
+      </p>
+    </div>
+
+    {/* 共通4大トラブルグリッド（スマホは2列2行、PCは4列） */}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-10">
+      {commonTroubles.map((item) => (
+        <div class={`flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl border-2 ${item.border} ${item.bg} hover:shadow-lg hover:scale-[1.02] transition-all duration-300 text-center group`}>
+          <span class="text-4xl md:text-5xl mb-2.5 transform group-hover:scale-110 transition-transform duration-300 inline-block filter drop-shadow-sm">
+            {item.icon}
+          </span>
+          <h3 class="text-sm md:text-lg font-black text-gray-900 mb-1 leading-tight whitespace-nowrap">
+            {item.title}
+          </h3>
+          <p class="text-xs md:text-sm font-bold text-red-600 whitespace-nowrap leading-none mt-1">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* キーワード特有の深い悩み（吹き出し・共感エリア） */}
+    {deepTroubles && deepTroubles.length > 0 && (
+      <div class="bg-red-50/40 border-2 border-red-500/10 p-5 md:p-8 rounded-3xl mb-8 max-w-4xl mx-auto shadow-sm">
+        <div class="flex items-center gap-2 mb-4 justify-center md:justify-start">
+          <span class="text-xl md:text-2xl">⚠️</span>
+          <h3 class="text-base md:text-xl font-black text-gray-900 leading-none">
+            実は、このような「さらに深い悩み」でお困りではありませんか？
+          </h3>
+        </div>
+        
+        <div class="space-y-3.5">
+          {deepTroubles.map((trouble, index) => (
+            <div class="flex items-start gap-2.5 bg-white p-3.5 md:p-4 rounded-2xl shadow-sm border border-red-500/5 hover:border-red-500/20 transition-colors">
+              <span class="flex-shrink-0 flex items-center justify-center w-5 md:w-6 h-5 md:h-6 bg-red-100 text-red-600 rounded-full font-black text-xs md:text-sm mt-0.5 md:mt-0">
+                {index + 1}
+              </span>
+              <p class="text-xs md:text-base font-bold text-gray-800 leading-snug md:leading-normal">
+                {trouble}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p class="text-center text-xs md:text-sm font-black text-red-600 mt-4 leading-relaxed animate-bounce">
+          一人で悩まずプロにお任せを！そのお悩み、すべて「特急便」が綺麗に解決します！
+        </p>
+      </div>
+    )}
+
+    {/* 即座アクションへ誘導するCTAエリア */}
+    <div class="bg-white rounded-3xl border border-gray-100 p-4 md:p-6 shadow-xl max-w-3xl mx-auto text-center border-t-4 border-t-red-600">
+      <p class="text-xs md:text-sm font-black text-red-600 tracking-wider mb-2.5">
+        ＼ お急ぎの方はお電話、手軽に見積もりたい方はLINEが便利です！ ／
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-3.5 max-w-2xl mx-auto">
+        {/* 電話CTA */}
+        <a
+          href="tel:070-8428-0866"
+          class="flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-700 to-emerald-600 hover:from-blue-800 hover:to-emerald-700 text-white font-extrabold py-3.5 md:py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-95 transition-all duration-200 text-center"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <div class="text-left leading-tight">
+            <span class="block text-[10px] md:text-xs font-medium text-white/80 leading-none">お急ぎの方・今すぐ解決したいなら</span>
+            <span class="text-base md:text-lg font-black tracking-wide">無料電話相談 (タップ発信)</span>
+          </div>
+        </a>
+
+        {/* LINE CTA */}
+        <a
+          href={LINE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2.5 bg-[#06C755] hover:bg-[#05b34c] text-white font-extrabold py-3.5 md:py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.01] active:scale-95 transition-all duration-200 text-center"
+        >
+          {/* LINE アイコン SVG */}
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 5.82 2 10.53c0 2.684 1.433 5.06 3.67 6.643-.19.688-.68 2.47-.78 2.87-.11.45.14.44.29.35.12-.07 1.89-1.28 2.65-1.8 1.34.37 2.76.57 4.17.57 5.523 0 10-3.82 10-8.53C22 5.82 17.523 2 12 2zm4.5 10.5h-5.5v-3h5.5v3z" />
+          </svg>
+          <div class="text-left leading-tight">
+            <span class="block text-[10px] md:text-xs font-medium text-white/80 leading-none">24時間受付中・写真を送るだけ</span>
+            <span class="text-base md:text-lg font-black tracking-wide">LINEで無料見積もりをする</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,72 @@
+---
+import { AD_KEYWORD_PAGES } from '../../data/adKeywordPages';
+
+interface Props {
+  regionId: string;
+  regionName: string;
+  currentSlug: string;
+}
+
+const { regionId, regionName, currentSlug } = Astro.props;
+
+// 相互リンク対象となる11個の主要緊急キーワードのslugリスト
+const targetSlugs = [
+  'kyuto-cleaning',
+  'omorashi',
+  'oshikko',
+  'unko',
+  'seat-senjo',
+  'tabako-yani',
+  'chuko-tabako',
+  'touyu-kobosi',
+  'pet-nioi',
+  'pet-ke',
+  'pet-unko'
+];
+
+// 対象キーワードのデータを抽出
+const mutualLinks = AD_KEYWORD_PAGES
+  .filter(p => targetSlugs.includes(p.slug))
+  .map(p => {
+    // 表示用の短い名前を抽出 (seoTitleなどから)
+    let displayName = p.seoTitle.replace(/｜車内清掃 特急便/g, '').replace(/｜.+/g, '');
+    return {
+      slug: p.slug,
+      name: displayName,
+      href: `/regions/${regionId}/${p.slug}/`
+    };
+  });
+---
+
+{mutualLinks.length > 0 && (
+  <section class="py-10 bg-gray-50 border-t border-b border-gray-200">
+    <div class="container mx-auto px-6 md:px-8 max-w-4xl text-center">
+      <h3 class="text-lg md:text-xl font-black text-gray-800 mb-6 flex items-center justify-center gap-2">
+        <span>🔧</span> {regionName}対応の「症状・トラブル別」解決ページ一覧
+      </h3>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-w-3xl mx-auto">
+        {mutualLinks.map((link) => {
+          const isCurrent = link.slug === currentSlug;
+          return isCurrent ? (
+            <span class="text-xs md:text-sm font-black bg-white text-gray-400 py-2.5 px-3 rounded-xl border border-gray-200 shadow-sm cursor-default select-none">
+              {link.name}（現在表示中）
+            </span>
+          ) : (
+            <a
+              href={link.href}
+              class="text-xs md:text-sm font-black text-blue-700 bg-white hover:text-white hover:bg-blue-700 border border-gray-200 hover:border-blue-700 py-2.5 px-3 rounded-xl shadow-sm transition-all duration-200 flex items-center justify-center group"
+            >
+              <span class="group-hover:translate-x-0.5 transition-transform duration-200">{link.name}</span>
+            </a>
+          );
+        })}
+      </div>
+      
+      <p class="text-xs text-gray-500 mt-6 leading-relaxed">
+        ※ドメイン全体の品質向上と、お探しのトラブル解決ページへのアクセスのしやすさを考慮し、<br class="hidden sm:inline" />
+        {regionName}エリア内の各専門特化ページへの相互リンクを設置しています。
+      </p>
+    </div>
+  </section>
+)}

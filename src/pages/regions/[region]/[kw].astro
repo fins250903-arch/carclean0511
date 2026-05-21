@@ -36,6 +36,8 @@ import Expertise from '../../../components/sections/Expertise.astro';
 import Pricing from '../../../components/sections/Pricing.astro';
 import Closing from '../../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
+import TroubleSympathy from '../../../components/sections/TroubleSympathy.astro';
+import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.astro';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -110,6 +112,7 @@ const adHero = {
   subcatch: kw.heroSubcatch(displayName),
   fvImage: kw.fvImage,
   footerText: kw.heroFooter(displayName),
+  mainTitle: kw.mainTitle?.(regionName, displayName),
 };
 
 const adProblem = {
@@ -137,6 +140,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
+      <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
       <AIOContent regionName={regionName} niche={pageNiche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
@@ -171,6 +175,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
         path={path}
         regionBasePath={regionBasePath}
       />
+      <KeywordMutualLinks regionId={regionId} regionName={regionName} currentSlug={kwSlug} />
       <ContactForm client:visible regionName={regionName} />
       <Closing regionName={regionName} displayName={displayName} niche={pageNiche} path={path} />
       <FloatingCTA client:load />

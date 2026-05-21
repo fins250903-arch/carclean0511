@@ -9,6 +9,7 @@ interface AdHeroOverrides {
   subcatch: string;
   fvImage: string;
   footerText: string;
+  mainTitle?: string;
 }
 
 interface Props {
@@ -67,16 +68,24 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 </p>
             )}
 
-            {/* 3. メインキャッチ（2行）— 全LP共通 */}
+            {/* 3. メインキャッチ — 動的または共通 */}
             <h1 class:list={[
                 gap,
-                'font-black text-blue-900 leading-[1.05] tracking-tight',
-                adHero
-                    ? 'text-[clamp(1.5rem,6.8vw,3.4rem)] md:text-8xl lg:text-9xl'
-                    : 'text-[clamp(1.85rem,9vw,7rem)] md:text-8xl lg:text-9xl',
+                'font-black text-blue-900 leading-[1.15] tracking-tight mb-3',
+                adHero?.mainTitle
+                    ? 'text-[clamp(1.3rem,5.2vw,2.6rem)] md:text-5xl lg:text-6xl'
+                    : adHero
+                        ? 'text-[clamp(1.5rem,6.8vw,3.4rem)] md:text-8xl lg:text-9xl'
+                        : 'text-[clamp(1.85rem,9vw,7rem)] md:text-8xl lg:text-9xl',
             ]}>
-                <span class="block">早急に解決！</span>
-                <span class="block">特急便</span>
+                {adHero?.mainTitle ? (
+                    <span class="block font-black text-blue-900 drop-shadow-sm leading-tight max-w-[95%]">{adHero.mainTitle}</span>
+                ) : (
+                    <>
+                        <span class="block">早急に解決！</span>
+                        <span class="block">特急便</span>
+                    </>
+                )}
             </h1>
 
             {/* 5. メイン訴求（赤帯）— 全LP共通 */}
