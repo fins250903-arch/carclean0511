@@ -88,6 +88,14 @@ import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 
+import {
+    AUTHOR,
+    ORGANIZATION_SAME_AS,
+    TRUST_REFERENCES,
+    buildMobileInteriorCleaningDefinition,
+    schemaDateModified,
+} from '@/lib/structuredDataConstants';
+
 
 
 type RegionOverrides = {
@@ -156,6 +164,15 @@ type SchemaOptions = {
 
     };
 
+    /** Service 名（キーワードLP向け上書き） */
+    serviceName?: string;
+
+    serviceType?: string;
+
+    serviceAlternateNames?: string[];
+
+    serviceDescription?: string;
+
 };
 
 
@@ -196,7 +213,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     
 
-    const carDescription = `${regionName}対応の${STORE_NAME}。車内クリーニング、シート洗浄、車内装クリーニング、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
+    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
 
     const truckDescription = `${regionName}の大型トラック・バス専門キャビン洗浄。35,000円から（税込）の納得価格で、プロによる本格洗浄。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
@@ -204,7 +221,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 
 
-    const carKeywords = `車内清掃 特急便 ${regionName}, 車内クリーニング ${regionName}, 車内清掃 ${regionName}, シート洗浄 ${regionName}, 車内装クリーニング ${regionName}, 嘔吐車内清掃 ${regionName}, 車灯油こぼし ${regionName}, 車のシート掃除 ${regionName}, 車座席クリーニング ${regionName}, 車内の臭い消し ${regionName}`;
+    const carKeywords = `出張 車内 清掃 ${regionName}, 出張 車内 クリーニング ${regionName}, 車内清掃 特急便 ${regionName}, 車内クリーニング ${regionName}, 車内清掃 ${regionName}, シート洗浄 ${regionName}, 車内装クリーニング ${regionName}, 嘔吐車内清掃 ${regionName}, 車灯油こぼし ${regionName}, 車のシート掃除 ${regionName}, 車座席クリーニング ${regionName}, 車内の臭い消し ${regionName}`;
 
     const truckKeywords = `トラックキャビン清掃 ${regionName}, 大型トラック 洗浄 ${regionName}, バス 車内清掃 ${regionName}, 10tトラック キャビンクリーニング ${regionName}, トラック 臭い消し ${regionName}, 業務用 車内清掃 ${regionName}`;
 
@@ -432,11 +449,16 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    const carDescription = `${regionName}全域対応の車内クリーニング・消臭洗浄サービス。嘔吐、灯油、ペットの臭いを徹底洗浄します。`;
+    const carDescription = `${regionName}全域対応の出張 車内 清掃・車内クリーニング専門サービス。嘔吐、灯油、ペットの臭いを最短即日で徹底洗浄します。`;
 
     const truckDescription = `${regionName}の大型トラック・バス専門キャビン洗浄。職人によるプロの技術で汚れ・臭い・除菌を徹底対応します。`;
 
     const localBusinessDescription = regionOverrides?.aiSummary || regionOverrides?.localBusiness?.description || (isTruck ? truckDescription : carDescription);
+
+    const dateModified = schemaDateModified();
+
+    const serviceDefinitionText = schemaOptions?.serviceDescription
+        ?? (isTruck ? truckDescription : buildMobileInteriorCleaningDefinition(regionName));
 
 
 
@@ -458,7 +480,21 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         logo: `${SITE_URL}/images/representative_new.webp`,
 
-        sameAs: [INSTAGRAM_URL, LINE_URL],
+        founder: {
+
+            '@id': AUTHOR.id,
+
+        },
+
+        employee: {
+
+            '@id': AUTHOR.id,
+
+        },
+
+        sameAs: [...ORGANIZATION_SAME_AS],
+
+        knowsAbout: AUTHOR.knowsAbout,
 
     };
 
@@ -476,11 +512,25 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         name: adKwSchema?.webPageName ?? (isTruck ? `${regionName}の大型トラック・バス キャビン洗浄専門店` : `${displayName}の${STORE_NAME}`),
 
-        description: adKwSchema?.webPageDescription ?? (isTruck ? truckDescription : `${regionName}で車内クリーニング、シート洗浄、嘔吐消臭、灯油こぼし清掃に対応する出張LPです。`),
+        description: adKwSchema?.webPageDescription ?? (isTruck ? truckDescription : serviceDefinitionText),
 
         inLanguage: 'ja-JP',
 
-        dateModified: new Date().toISOString(),
+        dateModified,
+
+        author: {
+
+            '@id': AUTHOR.id,
+
+        },
+
+        primaryImageOfPage: {
+
+            '@type': 'ImageObject',
+
+            url: absHeroImageForSchema,
+
+        },
 
         isPartOf: {
 
@@ -493,6 +543,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             '@id': `${url}#service`,
 
         },
+
+        mentions: TRUST_REFERENCES,
 
     };
 
@@ -538,7 +590,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         description: localBusinessDescription,
 
-        dateModified: new Date().toISOString(),
+        dateModified,
 
         url,
 
@@ -548,7 +600,13 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         brand: STORE_NAME,
 
-        sameAs: [SITE_URL, INSTAGRAM_URL, LINE_URL],
+        founder: {
+
+            '@id': AUTHOR.id,
+
+        },
+
+        sameAs: [...ORGANIZATION_SAME_AS],
 
         address: {
 
@@ -658,8 +716,6 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         },
 
-        sameAs: [INSTAGRAM_URL, LINE_URL],
-
     };
 
 
@@ -672,9 +728,13 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@id': `${url}#service`,
 
-        name: `${displayName}の${currentSvcName}`,
+        name: schemaOptions?.serviceName ?? `${displayName}の${currentSvcName}`,
 
-        serviceType: currentSvcName,
+        alternateName: schemaOptions?.serviceAlternateNames ?? (isTruck ? [truckSvcName] : ['出張 車内 清掃', '出張車内クリーニング', carSvcName]),
+
+        serviceType: schemaOptions?.serviceType ?? currentSvcName,
+
+        description: serviceDefinitionText,
 
         provider: {
 
@@ -694,9 +754,39 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             '@type': 'ServiceChannel',
 
+            serviceType: '出張施工（On-site）',
+
             serviceUrl: url,
 
             availableLanguage: 'Japanese',
+
+            servicePhone: '070-8428-0866',
+
+        },
+
+        offers: {
+
+            '@type': 'Offer',
+
+            priceCurrency: 'JPY',
+
+            price: isTruck ? '35000' : '22000',
+
+            priceSpecification: {
+
+                '@type': 'PriceSpecification',
+
+                minPrice: isTruck ? '35000' : '22000',
+
+                priceCurrency: 'JPY',
+
+            },
+
+            availability: 'https://schema.org/InStock',
+
+            url,
+
+            description: `${regionName}エリアへの出張費無料（一部地域除く）・事前見積もり対応`,
 
         },
 
@@ -704,9 +794,13 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             '@type': 'Audience',
 
-            audienceType: '車内クリーニングを希望する個人・家族',
+            audienceType: isTruck ? 'トラック・バス運送事業者' : '出張 車内 清掃を希望する個人・家族',
 
-        }
+        },
+
+        termsOfService: url,
+
+        mentions: TRUST_REFERENCES,
 
     };
 
@@ -1023,16 +1117,17 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     const author = {
         '@context': 'https://schema.org',
         '@type': 'Person',
-        '@id': `${SITE_URL}/#author`,
-        name: '車内清掃 特急便 代表',
-        jobTitle: '車内クリーニング・消臭専門技術者',
+        '@id': AUTHOR.id,
+        name: AUTHOR.name,
+        jobTitle: AUTHOR.jobTitle,
+        image: AUTHOR.image,
         worksFor: {
-            '@id': `${SITE_URL}/#organization`
+            '@id': `${SITE_URL}/#organization`,
         },
-        description: '年間300台以上の車内クリーニング、嘔吐・ペット臭・灯油消臭を手掛ける専門技術者。',
+        description: AUTHOR.description,
         url: SITE_URL,
-        sameAs: [SITE_URL, INSTAGRAM_URL, LINE_URL],
-        knowsAbout: ['車内クリーニング', '嘔吐消臭', '灯油除去', 'ペット臭対策']
+        sameAs: [...ORGANIZATION_SAME_AS],
+        knowsAbout: [...AUTHOR.knowsAbout],
     };
 
     // ---- スキーマ配列の組み立て ----

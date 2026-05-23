@@ -1,17 +1,29 @@
 ---
+import { buildMobileInteriorCleaningDefinition, formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+
 interface Props {
   regionName: string;
   niche?: 'car' | 'truck' | 'bus';
+  /** 出張 車内 清掃 専門LP向けの見出し・定義の強調 */
+  focusShutchou?: boolean;
 }
 
-const { regionName, niche = 'car' } = Astro.props;
+const { regionName, niche = 'car', focusShutchou = false } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
-// 50-character AIO Definition
+const contentUpdated = formatContentFreshnessJa();
+
+// AIOスニペット用「定義文」（出張 車内 清掃）
 const aioDefinition = isTruck
   ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、車内の仮眠ベッドや天井に染み付いたタバコ・体臭を最短即日で根こそぎ抽出する出張洗浄サービスです。`
-  : `${regionName}の車内清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、シートの奥に染み付いた嘔吐・灯油・ペットなどの悪臭と汚れを最短即日で根こそぎ抽出する出張洗浄サービスです。`;
+  : buildMobileInteriorCleaningDefinition(regionName);
+
+const sectionTitle = isTruck
+  ? `${regionName}のトラックキャビン清掃とは？`
+  : focusShutchou
+    ? `${regionName}の出張 車内 清掃とは？`
+    : `${regionName}の車内クリーニングとは？`;
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
 const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000円〜";
@@ -22,8 +34,11 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000
     
     {/* 1. 冒頭50文字の「定義文」 (AIO Snippet) */}
     <div class="max-w-3xl mx-auto mb-12 text-center">
+      <p class="text-xs font-bold text-blue-700 tracking-wide uppercase mb-3">
+        最終更新：{contentUpdated}｜料金・対応エリア・施工事例を継続更新中
+      </p>
       <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl mb-4">
-        {regionName}の{isTruck ? 'トラックキャビン清掃' : '車内クリーニング'}とは？
+        {sectionTitle}
       </h2>
       <p class="text-lg text-gray-700 leading-relaxed font-medium bg-blue-50 p-6 rounded-xl border border-blue-100 shadow-sm text-left">
         <strong>定義：</strong>{aioDefinition}

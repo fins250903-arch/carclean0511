@@ -12,6 +12,7 @@ import {
 import { getRegionalPost } from '../../../lib/getRegionalPost';
 import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
+import { buildAdKeywordJsonLdOptions } from '../../../lib/keywordSchemaOptions';
 import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 
@@ -95,13 +96,13 @@ const jsonLdData = generateJsonLd(
   path,
   regionOverrides,
   'car',
-  {
-    adKeywordSchema: {
-      webPageName: metadata.title!,
-      webPageDescription: metadata.description!,
-      heroImagePath: kw.fvImage,
-    },
-  },
+  buildAdKeywordJsonLdOptions({
+    kwSlug,
+    kw,
+    regionName,
+    displayName,
+    metadata,
+  }),
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 
@@ -141,7 +142,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
-      <AIOContent regionName={regionName} niche={pageNiche} />
+      <AIOContent regionName={regionName} niche={pageNiche} focusShutchou={kwSlug === 'shutchou-senmon'} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
       <Solution regionName={regionName} displayName={displayName} niche={pageNiche} />

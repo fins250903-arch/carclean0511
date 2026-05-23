@@ -537,11 +537,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'shutchou-senmon',
-    seoTitle: '出張 車内クリーニング 専門店',
+    seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      `${r}の出張車内クリーニング専門店。電源・水道不要で駐車場があれば施工。嘔吐・臭い・灯油こぼしも即日対応。`,
+      `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
-      `出張 車内 クリーニング 専門店 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 ${r}, シート洗浄 ${r}`,
+      `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
     ogImage: KW_IMAGES.steam,
     heroSubtitle: (d) => `${d}｜出張車内クリーニング専門`,
     heroHighlight: ['出張専門', '即日対応'],

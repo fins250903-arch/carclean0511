@@ -54,7 +54,7 @@ export function buildRegionSeoOverrides({
   const areaServed = post?.structuredData?.areaServed ?? defaultAreaServed;
   const description =
     post?.structuredData?.description ??
-    `${regionName}全域に出張対応。車内クリーニング・シート洗浄・嘔吐・ペット臭・灯油こぼしの消臭洗浄を地域密着で施工します。`;
+    `${regionName}全域に出張 車内 清掃対応。車内クリーニング・シート洗浄・嘔吐・ペット臭・灯油こぼしの消臭洗浄を地域密着で施工します。`;
 
   const articlesFromBlog = blogCases.map((c) => ({
     headline: c.title,
