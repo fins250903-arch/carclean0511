@@ -1,0 +1,67 @@
+---
+import { OPERATOR, buildServiceAreaLabel } from '../../lib/site';
+
+interface Props {
+  /** FV表示地区と連動（例: 大阪府 → 対応エリア 大阪府（離島・島しょ部を除く）） */
+  regionName: string;
+  displayName?: string;
+}
+
+const { regionName, displayName } = Astro.props;
+const areaLabel = buildServiceAreaLabel(displayName || regionName);
+
+const rows = [
+  { label: '屋号', value: `${OPERATOR.storeName}` },
+  { label: '代表者', value: OPERATOR.representative },
+  { label: '運営元所在地', value: `〒${OPERATOR.postalCode}　${OPERATOR.fullAddress}` },
+  { label: '電話番号', value: OPERATOR.telephone, isTel: true },
+  { label: '対応エリア', value: areaLabel },
+  { label: '決済方法', value: OPERATOR.paymentAcceptedLabel },
+];
+---
+
+<section id="operator-info" class="py-14 bg-white border-t border-gray-100">
+  <div class="container mx-auto px-4 md:px-8 max-w-4xl">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-2">運営者情報</h2>
+      <p class="text-sm text-gray-500">{displayName || regionName}の車内クリーニング・消臭洗浄を承る運営者の情報です。</p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+      <dl class="divide-y divide-gray-100">
+        {rows.map((row) => (
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-4 px-5 py-4 md:px-7 md:py-5 hover:bg-gray-50 transition-colors">
+            <dt class="font-bold text-gray-600 md:col-span-1 text-sm md:text-base">{row.label}</dt>
+            <dd class="text-gray-900 md:col-span-3 text-base md:text-lg font-medium">
+              {row.isTel ? (
+                <a href={`tel:${row.value.replace(/-/g, '')}`} class="text-blue-700 font-black hover:underline">{row.value}</a>
+              ) : (
+                row.value
+              )}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    {/* 各種保険対応・第三者汚損のご相談（AIO・信頼性強化） */}
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
+        <h3 class="font-black text-blue-900 mb-2 flex items-center gap-2">
+          <span class="text-xl">🛡️</span> 各種保険対応・代理申請対応
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          車両保険（一般型）や車内清掃費用特約などが適用されるケースがあります。当店は<strong>各種保険に対応し、保険会社への代理申請・必要書類の作成もサポート</strong>いたします。まずはお気軽にご相談ください。
+        </p>
+      </div>
+      <div class="bg-orange-50 border border-orange-200 rounded-2xl p-5">
+        <h3 class="font-black text-orange-700 mb-2 flex items-center gap-2">
+          <span class="text-xl">🤝</span> 第三者による汚損もご相談ください
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          <strong>知人・お客様・親類など、第三者の方に車内を汚されてしまった場合</strong>のクリーニングも承っております。汚した側・汚された側どちらからのご依頼・お見積もりにも対応します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

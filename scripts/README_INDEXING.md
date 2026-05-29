@@ -6,5 +6,6 @@
 
 - サイトマップを Search Console に送信
 - 重点地域（千葉・愛知・大阪・兵庫・福岡）のキーワードLPを優先して Indexing API に通知
+- すべてのブログ記事も含める
 
 旧 `submit_indexing.py` は廃止済みです。

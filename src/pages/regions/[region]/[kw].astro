@@ -35,6 +35,7 @@ import Flow from '../../../components/sections/Flow.astro';
 import Profile from '../../../components/sections/Profile.astro';
 import Expertise from '../../../components/sections/Expertise.astro';
 import Pricing from '../../../components/sections/Pricing.astro';
+import OperatorInfo from '../../../components/sections/OperatorInfo.astro';
 import Closing from '../../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
 import TroubleSympathy from '../../../components/sections/TroubleSympathy.astro';
@@ -178,6 +179,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
       />
       <KeywordMutualLinks regionId={regionId} regionName={regionName} currentSlug={kwSlug} />
       <ContactForm client:visible regionName={regionName} />
+      <OperatorInfo regionName={regionName} displayName={displayName} />
       <Closing regionName={regionName} displayName={displayName} niche={pageNiche} path={path} />
       <FloatingCTA client:load />
     </main>

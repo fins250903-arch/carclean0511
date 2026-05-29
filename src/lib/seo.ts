@@ -82,7 +82,7 @@ export interface Metadata {
 
 import { faqData, truckFaqData, flowData, truckFlowData, serviceData, truckServiceData } from '@/data/seoData';
 
-import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
+import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
@@ -439,6 +439,16 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const displayName = regionOverrides?.displayName || regionName;
 
+    // 運営元の実所在地（LP表示の運営者情報と一致／E-E-A-T・信頼性強化）
+    const operatorPostalAddress = {
+        '@type': 'PostalAddress',
+        postalCode: OPERATOR.postalCode,
+        addressRegion: OPERATOR.addressRegion,
+        addressLocality: OPERATOR.addressLocality,
+        streetAddress: OPERATOR.streetAddress,
+        addressCountry: OPERATOR.addressCountry,
+    };
+
     
 
     const carSvcName = '車内クリーニング・消臭洗浄';
@@ -476,7 +486,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         url: SITE_URL,
 
-        telephone: '070-8428-0866',
+        telephone: OPERATOR.telephone,
+
+        address: operatorPostalAddress,
 
         logo: `${SITE_URL}/images/representative_new.webp`,
 
@@ -594,9 +606,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         url,
 
-        telephone: '070-8428-0866',
+        telephone: OPERATOR.telephone,
 
         priceRange: isTruck ? '¥35,000〜' : '¥22,000〜',
+
+        paymentAccepted: [...OPERATOR.paymentAccepted],
 
         brand: STORE_NAME,
 
@@ -608,15 +622,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         sameAs: [...ORGANIZATION_SAME_AS],
 
-        address: {
-
-            '@type': 'PostalAddress',
-
-            addressRegion: regionName,
-
-            addressCountry: 'JP'
-
-        },
+        address: operatorPostalAddress,
 
         areaServed: regionOverrides?.localBusiness?.areaServed || {
 
@@ -760,7 +766,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             availableLanguage: 'Japanese',
 
-            servicePhone: '070-8428-0866',
+            servicePhone: OPERATOR.telephone,
 
         },
 

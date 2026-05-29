@@ -28,6 +28,7 @@ import Flow from '../../components/sections/Flow.astro';
 import Profile from '../../components/sections/Profile.astro';
 import Expertise from '../../components/sections/Expertise.astro';
 import Pricing from '../../components/sections/Pricing.astro';
+import OperatorInfo from '../../components/sections/OperatorInfo.astro';
 import Closing from '../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../components/sections/ServiceMutualLink.astro';
 
@@ -117,6 +118,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <ContactForm client:visible regionName={regionName} />
+      <OperatorInfo regionName={regionName} displayName={displayName} />
       <Closing regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <FloatingCTA client:load />
     </main>

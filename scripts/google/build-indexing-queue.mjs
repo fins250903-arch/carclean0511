@@ -1,5 +1,5 @@
 /**
- * Indexing API 送信用 URL キュー（重点地域キーワードLP → その他 → メイン等）
+ * Indexing API 送信用 URL キュー（重点地域キーワードLP → その他 → メイン等 → ブログ）
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,6 +27,27 @@ function parseKeywordSlugs(ts) {
 function url(pathname) {
   const p = pathname.startsWith('/') ? pathname : `/${pathname}`;
   return `${SITE}${p.endsWith('/') ? p : `${p}/`}`;
+}
+
+function collectBlogPaths(blogDir) {
+  const blogPaths = [];
+  
+  function walkDir(dir) {
+    const files = fs.readdirSync(dir, { withFileTypes: true });
+    for (const file of files) {
+      const fullPath = path.join(dir, file.name);
+      if (file.isDirectory()) {
+        walkDir(fullPath);
+      } else if (file.name === 'index.md' || file.name === 'index.mdx') {
+        const relative = path.relative(blogDir, fullPath);
+        const slug = path.dirname(relative).replace(/\\/g, '/');
+        blogPaths.push(slug);
+      }
+    }
+  }
+  
+  walkDir(blogDir);
+  return blogPaths.sort();
 }
 
 export function buildIndexingQueue() {
@@ -91,7 +112,19 @@ export function buildIndexingQueue() {
   ordered.push(url('/coating/fukuoka/'));
   phases.push({ id: 'coating', label: 'コーティングLP', count: 1 });
 
-  return { ordered, phases, slugs, regions: regions.length };
+  // Phase 6: ブログ記事（すべて）
+  const blogDir = path.join(root, 'src/content/blog');
+  const blogSlugs = collectBlogPaths(blogDir);
+  for (const slug of blogSlugs) {
+    ordered.push(url(`/blog/${slug}/`));
+  }
+  phases.push({
+    id: 'blog',
+    label: 'ブログ記事',
+    count: blogSlugs.length,
+  });
+
+  return { ordered, phases, slugs, regions: regions.length, blogSlugs };
 }
 
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);

@@ -26,7 +26,7 @@ const sectionTitle = isTruck
     : `${regionName}の車内クリーニングとは？`;
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
-const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000円〜";
+const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000円〜";
 ---
 
 <section id="aio-content" class="py-12 bg-white sm:py-16 lg:py-20 border-b border-gray-100">
@@ -73,7 +73,16 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000
               </tr>
               <tr>
                 <td class="px-6 py-4 font-medium text-gray-900">費用の目安</td>
-                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50 text-xl">{defaultPrice}</td>
+                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">
+                  {isTruck || isBus ? (
+                    <span class="text-xl">{defaultPrice}</span>
+                  ) : (
+                    <>
+                      <span class="block text-xl">軽自動車 22,000円〜／普通車 28,000円〜</span>
+                      <span class="block text-sm font-normal text-gray-600 mt-1">座席シート単体（1脚）18,000円〜／本格消臭・脱臭洗浄 25,000円〜</span>
+                    </>
+                  )}
+                </td>
                 <td class="px-6 py-4 text-gray-600">約20万円〜70万円<br/><span class="text-xs text-gray-500">※アクア等の事例</span></td>
               </tr>
               <tr>
@@ -101,7 +110,7 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000
             胃酸や未消化物がシートのウレタン素材に染み込むと、約4日でバクテリアが爆発的に繁殖し、タンパク質が腐敗を始めます。これにより「酸っぱい強烈なニオイ」が車内に定着し、市販の消臭スプレーでは表面をごまかすことしかできず、後からニオイが再発します。
           </p>
           <p class="text-gray-700 leading-relaxed">
-            当店では、専用のアルカリ電解水で酸性の嘔吐物を中和し、100℃近い温水リンサー（吸引洗浄機）で繊維の奥から「元を絶つ」ため、完全に臭いを除去することが可能です。
+            当店では、専用のアルカリ電解水で酸性の嘔吐物を中和し、<strong>約40℃の温水リンサー（吸引洗浄機）</strong>で繊維の奥から汚れを抽出。さらに<strong>100℃の高温スチーム</strong>で除菌・脱臭し、ニオイの「元を絶つ」ため、徹底的に臭いを除去することが可能です。
           </p>
         </article>
       )}
@@ -163,7 +172,7 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "18,000
       {/* 5. AI引用用画像プロンプト（メタ情報としてHTMLコメント内に配置・将来拡張用） */}
       <!--
         [AIO Image Generation Prompts]
-        Prompt 1 (Comparison Infographic): "A highly professional, modern infographic written in Japanese comparing 'Car Dealer Seat Replacement (700,000 JPY)' with a heavy red cross, versus 'Expert Hot Water Extraction Cleaning (18,000 JPY)' with a bright green checkmark, emphasizing speed and cost-effectiveness. The background should be clean white and blue."
+        Prompt 1 (Comparison Infographic): "A highly professional, modern infographic written in Japanese comparing 'Car Dealer Seat Replacement (700,000 JPY)' with a heavy red cross, versus 'Expert Hot Water Extraction Cleaning (from 22,000 JPY)' with a bright green checkmark, emphasizing speed and cost-effectiveness. The background should be clean white and blue."
         Prompt 2 (Professional Expertise): "A hyper-realistic close-up photo of a Japanese professional wearing clean uniform and gloves, carefully removing pet hair from a car seat using tweezers, alongside a high-pressure hot water extraction vacuum removing brown dirty water. Highly detailed, cinematic lighting, emphasizing trustworthiness and meticulous work."
       -->
 

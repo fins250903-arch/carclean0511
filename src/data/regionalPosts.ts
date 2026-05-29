@@ -222,7 +222,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
         content: `
             <h3 class="font-bold text-xl mb-4">大滝へのドライブと急な車酔い</h3>
             <p class="mb-4">箕面大滝へ続く道は景色が素晴らしい反面、カーブも多く、小さなお子さんには少し厳しい時があります。楽しいはずの家族ドライブの帰り道、5歳の息子さんが突然の嘔吐。営業車としても使うことがある愛車だけに、一刻も早い復旧が必要な現場でした。</p>
-            <p class="mb-4">吐瀉物が隙間に入り込んでいたため、シートの隙間まで130℃のスチームで殺菌。二次被害を防ぐため除菌も徹底しました。</p>
+            <p class="mb-4">吐瀉物が隙間に入り込んでいたため、約40℃の温水リンサーで汚れを抽出した後、シートの隙間まで100℃の高温スチームで殺菌。二次被害を防ぐため除菌も徹底しました。</p>
             
             <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
                 <p class="font-bold text-blue-800">施工完了</p>
@@ -412,7 +412,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、ペット臭（獣臭）、砂・海水汚れ、加齢臭、タバコ臭、食べこぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、安定化二酸化塩素消臭、業務用リンサー、オゾン脱臭" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 大型SUV：32,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 大型車・SUV：36,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
