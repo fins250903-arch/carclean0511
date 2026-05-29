@@ -1,6 +1,6 @@
 ---
 import '../styles/globals.css';
-import { STORE_NAME, SITE_URL, canonicalUrl } from '@/lib/site';
+import { STORE_NAME, SITE_URL, canonicalUrl, GOOGLE_SITE_VERIFICATION } from '@/lib/site';
 
 interface Props {
 	title?: string;
@@ -27,6 +27,7 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		
