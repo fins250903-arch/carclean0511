@@ -3,7 +3,7 @@ title: "[静岡市] 小回りのきくミニバン 嘔吐 消臭"
 date: 2026-02-17
 categories: 
   - "jisseki"
-  - "shizuoka"
+  - "sizuoka"
 coverImage: "35B82DBE-861E-447A-8ED9-C5FDF31FF29B-e1771405980597.jpg"
 ---
 

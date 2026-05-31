@@ -3,7 +3,7 @@ title: "【西宮市】トヨタ・プリウスの「タバコのヤニによる
 date: 2026-03-27
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
   - "tokublo"
 coverImage: "プリウスやに汚れ画像。-e1774620209677.jpg"
 ---

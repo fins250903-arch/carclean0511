@@ -3,7 +3,7 @@ title: "【神戸市】トヨタ・シエンタの「嘔吐あとの消臭施工
 date: 2026-03-27
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
 coverImage: "times_sienta_4779-scaled-1-e1774619230405.webp"
 ---
 

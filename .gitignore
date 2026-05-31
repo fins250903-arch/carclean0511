@@ -7,3 +7,6 @@ scripts/google/.indexing-state.json
 node_modules
 
 .vercel
+
+desktop.ini
+Thumbs.db

@@ -3,7 +3,7 @@ title: "兵庫県芦屋市 レクサス・CT、赤ワインハプニング高級
 date: 2026-03-07
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
   - "tokublo"
 coverImage: "ct200-e1774947400667.jpg"
 ---

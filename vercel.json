@@ -26,6 +26,17 @@
       ],
       "destination": "https://carinteriorcleaning.jp/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "carclean2026blog.vercel.app"
+        }
+      ],
+      "destination": "https://carinteriorcleaning.jp/:path*",
+      "permanent": true
     }
   ]
 }

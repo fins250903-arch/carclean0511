@@ -2,7 +2,7 @@
 title: "【東大阪市】日産・ノートのペットの粗相による消臭施工"
 date: 2026-03-24
 categories: 
-  - "osaka"
+  - "oosaka"
   - "tokublo"
 coverImage: "日産-ノート2.jpg"
 ---

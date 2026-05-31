@@ -2,7 +2,7 @@
 title: "【大阪府吹田市】ソリオ、万博公園のピクニックとケチャップの跡"
 date: 2026-03-01
 categories: 
-  - "osaka"
+  - "oosaka"
 coverImage: "スズキ・ソリオusiro.jpg"
 ---
 

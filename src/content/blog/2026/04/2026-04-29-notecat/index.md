@@ -1,10 +1,13 @@
 ---
-title: "【鎌倉市】ニッサン・ノート愛猫とのドライブの忘れ物"
-date: 2026-04-29
+
+title: "【鎌倉市】ニッサン・ノート愛猫とのドライブの忘れ物"  
+date: 2026-05-26  
 categories: 
-  - "jisseki"
-  - "kanagawa"
+
+- "jisseki"
+- "kanagawa"
 coverImage: "日産-ノート.jpg"
+
 ---
 
 高徳院の大仏　周辺など、ペットとの散歩に最適な鎌倉市。

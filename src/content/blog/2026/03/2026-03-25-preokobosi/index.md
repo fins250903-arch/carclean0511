@@ -3,7 +3,7 @@ title: "【西宮市】スバル・プレオの子供の食べこぼし洗浄"
 date: 2026-03-25
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
   - "tokublo"
 coverImage: "line_oa_chat_260323_145617-e1774427668876.jpg"
 ---

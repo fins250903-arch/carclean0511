@@ -2,7 +2,7 @@
 title: "【東京都武蔵野市】日産・マーチ、吉祥寺の喧騒とこぼれたラテ"
 date: 2026-03-01
 categories: 
-  - "tokyo"
+  - "toukyou"
 coverImage: "日産・マーチmae.jpg"
 ---
 

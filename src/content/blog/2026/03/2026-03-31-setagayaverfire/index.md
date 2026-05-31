@@ -3,7 +3,7 @@ title: "【東京・世田谷区】トヨタ・ベルファイア「牛乳の腐
 date: 2026-03-31
 categories: 
   - "jisseki"
-  - "tokyo"
+  - "toukyou"
   - "tokublo"
 coverImage: "line_oa_chat_260323_145452-scaled-e1774946683209.jpg"
 ---

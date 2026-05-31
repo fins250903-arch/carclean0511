@@ -3,7 +3,7 @@ title: "【神戸市】マツダ・アクセラのタバコ臭徹底除去"
 date: 2026-03-25
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
   - "tokublo"
 coverImage: "line_oa_chat_260323_145224-e1774426444495.jpg"
 ---

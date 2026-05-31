@@ -3,7 +3,7 @@ title: "静岡県静岡市葵区：トヨタ・パッソお茶の街の「うっ
 date: 2026-03-15
 categories: 
   - "jisseki"
-  - "shizuoka"
+  - "sizuoka"
 tags: 
   - "お茶のシミ"
   - "トヨタ・パッソ"

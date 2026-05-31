@@ -3,7 +3,7 @@ title: "[神戸市] ５ナンバーサイズのシエンタ 嘔吐 消臭"
 date: 2026-02-17
 categories: 
   - "jisseki"
-  - "hyogo"
+  - "hyougo"
 coverImage: "1759578725530-e1771335434456.jpg"
 ---
 
