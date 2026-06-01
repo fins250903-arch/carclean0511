@@ -6,13 +6,13 @@ import type { ReactNode } from 'react';
 type RegionContextType = {
     regionName: string;
     displayName: string;
-    niche: 'car' | 'truck' | 'coating';
+    niche: 'car' | 'truck' | 'bus' | 'coating';
     path: string;
 };
 
 const RegionContext = createContext<RegionContextType | undefined>(undefined);
 
-export function RegionProvider({ children, regionName, displayName, niche = 'car', path = '' }: { children: ReactNode, regionName: string, displayName?: string, niche?: 'car' | 'truck' | 'coating', path?: string }) {
+export function RegionProvider({ children, regionName, displayName, niche = 'car', path = '' }: { children: ReactNode, regionName: string, displayName?: string, niche?: 'car' | 'truck' | 'bus' | 'coating', path?: string }) {
     const finalDisplayName = displayName || regionName;
     return (
         <RegionContext.Provider value={{ regionName, displayName: finalDisplayName, niche, path }}>

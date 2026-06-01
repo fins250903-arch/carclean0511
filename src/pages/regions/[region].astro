@@ -11,7 +11,9 @@ import JsonLd from '../../components/seo/JsonLd.astro';
 // Astro Components
 import Hero from '../../components/sections/Hero.astro';
 import AIOContent from '../../components/sections/AIOContent.astro';
+import RegionLocalTrust from '../../components/sections/RegionLocalTrust.astro';
 import RegionAIContent from '../../components/sections/RegionAIContent.astro';
+import { getRegionCustomization } from '../../data/regionCustomization';
 import Problem from '../../components/sections/Problem.astro';
 import Solution from '../../components/sections/Solution.astro';
 import Comparison from '../../components/sections/Comparison.astro';
@@ -53,14 +55,21 @@ export async function getStaticPaths() {
       params: { region: `${region.id}-truck` },
       props: { regionName: region.name, niche: 'truck', path: `/regions/${region.id}-truck` }
     });
+    // Bus page
+    paths.push({
+      params: { region: `${region.id}-bus` },
+      props: { regionName: region.name, niche: 'bus', path: `/regions/${region.id}-bus` }
+    });
   });
   return paths;
 }
 
 const { regionName, niche, path } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
-const regionId = Astro.params.region?.replace(/-truck$/, '');
+const regionId = Astro.params.region?.replace(/-truck$/, '').replace(/-bus$/, '');
+const custom = getRegionCustomization(regionName);
 const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
 const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
@@ -69,6 +78,7 @@ const regionOverrides = buildRegionSeoOverrides({
     regionName,
     displayName,
     blogCases,
+    aiSummary: custom.aioSummaryExtra,
 });
 
 const metadata = generateRegionMetadata(regionName, path, niche);
@@ -82,14 +92,15 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   description={metadata.description}
   keywords={metadata.keywords}
   canonical={metadata.alternates.canonical}
-  ogImage={isTruck ? '/images/truck-fv.png' : '/images/fv-passenger-hero.png'}
+  ogImage={isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png'}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
-      <AIOContent regionName={regionName} niche={niche} />
+      <AIOContent regionName={regionName} niche={niche} focusShutchou />
+      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={niche} />
       <Solution regionName={regionName} displayName={displayName} niche={niche} />

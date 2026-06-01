@@ -26,6 +26,7 @@ export type RegionSeoOverridesInput = {
   regionName: string;
   displayName: string;
   blogCases: RegionalBlogDisplayPost[];
+  aiSummary?: string;
 };
 
 export type RegionSeoOverrides = {
@@ -48,6 +49,7 @@ export function buildRegionSeoOverrides({
   regionName,
   displayName,
   blogCases,
+  aiSummary: aiSummaryOverride,
 }: RegionSeoOverridesInput): RegionSeoOverrides {
   const post = getRegionalPost(regionName);
   const defaultAreaServed = buildDefaultAreaServed(regionName);
@@ -84,7 +86,7 @@ export function buildRegionSeoOverrides({
 
   return {
     displayName,
-    aiSummary: post?.aiSummary,
+    aiSummary: aiSummaryOverride ?? post?.aiSummary,
     articles: articles.length > 0 ? articles.slice(0, 2) : undefined,
     localBusiness: {
       areaServed,

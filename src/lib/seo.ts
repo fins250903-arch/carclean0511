@@ -201,13 +201,18 @@ function getDynamicRating(regionName: string) {
 
 
 
-export const generateRegionMetadata = (regionName: string, path: string = '', niche: 'car' | 'truck' = 'car'): Metadata => {
+export const generateRegionMetadata = (regionName: string, path: string = '', niche: 'car' | 'truck' | 'bus' = 'car'): Metadata => {
 
     const isTruck = niche === 'truck';
+    const isBus = niche === 'bus';
 
-    const serviceName = isTruck ? 'トラックキャビン清掃' : '車内クリーニング';
+    const serviceName = isTruck ? 'トラックキャビン清掃' : isBus ? 'バス・マイクロバス車内清掃' : '車内クリーニング';
 
-    const mainTitle = isTruck ? `${regionName}の大型トラック・バス キャビン洗浄専門店` : `${regionName}の${STORE_NAME} | 車内クリーニング・シート洗浄・嘔吐消臭`;
+    const mainTitle = isTruck
+        ? `${regionName}の大型トラック・バス キャビン洗浄専門店`
+        : isBus
+          ? `${regionName}のバス・マイクロバス 出張車内清掃 | ${STORE_NAME}`
+          : `${regionName}の${STORE_NAME} | 車内クリーニング・シート洗浄・嘔吐消臭`;
 
     const title = mainTitle;
 
@@ -217,7 +222,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const truckDescription = `${regionName}の大型トラック・バス専門キャビン洗浄。35,000円から（税込）の納得価格で、プロによる本格洗浄。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
-    const description = isTruck ? truckDescription : carDescription;
+    const busDescription = `${regionName}のバス・マイクロバス向け出張車内清掃。座席・床・天井の嘔吐・灯油・ペット臭に対応。最短即日の出張施工。`;
+
+    const description = isTruck ? truckDescription : isBus ? busDescription : carDescription;
 
 
 
@@ -225,7 +232,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const truckKeywords = `トラックキャビン清掃 ${regionName}, 大型トラック 洗浄 ${regionName}, バス 車内清掃 ${regionName}, 10tトラック キャビンクリーニング ${regionName}, トラック 臭い消し ${regionName}, 業務用 車内清掃 ${regionName}`;
 
-    const keywords = isTruck ? truckKeywords : carKeywords;
+    const busKeywords = `バス 車内清掃 ${regionName}, マイクロバス 清掃 ${regionName}, 観光バス シート洗浄 ${regionName}, バス 嘔吐 清掃 ${regionName}, 送迎バス 臭い消し ${regionName}`;
+
+    const keywords = isTruck ? truckKeywords : isBus ? busKeywords : carKeywords;
 
 
 
@@ -267,7 +276,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
                 {
 
-                    url: isTruck ? '/images/truck-fv.png' : '/images/fv-passenger-hero.png',
+                    url: isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png',
 
                     width: 1200,
 
@@ -423,9 +432,10 @@ export const generateAdKeywordRegionMetadata = (regionName: string, path: string
 
 
 
-export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: 'car' | 'truck' = 'car', schemaOptions?: SchemaOptions) => {
+export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: 'car' | 'truck' | 'bus' = 'car', schemaOptions?: SchemaOptions) => {
 
     const isTruck = niche === 'truck';
+    const isBus = niche === 'bus';
 
     const url = canonicalUrl(path);
 

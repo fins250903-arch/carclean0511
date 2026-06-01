@@ -1,5 +1,5 @@
 ---
-import { faqData, truckFaqData } from '../../data/seoData';
+import { faqData, truckFaqData, busFaqData } from '../../data/seoData';
 
 interface Props {
   niche?: 'car' | 'truck' | 'bus';
@@ -7,9 +7,10 @@ interface Props {
 
 const { niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
 
 // 表示FAQ＝FAQPage構造化データ（seoData）と同一ソース（AIO引用・整合性確保）
-const faqs = isTruck ? truckFaqData : faqData;
+const faqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
 ---
 
 <section class="py-10 bg-gray-50" id="faq">
