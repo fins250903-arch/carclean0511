@@ -1,0 +1,164 @@
+---
+/**
+ * 大阪府サブエリア LP（出張車内清掃のみ）
+ * /regions/osaka/{subarea}/ | -truck | -bus
+ */
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { osakaSubRegions, getRegionCustomization } from '../../../data/regionCustomization';
+import { generateRegionMetadata, generateJsonLd } from '../../../lib/seo';
+import { getRegionalPost } from '../../../lib/getRegionalPost';
+import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
+import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
+import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+import type { ServiceNiche } from '../../../lib/niche';
+import { regionPath } from '../../../lib/niche';
+
+import Hero from '../../../components/sections/Hero.astro';
+import AIOContent from '../../../components/sections/AIOContent.astro';
+import RegionLocalTrust from '../../../components/sections/RegionLocalTrust.astro';
+import RegionAIContent from '../../../components/sections/RegionAIContent.astro';
+import Problem from '../../../components/sections/Problem.astro';
+import Solution from '../../../components/sections/Solution.astro';
+import Comparison from '../../../components/sections/Comparison.astro';
+import Campaign from '../../../components/sections/Campaign.astro';
+import CTA from '../../../components/sections/CTA.astro';
+import FAQ from '../../../components/sections/FAQ.astro';
+import Reasons from '../../../components/sections/Reasons.astro';
+import Benefits from '../../../components/sections/Benefits.astro';
+import Roadmap from '../../../components/sections/Roadmap.astro';
+import RegionalAchievements from '../../../components/sections/RegionalAchievements.astro';
+import Targets from '../../../components/sections/Targets.astro';
+import AreaCoverage from '../../../components/sections/AreaCoverage.astro';
+import Flow from '../../../components/sections/Flow.astro';
+import Profile from '../../../components/sections/Profile.astro';
+import Expertise from '../../../components/sections/Expertise.astro';
+import Pricing from '../../../components/sections/Pricing.astro';
+import OperatorInfo from '../../../components/sections/OperatorInfo.astro';
+import Closing from '../../../components/sections/Closing.astro';
+import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
+import { RegionProvider } from '../../../lib/RegionContext';
+import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
+import Testimonials from '../../../components/sections/Testimonials';
+import Blog from '../../../components/sections/Blog';
+import ContactForm from '../../../components/sections/ContactForm';
+import FloatingCTA from '../../../components/sections/FloatingCTA';
+
+const REGION_NAME = '大阪府';
+
+export async function getStaticPaths() {
+  const paths = [];
+  const niches: ServiceNiche[] = ['car', 'truck', 'bus'];
+  for (const sub of osakaSubRegions) {
+    for (const niche of niches) {
+      const suffix = niche === 'car' ? '' : niche === 'truck' ? '-truck' : '-bus';
+      paths.push({
+        params: { subarea: `${sub.id}${suffix}` },
+        props: {
+          subareaId: sub.id,
+          displayName: sub.displayName,
+          niche,
+          path: `/regions/osaka/${sub.id}${suffix}/`,
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+const { subareaId, displayName, niche, path } = Astro.props as {
+  subareaId: string;
+  displayName: string;
+  niche: ServiceNiche;
+  path: string;
+};
+
+const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
+const post = getRegionalPost(REGION_NAME);
+const blogCases = getRegionalBlogDisplayPosts('osaka', REGION_NAME);
+const custom = getRegionCustomization(REGION_NAME, subareaId);
+
+const regionOverrides = buildRegionSeoOverrides({
+  regionName: REGION_NAME,
+  displayName: `${displayName}（大阪府）`,
+  blogCases,
+  aiSummary: custom.aioSummaryExtra ?? `${displayName}エリアへ最短即日の出張車内清掃。${custom.localDispatchLine ?? ''}`,
+});
+
+const metadata = generateRegionMetadata(
+  `${displayName}（大阪府）`,
+  path,
+  niche,
+);
+const jsonLdData = generateJsonLd(
+  REGION_NAME,
+  path,
+  regionOverrides,
+  niche,
+);
+const questionnaireStructuredData = generateQuestionnaireJsonLd(
+  REGION_NAME,
+  `${displayName}（大阪府）`,
+  path,
+);
+const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+---
+
+<MainLayout
+  title={metadata.title}
+  description={metadata.description}
+  keywords={metadata.keywords}
+  canonical={metadata.alternates?.canonical}
+  ogImage={isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png'}
+>
+  <JsonLd slot="head" data={combinedJsonLd} />
+
+  <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
+    <main class="min-h-screen bg-white pb-floating md:pb-20">
+      <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <AIOContent regionName={`${displayName}（大阪府）`} niche={niche} focusShutchou />
+      <RegionLocalTrust regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} subareaId={subareaId} />
+      <RegionAIContent regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
+      <Problem regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <Solution regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <Comparison displayName={`${displayName}（大阪府）`} />
+
+      <Campaign displayName={`${displayName}（大阪府）`} />
+      <CTA />
+      <Reasons displayName={`${displayName}（大阪府）`} regionName={REGION_NAME} />
+      <Benefits />
+      <Roadmap displayName={`${displayName}（大阪府）`} />
+
+      <QuestionnaireTestimonials client:visible displayName={`${displayName}（大阪府）`} />
+      <RegionalAchievements regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <Targets />
+      <Campaign displayName={`${displayName}（大阪府）`} />
+      <AreaCoverage regionName={REGION_NAME} />
+      <CTA />
+      <Flow niche={niche} />
+      <Profile displayName={`${displayName}（大阪府）`} />
+      <Expertise />
+      <Pricing regionName={REGION_NAME} niche={niche} />
+      <Campaign displayName={`${displayName}（大阪府）`} />
+      <AreaCoverage regionName={REGION_NAME} />
+      <CTA />
+      <FAQ niche={niche} />
+      <Blog client:visible regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
+      <ServiceMutualLink
+        regionName={REGION_NAME}
+        displayName={`${displayName}（大阪府）`}
+        niche={niche}
+        path={path}
+        regionBaseId="osaka"
+      />
+      <p class="text-center text-sm text-gray-500 py-4">
+        <a href={regionPath('osaka', niche)} class="text-primary font-bold underline">大阪府全体のLPへ</a>
+      </p>
+      <ContactForm client:visible regionName={REGION_NAME} />
+      <OperatorInfo regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
+      <Closing regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path} />
+      <FloatingCTA client:load />
+    </main>
+  </RegionProvider>
+</MainLayout>

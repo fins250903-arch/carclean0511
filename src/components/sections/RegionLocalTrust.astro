@@ -1,0 +1,57 @@
+---
+import { getRegionCustomization } from '../../data/regionCustomization';
+import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+import type { ServiceNiche } from '../../lib/niche';
+
+interface Props {
+  regionName: string;
+  displayName: string;
+  niche?: ServiceNiche;
+  subareaId?: string;
+}
+
+const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
+const custom = getRegionCustomization(regionName, subareaId);
+const updated = formatContentFreshnessJa();
+
+const serviceFocus =
+  niche === 'truck'
+    ? 'トラックキャビン・業務車'
+    : niche === 'bus'
+      ? '観光バス・送迎バス・マイクロバス'
+      : '乗用車・普通車・ミニバン';
+---
+
+<section
+  id="local-trust"
+  class="py-10 bg-gradient-to-b from-slate-50 to-white border-b border-slate-200"
+  aria-labelledby="local-trust-heading"
+>
+  <div class="container mx-auto px-4 md:px-8 max-w-4xl">
+    <h2 id="local-trust-heading" class="text-xl md:text-2xl font-black text-gray-900 mb-4 text-center">
+      岡山本部 × {displayName}の出張体制
+    </h2>
+    <p class="text-xs text-center text-gray-500 mb-6">最終更新：{updated}</p>
+
+    <div class="bg-white rounded-2xl border border-blue-100 shadow-sm p-6 md:p-8 space-y-4 text-gray-700 leading-relaxed">
+      <p>
+        <strong>車内清掃「特急便」</strong>の運営本部は<strong>岡山県岡山市</strong>（〒701-0212）にあります。
+        {displayName}のお客様には「遠方から来る業者」ではなく、<strong>{serviceFocus}</strong>に特化した
+        <strong>出張専門チームおよびエリア契約スタッフ</strong>が対応します。
+      </p>
+      {custom.hqFieldParagraph && <p>{custom.hqFieldParagraph}</p>}
+      {custom.localDispatchLine && (
+        <p class="bg-blue-50 border-l-4 border-primary p-4 rounded-r text-sm md:text-base">
+          <strong>【{displayName}の出張・契約店舗ネットワーク】</strong><br />
+          {custom.localDispatchLine}
+        </p>
+      )}
+      <ul class="grid md:grid-cols-2 gap-2 text-sm text-gray-600">
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 本部（岡山）：品質・機材・研修・保険書類</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 現場（{displayName}）：出張施工・即日対応</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 電源・水道不要（発電機・水タンク搭載）</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 出張費は{regionName}内原則無料</li>
+      </ul>
+    </div>
+  </div>
+</section>
