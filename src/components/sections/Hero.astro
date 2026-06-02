@@ -23,11 +23,13 @@ const { regionName, displayName, niche = 'car', adHero } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
-const subtitle = adHero?.subtitle ?? (isTruck 
+const subtitle = adHero?.subtitle ?? (isTruck
     ? `${displayName}トラックキャビン清掃専門店/キャビン洗浄`
-    : `${displayName}車内クリーニング専門店/シート洗浄`);
+    : isBus
+      ? `${displayName}バス車内清掃専門店/座席・通路洗浄`
+      : `${displayName}車内クリーニング専門店/シート洗浄`);
 
-const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : IMG513.fvCar);
+const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : isBus ? "/images/kw/bus-fv.png" : IMG513.fvCar);
 
 /** FVブロック間の余白（モバイルは詰めて最上部から表示） */
 const gap = 'mb-1.5 max-md:mb-1 sm:mb-2 md:mb-3';
@@ -96,9 +98,15 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                             <span class="whitespace-nowrap">{adHero.highlightLine1}</span><wbr /><span class="whitespace-nowrap">{adHero.highlightLine2}</span>
                         </>
                     ) : (
-                        <>
-                            <span class="whitespace-nowrap">おうと（嘔吐）、</span><wbr /><span class="whitespace-nowrap">におい、</span><wbr /><span class="whitespace-nowrap">灯油こぼし</span>
-                        </>
+                        isBus ? (
+                            <>
+                                <span class="whitespace-nowrap">バス座席の嘔吐、</span><wbr /><span class="whitespace-nowrap">通路のにおい、</span><wbr /><span class="whitespace-nowrap">灯油こぼし</span>
+                            </>
+                        ) : (
+                            <>
+                                <span class="whitespace-nowrap">おうと（嘔吐）、</span><wbr /><span class="whitespace-nowrap">におい、</span><wbr /><span class="whitespace-nowrap">灯油こぼし</span>
+                            </>
+                        )
                     )}
                 </p>
             </div>
@@ -118,9 +126,15 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 {adHero ? (
                     <span class="whitespace-nowrap">{adHero.subcatch}</span>
                 ) : (
-                    <>
-                        <span class="whitespace-nowrap">{displayName}の</span><wbr /><span class="whitespace-nowrap">車内クリーニング・</span><wbr /><span class="whitespace-nowrap">消臭洗浄</span>
-                    </>
+                    isBus ? (
+                        <>
+                            <span class="whitespace-nowrap">{displayName}の</span><wbr /><span class="whitespace-nowrap">バス・マイクロバス</span><wbr /><span class="whitespace-nowrap">車内清掃・消臭洗浄</span>
+                        </>
+                    ) : (
+                        <>
+                            <span class="whitespace-nowrap">{displayName}の</span><wbr /><span class="whitespace-nowrap">車内クリーニング・</span><wbr /><span class="whitespace-nowrap">消臭洗浄</span>
+                        </>
+                    )
                 )}
             </p>
 
@@ -129,9 +143,15 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 {adHero ? (
                     <span>{adHero.footerText}</span>
                 ) : (
-                    <>
-                        <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
-                    </>
+                    isBus ? (
+                        <>
+                            <span class="whitespace-nowrap">バス座席の嘔吐・灯油の</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">即日対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                        </>
+                    ) : (
+                        <>
+                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                        </>
+                    )
                 )}
             </p>
 
