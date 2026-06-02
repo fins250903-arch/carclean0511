@@ -1,79 +1,92 @@
 ---
+import type { ServiceNiche } from '../../lib/niche';
+import { regionPath } from '../../lib/niche';
+
 interface Props {
   regionName: string;
   displayName: string;
-  niche?: 'car' | 'truck' | 'bus' | 'coating';
+  niche?: ServiceNiche | 'coating';
   path: string;
-  /** 例: /regions/osaka — キーワードLPで相互リンク用 */
   regionBasePath?: string;
+  /** 例: osaka — サブエリアページから親大阪へリンク */
+  regionBaseId?: string;
 }
 
-const { regionName, displayName, niche = 'car', path, regionBasePath } = Astro.props;
+const { displayName, niche = 'car', path, regionBasePath, regionBaseId } = Astro.props;
 
 if (niche === 'coating') return null;
 
-const isTruck = niche === 'truck';
+const baseId =
+  regionBaseId ??
+  (path.match(/\/regions\/([^/]+)/)?.[1]?.replace(/-truck$|-bus$/, '') ?? 'osaka');
 
-// 相互リンク先URLを構築
-let targetLink = '';
-const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
-const mutualBase = (regionBasePath ?? cleanPath).replace(/\/$/, '');
+const carPath = regionPath(baseId, 'car');
+const truckPath = regionPath(baseId, 'truck');
+const busPath = regionPath(baseId, 'bus');
 
-if (mutualBase === '/' || mutualBase === '' || mutualBase === '/regions/osaka') {
-    targetLink = isTruck ? '/regions/osaka' : '/regions/osaka-truck';
-} else {
-    targetLink = isTruck
-        ? mutualBase.replace(/-truck$/, '')
-        : `${mutualBase}-truck`;
-}
-
-const targetImage = isTruck ? '/images/fv_change_v2.png' : '/images/truck-fv.png';
-const sectionTitle = isTruck ? '乗用車の清掃もお任せください' : 'トラック・法人車の清掃もお任せください';
-const badgeLabel = isTruck ? 'FOR PASSENGER CAR' : 'FOR BUSINESS USE';
-const targetPageName = isTruck ? '乗用車・普通車' : 'トラック・法人車';
-const targetDesc = isTruck
-    ? '嘔吐、ペット臭、中古車の生活臭など、乗用車のあらゆるお悩みをスピード解決いたします。'
-    : '長距離ドライバーの快適な空間を。タバコ臭や脂汚れを徹底洗浄し、清潔なキャビンを取り戻します。';
+const links = [
+  {
+    niche: 'car' as const,
+    href: carPath,
+    badge: 'PASSENGER',
+    title: '乗用車・普通車',
+    desc: '嘔吐・灯油・ペット臭。出張車内清掃・シート洗浄。',
+    image: '/images/fv_change_v2.png',
+    hidden: niche === 'car',
+  },
+  {
+    niche: 'truck' as const,
+    href: truckPath,
+    badge: 'TRUCK',
+    title: 'トラック・キャビン',
+    desc: '10t・中型トラックのキャビン洗浄・ヤニ臭除去。',
+    image: '/images/truck-fv.png',
+    hidden: niche === 'truck',
+  },
+  {
+    niche: 'bus' as const,
+    href: busPath,
+    badge: 'BUS',
+    title: 'バス・マイクロバス',
+    desc: '観光バス・送迎バスの嘔吐・尿漏れ区画洗浄。',
+    image: '/images/kw/bus-fv.png',
+    hidden: niche === 'bus',
+  },
+].filter((l) => !l.hidden);
 ---
 
 <section class="py-12 bg-gray-50 border-t border-gray-200">
-    <div class="container mx-auto px-6 md:px-8">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900">
-                {sectionTitle}
-            </h2>
-
-            <a
-                href={targetLink}
-                class="group relative flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-primary/20 hover:border-primary transition-all duration-300"
-            >
-                <div class="w-full md:w-1/3 h-48 relative overflow-hidden flex-shrink-0">
-                    <img
-                        src={targetImage}
-                        alt={targetPageName}
-                        class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
-                </div>
-
-                <div class="flex-1 p-6 md:p-8">
-                    <div class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
-                        {badgeLabel}
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-                        {displayName}の{targetPageName}清掃・消臭専門ページへ
-                    </h3>
-                    <p class="text-gray-600 mb-4 text-sm md:text-base">
-                        {targetDesc}
-                    </p>
-                    <span class="text-primary font-bold flex items-center gap-2">
-                        詳細を見る
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </span>
-                </div>
-            </a>
-        </div>
+  <div class="container mx-auto px-6 md:px-8">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900">
+        {displayName}の出張車内清掃（他車種も対応）
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="group flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-primary/10 hover:border-primary transition-all"
+          >
+            <div class="h-40 overflow-hidden relative">
+              <img
+                src={link.image}
+                alt={link.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+                {link.badge}
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-bold text-gray-900 mb-2">
+                {displayName}の{link.title}専門ページへ
+              </h3>
+              <p class="text-gray-600 text-sm mb-3">{link.desc}</p>
+              <span class="text-primary font-bold text-sm">詳細を見る →</span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
+  </div>
 </section>

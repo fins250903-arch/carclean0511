@@ -16,7 +16,6 @@ import { regionPath } from '../../../lib/niche';
 
 import Hero from '../../../components/sections/Hero.astro';
 import AIOContent from '../../../components/sections/AIOContent.astro';
-import RegionLocalTrust from '../../../components/sections/RegionLocalTrust.astro';
 import RegionAIContent from '../../../components/sections/RegionAIContent.astro';
 import Problem from '../../../components/sections/Problem.astro';
 import Solution from '../../../components/sections/Solution.astro';
@@ -118,7 +117,6 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <AIOContent regionName={`${displayName}（大阪府）`} niche={niche} focusShutchou />
-      <RegionLocalTrust regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} subareaId={subareaId} />
       <RegionAIContent regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
       <Problem regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Solution regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />

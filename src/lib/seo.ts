@@ -80,7 +80,18 @@ export interface Metadata {
 
 
 
-import { faqData, truckFaqData, flowData, truckFlowData, serviceData, truckServiceData } from '@/data/seoData';
+import {
+    faqData,
+    truckFaqData,
+    busFaqData,
+    flowData,
+    truckFlowData,
+    busFlowData,
+    serviceData,
+    truckServiceData,
+    busServiceData,
+} from '@/data/seoData';
+import type { ServiceNiche } from '@/lib/niche';
 
 import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
@@ -201,18 +212,16 @@ function getDynamicRating(regionName: string) {
 
 
 
-export const generateRegionMetadata = (regionName: string, path: string = '', niche: 'car' | 'truck' | 'bus' = 'car'): Metadata => {
+export const generateRegionMetadata = (regionName: string, path: string = '', niche: ServiceNiche = 'car'): Metadata => {
 
     const isTruck = niche === 'truck';
     const isBus = niche === 'bus';
 
-    const serviceName = isTruck ? 'トラックキャビン清掃' : isBus ? 'バス・マイクロバス車内清掃' : '車内クリーニング';
-
     const mainTitle = isTruck
-        ? `${regionName}の大型トラック・バス キャビン洗浄専門店`
+        ? `${regionName}の出張トラックキャビン清掃専門店`
         : isBus
-          ? `${regionName}のバス・マイクロバス 出張車内清掃 | ${STORE_NAME}`
-          : `${regionName}の${STORE_NAME} | 車内クリーニング・シート洗浄・嘔吐消臭`;
+          ? `${regionName}の出張バス・マイクロバス車内清掃専門店`
+          : `${regionName}の${STORE_NAME} | 出張車内清掃・シート洗浄・嘔吐消臭`;
 
     const title = mainTitle;
 
@@ -220,9 +229,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
 
-    const truckDescription = `${regionName}の大型トラック・バス専門キャビン洗浄。35,000円から（税込）の納得価格で、プロによる本格洗浄。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
+    const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
-    const busDescription = `${regionName}のバス・マイクロバス向け出張車内清掃。座席・床・天井の嘔吐・灯油・ペット臭に対応。最短即日の出張施工。`;
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。運営本部岡山・現場は地域出張チーム。`;
 
     const description = isTruck ? truckDescription : isBus ? busDescription : carDescription;
 
@@ -230,9 +239,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const carKeywords = `出張 車内 清掃 ${regionName}, 出張 車内 クリーニング ${regionName}, 車内清掃 特急便 ${regionName}, 車内クリーニング ${regionName}, 車内清掃 ${regionName}, シート洗浄 ${regionName}, 車内装クリーニング ${regionName}, 嘔吐車内清掃 ${regionName}, 車灯油こぼし ${regionName}, 車のシート掃除 ${regionName}, 車座席クリーニング ${regionName}, 車内の臭い消し ${regionName}`;
 
-    const truckKeywords = `トラックキャビン清掃 ${regionName}, 大型トラック 洗浄 ${regionName}, バス 車内清掃 ${regionName}, 10tトラック キャビンクリーニング ${regionName}, トラック 臭い消し ${regionName}, 業務用 車内清掃 ${regionName}`;
+    const truckKeywords = `トラックキャビン清掃 ${regionName}, 出張 トラック 洗浄 ${regionName}, 10tトラック キャビンクリーニング ${regionName}, トラック 臭い消し ${regionName}`;
 
-    const busKeywords = `バス 車内清掃 ${regionName}, マイクロバス 清掃 ${regionName}, 観光バス シート洗浄 ${regionName}, バス 嘔吐 清掃 ${regionName}, 送迎バス 臭い消し ${regionName}`;
+    const busKeywords = `バス 車内清掃 ${regionName}, 観光バス 嘔吐 ${regionName}, マイクロバス 清掃 ${regionName}, 送迎バス 除菌 ${regionName}, 出張 バス クリーニング ${regionName}`;
 
     const keywords = isTruck ? truckKeywords : isBus ? busKeywords : carKeywords;
 
@@ -432,7 +441,7 @@ export const generateAdKeywordRegionMetadata = (regionName: string, path: string
 
 
 
-export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: 'car' | 'truck' | 'bus' = 'car', schemaOptions?: SchemaOptions) => {
+export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: ServiceNiche = 'car', schemaOptions?: SchemaOptions) => {
 
     const isTruck = niche === 'truck';
     const isBus = niche === 'bus';
@@ -445,7 +454,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         ? (adKwSchema.heroImagePath.startsWith('http') ? adKwSchema.heroImagePath : `${SITE_URL}${adKwSchema.heroImagePath}`)
 
-        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : 'fv-passenger-hero.png'}`;
+        : `${SITE_URL}/images/${isTruck ? 'truck-fv.png' : isBus ? 'kw/bus-fv.png' : 'fv-passenger-hero.png'}`;
 
     const displayName = regionOverrides?.displayName || regionName;
 
@@ -463,22 +472,25 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const carSvcName = '車内クリーニング・消臭洗浄';
 
-    const truckSvcName = 'トラックキャビン清掃・除菌洗浄';
+    const truckSvcName = '出張トラックキャビン清掃・除菌洗浄';
+    const busSvcName = '出張バス・マイクロバス車内清掃・消臭';
 
-    const currentSvcName = isTruck ? truckSvcName : carSvcName;
+    const currentSvcName = isTruck ? truckSvcName : isBus ? busSvcName : carSvcName;
 
 
 
     const carDescription = `${regionName}全域対応の出張 車内 清掃・車内クリーニング専門サービス。嘔吐、灯油、ペットの臭いを最短即日で徹底洗浄します。`;
 
-    const truckDescription = `${regionName}の大型トラック・バス専門キャビン洗浄。職人によるプロの技術で汚れ・臭い・除菌を徹底対応します。`;
+    const truckDescription = `${regionName}の出張トラックキャビン清掃。職人によるプロの技術で汚れ・臭い・除菌を徹底対応します。`;
 
-    const localBusinessDescription = regionOverrides?.aiSummary || regionOverrides?.localBusiness?.description || (isTruck ? truckDescription : carDescription);
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れの区画洗浄・除菌を最短即日で対応します。`;
+
+    const localBusinessDescription = regionOverrides?.aiSummary || regionOverrides?.localBusiness?.description || (isTruck ? truckDescription : isBus ? busDescription : carDescription);
 
     const dateModified = schemaDateModified();
 
     const serviceDefinitionText = schemaOptions?.serviceDescription
-        ?? (isTruck ? truckDescription : buildMobileInteriorCleaningDefinition(regionName));
+        ?? (isTruck ? truckDescription : isBus ? busDescription : buildMobileInteriorCleaningDefinition(regionName));
 
 
 
@@ -532,9 +544,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         url,
 
-        name: adKwSchema?.webPageName ?? (isTruck ? `${regionName}の大型トラック・バス キャビン洗浄専門店` : `${displayName}の${STORE_NAME}`),
+        name: adKwSchema?.webPageName ?? (isTruck ? `${regionName}の出張トラックキャビン清掃専門店` : isBus ? `${regionName}の出張バス車内清掃専門店` : `${displayName}の${STORE_NAME}`),
 
-        description: adKwSchema?.webPageDescription ?? (isTruck ? truckDescription : serviceDefinitionText),
+        description: adKwSchema?.webPageDescription ?? (isTruck ? truckDescription : isBus ? busDescription : serviceDefinitionText),
 
         inLanguage: 'ja-JP',
 
@@ -606,7 +618,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         name: STORE_NAME,
 
-        alternateName: `${displayName}対応 ${STORE_NAME}${isTruck ? '（トラック清掃）' : ''}`,
+        alternateName: `${displayName}対応 ${STORE_NAME}${isTruck ? '（トラック清掃）' : isBus ? '（バス清掃）' : ''}`,
 
         image: absHeroImageForSchema,
 
@@ -618,7 +630,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         telephone: OPERATOR.telephone,
 
-        priceRange: isTruck ? '¥35,000〜' : '¥22,000〜',
+        priceRange: isTruck ? '¥35,000〜' : isBus ? '¥22,000〜' : '¥22,000〜',
 
         paymentAccepted: [...OPERATOR.paymentAccepted],
 
@@ -866,7 +878,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@type': 'FAQPage',
 
-        mainEntity: (isTruck ? truckFaqData : faqData).map(faq => ({
+        mainEntity: (isTruck ? truckFaqData : isBus ? busFaqData : faqData).map(faq => ({
 
             '@type': 'Question',
 
@@ -999,7 +1011,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
     // ---- HowTo スキーマ（作業フロー）----
-    const currentFlowData = isTruck ? truckFlowData : flowData;
+    const currentFlowData = isTruck ? truckFlowData : isBus ? busFlowData : flowData;
     const includeHowTo = schemaOptions?.includeHowTo !== false; // デフォルト: true
     const howTo = includeHowTo ? {
 
@@ -1012,10 +1024,12 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         name: `${displayName}で${currentSvcName}を依頼する手順`,
 
         description: isTruck
-            ? `${regionName}でトラックキャビン清掃をプロに依頼する場合の流れを5ステップで説明します。`
-            : `${regionName}で車内クリーニングをプロに依頼する場合の流れを5ステップで説明します。`,
+            ? `${regionName}で出張トラックキャビン清掃をプロに依頼する場合の流れを5ステップで説明します。`
+            : isBus
+              ? `${regionName}で出張バス車内清掃をプロに依頼する場合の流れを5ステップで説明します。`
+              : `${regionName}で出張車内清掃をプロに依頼する場合の流れを5ステップで説明します。`,
 
-        totalTime: isTruck ? 'PT5H' : 'PT3H',
+        totalTime: isTruck ? 'PT5H' : isBus ? 'PT4H' : 'PT3H',
 
         estimatedCost: {
 
@@ -1023,7 +1037,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             currency: 'JPY',
 
-            value: isTruck ? '35000' : '22000',
+            value: isTruck ? '35000' : isBus ? '22000' : '22000',
 
         },
 

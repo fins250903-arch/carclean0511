@@ -1,7 +1,10 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import { regions } from '../../data/regions';
+import { getRegionCustomization } from '../../data/regionCustomization';
 import { generateRegionMetadata, generateJsonLd } from '../../lib/seo';
+import type { ServiceNiche } from '../../lib/niche';
+import { regionPath } from '../../lib/niche';
 import { getRegionalPost } from '../../lib/getRegionalPost';
 import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPosts';
 import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
@@ -11,9 +14,7 @@ import JsonLd from '../../components/seo/JsonLd.astro';
 // Astro Components
 import Hero from '../../components/sections/Hero.astro';
 import AIOContent from '../../components/sections/AIOContent.astro';
-import RegionLocalTrust from '../../components/sections/RegionLocalTrust.astro';
 import RegionAIContent from '../../components/sections/RegionAIContent.astro';
-import { getRegionCustomization } from '../../data/regionCustomization';
 import Problem from '../../components/sections/Problem.astro';
 import Solution from '../../components/sections/Solution.astro';
 import Comparison from '../../components/sections/Comparison.astro';
@@ -48,29 +49,33 @@ export async function getStaticPaths() {
     // Standard page
     paths.push({
       params: { region: region.id },
-      props: { regionName: region.name, niche: 'car', path: `/regions/${region.id}` }
+      props: { regionName: region.name, niche: 'car' as ServiceNiche, path: regionPath(region.id, 'car') }
     });
     // Truck page
     paths.push({
       params: { region: `${region.id}-truck` },
-      props: { regionName: region.name, niche: 'truck', path: `/regions/${region.id}-truck` }
+      props: { regionName: region.name, niche: 'truck' as ServiceNiche, path: regionPath(region.id, 'truck') }
     });
-    // Bus page
+    // Bus page（出張車内清掃・バス専門）
     paths.push({
       params: { region: `${region.id}-bus` },
-      props: { regionName: region.name, niche: 'bus', path: `/regions/${region.id}-bus` }
+      props: { regionName: region.name, niche: 'bus' as ServiceNiche, path: regionPath(region.id, 'bus') }
     });
   });
   return paths;
 }
 
-const { regionName, niche, path } = Astro.props;
+const { regionName, niche, path } = Astro.props as {
+  regionName: string;
+  niche: ServiceNiche;
+  path: string;
+};
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
 const regionId = Astro.params.region?.replace(/-truck$/, '').replace(/-bus$/, '');
-const custom = getRegionCustomization(regionName);
 const post = getRegionalPost(regionName);
+const regionCustom = getRegionCustomization(regionName);
 const displayName = post?.displayName || regionName;
 const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
 const questionnaireStructuredData = generateQuestionnaireJsonLd(regionName, displayName, path);
@@ -78,7 +83,9 @@ const regionOverrides = buildRegionSeoOverrides({
     regionName,
     displayName,
     blogCases,
-    aiSummary: custom.aioSummaryExtra,
+    aiSummary: regionCustom.aioSummaryExtra
+      ? `${post?.aiSummary ?? ''} ${regionCustom.aioSummaryExtra}`.trim()
+      : undefined,
 });
 
 const metadata = generateRegionMetadata(regionName, path, niche);
@@ -100,7 +107,6 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
       <AIOContent regionName={regionName} niche={niche} focusShutchou />
-      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={niche} />
       <Solution regionName={regionName} displayName={displayName} niche={niche} />

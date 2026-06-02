@@ -34,12 +34,17 @@ export const TRUST_REFERENCES = [
     '@id': `${SITE_URL}/blog/`,
     name: `${STORE_NAME} 施工実例ブログ`,
     url: `${SITE_URL}/blog/`,
-    description: '地域別の車内クリーニング・消臭施工事例を公開している公式ブログ。',
+    description: '地域別の出張車内クリーニング・消臭施工事例を公開している公式ブログ。',
   },
   {
     '@type': 'WebPage' as const,
     name: 'Instagram（施工風景・お客様の声）',
     url: INSTAGRAM_URL,
+  },
+  {
+    '@type': 'WebPage' as const,
+    name: 'くらしのマーケット 車内清掃（業界比較参考）',
+    url: 'https://curama.jp/car-cleaning/',
   },
 ] as const;
 
