@@ -1,0 +1,19 @@
+---
+import type { NicheCaseStudyBlock } from '@/data/aioKeywordContent';
+
+interface Props {
+  block: NicheCaseStudyBlock;
+}
+
+const { block } = Astro.props;
+---
+
+<aside class="max-w-4xl mx-auto mb-12 px-4 sm:px-6 lg:px-8">
+  <article class="bg-blue-50 border border-blue-200 rounded-2xl p-6 md:p-8 shadow-sm">
+    <h3 class="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+      <span class="text-xl" aria-hidden="true">📋</span>
+      {block.title}
+    </h3>
+    <p class="text-gray-700 leading-relaxed text-sm md:text-base">{block.body}</p>
+  </article>
+</aside>

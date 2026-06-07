@@ -184,6 +184,9 @@ type SchemaOptions = {
 
     serviceDescription?: string;
 
+    /** Merge into FAQPage schema (keyword LP extras) */
+    extraFaqs?: import('@/data/seoData').FAQItem[];
+
 };
 
 
@@ -872,13 +875,16 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
+    const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
+    const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])];
+
     const faqPage = {
 
         '@context': 'https://schema.org',
 
         '@type': 'FAQPage',
 
-        mainEntity: (isTruck ? truckFaqData : isBus ? busFaqData : faqData).map(faq => ({
+        mainEntity: mergedFaqs.map(faq => ({
 
             '@type': 'Question',
 

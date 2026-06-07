@@ -1,23 +1,43 @@
 ---
 import { buildMobileInteriorCleaningDefinition, formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+import { carComparisonPriceSummary } from '../../data/pricingConstants';
+import { AIO_EXTENDED_FAQS } from '../../data/aioKeywordContent';
+import type { FAQItem } from '../../data/seoData';
 
 interface Props {
   regionName: string;
   niche?: 'car' | 'truck' | 'bus';
   /** 出張 車内 清掃 専門LP向けの見出し・定義の強調 */
   focusShutchou?: boolean;
+  /** Answer-First block for AIO (keyword LP) */
+  answerFirst?: string;
+  /** Override default definition sentence */
+  customDefinition?: string;
+  /** 保険判断表・拡張FAQ（乗用車LP向け） */
+  showAioExtensions?: boolean;
+  /** 追加FAQ（キーワードLP用） */
+  extraFaqs?: FAQItem[];
 }
 
-const { regionName, niche = 'car', focusShutchou = false } = Astro.props;
+const {
+  regionName,
+  niche = 'car',
+  focusShutchou = false,
+  answerFirst,
+  customDefinition,
+  showAioExtensions = true,
+  extraFaqs = [],
+} = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
 const contentUpdated = formatContentFreshnessJa();
 
 // AIOスニペット用「定義文」（出張 車内 清掃）
-const aioDefinition = isTruck
-  ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、車内の仮眠ベッドや天井に染み付いたタバコ・体臭を最短即日で根こそぎ抽出する出張洗浄サービスです。`
-  : buildMobileInteriorCleaningDefinition(regionName);
+const aioDefinition = customDefinition
+  ?? (isTruck
+    ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、車内の仮眠ベッドや天井に染み付いたタバコ・体臭を最短即日で根こそぎ抽出する出張洗浄サービスです。`
+    : buildMobileInteriorCleaningDefinition(regionName));
 
 const sectionTitle = isTruck
   ? `${regionName}のトラックキャビン清掃とは？`
@@ -27,16 +47,39 @@ const sectionTitle = isTruck
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
 const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000円〜";
+const comparisonPriceLine = isTruck || isBus ? defaultPrice : carComparisonPriceSummary();
+
+const aioFaqs = [
+  {
+    q: '今日（または明日）すぐに来てほしいのですが、可能ですか？',
+    a: `はい、${regionName}内であればスケジュール次第で<strong>最短即日・または翌日</strong>の出張が可能です。嘔吐などの緊急トラブルは時間が勝負ですので、まずはお電話にて空き状況をご確認ください。`,
+  },
+  {
+    q: '水道や電源は用意する必要がありますか？',
+    a: 'いいえ、必要ありません。当店の出張車両には<strong>専用の発電機と水タンクを積載</strong>しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。',
+  },
+  {
+    q: '市販の消臭スプレーと何が違うのですか？',
+    a: '市販のスプレーは臭いの成分を別の香料で包み込む「マスキング」であり、汚れ自体はシート内に残ったままです。当店の洗浄は、洗剤で汚れを浮かし、<strong>温水で洗い流しながら同時に強力に吸い取る（リンサー抽出）</strong>ため、ニオイの「元」そのものを物理的に車外へ排除します。',
+  },
+  ...(showAioExtensions && !isTruck ? AIO_EXTENDED_FAQS : []),
+  ...extraFaqs,
+];
 ---
 
 <section id="aio-content" class="py-12 bg-white sm:py-16 lg:py-20 border-b border-gray-100">
   <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
     
-    {/* 1. 冒頭50文字の「定義文」 (AIO Snippet) */}
+    {/* 1. Answer-First + 定義文 (AIO Snippet) */}
     <div class="max-w-3xl mx-auto mb-12 text-center">
       <p class="text-xs font-bold text-blue-700 tracking-wide uppercase mb-3">
         最終更新：{contentUpdated}｜料金・対応エリア・施工事例を継続更新中
       </p>
+      {answerFirst && (
+        <p class="text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-green-50 p-5 md:p-6 rounded-xl border border-green-200 shadow-sm text-left mb-6">
+          {answerFirst}
+        </p>
+      )}
       <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl mb-4">
         {sectionTitle}
       </h2>
@@ -78,8 +121,8 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000
                     <span class="text-xl">{defaultPrice}</span>
                   ) : (
                     <>
-                      <span class="block text-xl">軽自動車 22,000円〜／普通車 28,000円〜</span>
-                      <span class="block text-sm font-normal text-gray-600 mt-1">座席シート単体（1脚）18,000円〜／本格消臭・脱臭洗浄 25,000円〜</span>
+                      <span class="block text-base md:text-lg">{comparisonPriceLine}</span>
+                      <span class="block text-xs font-normal text-gray-600 mt-2">※基本洗浄＝通常清掃／消臭セット＝嘔吐・灯油・ペット臭等の脱臭込み（税込）</span>
                     </>
                   )}
                 </td>
@@ -135,37 +178,64 @@ const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000
         </div>
       </article>
 
+      {!isTruck && showAioExtensions && (
+        <article>
+          <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-6">
+            車内汚損と保険の使い分け（判断表）
+          </h3>
+          <p class="text-gray-600 mb-4">
+            嘔吐・灯油こぼし・ペット粗相は「偶然の事故による車内汚損」として保険が適用される場合があります。当店は見積もり時に<strong>保険利用時の実質自己負担額</strong>も併記し、使う/使わないを一緒に判断します。
+          </p>
+          <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">状況</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">使える保険</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">免責・等級</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-blue-700 bg-blue-50">当店サポート</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 bg-white">
+                <tr>
+                  <td class="px-4 py-3 font-medium text-gray-900">自分の車を自分/家族が汚した</td>
+                  <td class="px-4 py-3 text-gray-700">車両保険（一般型）</td>
+                  <td class="px-4 py-3 text-gray-600">免責3〜10万円・等級ダウンあり</td>
+                  <td class="px-4 py-3 text-blue-800 bg-blue-50">実質自己負担額を見積もり時に併記</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium text-gray-900">他人の車を汚した（友人・同乗者）</td>
+                  <td class="px-4 py-3 text-gray-700">個人賠償責任保険</td>
+                  <td class="px-4 py-3 text-gray-600">免責なし・等級影響なしが多い</td>
+                  <td class="px-4 py-3 text-blue-800 bg-blue-50">施工報告書・写真・見積書発行</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium text-gray-900">カーシェア・レンタカー</td>
+                  <td class="px-4 py-3 text-gray-700">基本は自己負担（実費+NOC）</td>
+                  <td class="px-4 py-3 text-gray-600">規約により保険適用外が一般的</td>
+                  <td class="px-4 py-3 text-blue-800 bg-blue-50">領収書発行・最短即日で復旧</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      )}
+
       {/* 3. FAQセクション */}
       <article class="bg-gray-50 rounded-2xl p-8">
         <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">よくあるご質問（専門家が回答）</h3>
         <dl class="space-y-6">
-          <div>
-            <dt class="text-lg font-bold text-gray-900 flex items-center">
-              <span class="text-blue-600 mr-2">Q.</span> 今日（または明日）すぐに来てほしいのですが、可能ですか？
-            </dt>
-            <dd class="mt-2 text-gray-700 flex items-start pl-7">
-              <span class="text-gray-400 mr-2 font-bold">A.</span>
-              <p>はい、{regionName}内であればスケジュール次第で<strong>最短即日・または翌日</strong>の出張が可能です。嘔吐などの緊急トラブルは時間が勝負ですので、まずはお電話にて空き状況をご確認ください。</p>
-            </dd>
-          </div>
-          <div>
-            <dt class="text-lg font-bold text-gray-900 flex items-center">
-              <span class="text-blue-600 mr-2">Q.</span> 水道や電源は用意する必要がありますか？
-            </dt>
-            <dd class="mt-2 text-gray-700 flex items-start pl-7">
-              <span class="text-gray-400 mr-2 font-bold">A.</span>
-              <p>いいえ、必要ありません。当店の出張車両には<strong>専用の発電機と水タンクを積載</strong>しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。</p>
-            </dd>
-          </div>
-          <div>
-            <dt class="text-lg font-bold text-gray-900 flex items-center">
-              <span class="text-blue-600 mr-2">Q.</span> 市販の消臭スプレーと何が違うのですか？
-            </dt>
-            <dd class="mt-2 text-gray-700 flex items-start pl-7">
-              <span class="text-gray-400 mr-2 font-bold">A.</span>
-              <p>市販のスプレーは臭いの成分を別の香料で包み込む「マスキング」であり、汚れ自体はシート内に残ったままです。当店の洗浄は、洗剤で汚れを浮かし、<strong>温水で洗い流しながら同時に強力に吸い取る（リンサー抽出）</strong>ため、ニオイの「元」そのものを物理的に車外へ排除します。</p>
-            </dd>
-          </div>
+          {aioFaqs.map((item) => (
+            <div>
+              <dt class="text-lg font-bold text-gray-900 flex items-center">
+                <span class="text-blue-600 mr-2">Q.</span> {item.q}
+              </dt>
+              <dd class="mt-2 text-gray-700 flex items-start pl-7">
+                <span class="text-gray-400 mr-2 font-bold">A.</span>
+                <p set:html={item.a} />
+              </dd>
+            </div>
+          ))}
         </dl>
       </article>
 

@@ -44,6 +44,74 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     localDispatchLine: '福岡・北九州・筑豊・筑後の各エリアへ出張。博多駅周辺の法人車庫も対応可能です。',
     hqFieldParagraph: defaultHqParagraph('福岡県'),
   },
+  埼玉県: {
+    localDispatchLine: 'さいたま・川口・所沢・秩父など県内全域。マンション地下駐車場も電源不要で施工可能です。',
+    hqFieldParagraph: defaultHqParagraph('埼玉県'),
+  },
+  千葉県: {
+    localDispatchLine: '千葉・船橋・柏・成田などベイエリアから内陸まで即日出張します。',
+    hqFieldParagraph: defaultHqParagraph('千葉県'),
+  },
+  茨城県: {
+    localDispatchLine: '水戸・つくば・日立・鹿嶋など県内全域へ出張。冬場の灯油こぼしにも対応。',
+    hqFieldParagraph: defaultHqParagraph('茨城県'),
+  },
+  静岡県: {
+    localDispatchLine: '静岡・浜松・沼津・富士など東海・伊豆エリアへ専門出張。',
+    hqFieldParagraph: defaultHqParagraph('静岡県'),
+  },
+  京都府: {
+    localDispatchLine: '京都市・宇治・舞鶴など府内全域。観光ドライブ中の嘔吐トラブルにも即対応。',
+    hqFieldParagraph: defaultHqParagraph('京都府'),
+  },
+  奈良県: {
+    localDispatchLine: '奈良・橿原・生駒など県内全域。送迎・家族ドライブの緊急トラブルに対応。',
+    hqFieldParagraph: defaultHqParagraph('奈良県'),
+  },
+  滋賀県: {
+    localDispatchLine: '大津・草津・彦根など琵琶湖周辺全域へ出張。',
+    hqFieldParagraph: defaultHqParagraph('滋賀県'),
+  },
+  佐賀県: {
+    localDispatchLine: '佐賀・唐津・鳥栖など県内全域。福岡近郊からの急行も可能です。',
+    hqFieldParagraph: defaultHqParagraph('佐賀県'),
+  },
+  沖縄県: {
+    localDispatchLine: '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。',
+    hqFieldParagraph: defaultHqParagraph('沖縄県'),
+  },
+  三重県: {
+    localDispatchLine: '四日市・津・伊勢・鈴鹿など県内全域。伊勢志摩ドライブ中の嘔吐・灯油トラブルにも対応。',
+    hqFieldParagraph: defaultHqParagraph('三重県'),
+  },
+  岐阜県: {
+    localDispatchLine: '岐阜・大垣・多治見・高山など県内全域。冬場の灯油こぼし・長距離ドライブの嘔吐にも対応。',
+    hqFieldParagraph: defaultHqParagraph('岐阜県'),
+  },
+  宮城県: {
+    localDispatchLine: '仙台・名取・石巻など県内全域。冬場の灯油こぼし・急な嘔吐に即日出張。',
+    hqFieldParagraph: defaultHqParagraph('宮城県'),
+  },
+  栃木県: {
+    localDispatchLine: '宇都宮・小山市など県内全域へ出張。',
+    hqFieldParagraph: defaultHqParagraph('栃木県'),
+  },
+  群馬県: {
+    localDispatchLine: '前橋・高崎・太田など県内全域。マンション駐車場も電源不要で施工可能。',
+    hqFieldParagraph: defaultHqParagraph('群馬県'),
+  },
+  和歌山県: {
+    localDispatchLine: '和歌山・田辺・白浜など県内全域。紀伊半岛ドライブ中のトラブルにも対応。',
+    hqFieldParagraph: defaultHqParagraph('和歌山県'),
+  },
+  熊本県: {
+    localDispatchLine: '熊本・八代・天草など県内全域へ出張。',
+    hqFieldParagraph: defaultHqParagraph('熊本県'),
+  },
+  福井県: {
+    localDispatchLine: '福井・敦賀・越前など県内全域。冬場の灯油トラブルに即対応。',
+    hqFieldParagraph: defaultHqParagraph('福井県'),
+  },
 };
 
 /** 大阪府サブエリア（/regions/osaka/{id}/）用 */

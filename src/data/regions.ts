@@ -10,6 +10,8 @@ export const regions = [
   { id: 'shiga', name: '滋賀県' },
   { id: 'kumamoto', name: '熊本県' },
   { id: 'miyagi', name: '宮城県' },
+  { id: 'mie', name: '三重県' },
+  { id: 'gifu', name: '岐阜県' },
   { id: 'tochigi', name: '栃木県' },
   { id: 'kyoto', name: '京都府' },
   { id: 'tokyo', name: '東京都' },

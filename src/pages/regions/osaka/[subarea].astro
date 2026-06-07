@@ -42,6 +42,8 @@ import Testimonials from '../../../components/sections/Testimonials';
 import Blog from '../../../components/sections/Blog';
 import ContactForm from '../../../components/sections/ContactForm';
 import FloatingCTA from '../../../components/sections/FloatingCTA';
+import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
+import { buildRegionalAnswerFirst, REGIONAL_EMERGENCY_CHECKLIST } from '../../../data/aioKeywordContent';
 
 const REGION_NAME = '大阪府';
 
@@ -102,6 +104,8 @@ const questionnaireStructuredData = generateQuestionnaireJsonLd(
   path,
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const subareaLabel = `${displayName}（大阪府）`;
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel) : undefined;
 ---
 
 <MainLayout
@@ -116,14 +120,22 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
-      <AIOContent regionName={`${displayName}（大阪府）`} niche={niche} focusShutchou />
+      {!isTruck && !isBus && (
+        <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={subareaLabel} />
+      )}
+      <AIOContent
+        regionName={subareaLabel}
+        niche={niche}
+        focusShutchou
+        answerFirst={regionalAnswerFirst}
+        showAioExtensions={!isTruck}
+      />
       <RegionAIContent regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
       <Problem regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Solution regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Comparison displayName={`${displayName}（大阪府）`} />
 
       <Campaign displayName={`${displayName}（大阪府）`} />
-      <CTA />
       <Reasons displayName={`${displayName}（大阪府）`} regionName={REGION_NAME} />
       <Benefits />
       <Roadmap displayName={`${displayName}（大阪府）`} />
@@ -131,15 +143,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
       <QuestionnaireTestimonials client:visible displayName={`${displayName}（大阪府）`} />
       <RegionalAchievements regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Targets />
-      <Campaign displayName={`${displayName}（大阪府）`} />
       <AreaCoverage regionName={REGION_NAME} />
-      <CTA />
       <Flow niche={niche} />
       <Profile displayName={`${displayName}（大阪府）`} />
       <Expertise />
       <Pricing regionName={REGION_NAME} niche={niche} />
-      <Campaign displayName={`${displayName}（大阪府）`} />
-      <AreaCoverage regionName={REGION_NAME} />
       <CTA />
       <FAQ niche={niche} />
       <Blog client:visible regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />

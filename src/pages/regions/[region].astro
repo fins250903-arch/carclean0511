@@ -34,6 +34,8 @@ import Pricing from '../../components/sections/Pricing.astro';
 import OperatorInfo from '../../components/sections/OperatorInfo.astro';
 import Closing from '../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../components/sections/ServiceMutualLink.astro';
+import EmergencyChecklist from '../../components/sections/EmergencyChecklist.astro';
+import { buildRegionalAnswerFirst, REGIONAL_EMERGENCY_CHECKLIST } from '../../data/aioKeywordContent';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -91,6 +93,7 @@ const regionOverrides = buildRegionSeoOverrides({
 const metadata = generateRegionMetadata(regionName, path, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche);
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName) : undefined;
 
 ---
 
@@ -106,14 +109,22 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} />
-      <AIOContent regionName={regionName} niche={niche} focusShutchou />
+      {!isTruck && !isBus && (
+        <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
+      )}
+      <AIOContent
+        regionName={regionName}
+        niche={niche}
+        focusShutchou
+        answerFirst={regionalAnswerFirst}
+        showAioExtensions={!isTruck}
+      />
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={niche} />
       <Solution regionName={regionName} displayName={displayName} niche={niche} />
       <Comparison displayName={displayName} />
       
       <Campaign displayName={displayName} />
-      <CTA />
       <Reasons displayName={displayName} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={displayName} />
@@ -121,15 +132,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
       <QuestionnaireTestimonials client:visible displayName={displayName} />
       <RegionalAchievements regionName={regionName} displayName={displayName} niche={niche} />
       <Targets />
-      <Campaign displayName={displayName} />
       <AreaCoverage regionName={regionName} />
-      <CTA />
       <Flow niche={niche} />
       <Profile displayName={displayName} />
       <Expertise />
       <Pricing regionName={regionName} niche={niche} />
-      <Campaign displayName={displayName} />
-      <AreaCoverage regionName={regionName} />
       <CTA />
       <FAQ niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />

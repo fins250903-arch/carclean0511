@@ -5,20 +5,28 @@ interface Props {
   regionName: string;
   displayName: string;
   niche?: 'car' | 'truck' | 'bus';
+  troubleType?: string;
 }
 
-const { regionName, displayName, niche = 'car' } = Astro.props;
+const { regionName, displayName, niche = 'car', troubleType } = Astro.props;
 const isTruck = niche === 'truck';
 
 // Filter cases by niche and region
 const nicheCases = localCaseStudies.filter(c => c.niche === niche);
 
 // Standardize names for filtering
-const regionCases = nicheCases.filter(c => 
+let regionCases = nicheCases.filter(c => 
     c.region === regionName || 
     c.region === displayName || 
     c.region === regionName.replace('府', '').replace('県', '')
 );
+
+if (troubleType) {
+  const typed = regionCases.filter(c => c.troubleType === troubleType);
+  if (typed.length > 0) {
+    regionCases = typed;
+  }
+}
 
 // Get up to 2 cases
 const displayCases = regionCases.slice(0, 2);

@@ -1,16 +1,17 @@
 ---
-import { faqData, truckFaqData, busFaqData } from '../../data/seoData';
+import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import type { ServiceNiche } from '../../lib/niche';
 
 interface Props {
   niche?: ServiceNiche;
+  extraFaqs?: FAQItem[];
 }
 
-const { niche = 'car' } = Astro.props;
+const { niche = 'car', extraFaqs = [] } = Astro.props;
 
-// 表示FAQ＝FAQPage構造化データ（seoData）と同一ソース（AIO引用・整合性確保）
-const faqs =
+const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
+const faqs = [...baseFaqs, ...extraFaqs];
 ---
 
 <section class="py-10 bg-gray-50" id="faq">

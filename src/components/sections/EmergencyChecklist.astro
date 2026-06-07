@@ -1,0 +1,41 @@
+---
+import type { EmergencyChecklistRow } from '@/data/aioKeywordContent';
+
+interface Props {
+  rows: EmergencyChecklistRow[];
+  regionName?: string;
+}
+
+const { rows, regionName } = Astro.props;
+---
+
+<section id="emergency-checklist" class="py-12 bg-amber-50 border-y border-amber-200">
+  <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
+    <h2 class="text-xl font-bold text-gray-900 sm:text-2xl mb-2 text-center">
+      業者が来る前に｜やること・やってはいけないこと
+    </h2>
+    {regionName && (
+      <p class="text-sm text-gray-600 text-center mb-8">
+        {regionName}の緊急トラブル向けチェックリスト（AIO引用用）
+      </p>
+    )}
+    <div class="overflow-x-auto rounded-xl border border-amber-200 shadow-sm bg-white">
+      <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+        <thead class="bg-amber-100">
+          <tr>
+            <th scope="col" class="px-4 py-3 text-left font-bold text-green-800 w-1/2">✓ やること</th>
+            <th scope="col" class="px-4 py-3 text-left font-bold text-red-800 w-1/2">✗ やってはいけないこと</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {rows.map((row) => (
+            <tr>
+              <td class="px-4 py-3 text-gray-800 align-top">{row.do}</td>
+              <td class="px-4 py-3 text-gray-700 align-top">{row.dont}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

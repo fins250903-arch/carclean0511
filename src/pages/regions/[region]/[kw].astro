@@ -40,6 +40,9 @@ import Closing from '../../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
 import TroubleSympathy from '../../../components/sections/TroubleSympathy.astro';
 import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.astro';
+import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
+import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
+import { getAioKeywordContent } from '../../../data/aioKeywordContent';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -92,18 +95,24 @@ const regionOverrides = buildRegionSeoOverrides({
 });
 
 const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
+const aioKw = getAioKeywordContent(kwSlug);
+const answerFirst = aioKw?.answerFirst(regionName, displayName);
+const customDefinition = aioKw?.customDefinition?.(regionName);
 const jsonLdData = generateJsonLd(
   regionName,
   path,
   regionOverrides,
   'car',
-  buildAdKeywordJsonLdOptions({
-    kwSlug,
-    kw,
-    regionName,
-    displayName,
-    metadata,
-  }),
+  {
+    ...buildAdKeywordJsonLdOptions({
+      kwSlug,
+      kw,
+      regionName,
+      displayName,
+      metadata,
+    }),
+    extraFaqs: aioKw?.extraFaqs,
+  },
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 
@@ -143,32 +152,45 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
-      <AIOContent regionName={regionName} niche={pageNiche} focusShutchou={kwSlug === 'shutchou-senmon'} />
+      {aioKw?.emergencyChecklist && (
+        <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
+      )}
+      <AIOContent
+        regionName={regionName}
+        niche={pageNiche}
+        focusShutchou={kwSlug === 'shutchou-senmon'}
+        answerFirst={answerFirst}
+        customDefinition={customDefinition}
+        extraFaqs={aioKw?.extraFaqs}
+      />
+      {aioKw?.nicheCaseStudy && (
+        <NicheCaseStudy block={aioKw.nicheCaseStudy(regionName)} />
+      )}
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
       <Solution regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Comparison displayName={displayName} />
 
       <Campaign displayName={displayName} />
-      <CTA />
       <Reasons displayName={displayName} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={displayName} />
 
       <QuestionnaireTestimonials client:visible displayName={displayName} />
-      <RegionalAchievements regionName={regionName} displayName={displayName} niche={pageNiche} />
+      <RegionalAchievements
+        regionName={regionName}
+        displayName={displayName}
+        niche={pageNiche}
+        troubleType={aioKw?.troubleType}
+      />
       <Targets />
-      <Campaign displayName={displayName} />
       <AreaCoverage regionName={regionName} />
-      <CTA />
       <Flow niche={pageNiche} />
       <Profile displayName={displayName} />
       <Expertise />
       <Pricing regionName={regionName} niche={pageNiche} />
-      <Campaign displayName={displayName} />
-      <AreaCoverage regionName={regionName} />
       <CTA />
-      <FAQ niche={pageNiche} />
+      <FAQ niche={pageNiche} extraFaqs={aioKw?.extraFaqs} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink
         regionName={regionName}
