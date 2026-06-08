@@ -43,7 +43,14 @@ import Blog from '../../../components/sections/Blog';
 import ContactForm from '../../../components/sections/ContactForm';
 import FloatingCTA from '../../../components/sections/FloatingCTA';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
-import { buildRegionalAnswerFirst, REGIONAL_EMERGENCY_CHECKLIST } from '../../../data/aioKeywordContent';
+import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
+import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astro';
+import {
+  buildRegionalAnswerFirst,
+  buildRegionalNioiAnswerFirst,
+  getRegionalHeroMainTitle,
+  REGIONAL_EMERGENCY_CHECKLIST,
+} from '../../../data/aioKeywordContent';
 
 const REGION_NAME = '大阪府';
 
@@ -106,6 +113,8 @@ const questionnaireStructuredData = generateQuestionnaireJsonLd(
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const subareaLabel = `${displayName}（大阪府）`;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel) : undefined;
+const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME) : undefined;
 ---
 
 <MainLayout
@@ -119,15 +128,18 @@ const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subare
 
   <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
-      <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} mainTitle={heroMainTitle} />
+      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} />}
       {!isTruck && !isBus && (
         <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={subareaLabel} />
+      )}
+      {regionalNioiAnswer && (
+        <NioiAnswerTarget regionName={subareaLabel} answerText={regionalNioiAnswer} />
       )}
       <AIOContent
         regionName={subareaLabel}
         niche={niche}
         focusShutchou
-        answerFirst={regionalAnswerFirst}
         showAioExtensions={!isTruck}
       />
       <RegionAIContent regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />

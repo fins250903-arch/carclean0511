@@ -35,7 +35,14 @@ import OperatorInfo from '../../components/sections/OperatorInfo.astro';
 import Closing from '../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../components/sections/ServiceMutualLink.astro';
 import EmergencyChecklist from '../../components/sections/EmergencyChecklist.astro';
-import { buildRegionalAnswerFirst, REGIONAL_EMERGENCY_CHECKLIST } from '../../data/aioKeywordContent';
+import AnswerTarget from '../../components/sections/AnswerTarget.astro';
+import NioiAnswerTarget from '../../components/sections/NioiAnswerTarget.astro';
+import {
+  buildRegionalAnswerFirst,
+  buildRegionalNioiAnswerFirst,
+  getRegionalHeroMainTitle,
+  REGIONAL_EMERGENCY_CHECKLIST,
+} from '../../data/aioKeywordContent';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -94,6 +101,8 @@ const metadata = generateRegionMetadata(regionName, path, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche);
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName) : undefined;
+const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
 
 ---
 
@@ -108,15 +117,18 @@ const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(region
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
-      <Hero regionName={regionName} displayName={displayName} niche={niche} />
+      <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
+      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} />}
       {!isTruck && !isBus && (
         <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
+      )}
+      {regionalNioiAnswer && (
+        <NioiAnswerTarget regionName={regionName} answerText={regionalNioiAnswer} />
       )}
       <AIOContent
         regionName={regionName}
         niche={niche}
         focusShutchou
-        answerFirst={regionalAnswerFirst}
         showAioExtensions={!isTruck}
       />
       <RegionAIContent regionName={regionName} displayName={displayName} />

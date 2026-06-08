@@ -112,9 +112,26 @@ export const REGIONAL_EMERGENCY_CHECKLIST: EmergencyChecklistRow[] = [
   { do: '4日以内にプロへ連絡（ウレタン浸透前が理想）', dont: '消臭スプレーだけで完了と判断（マスキングのみ）' },
 ];
 
-/** 地区トップLP向け Answer-First（AIO引用用） */
+/** 地区トップLP向け Answer-First（AIO引用用・Hero直下配置） */
 export function buildRegionalAnswerFirst(regionName: string): string {
-  return `【結論】${regionName}で車内の嘔吐・灯油こぼし・ペット粗相を最短即日に解決するには、市販消臭スプレーを使わず固形物をこすらず除去したうえで、出張リンサー洗浄（40℃温水＋アルカリ電解水）を4日以内に依頼するのが最も確実です。車内清掃「特急便」は${regionName}全域へ365日24時間受付・最短即日出張。電源・水道不要（発電機・水タンク完備）。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜、灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜/席。保険適用のご相談・代理申請も対応します。`;
+  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを「今すぐ」解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。車内清掃「特急便」は365日24時間受付・最短即日対応。施工歴3年以上・年間300台超の専門員が直接ご指定の駐車場へ訪問します。電源・水道は不要（発電機・水タンク完備）。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜、灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜/席。車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記します。`;
+}
+
+/** 地区トップLP向けクエリ整合H1（AIO・SEO向け） */
+const REGIONAL_HERO_MAIN_TITLES: Record<string, string> = {
+  愛知県: '愛知県の車 嘔吐 クリーニング｜最短即日出張・保険代理申請対応',
+  大阪府: '大阪府の嘔吐車内清掃 出張｜年間300台の専門員が直接訪問',
+  東京都: '東京都の車内嘔吐・ニオイ消臭｜365日24時間・電源不要で即日対応',
+  埼玉県: '埼玉県の車シート洗浄・嘔吐清掃｜出張専門・保険相談無料',
+};
+
+export function getRegionalHeroMainTitle(regionName: string): string | undefined {
+  return REGIONAL_HERO_MAIN_TITLES[regionName];
+}
+
+/** 地区トップLP向けニオイ Answer Target（情報型＋商用クエリの橋渡し） */
+export function buildRegionalNioiAnswerFirst(regionName: string): string {
+  return `表面の軽い臭いは換気と重曹で一時改善できますが、嘔吐・ペット・タバコ・灯油のニオイはシート内部（ウレタン層）に原因が残るため、消臭スプレーだけでは再発します。臭いが翌日以降も残る場合は、温水リンサー抽出洗浄のプロ依頼が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。施工歴3年以上の専門員が40℃温水とアルカリ電解水で原因を物理抽出し、電源・水道は不要（発電機・水タンク完備）です。嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`;
 }
 
 /** AIOContent内FAQ（保険・カーシェア・放置日数） */

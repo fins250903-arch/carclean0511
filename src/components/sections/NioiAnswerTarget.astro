@@ -1,0 +1,24 @@
+---
+interface Props {
+  regionName: string;
+  answerText: string;
+}
+
+const { regionName, answerText } = Astro.props;
+---
+
+<section id="nioi-answer" aria-label="車内ニオイの対処" class="py-8 sm:py-10 bg-white border-b border-gray-100">
+  <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
+    <h2 class="text-xl font-bold text-gray-900 sm:text-2xl mb-2">
+      車内のニオイは自分で消せますか？
+    </h2>
+    {regionName && (
+      <p class="text-sm text-gray-600 mb-4">
+        {regionName}の車内消臭・シート洗浄について
+      </p>
+    )}
+    <p class="text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-blue-50 p-5 md:p-6 rounded-xl border border-blue-100 text-left">
+      <strong>【結論】</strong>{answerText}
+    </p>
+  </div>
+</section>

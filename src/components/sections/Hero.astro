@@ -17,9 +17,12 @@ interface Props {
   displayName: string;
   niche?: 'car' | 'truck' | 'bus';
   adHero?: AdHeroOverrides;
+  /** 地区トップLP向けクエリ整合H1（adHero未設定時） */
+  mainTitle?: string;
 }
 
-const { regionName, displayName, niche = 'car', adHero } = Astro.props;
+const { regionName, displayName, niche = 'car', adHero, mainTitle } = Astro.props;
+const resolvedMainTitle = adHero?.mainTitle ?? mainTitle;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
@@ -74,14 +77,14 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
             <h1 class:list={[
                 gap,
                 'font-black text-blue-900 leading-[1.15] tracking-tight mb-3',
-                adHero?.mainTitle
+                resolvedMainTitle
                     ? 'text-[clamp(1.3rem,5.2vw,2.6rem)] md:text-5xl lg:text-6xl'
                     : adHero
                         ? 'text-[clamp(1.5rem,6.8vw,3.4rem)] md:text-8xl lg:text-9xl'
                         : 'text-[clamp(1.85rem,9vw,7rem)] md:text-8xl lg:text-9xl',
             ]}>
-                {adHero?.mainTitle ? (
-                    <span class="block font-black text-blue-900 drop-shadow-sm leading-tight max-w-[95%]">{adHero.mainTitle}</span>
+                {resolvedMainTitle ? (
+                    <span class="block font-black text-blue-900 drop-shadow-sm leading-tight max-w-[95%]">{resolvedMainTitle}</span>
                 ) : (
                     <>
                         <span class="block">早急に解決！</span>

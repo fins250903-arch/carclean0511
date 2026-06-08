@@ -41,6 +41,7 @@ import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.as
 import TroubleSympathy from '../../../components/sections/TroubleSympathy.astro';
 import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.astro';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
+import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { getAioKeywordContent } from '../../../data/aioKeywordContent';
 
@@ -151,6 +152,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
+      {answerFirst && <AnswerTarget text={answerFirst} />}
       <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
       {aioKw?.emergencyChecklist && (
         <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
@@ -159,7 +161,6 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
         regionName={regionName}
         niche={pageNiche}
         focusShutchou={kwSlug === 'shutchou-senmon'}
-        answerFirst={answerFirst}
         customDefinition={customDefinition}
         extraFaqs={aioKw?.extraFaqs}
       />

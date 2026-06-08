@@ -1,0 +1,21 @@
+---
+import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const contentUpdated = formatContentFreshnessJa();
+---
+
+<section id="answer-target" aria-label="緊急時の結論" class="py-6 sm:py-8 bg-green-50 border-b border-green-200">
+  <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
+    <p class="text-xs font-bold text-blue-700 tracking-wide mb-3">
+      最終更新：{contentUpdated}
+    </p>
+    <p class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-white p-5 md:p-6 rounded-xl border border-green-300 shadow-sm text-left">
+      {text}
+    </p>
+  </div>
+</section>
