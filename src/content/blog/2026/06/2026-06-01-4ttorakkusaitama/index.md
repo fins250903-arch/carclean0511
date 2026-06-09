@@ -5,7 +5,6 @@ shortSlug: 4ttorakkusaitama
 categories:
   - jisseki
   - saitama
-coverImage: s__18309127.jpg
 ---
 # 
 4トントラックのキャビン洗浄
