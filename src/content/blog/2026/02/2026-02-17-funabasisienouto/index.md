@@ -1,19 +1,11 @@
 ---
-date: 2026-06-08
+date: 2026-02-17
 title: "[船橋市] 我が家のシエンタ 嘔吐 消臭"
 shortSlug: funabasieienta
 categories:
   - jisseki
   - chiba
 coverImage: times_sienta_4779-scaled-1-.webp
-seo:
-  meta_title: "[船橋市] 我が家のシエンタ 嘔吐 消臭"
-  meta_description: ショッピングを楽しんだ帰り道、賑やかな車内を一瞬で凍らせた後部座席のトラブル。
-    海の風が吹くこのエリアは、湿度を帯びた空気が臭いを重く停滞させ、オーナー様を不安にさせます
-  noindex: false
-ogp:
-  og_image: times_sienta_4779-scaled-1-.webp
-  og_type: article
 ---
 
 ショッピングを楽しんだ帰り道、賑やかな車内を一瞬で凍らせた後部座席のトラブル。 海の風が吹くこのエリアは、湿度を帯びた空気が臭いを重く停滞させ、オーナー様を不安にさせます。 「もうこの車に乗るのが嫌だ」という言葉に、私たちはプロとしての責任を感じました。
