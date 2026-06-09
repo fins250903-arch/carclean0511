@@ -1,11 +1,13 @@
 ---
-date: 2026-02-17
+
 title: "[福岡市] コンパクトミニバンのシエンタ 嘔吐 消臭"
-shortSlug: fukuokabanouto
-categories:
-  - jisseki
-  - fukuoka
-coverImage: sienta3retume-before.jpg
+date: 2026-02-17
+categories: 
+
+- "jisseki"
+- "fukuoka"
+coverImage: "89BD3F33-C6BB-4D3F-A598-448119D7222D-e1771334178735.jpg"
+
 ---
 
 糸島の波音を背に、都市高速を走って博多の街へ戻る週末の夕暮れ時。 美味しい食事とドライブの余韻を遮るように、後部座席で予期せぬトラブルが起きました。 狭い車内に広がる独特の臭いは、どれだけ窓を開けても消えてはくれません。
