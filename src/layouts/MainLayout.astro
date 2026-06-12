@@ -1,6 +1,7 @@
 ---
 import '../styles/globals.css';
 import { STORE_NAME, SITE_URL, canonicalUrl, GOOGLE_SITE_VERIFICATION } from '@/lib/site';
+import { GTM_ID } from '@/lib/analytics';
 
 interface Props {
 	title?: string;
@@ -56,9 +57,24 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
+		{GTM_ID && (
+			<script is:inline define:vars={{ gtmId: GTM_ID }}>
+				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','dataLayer',gtmId);
+			</script>
+		)}
+
 		<slot name="head" />
 	</head>
 	<body>
+		{GTM_ID && (
+			<noscript>
+				<iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
+			</noscript>
+		)}
 		<slot />
 	</body>
 </html>

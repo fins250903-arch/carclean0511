@@ -601,6 +601,146 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
   },
+  {
+    slug: 'evaporator-senjo',
+    seoTitle: 'エバポレーター洗浄 出張',
+    seoDescription: (r) =>
+      `${r}対応の出張エバポレーター洗浄。車エアコンの酸っぱい・カビ臭の原因を内部から洗浄。シート丸洗いとのセット施工も可能。`,
+    seoKeywords: (r) =>
+      `エバポレーター洗浄 出張 ${r}, エバポレーター 洗浄 ${r}, 車 エアコン 臭い ${r}, カーエアコン カビ臭 ${r}, 車内クリーニング ${r}`,
+    ogImage: KW_IMAGES.acNioi,
+    heroSubtitle: (d) => `${d}｜エバポレーター洗浄 出張`,
+    heroHighlight: ['エバポレーター', '出張で内部洗浄'],
+    heroSubcatch: (d) => `${d}の出張エバポレーター洗浄`,
+    fvImage: KW_IMAGES.acNioi,
+    heroFooter: kwFooter('エアコン臭い・カビ'),
+    problemHeader: '「エアコンをつけると酸っぱい・カビ臭がする…フィルター交換では治らない」',
+    problemSubHeader: '原因はエバポレーター内部のカビ・汚れ。車内洗浄とセットで根本対策します。',
+    problemDealerQuote:
+      '「Dr.BAZOOKAは別料金で高い…シートの臭いも一緒に直したい」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>エバポレーター洗浄</strong>は、車内の酸っぱい臭い・カビ臭の根本対策です。<br /><strong>${dn}</strong>へ出張し、状況に応じてエアコン内部洗浄と<strong>シート丸洗い</strong>をセットでご提案します。<br /><strong>${rn}</strong>エリアのご依頼を最短即日で受付中です。`,
+    problemEmpathyImage: KW_IMAGES.acNioi,
+    problemEmpathyAlt: '車エアコン・エバポレーター洗浄のイメージ',
+    mainTitle: (r, d) => `【${r}】出張エバポレーター洗浄！酸っぱい・カビ臭をシート洗浄とセットで根本除去`,
+    deepTroubles: [
+      'エアコンをつけると酸っぱい・カビ臭がして、家族が咳や目のかゆみを訴える',
+      'フィルター交換や簡易洗浄を試したが、数日で臭いが戻ってしまう',
+      'エアコン専門店は別途依頼が必要で、シートの生活臭も残っている',
+    ],
+  },
+  {
+    slug: 'hoken-kyuto',
+    seoTitle: '車内 嘔吐 保険 適用',
+    seoDescription: (r) =>
+      `${r}対応。車内嘔吐・灯油こぼしの保険適用相談と出張クリーニング。代理申請・施工報告書発行で安心。`,
+    seoKeywords: (r) =>
+      `車内 嘔吐 保険 ${r}, 車 嘔吐 保険 適用 ${r}, 灯油 こぼし 保険 ${r}, 車両保険 車内 ${r}, 嘔吐 消臭 ${r}`,
+    ogImage: KW_IMAGES.sienta3Before,
+    heroSubtitle: (d) => `${d}｜嘔吐・保険適用相談`,
+    heroHighlight: ['保険代理申請', '嘔吐・灯油対応'],
+    heroSubcatch: (d) => `${d}の車内嘔吐・保険相談`,
+    fvImage: KW_IMAGES.sienta3Before,
+    heroFooter: kwFooter('嘔吐汚れ・保険相談'),
+    problemHeader: '「車内の嘔吐・灯油こぼし、保険が使えるか分からない…」',
+    problemSubHeader: '車両保険・賠償責任保険の適用可否を無料相談。施工報告書も発行します。',
+    problemDealerQuote:
+      '「保険会社に何を言えばいいか分からず、結局自分で払った…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>車内 嘔吐 保険</strong>の適用は、状況・契約内容により異なります。<br /><strong>${dn}</strong>では保険代理申請のサポートと、<strong>嘔吐・灯油</strong>の出張クリーニングを一括対応します。<br /><strong>${rn}</strong>のお客様向けに施工報告書・領収書を発行します。`,
+    problemEmpathyImage: KW_IMAGES.sienta3Before,
+    problemEmpathyAlt: '嘔吐トラブル後の車内清掃・保険相談イメージ',
+    mainTitle: (r, d) => `【${r}】車内嘔吐・灯油こぼしの保険適用相談！代理申請＋即日出張施工`,
+    deepTroubles: [
+      '同乗者や子どもの嘔吐で車内が汚れたが、保険が使えるか判断できない',
+      'カーシェアやレンタカーで第三者が汚した場合、NOCや賠償の手続きが複雑',
+      '保険会社への説明資料として、施工報告書が必要だと言われた',
+    ],
+  },
+  {
+    slug: 'dengen-fuyou',
+    seoTitle: '車内清掃 電源不要 出張',
+    seoDescription: (r) =>
+      `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
+    seoKeywords: (r) =>
+      `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
+    ogImage: KW_IMAGES.steam,
+    heroSubtitle: (d) => `${d}｜電源・水道不要 出張`,
+    heroHighlight: ['電源不要', 'マンション駐車場OK'],
+    heroSubcatch: (d) => `${d}の出張車内清掃`,
+    fvImage: KW_IMAGES.steam,
+    heroFooter: kwFooter('車内の汚れ・臭い'),
+    problemHeader: '「マンションの地下駐車場で、電源が使えない…」',
+    problemSubHeader: '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
+    problemDealerQuote:
+      '「近くの洗車店は電源が必要で、マンションでは断られた…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+    problemEmpathyImage: KW_IMAGES.steam,
+    problemEmpathyAlt: '電源不要の出張車内清掃・スチーム洗浄イメージ',
+    mainTitle: (r, d) => `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
+    deepTroubles: [
+      'マンションの地下駐車場にコンセントがなく、他社に断られた',
+      '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
+      '月極駐車場の管理規約で、洗車・清掃が制限されている',
+    ],
+  },
+  {
+    slug: 'kodomo-kyuto',
+    seoTitle: '子供 車 嘔吐 シート洗浄',
+    seoDescription: (r) =>
+      `${r}対応。子供の車酔い・嘔吐によるシート汚れを出張で即日洗浄。胃酸臭・再発防止までプロ施工。`,
+    seoKeywords: (r) =>
+      `子供 車 吐いた ${r}, 車 嘔吐 子供 ${r}, 車酔い 嘔吐 シート ${r}, 車内 嘔吐 出張 ${r}, ゲロ 車 ${r}`,
+    ogImage: KW_IMAGES.sienta3Before,
+    heroSubtitle: (d) => `${d}｜子供の嘔吐・車酔い対応`,
+    heroHighlight: ['子供の嘔吐', '即日出張洗浄'],
+    heroSubcatch: (d) => `${d}の子供嘔吐シート洗浄`,
+    fvImage: KW_IMAGES.sienta3Before,
+    heroFooter: kwFooter('子供の嘔吐汚れ'),
+    problemHeader: '「子供が車酔いして嘔吐…明日学校に送るのに臭いが…」',
+    problemSubHeader: '車酔いによる嘔吐は胃酸がシート奥に染み込み、放置すると腐敗臭が定着します。',
+    problemDealerQuote:
+      '「自分で拭いたけど、子どもが「臭い」と言って乗りたがらない…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>子供 車 吐いた</strong>トラブルは、早急なプロ洗浄が最善です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応。お子様にも安心な洗剤を使用します。<br /><strong>${rn}</strong>の緊急ご依頼を優先受付中です。`,
+    problemEmpathyImage: KW_IMAGES.sienta3Before,
+    problemEmpathyAlt: '子供の嘔吐汚れシート洗浄前イメージ',
+    mainTitle: (r, d) => `【${r}】子供の車酔い・嘔吐シート洗浄！即日出張で明日から安心`,
+    deepTroubles: [
+      '長距離ドライブ中に子どもが急に嘔吐し、後部座席が使えなくなった',
+      'ジュースや未消化物がシートの隙間に入り込み、取れない',
+      '市販消臭スプレーを使ったら、余計に酸っぱい臭いが強くなった',
+    ],
+  },
+  {
+    slug: 'spray-kouka-nai',
+    seoTitle: '消臭スプレー 効かない 車',
+    seoDescription: (r) =>
+      `${r}対応。消臭スプレー・芳香剤で効かなかった車内臭いを、洗浄で根本除去。マスキングではなく汚れを洗い流します。`,
+    seoKeywords: (r) =>
+      `消臭スプレー 効かない 車 ${r}, 車 芳香剤 臭い ${r}, 車 消臭剤 効かない ${r}, 車内 消臭 ${r}, 車 臭い 取れない ${r}`,
+    ogImage: KW_IMAGES.shanaiNioi,
+    heroSubtitle: (d) => `${d}｜消臭スプレーで効かない臭い`,
+    heroHighlight: ['スプレー不要', '洗浄で根本除去'],
+    heroSubcatch: (d) => `${d}の車内消臭・根本洗浄`,
+    fvImage: KW_IMAGES.shanaiNioi,
+    heroFooter: kwFooter('消臭スプレーで効かない臭い'),
+    problemHeader: '「消臭スプレーを何本使っても、臭いが消えない…」',
+    problemSubHeader: '市販消臭剤は表面をマスキングするだけ。臭いの元である汚れを洗い流すのが根本策です。',
+    problemDealerQuote:
+      '「スプレーの香りと元の臭いが混ざって、もっとキツくなった…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>消臭スプレー 効かない</strong>場合、原因はシート・天井・フロアに染み込んだ汚れです。<br /><strong>${dn}</strong>へ出張し、100℃スチームとリンサーで臭い分子ごと洗い流します。<br />市販スプレーは使わず、<strong>${rn}</strong>のプロ施工で根本対策します。`,
+    problemEmpathyImage: KW_IMAGES.shanaiNioi,
+    problemEmpathyAlt: '消臭スプレーで効果がなかった車内のイメージ',
+    mainTitle: (r, d) => `【${r}】消臭スプレーが効かない車内臭い！プロ洗浄で根本から除去`,
+    deepTroubles: [
+      'カー用品店の消臭スプレーを何本も試したが、数日で元の臭いが戻る',
+      '芳香剤の甘い香りと生活臭が混ざり、車内が余計に不快になった',
+      'オzon脱臭も試したが一時的で、シートからの臭いが再発する',
+    ],
+  },
   // ===== バス専門LP =====
   {
     slug: 'bus-senmon',
@@ -635,7 +775,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
 ];
 
 /** 重点広告地域（千葉・愛知・大阪・兵庫・福岡） */
-export const PRIORITY_AD_REGION_IDS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'] as const;
+export const PRIORITY_AD_REGION_IDS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka', 'okinawa'] as const;
 
 export const AD_KEYWORD_SLUG_SET = new Set(AD_KEYWORD_PAGES.map((p) => p.slug));
 

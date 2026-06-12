@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRegion } from '@/lib/RegionContext';
+import { trackFormSubmit } from '@/lib/analytics';
 import { Mail } from 'lucide-react';
 
 export default function ContactForm({ regionName: propRegionName }: { regionName?: string }) {
@@ -24,7 +25,12 @@ export default function ContactForm({ regionName: propRegionName }: { regionName
                     </div>
 
                     <div className="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-inner border border-gray-100">
-                        <form className="space-y-6" action="https://formspree.io/f/xknlodez" method="POST">
+                        <form
+                            className="space-y-6"
+                            action="https://formspree.io/f/xknlodez"
+                            method="POST"
+                            onSubmit={() => trackFormSubmit()}
+                        >
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="name" className="block text-sm font-bold text-gray-700 mb-2">お名前</label>

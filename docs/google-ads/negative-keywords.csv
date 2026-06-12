@@ -1,0 +1,35 @@
+Keyword,Criterion type,Level,Notes
+無料,Phrase,Account,DIY・無料サービス意図
+自分で,Phrase,Account,DIY意図
+DIY,Phrase,Account,DIY意図
+方法,Phrase,Account,情報収集
+やり方,Phrase,Account,情報収集
+100均,Phrase,Account,低単価DIY
+洗剤,Phrase,Account,製品検索
+おすすめ 洗剤,Phrase,Account,製品検索
+求人,Phrase,Account,採用
+バイト,Phrase,Account,採用
+募集,Phrase,Account,採用
+フランチャイズ,Phrase,Account,加盟
+機械 レンタル,Phrase,Account,機材レンタル
+リース,Phrase,Account,機材リース
+YouTube,Phrase,Account,動画視聴
+動画,Phrase,Account,動画視聴
+安い,Phrase,Account,単価競争回避
+激安,Phrase,Account,単価競争回避
+格安,Phrase,Account,単価競争回避
+洗車,Phrase,Account,意図不一致
+コーティング,Phrase,Account,意図不一致
+ワックス,Phrase,Account,意図不一致
+ピカピカ,Phrase,Campaign_C4,洗車・コーティング意図（119impデータ）
+レンタル,Phrase,Account,機材レンタル
+中古,Phrase,Campaign_C1,中古車購入意図（C2中古車臭は除外しない）
+修理,Phrase,Account,整備意図
+板金,Phrase,Account,板金意図
+ディーラー,Phrase,Account,ディーラー検索
+カーシェア 求人,Phrase,Account,採用
+テンプレ,Phrase,Account,資料請求
+pdf,Phrase,Account,資料請求
+wiki,Phrase,Account,情報収集
+意味,Phrase,Account,情報収集
+とは,Phrase,Account,情報収集

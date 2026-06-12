@@ -1,4 +1,5 @@
 import React from 'react';
+import { trackLineClick, trackPhoneClick } from '@/lib/analytics';
 
 export default function FloatingCTA() {
     return (
@@ -10,6 +11,7 @@ export default function FloatingCTA() {
                         href="https://lin.ee/Xs8Orp2"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackLineClick('floating_cta_mobile')}
                         className="flex-1 min-w-0 bg-[#06C755] hover:bg-[#05a346] text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5"
                     >
                         <span className="text-[10px] font-bold leading-none opacity-95">必ずお返事！</span>
@@ -18,6 +20,7 @@ export default function FloatingCTA() {
                     </a>
                     <a
                         href="tel:07084280866"
+                        onClick={() => trackPhoneClick('floating_cta_mobile')}
                         className="flex-1 min-w-0 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5 animate-pulse"
                     >
                         <span className="text-[10px] font-bold leading-none opacity-95">３６５日受付</span>
@@ -39,13 +42,13 @@ export default function FloatingCTA() {
                             </div>
                             <div>
                                 <p className="text-sm font-bold opacity-90">お電話でのお問い合わせ ─ ３６５日受付</p>
-                                <a href="tel:07084280866" className="text-4xl font-black tracking-wider hover:opacity-90 transition-opacity">
+                                <a href="tel:07084280866" onClick={() => trackPhoneClick('floating_cta_desktop')} className="text-4xl font-black tracking-wider hover:opacity-90 transition-opacity">
                                     070-8428-0866
                                 </a>
                             </div>
                         </div>
                         <div className="flex items-center gap-4">
-                            <a href="https://lin.ee/Xs8Orp2" target="_blank" rel="noopener noreferrer" className="bg-[#06C755] hover:bg-[#05a346] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2 text-lg">
+                            <a href="https://lin.ee/Xs8Orp2" target="_blank" rel="noopener noreferrer" onClick={() => trackLineClick('floating_cta_desktop')} className="bg-[#06C755] hover:bg-[#05a346] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2 text-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
                                 LINEで見積もり
                             </a>
