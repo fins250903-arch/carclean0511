@@ -7,7 +7,6 @@
     "sync:513": "node ./scripts/sync-513-to-public.mjs",
     "sync:kw": "node ./scripts/sync-kw-images.mjs",
     "sync:images": "npm run sync:513 && npm run sync:kw",
-    "sync:blog": "node ../carclean2026blog/scripts/sync-blog-to-main-site.mjs",
     "dev": "npm run sync:images && astro dev",
     "start": "npm run sync:images && astro dev",
     "build": "npm run sync:images && astro build",

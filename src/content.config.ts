@@ -12,6 +12,21 @@ const blog = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			coverImage: z.string().optional(),
 			categories: z.array(z.string()).optional(),
+			shortSlug: z.string().optional(),
+			seo: z
+				.object({
+					meta_title: z.string().optional(),
+					meta_description: z.string().optional(),
+					keywords: z.string().optional(),
+					noindex: z.boolean().optional().default(false),
+				})
+				.optional(),
+			ogp: z
+				.object({
+					og_image: z.string().optional(),
+					og_type: z.enum(['article', 'website']).optional().default('article'),
+				})
+				.optional(),
 		}),
 });
 

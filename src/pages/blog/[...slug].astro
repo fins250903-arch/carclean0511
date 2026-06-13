@@ -2,8 +2,15 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
 import '../../styles/blog.css';
-import { canonicalUrl } from '../../lib/site';
+import { canonicalUrl, SITE_URL } from '../../lib/site';
+import {
+  buildArticleJsonLd,
+  resolveBlogMeta,
+  resolvePostImage,
+  toAbsoluteUrl,
+} from '../../lib/blogSeo';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -19,27 +26,45 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const postSlug = post.id.replace(/\/index$/, '');
-const heroImage = post.data.coverImage ? `/posts/${postSlug}/images/${post.data.coverImage}` : null;
+const heroImage = resolvePostImage(post.data.coverImage, postSlug) ?? null;
+const ogImagePath =
+	resolvePostImage(post.data.ogp?.og_image, postSlug) ?? heroImage;
+const ogImageAbs = ogImagePath ? toAbsoluteUrl(ogImagePath) : undefined;
+const { title, description, noindex, ogType } = resolveBlogMeta(post);
+const pageTitle = `${title} | 車内清掃「特急便」`;
+const canonical = canonicalUrl(`/blog/${postSlug}`);
+const articleJsonLd = buildArticleJsonLd({
+	title,
+	description,
+	url: canonical,
+	image: ogImageAbs,
+	publishedTime: post.data.date,
+	modifiedTime: post.data.updatedDate ?? post.data.date,
+	keywords: post.data.seo?.keywords,
+});
 const { Content } = await render(post);
 ---
 
 <MainLayout
-	title={`${post.data.title} | 車内清掃「特急便」`}
-	description={post.data.description || post.data.title}
-	canonical={canonicalUrl(`/blog/${postSlug}`)}
+	title={pageTitle}
+	description={description}
+	keywords={post.data.seo?.keywords}
+	canonical={canonical}
+	ogImage={ogImagePath ?? undefined}
+	noindex={noindex}
+	ogType={ogType}
 >
+	<JsonLd slot="head" data={[articleJsonLd]} />
+
 	<main class="blog-content min-h-screen bg-white pb-32 md:pb-12">
 		<article>
-			<!-- ヒーロー画像 -->
 			{heroImage && (
 				<div class="w-full max-h-[500px] overflow-hidden">
 					<img src={heroImage} alt={post.data.title} class="w-full h-full object-cover" />
 				</div>
 			)}
 
-			<!-- 記事本文 -->
 			<div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-				<!-- タイトルエリア -->
 				<div class="mb-8 pb-6 border-b border-gray-200">
 					<p class="text-gray-500 mb-3">
 						<FormattedDate date={post.data.date} />
@@ -59,12 +84,10 @@ const { Content } = await render(post);
 					)}
 				</div>
 
-				<!-- 本文 -->
 				<div class="prose max-w-none">
 					<Content />
 				</div>
 
-				<!-- お問い合わせCTA -->
 				<div class="mt-16 bg-blue-50 rounded-2xl p-8 border border-blue-100 text-center shadow-sm">
 					<h3 class="text-2xl font-bold text-gray-900 mb-4">お車のお悩み、すぐ解決します！</h3>
 					<p class="text-gray-700 mb-8">嘔吐、ペットの粗相、灯油こぼしなど、放置すると悪化するトラブルに最短即日で出張対応いたします。</p>
@@ -89,12 +112,11 @@ const { Content } = await render(post);
 					<p class="text-sm text-gray-500">※お急ぎの場合はお電話が確実です。</p>
 				</div>
 
-				<!-- ナビゲーション -->
 				<div class="mt-12 pt-6 border-t border-gray-200 flex flex-col sm:flex-row justify-center gap-6">
-					<a href="http://carinteriorcleaning.jp/blog/" class="text-blue-600 hover:text-blue-800 font-bold transition-colors flex items-center justify-center bg-gray-50 px-6 py-3 rounded-full hover:bg-gray-100">
+					<a href={canonicalUrl('/blog/')} class="text-blue-600 hover:text-blue-800 font-bold transition-colors flex items-center justify-center bg-gray-50 px-6 py-3 rounded-full hover:bg-gray-100">
 						← ブログ一覧へ戻る
 					</a>
-					<a href="http://carinteriorcleaning.jp/" class="text-blue-600 hover:text-blue-800 font-bold transition-colors flex items-center justify-center bg-gray-50 px-6 py-3 rounded-full hover:bg-gray-100">
+					<a href={SITE_URL} class="text-blue-600 hover:text-blue-800 font-bold transition-colors flex items-center justify-center bg-gray-50 px-6 py-3 rounded-full hover:bg-gray-100">
 						🏠 特急便トップページへ
 					</a>
 				</div>

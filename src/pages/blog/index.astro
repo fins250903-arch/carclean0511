@@ -5,6 +5,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { regions } from '../../data/regions';
 import '../../styles/blog.css';
 import { canonicalUrl } from '../../lib/site';
+import { resolvePostImage } from '../../lib/blogSeo';
 
 type BlogPost = CollectionEntry<'blog'>;
 const posts: BlogPost[] = (await getCollection('blog')).sort(
@@ -12,8 +13,10 @@ const posts: BlogPost[] = (await getCollection('blog')).sort(
 );
 
 const getSlug = (post: BlogPost) => post.id.replace(/\/index$/, '');
-const getImageSrc = (post: BlogPost) =>
-	post.data.coverImage ? `/posts/${getSlug(post)}/images/${post.data.coverImage}` : null;
+const getImageSrc = (post: BlogPost) => {
+	const slug = getSlug(post);
+	return resolvePostImage(post.data.coverImage, slug) ?? resolvePostImage(post.data.ogp?.og_image, slug);
+};
 ---
 
 <MainLayout
@@ -47,7 +50,7 @@ const getImageSrc = (post: BlogPost) =>
 									const imageSrc = getImageSrc(post);
 									return (
 										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
-											<a href={`http://carinteriorcleaning.jp/blog/${slug}/`} class="block group flex-1 flex flex-col">
+											<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
 												{imageSrc ? (
 													<div class="overflow-hidden h-48">
 														<img
@@ -94,7 +97,7 @@ const getImageSrc = (post: BlogPost) =>
 									const imageSrc = getImageSrc(post);
 									return (
 										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
-											<a href={`http://carinteriorcleaning.jp/blog/${slug}/`} class="block group flex-1 flex flex-col">
+											<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
 												{imageSrc ? (
 													<div class="overflow-hidden h-48">
 														<img

@@ -28,6 +28,17 @@
       "permanent": true
     },
     {
+      "source": "/admin/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "carclean2026blog.vercel.app"
+        }
+      ],
+      "destination": "https://carinteriorcleaning.jp/admin/:path*",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
