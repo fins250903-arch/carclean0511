@@ -43,7 +43,9 @@ import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
-import { getAioKeywordContent } from '../../../data/aioKeywordContent';
+import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
+import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
+import RegionLocalTrust from '../../../components/sections/RegionLocalTrust.astro';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -112,7 +114,7 @@ const jsonLdData = generateJsonLd(
       displayName,
       metadata,
     }),
-    extraFaqs: aioKw?.extraFaqs,
+    extraFaqs: buildAioContentFaqs(regionName, { extraFaqs: aioKw?.extraFaqs }),
   },
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
@@ -153,10 +155,15 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       {answerFirst && <AnswerTarget text={answerFirst} />}
+      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
       {aioKw?.emergencyChecklist && (
         <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
       )}
+      <KeywordAioExtras
+        smellCauseTable={aioKw?.smellCauseTable}
+        keroseneSeverityMatrix={aioKw?.keroseneSeverityMatrix}
+      />
       <AIOContent
         regionName={regionName}
         niche={pageNiche}

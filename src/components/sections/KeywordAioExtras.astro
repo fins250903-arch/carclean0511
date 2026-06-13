@@ -1,0 +1,84 @@
+---
+import type { KeroseneSeverityRow, SmellCauseRow } from '../../data/aioKeywordContent';
+
+interface Props {
+  smellCauseTable?: SmellCauseRow[];
+  keroseneSeverityMatrix?: KeroseneSeverityRow[];
+}
+
+const { smellCauseTable, keroseneSeverityMatrix } = Astro.props;
+---
+
+{(smellCauseTable || keroseneSeverityMatrix) && (
+  <section class="py-10 bg-slate-50 border-b border-slate-200" aria-label="専門家の診断表">
+    <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8 space-y-10">
+      {smellCauseTable && (
+        <article>
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
+            車内ニオイの7原因診断表
+          </h2>
+          <p class="text-sm text-gray-600 text-center mb-6">
+            臭いの種類から原因を特定し、正しい初動とプロ依頼の目安を確認できます。
+          </p>
+          <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+            <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">原因</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">臭いの特徴</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">今すぐやること</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-blue-700 bg-blue-50">プロ依頼の目安</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                {smellCauseTable.map((row) => (
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{row.cause}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.signal}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.firstAid}</td>
+                    <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium">{row.proNeeded}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      )}
+
+      {keroseneSeverityMatrix && (
+        <article>
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
+            灯油こぼし重症度マトリクス
+          </h2>
+          <p class="text-sm text-gray-600 text-center mb-6">
+            こぼした量と浸透範囲で、自助対応か専門洗浄かを判断します。
+          </p>
+          <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+            <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">重症度</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">こぼした量</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">浸透範囲</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">推奨対応</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-blue-700 bg-blue-50">費用目安</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                {keroseneSeverityMatrix.map((row) => (
+                  <tr>
+                    <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">{row.level}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.volume}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.penetration}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.action}</td>
+                    <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium">{row.costHint}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      )}
+    </div>
+  </section>
+)}

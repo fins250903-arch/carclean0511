@@ -42,7 +42,9 @@ import {
   buildRegionalNioiAnswerFirst,
   getRegionalHeroMainTitle,
   REGIONAL_EMERGENCY_CHECKLIST,
+  buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
+import RegionLocalTrust from '../../components/sections/RegionLocalTrust.astro';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -98,7 +100,9 @@ const regionOverrides = buildRegionSeoOverrides({
 });
 
 const metadata = generateRegionMetadata(regionName, path, niche);
-const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche);
+const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
+  extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
+});
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName) : undefined;
@@ -119,6 +123,7 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) 
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
       {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} />}
+      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       {!isTruck && !isBus && (
         <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
       )}

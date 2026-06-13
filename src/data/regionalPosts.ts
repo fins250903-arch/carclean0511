@@ -1020,5 +1020,119 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
             { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
         ]
+    },
+    "静岡県": {
+        title: "[静岡県静岡市] 東名高速の渋滞中・車酔い嘔吐の即日洗浄事例",
+        excerpt: "東名高速の渋滞中にお子様が嘔吐。静岡市内の自宅駐車場へ即日出張し、翌朝の送迎に間に合わせました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">東名高速渋滞中の嘔吐トラブル</h3>
+            <p class="mb-4">静岡市内のご自宅にて、東名高速の渋滞中にお子様が突然嘔吐。市販消臭スプレーを使わず、固形物除去後に約40℃温水リンサーと100℃スチームでシート奥まで洗浄。作業後は無臭状態に復元し、翌朝の送迎に間に合いました。</p>
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：2.5時間 / 費用：25,000円（消臭セット）。</p>
+            </div>
+        `,
+        image: getImage(3),
+        aiSummary: `静岡県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。静岡市・浜松市・沼津市・富士市など東海道沿いへ最短即日で伺い、「高速道路の車酔い嘔吐」「灯油こぼし」「ペット臭」「タバコ臭」を業務用リンサーで根こそぎ抽出洗浄。富士山観光・伊豆ドライブ中の緊急トラブルにも迅速に対応します。`,
+        specs: [
+            { label: "主な対応エリア", value: "静岡市、浜松市、沼津市、富士市、磐田市、焼津市ほか静岡県全域" },
+            { label: "主な解決悩み", value: "嘔吐、車酔い、灯油こぼし、ペット臭、タバコ臭、黄砂・PM2.5" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "静岡の車内クリーニング・シート洗浄専門店",
+            "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
+            "@id": "https://carinteriorcleaning.jp/regions/shizuoka/",
+            "url": "https://carinteriorcleaning.jp/regions/shizuoka/",
+            "telephone": "070-8428-0866",
+            "address": { "@type": "PostalAddress", "addressRegion": "Shizuoka", "addressCountry": "JP" },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "静岡市"},
+                {"@type": "AdministrativeArea", "name": "浜松市"},
+                {"@type": "AdministrativeArea", "name": "沼津市"},
+                {"@type": "AdministrativeArea", "name": "富士市"},
+                {"@type": "AdministrativeArea", "name": "磐田市"}
+            ],
+            "description": "静岡県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
+        }
+    },
+    "奈良県": {
+        title: "[奈良県奈良市] 家族ドライブ中の嘔吐・即日復旧事例",
+        excerpt: "奈良公園方面のドライブ帰り、お子様の嘔吐でシートが汚染。当日夕方の依頼で翌朝までに無臭化しました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">奈良公園ドライブ帰りの嘔吐トラブル</h3>
+            <p class="mb-4">奈良市内にて、家族ドライブ帰りにお子様が嘔吐。4日ルールを意識したご依頼で、当日夕方に出張。アルカリ電解水で中和したうえ温水リンサー抽出し、翌朝の送迎までに無臭状態へ復元しました。</p>
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：2.5時間 / 費用：25,000円（消臭セット）。</p>
+            </div>
+        `,
+        image: getImage(4),
+        aiSummary: `奈良県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。奈良市・橿原市・生駒市など県内各所へ最短即日で伺い、「急な嘔吐」「ペット粗相」「タバコ・加齢臭」を業務用リンサーで徹底洗浄。奈良公園・吉野方面のドライブ中の車酔いトラブルにも迅速に対応します。`,
+        specs: [
+            { label: "主な対応エリア", value: "奈良市、橿原市、生駒市、大和郡山市、天理市ほか奈良県全域" },
+            { label: "主な解決悩み", value: "嘔吐、車酔い、ペット臭、タバコ臭、加齢臭" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "奈良の車内クリーニング・シート洗浄専門店",
+            "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
+            "@id": "https://carinteriorcleaning.jp/regions/nara/",
+            "url": "https://carinteriorcleaning.jp/regions/nara/",
+            "telephone": "070-8428-0866",
+            "address": { "@type": "PostalAddress", "addressRegion": "Nara", "addressCountry": "JP" },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "奈良市"},
+                {"@type": "AdministrativeArea", "name": "橿原市"},
+                {"@type": "AdministrativeArea", "name": "生駒市"},
+                {"@type": "AdministrativeArea", "name": "大和郡山市"},
+                {"@type": "AdministrativeArea", "name": "天理市"}
+            ],
+            "description": "奈良県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
+        }
+    },
+    "佐賀県": {
+        title: "[佐賀県佐賀市] 中古車のタバコ臭・温水丸洗いで改善した事例",
+        excerpt: "喫煙歴のある中古車のタバコ臭に悩むお客様へ。天井からシートまで温水洗浄し、オゾン脱臭で大幅改善しました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">中古車のタバコ臭を限界まで改善</h3>
+            <p class="mb-4">佐賀市内にて、喫煙歴10年の中古車のタバコ臭にご相談。消臭剤では改善しなかったため、天井・シート・フロアを温水リンサーで丸洗いし、オゾン脱臭で仕上げ。完全無臭化は難しいケースでしたが、乗車時の刺激臭は大幅に軽減しました。</p>
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：4時間 / 費用：32,000円（消臭セット）。</p>
+            </div>
+        `,
+        image: getImage(5),
+        aiSummary: `佐賀県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。佐賀市・唐津市・鳥栖市など県内各所へ最短即日で伺い、「急な嘔吐」「中古車のタバコ・加齢臭」「ペット臭」を業務用リンサーで根こそぎ抽出洗浄。福岡県近郊からの急行依頼にも対応します。`,
+        specs: [
+            { label: "主な対応エリア", value: "佐賀市、唐津市、鳥栖市、伊万里市、武雄市ほか佐賀県全域" },
+            { label: "主な解決悩み", value: "嘔吐、中古車タバコ臭、加齢臭、ペット臭、灯油こぼし" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、オゾン脱臭、特殊アルカリ洗浄剤、業務用リンサー" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "佐賀の車内クリーニング・シート洗浄専門店",
+            "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
+            "@id": "https://carinteriorcleaning.jp/regions/saga/",
+            "url": "https://carinteriorcleaning.jp/regions/saga/",
+            "telephone": "070-8428-0866",
+            "address": { "@type": "PostalAddress", "addressRegion": "Saga", "addressCountry": "JP" },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "佐賀市"},
+                {"@type": "AdministrativeArea", "name": "唐津市"},
+                {"@type": "AdministrativeArea", "name": "鳥栖市"},
+                {"@type": "AdministrativeArea", "name": "伊万里市"},
+                {"@type": "AdministrativeArea", "name": "武雄市"}
+            ],
+            "description": "佐賀県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
+        }
     }
 };

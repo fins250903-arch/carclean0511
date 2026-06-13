@@ -583,6 +583,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         mentions: TRUST_REFERENCES,
 
+        speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['.answer-lead', '#aio-content .bg-blue-50'],
+        },
+
     };
 
 

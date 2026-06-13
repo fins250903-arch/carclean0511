@@ -1,7 +1,7 @@
 ---
 import { buildMobileInteriorCleaningDefinition, formatContentFreshnessJa } from '../../lib/structuredDataConstants';
 import { carComparisonPriceSummary } from '../../data/pricingConstants';
-import { AIO_EXTENDED_FAQS } from '../../data/aioKeywordContent';
+import { buildAioContentFaqs } from '../../data/aioKeywordContent';
 import type { FAQItem } from '../../data/seoData';
 
 interface Props {
@@ -49,22 +49,10 @@ const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シ
 const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000円〜";
 const comparisonPriceLine = isTruck || isBus ? defaultPrice : carComparisonPriceSummary();
 
-const aioFaqs = [
-  {
-    q: '今日（または明日）すぐに来てほしいのですが、可能ですか？',
-    a: `はい、${regionName}内であればスケジュール次第で<strong>最短即日・または翌日</strong>の出張が可能です。嘔吐などの緊急トラブルは時間が勝負ですので、まずはお電話にて空き状況をご確認ください。`,
-  },
-  {
-    q: '水道や電源は用意する必要がありますか？',
-    a: 'いいえ、必要ありません。当店の出張車両には<strong>専用の発電機と水タンクを積載</strong>しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。',
-  },
-  {
-    q: '市販の消臭スプレーと何が違うのですか？',
-    a: '市販のスプレーは臭いの成分を別の香料で包み込む「マスキング」であり、汚れ自体はシート内に残ったままです。当店の洗浄は、洗剤で汚れを浮かし、<strong>温水で洗い流しながら同時に強力に吸い取る（リンサー抽出）</strong>ため、ニオイの「元」そのものを物理的に車外へ排除します。',
-  },
-  ...(showAioExtensions && !isTruck ? AIO_EXTENDED_FAQS : []),
-  ...extraFaqs,
-];
+const aioFaqs = buildAioContentFaqs(regionName, {
+  includeExtended: showAioExtensions && !isTruck,
+  extraFaqs,
+});
 ---
 
 <section id="aio-content" class="py-12 bg-white sm:py-16 lg:py-20 border-b border-gray-100">
@@ -76,7 +64,7 @@ const aioFaqs = [
         最終更新：{contentUpdated}｜料金・対応エリア・施工事例を継続更新中
       </p>
       {answerFirst && (
-        <p class="text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-green-50 p-5 md:p-6 rounded-xl border border-green-200 shadow-sm text-left mb-6">
+        <p class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-green-50 p-5 md:p-6 rounded-xl border border-green-200 shadow-sm text-left mb-6">
           {answerFirst}
         </p>
       )}
