@@ -1,0 +1,24 @@
+---
+/**
+ * Region LP footer placement for HQ / local dispatch block.
+ * Keep below FAQ on all LP types — not near FV (avoids "far HQ = slow" first impression).
+ */
+import RegionLocalTrust from './RegionLocalTrust.astro';
+import type { ServiceNiche } from '../../lib/niche';
+
+interface Props {
+  regionName: string;
+  displayName: string;
+  niche?: ServiceNiche;
+  subareaId?: string;
+}
+
+const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
+---
+
+<RegionLocalTrust
+  regionName={regionName}
+  displayName={displayName}
+  niche={niche}
+  subareaId={subareaId}
+/>

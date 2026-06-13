@@ -45,6 +45,7 @@ import FloatingCTA from '../../../components/sections/FloatingCTA';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astro';
+import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import {
   buildRegionalAnswerFirst,
   buildRegionalNioiAnswerFirst,
@@ -162,6 +163,12 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME)
       <Pricing regionName={REGION_NAME} niche={niche} />
       <CTA />
       <FAQ niche={niche} />
+      <RegionLocalTrust
+        regionName={REGION_NAME}
+        displayName={`${displayName}（大阪府）`}
+        niche={niche}
+        subareaId={subareaId}
+      />
       <Blog client:visible regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
       <ServiceMutualLink
         regionName={REGION_NAME}

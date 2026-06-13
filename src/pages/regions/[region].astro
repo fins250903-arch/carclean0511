@@ -44,7 +44,7 @@ import {
   REGIONAL_EMERGENCY_CHECKLIST,
   buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
-import RegionLocalTrust from '../../components/sections/RegionLocalTrust.astro';
+import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -123,7 +123,6 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) 
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
       {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} />}
-      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       {!isTruck && !isBus && (
         <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
       )}
@@ -156,6 +155,7 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) 
       <Pricing regionName={regionName} niche={niche} />
       <CTA />
       <FAQ niche={niche} />
+      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <ContactForm client:visible regionName={regionName} />

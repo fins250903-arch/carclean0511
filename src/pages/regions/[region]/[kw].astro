@@ -45,7 +45,7 @@ import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
-import RegionLocalTrust from '../../../components/sections/RegionLocalTrust.astro';
+import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -155,7 +155,6 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       {answerFirst && <AnswerTarget text={answerFirst} />}
-      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
       {aioKw?.emergencyChecklist && (
         <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
@@ -199,6 +198,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
       <Pricing regionName={regionName} niche={pageNiche} />
       <CTA />
       <FAQ niche={pageNiche} extraFaqs={aioKw?.extraFaqs} />
+      <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink
         regionName={regionName}
