@@ -1,16 +1,20 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { regions } from '../../data/regions';
 import '../../styles/blog.css';
 import { canonicalUrl } from '../../lib/site';
 import { resolvePostImage } from '../../lib/blogSeo';
+import {
+	type BlogPost,
+	buildRegionBlogGroups,
+	getOtherBlogPosts,
+	sortPostsByNewest,
+} from '../../lib/blogListing';
 
-type BlogPost = CollectionEntry<'blog'>;
-const posts: BlogPost[] = (await getCollection('blog')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const allPosts = sortPostsByNewest(await getCollection('blog'));
+const regionGroups = buildRegionBlogGroups(allPosts);
+const otherPosts = getOtherBlogPosts(allPosts);
 
 const getSlug = (post: BlogPost) => post.id.replace(/\/index$/, '');
 const getImageSrc = (post: BlogPost) => {
@@ -26,133 +30,129 @@ const getImageSrc = (post: BlogPost) => {
 >
 	<main class="blog-content min-h-screen bg-gray-50 py-12 pb-32 md:pb-12">
 		<div class="max-w-5xl mx-auto px-4 sm:px-6">
-			<!-- ヘッダー -->
 			<div class="text-center mb-12">
 				<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">施工事例ブログ</h1>
 				<p class="text-lg text-gray-600">実際のクリーニング事例をご紹介しています</p>
 				<a href="https://carinteriorcleaning.jp/regions/osaka/" class="inline-block mt-4 text-blue-600 hover:text-blue-800 font-medium transition-colors">← トップページへ戻る</a>
 			</div>
 
-			<!-- 地域別 記事一覧 -->
-			<div class="space-y-16">
-				{regions.map(region => {
-					const regionPosts = posts.filter(post => post.data.categories?.includes(region.id));
-					if (regionPosts.length === 0) return null;
-					
-					return (
-						<section data-region-name={region.name} class="region-section">
-							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-2 inline-block pr-8">
-								📍 {region.name}の施工実績
-							</h2>
-							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-								{regionPosts.map((post) => {
-									const slug = getSlug(post);
-									const imageSrc = getImageSrc(post);
-									return (
-										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
-											<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
-												{imageSrc ? (
-													<div class="overflow-hidden h-48">
-														<img
-															src={imageSrc}
-															alt={post.data.title ?? ''}
-															class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-															loading="lazy"
-														/>
-													</div>
-												) : (
-													<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
-														<span class="text-4xl">🚗</span>
-													</div>
-												)}
-												<div class="p-5 flex-1 flex flex-col">
-													<p class="text-sm text-gray-500 mb-2">
-														<FormattedDate date={post.data.date} />
-													</p>
-													<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
-														{post.data.title}
-													</h3>
+			<div class="space-y-16" id="blog-region-sections">
+				{regionGroups.map((group) => (
+					<section
+						data-region-name={group.regionName}
+						data-region-id={group.regionId}
+						class="region-section"
+					>
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-blue-600 pb-2 inline-block pr-8">
+							📍 {group.regionName}の施工実績
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+							{group.posts.map((post) => {
+								const slug = getSlug(post);
+								const imageSrc = getImageSrc(post);
+								return (
+									<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+										<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
+											{imageSrc ? (
+												<div class="overflow-hidden h-48">
+													<img
+														src={imageSrc}
+														alt={post.data.title ?? ''}
+														class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+														loading="lazy"
+													/>
 												</div>
-											</a>
-										</article>
-									);
-								})}
-							</div>
-						</section>
-					);
-				})}
+											) : (
+												<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
+													<span class="text-4xl">🚗</span>
+												</div>
+											)}
+											<div class="p-5 flex-1 flex flex-col">
+												<p class="text-sm text-gray-500 mb-2">
+													<FormattedDate date={post.data.updatedDate ?? post.data.date} />
+												</p>
+												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+													{post.data.title}
+												</h3>
+											</div>
+										</a>
+									</article>
+								);
+							})}
+						</div>
+					</section>
+				))}
 
-				{/* その他の実績 */}
-				{(() => {
-					const otherPosts = posts.filter(post => !post.data.categories?.some(cat => regions.some(r => r.id === cat)));
-					if (otherPosts.length === 0) return null;
-					return (
-						<section class="other-section">
-							<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-gray-400 pb-2 inline-block pr-8">
-								🚙 その他の実績・お知らせ
-							</h2>
-							<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-								{otherPosts.map((post) => {
-									const slug = getSlug(post);
-									const imageSrc = getImageSrc(post);
-									return (
-										<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
-											<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
-												{imageSrc ? (
-													<div class="overflow-hidden h-48">
-														<img
-															src={imageSrc}
-															alt={post.data.title ?? ''}
-															class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-															loading="lazy"
-														/>
-													</div>
-												) : (
-													<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
-														<span class="text-4xl">🚗</span>
-													</div>
-												)}
-												<div class="p-5 flex-1 flex flex-col">
-													<p class="text-sm text-gray-500 mb-2">
-														<FormattedDate date={post.data.date} />
-													</p>
-													<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
-														{post.data.title}
-													</h3>
+				{otherPosts.length > 0 && (
+					<section class="other-section">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 border-b-4 border-gray-400 pb-2 inline-block pr-8">
+							🚙 その他の実績・お知らせ
+						</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+							{otherPosts.map((post) => {
+								const slug = getSlug(post);
+								const imageSrc = getImageSrc(post);
+								return (
+									<article class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
+										<a href={canonicalUrl(`/blog/${slug}/`)} class="block group flex-1 flex flex-col">
+											{imageSrc ? (
+												<div class="overflow-hidden h-48">
+													<img
+														src={imageSrc}
+														alt={post.data.title ?? ''}
+														class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+														loading="lazy"
+													/>
 												</div>
-											</a>
-										</article>
-									);
-								})}
-							</div>
-						</section>
-					);
-				})()}
+											) : (
+												<div class="bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center h-48">
+													<span class="text-4xl">🚗</span>
+												</div>
+											)}
+											<div class="p-5 flex-1 flex flex-col">
+												<p class="text-sm text-gray-500 mb-2">
+													<FormattedDate date={post.data.updatedDate ?? post.data.date} />
+												</p>
+												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+													{post.data.title}
+												</h3>
+											</div>
+										</a>
+									</article>
+								);
+							})}
+						</div>
+					</section>
+				)}
 			</div>
 		</div>
 	</main>
 
 	<script>
-		document.addEventListener('DOMContentLoaded', () => {
+		function prioritizeRegionSection() {
 			const urlParams = new URLSearchParams(window.location.search);
-			const targetRegion = urlParams.get('region');
-			
-			if (targetRegion) {
-				const container = document.querySelector('.space-y-16');
-				const targetSection = container?.querySelector(`section[data-region-name="${targetRegion}"]`);
-				
-				if (container && targetSection) {
-					// 指定された地域のセクションを先頭に移動
-					container.insertBefore(targetSection, container.firstChild);
-					
-					// スクロール位置を調整（少し上部に余裕を持たせる）
-					setTimeout(() => {
-						targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-						// ヘッダーなどのオフセット調整
-						window.scrollBy(0, -50);
-					}, 100);
-				}
+			const raw = urlParams.get('region');
+			if (!raw) return;
+
+			const decoded = decodeURIComponent(raw).trim();
+			const container = document.getElementById('blog-region-sections');
+			if (!container) return;
+
+			const sections = [...container.querySelectorAll('section.region-section')];
+			const target =
+				sections.find((s) => s.getAttribute('data-region-name') === decoded) ??
+				sections.find((s) => s.getAttribute('data-region-id') === decoded.toLowerCase());
+
+			if (target) {
+				container.insertBefore(target, container.firstChild);
+				requestAnimationFrame(() => {
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					window.scrollBy(0, -50);
+				});
 			}
-		});
+		}
+
+		prioritizeRegionSection();
+		document.addEventListener('DOMContentLoaded', prioritizeRegionSection);
 	</script>
 </MainLayout>
