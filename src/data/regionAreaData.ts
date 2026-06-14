@@ -32,6 +32,7 @@ export const regionSlugMap: Record<string, string> = {
     '奈良県': 'nara',
     '和歌山県': 'wakayama',
     '佐賀県': 'saga',
+    '山口県': 'yamaguchi',
     '福井県': 'fukui',
     '三重県': 'mie',
     '岐阜県': 'gifu',
@@ -315,5 +316,16 @@ export const regionAreaData: Record<string, RegionAreaConfig> = {
             { label: '東濃・飛騨エリア', cities: ['恵那市', '高山市', '下呂市', '郡上市', '飛騨市'] },
         ],
         ctaText: '＼岐阜県全域対応！／ 無料見積もり・お問い合わせはこちら',
+    },
+    '山口県': {
+        headline: '山口県西部ならどこでも！最短当日お伺いします',
+        reassurance: '下関市・宇部市・山陽小野田市をはじめ、山口県西部（本州）のご指定場所へ出張します。※離島・島しょ部は対象外です。ご自宅や職場の駐車場まで、専用機材を積んで迅速にお伺いします！',
+        areas: [
+            { label: '下関エリア', cities: ['下関市'] },
+            { label: '宇部・小野田エリア', cities: ['宇部市', '山陽小野田市'] },
+            { label: '周南・下松エリア', cities: ['周南市', '下松市', '光市'] },
+            { label: '柳井・美祢エリア', cities: ['柳井市', '美祢市'] },
+        ],
+        ctaText: '＼山口県西部対応！／ 無料見積もり・お問い合わせはこちら',
     },
 };

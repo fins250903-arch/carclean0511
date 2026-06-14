@@ -98,6 +98,7 @@ const REGION_SAMPLE_CITIES: Record<string, string> = {
   奈良県: '奈良市',
   和歌山県: '和歌山市',
   佐賀県: '佐賀市',
+  山口県: '下関市',
   福井県: '福井市',
 };
 
@@ -386,6 +387,7 @@ const REGIONAL_HERO_MAIN_TITLES: Record<string, string> = {
   静岡県: '静岡県の車内清掃・嘔吐・灯油対応｜東海道沿いへ出張',
   奈良県: '奈良県の車内嘔吐・臭い取り｜家族ドライブの緊急トラブル対応',
   佐賀県: '佐賀県の車内クリーニング・消臭洗浄｜福岡近郊からも即対応',
+  山口県: '山口県西部の車内清掃・嘔吐対応｜下関・宇部・山陽小野田へ出張',
 };
 
 export function getRegionalHeroMainTitle(regionName: string): string | undefined {

@@ -69,6 +69,8 @@ collections:
           - { label: '東京都', value: tokyo }
           - { label: '大阪府', value: osaka }
           - { label: '静岡県', value: shizuoka }
+          - { label: '佐賀県', value: saga }
+          - { label: '山口県', value: yamaguchi }
           - { label: '福井県', value: fukui }
 
       - label: サムネイル画像

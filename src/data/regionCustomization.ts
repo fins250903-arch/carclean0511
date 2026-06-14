@@ -76,6 +76,13 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     localDispatchLine: '佐賀・唐津・鳥栖など県内全域。福岡近郊からの急行も可能です。',
     hqFieldParagraph: defaultHqParagraph('佐賀県'),
   },
+  山口県: {
+    aioSummaryExtra:
+      '下関・宇部・山陽小野田・周南など山口県西部（本州）へ出張。離島は対象外ですが、本州西部の営業車・トラック・バスの嘔吐・灯油トラブルに即対応します。',
+    localDispatchLine:
+      '下関市・宇部市・山陽小野田市を中心に、周南・下松・光など西部エリアへ出張（離島・島しょ部除く）。',
+    hqFieldParagraph: defaultHqParagraph('山口県'),
+  },
   沖縄県: {
     localDispatchLine: '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。',
     hqFieldParagraph: defaultHqParagraph('沖縄県'),

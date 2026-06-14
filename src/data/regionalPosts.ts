@@ -1134,5 +1134,48 @@ export const regionalPosts: Record<string, RegionalPost> = {
             ],
             "description": "佐賀県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
         }
+    },
+    "山口県": {
+        displayName: "山口県西部",
+        title: "[山口県下関市] 観光タクシーの嘔吐トラブル・当日出張で復旧した事例",
+        excerpt: "下関市内の観光タクシーにて、お客様の急な嘔吐によるシート汚れ。当日中の出張施工で臭いとシミを除去し、翌日の運行に間に合わせました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">観光タクシーの嘔吐トラブルを当日復旧</h3>
+            <p class="mb-4">下関市内の観光タクシー事業者様より、乗客の急な嘔吐によるリアシートの汚れ・臭いの緊急依頼。関門海峡観光シーズン中の運行停止は大きな損失となるため、当日中の出張対応をご希望いただきました。</p>
+            <p class="mb-4">業務用リンサーで嘔吐物を根こそぎ吸引・温水洗浄し、除菌消臭剤で仕上げ。関門海峡近郊の湿気の多い環境でも臭いが残りにくい施工を行い、翌朝の観光送迎に間に合うスケジュールで完了しました。</p>
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：2.5時間 / 費用：30,000円（普通車・嘔吐対応）。</p>
+            </div>
+        `,
+        image: getImage(6),
+        aiSummary: `山口県西部（本州）の車内クリーニング・消臭洗浄の出張専門店です。下関市・宇部市・山陽小野田市を中心に、周南市・下松市・光市・柳井市・美祢市など西部エリアへ最短即日で伺います。※離島・島しょ部は対象外です。「急な嘔吐」「灯油こぼし」「トラック・バスの車内汚れ」を業務用リンサーで根こそぎ洗浄。福岡・北九州方面からの急行依頼にも対応します。`,
+        specs: [
+            { label: "主な対応エリア", value: "下関市、宇部市、山陽小野田市、周南市、下松市、光市、柳井市、美祢市ほか山口県西部（本州・離島除く）" },
+            { label: "主な解決悩み", value: "嘔吐、灯油こぼし、タクシー・観光バス清掃、トラック荷台付近の臭い、中古車タバコ臭" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、除菌消臭、特殊アルカリ洗浄剤、業務用リンサー" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "山口県西部の車内クリーニング・シート洗浄専門店",
+            "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
+            "@id": "https://carinteriorcleaning.jp/regions/yamaguchi/",
+            "url": "https://carinteriorcleaning.jp/regions/yamaguchi/",
+            "telephone": "070-8428-0866",
+            "address": { "@type": "PostalAddress", "addressRegion": "Yamaguchi", "addressCountry": "JP" },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "下関市"},
+                {"@type": "AdministrativeArea", "name": "宇部市"},
+                {"@type": "AdministrativeArea", "name": "山陽小野田市"},
+                {"@type": "AdministrativeArea", "name": "周南市"},
+                {"@type": "AdministrativeArea", "name": "下松市"},
+                {"@type": "AdministrativeArea", "name": "光市"},
+                {"@type": "AdministrativeArea", "name": "柳井市"},
+                {"@type": "AdministrativeArea", "name": "美祢市"}
+            ],
+            "description": "山口県西部（下関・宇部・山陽小野田ほか本州西部）に出張対応。離島・島しょ部は対象外。車内クリーニング、嘔吐・消臭洗浄の専門店。最短当日にお伺いします。"
+        }
     }
 };
