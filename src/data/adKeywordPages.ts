@@ -1,4 +1,5 @@
 import { FV_PASSENGER_HERO, KW_IMAGES } from '@/lib/assets513';
+import { LPO_AD_PAGES } from './lpAdPages';
 
 /** 広告LP（乗用車・1キーワード1URL）。FV は `public/images/kw/`（本番配信済み） */
 export type AdKeywordPageDef = {
@@ -774,6 +775,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: 'バス車内クリーニング・消臭洗浄のプロ施工イメージ',
   },
+  ...LPO_AD_PAGES,
 ];
 
 /** 重点広告地域（千葉・愛知・大阪・兵庫・福岡） */

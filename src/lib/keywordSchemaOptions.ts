@@ -18,7 +18,7 @@ export function buildAdKeywordJsonLdOptions({
   displayName,
   metadata,
 }: AdKeywordSchemaInput) {
-  const isShutchou = kwSlug === 'shutchou-senmon';
+  const isShutchou = kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning';
   const serviceDefinition = isShutchou
     ? buildMobileInteriorCleaningDefinition(regionName)
     : kw.seoDescription(regionName);

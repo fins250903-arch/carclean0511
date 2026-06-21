@@ -11,6 +11,79 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const SITE = 'https://carinteriorcleaning.jp';
 
+/** 重点地域の旧スラッグ → LPO新スラッグ（広告 Final URL 用） */
+const LPO_SLUG_BY_REGION = {
+  chiba: {
+    'kyuto-cleaning': 'vomit-cleaning',
+    'shutchou-senmon': 'mobile-cleaning',
+  },
+  aichi: {
+    'kyuto-cleaning': 'vomit-cleaning',
+    'evaporator-senjo': 'ac-mold',
+    'tabako-yani': 'tobacco-odor',
+    'pet-unko': 'pet-waste',
+  },
+  osaka: {
+    'kyuto-cleaning': 'vomit-cleaning',
+    'kuruma-nioi-keshi': 'odor-removal',
+    'shanai-nioi': 'mold-odor',
+  },
+  hyogo: {
+    'kyuto-cleaning': 'vomit-cleaning',
+    'seat-senjo': 'seat-washing',
+    'oshikko': 'pet-hair-odor',
+  },
+  fukuoka: {
+    'kyuto-cleaning': 'vomit-cleaning',
+  },
+  okinawa: {
+    'kyuto-cleaning': 'vomit-cleaning',
+  },
+};
+
+/** LPO専用広告グループ（地域トップ代替の新URL） */
+const LPO_THEME_GROUPS = [
+  {
+    adGroup: 'AG_通常_車内クリーニング',
+    slug: 'interior-cleaning',
+    tier: 'S',
+    maxCpc: 260,
+    regions: ['fukuoka', 'hyogo', 'okinawa', 'osaka'],
+    keywords: [
+      '車内 クリーニング',
+      '車内 洗浄',
+      '車 室内 クリーニング',
+      '車内 清掃',
+      '{city} 車内クリーニング',
+      '{city} 車 クリーニング',
+    ],
+  },
+  {
+    adGroup: 'AG_通常_専門店',
+    slug: 'specialist-cleaning',
+    tier: 'S',
+    maxCpc: 280,
+    regions: ['osaka'],
+    keywords: [
+      '車内 クリーニング 専門 店',
+      '車内クリーニング 専門店',
+      '{city} 車内クリーニング 専門 店',
+    ],
+  },
+  {
+    adGroup: 'AG_緊急_ゲロ',
+    slug: 'gero-cleaning',
+    tier: 'S',
+    maxCpc: 350,
+    regions: ['aichi'],
+    keywords: ['車 ゲロ クリーニング', '車 ゲロ 消臭', 'ゲロ 車内 洗浄', '{city} ゲロ 車内'],
+  },
+];
+
+function resolveLpoSlug(regionId, slug) {
+  return LPO_SLUG_BY_REGION[regionId]?.[slug] ?? slug;
+}
+
 /**
  * 重点6地域（沖縄含む）
  * - LPは 1テーマ=1URL（Quality Score・SEO用）
@@ -217,7 +290,7 @@ for (const region of PRIORITY_REGIONS) {
     if (theme.regions && !theme.regions.includes(region.id)) continue;
 
     const keywords = expandKeywords(theme.keywords, region);
-    const url = finalUrl(region.id, theme.slug);
+    const url = finalUrl(region.id, resolveLpoSlug(region.id, theme.slug));
 
     for (const keyword of keywords) {
       const matchType = keyword.includes('灯油 こぼし 出張') ? 'Exact' : 'Phrase';
@@ -231,6 +304,28 @@ for (const region of PRIORITY_REGIONS) {
           theme.maxCpc,
           theme.tier,
           region.id,
+          resolveLpoSlug(region.id, theme.slug),
+        ]),
+      );
+      count += 1;
+    }
+  }
+
+  for (const theme of LPO_THEME_GROUPS) {
+    if (theme.regions && !theme.regions.includes(region.id)) continue;
+    const keywords = expandKeywords(theme.keywords, region);
+    const url = finalUrl(region.id, theme.slug);
+    for (const keyword of keywords) {
+      rows.push(
+        row([
+          campaign,
+          theme.adGroup,
+          keyword,
+          'Phrase',
+          url,
+          theme.maxCpc,
+          theme.tier,
+          region.id,
           theme.slug,
         ]),
       );
@@ -238,14 +333,14 @@ for (const region of PRIORITY_REGIONS) {
     }
   }
 
-  // 沖縄: 湿気・カビ特化の追加KW（エアコンAGへ同一LP）
+  // 沖縄: 湿気・カビ特化の追加KW
   if (region.id === 'okinawa') {
     const okinawaExtra = [
       '那覇 車内クリーニング 出張',
       '沖縄本島 車内 清掃',
       '沖縄 レンタカー 嘔吐 清掃',
     ];
-    const url = finalUrl('okinawa', 'shanai-nioi');
+    const url = finalUrl('okinawa', resolveLpoSlug('okinawa', 'shanai-nioi'));
     for (const keyword of okinawaExtra) {
       rows.push(
         row([
@@ -257,7 +352,7 @@ for (const region of PRIORITY_REGIONS) {
           300,
           'A',
           'okinawa',
-          'shanai-nioi',
+          resolveLpoSlug('okinawa', 'shanai-nioi'),
         ]),
       );
       count += 1;

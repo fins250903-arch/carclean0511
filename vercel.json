@@ -1,6 +1,76 @@
 {
   "redirects": [
     {
+      "source": "/regions/chiba/shutchou-senmon/",
+      "destination": "/regions/chiba/mobile-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/hyogo/seat-senjo/",
+      "destination": "/regions/hyogo/seat-washing/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/osaka/kuruma-nioi-keshi/",
+      "destination": "/regions/osaka/odor-removal/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/aichi/evaporator-senjo/",
+      "destination": "/regions/aichi/ac-mold/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/aichi/tabako-yani/",
+      "destination": "/regions/aichi/tobacco-odor/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/aichi/pet-unko/",
+      "destination": "/regions/aichi/pet-waste/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/osaka/shanai-nioi/",
+      "destination": "/regions/osaka/mold-odor/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/hyogo/oshikko/",
+      "destination": "/regions/hyogo/pet-hair-odor/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/chiba/kyuto-cleaning/",
+      "destination": "/regions/chiba/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/aichi/kyuto-cleaning/",
+      "destination": "/regions/aichi/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/osaka/kyuto-cleaning/",
+      "destination": "/regions/osaka/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/hyogo/kyuto-cleaning/",
+      "destination": "/regions/hyogo/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/fukuoka/kyuto-cleaning/",
+      "destination": "/regions/fukuoka/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/okinawa/kyuto-cleaning/",
+      "destination": "/regions/okinawa/vomit-cleaning/",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/regions/osaka/",
       "permanent": true
