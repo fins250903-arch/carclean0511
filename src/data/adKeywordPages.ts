@@ -1,4 +1,5 @@
 import { FV_PASSENGER_HERO, KW_IMAGES } from '@/lib/assets513';
+import { LPO_AD_PAGES } from './lpAdPages';
 
 /** 広告LP（乗用車・1キーワード1URL）。FV は `public/images/kw/`（本番配信済み） */
 export type AdKeywordPageDef = {
@@ -466,7 +467,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `車 嘔吐 クリーニング ${r}, 嘔吐 車内清掃 ${r}, ゲロ 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
     ogImage: KW_IMAGES.sienta3Before,
     heroSubtitle: (d) => `${d}｜車 嘔吐 クリーニング`,
-    heroHighlight: ['嘔吐・ゲロ', '早急プロ洗浄'],
+    heroHighlight: ['嘔吐・車酔い', '早急プロ洗浄'],
     heroSubcatch: (d) => `${d}の車内嘔吐クリーニング`,
     fvImage: KW_IMAGES.sienta3Before,
     heroFooter: kwFooter('嘔吐汚れ・臭い'),
@@ -478,7 +479,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 嘔吐 クリーニング</strong>は、シート深部までの洗浄が必須です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。<br /><strong>${rn}</strong>の緊急ご依頼を優先して受け付けています。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: '嘔吐汚れのシート洗浄前イメージ',
-    mainTitle: (r, d) => `【${r}】車の嘔吐クリーニング緊急特急便！今すぐ消臭・除菌で元通り`,
+    mainTitle: (r, d) => `【${r}】車の嘔吐クリーニング緊急便｜今すぐ消臭で元通りに`,
     deepTroubles: [
       '子供が急に車酔いしてシートに嘔吐…胃酸の酸っぱい臭いが取れない',
       '自分で拭き取ったけれど、時間が経つにつれて腐敗臭が強くなってきた',
@@ -556,6 +557,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>出張 車内 クリーニング 専門店</strong>として、<strong>${dn}</strong>全域へ駆けつけます。<br />プロ機材で嘔吐・臭い・シート汚れを根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '出張車内クリーニングの施工イメージ',
+    mainTitle: (r) => `出張車内クリーニング専門店｜${r}で最短即日対応`,
   },
   {
     slug: 'shanai-shoshu',
@@ -587,8 +589,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     seoKeywords: (r) =>
       `車 匂い 消し ${r}, 車 臭い 消す ${r}, 車内クリーニング ${r}, 消臭 ${r}, 車 ニオイ ${r}`,
     ogImage: KW_IMAGES.kurumaNioitori,
-    heroSubtitle: (d) => `${d}｜車 匂い 消し`,
-    heroHighlight: ['車の匂い消し', '洗浄で根本対策'],
+    heroSubtitle: (d) => `${d}｜車 匂い 消し・消臭洗浄`,
+    heroHighlight: ['匂いの元を', '洗浄で根本除去'],
     heroSubcatch: (d) => `${d}の車 匂い 消し出張`,
     fvImage: KW_IMAGES.kurumaNioitori,
     heroFooter: kwFooter('車の匂い'),
@@ -600,6 +602,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 匂い 消し</strong>は、高温スチームとリンサー洗浄で臭いの元を減らします。<br /><strong>${dn}</strong>の指定場所へ出張施工します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
+    mainTitle: (r) => `${r}で車の匂い消し｜消臭スプレーでは消えない臭いを根絶`,
   },
   {
     slug: 'evaporator-senjo',
@@ -772,6 +775,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: 'バス車内クリーニング・消臭洗浄のプロ施工イメージ',
   },
+  ...LPO_AD_PAGES,
 ];
 
 /** 重点広告地域（千葉・愛知・大阪・兵庫・福岡） */

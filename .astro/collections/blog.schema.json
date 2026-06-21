@@ -25,6 +25,43 @@
         "type": "string"
       }
     },
+    "shortSlug": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "object",
+      "properties": {
+        "meta_title": {
+          "type": "string"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "string"
+        },
+        "noindex": {
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "ogp": {
+      "type": "object",
+      "properties": {
+        "og_image": {
+          "type": "string"
+        },
+        "og_type": {
+          "default": "article",
+          "type": "string",
+          "enum": [
+            "article",
+            "website"
+          ]
+        }
+      }
+    },
     "$schema": {
       "type": "string"
     }

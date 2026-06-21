@@ -333,10 +333,38 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     customDefinition: (regionName) =>
       `${regionName}の出張車内清掃専門サービスとは、プロの温水リンサー・特殊アルカリ電解水を用い、ご指定場所へ訪問してシート内部まで洗浄・消臭するサービスです。ディーラー持ち込み不要・即日復旧が可能です。`,
   },
+  'interior-cleaning': {
+    troubleType: 'seat',
+    answerFirst: (regionName) =>
+      `【結論】${regionName}で車内クリーニングをプロに依頼するなら、出張リンサー洗浄が最も手軽です。シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄し、電源・水道不要で駐車場があれば施工可能です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜。`,
+    customDefinition: (regionName) =>
+      `${regionName}の車内クリーニングとは、出張専門スタッフがシート・フロアを温水リンサーで洗浄し、車内を清潔で快適な状態に戻すサービスです。`,
+  },
+  'specialist-cleaning': {
+    troubleType: 'seat',
+    answerFirst: (regionName) =>
+      `【結論】${regionName}の車内クリーニング専門店として、車内清掃「特急便」は年間300台超の施工実績。シート洗浄から消臭まで出張で対応し、電源・水道不要・最短即日です。${regionName}内へ365日24時間受付。`,
+    customDefinition: (regionName) =>
+      `${regionName}の車内クリーニング専門店サービスとは、プロ機材と経験豊富な専門員が出張し、シート内部まで洗浄・消臭する専門サービスです。`,
+  },
+};
+
+const AIO_SLUG_ALIASES: Record<string, string> = {
+  'vomit-cleaning': 'kyuto-cleaning',
+  'gero-cleaning': 'kyuto-cleaning',
+  'mobile-cleaning': 'shutchou-senmon',
+  'seat-washing': 'seat-senjo',
+  'odor-removal': 'kuruma-nioi-keshi',
+  'ac-mold': 'evaporator-senjo',
+  'tobacco-odor': 'tabako-yani',
+  'pet-waste': 'pet-unko',
+  'mold-odor': 'shanai-nioi',
+  'pet-hair-odor': 'oshikko',
 };
 
 export function getAioKeywordContent(slug: string): AioKeywordContent | undefined {
-  return AIO_KEYWORD_CONTENT[slug];
+  const key = AIO_SLUG_ALIASES[slug] ?? slug;
+  return AIO_KEYWORD_CONTENT[key];
 }
 
 /** AIOContent / JSON-LD 共通FAQ（表示とスキーマの一致用） */
@@ -374,24 +402,10 @@ export function buildRegionalAnswerFirst(regionName: string): string {
   return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを「今すぐ」解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。車内清掃「特急便」は365日24時間受付・最短即日対応。施工歴3年以上・年間300台超の専門員が直接ご指定の駐車場へ訪問します。電源・水道は不要（発電機・水タンク完備）。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜、灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜/席。車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記します。`;
 }
 
-const REGIONAL_HERO_MAIN_TITLES: Record<string, string> = {
-  愛知県: '愛知県の車 嘔吐 クリーニング｜最短即日出張・保険代理申請対応',
-  大阪府: '大阪府の嘔吐車内清掃 出張｜年間300台の専門員が直接訪問',
-  東京都: '東京都の車内嘔吐・ニオイ消臭｜365日24時間・電源不要で即日対応',
-  埼玉県: '埼玉県の車シート洗浄・嘔吐清掃｜出張専門・保険相談無料',
-  千葉県: '千葉県の車内嘔吐・臭い取り｜出張専門・最短即日対応',
-  兵庫県: '兵庫県の車内清掃・嘔吐対応｜神戸・阪神エリアへ即日出張',
-  福岡県: '福岡県の車内嘔吐・消臭洗浄｜北九州・筑豊まで出張対応',
-  沖縄県: '沖縄本島の車内クリーニング・カビ臭消臭｜高湿度対策に強い',
-  神奈川県: '神奈川県の車内嘔吐・シート洗浄｜横浜・川崎へ最短即日',
-  静岡県: '静岡県の車内清掃・嘔吐・灯油対応｜東海道沿いへ出張',
-  奈良県: '奈良県の車内嘔吐・臭い取り｜家族ドライブの緊急トラブル対応',
-  佐賀県: '佐賀県の車内クリーニング・消臭洗浄｜福岡近郊からも即対応',
-  山口県: '山口県西部の車内清掃・嘔吐対応｜下関・宇部・山陽小野田へ出張',
-};
+import { REGIONAL_FV_MAIN_TITLES } from './fvAdGroupCopy';
 
 export function getRegionalHeroMainTitle(regionName: string): string | undefined {
-  return REGIONAL_HERO_MAIN_TITLES[regionName];
+  return REGIONAL_FV_MAIN_TITLES[regionName];
 }
 
 export function buildRegionalNioiAnswerFirst(regionName: string): string {

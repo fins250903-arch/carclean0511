@@ -44,6 +44,7 @@ import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
+import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 
@@ -119,15 +120,20 @@ const jsonLdData = generateJsonLd(
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 
-const adHero = {
-  subtitle: kw.heroSubtitle(displayName),
-  highlightLine1: kw.heroHighlight[0],
-  highlightLine2: kw.heroHighlight[1],
-  subcatch: kw.heroSubcatch(displayName),
-  fvImage: kw.fvImage,
-  footerText: kw.heroFooter(displayName),
-  mainTitle: kw.mainTitle?.(regionName, displayName),
-};
+const fvCopy = findFvCopy(regionId, kwSlug);
+const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
+
+const adHero = fvHero
+  ? { ...fvHero, fvImage: kw.fvImage }
+  : {
+      subtitle: kw.heroSubtitle(displayName),
+      highlightLine1: kw.heroHighlight[0],
+      highlightLine2: kw.heroHighlight[1],
+      subcatch: kw.heroSubcatch(displayName),
+      fvImage: kw.fvImage,
+      footerText: kw.heroFooter(displayName),
+      mainTitle: kw.mainTitle?.(regionName, displayName),
+    };
 
 const adProblem = {
   header: kw.problemHeader,
@@ -166,7 +172,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
       <AIOContent
         regionName={regionName}
         niche={pageNiche}
-        focusShutchou={kwSlug === 'shutchou-senmon'}
+        focusShutchou={kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning'}
         customDefinition={customDefinition}
         extraFaqs={aioKw?.extraFaqs}
       />
