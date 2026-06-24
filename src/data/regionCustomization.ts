@@ -100,11 +100,17 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('宮城県'),
   },
   栃木県: {
-    localDispatchLine: '宇都宮・小山市など県内全域へ出張。',
+    aioSummaryExtra:
+      '宇都宮・小山・足利・佐野の各エリアに契約出張枠があり、日光観光・那須高原ドライブ帰りの嘔吐や、県北の冬の灯油こぼしにも地元密着で即対応します。',
+    localDispatchLine:
+      '宇都宮・小山・足利・佐野・那須塩原など県内全域へ出張。栃木県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
     hqFieldParagraph: defaultHqParagraph('栃木県'),
   },
   群馬県: {
-    localDispatchLine: '前橋・高崎・太田など県内全域。マンション駐車場も電源不要で施工可能。',
+    aioSummaryExtra:
+      '前橋・高崎・伊勢崎・太田の各エリアに契約出張枠があり、関越道・上信越道の渋滞トラブルや草津・榛名湖ドライブ帰りの嘔吐、内陸の冬に多い灯油こぼしにも地元密着で即対応します。',
+    localDispatchLine:
+      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
     hqFieldParagraph: defaultHqParagraph('群馬県'),
   },
   和歌山県: {

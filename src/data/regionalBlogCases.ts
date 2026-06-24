@@ -232,6 +232,22 @@ export const regionalBlogCases: Record<string, RegionalBlogCase[]> = {
       coverImage: '1759578725524-e1771336426437.jpg',
     },
   ],
+  gunma: [
+    {
+      title: '【前橋市】関越道渋滞中の子ども車酔い！シエンタ嘔吐消臭の即日施工事例',
+      excerpt: '草津温泉帰りの関越道渋滞で嘔吐。前橋市へ即日出張し、翌朝の送迎に間に合うよう無臭化しました。',
+      date: '2026-03-18',
+      slug: '2026/03/2026-03-18-maebashikyuto',
+      coverImage: '嘔吐２-e1771405813888.jpg',
+    },
+    {
+      title: '【高崎市】冬の灯油こぼしトラブル！インプレッサの消臭洗浄事例',
+      excerpt: '高崎市でストーブ用灯油を車内にこぼした緊急依頼。群馬の冬場トラブルに即対応しました。',
+      date: '2026-02-28',
+      slug: '2026/02/2026-02-28-takasakitouyu',
+      coverImage: 'toyota-yaris.jpg',
+    },
+  ],
   miyagi: [
     {
       title: '【仙台市】スバル インプレッサスポーツの冬のトラブル「灯油こぼれ」消臭施工の事例',

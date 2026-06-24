@@ -10,6 +10,9 @@
  *   heroSubtitle  → subtitle（小見出し）
  */
 
+import { GUNMA_FV_AD_GROUP_COPY } from './fvAdGroupCopyGunma';
+import { TOCHIGI_FV_AD_GROUP_COPY } from './fvAdGroupCopyTochigi';
+
 export type FvIntent =
   | 'general-cleaning'
   | 'vomit-emergency'
@@ -547,6 +550,8 @@ export const FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
       footerText: '兵庫のペット車内クリーニング　まとめて対応します。',
     },
   },
+  ...GUNMA_FV_AD_GROUP_COPY,
+  ...TOCHIGI_FV_AD_GROUP_COPY,
 ];
 
 export function findFvCopy(
@@ -610,4 +615,6 @@ export const REGIONAL_FV_MAIN_TITLES: Record<string, string> = {
   奈良県: '奈良の車内クリーニング｜出張でシート洗浄・消臭',
   佐賀県: '佐賀の車内クリーニング｜福岡近郊からも即対応',
   山口県: '山口の車内クリーニング｜出張で消臭洗浄',
+  群馬県: '群馬の車内クリーニング｜前橋・高崎へ最短即日出張',
+  栃木県: '栃木の車内クリーニング｜宇都宮・小山へ最短即日出張',
 };

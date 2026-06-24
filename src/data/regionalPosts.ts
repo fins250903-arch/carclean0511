@@ -823,13 +823,13 @@ export const regionalPosts: Record<string, RegionalPost> = {
             </div>
         `,
         image: getImage(1),
-        aiSummary: `栃木県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。宇都宮市・小山市などへ迅速に伺い、「中古車の皮脂汚れ・加齢臭」や「シートの嘔吐、食べこぼし」を100℃スチームと業務用リンサーで徹底洗浄。隙間ノズルを用いた細かな作業により、ご自身では落とせない深部の汚れまで確実に除去し、清潔な車内を復元します。`,
+        aiSummary: `栃木県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。宇都宮市・小山市・足利市・佐野市・那須塩原市など県内各所へ最短即日で伺い、日光・いろは坂ドライブ帰りの「急な嘔吐」、那須高原キャンプ帰りの「砂・ペット臭」、県北の冬に多い「灯油こぼし」、東京通勤で蓄積した「汗・皮脂汚れ」まで業務用リンサーで根こそぎ洗浄。栃木県内に契約の出張枠があり、地元密着のスピード対応をお約束します。`,
         specs: [
-            { label: "主な対応エリア", value: "宇都宮市、小山市、栃木市、足利市、佐野市、那須塩原市ほか栃木県全域" },
-            { label: "主な解決悩み", value: "加齢臭（皮脂汚れ）、食べこぼし、嘔吐、タバコ臭、カビ臭" },
-            { label: "使用技術", value: "40℃温水高圧洗浄、隙間専用ノズル洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "主な対応エリア", value: "宇都宮市、小山市、栃木市、足利市、佐野市、那須塩原市、日光市、大田原市ほか栃木県全域" },
+            { label: "主な解決悩み", value: "嘔吐・車酔い、灯油こぼし、ペット粗相、タバコ・加齢臭、キャンプ・砂汚れ、東京通勤の汗臭" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、100℃スチーム、隙間専用ノズル洗浄、特殊アルカリ洗浄剤、業務用リンサー、エバポレーター洗浄" },
+            { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問（栃木県内契約出張枠）" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜 / 灯油専用洗浄：別途見積（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -863,6 +863,62 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 {"@type": "AdministrativeArea", "name": "下野市"}
             ],
             "description": "栃木県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
+        }
+    },
+    "群馬県": {
+        title: "【前橋市】関越道渋滞中の子ども車酔い！翌日の送迎に間に合う嘔吐消臭事例",
+        excerpt: "草津温泉帰り、関越自動車道の渋滞で後部座席のお子様が突然嘔吐。翌朝の保育園送迎までに間に合わせたいとのご依頼で、前橋市のご自宅駐車場へ即日出張しました。",
+        content: `
+            <h3 class="font-bold text-xl mb-4">草津帰りの関越道、突然の車酔い</h3>
+            <p class="mb-4">週末の家族ドライブ。草津温泉から前橋へ戻る途中、関越自動車道の渋滞が続き、ストップ＆ゴーの繰り返しで後部座席のお子様が突然嘔吐してしまいました。胃液がシートのウレタン奥まで染み込み、酸っぱい腐敗臭が車内全体に広がった状態でご連絡をいただきました。</p>
+            <p class="mb-4">群馬県内の契約出張スタッフが最短ルートで駆けつけ、40℃温水リンサーと100℃スチームで吐瀉物を抽出。シート乾燥まで一気通貫で施工し、翌朝の保育園送迎に間に合うよう当日中に無臭状態へ復元しました。</p>
+
+            <div class="bg-blue-50 p-4 rounded-lg mt-6 border border-blue-200">
+                <p class="font-bold text-blue-800">施工完了</p>
+                <p class="text-sm mt-2">作業時間：2.5時間 / 費用：38,000円。<br>お客様の感想：大満足！「関越道の渋滞はつらいけど、車内の臭いだけはプロに任せて正解でした」とのお言葉をいただきました。</p>
+            </div>
+        `,
+        image: getImage(2),
+        aiSummary: `群馬県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。前橋市・高崎市・伊勢崎市・太田市など県内各所へ最短即日で伺い、関越道・上信越道の渋滞中トラブルや草津温泉・榛名湖ドライブ帰りの「急な嘔吐」、内陸の厳しい冬に多い「灯油こぼし」、工場通勤で蓄積した「汗・皮脂汚れ」まで業務用リンサーで根こそぎ洗浄。群馬県内に契約の出張枠があり、地元密着のスピード対応をお約束します。`,
+        specs: [
+            { label: "主な対応エリア", value: "前橋市、高崎市、伊勢崎市、太田市、桐生市、館林市、藤岡市、渋川市ほか群馬県全域" },
+            { label: "主な解決悩み", value: "嘔吐・車酔い、灯油こぼし、ペット粗相、タバコ・加齢臭、工場通勤の汗臭、カビ・湿気臭" },
+            { label: "使用技術", value: "40℃温水高圧洗浄、100℃スチーム、特殊アルカリ洗浄剤、業務用リンサー、エバポレーター洗浄" },
+            { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問（群馬県内契約出張枠）" },
+            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜 / 灯油専用洗浄：別途見積（税込）" }
+        ],
+        structuredData: {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "群馬の車内クリーニング・シート洗浄専門店",
+            "image": "https://carinteriorcleaning.jp/images/fv-passenger-hero.png",
+            "@id": "https://carinteriorcleaning.jp/regions/gunma/",
+            "url": "https://carinteriorcleaning.jp/regions/gunma/",
+            "telephone": "070-8428-0866",
+            "address": {
+                "@type": "PostalAddress",
+                "addressRegion": "Gunma",
+                "addressCountry": "JP"
+            },
+            "geo": {
+                "@type": "GeoShape",
+                "addressRegion": "Gunma"
+            },
+            "areaServed": [
+                {"@type": "AdministrativeArea", "name": "前橋市"},
+                {"@type": "AdministrativeArea", "name": "高崎市"},
+                {"@type": "AdministrativeArea", "name": "伊勢崎市"},
+                {"@type": "AdministrativeArea", "name": "太田市"},
+                {"@type": "AdministrativeArea", "name": "桐生市"},
+                {"@type": "AdministrativeArea", "name": "館林市"},
+                {"@type": "AdministrativeArea", "name": "みどり市"},
+                {"@type": "AdministrativeArea", "name": "藤岡市"},
+                {"@type": "AdministrativeArea", "name": "富岡市"},
+                {"@type": "AdministrativeArea", "name": "安中市"},
+                {"@type": "AdministrativeArea", "name": "渋川市"},
+                {"@type": "AdministrativeArea", "name": "沼田市"}
+            ],
+            "description": "群馬県全域に出張対応。車内クリーニング、シートのシミ抜き、消臭洗浄の専門店。最短当日にお伺いします。"
         }
     },
     "東京都": {

@@ -747,7 +747,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   // ===== バス専門LP =====
   {
     slug: 'bus-senmon',
-    targetRegionIds: ['ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shiga', 'kyoto', 'hyogo', 'osaka', 'fukuoka', 'okinawa'],
+    targetRegionIds: ['ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shiga', 'kyoto', 'hyogo', 'osaka', 'fukuoka', 'okinawa', 'gunma', 'tochigi'],
     seoTitle: 'バス専門 車内洗浄・嘔吐消臭',
     seoDescription: (r) =>
       `${r}のバス専門 出張車内洗浄。観光バス・レンタカーバス・送迎バスの嘔吐・尿漏れ・飲食物汚染を最短即日対応。次の運行に間に合わせます。`,
