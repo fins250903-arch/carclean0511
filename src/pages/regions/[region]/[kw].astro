@@ -45,6 +45,7 @@ import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
 import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
+import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 
@@ -146,6 +147,7 @@ const adProblem = {
 
 /** slug から niche を解決 */
 const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'car';
+const noindex = isNoindexKeywordSlug(kwSlug);
 ---
 
 <MainLayout
@@ -154,6 +156,7 @@ const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'ca
   keywords={metadata.keywords}
   canonical={metadata.alternates?.canonical}
   ogImage={kw.ogImage}
+  noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
