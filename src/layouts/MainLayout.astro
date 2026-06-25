@@ -40,7 +40,7 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{noindex && <meta name="robots" content="noindex, follow" />}
 		<link rel="canonical" href={resolvedCanonical} />
 		
 		<!-- Open Graph -->
