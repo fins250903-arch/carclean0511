@@ -12,6 +12,7 @@
 
 import { GUNMA_FV_AD_GROUP_COPY } from './fvAdGroupCopyGunma';
 import { TOCHIGI_FV_AD_GROUP_COPY } from './fvAdGroupCopyTochigi';
+import { MIYAGI_FV_AD_GROUP_COPY } from './fvAdGroupCopyMiyagi';
 
 export type FvIntent =
   | 'general-cleaning'
@@ -552,6 +553,7 @@ export const FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
   },
   ...GUNMA_FV_AD_GROUP_COPY,
   ...TOCHIGI_FV_AD_GROUP_COPY,
+  ...MIYAGI_FV_AD_GROUP_COPY,
 ];
 
 export function findFvCopy(
@@ -617,4 +619,5 @@ export const REGIONAL_FV_MAIN_TITLES: Record<string, string> = {
   山口県: '山口の車内クリーニング｜出張で消臭洗浄',
   群馬県: '群馬の車内クリーニング｜前橋・高崎へ最短即日出張',
   栃木県: '栃木の車内クリーニング｜宇都宮・小山へ最短即日出張',
+  宮城県: '宮城の車内クリーニング｜仙台・名取へ最短即日出張',
 };

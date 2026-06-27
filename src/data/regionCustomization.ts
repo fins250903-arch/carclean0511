@@ -96,7 +96,10 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('岐阜県'),
   },
   宮城県: {
-    localDispatchLine: '仙台・名取・石巻など県内全域。冬場の灯油こぼし・急な嘔吐に即日出張。',
+    aioSummaryExtra:
+      '仙台・名取・多賀城・石巻の各エリアに契約出張枠があり、東北道の渋滞トラブルや松島観光帰りの嘔吐、東北の厳しい冬の灯油こぼしにも地元密着で即対応します。',
+    localDispatchLine:
+      '仙台・名取・石巻・富谷・多賀城など県内全域へ出張。宮城県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
     hqFieldParagraph: defaultHqParagraph('宮城県'),
   },
   栃木県: {
