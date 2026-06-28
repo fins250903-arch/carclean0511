@@ -1,4 +1,6 @@
 ---
+import { CAR_PRICING, TRUCK_PRICING } from '../../data/pricingConstants';
+
 interface Props {
   regionName: string;
   niche?: 'car' | 'truck' | 'bus';
@@ -7,6 +9,65 @@ interface Props {
 const { regionName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
+
+const fmt = (n: number) => n.toLocaleString('ja-JP');
+
+const carRows = [
+  {
+    label: '軽自動車・軽SUV',
+    sub: '（4人乗り以下）',
+    basic: CAR_PRICING.lightBasic,
+    deodorize: CAR_PRICING.lightDeodorize,
+    addon: CAR_PRICING.lightDeodorize - CAR_PRICING.lightBasic,
+    highlight: false,
+  },
+  {
+    label: '普通車',
+    sub: '（3・5ナンバー / 5人乗り以下）',
+    basic: CAR_PRICING.regularBasic,
+    deodorize: CAR_PRICING.regularDeodorize,
+    addon: CAR_PRICING.regularDeodorize - CAR_PRICING.regularBasic,
+    highlight: false,
+  },
+  {
+    label: '大型車・SUV・ミニバン',
+    sub: '（6人乗り以上）',
+    basic: CAR_PRICING.largeBasic,
+    deodorize: CAR_PRICING.largeDeodorize,
+    addon: CAR_PRICING.largeDeodorize - CAR_PRICING.largeBasic,
+    highlight: true,
+    badge: 'NEW',
+  },
+];
+
+const truckRows = [
+  {
+    label: '2t',
+    sub: '車内洗浄のみ',
+    cab: TRUCK_PRICING.ton2Cab,
+    bed: null as number | null,
+    total: null as number | null,
+    highlight: true,
+    badge: 'NEW',
+  },
+  {
+    label: '4t',
+    sub: '車内洗浄＋寝台ベッド',
+    cab: TRUCK_PRICING.ton4Cab,
+    bed: TRUCK_PRICING.ton4Bed,
+    total: TRUCK_PRICING.ton4Total,
+    highlight: true,
+    badge: 'NEW',
+  },
+  {
+    label: '10t',
+    sub: '車内洗浄＋寝台ベッド',
+    cab: TRUCK_PRICING.ton10Cab,
+    bed: TRUCK_PRICING.ton10Bed,
+    total: TRUCK_PRICING.ton10Total,
+    highlight: false,
+  },
+];
 ---
 
 <section class="py-20 bg-white" id="pricing">
@@ -159,13 +220,17 @@ const isBus = niche === 'bus';
         )}
 
         {/* ===== 車種別 基本料金テーブル ===== */}
+        {!isBus && (
         <div class="mb-10 bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm">
-            <h3 class="text-2xl md:text-3xl font-black text-blue-900 mb-6 flex items-center gap-3">
+            <h3 class="text-2xl md:text-3xl font-black text-blue-900 mb-2 flex items-center gap-3">
                 <span class="w-1.5 h-10 bg-primary rounded-full inline-block"></span>
-                {isTruck ? 'トラックキャビン' : '車種別料金表'}
+                {isTruck ? 'トラックキャビン 料金表' : '車種別料金表'}
             </h3>
+            {!isTruck && (
+              <p class="text-sm text-gray-500 mb-6">2026年4月改定。大型車・ミニバン（6人乗り以上）を新料金に更新しました。</p>
+            )}
 
-            {/* PC: テーブル / SP: カード */}
+            {!isTruck ? (
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
@@ -176,74 +241,98 @@ const isBus = niche === 'bus';
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        {!isTruck && (
-                            <>
-                            <tr class="hover:bg-blue-50 transition-colors">
+                        {carRows.map((row) => (
+                            <tr class={`hover:bg-blue-50 transition-colors ${row.highlight ? 'bg-orange-50/60 border-2 border-orange-200' : ''}`}>
                                 <td class="px-4 py-4">
-                                    <p class="font-bold text-gray-900 text-base md:text-lg">軽自動車・軽SUV</p>
-                                    <p class="text-gray-500 text-xs md:text-sm mt-0.5">（4人乗り以下）</p>
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <p class="font-bold text-gray-900 text-base md:text-lg">{row.label}</p>
+                                        {row.badge && (
+                                            <span class="text-[10px] font-black bg-orange-500 text-white px-2 py-0.5 rounded-full">{row.badge}</span>
+                                        )}
+                                    </div>
+                                    <p class="text-gray-500 text-xs md:text-sm mt-0.5">{row.sub}</p>
                                 </td>
                                 <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-primary">22,000</span>
+                                    <span class="text-2xl md:text-3xl font-black text-primary">{fmt(row.basic)}</span>
                                     <span class="text-sm text-primary font-bold">円</span>
                                 </td>
                                 <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-orange-500">25,000</span>
+                                    <span class="text-2xl md:text-3xl font-black text-orange-500">{fmt(row.deodorize)}</span>
                                     <span class="text-sm text-orange-500 font-bold">円</span>
-                                    <p class="text-xs text-gray-400 mt-0.5">(+3,000円)</p>
+                                    <p class="text-xs text-gray-400 mt-0.5">(+{fmt(row.addon)}円)</p>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-blue-50 transition-colors bg-blue-50/50">
-                                <td class="px-4 py-4">
-                                    <p class="font-bold text-gray-900 text-base md:text-lg">普通車</p>
-                                    <p class="text-gray-500 text-xs md:text-sm mt-0.5">（3・5ナンバー / 5人乗り以下）</p>
-                                </td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-primary">28,000</span>
-                                    <span class="text-sm text-primary font-bold">円</span>
-                                </td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-orange-500">32,000</span>
-                                    <span class="text-sm text-orange-500 font-bold">円</span>
-                                    <p class="text-xs text-gray-400 mt-0.5">(+4,000円)</p>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-blue-50 transition-colors">
-                                <td class="px-4 py-4">
-                                    <p class="font-bold text-gray-900 text-base md:text-lg">大型車・SUV・ミニバン</p>
-                                    <p class="text-gray-500 text-xs md:text-sm mt-0.5">（6人乗り以上）</p>
-                                </td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-primary">36,000</span>
-                                    <span class="text-sm text-primary font-bold">円</span>
-                                </td>
-                                <td class="px-4 py-4 text-center">
-                                    <span class="text-2xl md:text-3xl font-black text-orange-500">41,000</span>
-                                    <span class="text-sm text-orange-500 font-bold">円</span>
-                                    <p class="text-xs text-gray-400 mt-0.5">(+5,000円)</p>
-                                </td>
-                            </tr>
-                            </>
-                        )}
-                        {/* トラック行（常時表示 / トラックLPでは強調） */}
-                        <tr class={isTruck ? "bg-orange-50 border-2 border-orange-300" : "hover:bg-blue-50 transition-colors bg-gray-50"}>
-                            <td class="px-4 py-4">
-                                <p class="font-bold text-gray-900 text-base md:text-lg">トラックキャビン 10t</p>
-                                {isTruck && <p class="text-gray-500 text-xs md:text-sm mt-0.5">ベッド部等は別途お見積もり</p>}
-                            </td>
-                            <td class="px-4 py-4 text-center">
-                                <span class={`text-2xl md:text-3xl font-black ${isTruck ? 'text-orange-500' : 'text-primary'}`}>35,000</span>
-                                <span class={`text-sm font-bold ${isTruck ? 'text-orange-500' : 'text-primary'}`}>円〜</span>
-                            </td>
-                            <td class="px-4 py-4 text-center text-gray-400 text-sm">
-                                別途お見積もり
-                            </td>
-                        </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
+            ) : (
+            <>
+            <p class="text-sm text-red-700 font-bold bg-red-50 border border-red-200 rounded-lg px-4 py-2 mb-4">
+                ※ハイルーフは別途費用がかかります
+            </p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-blue-900 text-white">
+                            <th class="px-4 py-3 text-sm md:text-base font-bold rounded-tl-xl">トン数（目安）</th>
+                            <th class="px-4 py-3 text-sm md:text-base font-bold text-center">車内洗浄<br /><span class="text-xs font-normal">(税込)</span></th>
+                            <th class="px-4 py-3 text-sm md:text-base font-bold text-center">寝台ベッド<br /><span class="text-xs font-normal">(税込)</span></th>
+                            <th class="px-4 py-3 text-sm md:text-base font-bold text-center rounded-tr-xl">合計<br /><span class="text-xs font-normal">(税込)</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {truckRows.map((row) => (
+                            <tr class={`hover:bg-blue-50 transition-colors ${row.highlight ? 'bg-orange-50/60 border-2 border-orange-200' : ''}`}>
+                                <td class="px-4 py-4">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <p class="font-bold text-gray-900 text-base md:text-lg">{row.label}</p>
+                                        {row.badge && (
+                                            <span class="text-[10px] font-black bg-orange-500 text-white px-2 py-0.5 rounded-full">{row.badge}</span>
+                                        )}
+                                    </div>
+                                    <p class="text-gray-500 text-xs md:text-sm mt-0.5">{row.sub}</p>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    <span class="text-2xl md:text-3xl font-black text-primary">{fmt(row.cab)}</span>
+                                    <span class="text-sm text-primary font-bold">円</span>
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    {row.bed === null ? (
+                                        <span class="text-gray-400 font-bold text-sm">—</span>
+                                    ) : (
+                                        <>
+                                            <span class="text-xl md:text-2xl font-black text-primary">{fmt(row.bed)}</span>
+                                            <span class="text-sm text-primary font-bold">円</span>
+                                        </>
+                                    )}
+                                </td>
+                                <td class="px-4 py-4 text-center">
+                                    {row.total === null ? (
+                                        <span class="text-gray-400 font-bold text-sm">—</span>
+                                    ) : (
+                                        <>
+                                            <span class="text-2xl md:text-3xl font-black text-orange-500">{fmt(row.total)}</span>
+                                            <span class="text-sm text-orange-500 font-bold">円</span>
+                                        </>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            </>
+            )}
+
+            <div class="mt-6 bg-amber-50 border border-amber-300 rounded-xl p-4">
+                <p class="text-sm text-gray-800 font-bold">
+                    ※実際の金額は、現車を確認させていただいてからのご案内となります。
+                </p>
+            </div>
             <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。</p>
         </div>
+        )}
 
         {/* ===== 【個別】部分クリーニング ===== */}
         <div class="mb-10 bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-200 shadow-sm">
