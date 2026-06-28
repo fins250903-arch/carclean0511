@@ -5,7 +5,10 @@
 
 | 機能 | 対応 |
 |------|------|
-| 日付 | 公開日フィールド |
+| 日付 | 公開日フィールド + 一覧に日付表示 |
+| 並び替え | 一覧上部で「新しい順 / 古い順」切替 |
+| サムネイル | 一覧に coverImage / OGP 画像を表示 |
+| 地域名称 | `areaName`（市区町村）+ 全国47都道府県カテゴリー |
 | タイトル SEO | 32文字目安（meta_title） |
 | スラッグ | 英字のみ → `2026-05-31-xxx` 形式 |
 | 画像 | 本文へ貼り付け／ドラッグ。未設定時 1枚目をサムネイルに自動設定 |
@@ -45,10 +48,19 @@ OAuth App の GitHub リポジトリアクセスは `fins250903-arch/carclean051
 1. **公開日** を選ぶ
 2. **タイトル** を入力
 3. **URL用スラッグ** に英字のみ（例: `saitama4tontruck`）
-4. **カテゴリー** で地域（`saitama` 等）と `jisseki` を選択
-5. **SEO対策** に meta_description 等を入力
-6. **本文** に文章と画像（貼り付け可）
-7. **Publish** → 数分後に https://carinteriorcleaning.jp/blog/ に反映
+4. **都道府県カテゴリー** で地域（全国47都道府県 + `jisseki`）を選択
+5. **地域名称** に市区町村・エリア名（例: 横浜市、吹田市）を入力（任意）
+6. **SEO対策** に meta_description 等を入力
+7. **本文** に文章と画像（貼り付け可）
+8. **Publish** → 数分後に https://carinteriorcleaning.jp/blog/ に反映
+
+### 記事一覧の見方
+
+`/admin/#/collections/blog` を開くと、拡張UIが表示されます。
+
+- 各記事に **サムネイル画像** と **公開日** が表示されます
+- 上部の **「新しい順 / 古い順」** ボタンで並び替えできます（設定はブラウザに保存）
+- 都道府県カテゴリーと地域名称がバッジ表示されます
 
 サムネイル画像フィールドが空のとき、本文の最初の画像ファイル名が自動で `coverImage` になります（`public/admin/cms-hooks.js`）。
 
@@ -78,6 +90,8 @@ npm run dev
 | パス | 用途 |
 |------|------|
 | `public/admin/` | Decap CMS UI |
+| `public/admin/blog-list-enhance.js` | 一覧サムネイル・日付・並び替えUI |
+| `public/admin/regions.json` | 地域ラベル（`npm run sync:admin-regions` で更新） |
 | `api/auth.js`, `api/callback.js` | GitHub OAuth（Vercel Functions） |
 | `src/content/blog/` | 記事 Markdown |
 | `public/posts/` | 記事画像 |
