@@ -1,10 +1,19 @@
 ---
+date: 2026-07-06
 title: "[名古屋市] ３列シートのシエンタ 嘔吐 消臭"
-date: 2026-02-17
-categories: 
-  - "jisseki"
-  - "aichi"
-coverImage: "S__39329804-e1771334872405.jpg"
+shortSlug: nagoyabannio
+areaName: 愛知県,名古屋市
+coverImage: sienta-2retume.jpg
+seo:
+  meta_description: 車内で発生した嘔吐トラブルに、オーナー様は深い溜息をついていらっしゃいました。
+    愛車を大切にされる方が多いこの地域で、内装が汚れてしまうことのショックは計り知れません
+  noindex: false
+ogp:
+  og_image: sienta-2retume.jpg
+  og_type: article
+categories:
+  - jisseki
+  - aichi
 ---
 
 レゴランドでの思い出をトランクに詰め込み、名港トリトンを渡ってご自宅へ向かう道中。 車内で発生した嘔吐トラブルに、オーナー様は深い溜息をついていらっしゃいました。 愛車を大切にされる方が多いこの地域で、内装が汚れてしまうことのショックは計り知れません。
