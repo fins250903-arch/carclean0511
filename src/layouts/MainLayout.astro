@@ -2,6 +2,7 @@
 import '../styles/globals.css';
 import { STORE_NAME, SITE_URL, canonicalUrl, GOOGLE_SITE_VERIFICATION } from '@/lib/site';
 import { GTM_ID } from '@/lib/analytics';
+import ConversionTracking from '@/components/ConversionTracking.astro';
 
 interface Props {
 	title?: string;
@@ -81,5 +82,6 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 			</noscript>
 		)}
 		<slot />
+		<ConversionTracking />
 	</body>
 </html>

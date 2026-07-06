@@ -1,0 +1,70 @@
+---
+/**
+ * Sitewide phone / LINE click → dataLayer for GTM → Google Ads conversions.
+ * Fires on every matching <a href> (not only FloatingCTA).
+ */
+import { LINE_URL } from '@/lib/site';
+
+const phoneDigits = '07084280866';
+const lineMatch = LINE_URL.replace(/^https?:\/\//, '');
+---
+
+<script is:inline define:vars={{ phoneDigits, lineMatch }}>
+  (function () {
+    function pushConversion(eventName, label) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: eventName,
+        event_category: 'conversion',
+        event_label: label || 'sitewide',
+      });
+    }
+
+    function normalizeTel(href) {
+      return String(href || '')
+        .replace(/^tel:/i, '')
+        .replace(/[^\d]/g, '');
+    }
+
+    function isPhoneHref(href) {
+      if (!href || !/^tel:/i.test(href)) return false;
+      return normalizeTel(href) === phoneDigits;
+    }
+
+    function isLineHref(href) {
+      if (!href) return false;
+      return href.indexOf(lineMatch) !== -1 || /lin\.ee\//i.test(href);
+    }
+
+    function labelFromElement(el) {
+      if (el && el.dataset && el.dataset.ctaLocation) return el.dataset.ctaLocation;
+      if (el && el.closest) {
+        var section = el.closest('[data-cta-section]');
+        if (section && section.dataset.ctaSection) return section.dataset.ctaSection;
+      }
+      return 'sitewide';
+    }
+
+    document.addEventListener(
+      'click',
+      function (e) {
+        var target = e.target;
+        if (!target || !target.closest) return;
+        var link = target.closest('a[href]');
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        var label = labelFromElement(link);
+
+        if (isPhoneHref(href)) {
+          pushConversion('phone_click', label);
+          return;
+        }
+        if (isLineHref(href)) {
+          pushConversion('line_click', label);
+        }
+      },
+      true,
+    );
+  })();
+</script>
