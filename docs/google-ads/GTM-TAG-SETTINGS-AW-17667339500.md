@@ -10,12 +10,12 @@
 | 電話リンク | `tel:07084280866` |
 | LINEリンク | `https://lin.ee/Xs8Orp2` |
 
-**ラベル（Google広告で新規作成後に記入）**
+**ラベル（確定）**
 
 | アクション | コンバージョンラベル |
 |---|---|
-| 電話問い合わせ_CV | `＿＿＿＿＿＿＿＿＿＿＿＿＿＿` ← ここに貼り付け |
-| LINE問い合わせ_CV | `＿＿＿＿＿＿＿＿＿＿＿＿＿＿` ← ここに貼り付け |
+| 電話問い合わせ_CV | `plLZCN-S0sscEOzpuOhB` |
+| LINE問い合わせ_CV | `9Q7WCNu0t8scEOzpuOhB` |
 
 ---
 
@@ -140,7 +140,7 @@ GTM: https://tagmanager.google.com/ → **GTM-WLNM4GWN**
 | 名前 | `Google広告 - CV 電話問い合わせ` |
 | 種類 | **Google 広告 コンバージョン トラッキング** |
 | コンバージョンID | `AW-17667339500` |
-| コンバージョンラベル | PART A で取得した **電話用ラベル** |
+| コンバージョンラベル | `plLZCN-S0sscEOzpuOhB` |
 | コンバージョンの値 | （空欄のまま） |
 | 通貨コード | JPY |
 | トリガー | `TR - phone_click` |
@@ -156,7 +156,7 @@ GTM: https://tagmanager.google.com/ → **GTM-WLNM4GWN**
 | 名前 | `Google広告 - CV LINE問い合わせ` |
 | 種類 | **Google 広告 コンバージョン トラッキング** |
 | コンバージョンID | `AW-17667339500` |
-| コンバージョンラベル | PART A で取得した **LINE用ラベル** |
+| コンバージョンラベル | `9Q7WCNu0t8scEOzpuOhB` |
 | トリガー | `TR - line_click` |
 
 → **保存**
