@@ -64,7 +64,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内クリーニング専門店</strong>として、<strong>${dn}</strong>全域へ出張対応します。<br />シート洗浄・消臭洗浄をプロ機材で施工。電源・水道不要で駐車場があればOKです。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '出張車内クリーニング専門店の施工イメージ',
-    mainTitle: () => '大阪の車内クリーニング専門店｜出張で即日キレイに',
+    mainTitle: (r) => `${r}の車内クリーニング専門店｜出張で即日キレイに`,
   },
   // 06 出張専門店（千葉）
   {
@@ -88,7 +88,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>出張 車内 クリーニング 専門店</strong>として、<strong>${dn}</strong>全域へ駆けつけます。<br />プロ機材でシート汚れ・臭いを根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '出張車内クリーニングの施工イメージ',
-    mainTitle: () => '出張車内クリーニング専門店｜千葉で最短即日対応',
+    mainTitle: (r) => `出張車内クリーニング専門店｜${r}で最短即日対応`,
   },
   // 09 車シート洗浄（兵庫）
   {
@@ -112,7 +112,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車シート洗浄</strong>でお悩みの方へ。<strong>${dn}</strong>へ出張し、シート素材に合わせた泡洗い・すすぎ・乾燥まで一気通貫で施工します。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: 'シート洗浄前の汚れが目立つ車内シート',
-    mainTitle: () => '兵庫の車シート洗浄｜黄ばみ・シミをプロが根こそぎ除去',
+    mainTitle: (r) => `${r}の車シート洗浄｜黄ばみ・シミをプロが根こそぎ除去`,
     deepTroubles: [
       '長年乗っている車のシートが、汗や皮脂で黒ずみ・黄ばんでいる',
       'ジュースをこぼした跡が何年も放置されて茶色い輪染みになっている',
@@ -141,7 +141,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 匂い 消し</strong>は、高温スチームとリンサー洗浄で臭いの元を減らします。<br /><strong>${dn}</strong>の指定場所へ出張施工します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
-    mainTitle: () => '大阪で車の匂い消し｜消臭スプレーでは消えない臭いを根絶',
+    mainTitle: (r) => `${r}で車の匂い消し｜消臭スプレーでは消えない臭いを根絶`,
   },
   // 12 嘔吐緊急（重点6地域）
   {
@@ -165,7 +165,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 嘔吐 クリーニング</strong>は、シート深部までの洗浄が必須です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: '嘔吐汚れのシート洗浄前イメージ',
-    mainTitle: () => '車の嘔吐クリーニング緊急便｜今すぐ消臭で元通りに',
+    mainTitle: (r) => `${r}の車の嘔吐クリーニング緊急便｜今すぐ消臭で元通りに`,
     deepTroubles: [
       '子供が急に車酔いしてシートに嘔吐…胃酸の酸っぱい臭いが取れない',
       '自分で拭き取ったけれど、時間が経つにつれて腐敗臭が強くなってきた',
@@ -194,7 +194,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車エアコンカビ取り</strong>は、エバポレーター内部洗浄が根本対策です。<br /><strong>${dn}</strong>へ出張し、シート洗浄とのセット施工もご提案します。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: '車エアコン・エバポレーター洗浄のイメージ',
-    mainTitle: () => '愛知の車エアコンカビ取り｜酸っぱい臭いを出張で根本除去',
+    mainTitle: (r) => `${r}の車エアコンカビ取り｜酸っぱい臭いを出張で根本除去`,
     deepTroubles: [
       'エアコンをつけると酸っぱい・カビ臭がして、家族が咳や目のかゆみを訴える',
       'フィルター交換を試したが、数日で臭いが戻ってしまう',
@@ -223,7 +223,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車タバコ消臭</strong>は、天井・シート・ダクトまで温水リンサー洗浄が効果的です。<br /><strong>${dn}</strong>へ出張施工します。`,
     problemEmpathyImage: KW_IMAGES.tabakoYani,
     problemEmpathyAlt: '車内タバコヤニ・天井の黄ばみイメージ',
-    mainTitle: () => '愛知の車タバコ消臭｜ヤニ・天井の黄ばみも丸ごと洗浄',
+    mainTitle: (r) => `${r}の車タバコ消臭｜ヤニ・天井の黄ばみも丸ごと洗浄`,
     deepTroubles: [
       '中古車のタバコ臭が消えず、家族が乗るのを嫌がる',
       '天井のヤニ汚れが目立ち、消臭剤では臭いが戻る',
@@ -252,7 +252,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>ペットうんち</strong>は繊維の奥へ入り込みやすいトラブルです。<br /><strong>${dn}</strong>へ出張し、洗浄・除菌・消臭まで対応します。`,
     problemEmpathyImage: KW_IMAGES.unko,
     problemEmpathyAlt: 'ペット排泄トラブル後の車内イメージ',
-    mainTitle: () => '愛知のペットうんち対応｜除菌洗浄で臭いも菌も完全リセット',
+    mainTitle: (r) => `${r}のペットうんち対応｜除菌洗浄で臭いも菌も完全リセット`,
     deepTroubles: [
       'ドライブ中に愛犬が緊張でうんちを…シートに染みてしまった',
       'シートの隙間に汚れが入り込んで取れない',
@@ -281,7 +281,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 ゲロ クリーニング</strong>は緊急対応が必要です。<br /><strong>${dn}</strong>へ出張し、ゲロの胃酸を中和・洗浄・乾燥まで一貫対応します。`,
     problemEmpathyImage: KW_IMAGES.sienta3Before,
     problemEmpathyAlt: 'ゲロ汚れのシート洗浄イメージ',
-    mainTitle: () => '愛知の車ゲロクリーニング｜即日出張で酸っぱい臭いを消臭',
+    mainTitle: (r) => `${r}の車ゲロクリーニング｜即日出張で酸っぱい臭いを消臭`,
     deepTroubles: [
       '車酔いでゲロをしてしまい、酸っぱい臭いが車内に充満している',
       '4日以内の早急対応が理想だが、どこに頼めばいいか分からない',
@@ -310,7 +310,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内カビ臭</strong>は、シート・天井・トランクの洗浄で改善できます。<br /><strong>${dn}</strong>へ出張し、菌の温床をリンサー洗浄で除去します。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '車内カビ臭・湿気臭のイメージ',
-    mainTitle: () => '大阪の車内カビ臭対策｜湿気の臭いをプロ洗浄で根本除去',
+    mainTitle: (r) => `${r}の車内カビ臭対策｜湿気の臭いをプロ洗浄で根本除去`,
   },
   // 18 ペット毛・おしっこ（兵庫）
   {
@@ -334,7 +334,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `ペットの<strong>毛・おしっこ</strong>は、吸引と消臭洗浄の両方が必要です。<br /><strong>${dn}</strong>へ出張し、シート奥の尿成分まで洗い流します。`,
     problemEmpathyImage: KW_IMAGES.petKe,
     problemEmpathyAlt: 'ペット毛・おしっこ汚れの車内イメージ',
-    mainTitle: () => '兵庫のペット車内対策｜毛・おしっこ臭をプロ洗浄で解決',
+    mainTitle: (r) => `${r}のペット車内対策｜毛・おしっこ臭をプロ洗浄で解決`,
     deepTroubles: [
       'ペットの抜け毛が車内に舞い散り、アレルギーが心配',
       'おしっこ臭がシートに染み込んで、消臭スプレーでは消えない',
