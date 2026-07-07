@@ -3,9 +3,10 @@ import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
 
 interface Props {
   text: string;
+  points?: string[];
 }
 
-const { text } = Astro.props;
+const { text, points = [] } = Astro.props;
 const contentUpdated = formatContentFreshnessJa();
 ---
 
@@ -14,8 +15,15 @@ const contentUpdated = formatContentFreshnessJa();
     <p class="text-xs font-bold text-blue-700 tracking-wide mb-3">
       最終更新：{contentUpdated}
     </p>
-    <p class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-white p-5 md:p-6 rounded-xl border border-green-300 shadow-sm text-left">
-      {text}
-    </p>
+    <div class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-white p-5 md:p-6 rounded-xl border border-green-300 shadow-sm text-left">
+      <p>{text}</p>
+      {points.length > 0 && (
+        <ul class="mt-4 space-y-2 text-sm md:text-base text-gray-700 list-disc list-inside">
+          {points.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+      )}
+    </div>
   </div>
 </section>

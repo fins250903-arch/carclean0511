@@ -47,6 +47,7 @@ import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import {
+  buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
   buildRegionalNioiAnswerFirst,
   getRegionalHeroMainTitle,
@@ -114,6 +115,7 @@ const questionnaireStructuredData = generateQuestionnaireJsonLd(
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const subareaLabel = `${displayName}（大阪府）`;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel) : undefined;
+const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME) : undefined;
 ---
@@ -130,7 +132,7 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME)
   <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} mainTitle={heroMainTitle} />
-      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} />}
+      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} />}
       {!isTruck && !isBus && (
         <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={subareaLabel} />
       )}

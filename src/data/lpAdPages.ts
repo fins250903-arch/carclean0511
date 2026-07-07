@@ -1,8 +1,8 @@
 import { FV_PASSENGER_HERO, KW_IMAGES } from '@/lib/assets513';
 import type { AdKeywordPageDef } from './adKeywordPages';
 
-/** 重点6地域（広告LP出し分け対象） */
-const PRIORITY_REGIONS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka', 'okinawa'] as const;
+/** 重点8地域（広告LP出し分け対象） */
+const PRIORITY_REGIONS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka', 'okinawa', 'tokyo', 'saitama'] as const;
 
 function kwFooter(topic: string) {
   return (displayName: string) => `${displayName}の${topic}　まとめて対応します。`;
@@ -93,7 +93,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
   // 09 車シート洗浄（兵庫）
   {
     slug: 'seat-washing',
-    targetRegionIds: ['hyogo'],
+    targetRegionIds: ['hyogo', 'tokyo', 'saitama'],
     seoTitle: '車シート洗浄・黄ばみ除去',
     seoDescription: (r) =>
       `${r}対応の出張車シート洗浄。黄ばみ・シミ・飲みこぼしをシート深部まで泡洗い。あの嫌な臭いも消えます。`,
@@ -122,7 +122,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
   // 10 車の匂い消し（大阪）
   {
     slug: 'odor-removal',
-    targetRegionIds: ['osaka'],
+    targetRegionIds: ['osaka', 'tokyo', 'saitama'],
     seoTitle: '車 匂い 消し・消臭洗浄',
     seoDescription: (r) =>
       `${r}対応。車の匂い消しは汚れを落とす洗浄が基本。消臭スプレーでは消えない臭いを根本除去。`,
@@ -346,8 +346,14 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
 /** 旧スラッグ → 新スラッグ（地域限定リダイレクト用） */
 export const LPO_SLUG_REDIRECTS: { source: string; destination: string }[] = [
   { source: '/regions/chiba/shutchou-senmon/', destination: '/regions/chiba/mobile-cleaning/' },
-  { source: '/regions/hyogo/seat-senjo/', destination: '/regions/hyogo/seat-washing/' },
-  { source: '/regions/osaka/kuruma-nioi-keshi/', destination: '/regions/osaka/odor-removal/' },
+  ...['hyogo', 'tokyo', 'saitama'].map((id) => ({
+    source: `/regions/${id}/seat-senjo/`,
+    destination: `/regions/${id}/seat-washing/`,
+  })),
+  ...['osaka', 'tokyo', 'saitama'].map((id) => ({
+    source: `/regions/${id}/kuruma-nioi-keshi/`,
+    destination: `/regions/${id}/odor-removal/`,
+  })),
   { source: '/regions/aichi/evaporator-senjo/', destination: '/regions/aichi/ac-mold/' },
   { source: '/regions/aichi/tabako-yani/', destination: '/regions/aichi/tobacco-odor/' },
   { source: '/regions/aichi/pet-unko/', destination: '/regions/aichi/pet-waste/' },

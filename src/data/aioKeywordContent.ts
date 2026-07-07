@@ -399,7 +399,15 @@ export const REGIONAL_EMERGENCY_CHECKLIST: EmergencyChecklistRow[] = [
 ];
 
 export function buildRegionalAnswerFirst(regionName: string): string {
-  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを「今すぐ」解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。車内清掃「特急便」は365日24時間受付・最短即日対応。施工歴3年以上・年間300台超の専門員が直接ご指定の駐車場へ訪問します。電源・水道は不要（発電機・水タンク完備）。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜、灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜/席。車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記します。`;
+  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを今すぐ解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。`;
+}
+
+export function buildRegionalAnswerTargetPoints(regionName: string): string[] {
+  return [
+    `最短即日対応・365日24時間受付。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+    `施工歴3年以上・年間300台超の専門員が${regionName}の指定駐車場へ直接訪問。電源・水道は不要（発電機・水タンク完備）。`,
+    '車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記します。',
+  ];
 }
 
 import { REGIONAL_FV_MAIN_TITLES } from './fvAdGroupCopy';
