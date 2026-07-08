@@ -1,11 +1,16 @@
 ---
-date: 2026-02-17
+date: 2026-07-08
 title: "[神戸市] ５ナンバーサイズのシエンタ 嘔吐 消臭"
 shortSlug: jissekihyougo
 categories:
   - jisseki
   - hyougo
 coverImage: hidarikarazennseki.webp
+seo:
+  noindex: false
+  meta_description: お洒落なカフェの余韻に浸るはずが、後部座席のアクシデントにより、オーナー様の心は暗く沈んでしまいました
+ogp:
+  og_type: article
 ---
 
 六甲山から見下ろす夜景を堪能した後、神戸の美しい街並みを抜けていく夜。 お洒落なカフェの余韻に浸るはずが、後部座席のアクシデントにより、オーナー様の心は暗く沈んでしまいました。 洗練されたライフスタイルを大切にする神戸の方にとって、車内の汚れは日常の質を大きく損なうものです。
