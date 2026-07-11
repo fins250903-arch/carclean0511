@@ -26,10 +26,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm
@@ -38,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: Restore indexing progress
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         continue-on-error: true
         with:
           name: google-indexing-state
@@ -72,7 +72,7 @@ jobs:
 
       - name: Save indexing progress
         if: github.event.inputs.skip_indexing != 'true'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: google-indexing-state
           path: scripts/google/.indexing-state.json
