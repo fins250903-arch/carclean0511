@@ -16,7 +16,12 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
   // 02・03・05・11 通常車内クリーニング
   {
     slug: 'interior-cleaning',
-    targetRegionIds: ['fukuoka', 'hyogo', 'okinawa', 'osaka'],
+    // 広告「int（通常車内クリーニング）」系Final URLの全対象地域で生成し404を防止（noindex,followのまま）
+    targetRegionIds: [
+      'fukuoka', 'hyogo', 'okinawa', 'osaka', 'gunma', 'miyagi', 'tochigi',
+      'ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shizuoka',
+      'shiga', 'kyoto', 'nara', 'wakayama', 'kumamoto', 'saga',
+    ],
     seoTitle: '車内クリーニング・車内清掃',
     seoDescription: (r) =>
       `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。電源・水道不要・最短即日。`,

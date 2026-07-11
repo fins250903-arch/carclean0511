@@ -238,7 +238,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     seoDescription: (r) =>
       `${r}対応。エアコンが臭い・クサイときは車内洗浄とセットで。カビ臭・酸っぱいニオイの原因を洗浄で減らします。`,
     seoKeywords: (r) =>
-      `エアコン 臭い ${r}, エアコン クサイ ${r}, 車エアコン 臭い ${r}, エアコン カビ臭 ${r}, 車内クリーニング ${r}`,
+      `エアコン クサイ ${r}, エアコン 臭い 対策 ${r}, エアコン カビ臭 ${r}, 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜エアコン 臭い・クサイ`,
     heroHighlight: ['エアコン クサイ', '車内洗浄で改善'],
@@ -492,7 +492,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     seoDescription: (r) =>
       `${r}対応。車エアコンクリーニングと車内洗浄をセットで。カビ臭・酸っぱい臭いの原因を減らします。`,
     seoKeywords: (r) =>
-      `車 エアコンクリーニング ${r}, 車エアコン 臭い ${r}, 車内クリーニング ${r}, エアコン カビ臭 ${r}`,
+      `車 エアコンクリーニング ${r}, カーエアコン クリーニング ${r}, 車内クリーニング ${r}, エアコン カビ臭 ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜車 エアコンクリーニング`,
     heroHighlight: ['エアコン臭い', '車内洗浄セット'],
@@ -610,7 +610,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     seoDescription: (r) =>
       `${r}対応の出張エバポレーター洗浄。車エアコンの酸っぱい・カビ臭の原因を内部から洗浄。シート丸洗いとのセット施工も可能。`,
     seoKeywords: (r) =>
-      `エバポレーター洗浄 出張 ${r}, エバポレーター 洗浄 ${r}, 車 エアコン 臭い ${r}, カーエアコン カビ臭 ${r}, 車内クリーニング ${r}`,
+      `エバポレーター洗浄 出張 ${r}, エバポレーター 洗浄 ${r}, カーエアコン カビ臭 ${r}, 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜エバポレーター洗浄 出張`,
     heroHighlight: ['エバポレーター', '出張で内部洗浄'],
