@@ -1,34 +1,45 @@
 name: GSC Analysis
 
+# Search Console の実掲載順位レポート（npm run gsc:rank）。
+# 手動実行 or 毎週月曜に、既存のサービスアカウントJSONキー認証で実行します。
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      days:
+        description: '集計期間（直近日数）'
+        required: false
+        default: '28'
+      region:
+        description: 'ページ別集計を絞る地域ID（例: gunma。空欄で全体）'
+        required: false
+        default: ''
+  schedule:
+    - cron: '0 0 * * 1' # 毎週月曜 00:00 UTC
 
-# 🔑 ここが最重要！GitHubがGoogleと安全に通信するために必須の権限です
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    # 🤝 ここでJSON鍵を使わずにGoogle Cloudへログインします
-        - name: Authenticate to Google Cloud
-      uses: google-github-actions/auth@v2
-      with:
-        workload_identity_provider: '//://googleapis.com{{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}'
-        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
 
-    # 🐍 あとはPythonなどを実行すれば、自動的にサチコのデータが取得できます
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run GSC Script
-      run: |
-        python your_script.py
+      # サービスアカウントJSONキーで認証（Search Console 所有者権限が必要）
+      - name: Run GSC ranking analysis
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          GSC_DAYS: ${{ github.event.inputs.days }}
+          GSC_REGION: ${{ github.event.inputs.region }}
+        run: npm run gsc:rank
