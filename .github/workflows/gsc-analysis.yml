@@ -1,0 +1,34 @@
+name: GSC Analysis
+
+on:
+  push:
+    branches: [ main ]
+
+# 🔑 ここが最重要！GitHubがGoogleと安全に通信するために必須の権限です
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 🤝 ここでJSON鍵を使わずにGoogle Cloudへログインします
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+    # 🐍 あとはPythonなどを実行すれば、自動的にサチコのデータが取得できます
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Run GSC Script
+      run: |
+        python your_script.py
