@@ -6,7 +6,7 @@ areaName: mazd2pet
 coverImage: 2026053-a6-5.jpg
 seo:
   meta_description: mazd2pet
-  noindex: true
+  noindex: false
 ogp:
   og_type: article
 categories:
