@@ -1,10 +1,17 @@
 ---
-title: "【京都市】マツダ MAZDA2のペット（犬）の粗相トラブル解決！"
-date: 2026-02-22
-categories: 
-  - "kyouto"
-  - "jisseki"
-coverImage: "マツダ-MAZDA2-usiro.jpg"
+date: 2026-07-12
+title: 【京都市】マツダ MAZDA2のペット（犬）の粗相トラブル解決！
+shortSlug: mazd2pet
+areaName: mazd2pet
+coverImage: 2026053-a6-5.jpg
+seo:
+  meta_description: mazd2pet
+  noindex: true
+ogp:
+  og_type: article
+categories:
+  - kyouto
+  - jisseki
 ---
 
 盆地特有の気候で、夏は暑く冬は底冷えするため、窓を閉め切って運転する季節が長い京都市。今回は愛犬とのドライブ中に発生してしまった、おしっこの粗相によるアンモニア臭とシミの徹底クリーニング事例です。
