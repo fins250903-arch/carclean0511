@@ -2,16 +2,17 @@
 date: 2026-07-14
 title: 汚されて幻滅…友人の保険で車が戻った
 shortSlug: chintahokenomore
-categories:
-  - chiba
-coverImage: toyota-noah-koubuzaseki.jpg
+areaName: 千葉県　船橋市　二和
+coverImage: orangejuice-260619.jpg
 seo:
   noindex: false
   meta_description: 船橋市二和のアルファード。友人の子のおもらしでシミとニオイが残ったが、友人の賃貸保険の個人賠償で洗浄代ゼロ。代車付きの徹底洗浄で車内が再生した実例。
   keywords: 個人賠償責任保険,賃貸保険,車内洗浄,おもらし,船橋
 ogp:
   og_type: article
-  og_image: toyota-noah-koubuzaseki.jpg
+  og_image: usiro.webp
+categories:
+  - chiba
 ---
 ## 送ってあげたのに、車内が沈んだ日
 
