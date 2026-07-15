@@ -1,5 +1,5 @@
 ---
-date: 2026-03-26
+date: 2026-07-15
 title: 【うるま市】マツダ・デミオのエアコンカビ臭除去
 shortSlug: mazdaeakon
 areaName: 沖縄県うるま市
