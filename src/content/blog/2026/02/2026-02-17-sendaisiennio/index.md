@@ -1,5 +1,5 @@
 ---
-date: 2026-02-17
+date: 2026-07-19
 title: "[仙台市] シエンタ 嘔吐 消臭"
 categories:
   - jisseki
