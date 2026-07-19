@@ -1,10 +1,17 @@
 ---
-title: "[仙台市] シエンタ 嘔吐 消臭"
 date: 2026-02-17
-categories: 
-  - "jisseki"
-  - "miyagi"
-coverImage: "嘔吐２-e1771405813888.jpg"
+title: "[仙台市] シエンタ 嘔吐 消臭"
+categories:
+  - jisseki
+  - miyagi
+shortSlug: sendaisiennio
+coverImage: times_sienta_4779-scaled.webp
+seo:
+  meta_description: シエンタというプライベートな空間を再び守るため、徹底した「除菌」に重点を置いています。
+    吐瀉物には様々な菌が含まれる可能性があるため、次亜塩素酸を効果的に使用
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 秋保温泉の湯冷めしない暖かさに包まれ、仙台市内へと車を走らせるひととき。 しかし、急な体調不良でお子様が戻してしまい、車内は冬の寒さも相まって、窓を開けられない辛い状況に。 「どうにかしてほしい」という切実な想いが、私たちへのご依頼に繋がりました。
