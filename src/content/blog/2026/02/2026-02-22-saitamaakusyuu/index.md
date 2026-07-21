@@ -1,10 +1,17 @@
 ---
-title: "【さいたま市】ホンダ フリードの芳香剤と生活臭の混ざった悪臭を解決！消臭施工の事例"
-date: 2026-02-22
-categories: 
-  - "jisseki"
-  - "saitama"
-coverImage: "ホンダ-フリード.webp"
+date: 2026-07-22
+title: 【さいたま市】ホンダ フリードの芳香剤と生活臭の混ざった悪臭を解決！消臭施工の事例
+shortSlug: saitamaakusyuu
+areaName: さいたま市
+coverImage: usiro.jpg
+seo:
+  meta_description: お菓子の食べこぼしや汗のニオイが、強い芳香剤と混ざり合って発生した不快なニオイを根本からリセット
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - saitama
 ---
 
 週末は近隣の大型ショッピングモールへの買い出しで、ファミリーカーが大活躍するさいたま市エリア。車内に落ちたお菓子の食べこぼしや汗のニオイが、強い芳香剤と混ざり合って発生した不快なニオイを根本からリセットしました。
