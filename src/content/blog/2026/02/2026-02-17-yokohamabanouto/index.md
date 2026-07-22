@@ -1,10 +1,17 @@
 ---
+date: 2026-07-23
 title: "[横浜市] トヨタのシエンタ 嘔吐 消臭"
-date: 2026-02-17
-categories: 
-  - "jisseki"
-  - "kanagawa"
-coverImage: "嘔吐２-e1771405813888.jpg"
+categories:
+  - jisseki
+  - kanagawa
+shortSlug: yokohamabanouto
+coverImage: omorasi-1.jpg
+seo:
+  meta_description: トヨタのシエンタという一台を、細部まで磨き上げます。 シートベルトのバックルや、座面の縫い目、プラスチックのジョイント部分。
+    そこに入り込んだ僅かな物質が、後々の悪臭の再発に繋がるからです
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 みなとみらいの景色を眺め、充実感に包まれていたはずの休日。 しかし、帰りの渋滞中に起きたアクシデントは、ご家族の笑顔を奪ってしまいました。 横浜の洗練された街並みを走る車に、嘔吐の臭いはあまりにも不釣り合いです。
