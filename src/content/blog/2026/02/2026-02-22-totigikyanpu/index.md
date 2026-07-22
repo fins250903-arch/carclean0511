@@ -1,10 +1,16 @@
 ---
-title: "【宇都宮市】三菱 ミラージュのキャンプ後の焚き火臭と汗のニオイを除去！消臭施工の事例"
-date: 2026-02-22
-categories: 
-  - "jisseki"
-  - "tochigi"
-coverImage: "ミラージュ.jpg"
+date: 2026-07-23
+title: 【宇都宮市】三菱 ミラージュのキャンプ後の焚き火臭と汗のニオイを除去！消臭施工の事例
+categories:
+  - jisseki
+  - tochigi
+shortSlug: totigikyanpu
+coverImage: mazda2-usiro.jpg
+seo:
+  meta_description: 車内に染み付いて取れなくなった強烈な「焚き火の煙のニオイ」と、シートに染み込んだ汗のクリーニング事例
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 週末は日光や那須などの山間部へ出かけ、大自然の中でキャンプやバーベキューを満喫する方が多い宇都宮市。車内に染み付いて取れなくなった強烈な「焚き火の煙のニオイ」と、シートに染み込んだ汗のクリーニング事例です。
