@@ -36,10 +36,34 @@ jobs:
         run: npm ci
 
       # サービスアカウントJSONキーで認証（Search Console 所有者権限が必要）
+      # 結果は gsc-ranking-report.txt に保存し、run要約と成果物で確認できるようにする
       - name: Run GSC ranking analysis
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           SITE_URL: ${{ vars.SITE_URL }}
           GSC_DAYS: ${{ github.event.inputs.days }}
           GSC_REGION: ${{ github.event.inputs.region }}
-        run: npm run gsc:rank
+        run: |
+          set -o pipefail
+          npm run gsc:rank 2>&1 | tee gsc-ranking-report.txt
+
+      # Actions の run 概要ページにレポートを表示（ダウンロード不要で確認可能）
+      - name: Publish report to run summary
+        if: always()
+        run: |
+          {
+            echo "## GSC 検索順位レポート ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+            echo '```text'
+            cat gsc-ranking-report.txt 2>/dev/null || echo '(レポート生成なし)'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # レポートを成果物として保存（履歴としてダウンロード・比較可能）
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: gsc-ranking-report
+          path: gsc-ranking-report.txt
+          retention-days: 90
+          if-no-files-found: warn
