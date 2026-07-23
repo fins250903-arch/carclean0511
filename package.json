@@ -14,6 +14,7 @@
     "astro": "astro",
     "export:lp-urls": "node ./scripts/export-lp-urls.mjs",
     "export:google-ads-keywords": "node ./scripts/export-google-ads-keywords.mjs",
+    "audit:ads-kw-lp": "node ./scripts/audit-ads-kw-lp-mismatch.mjs",
     "sync:admin-regions": "node ./scripts/sync-admin-regions.mjs",
     "sync:blog-admin-index": "node ./scripts/generate-blog-admin-index.mjs",
     "gsc:queue": "node ./scripts/google/build-indexing-queue.mjs",
