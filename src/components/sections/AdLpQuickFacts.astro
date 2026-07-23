@@ -1,0 +1,59 @@
+---
+import { LINE_URL } from '../../lib/site';
+
+interface Props {
+  displayName: string;
+  /** e.g. 消臭セット 26,000円〜 */
+  priceLabel: string;
+  /** e.g. 約1.5〜3時間 */
+  durationLabel: string;
+  /** e.g. 大阪市内・北摂ほか出張費無料 */
+  areaLabel: string;
+  /** Short intent line matching the ad keyword */
+  intentLabel: string;
+}
+
+const { displayName, priceLabel, durationLabel, areaLabel, intentLabel } = Astro.props;
+---
+
+<section
+  id="ad-lp-quick-facts"
+  aria-label="料金・所要時間・対応エリアの目安"
+  class="border-b border-blue-100 bg-gradient-to-b from-blue-50/80 to-white"
+>
+  <div class="container mx-auto max-w-5xl px-4 py-5 md:py-6">
+    <p class="mb-3 text-center text-sm font-bold text-blue-900 md:text-base">
+      {displayName}の{intentLabel} — 広告から来た方も、料金と対応範囲がすぐ分かります
+    </p>
+    <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
+      <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
+        <p class="text-[11px] font-bold tracking-wide text-blue-700">料金目安（税込）</p>
+        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{priceLabel}</p>
+      </div>
+      <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
+        <p class="text-[11px] font-bold tracking-wide text-blue-700">所要時間の目安</p>
+        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{durationLabel}</p>
+      </div>
+      <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
+        <p class="text-[11px] font-bold tracking-wide text-blue-700">対応エリア</p>
+        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{areaLabel}</p>
+      </div>
+    </div>
+    <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:justify-center">
+      <a
+        href="tel:070-8428-0866"
+        class="inline-flex items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-blue-900"
+      >
+        電話で無料相談（070-8428-0866）
+      </a>
+      <a
+        href={LINE_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c]"
+      >
+        LINEで写真見積もり
+      </a>
+    </div>
+  </div>
+</section>

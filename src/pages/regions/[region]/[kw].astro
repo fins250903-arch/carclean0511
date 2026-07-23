@@ -48,6 +48,8 @@ import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
 import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
+import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
+import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -123,9 +125,14 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 
 const fvCopy = findFvCopy(regionId, kwSlug);
 const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
+const quickFacts = getAdLpQuickFacts(kwSlug);
 
 const adHero = fvHero
-  ? { ...fvHero, fvImage: kw.fvImage }
+  ? {
+      ...fvHero,
+      fvImage: kw.fvImage,
+      mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
+    }
   : {
       subtitle: kw.heroSubtitle(displayName),
       highlightLine1: kw.heroHighlight[0],
@@ -164,7 +171,20 @@ const noindex = isNoindexKeywordSlug(kwSlug);
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       {answerFirst && <AnswerTarget text={answerFirst} />}
-      <TroubleSympathy displayName={displayName} deepTroubles={kw.deepTroubles} />
+      {quickFacts && (
+        <AdLpQuickFacts
+          displayName={displayName}
+          intentLabel={quickFacts.intentLabel}
+          priceLabel={quickFacts.priceLabel}
+          durationLabel={quickFacts.durationLabel}
+          areaLabel={quickFacts.areaLabel(displayName)}
+        />
+      )}
+      <TroubleSympathy
+        displayName={displayName}
+        deepTroubles={kw.deepTroubles}
+        troubleType={aioKw?.troubleType}
+      />
       {aioKw?.emergencyChecklist && (
         <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
       )}
@@ -184,6 +204,9 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       )}
       <RegionAIContent regionName={regionName} displayName={displayName} />
       <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
+      {/* Pricing early: Ads Landing page experience needs price visibility near intent content */}
+      <Pricing regionName={regionName} niche={pageNiche} />
+      <QuestionnaireTestimonials client:visible displayName={displayName} />
       <Solution regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Comparison displayName={displayName} />
 
@@ -192,7 +215,6 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       <Benefits />
       <Roadmap displayName={displayName} />
 
-      <QuestionnaireTestimonials client:visible displayName={displayName} />
       <RegionalAchievements
         regionName={regionName}
         displayName={displayName}
@@ -204,7 +226,6 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       <Flow niche={pageNiche} />
       <Profile displayName={displayName} />
       <Expertise />
-      <Pricing regionName={regionName} niche={pageNiche} />
       <CTA />
       <FAQ niche={pageNiche} extraFaqs={aioKw?.extraFaqs} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />

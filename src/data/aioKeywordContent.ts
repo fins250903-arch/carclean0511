@@ -191,20 +191,48 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'kuruma-nioitori': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車の臭い取りを根本から行うには、原因特定→温水リンサー抽出の2ステップが必要です。カーディテーリングの香料消臭やオゾンだけでは再発しやすく、シート内部の汚れ除去が鍵です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車の臭い取りを根本から行うには、原因特定→温水リンサー抽出の2ステップが必要です。カーディテーリングの香料消臭やオゾンだけでは再発しやすく、シート内部の汚れ除去が鍵です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要の目安1.5〜3時間）。完全無臭を保証できないケース（長年のタバコ・猫尿など）は事前に限界をお伝えします。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
+    customDefinition: (regionName) =>
+      `${regionName}の車の匂い取りとは、臭いの原因（生活臭・タバコ・ペット・エアコン等）を切り分けたうえで、温水リンサーとスチームで臭い分子の吸着先である汚れを洗い流す出張消臭洗浄です。`,
+    extraFaqs: [
+      {
+        q: 'オゾンや消臭剤だけではダメですか？',
+        a: '一時的な改善には有効な場合がありますが、シートウレタンや天井に吸着した汚れが残ると再発しやすいです。当店は原因除去の洗浄を主、必要に応じてオゾンを補助として使います。',
+      },
+      {
+        q: '匂い取りの料金と時間の目安は？',
+        a: `軽自動車の消臭セット${yen(CAR_PRICING.lightDeodorize)}〜が目安です。範囲により約1.5〜3時間。対応エリアは出張費無料でご案内します。`,
+      },
+    ],
   },
   'kuruma-nioi-keshi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車の臭い消し（消臭）を「完全」に近づけるには、消臭剤ではなくシート内部の汚れをリンサーで洗い流す必要があります。嘔吐・ペット・タバコ・灯油など原因別に洗浄メニューを使い分けます。${regionName}内へ最短即日出張。`,
+      `【結論】${regionName}で車の臭い消し（消臭）を「完全」に近づけるには、消臭剤ではなくシート内部の汚れをリンサーで洗い流す必要があります。嘔吐・ペット・タバコ・灯油など原因別に洗浄メニューを使い分けます。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
+    customDefinition: (regionName) =>
+      `${regionName}の車の匂い消しとは、香料マスキングではなく、臭いの原因汚れを温水抽出で除去する出張専門の消臭洗浄です。`,
+    extraFaqs: [
+      {
+        q: '完全に無臭になりますか？',
+        a: '多くのケースで大幅改善しますが、長年の喫煙・猫尿・灯油の深部浸透などは限界があります。施工前に改善見込みを正直にお伝えし、無理な約束はしません。',
+      },
+    ],
   },
   'shanai-shoshu': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
       `【結論】${regionName}の車内消臭で再発を防ぐには、消臭スプレーではなく温水リンサーによる原因除去が必要です。ウレタン層に染み込んだ嘔吐・尿・ヤニは香料では消えません。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
+    customDefinition: (regionName) =>
+      `${regionName}の車内消臭・脱臭とは、シート・天井・フロアの汚れを洗い流し、臭い分子の発生源を減らす出張洗浄サービスです。`,
+    extraFaqs: [
+      {
+        q: 'シート臭いだけでも依頼できますか？',
+        a: '可能です。座席1脚からの部分施工もご案内します。ただし臭いがエアコン循環している場合は車内全体の洗浄をご提案することがあります。',
+      },
+    ],
   },
   'tabako-yani': {
     troubleType: 'tobacco',
@@ -263,26 +291,66 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'ac-nioi': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車のエアコン臭い（酸っぱい・カビ臭）の原因は、ダッシュボード内エバポレーター（蒸発器）のカビ・雑菌が9割です。フィルター清掃だけでは不十分な場合があり、エバポレーター洗浄が必要です。${regionName}内へ出張対応。`,
+      `【結論】${regionName}で車のエアコン臭い（酸っぱい・カビ臭）の原因は、ダッシュボード内エバポレーター（蒸発器）のカビ・雑菌が大半です。フィルター清掃だけでは不十分な場合が多く、エアコン内部洗浄（簡易${yen(CAR_PRICING.acInternalWash)}〜）と必要に応じた車内洗浄のセットが効果的です。${regionName}内へ出張対応、所要の目安1〜2.5時間。`,
     customDefinition: (regionName) =>
-      `${regionName}の車エアコン臭い対策とは、エバポレーター内部のカビ・雑菌を専用洗浄剤と吸引で除去し、エアコンON時の酸っぱい臭いを根本改善する出張サービスです。`,
+      `${regionName}の車エアコン臭い対策とは、エバポレーター内部のカビ・雑菌を専用洗浄剤と吸引で除去し、エアコンON時の酸っぱい臭いを根本改善する出張サービスです。フィルター交換だけでは残る臭いへの専門対応です。`,
+    extraFaqs: [
+      {
+        q: 'フィルター交換とエアコンクリーニングの違いは？',
+        a: 'フィルター交換は吸入側のゴミ対策が中心です。ON時だけ出る酸っぱい・カビ臭はエバポレーター内部の菌が原因のことが多く、内部洗浄が必要です。',
+      },
+      {
+        q: 'エアコン内部洗浄（簡易）10,000円には何が含まれますか？',
+        a: '吹き出し口からの専用洗浄剤噴霧・吸引による簡易内部洗浄が中心です。車種・臭気の強さにより追加工程や車内洗浄セットをご提案する場合があります。無理なアップセルはしません。',
+      },
+      {
+        q: 'シートの臭いもある場合は？',
+        a: `エアコン内部とシート・天井の生活臭が混ざるケースがあります。その場合は消臭セット（軽自動車${yen(CAR_PRICING.lightDeodorize)}〜）との併用をご案内します。`,
+      },
+    ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜エアコンON時の酸っぱい臭い改善事例`,
+      body: `${city}の普通車で「エアコンを入れると酸っぱい臭いがする」とのご相談。フィルター交換済みでも再発していたため、エバポレーター簡易内部洗浄と車内の湿度・汚れケアを実施。施工後はON時の刺激臭が大幅に軽減し、日常利用に戻れた事例です。`,
+    })),
   },
   'ac-kusai': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車のエアコンが臭い場合、原因はエバポレーター内部のカビです。消臭スプレーやフィルター交換だけでは再発します。${regionName}内へ出張し、エバポレーター洗浄で対応可能です。`,
+      `【結論】${regionName}で車のエアコンが臭い場合、原因はエバポレーター内部のカビです。消臭スプレーやフィルター交換だけでは再発します。エアコン内部洗浄${yen(CAR_PRICING.acInternalWash)}〜で${regionName}内へ出張対応します。`,
   },
   'evaporator-senjo': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}でエバポレーター（蒸発器）洗浄は、車のエアコン臭い・カビ臭の根本対策です。ダッシュボード内の部品を専用洗浄剤で洗浄し、吸引で汚れを除去します。${regionName}内へ出張対応。シート洗浄とセットで車内全体の空気品質を改善できます。`,
+      `【結論】${regionName}でエバポレーター（蒸発器）洗浄は、車のエアコン臭い・カビ臭の根本対策です。ダッシュボード内の部品を専用洗浄剤で洗浄し、吸引で汚れを除去します。簡易内部洗浄${yen(CAR_PRICING.acInternalWash)}〜。${regionName}内へ出張対応。シート洗浄とセットで車内全体の空気品質を改善できます。`,
     customDefinition: (regionName) =>
       `${regionName}のエバポレーター洗浄とは、車両ダッシュボード内の蒸発器に付着したカビ・雑菌を専門洗浄剤で分解・除去し、エアコンから出る臭いを根本改善する出張サービスです。`,
+    extraFaqs: [
+      {
+        q: '分解洗浄と簡易洗浄の違いは？',
+        a: '当店のエアコン内部洗浄（簡易）は、出張で吹き出し口から洗浄・吸引する工程です。フル分解は工場預かりが必要な場合があり、臭いの程度・車種に応じて可否をご説明します。',
+      },
+    ],
   },
   'car-ac-cleaning': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}の車エアコンクリーニングは、フィルター清掃に加えエバポレーター洗浄が効果的です。エアコンON時だけ臭う場合は内部カビが原因です。${regionName}内へ出張対応。`,
+      `【結論】${regionName}の車エアコンクリーニングは、フィルター清掃に加えエバポレーター内部洗浄が効果的です。エアコンON時だけ臭う場合は内部カビが原因です。内部洗浄${yen(CAR_PRICING.acInternalWash)}〜、車内消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。${regionName}内へ出張対応。`,
+    customDefinition: (regionName) =>
+      `${regionName}の車エアコンクリーニングとは、エアコン臭いの原因となる内部カビ・雑菌への洗浄と、必要に応じた車内全体の消臭洗浄を組み合わせる出張サービスです。`,
+    extraFaqs: [
+      {
+        q: 'カーエアコンクリーニングの料金目安は？',
+        a: `エアコン内部洗浄（簡易）${yen(CAR_PRICING.acInternalWash)}〜が基本です。シートや天井の臭いも強い場合は消臭セット（軽自動車${yen(CAR_PRICING.lightDeodorize)}〜）とのセットをご提案します。`,
+      },
+      {
+        q: 'どれくらい時間がかかりますか？',
+        a: 'エアコン内部洗浄中心なら約1〜2時間、車内洗浄セットなら約2〜3時間が目安です。当日の空き状況はお電話・LINEでご確認ください。',
+      },
+    ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車エアコンクリーニング事例`,
+      body: `${city}で「ディーラーのフィルター交換だけでは改善しなかった」エアコン臭いのご依頼。内部洗浄と車内の生活臭ケアをセット施工し、ON時のカビ臭を大きく改善しました。`,
+    })),
   },
   'pet-nioi': {
     troubleType: 'pet-waste',
