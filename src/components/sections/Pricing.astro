@@ -1,5 +1,5 @@
 ---
-import { CAR_PRICING, TRUCK_PRICING } from '../../data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING, yen } from '../../data/pricingConstants';
 
 interface Props {
   regionName: string;
@@ -201,7 +201,7 @@ const truckRows = [
                   { name: 'オゾン装置使用', price: '5,000円' },
                   { name: '発電機等 電源持込', price: '5,000円' },
                   { name: '革張りシート（洗剤保湿剤変更）', price: '5,000円' },
-                  { name: 'エアコン内部洗浄（簡易洗浄）', price: '10,000円' },
+                  { name: 'エアコン内部洗浄（簡易洗浄）', price: yen(CAR_PRICING.acInternalWash) },
                 ].map((opt) => (
                   <div class="flex justify-between items-center bg-white border border-gray-200 rounded-xl px-4 py-3 gap-4">
                     <span class="text-gray-700 text-sm md:text-base font-medium">{opt.name}</span>
@@ -385,7 +385,7 @@ const truckRows = [
                     { name: '車灯油こぼし専用洗浄（1席あたり）', price: '30,000円' },
                     { name: 'ペット毛追加', price: '5,000円' },
                     { name: '革張りシート（洗剤保湿剤変更）', price: '5,000円' },
-                    { name: 'エアコン内部洗浄（簡易洗浄）', price: '10,000円' },
+                    { name: 'エアコン内部洗浄（簡易洗浄）', price: yen(CAR_PRICING.acInternalWash) },
                 ].map((opt) => (
                     <div class="flex justify-between items-center bg-white border border-gray-200 rounded-xl px-4 py-3 gap-4">
                         <span class="text-gray-700 text-sm md:text-base font-medium">{opt.name}</span>

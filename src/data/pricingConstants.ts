@@ -11,6 +11,8 @@ export const CAR_PRICING = {
   rearSeatBasic: 22_000,
   rearSeatDeodorize: 29_000,
   kerosenePerSeat: 30_000,
+  /** Optional add-on: simple A/C evaporator mist wash */
+  acInternalWash: 10_000,
 } as const;
 
 export const TRUCK_PRICING = {

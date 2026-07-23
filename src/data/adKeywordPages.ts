@@ -82,6 +82,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車シートクリーニング</strong>は、見えない隙間のホコリや菌の温床まで考慮した工程が重要です。<br /><strong>${dn}</strong>のご自宅や勤務先まで出張し、シート・レール周りまで丁寧に洗浄します。<br />ペット同乗や小さなお子様連れの車でも、安心してお任せください。`,
     problemEmpathyImage: KW_IMAGES.sienta3After,
     problemEmpathyAlt: '車シートクリーニング後のすっきりした座席（施工イメージ）',
+    mainTitle: (r) => `【${r}】車シートクリーニング出張｜黄ばみ・皮脂・臭いを座席まるごと洗浄`,
+    deepTroubles: [
+      '座席全体がベタつき、同乗者に「車の臭い」を指摘されるようになった',
+      '表面拭きだけでは皮脂や飲食汚れが残り、数日で臭いが戻る',
+      '布シートと革シートで洗い方が違い、自分では怖くて手を出せない',
+    ],
   },
   {
     slug: 'oshikko',
@@ -209,6 +215,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車の匂い取り</strong>は、臭い分子の吸着先である汚れを落とすことが重要です。<br /><strong>${dn}</strong>の指定場所へ出張し、高温スチームや専用洗剤を組み合わせて施工します。<br /><strong>${rn}</strong>エリアでも、プロの車内クリーニングで快適な空間を目指します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: 'スチーム洗浄による車内の臭い除去イメージ',
+    mainTitle: (r) => `【${r}】車の匂い取り出張｜消臭スプレーでは消えない臭いを洗浄で根本除去`,
+    deepTroubles: [
+      '消臭剤や芳香剤を足しても、数日で元の臭いが戻って困る',
+      'オゾン・燻蒸だけでは一時的で、シート内部の臭いが取れない',
+      '原因が生活臭・タバコ・ペット・エアコンのどれか分からず、何を頼めばいいか迷う',
+    ],
   },
   {
     slug: 'ac-nioi',
@@ -231,6 +243,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車エアコン臭い</strong>は、ダクト内だけでなく、車内全体の湿度や汚れとも関係します。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せて臭いの原因を減らします。<br />状況に応じて施工範囲をご提案し、無理なオプションは押し付けません。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車内のスチーム洗浄・臭い対策のイメージ',
+    mainTitle: (r) => `【${r}】車エアコン臭い対策｜ON時の酸っぱい・カビ臭を出張で改善`,
+    deepTroubles: [
+      'エアコンを入れると酸っぱい・カビ臭がし、OFFにすると臭わない',
+      'フィルター交換や消臭剤では改善せず、ディーラー予約も遠い',
+      '家族が咳や目のかゆみを訴えるが、原因がエアコンか車内か分からない',
+    ],
   },
   {
     slug: 'ac-kusai',
@@ -297,6 +315,13 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>加齢臭</strong>対策は、臭いの付着面を広く洗うことが近道です。<br /><strong>${dn}</strong>へ出張し、天井・シート・フロアマットまで状況に応じて洗浄します。<br />共用車やビジネス車の印象改善にも、車内クリーニングをご活用ください。`,
     problemEmpathyImage: KW_IMAGES.tabakoYani,
+    problemEmpathyAlt: '加齢臭・車内の体臭が気になる座席・天井のイメージ',
+    mainTitle: (r) => `【${r}】車の加齢臭・体臭対策｜天井・シートまで出張消臭洗浄`,
+    deepTroubles: [
+      '自分では気づきにくいが、家族や同乗者に「車が臭い」と言われる',
+      '消臭缶や芳香剤では脂っぽい古い臭いが消えない',
+      'エアコンを入れると臭いが広がり、ビジネス車の印象が気になる',
+    ],
   },
   {
     slug: 'pet-nioi',
@@ -507,6 +532,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車 エアコンクリーニング</strong>は、ダクト周りと車内全体の洗浄を組み合わせるのが近道です。<br /><strong>${dn}</strong>へ出張し、状況に応じた施工範囲をご提案します。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: '車エアコン・車内の臭い対策イメージ',
+    mainTitle: (r) => `【${r}】車エアコンクリーニング出張｜カビ・酸っぱい臭いを内部洗浄で対策`,
+    deepTroubles: [
+      'エアコンクリーニングを頼んでも、フィルター清掃だけで臭いが戻った',
+      'ON時だけ出るカビ臭の原因がエバポレーター内部だと聞き、出張対応を探している',
+      'シートの生活臭とエアコン臭が混ざり、どこから頼めばいいか分からない',
+    ],
   },
   {
     slug: 'pet-unko',
@@ -580,6 +611,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内 消臭</strong>は、シート・天井・フロアの洗浄とセットで効果が出ます。<br /><strong>${dn}</strong>へ出張し、状況に合わせた工程で施工します。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '車内消臭・生活臭のイメージ',
+    mainTitle: (r) => `【${r}】車内消臭・脱臭洗浄｜臭いの元を洗い流す出張プロ施工`,
+    deepTroubles: [
+      '車内がなんとなく臭く、窓を開けてもすぐ戻る',
+      'シート臭い・生活臭・エアコン臭が混ざって原因が切り分けられない',
+      '消臭スプレーを使い続けても再発し、マスキングでは限界を感じる',
+    ],
   },
   {
     slug: 'kuruma-nioi-keshi',
@@ -603,6 +640,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
     mainTitle: (r) => `${r}で車の匂い消し｜消臭スプレーでは消えない臭いを根絶`,
+    deepTroubles: [
+      '車の匂いが消えず、乗るたびにストレスになる',
+      '業者にオゾンだけ勧められたが、すぐ戻ってしまった経験がある',
+      '「匂い消し」と「車内全体の洗浄」の違いが分からず、依頼先を迷っている',
+    ],
   },
   {
     slug: 'evaporator-senjo',

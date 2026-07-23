@@ -1,0 +1,188 @@
+campaign,ad_group,keyword,match_type,quality_score,landing_page_experience,expected_ctr,ad_relevance,final_url,status
+大阪府＿車内クリーニング,int大阪_通常清掃,車 の 内装 掃除,Phrase,1,Below average,Below average,Below average,,Paused
+大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,車 車内 消 臭,Phrase,1,Below average,Below average,Below average,,Enabled
+大阪府＿車内クリーニング,int トラック大阪,車 掃除,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+沖縄県＿車内クリーニング,車　 エアコン臭い,車 の エアコン が 臭い,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/okinawa/ac-nioi/,Enabled
+沖縄県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/okinawa/kuruma-nioitori/,Enabled
+宮城県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/miyagi/car-ac-cleaning/,Paused
+愛知県＿車内クリーニング,車　加齢臭,車 加齢臭,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/aichi/kareisyu/,Enabled
+愛知県＿車内クリーニング,int トラック愛知,トラック 臭い 消し,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/aichi-truck/,Enabled
+千葉県＿車内クリーニング,int千葉_通常清掃,車内 嘔吐 臭い 消し,Phrase,1,Below average,Below average,Below average,,Enabled
+福岡県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/fukuoka/kuruma-nioitori/,Enabled
+群馬県＿車内クリーニング,int群馬_通常清掃,車内 クリーニング 専門 業者,Phrase,1,Below average,Below average,Below average,,Enabled
+群馬県＿車内クリーニング,消臭_口語,車 消臭,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/gunma/kuruma-nioi-keshi/,Enabled
+栃木県＿車内クリーニング,int栃木_通常清掃,車内 清掃 プロ,Phrase,1,Below average,Below average,Below average,,Enabled
+栃木県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/tochigi/car-ac-cleaning/,Paused
+栃木県＿車内クリーニング,消臭_口語,車 消臭,Phrase,1,Below average,Below average,Below average,https://carinteriorcleaning.jp/regions/tochigi/kuruma-nioi-keshi/,Enabled
+大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,車内 臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/shanai-shoshu/,Enabled
+大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,車内 脱臭,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/shanai-shoshu/,Enabled
+大阪府＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/ac-nioi/,Enabled
+大阪府＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/car-ac-cleaning/,Enabled
+大阪府＿車内クリーニング,車シート クリーニング,自動車 シート 清掃,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/seat-cleaning/,Enabled
+大阪府＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/kuruma-nioitori/,Enabled
+大阪府＿車内クリーニング,int トラック大阪,車 ルーム クリーニング,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,消臭_口語,車 消臭,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/osaka/kuruma-nioi-keshi/,Enabled
+宮城県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/miyagi/kuruma-nioitori/,Enabled
+愛知県＿車内クリーニング,車内 消臭・脱臭洗浄,車 シート 臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/aichi/shanai-shoshu/,Enabled
+愛知県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/aichi/kuruma-nioitori/,Enabled
+千葉県＿車内クリーニング,車内 消臭・脱臭洗浄,車 シート 臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/chiba/shanai-shoshu/,Enabled
+千葉県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/chiba/kuruma-nioitori/,Enabled
+千葉県＿車内クリーニング,消臭_口語,車 消臭,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/chiba/kuruma-nioi-keshi/,Enabled
+兵庫県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/hyogo/kuruma-nioitori/,Enabled
+兵庫県＿車内クリーニング,消臭_口語,車 消臭,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/hyogo/kuruma-nioi-keshi/,Enabled
+福岡県＿車内クリーニング,車内 消臭・脱臭洗浄,車 シート 臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/fukuoka/shanai-shoshu/,Enabled
+福岡県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/fukuoka/ac-nioi/,Enabled
+福岡県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/fukuoka/car-ac-cleaning/,Enabled
+福岡県＿車内クリーニング,消臭_口語,車 消臭,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/fukuoka/kuruma-nioi-keshi/,Enabled
+群馬県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/gunma/ac-nioi/,Enabled
+栃木県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/tochigi/ac-nioi/,Paused
+栃木県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,2,Below average,Below average,Average,https://carinteriorcleaning.jp/regions/tochigi/kuruma-nioitori/,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 掃除,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 洗浄,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 室内 掃除,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 大阪 安い,Broad,3,Below average,Average,Below average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,シート ベルト 嘔吐 臭い,Phrase,3,Average,Below average,Below average,https://carinteriorcleaning.jp/regions/osaka/specialist-cleaning/,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,ルーム クリーニング 車,Phrase,3,Below average,Average,Below average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 清掃,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 ゲロ 掃除,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 ゲロ 掃除,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 室内 清掃,Phrase,3,Below average,Below average,Above average,,Paused
+大阪府＿車内クリーニング,中古車加齢臭,中古車加齢臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka/chuko-kareisyu/,Enabled
+大阪府＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,Enabled
+大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 剤,Phrase,3,Below average,Below average,Above average,,Enabled
+大阪府＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka/kuruma-nioi-keshi/,Enabled
+大阪府＿車内クリーニング,int トラック大阪,車内 清掃,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車 の 内装 掃除,Phrase,3,Average,Below average,Below average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車 車内 清掃,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車 エアコン 臭い,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車内 掃除,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,AG_エアコン_エバポ,エアコン エバポレーター,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka/evaporator-senjo/,Enabled
+沖縄県＿車内クリーニング,車　 ペット臭,車 ペット臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/okinawa/pet-nioi/,Enabled
+沖縄県＿車内クリーニング,車シート 洗浄,車 シート 清掃,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/okinawa/seat-senjo/,Enabled
+沖縄県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/okinawa/kuruma-nioi-keshi/,Enabled
+沖縄県＿車内クリーニング,消臭_口語,車内 消臭,Phrase,3,Average,Below average,Below average,https://carinteriorcleaning.jp/regions/okinawa/kuruma-nioi-keshi/,Enabled
+宮城県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,Enabled
+宮城県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/miyagi/kuruma-nioi-keshi/,Enabled
+宮城県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/miyagi/ac-nioi/,Paused
+宮城県＿車内クリーニング,消臭_口語,車 消臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/miyagi/kuruma-nioi-keshi/,Enabled
+宮城県＿車内クリーニング,AG_エアコン_エバポ,エアコン エバポレーター,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/miyagi/evaporator-senjo/,Paused
+愛知県＿車内クリーニング,int愛知_通常清掃,車内 クリーニング 専門 業者,Phrase,3,Below average,Average,Below average,,Enabled
+愛知県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消臭 脱臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/aichi/shanai-shoshu/,Enabled
+愛知県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 脱臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/aichi/shanai-shoshu/,Enabled
+愛知県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/aichi/kuruma-nioi-keshi/,Enabled
+愛知県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/aichi/ac-nioi/,Enabled
+千葉県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 脱臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/chiba/shanai-shoshu/,Enabled
+千葉県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/chiba/kuruma-nioi-keshi/,Enabled
+千葉県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/chiba/ac-nioi/,Enabled
+千葉県＿車内クリーニング,AG_消臭_口語,車 匂い 消し 業者,Phrase,3,Below average,Average,Below average,https://carinteriorcleaning.jp/regions/chiba/kuruma-nioi-keshi/,Enabled
+兵庫県＿車内クリーニング,int兵庫_通常清掃,車内 吐い た 掃除,Phrase,3,Below average,Below average,Above average,,Enabled
+兵庫県＿車内クリーニング,車内 消臭・脱臭洗浄,車 シート 嘔吐 臭い,Phrase,3,Average,Below average,Below average,https://carinteriorcleaning.jp/regions/hyogo/shanai-shoshu/,Enabled
+兵庫県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/hyogo/kuruma-nioi-keshi/,Enabled
+兵庫県＿車内クリーニング,車　 エアコン臭い,車 エアコン臭い,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/hyogo/ac-nioi/,Enabled
+福岡県＿車内クリーニング,int福岡_通常清掃,車内 嘔吐 臭い 消し,Phrase,3,Average,Below average,Below average,,Enabled
+福岡県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 脱臭,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/shanai-shoshu/,Enabled
+福岡県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/kuruma-nioi-keshi/,Enabled
+福岡県＿車内クリーニング,int トラック福岡,トラック 臭い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/fukuoka-truck/,Enabled
+群馬県＿車内クリーニング,int群馬_通常清掃,車内 嘔吐 臭い 消し,Phrase,3,Below average,Below average,Above average,,Enabled
+群馬県＿車内クリーニング,車 匂い 消し・消臭洗浄,車 匂い 消し,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/gunma/kuruma-nioi-keshi/,Enabled
+群馬県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/gunma/seat-senjo/,Enabled
+栃木県＿車内クリーニング,AG_エアコン_エバポ,エアコン エバポレーター,Phrase,3,Below average,Below average,Above average,https://carinteriorcleaning.jp/regions/tochigi/evaporator-senjo/,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 ゲロ クリーニング,Phrase,4,Below average,Average,Average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 ルーム クリーニング,Phrase,4,Average,Below average,Average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 専門 店,Phrase,4,Below average,Average,Average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 嘔吐 クリーニング,Phrase,4,Below average,Average,Average,,Paused
+大阪府＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/osaka/seat-cleaning/,Enabled
+沖縄県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/okinawa/car-ac-cleaning/,Enabled
+沖縄県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/okinawa/kyuto-cleaning/,Enabled
+宮城県＿車内クリーニング,int宮城_通常清掃,車内 クリーニング 専門 店 宮城,Broad,4,Below average,Average,Average,,Enabled
+愛知県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 臭い,Phrase,4,Average,Below average,Average,https://carinteriorcleaning.jp/regions/aichi/shanai-shoshu/,Enabled
+愛知県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/aichi/car-ac-cleaning/,Enabled
+愛知県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/aichi/seat-cleaning/,Enabled
+愛知県＿車内クリーニング,消臭_口語,車 消臭,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/aichi/kuruma-nioi-keshi/,Enabled
+千葉県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/chiba/car-ac-cleaning/,Enabled
+千葉県＿車内クリーニング,車シート クリーニング,車 シート 丸洗い 業者,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/chiba/seat-cleaning/,Enabled
+兵庫県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,Enabled
+兵庫県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/hyogo/shanai-shoshu/,Enabled
+兵庫県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/hyogo/car-ac-cleaning/,Enabled
+福岡県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,Enabled
+群馬県＿車内クリーニング,車 エアコンクリーニング,車 エアコンクリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/gunma/car-ac-cleaning/,Enabled
+群馬県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,4,Below average,Average,Average,https://carinteriorcleaning.jp/regions/gunma/seat-cleaning/,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 大阪,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 車内 清掃,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 清掃 プロ,Phrase,5,Below average,Average,Above average,,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車 座席 クリーニング,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 内装 掃除,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 の 車内 清掃,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 クリーニング 嘔吐,Phrase,5,Below average,Average,Above average,,Paused
+大阪府＿車内クリーニング,車　 ペット臭,車 ペット臭,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/osaka/pet-nioi/,Enabled
+大阪府＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka/seat-senjo/,Enabled
+大阪府＿車内クリーニング,int トラック大阪,車内 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車 清掃 業者,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車内 クリーニング 専門 店,Phrase,5,Below average,Above average,Below average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,int トラック大阪,車内 クリーニング,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+大阪府＿車内クリーニング,エアコン_エバポレーター,エアコン エバポレーター,Broad,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka/evaporator-senjo/,Enabled
+沖縄県＿車内クリーニング,int沖縄２515,沖縄 車内 清掃,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/interior-cleaning/,Enabled
+沖縄県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/seat-senjo/,Enabled
+沖縄県＿車内クリーニング,車シート 洗浄,車 シート 洗浄 おすすめ,Phrase,5,Below average,Above average,Below average,https://carinteriorcleaning.jp/regions/okinawa/seat-senjo/,Enabled
+沖縄県＿車内クリーニング,車　 うんこ,車 シート うんち,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/okinawa/unko/,Enabled
+沖縄県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 クリーニング,Phrase,5,Average,Average,Below average,https://carinteriorcleaning.jp/regions/okinawa/kyuto-cleaning/,Enabled
+沖縄県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消臭,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/okinawa/shanai-shoshu/,Enabled
+宮城県＿車内クリーニング,車内 消臭・脱臭洗浄,車 シート 臭い,Phrase,5,Below average,Above average,Below average,https://carinteriorcleaning.jp/regions/miyagi/shanai-shoshu/,Enabled
+宮城県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/miyagi/seat-senjo/,Enabled
+愛知県＿車内クリーニング,int愛知_通常清掃,車内 クリーニング 専門 店 愛知,Broad,5,Average,Average,Below average,,Enabled
+愛知県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/aichi/seat-senjo/,Enabled
+千葉県＿車内クリーニング,中古車タバコ臭,中古車タバコ臭,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/chiba/chuko-tabako/,Enabled
+千葉県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,Enabled
+千葉県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/chiba/seat-senjo/,Enabled
+千葉県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/chiba/seat-cleaning/,Enabled
+兵庫県＿車内クリーニング,中古車タバコ臭,中古車タバコ臭,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/hyogo/chuko-tabako/,Enabled
+兵庫県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/hyogo/seat-senjo/,Enabled
+福岡県＿車内クリーニング,int福岡_通常清掃,車内 クリーニング 専門 業者,Phrase,5,Below average,Above average,Below average,,Enabled
+福岡県＿車内クリーニング,車　 ペット臭,車 ペット臭,Phrase,5,Average,Below average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/pet-nioi/,Enabled
+福岡県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/seat-senjo/,Enabled
+福岡県＿車内クリーニング,エアコン_エバポレーター,エアコン エバポレーター,Broad,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/evaporator-senjo/,Enabled
+群馬県＿車内クリーニング,車の匂い取り,車の匂い取り,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/gunma/kuruma-nioitori/,Enabled
+栃木県＿車内クリーニング,車シート 洗浄,車シート 洗浄,Phrase,5,Below average,Average,Above average,https://carinteriorcleaning.jp/regions/tochigi/seat-senjo/,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車 ルーム クリーニング,Phrase,6,Average,Average,Average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 専門 店 大阪,Broad,6,Average,Average,Average,,Enabled
+大阪府＿車内クリーニング,AG_消臭_口語,車 匂い 消し 業者,Phrase,6,Average,Above average,Below average,https://carinteriorcleaning.jp/regions/osaka/kuruma-nioi-keshi/,Enabled
+宮城県＿車内クリーニング,int宮城_通常清掃,車内 クリーニング 専門 業者,Phrase,6,Average,Average,Average,,Enabled
+愛知県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,6,Average,Average,Average,https://carinteriorcleaning.jp/regions/aichi/shanai-shoshu/,Enabled
+千葉県＿車内クリーニング,int千葉_通常清掃,車内 清掃 プロ,Phrase,6,Average,Average,Average,,Enabled
+千葉県＿車内クリーニング,int千葉_通常清掃,車内 クリーニング 専門 店 千葉,Broad,6,Average,Average,Average,,Enabled
+千葉県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,6,Average,Above average,Below average,https://carinteriorcleaning.jp/regions/chiba/shanai-shoshu/,Enabled
+福岡県＿車内クリーニング,int福岡_通常清掃,車内 クリーニング 専門 店 福岡,Broad,6,Average,Average,Average,,Enabled
+福岡県＿車内クリーニング,車 嘔吐 クリーニング,車 クリーニング 福岡,Phrase,6,Average,Average,Average,https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,Enabled
+福岡県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,6,Average,Average,Average,https://carinteriorcleaning.jp/regions/fukuoka/seat-cleaning/,Enabled
+群馬県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,6,Average,Average,Average,https://carinteriorcleaning.jp/regions/gunma/shanai-shoshu/,Enabled
+栃木県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,6,Average,Above average,Below average,https://carinteriorcleaning.jp/regions/tochigi/shanai-shoshu/,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車 室内 クリーニング,Phrase,7,Average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 の 室内 清掃,Phrase,7,Average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車 の 内装 クリーニング,Phrase,7,Average,Average,Above average,,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 専門 業者,Phrase,7,Average,Above average,Average,,Enabled
+大阪府＿車内クリーニング,int大阪_通常清掃,車 の クリーニング,Phrase,7,Average,Average,Above average,,Paused
+大阪府＿車内クリーニング,車 嘔吐 クリーニング,車 嘔吐 クリーニング 大阪,Phrase,7,Average,Above average,Average,https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,Enabled
+大阪府＿車内クリーニング,車 嘔吐 クリーニング,車 クリーニング 大阪,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,Enabled
+大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,車内 消 臭 プロ,Phrase,7,Average,Above average,Average,https://carinteriorcleaning.jp/regions/osaka/shanai-shoshu/,Enabled
+大阪府＿車内クリーニング,車シート クリーニング,車 シート 掃除 業者,Phrase,7,Average,Above average,Average,https://carinteriorcleaning.jp/regions/osaka/seat-cleaning/,Enabled
+大阪府＿車内クリーニング,int トラック大阪,車 室内 クリーニング,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Paused
+沖縄県＿車内クリーニング,int沖縄２515,車内 清掃,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/interior-cleaning/,Paused
+沖縄県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/seat-cleaning/,Enabled
+沖縄県＿車内クリーニング,車 嘔吐 クリーニング,車 嘔吐 クリーニング,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/kyuto-cleaning/,Enabled
+沖縄県＿車内クリーニング,車内 消臭・脱臭洗浄,車内 脱臭,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/okinawa/shanai-shoshu/,Enabled
+宮城県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/miyagi/seat-cleaning/,Enabled
+愛知県＿車内クリーニング,車 嘔吐 クリーニング,車内 嘔吐 清掃,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,Enabled
+千葉県＿車内クリーニング,int千葉_通常清掃,車内 クリーニング 専門 業者,Phrase,7,Average,Above average,Average,,Enabled
+兵庫県＿車内クリーニング,int兵庫_通常清掃,車内 クリーニング 専門 業者,Phrase,7,Average,Above average,Average,,Enabled
+兵庫県＿車内クリーニング,int兵庫_通常清掃,車内 クリーニング 専門 店 兵庫,Broad,7,Average,Above average,Average,,Enabled
+福岡県＿車内クリーニング,車シート クリーニング,車 シート 掃除 業者,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/fukuoka/seat-cleaning/,Enabled
+栃木県＿車内クリーニング,int栃木_通常清掃,車内 クリーニング 専門 業者,Phrase,7,Average,Above average,Average,,Enabled
+栃木県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,7,Average,Average,Above average,https://carinteriorcleaning.jp/regions/tochigi/seat-cleaning/,Enabled
+栃木県＿車内クリーニング,AG_エアコン_エバポレーター,エバポレーター洗浄 出張,Phrase,7,Below average,Above average,Above average,https://carinteriorcleaning.jp/regions/tochigi/evaporator-senjo/,Paused
+大阪府＿車内クリーニング,int大阪_通常清掃,車内 クリーニング 嘔吐 大阪,Phrase,8,Average,Above average,Above average,https://carinteriorcleaning.jp/regions/osaka/interior-cleaning/,Paused
+大阪府＿車内クリーニング,int トラック大阪,トラック 室内 清掃,Phrase,8,Average,Above average,Above average,https://carinteriorcleaning.jp/regions/osaka-truck/,Enabled
+大阪府＿車内クリーニング,AG_緊急_嘔吐,大阪 嘔吐 車内清掃,Phrase,8,Average,Above average,Above average,https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,Enabled
+沖縄県＿車内クリーニング,出張 車内クリーニング 専門店,車内クリーニング 専門店,Phrase,8,Average,Above average,Above average,https://carinteriorcleaning.jp/regions/okinawa/shutchou-senmon/,Enabled
+兵庫県＿車内クリーニング,車シート クリーニング,車シート クリーニング,Phrase,8,Average,Above average,Above average,https://carinteriorcleaning.jp/regions/hyogo/seat-cleaning/,Enabled
+群馬県＿車内クリーニング,int群馬_通常清掃,車内 清掃 プロ,Phrase,8,Average,Above average,Above average,,Enabled
