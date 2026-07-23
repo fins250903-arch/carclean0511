@@ -193,6 +193,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内の臭い</strong>は、汚れ・カビ・ヤニ・飲食など複合要因であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランク・ダクト周りまで状況に応じて洗浄します。<br />「臭いの元」を残さないことが、再発防止の近道です。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '荷室まわりの生活臭・こもったニオイのイメージ',
+    mainTitle: (r) => `【${r}】車内の臭い対策｜原因洗い出しから出張消臭洗浄`,
+    deepTroubles: [
+      '車内がなんとなく臭く、原因がエアコンかシートか分からない',
+      '消臭スプレーでは数日で戻り、根本対策を探している',
+      '荷室・天井・シートの複合臭で、どこから頼めばいいか迷う',
+    ],
   },
   {
     slug: 'kuruma-nioitori',
@@ -272,6 +278,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
+    mainTitle: (r) => `【${r}】エアコンが臭い・クサイ対策｜ON時の酸っぱい臭を出張内部洗浄`,
+    deepTroubles: [
+      'エアコンをつけるとクサイ・酸っぱい臭いで、窓を開けて運転するしかない',
+      'フィルター交換や消臭剤では改善せず、すぐに臭いが戻る',
+      '家族が車内の空気を嫌がるが、ディーラー予約が遠い',
+    ],
   },
   {
     slug: 'ase',
@@ -425,6 +437,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>中古車加齢臭</strong>は、複数箇所の汚れが重なった総合臭であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランクまで状況を見ながら洗浄します。<br />「人に貸せるレベル」まで整えたい方に、車内クリーニングをご提案します。`,
     problemEmpathyImage: KW_IMAGES.chukoKareisyu,
+    mainTitle: (r) => `【${r}】中古車の加齢臭・生活臭｜前オーナー臭を天井・シートまで出張洗浄`,
+    deepTroubles: [
+      '納車した中古車から、前オーナーの生活臭・加齢臭が染み出して恥ずかしい',
+      'オゾン脱臭だけでは数日で戻り、家族が乗りたがらない',
+      'どこが臭いか分からず、部分消臭と丸洗いのどちらを頼めばいいか迷う',
+    ],
   },
   {
     slug: 'touyu-kobosi',
