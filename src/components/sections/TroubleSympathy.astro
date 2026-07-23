@@ -200,6 +200,66 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
       border: 'border-blue-100',
     },
   ],
+  light: [
+    {
+      icon: '🪑',
+      title: '黄ばみ・生活汚れ',
+      desc: '基本洗浄で丸ごとリセット',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '🧃',
+      title: '飲みこぼし・シミ',
+      desc: '素材に合わせたシミ抜き',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+    {
+      icon: '✨',
+      title: '見た目の清潔感',
+      desc: '同乗者にも安心の仕上がり',
+      bg: 'bg-sky-50/50',
+      border: 'border-sky-100',
+    },
+    {
+      icon: '🚐',
+      title: '出張・電源不要',
+      desc: '駐車場があればその場で施工',
+      bg: 'bg-emerald-50/50',
+      border: 'border-emerald-100',
+    },
+  ],
+  'pet-odor': [
+    {
+      icon: '🐶',
+      title: 'ペット特有の獣臭',
+      desc: '酵素分解＋リンサー',
+      bg: 'bg-yellow-50/50',
+      border: 'border-yellow-100',
+    },
+    {
+      icon: '💧',
+      title: '尿・唾液の染み',
+      desc: '臭いの元を内部まで洗浄',
+      bg: 'bg-sky-50/50',
+      border: 'border-sky-100',
+    },
+    {
+      icon: '🧶',
+      title: '毛と皮脂の蓄積',
+      desc: '吸引＋手作業で除去',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '👥',
+      title: '同乗者への気づかい',
+      desc: '家族・友人を乗せやすく',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
   vomit: COMMON_EMERGENCY,
   kerosene: COMMON_EMERGENCY,
   'pet-waste': COMMON_EMERGENCY,
@@ -209,6 +269,29 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
 const themeTroubles =
   (troubleType && THEME_TROUBLES[troubleType]) || COMMON_EMERGENCY;
 
+const isEmergencyTheme =
+  !troubleType ||
+  troubleType === 'vomit' ||
+  troubleType === 'kerosene' ||
+  troubleType === 'pet-waste' ||
+  troubleType === 'pet-hair';
+
+const badgeLabel = isEmergencyTheme
+  ? '緊急対応エリア拡大中！'
+  : troubleType === 'ac'
+    ? 'エアコン臭い・出張対応'
+    : troubleType === 'light'
+      ? '通常の車内クリーニング対応'
+      : troubleType === 'seat'
+        ? 'シート洗浄・出張対応'
+        : troubleType === 'pet-odor'
+          ? 'ペット臭・出張消臭対応'
+          : '原因別の出張消臭・洗浄';
+
+const badgeClass = isEmergencyTheme
+  ? 'inline-block bg-red-600 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider uppercase animate-pulse'
+  : 'inline-block bg-slate-800 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider';
+
 const sectionLead =
   troubleType === 'ac'
     ? `${displayName}のエアコン臭い・カビ臭を、内部洗浄と車内洗浄でスピード改善`
@@ -216,7 +299,14 @@ const sectionLead =
       ? `${displayName}の車内臭いを、原因特定からプロ洗浄で根本対策`
       : troubleType === 'seat'
         ? `${displayName}のシート汚れ・黄ばみを、素材別洗浄でスッキリ`
-        : `${displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決`;
+        : troubleType === 'light'
+          ? `${displayName}の通常車内クリーニング（黄ばみ・生活汚れ）を出張で丁寧に`
+          : troubleType === 'pet-odor'
+            ? `${displayName}のペット臭を、洗浄と酵素分解で根本対策`
+            : `${displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決`;
+
+const accentClass = isEmergencyTheme ? 'text-red-600' : 'text-slate-800';
+const deepCtaClass = isEmergencyTheme ? 'text-red-600' : 'text-slate-700';
 ---
 
 <section class="w-full py-8 md:py-12 bg-white border-b border-gray-100 relative">
@@ -224,11 +314,11 @@ const sectionLead =
     
     {/* セクションタイトル */}
     <div class="text-center mb-6 md:mb-8">
-      <span class="inline-block bg-red-600 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider uppercase animate-pulse">
-        緊急対応エリア拡大中！
+      <span class={badgeClass}>
+        {badgeLabel}
       </span>
       <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-        こんなトラブル、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">お任せください！</span>
+        こんなお悩み、<span class={`${accentClass} underline decoration-4 underline-offset-4`}>お任せください！</span>
       </h2>
       <p class="text-sm md:text-base text-gray-600 mt-2 font-medium">
         {sectionLead}
@@ -245,7 +335,7 @@ const sectionLead =
           <h3 class="text-sm md:text-lg font-black text-gray-900 mb-1 leading-tight">
             {item.title}
           </h3>
-          <p class="text-xs md:text-sm font-bold text-red-600 leading-snug mt-1">
+          <p class={`text-xs md:text-sm font-bold ${deepCtaClass} leading-snug mt-1`}>
             {item.desc}
           </p>
         </div>
@@ -254,9 +344,9 @@ const sectionLead =
 
     {/* キーワード特有の深い悩み（吹き出し・共感エリア） */}
     {deepTroubles && deepTroubles.length > 0 && (
-      <div class="bg-red-50/40 border-2 border-red-500/10 p-5 md:p-8 rounded-3xl mb-8 max-w-4xl mx-auto shadow-sm">
+      <div class={`${isEmergencyTheme ? 'bg-red-50/40 border-red-500/10' : 'bg-slate-50 border-slate-200'} border-2 p-5 md:p-8 rounded-3xl mb-8 max-w-4xl mx-auto shadow-sm`}>
         <div class="flex items-center gap-2 mb-4 justify-center md:justify-start">
-          <span class="text-xl md:text-2xl">⚠️</span>
+          <span class="text-xl md:text-2xl">{isEmergencyTheme ? '⚠️' : '💡'}</span>
           <h3 class="text-base md:text-xl font-black text-gray-900 leading-none">
             実は、このような「さらに深い悩み」でお困りではありませんか？
           </h3>
@@ -264,8 +354,8 @@ const sectionLead =
         
         <div class="space-y-3.5">
           {deepTroubles.map((trouble, index) => (
-            <div class="flex items-start gap-2.5 bg-white p-3.5 md:p-4 rounded-2xl shadow-sm border border-red-500/5 hover:border-red-500/20 transition-colors">
-              <span class="flex-shrink-0 flex items-center justify-center w-5 md:w-6 h-5 md:h-6 bg-red-100 text-red-600 rounded-full font-black text-xs md:text-sm mt-0.5 md:mt-0">
+            <div class={`flex items-start gap-2.5 bg-white p-3.5 md:p-4 rounded-2xl shadow-sm border ${isEmergencyTheme ? 'border-red-500/5 hover:border-red-500/20' : 'border-slate-100 hover:border-slate-300'} transition-colors`}>
+              <span class={`flex-shrink-0 flex items-center justify-center w-5 md:w-6 h-5 md:h-6 ${isEmergencyTheme ? 'bg-red-100 text-red-600' : 'bg-slate-200 text-slate-700'} rounded-full font-black text-xs md:text-sm mt-0.5 md:mt-0`}>
                 {index + 1}
               </span>
               <p class="text-xs md:text-base font-bold text-gray-800 leading-snug md:leading-normal">
@@ -274,16 +364,20 @@ const sectionLead =
             </div>
           ))}
         </div>
-        <p class="text-center text-xs md:text-sm font-black text-red-600 mt-4 leading-relaxed animate-bounce">
-          一人で悩まずプロにお任せを！そのお悩み、すべて「特急便」が綺麗に解決します！
+        <p class={`text-center text-xs md:text-sm font-black ${deepCtaClass} mt-4 leading-relaxed`}>
+          {isEmergencyTheme
+            ? '一人で悩まずプロにお任せを！そのお悩み、すべて「特急便」が綺麗に解決します！'
+            : '一人で悩まずご相談ください。症状に合った洗浄メニューを分かりやすくご案内します。'}
         </p>
       </div>
     )}
 
     {/* 即座アクションへ誘導するCTAエリア */}
-    <div class="bg-white rounded-3xl border border-gray-100 p-4 md:p-6 shadow-xl max-w-3xl mx-auto text-center border-t-4 border-t-red-600">
-      <p class="text-xs md:text-sm font-black text-red-600 tracking-wider mb-2.5">
-        ＼ お急ぎの方はお電話、手軽に見積もりたい方はLINEが便利です！ ／
+    <div class={`bg-white rounded-3xl border border-gray-100 p-4 md:p-6 shadow-xl max-w-3xl mx-auto text-center border-t-4 ${isEmergencyTheme ? 'border-t-red-600' : 'border-t-slate-800'}`}>
+      <p class={`text-xs md:text-sm font-black ${deepCtaClass} tracking-wider mb-2.5`}>
+        {isEmergencyTheme
+          ? '＼ お急ぎの方はお電話、手軽に見積もりたい方はLINEが便利です！ ／'
+          : '＼ 料金の目安確認はお電話、写真見積もりはLINEが便利です！ ／'}
       </p>
       
       <div class="grid md:grid-cols-2 gap-3.5 max-w-2xl mx-auto">

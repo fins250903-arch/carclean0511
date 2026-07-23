@@ -71,6 +71,24 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
     durationLabel: '約2〜3時間',
     areaLabel: areaDefault,
   },
+  'chuko-kareisyu': {
+    intentLabel: '中古車加齢臭・生活臭',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜／普通車基本 ${yen(CAR_PRICING.regularBasic)}〜`,
+    durationLabel: '約2〜3時間',
+    areaLabel: areaDefault,
+  },
+  'pet-nioi': {
+    intentLabel: 'ペット臭・車内消臭',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
+    durationLabel: '約2〜3時間',
+    areaLabel: areaDefault,
+  },
+  'shanai-nioi': {
+    intentLabel: '車内の臭い対策',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
   'kyuto-cleaning': {
     intentLabel: '嘔吐クリーニング',
     priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
@@ -78,8 +96,8 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
     areaLabel: areaDefault,
   },
   'interior-cleaning': {
-    intentLabel: '車内クリーニング',
-    priceLabel: `基本洗浄 ${yen(CAR_PRICING.lightBasic)}〜`,
+    intentLabel: '車内クリーニング（基本洗浄）',
+    priceLabel: `基本洗浄 ${yen(CAR_PRICING.lightBasic)}〜（消臭セットは別メニュー）`,
     durationLabel: '約1.5〜3時間',
     areaLabel: areaDefault,
   },
