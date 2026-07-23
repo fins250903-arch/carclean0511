@@ -211,6 +211,34 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyAlt: 'スチーム洗浄による車内の臭い除去イメージ',
   },
   {
+    slug: 'pikapika',
+    seoTitle: '車内をピカピカにする業者・車内クリーニング',
+    seoDescription: (r) =>
+      `${r}対応。車内をピカピカにするプロの出張クリーニング業者。シート洗浄・除菌・消臭までまとめて施工し、新車のような車内へ。`,
+    seoKeywords: (r) =>
+      `車 ピカピカ 業者 ${r}, 車内 ピカピカ ${r}, 車内クリーニング 業者 ${r}, 車 掃除 業者 ${r}, 車内清掃 ${r}`,
+    ogImage: FV_PASSENGER_HERO,
+    heroSubtitle: (d) => `${d}｜車内ピカピカ・プロ出張クリーニング`,
+    heroHighlight: ['車内まるごと', 'ピカピカに'],
+    heroSubcatch: (d) => `${d}の車内ピカピカ・出張業者`,
+    fvImage: FV_PASSENGER_HERO,
+    heroFooter: kwFooter('車内ピカピカ・車内クリーニング'),
+    problemHeader: '「自分で掃除しても、車内がなかなかピカピカにならない…」',
+    problemSubHeader: '洗車機やコイン洗車では、シートや内装の奥の汚れまでは落としきれません。',
+    problemDealerQuote:
+      '「業者に頼みたいけど、どこまでキレイになるのか分からず不安…」',
+    problemBodyHtml: (rn, dn) =>
+      `<strong>車内をピカピカ</strong>にするには、シート・天井・フロア・細部までプロの機材で洗浄することが近道です。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・除菌・消臭までまとめて施工します。<br /><strong>${rn}</strong>エリアへ最短即日出張。電源・水道は不要です。`,
+    problemEmpathyImage: KW_IMAGES.sienta3After,
+    problemEmpathyAlt: '車内クリーニング後のピカピカな車内イメージ',
+    mainTitle: (r) => `${r}で車内をピカピカに｜プロの出張車内クリーニング業者`,
+    deepTroubles: [
+      '洗車はするけれど、車内（シートや内装）は自分では手が回らない',
+      '中古で買った車の内装がくすんでいて、新車のようにピカピカにしたい',
+      '業者に頼みたいが、料金も仕上がりも分からず一歩踏み出せない',
+    ],
+  },
+  {
     slug: 'ac-nioi',
     seoTitle: '車エアコン臭い・ダクト対策',
     seoDescription: (r) =>

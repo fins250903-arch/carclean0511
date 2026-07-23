@@ -224,13 +224,13 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
         ? `${regionName}の出張トラックキャビン清掃専門店`
         : isBus
           ? `${regionName}の出張バス・マイクロバス車内清掃専門店`
-          : `${regionName}の${STORE_NAME} | 出張車内清掃・シート洗浄・嘔吐消臭`;
+          : `${regionName}の${STORE_NAME} | 出張車内クリーニング・車内清掃・シート洗浄・嘔吐消臭`;
 
     const title = mainTitle;
 
     
 
-    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
+    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、車内の掃除、エアコン臭い・臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
 
     const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
@@ -240,7 +240,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 
 
-    const carKeywords = `出張 車内 清掃 ${regionName}, 出張 車内 クリーニング ${regionName}, 車内清掃 特急便 ${regionName}, 車内クリーニング ${regionName}, 車内清掃 ${regionName}, シート洗浄 ${regionName}, 車内装クリーニング ${regionName}, 嘔吐車内清掃 ${regionName}, 車灯油こぼし ${regionName}, 車のシート掃除 ${regionName}, 車座席クリーニング ${regionName}, 車内の臭い消し ${regionName}`;
+    const carKeywords = `出張 車内 清掃 ${regionName}, 出張 車内 クリーニング ${regionName}, 車内清掃 特急便 ${regionName}, 車内クリーニング ${regionName}, 車内清掃 ${regionName}, 車 クリーニング ${regionName}, シート洗浄 ${regionName}, 車内装クリーニング ${regionName}, 嘔吐車内清掃 ${regionName}, 車灯油こぼし ${regionName}, 車のシート掃除 ${regionName}, 車 掃除 ${regionName}, 車内 掃除 ${regionName}, 車 エアコン 臭い ${regionName}, 車 ピカピカ 業者 ${regionName}, 車座席クリーニング ${regionName}, 車内の臭い消し ${regionName}`;
 
     const truckKeywords = `トラックキャビン清掃 ${regionName}, 出張 トラック 洗浄 ${regionName}, 10tトラック キャビンクリーニング ${regionName}, トラック 臭い消し ${regionName}`;
 
