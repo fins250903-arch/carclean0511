@@ -49,7 +49,9 @@ import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
+import AdLpProcessGuide from '../../../components/sections/AdLpProcessGuide.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
+import { getAdLpProcessGuide } from '../../../data/adLpProcessGuide';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -126,6 +128,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const fvCopy = findFvCopy(regionId, kwSlug);
 const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
 const quickFacts = getAdLpQuickFacts(kwSlug);
+const processGuide = getAdLpProcessGuide(kwSlug);
 
 const adHero = fvHero
   ? {
@@ -178,6 +181,15 @@ const noindex = isNoindexKeywordSlug(kwSlug);
           priceLabel={quickFacts.priceLabel}
           durationLabel={quickFacts.durationLabel}
           areaLabel={quickFacts.areaLabel(displayName)}
+        />
+      )}
+      {processGuide && (
+        <AdLpProcessGuide
+          heading={processGuide.heading}
+          intro={processGuide.intro}
+          steps={processGuide.steps}
+          tiers={processGuide.tiers}
+          caveat={processGuide.caveat}
         />
       )}
       <TroubleSympathy
