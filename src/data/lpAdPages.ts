@@ -16,7 +16,8 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
   // 02・03・05・11 通常車内クリーニング
   {
     slug: 'interior-cleaning',
-    // 広告「int（通常車内クリーニング）」系Final URLの全対象地域で生成し404を防止（noindex,followのまま）
+    // 広告「int（通常車内クリーニング）」系Final URLの全対象地域で生成し404を防止
+    // ※Ads Final URLのため noindex は付けない（「機能していないリンク先」回避）
     targetRegionIds: [
       'fukuoka', 'hyogo', 'okinawa', 'osaka', 'gunma', 'miyagi', 'tochigi',
       'ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shizuoka',
