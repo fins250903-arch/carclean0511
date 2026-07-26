@@ -412,6 +412,126 @@ export const AD_LP_PROCESS_GUIDES: Record<string, AdLpProcessGuide> = {
     ],
     caveat: '長年の尿染みは完全無臭が難しい場合があります。限界は事前に説明します。',
   },
+  oshikko: {
+    heading: 'おしっこ汚れ・消臭の工程',
+    intro: '尿はアルカリ性で繊維奥に浸透しやすいため、中和とリンサー抽出が基本です。',
+    steps: [
+      {
+        title: '汚染範囲の特定',
+        body: 'シート表面だけでなく、ウレタン・隙間・フロアまで尿染みの広がりを確認します。',
+      },
+      {
+        title: '尿アルカリの中和',
+        body: '市販消臭スプレーは使わず、尿成分に合わせた中和・酵素工程で臭いの元を分解します。',
+      },
+      {
+        title: '温水リンサー抽出',
+        body: '染み込んだ尿を温水で洗い出し、吸引で回収します。',
+      },
+      {
+        title: '乾燥・換気',
+        body: '湿気が残ると臭いが戻りやすいため、吸引と換気で仕上げます。',
+      },
+    ],
+    tiers: [
+      {
+        label: '座席1脚（消臭）',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: 'おしっこ染みの標準',
+      },
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '複数席・エアコン循環臭があるとき',
+      },
+      {
+        label: '所要時間',
+        price: '約1〜2.5時間',
+        note: '乾いた後の固着は長め',
+      },
+    ],
+    caveat: '猫尿や長期間放置の尿染みは完全無臭を保証できない場合があります。見込みは事前にお伝えします。',
+  },
+  omorashi: {
+    heading: 'おもらし・尿染み洗浄の工程',
+    intro: '乾いてからの尿染みは固定化しやすく、早めの中和洗浄がシミと臭いの両方に有効です。',
+    steps: [
+      {
+        title: '染み位置の確認',
+        body: '見た目の黄ばみだけでなく、臭いの強い席・隙間を特定します。',
+      },
+      {
+        title: '中和＋泡洗い',
+        body: '尿アルカリを中和しながら、素材に合わせた洗浄剤で汚れを浮かします。',
+      },
+      {
+        title: 'リンサー抽出',
+        body: 'シート内部まで温水で洗い流し、臭い分子を吸引回収します。',
+      },
+      {
+        title: '乾燥仕上げ',
+        body: '当日〜翌日の利用目安もご案内します。',
+      },
+    ],
+    tiers: [
+      {
+        label: '座席1脚（消臭）',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: 'おもらし1席から対応',
+      },
+      {
+        label: '座席1脚（基本）',
+        price: `${yen(CAR_PRICING.seatSingleBasic)}〜`,
+        note: '臭いが軽い染み中心のとき',
+      },
+      {
+        label: '所要時間',
+        price: '約1〜2.5時間',
+        note: '範囲により前後',
+      },
+    ],
+    caveat: 'レンタカー返却前など急ぎの場合も、空き状況に応じて優先案内します。',
+  },
+  'touyu-kobosi': {
+    heading: '灯油こぼし緊急洗浄の工程',
+    intro: '灯油は揮発と浸透が早く、火気厳禁のうえ染み出しを抑える手順が重要です。',
+    steps: [
+      {
+        title: '安全確認',
+        body: '火気厳禁・換気・エンジン停止を確認してから作業します。',
+      },
+      {
+        title: '吸油・汚染範囲の特定',
+        body: 'マット上か、フロア下吸音材まで達しているかを見極めます。',
+      },
+      {
+        title: '中和・リンサー抽出',
+        body: '油分を広げない手順で洗浄・吸引し、臭いの元を減らします。',
+      },
+      {
+        title: '乾燥・フォロー',
+        body: '大量こぼしは経過確認が必要な場合があり、限界も事前に説明します。',
+      },
+    ],
+    tiers: [
+      {
+        label: '灯油洗浄',
+        price: `${yen(CAR_PRICING.kerosenePerSeat)}〜／席`,
+        note: '浸透度で変動',
+      },
+      {
+        label: '所要時間',
+        price: '約2〜4時間',
+        note: '100cc超は長め',
+      },
+      {
+        label: '保険相談',
+        price: '見積時に案内',
+        note: '500cc超は交換可否も見極め',
+      },
+    ],
+    caveat: '500cc超は洗浄だけでは限界の場合があります。部品交換や保険活用も選択肢として提示します。',
+  },
 };
 
 export function getAdLpProcessGuide(slug: string): AdLpProcessGuide | undefined {

@@ -157,16 +157,52 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
   },
   oshikko: {
-    troubleType: 'pet-waste',
+    troubleType: 'urine',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のおしっこ汚れは、尿アルカリを中和するプロのリンサー洗浄が必要です。市販消臭剤は表面のマスキングに留まり、ウレタン内部の臭いは残ります。${regionName}内へ最短即日出張、座席1脚消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
+      `【結論】${regionName}で車内のおしっこ汚れは、尿アルカリを中和するプロのリンサー洗浄が必要です。市販消臭剤は表面のマスキングに留まり、ウレタン内部の臭いは残ります。${regionName}内へ最短即日出張、座席1脚消臭${yen(CAR_PRICING.seatSingleDeodorize)}〜（所要約1〜2.5時間）。乾いた後でも対応可能です。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    customDefinition: (regionName) =>
+      `${regionName}の車内おしっこ洗浄とは、ペットやお子様の尿が染みたシートを中和・酵素分解し、温水リンサーで内部まで洗い流す出張消臭サービスです。`,
+    extraFaqs: [
+      {
+        q: 'おしっこが乾いてしまっても取れますか？',
+        a: 'はい。乾いた後でも中和とリンサー抽出で改善を目指します。ただし長期間放置や猫尿は完全無臭が難しい場合があり、見込みは事前にお伝えします。',
+      },
+      {
+        q: '料金と所要時間の目安は？',
+        a: `座席1脚消臭${yen(CAR_PRICING.seatSingleDeodorize)}〜が標準です。複数席やエアコン循環臭がある場合は消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。所要は約1〜2.5時間です。`,
+      },
+      {
+        q: 'おもらしページと何が違いますか？',
+        a: 'どちらも尿染み対応です。ペット粗相中心ならおしっこ、お子様・同乗者の急なおもらしならおもらしページが近い表現です。工程は同様で、症状に合わせてご案内します。',
+      },
+    ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内おしっこ消臭事例`,
+      body: `${city}で後部座席にペットのおしっこが染み、アンモニア臭が取れないとのご相談。座席1脚の中和＋リンサー抽出で臭いを大幅改善し、翌日の送迎に間に合わせた事例です。`,
+    })),
   },
   omorashi: {
-    troubleType: 'pet-waste',
+    troubleType: 'urine',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
+      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。${regionName}内へ最短即日出張対応。座席1脚消臭${yen(CAR_PRICING.seatSingleDeodorize)}〜（所要約1〜2.5時間）。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    customDefinition: (regionName) =>
+      `${regionName}の車内おもらし洗浄とは、尿染みの黄ばみと臭いを中和・リンサー抽出でまとめ、見える化せず丁寧に仕上げる出張サービスです。`,
+    extraFaqs: [
+      {
+        q: 'レンタカー返却前でも間に合いますか？',
+        a: '空き状況により最短即日〜翌日で対応できる場合があります。まずはお電話・LINEで返却時刻をご相談ください。',
+      },
+      {
+        q: '料金目安は？',
+        a: `座席1脚消臭${yen(CAR_PRICING.seatSingleDeodorize)}〜。臭いが軽い染み中心なら基本${yen(CAR_PRICING.seatSingleBasic)}〜からご案内する場合もあります。`,
+      },
+    ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜おもらし尿染み洗浄事例`,
+      body: `${city}でお子様のおもらし後、シートの黄ばみとアンモニア臭が残ったケース。1席の中和洗浄で見た目と臭いを改善し、家族がまた乗りやすくなった事例です。`,
+    })),
   },
   'pet-unko': {
     troubleType: 'pet-waste',
@@ -314,7 +350,15 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '料金目安は？',
         a: `消臭セット${yen(CAR_PRICING.lightDeodorize)}〜、気になる席だけの場合は座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜も可能です。`,
       },
+      {
+        q: '天井まで洗う必要がありますか？',
+        a: '加齢臭成分は天井やピラーにも吸着しやすいです。臭いの広がり方を見て、必要な範囲だけをご提案します。',
+      },
     ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内加齢臭の改善事例`,
+      body: `${city}で「家族に車が臭いと言われた」とのご相談。自分では気づきにくい皮脂臭と判断し、天井・シートの広範囲洗浄を実施。エアコン循環臭も軽減した事例です。`,
+    })),
   },
   'spray-kouka-nai': {
     troubleType: 'odor',
@@ -468,7 +512,6 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       `【結論】${regionName}で車内のペット臭は、尿・毛・皮脂がシート内部に蓄積していることが原因です。消臭剤では再発し、温水リンサーと酵素分解が必要です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約2〜3時間）。後部座席1脚からでも対応できます。`,
     customDefinition: (regionName) =>
       `${regionName}のペット臭対策とは、犬・猫同乗で付いた獣臭・尿臭・皮脂臭を、毛の除去と酵素分解・温水リンサー洗浄でまとめてケアする出張サービスです。`,
-    emergencyChecklist: EMERGENCY_PET_CHECKLIST,
     extraFaqs: [
       {
         q: 'ペット臭の料金目安は？',
@@ -478,7 +521,15 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '毛取りもセットですか？',
         a: 'はい。臭いの元になる毛・皮脂汚れも吸引と手作業で取り除いたうえで洗浄します。',
       },
+      {
+        q: '粗相（おしっこ）直後でも頼めますか？',
+        a: 'はい。その場合はおしっこ専用の中和工程も組み合わせます。緊急応急処置のあと、プロ洗浄へつなげると臭い固定化を防げます。',
+      },
     ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜ペット臭消臭事例`,
+      body: `${city}で愛犬同乗の車「友人を乗せると獣臭を指摘される」とのご相談。毛取りと消臭セット洗浄で車内の臭いを改善し、同乗しやすい状態へ戻した事例です。`,
+    })),
   },
   ase: {
     troubleType: 'seat',

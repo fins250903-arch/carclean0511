@@ -1,8 +1,8 @@
 # Google Ads 品質スコア監査 & LP改善レポート
 
-**対象データ:** Ads Editor 全エクスポート（`docs/google-ads/exports/ads-editor-full-2026-07-23.tsv`）  
-**監査日:** 2026-07-23  
-**関連:** `kw-lp-mismatch-report.md`（Final URL / Path2 / RSAコピペ汚染）
+**対象データ:** Ads Editor 全エクスポート（`docs/google-ads/exports/ads-editor-full-2026-07-26.tsv`）  
+**監査日:** 2026-07-26（再監査） / 初回 2026-07-23  
+**関連:** `reaudit-2026-07-26.md` / `ads-editor-remaining-fixes-2026-07-26.csv` / `kw-lp-mismatch-report.md`
 
 ---
 
@@ -86,6 +86,12 @@
 4. **ペット臭** — QuickFacts・`pet-odor`共感・工程
 5. **通常清掃** — `troubleType: light`、基本洗浄≠消臭セットの明示
 6. **緊急バッジ抑制** — 非緊急テーマは「緊急対応エリア拡大中」を出さない
+
+### Pass 3（07-26再監査後）
+1. **`oshikko` / `omorashi`** — QuickFacts・ProcessGuide・尿特化共感（`urine`）・FAQ/事例
+2. **`kareisyu` / `pet-nioi`** — nicheCaseStudy 追加
+3. **`touyu-kobosi`** — QuickFacts・ProcessGuide（Path2修正後の着地強化）
+4. **おしっこFV画像** — ペット毛画像から尿系ビジュアルへ変更
 
 ---
 

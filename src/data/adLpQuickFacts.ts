@@ -83,6 +83,25 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
     durationLabel: '約2〜3時間',
     areaLabel: areaDefault,
   },
+  oshikko: {
+    intentLabel: 'おしっこ汚れ・消臭',
+    priceLabel: `座席1脚消臭 ${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+    durationLabel: '約1〜2.5時間',
+    areaLabel: areaDefault,
+  },
+  omorashi: {
+    intentLabel: 'おもらし・尿染み洗浄',
+    priceLabel: `座席1脚消臭 ${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+    durationLabel: '約1〜2.5時間',
+    areaLabel: areaDefault,
+  },
+  'touyu-kobosi': {
+    intentLabel: '灯油こぼし緊急洗浄',
+    priceLabel: `灯油洗浄 ${yen(CAR_PRICING.kerosenePerSeat)}〜／席`,
+    durationLabel: '約2〜4時間',
+    areaLabel: areaDefault,
+  },
+
   'shanai-nioi': {
     intentLabel: '車内の臭い対策',
     priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,

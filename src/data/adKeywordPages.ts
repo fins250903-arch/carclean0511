@@ -96,11 +96,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
       `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.petKe,
+    ogImage: KW_IMAGES.petNioi,
     heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
-    fvImage: KW_IMAGES.petKe,
+    fvImage: KW_IMAGES.petNioi,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
@@ -108,7 +108,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
-    problemEmpathyImage: KW_IMAGES.petKe,
+    problemEmpathyImage: KW_IMAGES.petNioi,
     problemEmpathyAlt: '後部座席のペットおしっこ汚れのイメージ（施工関連）',
     mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
     deepTroubles: [

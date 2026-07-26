@@ -260,6 +260,36 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
       border: 'border-blue-100',
     },
   ],
+  urine: [
+    {
+      icon: '💧',
+      title: 'おしっこ・尿染み',
+      desc: '中和してから洗い出し',
+      bg: 'bg-sky-50/50',
+      border: 'border-sky-100',
+    },
+    {
+      icon: '🧪',
+      title: 'アンモニア臭',
+      desc: 'スプレーでは消えない内部臭',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '❄️',
+      title: 'エアコンで広がる',
+      desc: '循環臭もセットで対策可',
+      bg: 'bg-cyan-50/50',
+      border: 'border-cyan-100',
+    },
+    {
+      icon: '⏱️',
+      title: '乾いた後でも対応',
+      desc: '放置するほど固着しやすい',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+  ],
   vomit: COMMON_EMERGENCY,
   kerosene: COMMON_EMERGENCY,
   'pet-waste': COMMON_EMERGENCY,
@@ -274,10 +304,13 @@ const isEmergencyTheme =
   troubleType === 'vomit' ||
   troubleType === 'kerosene' ||
   troubleType === 'pet-waste' ||
-  troubleType === 'pet-hair';
+  troubleType === 'pet-hair' ||
+  troubleType === 'urine';
 
 const badgeLabel = isEmergencyTheme
-  ? '緊急対応エリア拡大中！'
+  ? troubleType === 'urine'
+    ? 'おしっこ・尿染み 即日対応'
+    : '緊急対応エリア拡大中！'
   : troubleType === 'ac'
     ? 'エアコン臭い・出張対応'
     : troubleType === 'light'
@@ -303,7 +336,9 @@ const sectionLead =
           ? `${displayName}の通常車内クリーニング（黄ばみ・生活汚れ）を出張で丁寧に`
           : troubleType === 'pet-odor'
             ? `${displayName}のペット臭を、洗浄と酵素分解で根本対策`
-            : `${displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決`;
+            : troubleType === 'urine'
+              ? `${displayName}のおしっこ・尿染みを、中和とリンサーで早急に消臭`
+              : `${displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決`;
 
 const accentClass = isEmergencyTheme ? 'text-red-600' : 'text-slate-800';
 const deepCtaClass = isEmergencyTheme ? 'text-red-600' : 'text-slate-700';
