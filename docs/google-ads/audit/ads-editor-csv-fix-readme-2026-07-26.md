@@ -1,27 +1,36 @@
-# Ads Editor CSV 修正パッケージ（2026-07-26）
+# Ads Editor CSV 修正パッケージ（2026-07-26 / 回答反映・最終版）
 
-## 成果物
+## ユーザー回答
+| Q | 回答 | 反映 |
+|---|------|------|
+| Q1 Paused空URL | A) 触らない | ✅ |
+| Q2 おもらしAG | A) URLのみ | ✅ |
+| Q3 壊れたネガティブ | B) 分割 | ✅ 32件Removed → 48ネガティブ追加 |
+| Q4 群馬「…嘔吐 大阪」 | B) 群馬に修正 | ✅ ＋同キャンペーン内の誤地名も修正 |
+| Q5 Path2 | おしっこ消臭でOK | ✅ |
+| Q6 インポート | A) フルCSV | ✅ 推奨 |
 
-| ファイル | 用途 |
-|---------|------|
-| `docs/google-ads/exports/ads-editor-fixed-full-2026-07-26.csv` | **完全版**（全行＋嘔吐KWの新規追加行） |
-| `docs/google-ads/exports/ads-editor-fixed-changes-only-2026-07-26.csv` | 変更行のみ（確認・部分インポート用） |
-| `docs/google-ads/audit/ads-editor-fix-log-2026-07-26.csv` | 変更ログ（フィールド単位） |
-| `docs/google-ads/exports/ads-editor-source-2026-07-26-c4eb.tsv` | 元CSVのコピー |
+## インポートファイル
+**`docs/google-ads/exports/ads-editor-fixed-full-2026-07-26.csv`**
 
-形式は元ファイルと同じ **タブ区切り・UTF-8 BOM・CRLF** です（拡張子は `.csv`）。
+形式: タブ区切り / UTF-8 BOM / CRLF
 
-## 修正内容（自動適用済み）
+付属:
+- `ads-editor-fixed-changes-only-2026-07-26.csv`（確認用）
+- `ads-editor-fix-log-2026-07-26.csv`（変更ログ）
+- `ads-editor-source-2026-07-26-c4eb.tsv`（元データ）
 
-1. **Path 2** — 「嘔吐ニオイ清掃」「ペットうんち」「嘔吐クリニング」を着地slug別に置換（嘔吐系slugは維持/適正化）
-2. **通常清掃5県** — RSA/KWの地域ハブURL → `/regions/{pref}/interior-cleaning/`
-3. **おもらしKW** — Final URL → `/regions/{pref}/omorashi/`
-4. **Enabled 空 Final URL** — 同一AGのRSA Final URLで補完
-5. **ペット毛説明文** — 非 `pet-ke` の残5件をテーマ文言へ
-6. **通常清掃内の嘔吐KW** — 元行を `Removed`、`車 嘔吐 クリーニング` へ **新規追加**（Final URL=`kyuto-cleaning`）
+## 修正サマリー
+1. Path2横断をslug別に置換（おしっこ=`おしっこ消臭`）
+2. 通常清掃ハブ → `interior-cleaning`
+3. おもらしKW → `omorashi`
+4. Enabled 空 Final URL 補完（Pausedは未変更）
+5. ペット毛説明汚染除去
+6. 通常清掃の嘔吐KW → Removed + `車 嘔吐 クリーニング` 追加
+7. `嘔吐""灯油""エアコン` → `嘔吐` / `灯油` / `エアコン`
+8. キャンペーンと不一致の地名トークンを都道府県名へ修正（群馬の大阪など）
 
-### Path2 対応表
-
+### Path2
 | slug | Path 2 |
 |------|--------|
 | `ac-kusai` | エアコン臭い |
@@ -42,7 +51,7 @@
 | `kyuto-cleaning` | 嘔吐ニオイ清掃 |
 | `mobile-cleaning` | 出張清掃 |
 | `omorashi` | おもらし清掃 |
-| `oshikko` | おしっこ清掃 |
+| `oshikko` | おしっこ消臭 |
 | `pet-ke` | ペット毛清掃 |
 | `pet-nioi` | ペット臭消臭 |
 | `pet-unko` | ペットうんち |
@@ -57,31 +66,8 @@
 | `unko` | うんこ清掃 |
 | `vomit-cleaning` | 嘔吐ニオイ清掃 |
 
-## Ads Editor への入れ方（推奨）
-
-1. Google Ads Editor で対象アカウントを取得（最新）
-2. **アカウント全体のインポート前にバックアップ**（ファイル > エクスポート）
-3. `ads-editor-fixed-full-2026-07-26.csv` をインポート  
-   - または変更確認しやすい場合は `changes-only` を先に目視
-4. インポート後、Editor の「インポートされた変更」で件数を確認
-5. 特に確認:
-   - Path 2 変更
-   - Final URL 変更
-   - キーワード Status=`Removed`（通常清掃の嘔吐KW）
-   - キーワード新規（`車 嘔吐 クリーニング` / Comment=`ADDED_FROM_通常清掃`）
-6. 問題なければ **投稿**
-
-### 注意（KW移動）
-
-Ads Editor は「Ad Group列を書き換えただけ」では移動が不安定なため、  
-**旧KWを Removed + 新AGへ新規追加** にしています。  
-投稿後、通常清掃側の嘔吐KWは Removed、嘔吐AG側に Enabled/Paused が追加されます。
-
-## 検証結果（スクリプト）
-
-- Path2横断残り: **0**
-- 通常清掃ハブURL残り: **0**
-- おもらしKW誤着地: **0**
-- Enabled 空Final URL: **0**
-- 通常清掃に残る嘔吐KW（Removed除く）: **0**
-- ペット毛説明汚染: **0**
+## 手順
+1. Ads Editorで最新取得＋バックアップ
+2. フルCSVをインポート
+3. Removed / 新規KW / Path2 / Final URL / ネガティブ分割を確認
+4. 投稿
