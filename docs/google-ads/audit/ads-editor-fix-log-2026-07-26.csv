@@ -1,0 +1,998 @@
+﻿row_index,campaign,ad_group,row_type,keyword,field,old,new,reason
+157,大阪府＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+445,大阪府＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+579,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+587,沖縄県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+598,沖縄県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+601,沖縄県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+614,沖縄県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+626,沖縄県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+753,沖縄県＿車内クリーニング,int沖縄２515,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+769,沖縄県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+772,沖縄県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+780,沖縄県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+783,沖縄県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+790,沖縄県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+793,沖縄県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+796,沖縄県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+801,沖縄県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+806,沖縄県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+820,沖縄県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+848,沖縄県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+849,沖縄県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+850,沖縄県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+858,沖縄県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+859,沖縄県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+860,沖縄県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+866,沖縄県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+867,沖縄県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+878,沖縄県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+879,沖縄県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+880,沖縄県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+890,沖縄県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+891,沖縄県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+892,沖縄県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+900,沖縄県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+901,沖縄県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+902,沖縄県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+912,沖縄県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+923,沖縄県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+924,沖縄県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+934,沖縄県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+935,沖縄県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+936,沖縄県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+943,沖縄県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+944,沖縄県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+947,沖縄県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+948,沖縄県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+949,沖縄県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+952,沖縄県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+953,沖縄県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+954,沖縄県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+963,沖縄県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+964,沖縄県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+967,沖縄県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+968,沖縄県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+969,沖縄県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1140,宮城県＿車内クリーニング,int宮城_通常清掃,ad,,Final URL,https://carinteriorcleaning.jp/regions/miyagi/,https://carinteriorcleaning.jp/regions/miyagi/interior-cleaning/,通常清掃RSAの地域ハブ→interior-cleaning
+1140,宮城県＿車内クリーニング,int宮城_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+1153,宮城県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1160,宮城県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+1170,宮城県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+1175,宮城県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+1185,宮城県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+1195,宮城県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+1215,宮城県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1219,宮城県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+1225,宮城県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+1231,宮城県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+1237,宮城県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+1260,宮城県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+1274,宮城県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+1280,宮城県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1289,宮城県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+1301,宮城県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+1308,宮城県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+1314,宮城県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1382,宮城県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=kyuto-cleaning
+1400,宮城県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1401,宮城県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1402,宮城県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1409,宮城県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1410,宮城県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1411,宮城県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1419,宮城県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1420,宮城県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+1421,宮城県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1428,宮城県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+1437,宮城県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1438,宮城県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1439,宮城県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1449,宮城県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1450,宮城県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1451,宮城県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1459,宮城県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1460,宮城県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1465,宮城県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+1466,宮城県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+1467,宮城県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+1477,宮城県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+1485,宮城県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+1489,宮城県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1490,宮城県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+1494,宮城県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1494,宮城県＿車内クリーニング,緊急_ペット,ad,,Description 1,宮城県で車ペット毛の臭いや汚れにお困りなら。専用洗剤とプロの技術で徹底除去。,宮城県で車のおしっこの臭いや染み込みにお困りなら。専用洗剤で徹底除去。,ペット毛説明文のテーマ汚染を除去
+1494,宮城県＿車内クリーニング,緊急_ペット,ad,,Description 2,車内の車ペット毛は放置すると悪化します。今すぐ専門家へお任せください。,車内のおしっこ臭は放置すると悪化します。今すぐ専門家へお任せください。,ペット毛説明文のテーマ汚染を除去
+1497,宮城県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1498,宮城県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1499,宮城県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1502,宮城県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+1505,宮城県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1506,宮城県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+1507,宮城県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1515,宮城県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1516,宮城県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+1517,宮城県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1525,宮城県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1526,宮城県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+1529,宮城県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1530,宮城県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1531,宮城県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+1714,愛知県＿車内クリーニング,int愛知_通常清掃,ad,,Final URL,https://carinteriorcleaning.jp/regions/aichi/,https://carinteriorcleaning.jp/regions/aichi/interior-cleaning/,通常清掃RSAの地域ハブ→interior-cleaning
+1714,愛知県＿車内クリーニング,int愛知_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+1726,愛知県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+1733,愛知県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+1739,愛知県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+1747,愛知県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+1753,愛知県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+1763,愛知県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+1783,愛知県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+1787,愛知県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+1799,愛知県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+1805,愛知県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+1811,愛知県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+1831,愛知県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+1847,愛知県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+1857,愛知県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1865,愛知県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+1878,愛知県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+1885,愛知県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+1891,愛知県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1957,愛知県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=vomit-cleaning
+1975,愛知県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1976,愛知県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1977,愛知県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+1984,愛知県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1985,愛知県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1986,愛知県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+1999,愛知県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2000,愛知県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+2001,愛知県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2008,愛知県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+2017,愛知県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2018,愛知県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2019,愛知県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2029,愛知県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2030,愛知県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2031,愛知県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2039,愛知県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2040,愛知県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2045,愛知県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2046,愛知県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2047,愛知県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2057,愛知県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+2065,愛知県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+2069,愛知県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2070,愛知県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+2074,愛知県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2081,愛知県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2082,愛知県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2083,愛知県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2090,愛知県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+2093,愛知県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2094,愛知県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+2095,愛知県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2104,愛知県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2105,愛知県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+2106,愛知県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2115,愛知県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2116,愛知県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2123,愛知県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2124,愛知県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2125,愛知県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2305,千葉県＿車内クリーニング,int千葉_通常清掃,ad,,Final URL,https://carinteriorcleaning.jp/regions/chiba/,https://carinteriorcleaning.jp/regions/chiba/interior-cleaning/,通常清掃RSAの地域ハブ→interior-cleaning
+2305,千葉県＿車内クリーニング,int千葉_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+2316,千葉県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2325,千葉県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+2331,千葉県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+2336,千葉県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+2346,千葉県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+2355,千葉県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+2372,千葉県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2380,千葉県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+2391,千葉県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+2397,千葉県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+2403,千葉県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+2423,千葉県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+2438,千葉県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+2444,千葉県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2450,千葉県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+2461,千葉県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+2468,千葉県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+2474,千葉県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2540,千葉県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=vomit-cleaning
+2558,千葉県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2559,千葉県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2560,千葉県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2567,千葉県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2568,千葉県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2569,千葉県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2581,千葉県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2582,千葉県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+2583,千葉県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2590,千葉県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+2599,千葉県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2600,千葉県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2601,千葉県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2611,千葉県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2612,千葉県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2613,千葉県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2621,千葉県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2622,千葉県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2622,千葉県＿車内クリーニング,AG_条件_出張,ad,,Description 2,車内の車ペット毛は放置すると悪化します。今すぐ専門家へお任せください。,車内の臭いや汚れは放置すると悪化します。今すぐ専門家へお任せください。,ペット毛説明文のテーマ汚染を除去
+2627,千葉県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2628,千葉県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2629,千葉県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+2641,千葉県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+2649,千葉県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+2653,千葉県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+2654,千葉県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+2658,千葉県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+2658,千葉県＿車内クリーニング,緊急_ペット,ad,,Description 1,千葉県で車ペット毛の臭いや汚れにお困りなら。専用洗剤とプロの技術で徹底除去。,千葉県で車のおしっこの臭いや染み込みにお困りなら。専用洗剤で徹底除去。,ペット毛説明文のテーマ汚染を除去
+2658,千葉県＿車内クリーニング,緊急_ペット,ad,,Description 2,車ペット毛の臭いや汚れに対応します。今すぐ専門家へお任せください。,車内のおしっこ臭は放置すると悪化します。今すぐ専門家へお任せください。,ペット毛説明文のテーマ汚染を除去
+2664,千葉県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2665,千葉県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2666,千葉県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2669,千葉県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+2672,千葉県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2673,千葉県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+2674,千葉県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2682,千葉県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2683,千葉県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+2684,千葉県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2692,千葉県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2693,千葉県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+2696,千葉県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2697,千葉県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2698,千葉県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+2880,兵庫県＿車内クリーニング,int兵庫_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+2892,兵庫県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+2901,兵庫県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+2907,兵庫県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+2912,兵庫県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+2918,兵庫県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+2928,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+2949,兵庫県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+2953,兵庫県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+2964,兵庫県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+2970,兵庫県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+2976,兵庫県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+3001,兵庫県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+3016,兵庫県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+3022,兵庫県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3028,兵庫県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+3040,兵庫県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+3047,兵庫県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+3053,兵庫県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3118,兵庫県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=vomit-cleaning
+3136,兵庫県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3137,兵庫県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3138,兵庫県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3145,兵庫県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3146,兵庫県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3147,兵庫県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3155,兵庫県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3156,兵庫県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+3157,兵庫県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3164,兵庫県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+3173,兵庫県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3174,兵庫県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3175,兵庫県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3185,兵庫県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3186,兵庫県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3187,兵庫県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3199,兵庫県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3200,兵庫県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3205,兵庫県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3206,兵庫県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3207,兵庫県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3217,兵庫県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+3225,兵庫県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+3229,兵庫県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3230,兵庫県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+3234,兵庫県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3242,兵庫県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3243,兵庫県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3244,兵庫県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3247,兵庫県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+3250,兵庫県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3251,兵庫県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+3252,兵庫県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3260,兵庫県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3261,兵庫県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+3262,兵庫県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3270,兵庫県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3271,兵庫県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3274,兵庫県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3275,兵庫県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3276,兵庫県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3456,福岡県＿車内クリーニング,int福岡_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+3469,福岡県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3476,福岡県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+3482,福岡県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+3487,福岡県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+3493,福岡県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+3503,福岡県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+3523,福岡県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3527,福岡県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+3538,福岡県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+3544,福岡県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+3555,福岡県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+3579,福岡県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+3594,福岡県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+3600,福岡県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3606,福岡県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+3613,福岡県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+3620,福岡県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+3626,福岡県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3692,福岡県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=vomit-cleaning
+3710,福岡県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3711,福岡県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3712,福岡県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3719,福岡県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3720,福岡県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3721,福岡県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3729,福岡県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3730,福岡県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+3731,福岡県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3738,福岡県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+3747,福岡県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3748,福岡県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3749,福岡県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3759,福岡県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3760,福岡県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3761,福岡県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3769,福岡県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3770,福岡県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3775,福岡県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3776,福岡県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3777,福岡県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+3787,福岡県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+3798,福岡県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+3802,福岡県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+3803,福岡県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+3807,福岡県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+3815,福岡県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3816,福岡県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3817,福岡県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+3824,福岡県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+3827,福岡県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3828,福岡県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+3829,福岡県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+3837,福岡県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3838,福岡県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+3839,福岡県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3847,福岡県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3848,福岡県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+3851,福岡県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3852,福岡県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+3853,福岡県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4035,群馬県＿車内クリーニング,int群馬_通常清掃,ad,,Final URL,https://carinteriorcleaning.jp/regions/gunma/,https://carinteriorcleaning.jp/regions/gunma/interior-cleaning/,通常清掃RSAの地域ハブ→interior-cleaning
+4035,群馬県＿車内クリーニング,int群馬_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+4044,群馬県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4051,群馬県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+4057,群馬県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+4062,群馬県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+4068,群馬県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+4075,群馬県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+4095,群馬県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4095,群馬県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Description 2,車内の車の臭いや汚れ車ペット毛は放置すると悪化します。今すぐ専門家へお任せください。,車内の臭いや汚れは放置すると悪化します。今すぐ専門家へお任せください。,ペット毛説明文のテーマ汚染を除去
+4099,群馬県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+4110,群馬県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+4116,群馬県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+4122,群馬県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+4133,群馬県＿車内クリーニング,出張 車内クリーニング 専門店,ad,,Description 1,群馬県で車ペット毛の臭いや汚れにお困りなら。専用洗剤とプロの技術で徹底除去。,群馬県で出張の車内クリーニング。1席対応も可能。専用洗剤で徹底除去。,ペット毛説明文のテーマ汚染を除去
+4133,群馬県＿車内クリーニング,出張 車内クリーニング 専門店,ad,,Description 2,車内の車ペット毛は放置すると悪化します。今すぐ専門家へお任せください。,車内の臭いや汚れは放置すると悪化します。今すぐ専門家へお任せください。,ペット毛説明文のテーマ汚染を除去
+4141,群馬県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+4152,群馬県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+4162,群馬県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4168,群馬県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+4175,群馬県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+4182,群馬県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+4188,群馬県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4253,群馬県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=kyuto-cleaning
+4271,群馬県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4272,群馬県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4273,群馬県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4280,群馬県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4281,群馬県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4282,群馬県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4290,群馬県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4291,群馬県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+4292,群馬県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4299,群馬県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+4308,群馬県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4309,群馬県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4310,群馬県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4320,群馬県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4321,群馬県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4322,群馬県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4330,群馬県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4331,群馬県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4336,群馬県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+4346,群馬県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+4354,群馬県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+4358,群馬県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4359,群馬県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+4363,群馬県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4371,群馬県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4372,群馬県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4373,群馬県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4380,群馬県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+4383,群馬県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4384,群馬県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+4385,群馬県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4393,群馬県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4394,群馬県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+4395,群馬県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4403,群馬県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4404,群馬県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4407,群馬県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4408,群馬県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4409,群馬県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4590,栃木県＿車内クリーニング,int栃木_通常清掃,ad,,Final URL,https://carinteriorcleaning.jp/regions/tochigi/,https://carinteriorcleaning.jp/regions/tochigi/interior-cleaning/,通常清掃RSAの地域ハブ→interior-cleaning
+4590,栃木県＿車内クリーニング,int栃木_通常清掃,ad,,Path 2,嘔吐ニオイ清掃,車内清掃,Path2嘔吐横断→slug=interior-cleaning
+4605,栃木県＿車内クリーニング,車内の臭い,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4612,栃木県＿車内クリーニング,車　 汗,ad,,Path 2,嘔吐ニオイ清掃,汗ニオイ清掃,Path2嘔吐横断→slug=ase
+4623,栃木県＿車内クリーニング,中古車タバコ臭,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+4628,栃木県＿車内クリーニング,中古車加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=chuko-kareisyu
+4634,栃木県＿車内クリーニング,車ペット毛,ad,,Path 2,嘔吐ニオイ清掃,ペット毛清掃,Path2嘔吐横断→slug=pet-ke
+4645,栃木県＿車内クリーニング,車 嘔吐 クリーニング,ad,,Path 2,嘔吐クリニング,嘔吐ニオイ清掃,Path2誤字修正（嘔吐クリニング）
+4668,栃木県＿車内クリーニング,車 匂い 消し・消臭洗浄,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4677,栃木県＿車内クリーニング,車　 おもらし,ad,,Path 2,嘔吐ニオイ清掃,おもらし清掃,Path2嘔吐横断→slug=omorashi
+4683,栃木県＿車内クリーニング,車　 エアコン臭い,ad,,Path 2,嘔吐ニオイ清掃,エアコン臭い,Path2嘔吐横断→slug=ac-nioi
+4689,栃木県＿車内クリーニング,車　加齢臭,ad,,Path 2,嘔吐ニオイ清掃,加齢臭消臭,Path2嘔吐横断→slug=kareisyu
+4695,栃木県＿車内クリーニング,車　 ペット臭,ad,,Path 2,嘔吐ニオイ清掃,ペット臭消臭,Path2嘔吐横断→slug=pet-nioi
+4722,栃木県＿車内クリーニング,車シート 洗浄,ad,,Path 2,嘔吐ニオイ清掃,シート洗浄,Path2嘔吐横断→slug=seat-senjo
+4738,栃木県＿車内クリーニング,車シート クリーニング,ad,,Path 2,嘔吐ニオイ清掃,シート清掃,Path2嘔吐横断→slug=seat-cleaning
+4744,栃木県＿車内クリーニング,車　 おしっこ,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4750,栃木県＿車内クリーニング,車　 うんこ,ad,,Path 2,嘔吐ニオイ清掃,うんこ清掃,Path2嘔吐横断→slug=unko
+4757,栃木県＿車内クリーニング,車の匂い取り,ad,,Path 2,嘔吐ニオイ清掃,匂い取り,Path2嘔吐横断→slug=kuruma-nioitori
+4764,栃木県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,ad,,Path 2,嘔吐ニオイ清掃,タバコヤニ清掃,Path2嘔吐横断→slug=tabako-yani
+4770,栃木県＿車内クリーニング,車内 灯油 こぼし,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4836,栃木県＿車内クリーニング,AG_緊急_嘔吐,ad,,Path 2,ペットうんち,嘔吐ニオイ清掃,Path2ペットうんち横断→slug=kyuto-cleaning
+4855,栃木県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4856,栃木県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4857,栃木県＿車内クリーニング,AG_緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4864,栃木県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4865,栃木県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4866,栃木県＿車内クリーニング,AG_緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4874,栃木県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4875,栃木県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,ペットうんち,匂い消し,Path2ペットうんち横断→slug=kuruma-nioi-keshi
+4876,栃木県＿車内クリーニング,AG_消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4883,栃木県＿車内クリーニング,AG_消臭_中古車,ad,,Path 2,ペットうんち,タバコ臭清掃,Path2ペットうんち横断→slug=chuko-tabako
+4892,栃木県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4893,栃木県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4894,栃木県＿車内クリーニング,AG_消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4904,栃木県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4905,栃木県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4906,栃木県＿車内クリーニング,AG_エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4919,栃木県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4920,栃木県＿車内クリーニング,AG_条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4925,栃木県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+4926,栃木県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+4927,栃木県＿車内クリーニング,AG_条件_電源不要,ad,,Path 2,嘔吐ニオイ清掃,電源持込不要,Path2嘔吐横断→slug=dengen-fuyou
+4937,栃木県＿車内クリーニング,AG_バス_トラック,ad,,Path 2,嘔吐ニオイ清掃,バス清掃,Path2嘔吐横断→slug=bus-senmon
+4945,栃木県＿車内クリーニング,緊急_子供嘔吐,ad,,Path 2,ペットうんち,子供嘔吐清掃,Path2ペットうんち横断→slug=kodomo-kyuto
+4949,栃木県＿車内クリーニング,緊急_灯油,ad,,Path 2,嘔吐ニオイ清掃,灯油清掃,Path2嘔吐横断→slug=touyu-kobosi
+4950,栃木県＿車内クリーニング,緊急_灯油,ad,,Path 2,ペットうんち,灯油清掃,Path2ペットうんち横断→slug=touyu-kobosi
+4954,栃木県＿車内クリーニング,緊急_ペット,ad,,Path 2,嘔吐ニオイ清掃,おしっこ清掃,Path2嘔吐横断→slug=oshikko
+4963,栃木県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4964,栃木県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4965,栃木県＿車内クリーニング,消臭_口語,ad,,Path 2,嘔吐ニオイ清掃,匂い消し,Path2嘔吐横断→slug=kuruma-nioi-keshi
+4968,栃木県＿車内クリーニング,消臭_中古車,ad,,Path 2,嘔吐ニオイ清掃,タバコ臭清掃,Path2嘔吐横断→slug=chuko-tabako
+4971,栃木県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4972,栃木県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,ペットうんち,車内臭い,Path2ペットうんち横断→slug=shanai-nioi
+4973,栃木県＿車内クリーニング,消臭_湿気カビ,ad,,Path 2,嘔吐ニオイ清掃,車内臭い,Path2嘔吐横断→slug=shanai-nioi
+4982,栃木県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4983,栃木県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,ペットうんち,エバポ洗浄,Path2ペットうんち横断→slug=evaporator-senjo
+4984,栃木県＿車内クリーニング,エアコン_エバポレーター,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4993,栃木県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4994,栃木県＿車内クリーニング,AG_エアコン_エバポ,ad,,Path 2,嘔吐ニオイ清掃,エバポ洗浄,Path2嘔吐横断→slug=evaporator-senjo
+4997,栃木県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4998,栃木県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+4999,栃木県＿車内クリーニング,条件_出張,ad,,Path 2,嘔吐ニオイ清掃,出張専門,Path2嘔吐横断→slug=shutchou-senmon
+49,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+49,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+51,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐 大阪,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+51,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐 大阪,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 大阪,Ad Group+Final URL,int大阪_通常清掃 | https://carinteriorcleaning.jp/regions/osaka/interior-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+54,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+54,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+58,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+58,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+60,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+60,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+61,大阪府＿車内クリーニング,int大阪_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+61,大阪府＿車内クリーニング,int大阪_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+63,大阪府＿車内クリーニング,int大阪_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+63,大阪府＿車内クリーニング,int大阪_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int大阪_通常清掃 | https://carinteriorcleaning.jp/regions/osaka/specialist-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+71,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+71,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+73,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+73,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+77,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+77,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+83,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+83,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+92,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+92,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+95,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+95,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+97,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+97,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+98,大阪府＿車内クリーニング,int大阪_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+98,大阪府＿車内クリーニング,int大阪_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+100,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+100,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+104,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+104,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+105,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+105,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,大阪府＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int大阪_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/osaka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+178,大阪府＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/osaka/oshikko/,https://carinteriorcleaning.jp/regions/osaka/omorashi/,おもらしKWのFinal URLをomorashiへ
+365,大阪府＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/osaka/oshikko/,https://carinteriorcleaning.jp/regions/osaka/omorashi/,おもらしKWのFinal URLをomorashiへ
+367,大阪府＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/osaka/oshikko/,https://carinteriorcleaning.jp/regions/osaka/omorashi/,おもらしKWのFinal URLをomorashiへ
+695,沖縄県＿車内クリーニング,int沖縄２515,kw,車 で お 漏らし 掃除,Final URL,https://carinteriorcleaning.jp/regions/okinawa/interior-cleaning/,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWのFinal URLをomorashiへ
+739,沖縄県＿車内クリーニング,int沖縄２515,kw,車 シート お 漏らし クリーニング,Final URL,https://carinteriorcleaning.jp/regions/okinawa/interior-cleaning/,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWのFinal URLをomorashiへ
+782,沖縄県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWのFinal URLをomorashiへ
+844,沖縄県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/okinawa/oshikko/,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWのFinal URLをomorashiへ
+846,沖縄県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/okinawa/oshikko/,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWのFinal URLをomorashiへ
+1078,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1078,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1080,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐 宮城,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1080,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐 宮城,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 宮城,Ad Group+Final URL,int宮城_通常清掃 | https://carinteriorcleaning.jp/regions/miyagi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1083,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1083,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1087,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1087,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1089,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1089,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1090,宮城県＿車内クリーニング,int宮城_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1090,宮城県＿車内クリーニング,int宮城_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1092,宮城県＿車内クリーニング,int宮城_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1092,宮城県＿車内クリーニング,int宮城_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int宮城_通常清掃 | https://carinteriorcleaning.jp/regions/miyagi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1100,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1100,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1102,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1102,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1106,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1106,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1112,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1112,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1121,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1121,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1124,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1124,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1126,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1126,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1127,宮城県＿車内クリーニング,int宮城_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1127,宮城県＿車内クリーニング,int宮城_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1129,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1129,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1133,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1133,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1134,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1134,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,宮城県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int宮城_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/miyagi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1218,宮城県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/miyagi/oshikko/,https://carinteriorcleaning.jp/regions/miyagi/omorashi/,おもらしKWのFinal URLをomorashiへ
+1405,宮城県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/miyagi/oshikko/,https://carinteriorcleaning.jp/regions/miyagi/omorashi/,おもらしKWのFinal URLをomorashiへ
+1407,宮城県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/miyagi/oshikko/,https://carinteriorcleaning.jp/regions/miyagi/omorashi/,おもらしKWのFinal URLをomorashiへ
+1651,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1651,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1653,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐 愛知,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1653,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐 愛知,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 愛知,Ad Group+Final URL,int愛知_通常清掃 | https://carinteriorcleaning.jp/regions/aichi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1656,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1656,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1660,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1660,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1662,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1662,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1663,愛知県＿車内クリーニング,int愛知_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1663,愛知県＿車内クリーニング,int愛知_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1665,愛知県＿車内クリーニング,int愛知_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1665,愛知県＿車内クリーニング,int愛知_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int愛知_通常清掃 | https://carinteriorcleaning.jp/regions/aichi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1673,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1673,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1675,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1675,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1679,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1679,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1685,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1685,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1694,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1694,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1697,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1697,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1699,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1699,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1700,愛知県＿車内クリーニング,int愛知_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1700,愛知県＿車内クリーニング,int愛知_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1702,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1702,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1706,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1706,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1707,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+1707,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,愛知県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int愛知_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/aichi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+1786,愛知県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/aichi/oshikko/,https://carinteriorcleaning.jp/regions/aichi/omorashi/,おもらしKWのFinal URLをomorashiへ
+1980,愛知県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/aichi/oshikko/,https://carinteriorcleaning.jp/regions/aichi/omorashi/,おもらしKWのFinal URLをomorashiへ
+1982,愛知県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/aichi/oshikko/,https://carinteriorcleaning.jp/regions/aichi/omorashi/,おもらしKWのFinal URLをomorashiへ
+2243,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2243,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2245,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐 千葉,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2245,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐 千葉,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 千葉,Ad Group+Final URL,int千葉_通常清掃 | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2248,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2248,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2252,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2252,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2254,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2254,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2255,千葉県＿車内クリーニング,int千葉_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2255,千葉県＿車内クリーニング,int千葉_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2257,千葉県＿車内クリーニング,int千葉_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2257,千葉県＿車内クリーニング,int千葉_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int千葉_通常清掃 | https://carinteriorcleaning.jp/regions/chiba/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2265,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2265,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2267,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2267,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2271,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2271,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2277,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2277,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2286,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2286,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2289,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2289,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2291,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2291,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2292,千葉県＿車内クリーニング,int千葉_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2292,千葉県＿車内クリーニング,int千葉_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2294,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2294,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2298,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2298,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2299,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2299,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,千葉県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int千葉_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/chiba/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2375,千葉県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/chiba/oshikko/,https://carinteriorcleaning.jp/regions/chiba/omorashi/,おもらしKWのFinal URLをomorashiへ
+2563,千葉県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/chiba/oshikko/,https://carinteriorcleaning.jp/regions/chiba/omorashi/,おもらしKWのFinal URLをomorashiへ
+2565,千葉県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/chiba/oshikko/,https://carinteriorcleaning.jp/regions/chiba/omorashi/,おもらしKWのFinal URLをomorashiへ
+2816,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2816,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2818,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐 兵庫,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2818,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐 兵庫,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 兵庫,Ad Group+Final URL,int兵庫_通常清掃 | https://carinteriorcleaning.jp/regions/hyogo/interior-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2821,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2821,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2825,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2825,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2827,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2827,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2828,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2828,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2830,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2830,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int兵庫_通常清掃 | https://carinteriorcleaning.jp/regions/hyogo/kuruma-nioi-keshi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2838,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2838,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2840,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2840,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2844,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2844,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2850,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2850,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2859,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2859,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2862,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2862,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2864,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2864,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2865,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2865,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2867,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2867,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2871,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2871,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2872,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+2872,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,兵庫県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int兵庫_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/hyogo/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+2952,兵庫県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/hyogo/oshikko/,https://carinteriorcleaning.jp/regions/hyogo/omorashi/,おもらしKWのFinal URLをomorashiへ
+3141,兵庫県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/hyogo/oshikko/,https://carinteriorcleaning.jp/regions/hyogo/omorashi/,おもらしKWのFinal URLをomorashiへ
+3143,兵庫県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/hyogo/oshikko/,https://carinteriorcleaning.jp/regions/hyogo/omorashi/,おもらしKWのFinal URLをomorashiへ
+3393,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3393,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3395,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐 福岡,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3395,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐 福岡,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 福岡,Ad Group+Final URL,int福岡_通常清掃 | https://carinteriorcleaning.jp/regions/fukuoka/interior-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3398,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3398,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3402,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3402,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3404,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3404,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3405,福岡県＿車内クリーニング,int福岡_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3405,福岡県＿車内クリーニング,int福岡_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3407,福岡県＿車内クリーニング,int福岡_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3407,福岡県＿車内クリーニング,int福岡_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int福岡_通常清掃 | https://carinteriorcleaning.jp/regions/fukuoka/shutchou-senmon/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3415,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3415,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3417,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3417,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3421,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3421,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3427,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3427,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3436,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3436,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3439,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3439,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3441,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3441,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3442,福岡県＿車内クリーニング,int福岡_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3442,福岡県＿車内クリーニング,int福岡_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3444,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3444,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3448,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3448,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3449,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3449,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,福岡県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int福岡_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/fukuoka/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3526,福岡県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/fukuoka/oshikko/,https://carinteriorcleaning.jp/regions/fukuoka/omorashi/,おもらしKWのFinal URLをomorashiへ
+3715,福岡県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/fukuoka/oshikko/,https://carinteriorcleaning.jp/regions/fukuoka/omorashi/,おもらしKWのFinal URLをomorashiへ
+3717,福岡県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/fukuoka/oshikko/,https://carinteriorcleaning.jp/regions/fukuoka/omorashi/,おもらしKWのFinal URLをomorashiへ
+3971,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3971,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3973,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐 大阪,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3973,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐 大阪,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 大阪,Ad Group+Final URL,int群馬_通常清掃 | https://carinteriorcleaning.jp/regions/gunma/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3976,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3976,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3980,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3980,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3982,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3982,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3983,群馬県＿車内クリーニング,int群馬_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3983,群馬県＿車内クリーニング,int群馬_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3985,群馬県＿車内クリーニング,int群馬_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3985,群馬県＿車内クリーニング,int群馬_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int群馬_通常清掃 | https://carinteriorcleaning.jp/regions/gunma/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3993,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3993,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3995,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3995,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+3999,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+3999,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4005,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4005,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4014,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4014,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4017,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4017,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4019,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4019,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4020,群馬県＿車内クリーニング,int群馬_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4020,群馬県＿車内クリーニング,int群馬_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4022,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4022,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4026,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4026,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4027,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4027,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,群馬県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int群馬_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/gunma/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4098,群馬県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/gunma/oshikko/,https://carinteriorcleaning.jp/regions/gunma/omorashi/,おもらしKWのFinal URLをomorashiへ
+4276,群馬県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/gunma/oshikko/,https://carinteriorcleaning.jp/regions/gunma/omorashi/,おもらしKWのFinal URLをomorashiへ
+4278,群馬県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/gunma/oshikko/,https://carinteriorcleaning.jp/regions/gunma/omorashi/,おもらしKWのFinal URLをomorashiへ
+4525,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 クリーニング 業者,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4525,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 クリーニング 業者,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング 業者,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4527,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐 栃木,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4527,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐 栃木,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 栃木,Ad Group+Final URL,int栃木_通常清掃 | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4530,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4530,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4534,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4534,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ クリーニング,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4536,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 臭い 取れ ない,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4536,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 臭い 取れ ない,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 臭い 取れ ない,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4537,栃木県＿車内クリーニング,int栃木_通常清掃,kw,ゲロ 臭い 消し 車,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4537,栃木県＿車内クリーニング,int栃木_通常清掃,kw,ゲロ 臭い 消し 車,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,ゲロ 臭い 消し 車,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4539,栃木県＿車内クリーニング,int栃木_通常清掃,kw,シート ベルト 嘔吐 臭い,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4539,栃木県＿車内クリーニング,int栃木_通常清掃,kw,シート ベルト 嘔吐 臭い,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 臭い,Ad Group+Final URL,int栃木_通常清掃 | https://carinteriorcleaning.jp/regions/tochigi/kuruma-nioi-keshi/,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4547,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4547,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 嘔吐 どこに 頼む,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 クリーニング 嘔吐 どこに 頼む,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4549,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 吐瀉 物 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4549,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 吐瀉 物 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 吐瀉 物 掃除,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4553,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 ゲロ クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4553,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 ゲロ クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ クリーニング,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4559,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4559,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4568,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4568,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 ゲロ 掃除,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4571,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 クリーニング 嘔吐,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4571,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 クリーニング 嘔吐,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 クリーニング 嘔吐,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4573,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 クリーニング,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4573,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 嘔吐 クリーニング,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 嘔吐 クリーニング,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4574,栃木県＿車内クリーニング,int栃木_通常清掃,kw,シート ベルト 嘔吐 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4574,栃木県＿車内クリーニング,int栃木_通常清掃,kw,シート ベルト 嘔吐 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,シート ベルト 嘔吐 掃除,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4576,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 ゲロ 掃除,Status,Paused,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4576,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車 ゲロ 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車 ゲロ 掃除,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4580,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 嘔吐 臭い 消し,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4580,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 嘔吐 臭い 消し,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 嘔吐 臭い 消し,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4581,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 吐い た 掃除,Status,Enabled,Removed,通常清掃内の嘔吐KWをRemoved（移動準備）
+4581,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 吐い た 掃除,Comment,,MOVE_TO:車 嘔吐 クリーニング,移動メモ
+NEW,栃木県＿車内クリーニング,車 嘔吐 クリーニング,kw,車内 吐い た 掃除,Ad Group+Final URL,int栃木_通常清掃 | ,車 嘔吐 クリーニング | https://carinteriorcleaning.jp/regions/tochigi/kyuto-cleaning/,通常清掃内の嘔吐KWを嘔吐AGへ新規追加
+4671,栃木県＿車内クリーニング,車　 おもらし,kw,車 おもらし,Final URL,https://carinteriorcleaning.jp/regions/tochigi/oshikko/,https://carinteriorcleaning.jp/regions/tochigi/omorashi/,おもらしKWのFinal URLをomorashiへ
+4860,栃木県＿車内クリーニング,AG_緊急_ペット,kw,車 おもらし シート 洗浄,Final URL,https://carinteriorcleaning.jp/regions/tochigi/oshikko/,https://carinteriorcleaning.jp/regions/tochigi/omorashi/,おもらしKWのFinal URLをomorashiへ
+4862,栃木県＿車内クリーニング,AG_緊急_ペット,kw,犬 車 お漏らし 消臭 業者,Final URL,https://carinteriorcleaning.jp/regions/tochigi/oshikko/,https://carinteriorcleaning.jp/regions/tochigi/omorashi/,おもらしKWのFinal URLをomorashiへ
+69,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/osaka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+90,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/osaka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+103,大阪府＿車内クリーニング,int大阪_通常清掃,kw,車内 クリーニング 専門 店 大阪,Final URL,,https://carinteriorcleaning.jp/regions/osaka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+165,大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,kw,車 車内 消 臭,Final URL,,https://carinteriorcleaning.jp/regions/osaka/shanai-shoshu/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+166,大阪府＿車内クリーニング,車内 消臭・脱臭洗浄,kw,車内 消 臭 剤,Final URL,,https://carinteriorcleaning.jp/regions/osaka/shanai-shoshu/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+171,大阪府＿車内クリーニング,車 匂い 消し・消臭洗浄,kw,車 用 匂い 消し,Final URL,,https://carinteriorcleaning.jp/regions/osaka/kuruma-nioi-keshi/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+573,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,タバコニオイ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+574,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,車 ヤニ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+575,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,車内 ヤニ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+576,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,車 タバコの匂い汚れ・タバコのヤニ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+577,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,車 天井 臭い,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+578,沖縄県＿車内クリーニング,車　 タバコの匂い汚れ・タバコのヤニ,kw,車 天井 ヤニ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/tabako-yani/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+914,沖縄県＿車内クリーニング,緊急_嘔吐,kw,緊急 嘔吐,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/kyuto-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+918,沖縄県＿車内クリーニング,緊急_子供嘔吐,kw,緊急 子供嘔吐,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/kodomo-kyuto/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+922,沖縄県＿車内クリーニング,緊急_ペット,kw,緊急 ペット,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/oshikko/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+946,沖縄県＿車内クリーニング,消臭_湿気カビ,kw,消臭 湿気カビ,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/shanai-nioi/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+951,沖縄県＿車内クリーニング,エアコン_エバポレーター,kw,エアコン エバポレーター,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/evaporator-senjo/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+956,沖縄県＿車内クリーニング,AG_エアコン_エバポ,kw,エアコン エバポレーター,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/evaporator-senjo/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+966,沖縄県＿車内クリーニング,条件_出張,kw,条件 出張,Final URL,,https://carinteriorcleaning.jp/regions/okinawa/shutchou-senmon/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1098,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/miyagi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1119,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/miyagi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1132,宮城県＿車内クリーニング,int宮城_通常清掃,kw,車内 クリーニング 専門 店 宮城,Final URL,,https://carinteriorcleaning.jp/regions/miyagi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1671,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/aichi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1692,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/aichi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+1705,愛知県＿車内クリーニング,int愛知_通常清掃,kw,車内 クリーニング 専門 店 愛知,Final URL,,https://carinteriorcleaning.jp/regions/aichi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2263,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/chiba/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2284,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/chiba/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2297,千葉県＿車内クリーニング,int千葉_通常清掃,kw,車内 クリーニング 専門 店 千葉,Final URL,,https://carinteriorcleaning.jp/regions/chiba/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2836,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/hyogo/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2857,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/hyogo/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2870,兵庫県＿車内クリーニング,int兵庫_通常清掃,kw,車内 クリーニング 専門 店 兵庫,Final URL,,https://carinteriorcleaning.jp/regions/hyogo/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+2936,兵庫県＿車内クリーニング,車内 消臭・脱臭洗浄,kw,自動車 車内 消 臭,Final URL,,https://carinteriorcleaning.jp/regions/hyogo/shanai-shoshu/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+3413,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/fukuoka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+3434,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/fukuoka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+3447,福岡県＿車内クリーニング,int福岡_通常清掃,kw,車内 クリーニング 専門 店 福岡,Final URL,,https://carinteriorcleaning.jp/regions/fukuoka/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+3991,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/gunma/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4012,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/gunma/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4025,群馬県＿車内クリーニング,int群馬_通常清掃,kw,車内 クリーニング 専門 店 大阪,Final URL,,https://carinteriorcleaning.jp/regions/gunma/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4545,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 清掃 プロ,Final URL,,https://carinteriorcleaning.jp/regions/tochigi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4566,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 専門 業者,Final URL,,https://carinteriorcleaning.jp/regions/tochigi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4579,栃木県＿車内クリーニング,int栃木_通常清掃,kw,車内 クリーニング 専門 店 栃木,Final URL,,https://carinteriorcleaning.jp/regions/tochigi/interior-cleaning/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+4653,栃木県＿車内クリーニング,車内 消臭・脱臭洗浄,kw,自動車 車内 消 臭,Final URL,,https://carinteriorcleaning.jp/regions/tochigi/shanai-shoshu/,Enabled KWの空Final URLを同一AGのRSA URLで補完
+,大阪府＿車内クリーニング,int大阪_通常清掃,ad,,Path 2,内クリーニング,車内清掃,通常清掃Path2統一
