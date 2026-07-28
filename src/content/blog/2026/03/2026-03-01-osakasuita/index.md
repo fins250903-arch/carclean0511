@@ -1,9 +1,15 @@
 ---
-title: "【大阪府吹田市】ソリオ、万博公園のピクニックとケチャップの跡"
-date: 2026-03-01
-categories: 
-  - "oosaka"
-coverImage: "スズキ・ソリオusiro.jpg"
+date: 2026-07-29
+title: 【大阪府吹田市】ソリオ、万博公園のピクニックとケチャップの跡
+categories:
+  - oosaka
+shortSlug: osakasuita
+coverImage: 3.jpg
+seo:
+  meta_description: お子さんが慌ててティッシュで拭いた結果、汚れは余計に広がって、鮮やかなオレンジ色の輪ジミになってしまいました
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 太陽の塔を横目に、家族でピクニック。万博記念公園は、吹田市民にとってのオアシスですね。でも、お昼に食べたハンバーガーのケチャップが後部座席にポタリ。
