@@ -43,7 +43,7 @@ import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
-import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
+import { buildAioContentFaqs, getAioKeywordContent, buildVoiceEmergencyLine } from '../../../data/aioKeywordContent';
 import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
 import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
@@ -170,7 +170,9 @@ const noindex = isNoindexKeywordSlug(kwSlug);
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
-      {answerFirst && <AnswerTarget text={answerFirst} />}
+      {answerFirst && (
+        <AnswerTarget text={answerFirst} voiceLine={buildVoiceEmergencyLine(displayName)} />
+      )}
       {quickFacts && (
         <AdLpQuickFacts
           displayName={displayName}
@@ -186,11 +188,16 @@ const noindex = isNoindexKeywordSlug(kwSlug);
         troubleType={aioKw?.troubleType}
       />
       {aioKw?.emergencyChecklist && (
-        <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
+        <EmergencyChecklist
+          rows={aioKw.emergencyChecklist}
+          regionName={regionName}
+          heading={aioKw.checklistHeading}
+        />
       )}
       <KeywordAioExtras
         smellCauseTable={aioKw?.smellCauseTable}
         keroseneSeverityMatrix={aioKw?.keroseneSeverityMatrix}
+        situationDiagnosis={aioKw?.situationDiagnosis}
       />
       <AIOContent
         regionName={regionName}

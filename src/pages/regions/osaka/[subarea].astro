@@ -45,14 +45,19 @@ import FloatingCTA from '../../../components/sections/FloatingCTA';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astro';
+import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
   buildRegionalNioiAnswerFirst,
+  buildVoiceEmergencyLine,
   getRegionalHeroMainTitle,
   REGIONAL_EMERGENCY_CHECKLIST,
+  REGIONAL_CHECKLIST_HEADING,
+  REGIONAL_SITUATION_DIAGNOSIS,
 } from '../../../data/aioKeywordContent';
+import { getOsakaSubareaFvImage } from '../../../data/fvImageMap';
 
 const REGION_NAME = '大阪府';
 
@@ -93,7 +98,7 @@ const regionOverrides = buildRegionSeoOverrides({
   regionName: REGION_NAME,
   displayName: `${displayName}（大阪府）`,
   blogCases,
-  aiSummary: custom.aioSummaryExtra ?? `${displayName}エリアへ最短即日の出張車内清掃。${custom.localDispatchLine ?? ''}`,
+  aiSummary: custom.aioSummaryExtra ?? `${displayName}エリアへ最短即日の出張車内清掃。現在地からの最短到着目安もご案内。${custom.localDispatchLine ?? ''}`,
 });
 
 const metadata = generateRegionMetadata(
@@ -118,6 +123,8 @@ const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subare
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME) : undefined;
+const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
+const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
 ---
 
 <MainLayout
@@ -125,16 +132,37 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME)
   description={metadata.description}
   keywords={metadata.keywords}
   canonical={metadata.alternates?.canonical}
-  ogImage={isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png'}
+  ogImage={
+    isTruck
+      ? (subareaFv ?? '/images/truck-fv.png')
+      : isBus
+        ? (subareaFv ?? '/images/kw/bus-fv.png')
+        : (subareaFv ?? '/images/fv-passenger-hero.png')
+  }
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
   <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
-      <Hero regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} mainTitle={heroMainTitle} />
-      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} />}
+      <Hero
+        regionName={REGION_NAME}
+        displayName={`${displayName}（大阪府）`}
+        niche={niche}
+        mainTitle={heroMainTitle}
+        fvImage={subareaFv}
+      />
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
       {!isTruck && !isBus && (
-        <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={subareaLabel} />
+        <EmergencyChecklist
+          rows={REGIONAL_EMERGENCY_CHECKLIST}
+          regionName={subareaLabel}
+          heading={REGIONAL_CHECKLIST_HEADING}
+        />
+      )}
+      {!isTruck && !isBus && (
+        <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
       {regionalNioiAnswer && (
         <NioiAnswerTarget regionName={subareaLabel} answerText={regionalNioiAnswer} />

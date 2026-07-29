@@ -585,7 +585,14 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         speakable: {
             '@type': 'SpeakableSpecification',
-            cssSelector: ['.answer-lead', '#aio-content .bg-blue-50'],
+            cssSelector: [
+                '.answer-lead',
+                '.speakable-voice',
+                '#aio-content .bg-blue-50',
+                '#emergency-checklist h2',
+                '#nioi-answer .answer-lead',
+                '#situation-diagnosis h2',
+            ],
         },
 
     };

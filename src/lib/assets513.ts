@@ -23,6 +23,13 @@ export const KW_IMAGES = {
   touyuKobosi: kw('touyu-kobosi.webp'),
   unko: kw('unko.png'),
   busFv: kw('bus-fv.png'),
+  /** Content-matched case photos (avoid voice-stock / regional-hero reuse) */
+  vomitStain: kw('vomit-stain.webp'),
+  vomitDetail: kw('vomit-detail.webp'),
+  seatStainDark: kw('seat-stain-dark.webp'),
+  rinserWork: kw('rinser-work.jpg'),
+  petMess: kw('pet-mess.webp'),
+  minivanInterior: kw('minivan-interior.webp'),
 } as const;
 
 /** @deprecated 互換エイリアス */
