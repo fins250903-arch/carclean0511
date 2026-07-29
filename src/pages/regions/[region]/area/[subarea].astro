@@ -1,0 +1,215 @@
+---
+/**
+ * 都道府県サブエリア LP（大阪以外）
+ * /regions/{region}/area/{subarea}/ | -truck | -bus
+ * 大阪府は /regions/osaka/{subarea}/ を維持
+ */
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import { ALL_SUBAREA_PATHS } from '../../../../data/regionSubareas';
+import { generateRegionMetadata, generateJsonLd } from '../../../../lib/seo';
+import { getRegionalBlogDisplayPosts } from '../../../../lib/getRegionalBlogDisplayPosts';
+import { buildRegionSeoOverrides } from '../../../../lib/regionStructuredData';
+import { generateQuestionnaireJsonLd } from '../../../../data/questionnaireTestimonials';
+import JsonLd from '../../../../components/seo/JsonLd.astro';
+import type { ServiceNiche } from '../../../../lib/niche';
+import { regionPath } from '../../../../lib/niche';
+
+import Hero from '../../../../components/sections/Hero.astro';
+import AIOContent from '../../../../components/sections/AIOContent.astro';
+import RegionAIContent from '../../../../components/sections/RegionAIContent.astro';
+import Problem from '../../../../components/sections/Problem.astro';
+import Solution from '../../../../components/sections/Solution.astro';
+import Comparison from '../../../../components/sections/Comparison.astro';
+import Campaign from '../../../../components/sections/Campaign.astro';
+import CTA from '../../../../components/sections/CTA.astro';
+import FAQ from '../../../../components/sections/FAQ.astro';
+import Reasons from '../../../../components/sections/Reasons.astro';
+import Benefits from '../../../../components/sections/Benefits.astro';
+import Roadmap from '../../../../components/sections/Roadmap.astro';
+import RegionalAchievements from '../../../../components/sections/RegionalAchievements.astro';
+import Targets from '../../../../components/sections/Targets.astro';
+import AreaCoverage from '../../../../components/sections/AreaCoverage.astro';
+import Flow from '../../../../components/sections/Flow.astro';
+import Profile from '../../../../components/sections/Profile.astro';
+import Expertise from '../../../../components/sections/Expertise.astro';
+import Pricing from '../../../../components/sections/Pricing.astro';
+import OperatorInfo from '../../../../components/sections/OperatorInfo.astro';
+import Closing from '../../../../components/sections/Closing.astro';
+import ServiceMutualLink from '../../../../components/sections/ServiceMutualLink.astro';
+import { RegionProvider } from '../../../../lib/RegionContext';
+import QuestionnaireTestimonials from '../../../../components/sections/QuestionnaireTestimonials';
+import Blog from '../../../../components/sections/Blog';
+import ContactForm from '../../../../components/sections/ContactForm';
+import FloatingCTA from '../../../../components/sections/FloatingCTA';
+import EmergencyChecklist from '../../../../components/sections/EmergencyChecklist.astro';
+import AnswerTarget from '../../../../components/sections/AnswerTarget.astro';
+import NioiAnswerTarget from '../../../../components/sections/NioiAnswerTarget.astro';
+import KeywordAioExtras from '../../../../components/sections/KeywordAioExtras.astro';
+import RegionLocalTrust from '../../../../components/sections/LpRegionLocalTrustFooter.astro';
+import {
+  buildRegionalAnswerTargetPoints,
+  buildRegionalAnswerFirst,
+  buildRegionalNioiAnswerFirst,
+  buildVoiceEmergencyLine,
+  getRegionalHeroMainTitle,
+  REGIONAL_EMERGENCY_CHECKLIST,
+  REGIONAL_CHECKLIST_HEADING,
+  REGIONAL_SITUATION_DIAGNOSIS,
+  buildAioContentFaqs,
+} from '../../../../data/aioKeywordContent';
+import { getRegionSubareaFvImage } from '../../../../data/fvImageMap';
+
+export async function getStaticPaths() {
+  const paths = [];
+  const niches: ServiceNiche[] = ['car', 'truck', 'bus'];
+  for (const { regionId, regionName, subarea } of ALL_SUBAREA_PATHS) {
+    for (const niche of niches) {
+      const suffix = niche === 'car' ? '' : niche === 'truck' ? '-truck' : '-bus';
+      paths.push({
+        params: { region: regionId, subarea: `${subarea.id}${suffix}` },
+        props: {
+          regionId,
+          regionName,
+          subareaId: subarea.id,
+          displayName: subarea.displayName,
+          localDispatchLine: subarea.localDispatchLine,
+          niche,
+          path: `/regions/${regionId}/area/${subarea.id}${suffix}/`,
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+const {
+  regionId,
+  regionName,
+  subareaId,
+  displayName,
+  localDispatchLine,
+  niche,
+  path,
+} = Astro.props as {
+  regionId: string;
+  regionName: string;
+  subareaId: string;
+  displayName: string;
+  localDispatchLine: string;
+  niche: ServiceNiche;
+  path: string;
+};
+
+const isTruck = niche === 'truck';
+const isBus = niche === 'bus';
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
+const subareaLabel = `${displayName}（${regionName}）`;
+
+const regionOverrides = buildRegionSeoOverrides({
+  regionName,
+  displayName: subareaLabel,
+  blogCases,
+  aiSummary: `${displayName}エリアへ最短即日の出張車内清掃。現在地からの最短到着目安もご案内。${localDispatchLine}`,
+});
+
+const metadata = generateRegionMetadata(subareaLabel, path, niche);
+const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
+  extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
+});
+const questionnaireStructuredData = generateQuestionnaireJsonLd(
+  regionName,
+  subareaLabel,
+  path,
+);
+const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, regionName) : undefined;
+const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, regionName) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel, regionName) : undefined;
+const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
+const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
+---
+
+<MainLayout
+  title={metadata.title}
+  description={metadata.description}
+  keywords={metadata.keywords}
+  canonical={metadata.alternates?.canonical}
+  ogImage={subareaFv}
+>
+  <JsonLd slot="head" data={combinedJsonLd} />
+
+  <RegionProvider client:load regionName={regionName} displayName={subareaLabel} niche={niche} path={path}>
+    <main class="min-h-screen bg-white pb-floating md:pb-20">
+      <Hero
+        regionName={regionName}
+        displayName={subareaLabel}
+        niche={niche}
+        mainTitle={heroMainTitle}
+        fvImage={subareaFv}
+      />
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
+      {!isTruck && !isBus && (
+        <EmergencyChecklist
+          rows={REGIONAL_EMERGENCY_CHECKLIST}
+          regionName={subareaLabel}
+          heading={REGIONAL_CHECKLIST_HEADING}
+        />
+      )}
+      {!isTruck && !isBus && (
+        <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
+      )}
+      {regionalNioiAnswer && (
+        <NioiAnswerTarget regionName={subareaLabel} answerText={regionalNioiAnswer} />
+      )}
+      <AIOContent
+        regionName={subareaLabel}
+        niche={niche}
+        focusShutchou
+        showAioExtensions={!isTruck}
+      />
+      <RegionAIContent regionName={regionName} displayName={subareaLabel} />
+      <Problem regionName={regionName} displayName={subareaLabel} niche={niche} />
+      <Solution regionName={regionName} displayName={subareaLabel} niche={niche} />
+      <Comparison displayName={subareaLabel} />
+
+      <Campaign displayName={subareaLabel} />
+      <Reasons displayName={subareaLabel} regionName={regionName} />
+      <Benefits />
+      <Roadmap displayName={subareaLabel} />
+
+      <QuestionnaireTestimonials client:visible displayName={subareaLabel} />
+      <RegionalAchievements regionName={regionName} displayName={subareaLabel} niche={niche} />
+      <Targets />
+      <AreaCoverage regionName={regionName} />
+      <Flow niche={niche} regionName={regionName} />
+      <Profile displayName={subareaLabel} />
+      <Expertise />
+      <Pricing regionName={regionName} niche={niche} />
+      <CTA />
+      <FAQ niche={niche} regionName={regionName} />
+      <RegionLocalTrust
+        regionName={regionName}
+        displayName={subareaLabel}
+        niche={niche}
+      />
+      <Blog client:visible regionName={regionName} displayName={subareaLabel} />
+      <ServiceMutualLink
+        regionName={regionName}
+        displayName={subareaLabel}
+        niche={niche}
+        path={path}
+        regionBaseId={regionId}
+      />
+      <p class="text-center text-sm text-gray-500 py-4">
+        <a href={regionPath(regionId, niche)} class="text-primary font-bold underline">{regionName}全体のLPへ</a>
+      </p>
+      <ContactForm client:visible regionName={regionName} />
+      <OperatorInfo regionName={regionName} displayName={subareaLabel} />
+      <Closing regionName={regionName} displayName={subareaLabel} niche={niche} path={path} />
+      <FloatingCTA client:load />
+    </main>
+  </RegionProvider>
+</MainLayout>

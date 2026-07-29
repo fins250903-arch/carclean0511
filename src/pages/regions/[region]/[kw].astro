@@ -45,6 +45,11 @@ import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { buildAioContentFaqs, getAioKeywordContent, buildVoiceEmergencyLine } from '../../../data/aioKeywordContent';
 import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
+import {
+  resolveAdDeepTroubles,
+  resolveAdField,
+  resolveAdHighlight,
+} from '../../../data/adKeywordPages';
 import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
@@ -105,6 +110,10 @@ const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
 const aioKw = getAioKeywordContent(kwSlug);
 const answerFirst = aioKw?.answerFirst(regionName, displayName);
 const customDefinition = aioKw?.customDefinition?.(regionName);
+const aioExtraFaqs = buildAioContentFaqs(regionName, {
+  includeExtended: false,
+  extraFaqs: aioKw?.extraFaqs,
+});
 const jsonLdData = generateJsonLd(
   regionName,
   path,
@@ -126,6 +135,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const fvCopy = findFvCopy(regionId, kwSlug);
 const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
 const quickFacts = getAdLpQuickFacts(kwSlug);
+const heroHighlight = resolveAdHighlight(kw.heroHighlight, regionName);
 
 const adHero = fvHero
   ? {
@@ -134,9 +144,9 @@ const adHero = fvHero
       mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
     }
   : {
-      subtitle: kw.heroSubtitle(displayName),
-      highlightLine1: kw.heroHighlight[0],
-      highlightLine2: kw.heroHighlight[1],
+      subtitle: kw.heroSubtitle(displayName, regionName),
+      highlightLine1: heroHighlight[0],
+      highlightLine2: heroHighlight[1],
       subcatch: kw.heroSubcatch(displayName),
       fvImage: kw.fvImage,
       footerText: kw.heroFooter(displayName),
@@ -144,13 +154,15 @@ const adHero = fvHero
     };
 
 const adProblem = {
-  header: kw.problemHeader,
-  subHeader: kw.problemSubHeader,
-  dealerQuote: kw.problemDealerQuote,
+  header: resolveAdField(kw.problemHeader, regionName),
+  subHeader: resolveAdField(kw.problemSubHeader, regionName),
+  dealerQuote: resolveAdField(kw.problemDealerQuote, regionName),
   bodyHtml: kw.problemBodyHtml(regionName, displayName),
   empathyImage: kw.problemEmpathyImage,
-  empathyAlt: kw.problemEmpathyAlt ?? '',
+  empathyAlt: resolveAdField(kw.problemEmpathyAlt, regionName),
 };
+
+const deepTroubles = resolveAdDeepTroubles(kw.deepTroubles, regionName);
 
 /** slug から niche を解決 */
 const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'car';
@@ -184,7 +196,7 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       )}
       <TroubleSympathy
         displayName={displayName}
-        deepTroubles={kw.deepTroubles}
+        deepTroubles={deepTroubles}
         troubleType={aioKw?.troubleType}
       />
       {aioKw?.emergencyChecklist && (
@@ -204,7 +216,7 @@ const noindex = isNoindexKeywordSlug(kwSlug);
         niche={pageNiche}
         focusShutchou={kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning'}
         customDefinition={customDefinition}
-        extraFaqs={aioKw?.extraFaqs}
+        extraFaqs={aioExtraFaqs}
       />
       {aioKw?.nicheCaseStudy && (
         <NicheCaseStudy block={aioKw.nicheCaseStudy(regionName)} />
@@ -230,11 +242,11 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       />
       <Targets />
       <AreaCoverage regionName={regionName} />
-      <Flow niche={pageNiche} />
+      <Flow niche={pageNiche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
       <CTA />
-      <FAQ niche={pageNiche} extraFaqs={aioKw?.extraFaqs} />
+      <FAQ niche={pageNiche} extraFaqs={aioExtraFaqs} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink

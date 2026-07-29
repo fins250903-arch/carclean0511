@@ -119,9 +119,9 @@ const questionnaireStructuredData = generateQuestionnaireJsonLd(
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const subareaLabel = `${displayName}（大阪府）`;
-const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel) : undefined;
-const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel) : undefined;
-const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel) : undefined;
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, REGION_NAME) : undefined;
+const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, REGION_NAME) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel, REGION_NAME) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(REGION_NAME) : undefined;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
@@ -187,12 +187,12 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
       <RegionalAchievements regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Targets />
       <AreaCoverage regionName={REGION_NAME} />
-      <Flow niche={niche} />
+      <Flow niche={niche} regionName={REGION_NAME} />
       <Profile displayName={`${displayName}（大阪府）`} />
       <Expertise />
       <Pricing regionName={REGION_NAME} niche={niche} />
       <CTA />
-      <FAQ niche={niche} />
+      <FAQ niche={niche} regionName={REGION_NAME} />
       <RegionLocalTrust
         regionName={REGION_NAME}
         displayName={`${displayName}（大阪府）`}

@@ -1,5 +1,17 @@
 import type { FAQItem } from '@/data/seoData';
 import { CAR_PRICING, yen } from '@/data/pricingConstants';
+import {
+  needsOutletBorrow,
+  powerCapabilitySentence,
+  powerFaqAnswer,
+  OUTLET_BORROW_SHORT,
+} from '@/lib/powerPolicy';
+
+function powerPhrase(regionName: string): string {
+  return needsOutletBorrow(regionName)
+    ? OUTLET_BORROW_SHORT
+    : '電源・水道不要（発電機・水タンク完備）';
+}
 
 export type EmergencyChecklistRow = {
   do: string;
@@ -119,10 +131,16 @@ export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
   {
     situation: '近くの業者を今すぐ呼びたい（地下駐車場）',
     now: '現在地を伝えて最短到着を確認',
-    menu: '電源・水道不要の出張洗浄',
+    menu: '出張洗浄（エリアにより電源条件が異なります）',
     priceHint: `基本${yen(CAR_PRICING.lightBasic)}〜`,
   },
 ];
+
+/** Vomit-focused diagnosis (exclude kerosene-only rows on vomit LPs) */
+export const VOMIT_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] =
+  REGIONAL_SITUATION_DIAGNOSIS.filter(
+    (r) => !r.situation.includes('灯油'),
+  );
 
 /** 地域ごとの事例用サンプル市区町村（大阪固定を回避） */
 const REGION_SAMPLE_CITIES: Record<string, string> = {
@@ -167,9 +185,9 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '車内で吐いた直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内嘔吐の臭いを根本除去するには、嘔吐から4日以内に出張リンサー洗浄を依頼するのが最も確実です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、電源・水道不要（発電機・水タンク完備）で対応。運転中・手が離せない方も電話で最短到着目安をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
+      `【結論】${regionName}で車内嘔吐の臭いを根本除去するには、嘔吐から4日以内に出張リンサー洗浄を依頼するのが最も確実です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、${powerPhrase(regionName)}で対応。運転中・手が離せない方も電話で最短到着目安をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
       title: `${regionName}・${city}｜車内嘔吐の即日復旧事例`,
       body: `${city}でのドライブ中、お子様が突然嘔吐。営業車として翌日の使用が必要なケースで、約40℃温水リンサーと100℃スチームによりシート奥の吐瀉物を抽出。作業後は無臭状態に復元し、翌日の仕事に間に合うスピードで完了しました。`,
@@ -344,7 +362,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'seat-senjo': {
     troubleType: 'seat',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車のシートのシミの落とし方として最も効果的なのは、素材に合わせた泡洗いと温水リンサー抽出です。市販クリーナーではウレタン内部の汚れまで届きません。${regionName}内へ出張対応、座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜、消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。電源・水道不要。`,
+      `【結論】${regionName}で車のシートのシミの落とし方として最も効果的なのは、素材に合わせた泡洗いと温水リンサー抽出です。市販クリーナーではウレタン内部の汚れまで届きません。${regionName}内へ出張対応、座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜、消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。${powerPhrase(regionName)}。`,
     situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車シート洗浄とは、出張専門スタッフがシート素材（布・合皮）に合わせた洗浄剤と温水リンサーで、黄ばみ・飲みこぼし・汗ジミを内部まで洗い流すサービスです。`,
@@ -436,7 +454,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     answerFirst: (regionName) =>
       `【結論】${regionName}で嘔吐汚損の車両保険適用は「偶然の事故による車内汚損」として認められる場合があります。車両保険（免責3〜10万円・等級ダウンあり）または個人賠償（他人の車を汚した場合）が該当します。当店は${regionName}内へ最短即日出張し、見積時に保険利用時の実質自己負担額を併記。施工報告書・写真付き見積で申請をサポートします。運転中の緊急時も電話で最短到着目安をご案内します。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     extraFaqs: [
       {
         q: '嘔吐の車内清掃で保険を使うと等級は下がりますか？',
@@ -454,28 +472,30 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     answerFirst: (regionName) =>
       `【結論】${regionName}で子どもの車内嘔吐は、4日以内の出張リンサー洗浄が最も確実です。市販消臭スプレーは使わず、固形物をこすらず取り除き、40℃温水でシート内部まで洗浄します。手が離せない緊急時も365日24時間受付。${regionName}内へ最短即日出張、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
   },
   'dengen-fuyou': {
     answerFirst: (regionName) =>
-      `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
+      needsOutletBorrow(regionName)
+        ? `【結論】${regionName}の出張施工では、${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
+        : `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
     extraFaqs: [
       {
         q: 'マンションの地下駐車場でも施工できますか？',
-        a: 'はい、可能です。電源・水道がない場所でも、出張車両の発電機と水タンクで作業します。排水は汚水回収タンクで持ち帰るため、駐車場を汚す心配もありません。',
+        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。電源・水道の条件はエリアにより異なります（多くの地域は発電機・水タンク完備、沖縄・群馬などは家庭用100Vコンセントの借用）。詳しくはお電話でご確認ください。',
       },
     ],
   },
   'shutchou-senmon': {
     answerFirst: (regionName) =>
-      `【結論】${regionName}の出張車内清掃専門店として、車内清掃「特急便」は365日24時間受付・最短即日対応です。嘔吐・灯油・ペット・タバコ臭など特殊案件に特化し、電源・水道不要でご指定の駐車場へ訪問。施工歴3年以上・年間300台超の専門員が対応します。`,
+      `【結論】${regionName}の出張車内清掃専門店として、車内清掃「特急便」は365日24時間受付・最短即日対応です。嘔吐・灯油・ペット・タバコ臭など特殊案件に特化し、${powerPhrase(regionName)}でご指定の駐車場へ訪問。施工歴3年以上・年間300台超の専門員が対応します。`,
     customDefinition: (regionName) =>
       `${regionName}の出張車内清掃専門サービスとは、プロの温水リンサー・特殊アルカリ電解水を用い、ご指定場所へ訪問してシート内部まで洗浄・消臭するサービスです。ディーラー持ち込み不要・即日復旧が可能です。`,
   },
   'interior-cleaning': {
     troubleType: 'seat',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内クリーニングをプロに依頼するなら、出張リンサー洗浄が最も手軽です。シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄し、電源・水道不要で駐車場があれば施工可能です。近くの車内掃除業者をお探しの方も、現在地からの最短到着目安をご案内します。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜。`,
+      `【結論】${regionName}で車内クリーニングをプロに依頼するなら、出張リンサー洗浄が最も手軽です。シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄し、${powerPhrase(regionName)}で駐車場があれば施工可能です。近くの車内掃除業者をお探しの方も、現在地からの最短到着目安をご案内します。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜。`,
     situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車内クリーニングとは、出張専門スタッフがシート・フロアを温水リンサーで洗浄し、車内を清潔で快適な状態に戻すサービスです。`,
@@ -483,7 +503,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'specialist-cleaning': {
     troubleType: 'seat',
     answerFirst: (regionName) =>
-      `【結論】${regionName}の車内クリーニング専門店として、車内清掃「特急便」は年間300台超の施工実績。シート洗浄から消臭まで出張で対応し、電源・水道不要・最短即日です。${regionName}内へ365日24時間受付。`,
+      `【結論】${regionName}の車内クリーニング専門店として、車内清掃「特急便」は年間300台超の施工実績。シート洗浄から消臭まで出張で対応し、${powerPhrase(regionName)}・最短即日です。${regionName}内へ365日24時間受付。`,
     customDefinition: (regionName) =>
       `${regionName}の車内クリーニング専門店サービスとは、プロ機材と経験豊富な専門員が出張し、シート内部まで洗浄・消臭する専門サービスです。`,
   },
@@ -499,7 +519,7 @@ const AIO_SLUG_ALIASES: Record<string, string> = {
   'tobacco-odor': 'tabako-yani',
   'pet-waste': 'pet-unko',
   'mold-odor': 'shanai-nioi',
-  'pet-hair-odor': 'oshikko',
+  'pet-hair-odor': 'pet-ke',
 };
 
 export function getAioKeywordContent(slug: string): AioKeywordContent | undefined {
@@ -520,14 +540,42 @@ export function buildAioContentFaqs(
     },
     {
       q: '水道や電源は用意する必要がありますか？',
-      a: 'いいえ、必要ありません。当店の出張車両には専用の発電機と水タンクを積載しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。',
+      a: powerFaqAnswer(regionName),
     },
     {
       q: '市販の消臭スプレーと何が違うのですか？',
       a: '市販のスプレーは臭いの成分を別の香料で包み込む「マスキング」であり、汚れ自体はシート内に残ったままです。当店の洗浄は、洗剤で汚れを浮かし、温水で洗い流しながら同時に強力に吸い取る（リンサー抽出）ため、ニオイの「元」そのものを物理的に車外へ排除します。',
     },
   ];
-  return [...core, ...(includeExtended ? AIO_EXTENDED_FAQS : []), ...extraFaqs];
+  const extended = includeExtended
+    ? AIO_EXTENDED_FAQS.map((faq) => {
+        if (!needsOutletBorrow(regionName)) return faq;
+        if (faq.q.includes('マンション地下') || faq.a.includes('電源不要') || faq.a.includes('電源・水道不要')) {
+          return {
+            ...faq,
+            a: faq.a
+              .replace(
+                /多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/,
+                `${OUTLET_BORROW_SHORT}。水道もお借りする場合があります。`,
+              )
+              .replace(/電源・水道不要/g, OUTLET_BORROW_SHORT)
+              .replace(/電源不要/g, OUTLET_BORROW_SHORT),
+          };
+        }
+        return faq;
+      })
+    : [];
+  const resolvedExtra = extraFaqs.map((faq) => {
+    if (!needsOutletBorrow(regionName)) return faq;
+    if (!(faq.a.includes('電源不要') || faq.a.includes('電源・水道不要') || faq.a.includes('発電機'))) return faq;
+    return {
+      ...faq,
+      a: needsOutletBorrow(regionName)
+        ? `${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
+        : faq.a,
+    };
+  });
+  return [...core, ...extended, ...resolvedExtra];
 }
 
 export const REGIONAL_EMERGENCY_CHECKLIST: EmergencyChecklistRow[] = [
@@ -546,14 +594,19 @@ export function buildVoiceEmergencyLine(regionName: string): string {
   return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃。現在地からの最短到着目安をご案内します。`;
 }
 
-export function buildRegionalAnswerFirst(regionName: string): string {
-  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを今すぐ解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。運転中や手が離せない方も、電話で現在地からの最短到着目安をご確認いただけます。`;
+export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
+  const powerRegion = powerRegionName ?? regionName;
+  const powerBit = needsOutletBorrow(powerRegion)
+    ? `${OUTLET_BORROW_SHORT}。`
+    : '電源・水道不要（発電機・水タンク完備）で対応。';
+  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを今すぐ解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。運転中や手が離せない方も、電話で現在地からの最短到着目安をご確認いただけます。${powerBit}`;
 }
 
-export function buildRegionalAnswerTargetPoints(regionName: string): string[] {
+export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {
+  const powerRegion = powerRegionName ?? regionName;
   return [
     `最短即日対応・365日24時間受付。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。お急ぎの方は現在地から最短到着時間をご案内します。`,
-    `施工歴3年以上・年間300台超の専門員が${regionName}の指定駐車場へ直接訪問。電源・水道は不要（発電機・水タンク完備）。マンション地下駐車場も対応。`,
+    `施工歴3年以上・年間300台超の専門員が${regionName}の指定駐車場へ直接訪問。${powerCapabilitySentence(powerRegion)}マンション地下駐車場も対応。`,
     '車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記。同乗者・第三者汚損やカーシェアの嘔吐もご相談ください。',
   ];
 }
@@ -564,8 +617,9 @@ export function getRegionalHeroMainTitle(regionName: string): string | undefined
   return REGIONAL_FV_MAIN_TITLES[regionName];
 }
 
-export function buildRegionalNioiAnswerFirst(regionName: string): string {
-  return `表面の軽い臭いは換気と重曹で一時改善できますが、嘔吐・ペット・タバコ・灯油のニオイはシート内部（ウレタン層）に原因が残るため、消臭スプレーだけでは再発します。臭いが翌日以降も残る場合は、温水リンサー抽出洗浄のプロ依頼が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。施工歴3年以上の専門員が40℃温水とアルカリ電解水で原因を物理抽出し、電源・水道は不要（発電機・水タンク完備）です。嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは、下の状況診断表でも確認できます。`;
+export function buildRegionalNioiAnswerFirst(regionName: string, powerRegionName?: string): string {
+  const powerRegion = powerRegionName ?? regionName;
+  return `表面の軽い臭いは換気と重曹で一時改善できますが、嘔吐・ペット・タバコ・灯油のニオイはシート内部（ウレタン層）に原因が残るため、消臭スプレーだけでは再発します。臭いが翌日以降も残る場合は、温水リンサー抽出洗浄のプロ依頼が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。施工歴3年以上の専門員が40℃温水とアルカリ電解水で原因を物理抽出します。${powerCapabilitySentence(powerRegion)}嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは、下の状況診断表でも確認できます。`;
 }
 
 export const AIO_EXTENDED_FAQS: FAQItem[] = [
@@ -591,6 +645,6 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
-    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。当店は発電機・水タンク完備のため、マンション地下・オフィス駐車場でも電源・水道の確保は不要です。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で現在地を伝え、「最短到着時間」をご確認ください。',
+    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で現在地を伝え、「最短到着時間」をご確認ください。',
   },
 ];

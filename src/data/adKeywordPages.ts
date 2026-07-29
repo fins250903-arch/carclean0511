@@ -1,4 +1,5 @@
 import { KW_IMAGES } from '@/lib/assets513';
+import { needsOutletBorrow, OUTLET_BORROW_SHORT } from '@/lib/powerPolicy';
 import { LPO_AD_PAGES } from './lpAdPages';
 
 /** 広告LP（乗用車・1キーワード1URL）。FV は `public/images/kw/`（本番配信済み） */
@@ -7,25 +8,48 @@ export type AdKeywordPageDef = {
   /** 指定時はこの地域IDのみ静的生成（例: 千葉・愛知・大阪・兵庫・福岡） */
   targetRegionIds?: string[];
   /** <title> 用の短い訴求（地域名は別途付与） */
-  seoTitle: string;
+  seoTitle: string | ((regionName: string) => string);
   seoDescription: (regionName: string) => string;
   seoKeywords: (regionName: string) => string;
   ogImage: string;
-  heroSubtitle: (displayName: string) => string;
+  heroSubtitle: (displayName: string, regionName?: string) => string;
   /** 赤帯の2行 */
-  heroHighlight: [string, string];
+  heroHighlight: [string, string] | ((regionName: string) => [string, string]);
   heroSubcatch: (displayName: string) => string;
   fvImage: string;
   heroFooter: (displayName: string) => string;
-  problemHeader: string;
-  problemSubHeader: string;
-  problemDealerQuote: string;
+  problemHeader: string | ((regionName: string) => string);
+  problemSubHeader: string | ((regionName: string) => string);
+  problemDealerQuote: string | ((regionName: string) => string);
   problemBodyHtml: (regionName: string, displayName: string) => string;
   problemEmpathyImage: string;
-  problemEmpathyAlt: string;
+  problemEmpathyAlt: string | ((regionName: string) => string);
   mainTitle?: (regionName: string, displayName: string) => string;
-  deepTroubles?: string[];
+  deepTroubles?: string[] | ((regionName: string) => string[]);
 };
+
+/** Resolve string | (regionName) => string fields on ad keyword defs */
+export function resolveAdField(
+  value: string | ((regionName: string) => string),
+  regionName: string,
+): string {
+  return typeof value === 'function' ? value(regionName) : value;
+}
+
+export function resolveAdHighlight(
+  value: [string, string] | ((regionName: string) => [string, string]),
+  regionName: string,
+): [string, string] {
+  return typeof value === 'function' ? value(regionName) : value;
+}
+
+export function resolveAdDeepTroubles(
+  value: string[] | ((regionName: string) => string[]) | undefined,
+  regionName: string,
+): string[] | undefined {
+  if (!value) return undefined;
+  return typeof value === 'function' ? value(regionName) : value;
+}
 
 /** FV：「◯◯の△△　まとめて対応します。」（洗車機・分解の誤解を避ける短文） */
 function kwFooter(topic: string) {
@@ -96,11 +120,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
       `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.petKe,
+    ogImage: KW_IMAGES.seatStainDark,
     heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
-    fvImage: KW_IMAGES.petKe,
+    fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
@@ -108,8 +132,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
-    problemEmpathyImage: KW_IMAGES.petKe,
-    problemEmpathyAlt: '後部座席のペットおしっこ汚れのイメージ（施工関連）',
+    problemEmpathyImage: KW_IMAGES.seatStainDark,
+    problemEmpathyAlt: 'おしっこ染みが残る車内シートのイメージ（施工関連）',
     mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
     deepTroubles: [
       'ペットやお子様がおしっこをシートに…乾いてしまってどこから臭うか分からない',
@@ -502,7 +526,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたけど臭いが消えず、ディーラーは数日後の予約しか…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>車 嘔吐 クリーニング</strong>は、シート深部までの洗浄が必須です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。<br /><strong>${rn}</strong>の緊急ご依頼を優先して受け付けています。`,
-    problemEmpathyImage: KW_IMAGES.sienta3Before,
+    problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '嘔吐汚れのシート洗浄前イメージ',
     mainTitle: (r, d) => `【${r}】車の嘔吐クリーニング緊急便｜今すぐ消臭で元通りに`,
     deepTroubles: [
@@ -571,7 +595,9 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     slug: 'shutchou-senmon',
     seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
+      needsOutletBorrow(r)
+        ? `${r}の出張 車内 清掃専門店。${OUTLET_BORROW_SHORT}。嘔吐・臭い・灯油こぼしも最短即日対応。`
+        : `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
     ogImage: KW_IMAGES.steam,
@@ -693,7 +719,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「保険会社に何を言えばいいか分からず、結局自分で払った…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>車内 嘔吐 保険</strong>の適用は、状況・契約内容により異なります。<br /><strong>${dn}</strong>では保険代理申請のサポートと、<strong>嘔吐・灯油</strong>の出張クリーニングを一括対応します。<br /><strong>${rn}</strong>のお客様向けに施工報告書・領収書を発行します。`,
-    problemEmpathyImage: KW_IMAGES.sienta3Before,
+    problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '嘔吐トラブル後の車内清掃・保険相談イメージ',
     mainTitle: (r, d) => `【${r}】車内嘔吐・灯油こぼしの保険適用相談！代理申請＋即日出張施工`,
     deepTroubles: [
@@ -704,31 +730,67 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'dengen-fuyou',
-    seoTitle: '車内清掃 電源不要 出張',
+    seoTitle: (r) =>
+      needsOutletBorrow(r)
+        ? '車内清掃 100Vコンセント借用 出張'
+        : '車内清掃 電源不要 出張',
     seoDescription: (r) =>
-      `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
+      needsOutletBorrow(r)
+        ? `${r}対応。${OUTLET_BORROW_SHORT}。マンション・戸建て駐車場でもその場で施工可能。`
+        : `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
     seoKeywords: (r) =>
-      `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
+      needsOutletBorrow(r)
+        ? `車内清掃 100Vコンセント ${r}, 車内クリーニング 出張 ${r}, マンション 車内清掃 ${r}, コンセント借用 ${r}`
+        : `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d) => `${d}｜電源・水道不要 出張`,
-    heroHighlight: ['電源不要', 'マンション駐車場OK'],
+    heroSubtitle: (d, r) =>
+      needsOutletBorrow(r)
+        ? `${d}｜100Vコンセント借用 出張`
+        : `${d}｜電源・水道不要 出張`,
+    heroHighlight: (r) =>
+      needsOutletBorrow(r)
+        ? ['100Vコンセント', '20ｍ以内で借用']
+        : ['電源不要', 'マンション駐車場OK'],
     heroSubcatch: (d) => `${d}の出張車内清掃`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内の汚れ・臭い'),
-    problemHeader: '「マンションの地下駐車場で、電源が使えない…」',
-    problemSubHeader: '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
-    problemDealerQuote:
-      '「近くの洗車店は電源が必要で、マンションでは断られた…」',
+    problemHeader: (r) =>
+      needsOutletBorrow(r)
+        ? '「作業場所の近くに家庭用コンセントを用意できる…」'
+        : '「マンションの地下駐車場で、電源が使えない…」',
+    problemSubHeader: (r) =>
+      needsOutletBorrow(r)
+        ? `${OUTLET_BORROW_SHORT}。店に預けずその場でプロ施工が可能です。`
+        : '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
+    problemDealerQuote: (r) =>
+      needsOutletBorrow(r)
+        ? '「他社では発電機対応と言われたが、このエリアはコンセント借用だと聞いた…」'
+        : '「近くの洗車店は電源が必要で、マンションでは断られた…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+      needsOutletBorrow(rn)
+        ? `<strong>車内清掃</strong>の出張施工では、${OUTLET_BORROW_SHORT}。<strong>${dn}</strong>のマンション・戸建て駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
+        : `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
-    problemEmpathyAlt: '電源不要の出張車内清掃・スチーム洗浄イメージ',
-    mainTitle: (r, d) => `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
-    deepTroubles: [
-      'マンションの地下駐車場にコンセントがなく、他社に断られた',
-      '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
-      '月極駐車場の管理規約で、洗車・清掃が制限されている',
-    ],
+    problemEmpathyAlt: (r) =>
+      needsOutletBorrow(r)
+        ? '家庭用100Vコンセント借用の出張車内清掃・スチーム洗浄イメージ'
+        : '電源不要の出張車内清掃・スチーム洗浄イメージ',
+    mainTitle: (r) =>
+      needsOutletBorrow(r)
+        ? `【${r}】家庭用100Vコンセント借用の出張車内清掃！20ｍ以内で施工`
+        : `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
+    deepTroubles: (r) =>
+      needsOutletBorrow(r)
+        ? [
+            '作業場所からおおむね20ｍ以内に家庭用100Vコンセントを用意できるか不安',
+            '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
+            '月極駐車場や戸建て駐車場で、その場施工ができる業者を探している',
+          ]
+        : [
+            'マンションの地下駐車場にコンセントがなく、他社に断られた',
+            '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
+            '月極駐車場の管理規約で、洗車・清掃が制限されている',
+          ],
   },
   {
     slug: 'kodomo-kyuto',
@@ -749,7 +811,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたけど、子どもが「臭い」と言って乗りたがらない…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>子供 車 吐いた</strong>トラブルは、早急なプロ洗浄が最善です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応。お子様にも安心な洗剤を使用します。<br /><strong>${rn}</strong>の緊急ご依頼を優先受付中です。`,
-    problemEmpathyImage: KW_IMAGES.sienta3Before,
+    problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '子供の嘔吐汚れシート洗浄前イメージ',
     mainTitle: (r, d) => `【${r}】子供の車酔い・嘔吐シート洗浄！即日出張で明日から安心`,
     deepTroubles: [

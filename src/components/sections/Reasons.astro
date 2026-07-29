@@ -1,4 +1,10 @@
 ---
+import {
+  powerReasonDesc,
+  powerReasonTitle,
+  needsOutletBorrow,
+} from '../../lib/powerPolicy';
+
 interface Props {
   displayName: string;
   regionName: string;
@@ -6,7 +12,7 @@ interface Props {
 
 const { displayName, regionName } = Astro.props;
 
-const isSpecialRegion = regionName === '福岡' || regionName === '沖縄' || regionName === '福岡県' || regionName === '沖縄県';
+const borrowPower = needsOutletBorrow(regionName);
 
 const reasons = [
     {
@@ -29,10 +35,8 @@ const reasons = [
     },
     {
         icon: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
-        title: isSpecialRegion ? "電源・水道をお借りします" : "場所を選ばず電源不要",
-        desc: isSpecialRegion 
-            ? "電源（20mの電源コードを持参）と水道が必要です。" 
-            : "発電機を持参しますので、ドアが開けられるスペースがあればどこでも作業可能です。",
+        title: powerReasonTitle(regionName),
+        desc: powerReasonDesc(regionName),
         color: "bg-purple-500"
     },
     {
