@@ -1,9 +1,15 @@
 ---
-title: "【東京都武蔵野市】日産・マーチ、吉祥寺の喧騒とこぼれたラテ"
-date: 2026-03-01
-categories: 
-  - "toukyou"
-coverImage: "日産・マーチmae.jpg"
+date: 2026-07-29
+title: 【東京都武蔵野市】日産・マーチ、吉祥寺の喧騒とこぼれたラテ
+categories:
+  - toukyou
+shortSlug: tokyo-march
+coverImage: mae.jpg
+seo:
+  meta_description: ミルクを含んだ飲み物は、時間が経つと独特の酸っぱい匂いに変わります
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 武蔵野市、特に吉祥寺周辺の朝は忙しない。仕事に向かう途中、カップホルダーから溢れたカフェラテが助手席を汚してしまいました。
