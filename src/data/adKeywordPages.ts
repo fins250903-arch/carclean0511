@@ -96,11 +96,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
       `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.petKe,
+    ogImage: KW_IMAGES.petNioi,
     heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
-    fvImage: KW_IMAGES.petKe,
+    fvImage: KW_IMAGES.petNioi,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
@@ -108,7 +108,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
-    problemEmpathyImage: KW_IMAGES.petKe,
+    problemEmpathyImage: KW_IMAGES.petNioi,
     problemEmpathyAlt: '後部座席のペットおしっこ汚れのイメージ（施工関連）',
     mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
     deepTroubles: [
@@ -193,6 +193,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内の臭い</strong>は、汚れ・カビ・ヤニ・飲食など複合要因であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランク・ダクト周りまで状況に応じて洗浄します。<br />「臭いの元」を残さないことが、再発防止の近道です。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '荷室まわりの生活臭・こもったニオイのイメージ',
+    mainTitle: (r) => `【${r}】車内の臭い対策｜原因洗い出しから出張消臭洗浄`,
+    deepTroubles: [
+      '車内がなんとなく臭く、原因がエアコンかシートか分からない',
+      '消臭スプレーでは数日で戻り、根本対策を探している',
+      '荷室・天井・シートの複合臭で、どこから頼めばいいか迷う',
+    ],
   },
   {
     slug: 'kuruma-nioitori',
@@ -272,6 +278,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
+    mainTitle: (r) => `【${r}】エアコンが臭い・クサイ対策｜ON時の酸っぱい臭を出張内部洗浄`,
+    deepTroubles: [
+      'エアコンをつけるとクサイ・酸っぱい臭いで、窓を開けて運転するしかない',
+      'フィルター交換や消臭剤では改善せず、すぐに臭いが戻る',
+      '家族が車内の空気を嫌がるが、ディーラー予約が遠い',
+    ],
   },
   {
     slug: 'ase',
@@ -425,6 +437,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>中古車加齢臭</strong>は、複数箇所の汚れが重なった総合臭であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランクまで状況を見ながら洗浄します。<br />「人に貸せるレベル」まで整えたい方に、車内クリーニングをご提案します。`,
     problemEmpathyImage: KW_IMAGES.chukoKareisyu,
+    mainTitle: (r) => `【${r}】中古車の加齢臭・生活臭｜前オーナー臭を天井・シートまで出張洗浄`,
+    deepTroubles: [
+      '納車した中古車から、前オーナーの生活臭・加齢臭が染み出して恥ずかしい',
+      'オゾン脱臭だけでは数日で戻り、家族が乗りたがらない',
+      'どこが臭いか分からず、部分消臭と丸洗いのどちらを頼めばいいか迷う',
+    ],
   },
   {
     slug: 'touyu-kobosi',
