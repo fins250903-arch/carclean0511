@@ -19,9 +19,11 @@ interface Props {
   adHero?: AdHeroOverrides;
   /** 地区トップLP向けクエリ整合H1（adHero未設定時） */
   mainTitle?: string;
+  /** Override FV image only (Osaka subarea etc.) without switching to keyword adHero layout */
+  fvImage?: string;
 }
 
-const { regionName, displayName, niche = 'car', adHero, mainTitle } = Astro.props;
+const { regionName, displayName, niche = 'car', adHero, mainTitle, fvImage: fvImageProp } = Astro.props;
 const resolvedMainTitle = adHero?.mainTitle ?? mainTitle;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
@@ -32,7 +34,10 @@ const subtitle = adHero?.subtitle ?? (isTruck
       ? `${displayName}バス車内清掃専門店/座席・通路洗浄`
       : `${displayName}車内クリーニング専門店/シート洗浄`);
 
-const fvImage = adHero?.fvImage ?? (isTruck ? "/images/truck-fv.png" : isBus ? "/images/kw/bus-fv.png" : IMG513.fvCar);
+const fvImage =
+  adHero?.fvImage ??
+  fvImageProp ??
+  (isTruck ? "/images/truck-fv.png" : isBus ? "/images/kw/bus-fv.png" : IMG513.fvCar);
 
 /** FVブロック間の余白（モバイルは詰めて最上部から表示） */
 const gap = 'mb-1.5 max-md:mb-1 sm:mb-2 md:mb-3';

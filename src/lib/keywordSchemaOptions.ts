@@ -1,4 +1,5 @@
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
+import { resolveAdField } from '@/data/adKeywordPages';
 import type { Metadata } from '@/lib/seo';
 import { buildMobileInteriorCleaningDefinition } from '@/lib/structuredDataConstants';
 
@@ -22,6 +23,7 @@ export function buildAdKeywordJsonLdOptions({
   const serviceDefinition = isShutchou
     ? buildMobileInteriorCleaningDefinition(regionName)
     : kw.seoDescription(regionName);
+  const seoTitle = resolveAdField(kw.seoTitle, regionName);
 
   return {
     adKeywordSchema: {
@@ -31,8 +33,8 @@ export function buildAdKeywordJsonLdOptions({
     },
     serviceName: isShutchou
       ? `${displayName}の出張 車内 清掃`
-      : `${displayName}の${kw.seoTitle}`,
-    serviceType: isShutchou ? '出張 車内 清掃' : kw.seoTitle,
+      : `${displayName}の${seoTitle}`,
+    serviceType: isShutchou ? '出張 車内 清掃' : seoTitle,
     serviceAlternateNames: isShutchou
       ? [
           '出張車内清掃',
@@ -40,7 +42,7 @@ export function buildAdKeywordJsonLdOptions({
           '車内クリーニング 出張',
           '車内清掃 出張',
         ]
-      : [kw.seoTitle, '車内クリーニング', '車内清掃'],
+      : [seoTitle, '車内クリーニング', '車内清掃'],
     serviceDescription: serviceDefinition,
   };
 }

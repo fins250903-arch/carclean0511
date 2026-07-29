@@ -4,9 +4,11 @@ import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
 interface Props {
   text: string;
   points?: string[];
+  /** Voice / emergency search line (AIO speakable) */
+  voiceLine?: string;
 }
 
-const { text, points = [] } = Astro.props;
+const { text, points = [], voiceLine } = Astro.props;
 const contentUpdated = formatContentFreshnessJa();
 ---
 
@@ -15,6 +17,11 @@ const contentUpdated = formatContentFreshnessJa();
     <p class="text-xs font-bold text-blue-700 tracking-wide mb-3">
       最終更新：{contentUpdated}
     </p>
+    {voiceLine && (
+      <p class="speakable-voice text-sm md:text-base font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4 leading-relaxed">
+        {voiceLine}
+      </p>
+    )}
     <div class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-white p-5 md:p-6 rounded-xl border border-green-300 shadow-sm text-left">
       <p>{text}</p>
       {points.length > 0 && (

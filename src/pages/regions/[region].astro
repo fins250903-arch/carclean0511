@@ -37,12 +37,16 @@ import ServiceMutualLink from '../../components/sections/ServiceMutualLink.astro
 import EmergencyChecklist from '../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../components/sections/NioiAnswerTarget.astro';
+import KeywordAioExtras from '../../components/sections/KeywordAioExtras.astro';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
   buildRegionalNioiAnswerFirst,
+  buildVoiceEmergencyLine,
   getRegionalHeroMainTitle,
   REGIONAL_EMERGENCY_CHECKLIST,
+  REGIONAL_CHECKLIST_HEADING,
+  REGIONAL_SITUATION_DIAGNOSIS,
   buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
@@ -105,10 +109,11 @@ const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
   extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
 });
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
-const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName) : undefined;
-const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName) : undefined;
-const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName) : undefined;
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
+const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
 ---
 
@@ -124,9 +129,18 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
-      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} />}
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
       {!isTruck && !isBus && (
-        <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
+        <EmergencyChecklist
+          rows={REGIONAL_EMERGENCY_CHECKLIST}
+          regionName={regionName}
+          heading={REGIONAL_CHECKLIST_HEADING}
+        />
+      )}
+      {!isTruck && !isBus && (
+        <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
       {regionalNioiAnswer && (
         <NioiAnswerTarget regionName={regionName} answerText={regionalNioiAnswer} />
@@ -151,12 +165,12 @@ const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) 
       <RegionalAchievements regionName={regionName} displayName={displayName} niche={niche} />
       <Targets />
       <AreaCoverage regionName={regionName} />
-      <Flow niche={niche} />
+      <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
       <Pricing regionName={regionName} niche={niche} />
       <CTA />
-      <FAQ niche={niche} />
+      <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />

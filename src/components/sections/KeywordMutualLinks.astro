@@ -1,5 +1,5 @@
 ---
-import { AD_KEYWORD_PAGES } from '../../data/adKeywordPages';
+import { AD_KEYWORD_PAGES, resolveAdField } from '../../data/adKeywordPages';
 
 interface Props {
   regionId: string;
@@ -30,7 +30,7 @@ const mutualLinks = AD_KEYWORD_PAGES
   .filter(p => targetSlugs.includes(p.slug))
   .map(p => {
     // 表示用の短い名前を抽出 (seoTitleなどから)
-    let displayName = p.seoTitle.replace(/｜車内清掃 特急便/g, '').replace(/｜.+/g, '');
+    let displayName = resolveAdField(p.seoTitle, regionName).replace(/｜車内清掃 特急便/g, '').replace(/｜.+/g, '');
     return {
       slug: p.slug,
       name: displayName,

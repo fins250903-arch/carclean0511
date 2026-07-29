@@ -83,8 +83,59 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
     durationLabel: '約1.5〜3時間',
     areaLabel: areaDefault,
   },
+  oshikko: {
+    intentLabel: 'おしっこ汚れ・消臭',
+    priceLabel: `座席1脚消臭セット ${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
+  'touyu-kobosi': {
+    intentLabel: '灯油こぼし洗浄',
+    priceLabel: `${yen(CAR_PRICING.kerosenePerSeat)}〜/席`,
+    durationLabel: '約2〜4時間',
+    areaLabel: areaDefault,
+  },
+  'pet-ke': {
+    intentLabel: 'ペット毛・清掃',
+    priceLabel: `基本洗浄 ${yen(CAR_PRICING.lightBasic)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
+  'tabako-yani': {
+    intentLabel: 'タバコ臭・ヤニ洗浄',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
+    durationLabel: '約2〜4時間',
+    areaLabel: areaDefault,
+  },
+  'dengen-fuyou': {
+    intentLabel: '出張車内清掃',
+    priceLabel: `基本洗浄 ${yen(CAR_PRICING.lightBasic)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
+};
+
+const QUICK_FACT_ALIASES: Record<string, string> = {
+  'vomit-cleaning': 'kyuto-cleaning',
+  'gero-cleaning': 'kyuto-cleaning',
+  'hoken-kyuto': 'kyuto-cleaning',
+  'kodomo-kyuto': 'kyuto-cleaning',
+  'odor-removal': 'kuruma-nioi-keshi',
+  'seat-washing': 'seat-senjo',
+  'ac-mold': 'evaporator-senjo',
+  'mobile-cleaning': 'interior-cleaning',
+  'specialist-cleaning': 'interior-cleaning',
+  omorashi: 'oshikko',
+  unko: 'oshikko',
+  'pet-unko': 'oshikko',
+  'pet-waste': 'oshikko',
+  'pet-hair-odor': 'pet-ke',
+  'tobacco-odor': 'tabako-yani',
+  'mold-odor': 'shanai-shoshu',
+  'shutchou-senmon': 'interior-cleaning',
 };
 
 export function getAdLpQuickFacts(slug: string): AdLpQuickFactSet | undefined {
-  return AD_LP_QUICK_FACTS[slug];
+  const resolved = QUICK_FACT_ALIASES[slug] ?? slug;
+  return AD_LP_QUICK_FACTS[resolved] ?? AD_LP_QUICK_FACTS[slug];
 }

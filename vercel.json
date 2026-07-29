@@ -71,6 +71,36 @@
       "permanent": true
     },
     {
+      "source": "/regions/tokyo/kyuto-cleaning/",
+      "destination": "/regions/tokyo/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/saitama/kyuto-cleaning/",
+      "destination": "/regions/saitama/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/tokyo/seat-senjo/",
+      "destination": "/regions/tokyo/seat-washing/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/saitama/seat-senjo/",
+      "destination": "/regions/saitama/seat-washing/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/tokyo/kuruma-nioi-keshi/",
+      "destination": "/regions/tokyo/odor-removal/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/saitama/kuruma-nioi-keshi/",
+      "destination": "/regions/saitama/odor-removal/",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/regions/osaka/",
       "permanent": true

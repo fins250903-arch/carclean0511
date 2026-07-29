@@ -1,21 +1,59 @@
 ---
-import type { KeroseneSeverityRow, SmellCauseRow } from '../../data/aioKeywordContent';
+import type {
+  KeroseneSeverityRow,
+  SmellCauseRow,
+  SituationDiagnosisRow,
+} from '../../data/aioKeywordContent';
 
 interface Props {
   smellCauseTable?: SmellCauseRow[];
   keroseneSeverityMatrix?: KeroseneSeverityRow[];
+  situationDiagnosis?: SituationDiagnosisRow[];
 }
 
-const { smellCauseTable, keroseneSeverityMatrix } = Astro.props;
+const { smellCauseTable, keroseneSeverityMatrix, situationDiagnosis } = Astro.props;
 ---
 
-{(smellCauseTable || keroseneSeverityMatrix) && (
+{(smellCauseTable || keroseneSeverityMatrix || situationDiagnosis) && (
   <section class="py-10 bg-slate-50 border-b border-slate-200" aria-label="専門家の診断表">
     <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8 space-y-10">
+      {situationDiagnosis && (
+        <article id="situation-diagnosis">
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
+            自分の状況に合う最適な提案｜状況診断表
+          </h2>
+          <p class="text-sm text-gray-600 text-center mb-6">
+            嘔吐・灯油・緊急度から、今すぐやることとおすすめメニューを選べます。近くの車内掃除業者を探す方もご確認ください。
+          </p>
+          <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm bg-white">
+            <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">あなたの状況</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">今すぐやること</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">おすすめメニュー</th>
+                  <th scope="col" class="px-4 py-3 text-left font-bold text-blue-700 bg-blue-50">目安料金</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                {situationDiagnosis.map((row) => (
+                  <tr>
+                    <td class="px-4 py-3 font-medium text-gray-900">{row.situation}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.now}</td>
+                    <td class="px-4 py-3 text-gray-700">{row.menu}</td>
+                    <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium whitespace-nowrap">{row.priceHint}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      )}
+
       {smellCauseTable && (
         <article>
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
-            車内ニオイの7原因診断表
+            車内の臭いが消えない原因｜7原因診断表
           </h2>
           <p class="text-sm text-gray-600 text-center mb-6">
             臭いの種類から原因を特定し、正しい初動とプロ依頼の目安を確認できます。
@@ -48,7 +86,7 @@ const { smellCauseTable, keroseneSeverityMatrix } = Astro.props;
       {keroseneSeverityMatrix && (
         <article>
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 text-center">
-            灯油こぼし重症度マトリクス
+            車に灯油をこぼしたときの消し方｜重症度マトリクス
           </h2>
           <p class="text-sm text-gray-600 text-center mb-6">
             こぼした量と浸透範囲で、自助対応か専門洗浄かを判断します。

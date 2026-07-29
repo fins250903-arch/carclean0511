@@ -200,10 +200,126 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
       border: 'border-blue-100',
     },
   ],
-  vomit: COMMON_EMERGENCY,
-  kerosene: COMMON_EMERGENCY,
-  'pet-waste': COMMON_EMERGENCY,
-  'pet-hair': COMMON_EMERGENCY,
+  vomit: [
+    {
+      icon: '🤮',
+      title: '嘔吐・ゲロ汚れ',
+      desc: '4日以内の抽出洗浄がカギ',
+      bg: 'bg-red-50/50',
+      border: 'border-red-100',
+    },
+    {
+      icon: '👶',
+      title: '子供の車酔い',
+      desc: 'チャイルドシート周りも対応',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+    {
+      icon: '🚫',
+      title: '消臭スプレー禁止',
+      desc: 'マスキングで悪臭化しやすい',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '📞',
+      title: '最短即日出張',
+      desc: '手が離せない時も電話で相談',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
+  kerosene: [
+    {
+      icon: '🛢️',
+      title: '灯油こぼし',
+      desc: '火気厳禁・量別で判断',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '🔥',
+      title: '引火リスク注意',
+      desc: 'エンジン始動・タバコ厳禁',
+      bg: 'bg-red-50/50',
+      border: 'border-red-100',
+    },
+    {
+      icon: '📏',
+      title: '100cc超は専門洗浄',
+      desc: 'フロア下浸透前に依頼',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+    {
+      icon: '📋',
+      title: '保険相談可',
+      desc: '部品交換か洗浄かを見極め',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
+  'pet-waste': [
+    {
+      icon: '🐾',
+      title: 'おしっこ・おもらし',
+      desc: '尿アルカリを中和洗浄',
+      bg: 'bg-yellow-50/50',
+      border: 'border-yellow-100',
+    },
+    {
+      icon: '💩',
+      title: 'うんち・粗相',
+      desc: '除菌と消臭をセットで',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+    {
+      icon: '🚫',
+      title: '消臭スプレー禁止',
+      desc: 'アンモニア反応で悪化しやすい',
+      bg: 'bg-red-50/50',
+      border: 'border-red-100',
+    },
+    {
+      icon: '✨',
+      title: '酵素分解＋リンサー',
+      desc: 'シート奥まで根本除去',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
+  'pet-hair': [
+    {
+      icon: '🐕',
+      title: 'ペットの抜け毛',
+      desc: '織り目の毛を手作業除去',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '👃',
+      title: '獣臭・ペット臭',
+      desc: '洗浄で臭いの元を除去',
+      bg: 'bg-orange-50/50',
+      border: 'border-orange-100',
+    },
+    {
+      icon: '💺',
+      title: 'シート・フロア',
+      desc: '同乗スペースをまとめて清掃',
+      bg: 'bg-yellow-50/50',
+      border: 'border-yellow-100',
+    },
+    {
+      icon: '🚗',
+      title: '最短即日出張',
+      desc: '駐車場でその場施工',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
 };
 
 const themeTroubles =
@@ -228,7 +344,13 @@ const sectionLead =
         緊急対応エリア拡大中！
       </span>
       <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-        こんなトラブル、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">お任せください！</span>
+        {troubleType === 'vomit'
+          ? <>{displayName}で車内嘔吐、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>
+          : troubleType === 'kerosene'
+            ? <>{displayName}で灯油こぼし、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どう消す？</span></>
+            : troubleType === 'pet-waste' || troubleType === 'pet-hair'
+              ? <>{displayName}でペット・おもらしトラブル、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>
+              : <>{displayName}で車内の臭い・汚れ、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>}
       </h2>
       <p class="text-sm md:text-base text-gray-600 mt-2 font-medium">
         {sectionLead}
