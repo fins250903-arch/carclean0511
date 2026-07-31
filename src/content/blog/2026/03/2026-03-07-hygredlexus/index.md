@@ -1,11 +1,17 @@
 ---
-title: "兵庫県芦屋市 レクサス・CT、赤ワインハプニング高級感の守り方"
-date: 2026-03-07
-categories: 
-  - "jisseki"
-  - "hyougo"
-  - "tokublo"
-coverImage: "ct200-e1774947400667.jpg"
+date: 2026-07-31
+title: 兵庫県芦屋市 レクサス・CT、赤ワインハプニング高級感の守り方
+categories:
+  - jisseki
+  - hyougo
+  - tokublo
+shortSlug: hygredlexus
+coverImage: ct200.jpg
+seo:
+  meta_description: お土産の赤ワインが割れてしまったというご相談を受けた時は、その深刻さが伝わってきました。
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 芦屋の街並みに似合う、美しい内装のレクサス。お土産の赤ワインが割れてしまったというご相談を受けた時は、その深刻さが伝わってきました。
