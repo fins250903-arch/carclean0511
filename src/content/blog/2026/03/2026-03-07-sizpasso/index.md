@@ -1,9 +1,15 @@
 ---
-title: "静岡県静岡市葵区：トヨタ・パッソお茶の街「うっかりシミ」対策"
-date: 2026-03-07
-categories: 
-  - "tokublo"
-coverImage: "兵庫.jpg"
+date: 2026-08-01
+title: 静岡県静岡市葵区：トヨタ・パッソお茶の街「うっかりシミ」対策
+categories:
+  - tokublo
+shortSlug: sizpasso
+coverImage: mae-160x90.jpg
+seo:
+  meta_description: お茶の成分であるタンニンは、時間が経つと染料のように繊維を染めてしまいます。家庭用の洗剤では、なかなか太刀打ちできない相手です
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 お茶の街、静岡。車内で一息つく時の一杯は格別です。でも、うっかりこぼしたお茶をそのままにしていたら、いつの間にか黒ずんだ大きなシミになってしまいました。
