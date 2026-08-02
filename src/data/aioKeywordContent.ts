@@ -96,6 +96,47 @@ const KEROSENE_SEVERITY_MATRIX: KeroseneSeverityRow[] = [
   { level: '最重症', volume: '500cc超', penetration: '部品交換レベルまで到達の可能性', action: '専門洗浄＋保険相談。洗浄か交換かを見極め', costHint: '洗浄＋部品費（保険適用の可能性あり）' },
 ];
 
+/** Odor / AC intent — avoid vomit-first framing on Ads KW LPs */
+export const ODOR_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
+  {
+    situation: 'エアコンON時だけ臭う',
+    now: 'フィルター確認・外気導入。スプレー多用は避ける',
+    menu: 'エアコン内部洗浄（簡易）',
+    priceHint: `${yen(CAR_PRICING.acInternalWash)}〜`,
+  },
+  {
+    situation: 'シートに座ると臭う／染みる',
+    now: '換気。市販消臭剤の重ね噴きは控える',
+    menu: '座席1脚〜のリンサー洗浄（消臭セット）',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: '天井・車内全体にこもる',
+    now: '芳香剤を外して臭いの本体を確認',
+    menu: '車内消臭セット（天井〜フロア）',
+    priceHint: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+  },
+  {
+    situation: '中古車購入直後から生活臭',
+    now: '販売店清掃との差を写真で共有',
+    menu: '消臭セット丸洗い（加齢臭・前オーナー臭）',
+    priceHint: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+  },
+  {
+    situation: '軽い黄ばみ・ホコリ中心',
+    now: '目的が「きれいに見せる」なら基本洗浄から',
+    menu: '基本洗浄（通常の車内クリーニング）',
+    priceHint: `${yen(CAR_PRICING.lightBasic)}〜`,
+  },
+];
+
+const EMERGENCY_URINE_CHECKLIST: EmergencyChecklistRow[] = [
+  { do: '乾いたタオルで押さえて水分を吸い取る（こすらない）', dont: 'ゴシゴシ擦る（シミと臭いが広がる）' },
+  { do: '全窓開放・外気導入で換気', dont: '塩素系・香料スプレーの多用（反応臭・除去困難化）' },
+  { do: '汚染範囲の写真を撮って相談（座席／フロア）', dont: '完全乾燥するまで放置（臭い固定化）' },
+  { do: '当日〜翌日にプロへ連絡（座席1脚から対応可）', dont: '重曹だけで完了と判断（内部層まで届かない）' },
+];
+
 /** GEO: 「自分の状況に合う最適な提案」 */
 export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
   {
@@ -237,14 +278,42 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     checklistHeading: '車内のおしっこ汚れ、自分で何をすればいい？',
     answerFirst: (regionName) =>
       `【結論】${regionName}で車内のおしっこ汚れは、尿アルカリを中和するプロのリンサー洗浄が必要です。市販消臭剤は表面のマスキングに留まり、ウレタン内部の臭いは残ります。${regionName}内へ最短即日出張、座席1脚消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
-    emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    emergencyChecklist: EMERGENCY_URINE_CHECKLIST,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内おしっこ臭いの改善事例`,
+      body: `${city}の普通車で「おしっこ後に消臭スプレーを使ったが数日で戻った」とのご依頼。汚染座席のリンサー抽出を実施し、エアコンON時に回っていた尿臭も軽減した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: '乾いて見えなくても依頼すべきですか？',
+        a: 'はい。尿成分はウレタン内部に残りやすく、見た目が乾いても臭いが再発します。座席1脚からの部分施工も可能です。',
+      },
+      {
+        q: '子ども尿と犬・猫尿で違いは？',
+        a: 'いずれも中和＋抽出が基本です。猫尿は染み込みが深く限界がある場合があるため、改善見込みを事前に説明します。',
+      },
+    ],
   },
   omorashi: {
     troubleType: 'pet-waste',
     checklistHeading: '車内のおもらし・尿染み、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
-    emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。子ども・高齢者のおもらしも、座席1脚から対応します。`,
+    emergencyChecklist: EMERGENCY_URINE_CHECKLIST,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内おもらしのシミ・臭い改善事例`,
+      body: `${city}でお子様のおもらし後、「乾いてから黄色っぽいシミとアンモニア臭が残った」とのご相談。座席のリンサー抽出と乾燥を実施し、見た目のシミと臭いを大幅に改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'おもらしとペットおしっこで工程は違いますか？',
+        a: '基本は尿アルカリの中和とリンサー抽出です。ペット尿（特に猫）は染み込みが深く、完全無臭化が難しい場合があるため、事前に改善見込みをお伝えします。',
+      },
+      {
+        q: '料金はいつ上がりますか？',
+        a: `座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜が目安です。フロア到達・複数席・消臭剤多用後・長期間放置は範囲見積になります。`,
+      },
+    ],
   },
   'pet-unko': {
     troubleType: 'pet-waste',
@@ -256,15 +325,23 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'shanai-nioi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の臭いが消えない場合、原因は嘔吐・ペット・タバコ・灯油・カビ・加齢臭・エアコン内部のいずれかにあり、消臭スプレーではウレタン層の「臭いの元」を除去できません。臭いの種類を特定し、40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。臭いの出方を特定し、40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
-      `${regionName}の車内臭い取り（消臭）とは、臭いの原因（嘔吐・尿・タバコ・灯油・カビ等）を特定し、温水リンサー抽出でシート内部の汚れそのものを除去する出張専門サービスです。香料でごまかすマスキングではなく、原因除去が目的です。`,
+      `${regionName}の車内臭い取り（消臭）とは、臭いの原因（エアコン・尿・タバコ・加齢臭・カビ等）を特定し、温水リンサー抽出でシート内部の汚れそのものを除去する出張専門サービスです。香料でごまかすマスキングではなく、原因除去が目的です。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内の複合臭改善事例`,
+      body: `${city}で「なんとなく車内が臭く、芳香剤を外すと戻る」とのご相談。シートと天井の生活臭を中心に消臭セットを施工し、こもった臭いを改善した事例です。`,
+    })),
     extraFaqs: [
       {
         q: '消臭スプレーを使っても臭いが戻るのはなぜ？',
-        a: '市販スプレーは臭い分子を香料で覆い隠す「マスキング」です。シート内部（ウレタン層）に残った嘔吐物・尿・ヤニ・灯油はそのまま残るため、温度や湿度で再発します。根本解決には温水リンサーによる物理抽出が必要です。',
+        a: '市販スプレーは臭い分子を香料で覆い隠す「マスキング」です。シート内部（ウレタン層）に残った汚れ・ヤニ・皮脂はそのまま残るため、温度や湿度で再発します。根本解決には温水リンサーによる物理抽出が必要です。',
+      },
+      {
+        q: '完全に無臭になりますか？',
+        a: '多くのケースで大幅改善しますが、長年の喫煙や猫尿の深部浸透などは限界があります。施工前に改善見込みを正直にお伝えします。',
       },
     ],
   },
@@ -273,9 +350,13 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     answerFirst: (regionName) =>
       `【結論】${regionName}で車の臭い取りを根本から行うには、原因特定→温水リンサー抽出の2ステップが必要です。カーディテーリングの香料消臭やオゾンだけでは再発しやすく、シート内部の汚れ除去が鍵です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要の目安1.5〜3時間）。完全無臭を保証できないケース（長年のタバコ・猫尿など）は事前に限界をお伝えします。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車の匂い取りとは、臭いの原因（生活臭・タバコ・ペット・エアコン等）を切り分けたうえで、温水リンサーとスチームで臭い分子の吸着先である汚れを洗い流す出張消臭洗浄です。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車の匂い取り事例`,
+      body: `${city}で「消臭剤とオゾンでは数日で戻る」とのご相談。シート内部の生活臭をリンサー抽出し、再発しやすい臭いを改善した事例です。`,
+    })),
     extraFaqs: [
       {
         q: 'オゾンや消臭剤だけではダメですか？',
@@ -285,14 +366,18 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '匂い取りの料金と時間の目安は？',
         a: `軽自動車の消臭セット${yen(CAR_PRICING.lightDeodorize)}〜が目安です。範囲により約1.5〜3時間。対応エリアは出張費無料でご案内します。`,
       },
+      {
+        q: '施工に含まれないものは？',
+        a: 'エアコン本体の部品交換、冷媒ガス補充、シートの張替えは含みません。必要な場合は事前に分けてご案内します。',
+      },
     ],
   },
   'kuruma-nioi-keshi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車の臭い消し（消臭）を「完全」に近づけるには、消臭剤ではなくシート内部の汚れをリンサーで洗い流す必要があります。嘔吐・ペット・タバコ・灯油など原因別に洗浄メニューを使い分けます。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車の臭い消し（消臭）を「完全」に近づけるには、消臭剤ではなくシート内部の汚れをリンサーで洗い流す必要があります。生活臭・ペット・タバコ・湿気カビなど原因別に洗浄メニューを使い分けます。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車の匂い消しとは、香料マスキングではなく、臭いの原因汚れを温水抽出で除去する出張専門の消臭洗浄です。`,
     extraFaqs: [
@@ -305,9 +390,9 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'shanai-shoshu': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}の車内消臭で再発を防ぐには、消臭スプレーではなく温水リンサーによる原因除去が必要です。ウレタン層に染み込んだ嘔吐・尿・ヤニは香料では消えません。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}の車内消臭で再発を防ぐには、消臭スプレーではなく温水リンサーによる原因除去が必要です。ウレタン層に染み込んだ尿・ヤニ・皮脂は香料では消えません。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車内消臭・脱臭とは、シート・天井・フロアの汚れを洗い流し、臭い分子の発生源を減らす出張洗浄サービスです。`,
     extraFaqs: [
@@ -340,12 +425,46 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'chuko-kareisyu': {
     troubleType: 'aging-odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で中古車の加齢臭（オールドカー臭）を改善するには、シート・天井・フロアに蓄積した皮脂・汗・菌を温水リンサーで洗い流す必要があります。消臭剤は一時的な対処に留まります。${regionName}内へ最短即日出張、普通車${yen(CAR_PRICING.regularBasic)}〜。`,
+      `【結論】${regionName}で中古車の加齢臭（オールドカー臭）を改善するには、シート・天井・フロアに蓄積した皮脂・汗・菌を温水リンサーで洗い流す必要があります。消臭剤は一時的な対処に留まります。${regionName}内へ最短即日出張、普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
+    customDefinition: (regionName) =>
+      `${regionName}の中古車加齢臭対策とは、前オーナーの皮脂・生活臭が残る内装を温水リンサーで洗い、芳香剤に頼らない清潔な車内へ整える出張サービスです。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜中古車の加齢臭・生活臭改善事例`,
+      body: `${city}で納車直後の中古車「芳香剤を外すと古い脂っぽい臭いがする」とのご相談。シート・天井中心の消臭セットを施工し、前オーナー臭を改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: '販売店で清掃済みでも臭います。まだ洗えますか？',
+        a: 'はい。販売店の簡易清掃ではウレタン内部まで洗えていないことが多いです。臭いの戻り方を伺い、必要な範囲をご提案します。',
+      },
+      {
+        q: '施工後に臭いが戻ることはありますか？',
+        a: '乾燥不足や再汚染、エアコン循環側の残臭で戻ることがあります。必要ならAC内部洗浄の併用もご案内します。',
+      },
+    ],
   },
   kareisyu: {
     troubleType: 'aging-odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の加齢臭は、シート・天井の皮脂汚れと菌が原因です。換気や消臭剤では根本解決しにくく、温水リンサーによる丸洗いが効果的です。${regionName}内へ最短即日出張。`,
+      `【結論】${regionName}で車内の加齢臭は、シート・天井の皮脂汚れと菌が原因です。換気や消臭剤では根本解決しにくく、温水リンサーによる丸洗いが効果的です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
+    customDefinition: (regionName) =>
+      `${regionName}の車内加齢臭対策とは、運転席まわり・天井などに吸着した皮脂由来の臭いを温水抽出で減らし、車内の空気質を整える出張洗浄です。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車の加齢臭対策事例`,
+      body: `${city}で「家族に車が臭いと言われた」とのご相談。運転席と天井を中心に洗浄し、脂っぽい古い臭いを改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: '加齢臭はどこに付きやすいですか？',
+        a: '運転席・ヘッドレスト・シートベルト周辺・天井・エアコン循環が典型です。臭いの強い場所から重点洗浄します。',
+      },
+      {
+        q: '完全に無臭になりますか？',
+        a: '大幅改善を目指しますが、長年蓄積した臭いの完全無臭化は難しい場合があります。改善見込みは事前にお伝えします。',
+      },
+    ],
   },
   'spray-kouka-nai': {
     troubleType: 'odor',
@@ -363,15 +482,37 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'seat',
     answerFirst: (regionName) =>
       `【結論】${regionName}で車のシートのシミの落とし方として最も効果的なのは、素材に合わせた泡洗いと温水リンサー抽出です。市販クリーナーではウレタン内部の汚れまで届きません。${regionName}内へ出張対応、座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜、消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。${powerPhrase(regionName)}。`,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の車シート洗浄とは、出張専門スタッフがシート素材（布・合皮）に合わせた洗浄剤と温水リンサーで、黄ばみ・飲みこぼし・汗ジミを内部まで洗い流すサービスです。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜シート黄ばみ・シミ洗浄事例`,
+      body: `${city}で運転席の黄ばみと飲みこぼし跡のご依頼。布シートへ泡洗い＋リンサー抽出し、見た目のシミを改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: '布シートと革シートで違いますか？',
+        a: '布は温水リンサー抽出が中心、合皮・本革は素材に合わせた薬剤と工程になります。現地で素材確認のうえ施工します。',
+      },
+      {
+        q: '軽い清掃と消臭セットの違いは？',
+        a: `見える汚れ中心なら座席1脚基本${yen(CAR_PRICING.seatSingleBasic)}〜、臭い・染み込みまでなら消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜が目安です。`,
+      },
+    ],
   },
   'seat-cleaning': {
     troubleType: 'seat',
     answerFirst: (regionName) =>
-      `【結論】${regionName}の車シートクリーニングは、座席まるごとの温水洗浄・乾燥が基本です。皮脂・飲食汚れが臭いの原因になるため、表面拭きでは不十分なケースが多いです。${regionName}内へ最短即日出張。`,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+      `【結論】${regionName}の車シートクリーニングは、座席まるごとの温水洗浄・乾燥が基本です。皮脂・飲食汚れが臭いの原因になるため、表面拭きでは不十分なケースが多いです。${regionName}内へ最短即日出張、座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
+    customDefinition: (regionName) =>
+      `${regionName}の車シートクリーニングとは、座席の汚れ・黄ばみを出張洗浄で整え、必要に応じて消臭まで行うサービスです。`,
+    extraFaqs: [
+      {
+        q: '1席だけ頼めますか？',
+        a: `はい。座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜から対応します。臭いが強い場合は消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜をご案内します。`,
+      },
+    ],
   },
   'ac-nioi': {
     troubleType: 'ac',
@@ -493,12 +634,18 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       `${regionName}の出張車内清掃専門サービスとは、プロの温水リンサー・特殊アルカリ電解水を用い、ご指定場所へ訪問してシート内部まで洗浄・消臭するサービスです。ディーラー持ち込み不要・即日復旧が可能です。`,
   },
   'interior-cleaning': {
-    troubleType: 'seat',
+    troubleType: 'light',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内クリーニングをプロに依頼するなら、出張リンサー洗浄が最も手軽です。シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄し、${powerPhrase(regionName)}で駐車場があれば施工可能です。近くの車内掃除業者をお探しの方も、現在地からの最短到着目安をご案内します。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜。`,
-    situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS,
+      `【結論】${regionName}で通常の車内クリーニングをプロに依頼するなら、出張リンサー洗浄が最も手軽です。シートの黄ばみ・生活汚れ・軽い生活臭を丸ごと洗浄し、${powerPhrase(regionName)}で駐車場があれば施工可能です。臭いが強い場合は消臭セットへアップできます。車内清掃「特急便」は${regionName}内へ最短即日出張。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜／消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
-      `${regionName}の車内クリーニングとは、出張専門スタッフがシート・フロアを温水リンサーで洗浄し、車内を清潔で快適な状態に戻すサービスです。`,
+      `${regionName}の車内クリーニングとは、出張専門スタッフがシート・フロアを温水リンサーで洗浄し、車内を清潔で快適な状態に戻すサービスです。緊急の特殊汚損だけでなく、日常のきれいを整える基本洗浄にも対応します。`,
+    extraFaqs: [
+      {
+        q: '基本洗浄と消臭セットの違いは？',
+        a: `基本洗浄は黄ばみ・ホコリ・軽い汚れ向け（軽自動車${yen(CAR_PRICING.lightBasic)}〜）。染み込み臭や再発しやすい臭いまで取るなら消臭セット（${yen(CAR_PRICING.lightDeodorize)}〜）です。`,
+      },
+    ],
   },
   'specialist-cleaning': {
     troubleType: 'seat',

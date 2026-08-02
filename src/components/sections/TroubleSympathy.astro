@@ -140,6 +140,36 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
       border: 'border-pink-100',
     },
   ],
+  light: [
+    {
+      icon: '✨',
+      title: '基本の車内清掃',
+      desc: '黄ばみ・ホコリを整える',
+      bg: 'bg-sky-50/50',
+      border: 'border-sky-100',
+    },
+    {
+      icon: '🪑',
+      title: 'シート洗浄',
+      desc: '1席から／全体まで対応',
+      bg: 'bg-amber-50/50',
+      border: 'border-amber-100',
+    },
+    {
+      icon: '👃',
+      title: '軽い生活臭',
+      desc: '必要なら消臭セットへ',
+      bg: 'bg-emerald-50/50',
+      border: 'border-emerald-100',
+    },
+    {
+      icon: '🚗',
+      title: '出張・最短案内',
+      desc: '駐車場でその場施工',
+      bg: 'bg-blue-50/50',
+      border: 'border-blue-100',
+    },
+  ],
   tobacco: [
     {
       icon: '🚬',
@@ -325,13 +355,16 @@ const THEME_TROUBLES: Record<string, TroubleItem[]> = {
 const themeTroubles =
   (troubleType && THEME_TROUBLES[troubleType]) || COMMON_EMERGENCY;
 
+const showEmergencyBadge = !troubleType
+  || ['vomit', 'kerosene', 'pet-waste', 'pet-hair'].includes(troubleType);
+
 const sectionLead =
   troubleType === 'ac'
     ? `${displayName}のエアコン臭い・カビ臭を、内部洗浄と車内洗浄でスピード改善`
     : troubleType === 'odor' || troubleType === 'aging-odor' || troubleType === 'tobacco'
       ? `${displayName}の車内臭いを、原因特定からプロ洗浄で根本対策`
-      : troubleType === 'seat'
-        ? `${displayName}のシート汚れ・黄ばみを、素材別洗浄でスッキリ`
+      : troubleType === 'seat' || troubleType === 'light'
+        ? `${displayName}のシート汚れ・車内クリーニングを、目的に合うメニューでスッキリ`
         : `${displayName}の車内緊急トラブルを、最新プロ機材でその日のうちにスピード解決`;
 ---
 
@@ -340,9 +373,11 @@ const sectionLead =
     
     {/* セクションタイトル */}
     <div class="text-center mb-6 md:mb-8">
-      <span class="inline-block bg-red-600 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider uppercase animate-pulse">
-        緊急対応エリア拡大中！
-      </span>
+      {showEmergencyBadge && (
+        <span class="inline-block bg-red-600 text-white text-xs md:text-sm font-black px-3 py-1 rounded-full mb-2 tracking-wider uppercase animate-pulse">
+          緊急対応エリア拡大中！
+        </span>
+      )}
       <h2 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
         {troubleType === 'vomit'
           ? <>{displayName}で車内嘔吐、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>
@@ -350,6 +385,8 @@ const sectionLead =
             ? <>{displayName}で灯油こぼし、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どう消す？</span></>
             : troubleType === 'pet-waste' || troubleType === 'pet-hair'
               ? <>{displayName}でペット・おもらしトラブル、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>
+              : troubleType === 'light'
+                ? <>{displayName}で車内クリーニング、<span class="text-blue-700 underline decoration-blue-700 decoration-4 underline-offset-4">どこに頼めばいい？</span></>
               : <>{displayName}で車内の臭い・汚れ、<span class="text-red-600 underline decoration-red-600 decoration-4 underline-offset-4">どこに頼めばいい？</span></>}
       </h2>
       <p class="text-sm md:text-base text-gray-600 mt-2 font-medium">

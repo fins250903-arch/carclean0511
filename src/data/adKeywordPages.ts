@@ -217,6 +217,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `<strong>車内の臭い</strong>は、汚れ・カビ・ヤニ・飲食など複合要因であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランク・ダクト周りまで状況に応じて洗浄します。<br />「臭いの元」を残さないことが、再発防止の近道です。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '荷室まわりの生活臭・こもったニオイのイメージ',
+    mainTitle: (r) => `【${r}】車内の臭い対策｜原因を切り分けて出張消臭洗浄`,
+    deepTroubles: [
+      'なんとなく車内が臭く、芳香剤を外すとすぐに戻る',
+      'エアコンON時とシートで臭いの出方が違い、何を頼めばいいか分からない',
+      '消臭スプレーを何度使っても、湿度や季節で臭いが再発する',
+    ],
   },
   {
     slug: 'kuruma-nioitori',
@@ -449,6 +455,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>中古車加齢臭</strong>は、複数箇所の汚れが重なった総合臭であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランクまで状況を見ながら洗浄します。<br />「人に貸せるレベル」まで整えたい方に、車内クリーニングをご提案します。`,
     problemEmpathyImage: KW_IMAGES.chukoKareisyu,
+    mainTitle: (r) => `【${r}】中古車の加齢臭・生活臭｜納車後の車内を出張洗浄でリフレッシュ`,
+    deepTroubles: [
+      '納車直後から脂っぽい古い臭いがして、芳香剤を外すと戻る',
+      '販売店で清掃済みと言われたが、家族に「車が臭い」と言われる',
+      '前オーナーの生活臭が天井・シートに残り、印象が良くない',
+    ],
   },
   {
     slug: 'touyu-kobosi',
