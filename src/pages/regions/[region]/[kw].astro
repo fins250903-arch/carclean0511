@@ -55,6 +55,8 @@ import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astr
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
+import AdLpIntentGuide from '../../../components/sections/AdLpIntentGuide.astro';
+import { getAdLpIntentGuide, isNonEmergencyTroubleType } from '../../../data/adLpIntentGuides';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -135,6 +137,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const fvCopy = findFvCopy(regionId, kwSlug);
 const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
 const quickFacts = getAdLpQuickFacts(kwSlug);
+const intentGuide = getAdLpIntentGuide(kwSlug);
+const muteEmergencyTone = isNonEmergencyTroubleType(aioKw?.troubleType);
+const voiceLine = muteEmergencyTone
+  ? `${displayName}エリアへ出張対応。料金・所要時間の目安を確認のうえ、お電話・LINEで空き状況をご案内します。`
+  : buildVoiceEmergencyLine(displayName);
 const heroHighlight = resolveAdHighlight(kw.heroHighlight, regionName);
 
 const adHero = fvHero
@@ -183,7 +190,7 @@ const noindex = isNoindexKeywordSlug(kwSlug);
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
       {answerFirst && (
-        <AnswerTarget text={answerFirst} voiceLine={buildVoiceEmergencyLine(displayName)} />
+        <AnswerTarget text={answerFirst} voiceLine={voiceLine} />
       )}
       {quickFacts && (
         <AdLpQuickFacts
@@ -194,6 +201,7 @@ const noindex = isNoindexKeywordSlug(kwSlug);
           areaLabel={quickFacts.areaLabel(displayName)}
         />
       )}
+      {intentGuide && <AdLpIntentGuide block={intentGuide} />}
       <TroubleSympathy
         displayName={displayName}
         deepTroubles={deepTroubles}
@@ -217,6 +225,8 @@ const noindex = isNoindexKeywordSlug(kwSlug);
         focusShutchou={kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning'}
         customDefinition={customDefinition}
         extraFaqs={aioExtraFaqs}
+        showAioExtensions={!muteEmergencyTone}
+        showVomitEducation={!muteEmergencyTone && aioKw?.troubleType !== 'pet-waste'}
       />
       {aioKw?.nicheCaseStudy && (
         <NicheCaseStudy block={aioKw.nicheCaseStudy(regionName)} />

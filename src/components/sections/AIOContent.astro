@@ -15,6 +15,8 @@ interface Props {
   customDefinition?: string;
   /** 保険判断表・拡張FAQ（乗用車LP向け） */
   showAioExtensions?: boolean;
+  /** 嘔吐4日ルール等の緊急教育ブロック（Ads非緊急KWではOFF） */
+  showVomitEducation?: boolean;
   /** 追加FAQ（キーワードLP用） */
   extraFaqs?: FAQItem[];
 }
@@ -26,6 +28,7 @@ const {
   answerFirst,
   customDefinition,
   showAioExtensions = true,
+  showVomitEducation = true,
   extraFaqs = [],
 } = Astro.props;
 const isTruck = niche === 'truck';
@@ -131,7 +134,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         </div>
       </article>
 
-      {!isTruck && (
+      {!isTruck && showVomitEducation && (
         <article>
           <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
             なぜ「4日以内」の洗浄が必要なのか（嘔吐の4日ルール）
@@ -146,9 +149,23 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         </article>
       )}
 
+      {!isTruck && !showVomitEducation && (
+        <article>
+          <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
+            なぜ「洗い流す消臭」が再発防止につながるのか
+          </h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            車内の臭い・汚れは、シートや天井の繊維・ウレタン層に原因が残っていると再発しやすいです。消臭スプレーは香料で覆い隠す対処になりがちで、<strong>温度や湿度で臭いが戻る</strong>ことがあります。
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            当店は<strong>約40℃の温水リンサー（吸引洗浄）</strong>で汚れそのものを洗い流し、必要に応じてスチームや補助脱臭を組み合わせます。エアコン臭い・加齢臭・シート汚れなど、症状に合わせた工程をご提案します。
+          </p>
+        </article>
+      )}
+
       <article>
         <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
-          特殊案件（灯油・ペット・タバコ）への専門的アプローチ
+          {showVomitEducation ? '特殊案件（灯油・ペット・タバコ）への専門的アプローチ' : '症状別（エアコン・加齢臭・シート・タバコ）への専門的アプローチ'}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gray-50 p-6 rounded-lg">
