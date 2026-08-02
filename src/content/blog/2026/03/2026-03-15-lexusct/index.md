@@ -1,10 +1,16 @@
 ---
-title: "兵庫県芦屋市：レクサス・CT、赤ワインハプニング高級感の守り方"
-date: 2026-03-15
-categories: 
-  - "jisseki"
-  - "hyougo"
-coverImage: "ct200-1-e1773586486839.jpg"
+date: 2026-08-02
+title: 兵庫県芦屋市：レクサス・CT、赤ワインハプニング高級感の守り方
+categories:
+  - jisseki
+  - hyougo
+shortSlug: lexusct
+coverImage: ct200.jpg
+seo:
+  meta_description: ワインの成分を中和させる特殊な薬剤を使い、一滴ずつ色素を抜き取るような作業。
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 芦屋の街並みに似合う、美しい内装のレクサス。お土産の赤ワインが割れてしまったというご相談を受けた時は、その深刻さが伝わってきました。
