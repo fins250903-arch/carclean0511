@@ -46,6 +46,8 @@ import AnswerTarget from '../../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../../components/sections/NioiAnswerTarget.astro';
 import KeywordAioExtras from '../../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../../components/sections/LpRegionLocalTrustFooter.astro';
+import AdLpQuickFacts from '../../../../components/sections/AdLpQuickFacts.astro';
+import { CAR_PRICING, yen } from '../../../../data/pricingConstants';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
@@ -150,6 +152,15 @@ const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
       />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
+      {!isTruck && !isBus && (
+        <AdLpQuickFacts
+          displayName={subareaLabel}
+          intentLabel="出張車内クリーニング"
+          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+          durationLabel="約1.5〜3時間"
+          areaLabel={`${subareaLabel}へ出張費無料`}
+        />
       )}
       {!isTruck && !isBus && (
         <EmergencyChecklist

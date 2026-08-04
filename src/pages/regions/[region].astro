@@ -50,6 +50,8 @@ import {
   buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
+import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
+import { CAR_PRICING, yen } from '../../data/pricingConstants';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -131,6 +133,15 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
+      {!isTruck && !isBus && (
+        <AdLpQuickFacts
+          displayName={displayName}
+          intentLabel="出張車内クリーニング"
+          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+          durationLabel="約1.5〜3時間"
+          areaLabel={`${displayName}へ出張費無料`}
+        />
       )}
       {!isTruck && !isBus && (
         <EmergencyChecklist

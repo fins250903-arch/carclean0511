@@ -1,6 +1,7 @@
 ---
-import { STORE_NAME } from '../../lib/site';
+import { STORE_NAME, LINE_URL, TEL } from '../../lib/site';
 import { IMG513 } from '../../lib/assets513';
+import { CAR_PRICING, TRUCK_PRICING, yen } from '../../data/pricingConstants';
 
 interface AdHeroOverrides {
   subtitle: string;
@@ -38,6 +39,21 @@ const fvImage =
   adHero?.fvImage ??
   fvImageProp ??
   (isTruck ? "/images/truck-fv.png" : isBus ? "/images/kw/bus-fv.png" : IMG513.fvCar);
+
+/** FV価格フック（広告CTR・クリック動機用）。AIO本文の料金表記とも整合 */
+const priceHookMain = isTruck
+  ? `2tキャビン ${yen(TRUCK_PRICING.ton2Cab)}〜`
+  : isBus
+    ? `バス座席洗浄 応相談`
+    : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`;
+const priceHookSub = isTruck
+  ? `4t合計 ${yen(TRUCK_PRICING.ton4Total)}〜｜税込`
+  : isBus
+    ? `運行スケジュールに合わせた出張対応｜税込見積`
+    : `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜税込・出張費エリア無料`;
+const priceHookNote = isTruck || isBus
+  ? '※現車確認後に確定／追加費用は作業前にご説明'
+  : '※座席シート単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途／写真で概算見積';
 
 /** FVブロック間の余白（モバイルは詰めて最上部から表示） */
 const gap = 'mb-1.5 max-md:mb-1 sm:mb-2 md:mb-3';
@@ -119,6 +135,22 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 </p>
             </div>
 
+            {/* 5.5 価格フック帯 — AIO対策と両立しつつ広告CTR用の即決材料 */}
+            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-blue-700 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white shadow-xl px-3 py-2.5 sm:px-5 sm:py-3']}>
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                    <span class="shrink-0 rounded-md bg-amber-400 px-2 py-0.5 text-[11px] sm:text-xs font-black text-blue-950">料金目安</span>
+                    <span class="text-[clamp(1.35rem,5.8vw,2rem)] sm:text-3xl md:text-4xl font-black tracking-tight text-amber-300 whitespace-nowrap">
+                        {priceHookMain}
+                    </span>
+                </div>
+                <p class="mt-1 text-sm sm:text-base md:text-lg font-bold text-blue-50 leading-snug">
+                    {priceHookSub}
+                </p>
+                <p class="mt-0.5 text-[11px] sm:text-xs md:text-sm font-medium text-blue-100/90 leading-snug">
+                    {priceHookNote}
+                </p>
+            </div>
+
             {/* 6. キャンペーン（黄色）— 全LP共通 */}
             <div class:list={[gap, 'bg-yellow-100 border-[3px] sm:border-4 border-yellow-400 p-2.5 sm:p-4 md:p-8 rounded-2xl sm:rounded-3xl shadow-xl inline-block w-full max-w-xl']}>
                 <p class="text-sm sm:text-base md:text-2xl font-bold text-gray-800 mb-0.5 leading-tight">
@@ -164,12 +196,36 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
             </p>
 
             {/* 9. ディーラー比較 — スマホは2行程度のコンパクト表示 */}
-            <div class="bg-white/55 max-md:border max-md:border-red-400/40 border-4 border-red-500 p-1.5 max-md:px-2 max-md:py-1 sm:p-4 md:p-8 rounded-lg max-md:rounded-md shadow-2xl max-md:shadow-none mb-2 sm:mb-6 md:mb-8 w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm">
+            <div class:list={[gap, 'bg-white/55 max-md:border max-md:border-red-400/40 border-4 border-red-500 p-1.5 max-md:px-2 max-md:py-1 sm:p-4 md:p-8 rounded-lg max-md:rounded-md shadow-2xl max-md:shadow-none w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm']}>
                 <p class="text-xs max-md:text-[11px] sm:text-lg md:text-2xl font-bold text-gray-800 max-md:mb-0 mb-0.5 leading-tight">
                     <span class="whitespace-nowrap">ディーラーで</span><wbr /><span class="whitespace-nowrap">5日待てますか？</span>
                 </p>
                 <p class="text-sm max-md:text-base max-md:font-bold max-md:text-red-600/40 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
                     絶対ムリ！
+                </p>
+            </div>
+
+            {/* 10. トップCTA — FloatingCTAと併用。FV内で次の行動を明示 */}
+            <div class="flex flex-col gap-2 sm:gap-3 mb-2 sm:mb-4 w-full max-w-xl" data-cta-section="hero_top_cta">
+                <a
+                    href={LINE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full bg-[#06C755] hover:bg-[#05a346] text-white font-black py-3 sm:py-4 px-4 sm:px-8 rounded-2xl shadow-xl text-base sm:text-xl md:text-2xl transition-transform hover:scale-[1.02] text-center flex items-center justify-center gap-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" class="shrink-0" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+                    <span class="whitespace-nowrap">LINEで写真見積もり</span>
+                    <span class="text-xs sm:text-sm font-bold opacity-90 whitespace-nowrap">相談無料</span>
+                </a>
+                <a
+                    href={`tel:${TEL}`}
+                    class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-3 sm:py-4 px-4 sm:px-8 rounded-2xl shadow-xl text-base sm:text-xl md:text-2xl transition-transform hover:scale-[1.02] text-center flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-2 ring-2 ring-red-300/80"
+                >
+                    <span class="whitespace-nowrap">今すぐ電話 {TEL}</span>
+                    <span class="text-xs sm:text-sm font-bold opacity-95 whitespace-nowrap">お急ぎの方は電話</span>
+                </a>
+                <p class="text-[11px] sm:text-xs md:text-sm font-bold text-gray-700 bg-white/75 inline-block px-2 py-1 rounded-md leading-snug">
+                    作業前見積／追加料金は事前説明後のみ／{displayName}エリア出張対応
                 </p>
             </div>
         </div>
