@@ -738,7 +738,7 @@ export const REGIONAL_CHECKLIST_HEADING =
 
 /** Voice / emergency search line shown under Hero (AnswerTarget) */
 export function buildVoiceEmergencyLine(regionName: string): string {
-  return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃。現在地からの最短到着目安をご案内します。`;
+  return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ出張車内清掃のご相談が可能です。お急ぎの方はお電話ください。`;
 }
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
@@ -746,13 +746,13 @@ export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: s
   const powerBit = needsOutletBorrow(powerRegion)
     ? `${OUTLET_BORROW_SHORT}。`
     : '電源・水道不要（発電機・水タンク完備）で対応。';
-  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを今すぐ解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。座席1脚（1シート）${yen(CAR_PRICING.seatSingleBasic)}〜、軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}エリア出張費無料）。運転中や手が離せない方も、電話で現在地からの最短到着目安をご確認いただけます。${powerBit}`;
+  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れを今すぐ解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。座席1脚（1シート）${yen(CAR_PRICING.seatSingleBasic)}〜、軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}エリア出張費無料）。お急ぎの方はお電話で空き状況をご確認ください。${powerBit}`;
 }
 
 export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {
   const powerRegion = powerRegionName ?? regionName;
   return [
-    `最短即日対応・365日24時間受付。1シート（座席1脚）基本${yen(CAR_PRICING.seatSingleBasic)}〜、軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。お急ぎの方は現在地から最短到着時間をご案内します。`,
+    `最短即日対応・365日24時間受付。1シート（座席1脚）基本${yen(CAR_PRICING.seatSingleBasic)}〜、軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。お急ぎの方は電話でご相談ください。`,
     `施工歴3年以上・年間300台超の専門員が${regionName}の指定駐車場へ直接訪問。${powerCapabilitySentence(powerRegion)}マンション地下駐車場も対応。`,
     '車両保険・個人賠償の代理申請に対応し、見積時に実質自己負担額も併記。同乗者・第三者汚損やカーシェアの嘔吐もご相談ください。',
   ];
