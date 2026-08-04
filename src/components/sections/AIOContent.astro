@@ -1,6 +1,6 @@
 ---
 import { buildMobileInteriorCleaningDefinition, formatContentFreshnessJa } from '../../lib/structuredDataConstants';
-import { carComparisonPriceSummary } from '../../data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING, carComparisonPriceSummary, yen } from '../../data/pricingConstants';
 import { buildAioContentFaqs } from '../../data/aioKeywordContent';
 import type { FAQItem } from '../../data/seoData';
 
@@ -49,7 +49,11 @@ const sectionTitle = isTruck
     : `${regionName}の車内クリーニングとは？｜近くの車内掃除業者を探す方へ`;
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
-const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000円〜";
+const defaultPrice = isTruck
+  ? `${yen(TRUCK_PRICING.ton2Cab)}〜`
+  : isBus
+    ? '応相談'
+    : `${yen(CAR_PRICING.seatSingleBasic)}〜（1シート）／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`;
 const comparisonPriceLine = isTruck || isBus ? defaultPrice : carComparisonPriceSummary();
 
 const aioFaqs = buildAioContentFaqs(regionName, {
