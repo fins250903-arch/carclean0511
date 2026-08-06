@@ -1,54 +1,47 @@
-# LP CV改善 × AIO両立プラン
+# LP CV改善 × AIO両立プラン（PDCA更新）
 
 **ブランチ**: `cursor/lp-cv-hook-aio-balance-3bce`  
 **目標**: Google広告 CTR 10% / クリックからの CVR 30%以上  
-**制約**: FV基本構成・CTA（トップ/中央/ボトム）・問題提起・Q&Aは維持。デプロイはユーザー判断。
+**制約**: FV基本構成・CTA（トップ/中央/ボトム）・問題提起・Q&Aは維持。
 
 ---
 
-## 問題仮説（ループエンジニアリング）
+## PDCAループ結果（2026-08-06）
 
-1. **AIO特化でFVの「即決材料」が薄い**  
-   Answer-first / 定義 / 診断が Hero 直後に続き、広告流入ユーザーの「いくら？」「今すぐ頼める？」がFVで完結しない。
-2. **価格フック「1シート 18,000円から」の消失**  
-   `CAR_PRICING.seatSingleBasic = 18000` は残るが、現行 Hero に未表示。クリック動機・QS・期待整合が弱まる。
-3. **トップCTA欠落**  
-   旧 Hero（`44e2eb1`）にあった LINE/電話インラインCTAが消え、FloatingCTA頼みになっている。
-4. **地域LPとキーワードLPの格差**  
-   キーワードLPは `AdLpQuickFacts` で料金・時間・エリア＋CTAがある。地域LPは同等の近折り情報が薄い。
+### Plan
+- 顧客目線で「いくら？」「どう頼む？」をFVで完結
+- AI検索（AIO）向け結論文・FAQ・スキーマ料金を現行価格に整合
+- 「現在地から最短到着」など誤解表現を除去
 
----
+### Do（本ラウンド実装）
+1. FV価格フック＋トップCTA維持／KW別価格フック対応（匂い取り→消臭セット等）
+2. 中央CTAを LINE/電話の2軸に集中（Instagramは補助リンク）
+3. QuickFactsに「詳しい料金表を見る」アンカー追加
+4. schema `priceRange` / Offer / HowTo / regionalPosts / serviceData の料金整合（18,000〜）
+5. FAQ・診断表・サブエリア要約から「現在地／最短到着」を除去
+6. Hero緊急文言「駆けつけます」→「お伺いします」
 
-## 競合・高CVRパターン（要約）
+### Check（モバイル390px目視＋自動検証）
+| ページ | FV価格 | FV CTA | 文言 | 見切れ | 固定CTA |
+|--------|--------|--------|------|--------|---------|
+| /regions/osaka/ | PASS（1シート18,000） | PASS | PASS | PASS | PASS |
+| /regions/osaka/seat-cleaning/ | PASS | PASS | PASS | PASS | PASS |
+| /regions/osaka/kuruma-nioitori/ | PASS（消臭セット26,000） | PASS | PASS | PASS | PASS |
 
-- FVに **症状 × 即日 × 価格 × 電話/LINE** を同居させる
-- 価格は最低額＋条件（税込・出張費・追加条件）をセット表示
-- Answer-first は FV「直下」に置き、FV内は広告用の即決情報を優先
-- CTAはトップ（緊急電話）／中央（料金後LINE）／ボトム（再掲）の3段
+- `現在地から` / `最短到着` : ページ本文になし
+- Instagram主CTA : なし（補助リンクのみ）
 
----
-
-## 実装内容（本ブランチ）
-
-| 優先 | 内容 | 変更ファイル |
-|------|------|-------------|
-| A | FVに価格フック帯を復活（**1シート 18,000円から**） | `Hero.astro` |
-| A | FV内トップCTA（LINE＋電話）を復元 | `Hero.astro` |
-| A | AIO Answer-first に座席1脚料金を自然に含める | `aioKeywordContent.ts` |
-| A | 中央CTAに価格フック追記 | `CTA.astro` |
-| B | 地域/サブエリアLPにも QuickFacts | `[region].astro` 他 |
-| B | Campaign / Closing に中央・ボトムCTA補強 | `Campaign.astro` `Closing.astro` |
-| B | AIO比較・FAQスニペットの料金先頭を1シートに | `pricingConstants.ts` `AIOContent.astro` |
-| C | Reasonsの旧価格表記を更新 | `Reasons.astro` |
-
-**やらなかったこと**: AnswerTarget / AIOContent / FAQ の大幅削除、セクション順序の大規模入れ替え。
+### Act（次ラウンド候補・任意）
+- 広告側RSAに「1シート18,000円から」を再掲しCTR連動を計測
+- GTMで hero_top / quick_facts / main / closing / floating のクリック分離計測
+- 地域LPでPricingをもう一段上に寄せるかはCVRデータ見て判断
 
 ---
 
 ## デプロイ後の検証チェックリスト
 
-1. FVに「1シート 18,000円から」が見える（モバイル・PC）
-2. FV内で LINE / 電話が押せる（FloatingCTAと併用）
-3. AnswerTarget 結論文に料金が含まれる（AIO用）
-4. 問題提起・Q&A・3CTA構造が崩れていない
-5. 広告 CTR / CVR を1〜2週間モニタリング（目標 CTR10%・CVR30%）
+1. FVに価格フックが見える
+2. LINE / 電話がFVと固定バーで押せる
+3. 電話文言が「お急ぎの方は電話」
+4. 問題提起・Q&A・3CTA構造が維持されている
+5. 公開後1〜2週間 CTR/CVR をモニタリング

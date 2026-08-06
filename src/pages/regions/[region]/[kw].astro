@@ -149,6 +149,9 @@ const adHero = fvHero
       ...fvHero,
       fvImage: kw.fvImage,
       mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
+      priceHookMain: quickFacts?.priceLabel,
+      priceHookSub: `${displayName}へ出張費無料｜税込`,
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
     }
   : {
       subtitle: kw.heroSubtitle(displayName, regionName),
@@ -158,6 +161,9 @@ const adHero = fvHero
       fvImage: kw.fvImage,
       footerText: kw.heroFooter(displayName),
       mainTitle: kw.mainTitle?.(regionName, displayName),
+      priceHookMain: quickFacts?.priceLabel,
+      priceHookSub: `${displayName}へ出張費無料｜税込`,
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
     };
 
 const adProblem = {
@@ -224,7 +230,7 @@ const noindex = isNoindexKeywordSlug(kwSlug);
         niche={pageNiche}
         focusShutchou={kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning'}
         customDefinition={customDefinition}
-        extraFaqs={aioExtraFaqs}
+        extraFaqs={aioKw?.extraFaqs ?? []}
         showAioExtensions={!muteEmergencyTone}
         showVomitEducation={!muteEmergencyTone && aioKw?.troubleType !== 'pet-waste'}
       />

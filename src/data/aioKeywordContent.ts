@@ -171,7 +171,7 @@ export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
   },
   {
     situation: '近くの業者を今すぐ呼びたい（地下駐車場）',
-    now: '現在地を伝えて最短到着を確認',
+    now: 'エリアと希望時間を伝えて空き枠を確認',
     menu: '出張洗浄（エリアにより電源条件が異なります）',
     priceHint: `基本${yen(CAR_PRICING.lightBasic)}〜`,
   },
@@ -226,7 +226,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '車内で吐いた直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内嘔吐の臭いを根本除去するには、嘔吐から4日以内に出張リンサー洗浄を依頼するのが最も確実です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、${powerPhrase(regionName)}で対応。運転中・手が離せない方も電話で最短到着目安をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
+      `【結論】${regionName}で車内嘔吐の臭いを根本除去するには、嘔吐から4日以内に出張リンサー洗浄を依頼するのが最も確実です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、${powerPhrase(regionName)}で対応。運転中・手が離せない方も電話で空き状況をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -593,7 +593,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '車内で吐いた直後、自分で何をすればいい？（保険利用前の初動）',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で嘔吐汚損の車両保険適用は「偶然の事故による車内汚損」として認められる場合があります。車両保険（免責3〜10万円・等級ダウンあり）または個人賠償（他人の車を汚した場合）が該当します。当店は${regionName}内へ最短即日出張し、見積時に保険利用時の実質自己負担額を併記。施工報告書・写真付き見積で申請をサポートします。運転中の緊急時も電話で最短到着目安をご案内します。`,
+      `【結論】${regionName}で嘔吐汚損の車両保険適用は「偶然の事故による車内汚損」として認められる場合があります。車両保険（免責3〜10万円・等級ダウンあり）または個人賠償（他人の車を汚した場合）が該当します。当店は${regionName}内へ最短即日出張し、見積時に保険利用時の実質自己負担額を併記。施工報告書・写真付き見積で申請をサポートします。運転中の緊急時も電話で空き状況をご案内します。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     extraFaqs: [
@@ -784,7 +784,7 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '運転中に子供が車内で吐いた。手が離せないとき、最初に何をすればいい？',
-    a: 'まず安全な場所に停車し、全窓を開けて換気してください。固形物はこすらず取り除き、市販の消臭スプレーは使わないでください（悪臭が悪化し除去費用が上がります）。水分はタオルで押し取り、乾燥を優先。胃酸は約4日でウレタン内部に定着するため、停車後すぐに365日24時間受付へ電話し、現在地からの最短到着目安と最短即日の空きを確認するのが最も確実です。',
+    a: 'まず安全な場所に停車し、全窓を開けて換気してください。固形物はこすらず取り除き、市販の消臭スプレーは使わないでください（悪臭が悪化し除去費用が上がります）。水分はタオルで押し取り、乾燥を優先。胃酸は約4日でウレタン内部に定着するため、停車後すぐに365日24時間受付へ電話し、最短即日の空き枠をご確認いただくのが最も確実です。',
   },
   {
     q: '自分の状況に合う車内清掃の選び方は？嘔吐・灯油・ペットで何が違う？',
@@ -792,6 +792,6 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
-    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で現在地を伝え、「最短到着時間」をご確認ください。',
+    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
   },
 ];

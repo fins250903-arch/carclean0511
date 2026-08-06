@@ -188,7 +188,7 @@ export function getRegionCustomization(regionName: string, subareaId?: string): 
       return {
         ...regionCustomizations['大阪府'],
         localDispatchLine: sub.localDispatchLine,
-        aioSummaryExtra: `${sub.displayName}（大阪府）へ最短即日の出張車内清掃。お急ぎの方は現在地からの最短到着目安もご案内。${sub.localDispatchLine}`,
+        aioSummaryExtra: `${sub.displayName}（大阪府）へ最短即日の出張車内清掃。お急ぎの方は電話で空き状況をご案内。${sub.localDispatchLine}`,
       };
     }
   }
