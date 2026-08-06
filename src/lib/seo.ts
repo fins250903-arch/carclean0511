@@ -99,7 +99,7 @@ import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
-import { CAR_PRICING, TRUCK_PRICING, yen } from '@/data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
     AUTHOR,
