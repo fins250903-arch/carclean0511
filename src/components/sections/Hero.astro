@@ -11,6 +11,10 @@ interface AdHeroOverrides {
   fvImage: string;
   footerText: string;
   mainTitle?: string;
+  /** KW意図に合わせたFV価格フック（未指定時は共通1シート〜） */
+  priceHookMain?: string;
+  priceHookSub?: string;
+  priceHookNote?: string;
 }
 
 interface Props {
@@ -41,19 +45,19 @@ const fvImage =
   (isTruck ? "/images/truck-fv.png" : isBus ? "/images/kw/bus-fv.png" : IMG513.fvCar);
 
 /** FV価格フック（広告CTR・クリック動機用）。AIO本文の料金表記とも整合 */
-const priceHookMain = isTruck
+const priceHookMain = adHero?.priceHookMain ?? (isTruck
   ? `2tキャビン ${yen(TRUCK_PRICING.ton2Cab)}〜`
   : isBus
     ? `バス座席洗浄 応相談`
-    : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`;
-const priceHookSub = isTruck
+    : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`);
+const priceHookSub = adHero?.priceHookSub ?? (isTruck
   ? `4t合計 ${yen(TRUCK_PRICING.ton4Total)}〜｜税込`
   : isBus
     ? `運行スケジュールに合わせた出張対応｜税込見積`
-    : `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜税込・出張費エリア無料`;
-const priceHookNote = isTruck || isBus
+    : `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜税込・出張費エリア無料`);
+const priceHookNote = adHero?.priceHookNote ?? (isTruck || isBus
   ? '※現車確認後に確定／追加費用は作業前にご説明'
-  : '※座席シート単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途／写真で概算見積';
+  : '※座席シート単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途／写真で概算見積');
 
 /** FVブロック間の余白（モバイルは詰めて最上部から表示） */
 const gap = 'mb-1.5 max-md:mb-1 sm:mb-2 md:mb-3';
@@ -185,22 +189,22 @@ const gapTight = 'mb-1 max-md:mb-0.5 sm:mb-1.5';
                 ) : (
                     isBus ? (
                         <>
-                            <span class="whitespace-nowrap">バス座席の嘔吐・灯油の</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">即日対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                            <span class="whitespace-nowrap">バス座席の嘔吐・灯油の</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">即日対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
                         </>
                     ) : (
                         <>
-                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">駆けつけます</span>
+                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="text-red-600 underline decoration-4 whitespace-nowrap">すぐ対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
                         </>
                     )
                 )}
             </p>
 
-            {/* 9. ディーラー比較 — スマホは2行程度のコンパクト表示 */}
-            <div class:list={[gap, 'bg-white/55 max-md:border max-md:border-red-400/40 border-4 border-red-500 p-1.5 max-md:px-2 max-md:py-1 sm:p-4 md:p-8 rounded-lg max-md:rounded-md shadow-2xl max-md:shadow-none w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm']}>
+            {/* 9. ディーラー比較 — スマホはコンパクト、CTAをFV内に残す */}
+            <div class:list={[gap, 'bg-white/55 max-md:border max-md:border-red-400/40 border-4 border-red-500 p-1.5 max-md:px-2.5 max-md:py-1.5 sm:p-4 md:p-8 rounded-lg max-md:rounded-md shadow-2xl max-md:shadow-none w-full max-w-xl md:bg-white backdrop-blur-[2px] max-md:backdrop-blur-sm']}>
                 <p class="text-xs max-md:text-[11px] sm:text-lg md:text-2xl font-bold text-gray-800 max-md:mb-0 mb-0.5 leading-tight">
                     <span class="whitespace-nowrap">ディーラーで</span><wbr /><span class="whitespace-nowrap">5日待てますか？</span>
                 </p>
-                <p class="text-sm max-md:text-base max-md:font-bold max-md:text-red-600/40 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
+                <p class="text-base max-md:text-lg max-md:font-black max-md:text-red-600 sm:text-4xl md:text-7xl font-black text-red-600 leading-none">
                     絶対ムリ！
                 </p>
             </div>

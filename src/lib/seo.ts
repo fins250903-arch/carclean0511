@@ -99,6 +99,7 @@ import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
+import { CAR_PRICING, TRUCK_PRICING, yen } from '@/data/pricingConstants';
 
 import {
     AUTHOR,
@@ -648,7 +649,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         telephone: OPERATOR.telephone,
 
-        priceRange: isTruck ? '¥35,000〜' : isBus ? '¥22,000〜' : '¥22,000〜',
+        priceRange: isTruck
+          ? `¥${TRUCK_PRICING.ton2Cab.toLocaleString('ja-JP')}〜`
+          : isBus
+            ? '応相談'
+            : `¥${CAR_PRICING.seatSingleBasic.toLocaleString('ja-JP')}〜`,
 
         paymentAccepted: [...OPERATOR.paymentAccepted],
 
@@ -816,13 +821,17 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             priceCurrency: 'JPY',
 
-            price: isTruck ? '35000' : '22000',
+            price: isTruck
+              ? String(TRUCK_PRICING.ton2Cab)
+              : String(CAR_PRICING.seatSingleBasic),
 
             priceSpecification: {
 
                 '@type': 'PriceSpecification',
 
-                minPrice: isTruck ? '35000' : '22000',
+                minPrice: isTruck
+                  ? String(TRUCK_PRICING.ton2Cab)
+                  : String(CAR_PRICING.seatSingleBasic),
 
                 priceCurrency: 'JPY',
 
@@ -1080,7 +1089,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             currency: 'JPY',
 
-            value: isTruck ? '35000' : isBus ? '22000' : '22000',
+            value: isTruck
+              ? String(TRUCK_PRICING.ton2Cab)
+              : isBus
+                ? String(CAR_PRICING.seatSingleBasic)
+                : String(CAR_PRICING.seatSingleBasic),
 
         },
 
