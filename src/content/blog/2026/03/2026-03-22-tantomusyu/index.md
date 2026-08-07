@@ -1,10 +1,17 @@
 ---
-title: "300円でタントを無臭に。15分でできるプロの消臭術"
-date: 2026-03-22
-categories: 
-  - "tokublo"
-  - "seisou"
-coverImage: "nioi1.jpg"
+date: 2026-08-08
+title: 300円でタントを無臭に。15分でできるプロの消臭術
+categories:
+  - tokublo
+  - seisou
+shortSlug: tantomusyu
+coverImage: 2.webp
+seo:
+  meta_description: 仕事帰りにタントのドアを開けた瞬間、もわっと広がるあの独特なニオイ。 「あれ、自分の車、なんだか酸っぱいような……」
+    そう感じて、思わず自分の服の襟元を嗅いでしまった経験はありませんか。
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 気温も上がってくる季節。近頃の夏は、立っているだけで汗が噴き出すような湿気と暑さですよね。 仕事帰りにタントのドアを開けた瞬間、もわっと広がるあの独特なニオイ。 「あれ、自分の車、なんだか酸っぱいような……」 そう感じて、思わず自分の服の襟元を嗅いでしまった経験はありませんか。
