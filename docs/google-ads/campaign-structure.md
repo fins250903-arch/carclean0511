@@ -78,3 +78,4 @@
 - 戦略判断: [strategy-lp-vs-ads.md](./strategy-lp-vs-ads.md)
 - 広告文: [ad-copy-rsa.md](./ad-copy-rsa.md)
 - CV計測: [conversion-tracking-setup.md](./conversion-tracking-setup.md)
+- **KW/AG ↔ LP ミスマッチ監査:** [audit/kw-lp-mismatch-report.md](./audit/kw-lp-mismatch-report.md)（再実行: `npm run audit:ads-kw-lp -- docs/google-ads/exports/<file>.tsv`）
