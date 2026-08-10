@@ -1,0 +1,10 @@
+severity,issue,campaign,ad_group,keyword_slug,keyword_theme,ad_slug,ad_theme,sample_keywords,note
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,大阪府＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+HIGH,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,沖縄県＿車内クリーニング,int沖縄２515,omorashi,おもらし,interior-cleaning,通常清掃,嘔吐 臭い 消し 車 / 車 室内 掃除 / 車 シート 洗浄,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,宮城県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,愛知県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,千葉県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,兵庫県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,福岡県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,群馬県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます
+CRITICAL,同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）,栃木県＿車内クリーニング,車内 灯油 こぼし,pet-ke,ペット毛,touyu-kobosi,灯油,車内 灯油 こぼし,Google AdsではキーワードのFinal URLが広告より優先されます

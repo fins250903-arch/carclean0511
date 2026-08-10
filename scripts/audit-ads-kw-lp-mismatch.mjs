@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 /**
- * Audit Google Ads Editor RSA export (TSV/CSV) for keyword/AG ↔ LP mismatches.
+ * Audit Google Ads Editor exports for keyword/AG ↔ LP mismatches.
+ *
+ * Supports:
+ *   - RSA-only exports (Campaign, Ad Group, Final URL, Path 2, Headlines…)
+ *   - Full account exports (also Keyword, Criterion Type)
+ *   - UTF-8 or UTF-16LE TSV/CSV
  *
  * Usage:
- *   node scripts/audit-ads-kw-lp-mismatch.mjs <path-to-ads-editor-export.tsv>
+ *   node scripts/audit-ads-kw-lp-mismatch.mjs <ads-editor-export.tsv|csv>
  *
- * Expects tab-separated Ads Editor export with columns:
- *   Campaign, Ad Group, Final URL, Path 1, Path 2, Headline *, Description *
- *
- * Writes:
- *   docs/google-ads/audit/kw-lp-mismatch-report.md
- *   docs/google-ads/audit/kw-lp-mismatch-hard.csv
- *   docs/google-ads/audit/kw-lp-mismatch-path2.csv
+ * Writes under docs/google-ads/audit/:
+ *   kw-lp-mismatch-report.md
+ *   kw-lp-mismatch-hard.csv          (keyword-level Final URL hard mismatches)
+ *   kw-lp-mismatch-ag-url.csv        (AG theme vs URL)
+ *   kw-lp-mismatch-path2.csv         (Path 2 vs LP, RSA only)
+ *   kw-lp-kw-vs-ad-url-conflict.csv  (keyword URL ≠ ad URL in same AG)
  */
 
 import fs from 'node:fs';
@@ -154,6 +158,145 @@ const SLUG_THEME = {
   'spray-kouka-nai': 'スプレー効かない',
 };
 
+/** Keyword text → expected LP slugs (specific first). */
+const KW_RULES = [
+  { label: '灯油', slugs: ['touyu-kobosi'], pats: [/灯油/] },
+  {
+    label: '子供嘔吐',
+    slugs: ['kodomo-kyuto'],
+    pats: [/子供.*嘔吐/, /嘔吐.*子供/, /車酔い/, /吐いた/],
+  },
+  {
+    label: '保険嘔吐',
+    slugs: ['hoken-kyuto', 'kyuto-cleaning', 'vomit-cleaning'],
+    pats: [/保険.*嘔吐/, /嘔吐.*保険/, /レンタカー.*嘔吐/],
+  },
+  {
+    label: 'ゲロ',
+    slugs: ['gero-cleaning', 'kyuto-cleaning', 'vomit-cleaning'],
+    pats: [/ゲロ/],
+  },
+  {
+    label: '嘔吐',
+    slugs: [
+      'kyuto-cleaning',
+      'vomit-cleaning',
+      'gero-cleaning',
+      'kodomo-kyuto',
+      'hoken-kyuto',
+      'bus-senmon',
+    ],
+    pats: [/嘔吐/],
+  },
+  {
+    label: 'ペットうんち',
+    slugs: ['pet-unko', 'pet-waste'],
+    pats: [/ペット.*うんち/, /ペット.*うんこ/, /粗相/],
+  },
+  {
+    label: 'ペット毛',
+    slugs: ['pet-ke', 'pet-hair-odor'],
+    pats: [/ペット.?毛/, /犬.?毛/, /猫.?毛/],
+  },
+  {
+    label: 'おしっこ',
+    slugs: ['oshikko', 'pet-hair-odor'],
+    pats: [/おしっこ/, /尿/],
+  },
+  {
+    label: 'おもらし',
+    slugs: ['omorashi', 'oshikko'],
+    pats: [/おもらし/, /お漏らし/],
+  },
+  {
+    label: 'うんこ',
+    slugs: ['unko', 'pet-unko', 'pet-waste'],
+    pats: [/うんこ/, /うんち/],
+  },
+  {
+    label: '中古車タバコ',
+    slugs: ['chuko-tabako'],
+    pats: [/中古車.*タバコ/, /タバコ.*中古車/],
+  },
+  {
+    label: '中古車加齢臭',
+    slugs: ['chuko-kareisyu', 'chuko-tabako'],
+    pats: [/中古車.*加齢/, /加齢.*中古車/],
+  },
+  {
+    label: 'タバコ',
+    slugs: ['tabako-yani', 'tobacco-odor', 'chuko-tabako'],
+    pats: [/タバコ/, /煙草/, /ヤニ/],
+  },
+  {
+    label: '加齢臭',
+    slugs: ['kareisyu', 'chuko-kareisyu'],
+    pats: [/加齢臭/],
+  },
+  {
+    label: 'ペット臭',
+    slugs: ['pet-nioi', 'shanai-nioi'],
+    pats: [/ペット.?臭/, /ペット.?におい/, /ペット.?匂い/, /ペット.?ニオイ/],
+  },
+  {
+    label: 'エバポ',
+    slugs: ['evaporator-senjo', 'ac-mold'],
+    pats: [/エバポ/],
+  },
+  {
+    label: 'エアコン臭い',
+    slugs: ['ac-nioi', 'ac-kusai', 'evaporator-senjo', 'ac-mold', 'car-ac-cleaning'],
+    pats: [/エアコン.*臭/, /エアコン.*ニオイ/, /エアコン.*匂い/],
+  },
+  {
+    label: 'エアコンクリーニング',
+    slugs: ['car-ac-cleaning', 'evaporator-senjo', 'ac-mold', 'ac-nioi'],
+    pats: [/エアコン.?クリーニング/, /エアコン.?清掃/, /エアコン.?洗浄/],
+  },
+  {
+    label: 'シート洗浄',
+    slugs: ['seat-senjo', 'seat-washing', 'seat-cleaning'],
+    pats: [/シート.?洗浄/],
+  },
+  {
+    label: 'シートクリーニング',
+    slugs: ['seat-cleaning', 'seat-senjo', 'seat-washing'],
+    pats: [/シート.?クリーニング/, /シート.?清掃/],
+  },
+  {
+    label: '消臭脱臭',
+    slugs: ['shanai-shoshu', 'kuruma-nioi-keshi', 'odor-removal', 'shanai-nioi'],
+    pats: [/消臭/, /脱臭/],
+  },
+  {
+    label: '匂い消し',
+    slugs: [
+      'kuruma-nioi-keshi',
+      'odor-removal',
+      'kuruma-nioitori',
+      'shanai-nioi',
+      'shanai-shoshu',
+    ],
+    pats: [/匂い.?消し/, /におい.?消し/, /ニオイ.?消し/],
+  },
+  {
+    label: '匂い取り',
+    slugs: ['kuruma-nioitori', 'kuruma-nioi-keshi', 'odor-removal'],
+    pats: [/匂い.?取り/, /におい.?取り/, /ニオイ.?取り/],
+  },
+  {
+    label: 'カビ/湿気',
+    slugs: ['shanai-nioi', 'mold-odor', 'evaporator-senjo', 'ac-mold'],
+    pats: [/カビ/, /湿気/],
+  },
+  { label: '汗', slugs: ['ase'], pats: [/汗/] },
+  {
+    label: '電源不要',
+    slugs: ['dengen-fuyou'],
+    pats: [/電源不要/, /電源.?不要/],
+  },
+];
+
 const PATH2_THEME = [
   {
     words: ['嘔吐', 'ゲロ'],
@@ -167,59 +310,72 @@ const PATH2_THEME = [
       'interior-cleaning',
     ],
   },
-  {
-    words: ['ペットうんち', 'うんち'],
-    ok: ['pet-unko', 'pet-waste', 'unko'],
-  },
-  {
-    words: ['タバコ'],
-    ok: ['tabako-yani', 'tobacco-odor', 'chuko-tabako'],
-  },
+  { words: ['ペットうんち', 'うんち'], ok: ['pet-unko', 'pet-waste', 'unko'] },
+  { words: ['タバコ'], ok: ['tabako-yani', 'tobacco-odor', 'chuko-tabako'] },
   {
     words: ['消臭脱臭'],
     ok: ['shanai-shoshu', 'kuruma-nioi-keshi', 'odor-removal', 'shanai-nioi'],
   },
   {
     words: ['エアコン'],
-    ok: [
-      'car-ac-cleaning',
-      'ac-nioi',
-      'ac-kusai',
-      'evaporator-senjo',
-      'ac-mold',
-    ],
+    ok: ['car-ac-cleaning', 'ac-nioi', 'ac-kusai', 'evaporator-senjo', 'ac-mold'],
   },
 ];
 
-const CAMPAIGN_REGION = {
-  大阪府: 'osaka',
-  沖縄県: 'okinawa',
-  宮城県: 'miyagi',
-  愛知県: 'aichi',
-  千葉県: 'chiba',
-  兵庫県: 'hyogo',
-  福岡県: 'fukuoka',
-  群馬県: 'gunma',
-  栃木県: 'tochigi',
+/** Cross-theme families for hard mismatch classification. */
+const FAMILIES = {
+  vomit: ['嘔吐', 'ゲロ', '子供嘔吐', '保険嘔吐'],
+  oil: ['灯油'],
+  tobacco: ['タバコ', '中古車タバコ', 'タバコヤニ'],
+  pet_hair: ['ペット毛'],
+  pet_waste: ['ペットうんち', 'おしっこ', 'おもらし', 'うんこ'],
+  age: ['加齢臭', '中古車加齢臭'],
+  ac: ['エアコン臭い', 'エアコンクリーニング', 'エバポ', 'エアコンカビ'],
 };
 
-const CITY_TO_PREF = {
-  大阪: 'osaka',
-  沖縄: 'okinawa',
-  宮城: 'miyagi',
-  仙台: 'miyagi',
-  愛知: 'aichi',
-  名古屋: 'aichi',
-  千葉: 'chiba',
-  兵庫: 'hyogo',
-  神戸: 'hyogo',
-  福岡: 'fukuoka',
-  群馬: 'gunma',
-  栃木: 'tochigi',
-};
+function familyOf(theme) {
+  for (const [f, words] of Object.entries(FAMILIES)) {
+    if (words.some((w) => theme.includes(w))) return f;
+  }
+  return null;
+}
+
+function isHardCrossTheme(kwTheme, actualTheme) {
+  const fk = familyOf(kwTheme);
+  const fa = familyOf(actualTheme);
+  if (!fk || !fa || fk === fa) return false;
+  const hardFrom = new Set(['vomit', 'oil', 'tobacco', 'pet_hair', 'pet_waste', 'age', 'ac']);
+  if (!hardFrom.has(fk)) return false;
+  // vomit → tobacco/oil/pet/seat/ac/age is hard
+  if (fk === 'vomit') return ['tobacco', 'oil', 'pet_hair', 'pet_waste', 'age', 'ac'].includes(fa);
+  if (fk === 'oil') return fa !== 'oil';
+  if (fk === 'tobacco') return ['vomit', 'oil', 'pet_hair', 'pet_waste'].includes(fa);
+  if (fk === 'pet_hair') return ['oil', 'vomit', 'tobacco'].includes(fa);
+  if (fk === 'pet_waste') return ['oil', 'vomit', 'tobacco'].includes(fa);
+  if (fk === 'age') return ['vomit', 'oil', 'pet_hair'].includes(fa);
+  if (fk === 'ac') return ['vomit', 'oil', 'tobacco', 'pet_hair'].includes(fa);
+  return false;
+}
+
+function readTextAuto(filePath) {
+  const buf = fs.readFileSync(filePath);
+  if (buf.length >= 2 && buf[0] === 0xff && buf[1] === 0xfe) {
+    return buf.toString('utf16le').replace(/^\uFEFF/, '');
+  }
+  if (buf.length >= 2 && buf[0] === 0xfe && buf[1] === 0xff) {
+    // UTF-16 BE → swap
+    const swapped = Buffer.alloc(buf.length - 2);
+    for (let i = 2; i + 1 < buf.length; i += 2) {
+      swapped[i - 2] = buf[i + 1];
+      swapped[i - 1] = buf[i];
+    }
+    return swapped.toString('utf16le');
+  }
+  return buf.toString('utf8').replace(/^\uFEFF/, '');
+}
 
 function parseTsv(text) {
-  const lines = text.replace(/^\uFEFF/, '').split(/\r?\n/).filter((l) => l.length > 0);
+  const lines = text.split(/\r?\n/).filter((l) => l.length > 0);
   const headers = lines[0].split('\t');
   return lines.slice(1).map((line, idx) => {
     const cols = line.split('\t');
@@ -233,23 +389,23 @@ function parseTsv(text) {
 }
 
 function parseUrl(url) {
-  if (!url) return { region: null, slug: null };
+  if (!url) return { region: null, slug: null, host: null };
   try {
     const u = new URL(url.trim());
     const parts = u.pathname.split('/').filter(Boolean);
     if (parts[0] === 'regions' && parts.length >= 3) {
-      return { region: parts[1], slug: parts[2] };
+      return { region: parts[1], slug: parts[2], host: u.host };
     }
     if (parts[0] === 'regions' && parts.length >= 2) {
-      return { region: parts[1], slug: null };
+      return { region: parts[1], slug: null, host: u.host };
     }
+    return { region: null, slug: null, host: u.host };
   } catch {
-    /* ignore */
+    return { region: null, slug: null, host: null };
   }
-  return { region: null, slug: null };
 }
 
-function lookupExpected(ag) {
+function lookupAgExpected(ag) {
   if (AG_EXPECTED[ag]) return AG_EXPECTED[ag];
   let best = null;
   for (const [k, v] of Object.entries(AG_EXPECTED)) {
@@ -262,9 +418,16 @@ function lookupExpected(ag) {
     if (k.startsWith('AG_') && ag === k.slice(3)) return v;
   }
   if (ag.startsWith('int') && /(通常|515|２|2)/.test(ag)) {
-    return ['interior-cleaning'];
+    return ['interior-cleaning', 'shutchou-senmon', 'specialist-cleaning', 'mobile-cleaning'];
   }
   if (ag.includes('トラック')) return ['__truck__'];
+  return null;
+}
+
+function detectKwTheme(kw) {
+  for (const rule of KW_RULES) {
+    if (rule.pats.some((p) => p.test(kw))) return { label: rule.label, slugs: rule.slugs };
+  }
   return null;
 }
 
@@ -288,9 +451,7 @@ function csvEscape(v) {
 
 function toCsv(rows, columns) {
   const header = columns.join(',');
-  const body = rows
-    .map((r) => columns.map((c) => csvEscape(r[c])).join(','))
-    .join('\n');
+  const body = rows.map((r) => columns.map((c) => csvEscape(r[c])).join(',')).join('\n');
   return `${header}\n${body}\n`;
 }
 
@@ -298,153 +459,294 @@ function themeOf(slugs) {
   return [...new Set(slugs.map((s) => SLUG_THEME[s] || s))].join('/');
 }
 
-const raw = fs.readFileSync(inputPath, 'utf8');
-const rows = parseTsv(raw);
+function isNegative(r) {
+  return (r['Criterion Type'] || '').includes('Negative');
+}
 
-const hard = [];
+function isSkipUrl(url) {
+  return !url || url.includes('abura.site') || url.includes('deadning');
+}
+
+// ─── main ───────────────────────────────────────────────
+const raw = readTextAuto(inputPath);
+const rows = parseTsv(raw);
+const hasKeywordCol = rows.some((r) => (r.Keyword || '').trim());
+
+const hardKw = [];
+const softKw = [];
+const agUrlIssues = [];
 const path2Issues = [];
-const locIssues = [];
-const descContam = [];
+const kwAdConflicts = [];
+
+/** @type {Map<string, { kwSlugs: Set<string>, adSlugs: Set<string>, kwSamples: string[] }>} */
+const agSlugMap = new Map();
+function agKey(camp, ag) {
+  return `${camp}\0${ag}`;
+}
+
+let posKwWithUrl = 0;
+let posKwOk = 0;
+let posKwUnknown = 0;
+let adRows = 0;
 
 for (const r of rows) {
   const campaign = r.Campaign || '';
   const ag = r['Ad Group'] || '';
+  const kw = (r.Keyword || '').trim();
+  const adType = (r['Ad type'] || '').trim();
   const url = (r['Final URL'] || '').trim();
-  if (!url || url.includes('abura.site') || url.includes('deadning')) continue;
+  if (isSkipUrl(url) && !kw) continue;
 
   const { slug } = parseUrl(url);
-  if (!slug) continue;
 
-  const expected = lookupExpected(ag);
-  if (expected && expected[0] !== '__truck__' && !expected.includes(slug)) {
-    hard.push({
-      line: r.__line,
-      campaign,
-      ad_group: ag,
-      expected_slugs: expected.join('|'),
-      expected_theme: themeOf(expected),
-      actual_slug: slug,
-      actual_theme: SLUG_THEME[slug] || slug,
-      final_url: url,
-      headline2: r['Headline 2'] || '',
-      path2: r['Path 2'] || '',
-      status: r.Status || '',
-      suggested_url: url.replace(`/${slug}/`, `/${expected[0]}/`),
-      severity: 'CRITICAL',
-      issue: 'AGテーマとFinal URLが不一致',
-    });
-  }
-
-  const path2 = (r['Path 2'] || '').trim();
-  if (path2) {
-    for (const rule of PATH2_THEME) {
-      if (rule.words.some((w) => path2.includes(w))) {
-        if (!rule.ok.includes(slug)) {
-          path2Issues.push({
-            line: r.__line,
-            campaign,
-            ad_group: ag,
-            path2,
-            actual_slug: slug,
-            actual_theme: SLUG_THEME[slug] || slug,
-            final_url: url,
-            headline2: r['Headline 2'] || '',
-            severity: 'HIGH',
-            issue: '表示パス(Path2)のテーマとLPが不一致（CTR低下要因）',
-          });
-        }
-        break;
-      }
+  // Track AG slug sets
+  if (campaign && ag && slug) {
+    const key = agKey(campaign, ag);
+    if (!agSlugMap.has(key)) {
+      agSlugMap.set(key, { kwSlugs: new Set(), adSlugs: new Set(), kwSamples: [] });
     }
+    const entry = agSlugMap.get(key);
+    if (kw && !isNegative(r)) {
+      entry.kwSlugs.add(slug);
+      if (entry.kwSamples.length < 3) entry.kwSamples.push(kw);
+    }
+    if (adType) entry.adSlugs.add(slug);
   }
 
-  let campReg = null;
-  for (const [pref, rid] of Object.entries(CAMPAIGN_REGION)) {
-    if (campaign.includes(pref)) {
-      campReg = rid;
-      break;
-    }
-  }
-  const blob = [
-    ...Array.from({ length: 15 }, (_, i) => r[`Headline ${i + 1}`] || ''),
-    r['Path 1'] || '',
-    ...Array.from({ length: 4 }, (_, i) => r[`Description ${i + 1}`] || ''),
-  ].join(' ');
-  const locPins = [...blob.matchAll(/LOCATION\(City\):([^}]+)/g)].map((m) =>
-    m[1].trim(),
-  );
-  if (campReg && locPins.length) {
-    for (const pin of locPins) {
-      const pinReg = CITY_TO_PREF[pin];
-      if (pinReg && pinReg !== campReg) {
-        locIssues.push({
-          line: r.__line,
-          campaign,
-          ad_group: ag,
-          location_pin: pin,
-          campaign_region: campReg,
-          final_url: url,
-          headline2: r['Headline 2'] || '',
-          severity: 'MEDIUM',
-          issue: 'キャンペーン地域とLOCATIONピンが不一致',
-        });
-      }
-    }
-  }
-
-  const descs = Array.from({ length: 4 }, (_, i) => r[`Description ${i + 1}`] || '').join(
-    ' ',
-  );
-  if (descs.includes('ペット毛')) {
-    const petAgs = ['ペット毛', 'pet-ke', '通常', 'int', '専門', '出張'];
-    const okSlugs = new Set([
-      'pet-ke',
-      'pet-hair-odor',
-      'interior-cleaning',
-      'shutchou-senmon',
-      'specialist-cleaning',
-      'mobile-cleaning',
-    ]);
-    if (!petAgs.some((x) => ag.includes(x)) && !okSlugs.has(slug)) {
-      descContam.push({
+  // Keyword-level Final URL audit
+  if (kw && !isNegative(r) && url && slug) {
+    posKwWithUrl += 1;
+    const theme = detectKwTheme(kw);
+    if (!theme) {
+      posKwUnknown += 1;
+    } else if (!theme.slugs.includes(slug)) {
+      const actualTheme = SLUG_THEME[slug] || slug;
+      const row = {
         line: r.__line,
         campaign,
         ad_group: ag,
+        keyword: kw,
+        match_type: r['Criterion Type'] || '',
+        kw_theme: theme.label,
+        expected_slugs: theme.slugs.join('|'),
+        expected_theme: themeOf(theme.slugs),
+        actual_slug: slug,
+        actual_theme: actualTheme,
+        final_url: url,
+        suggested_url: url.replace(`/${slug}/`, `/${theme.slugs[0]}/`),
+        status: r.Status || r['Ad Group Status'] || '',
+        severity: isHardCrossTheme(theme.label, actualTheme) ? 'CRITICAL' : 'MEDIUM',
+        issue: 'キーワードテーマとFinal URLが不一致',
+      };
+      if (row.severity === 'CRITICAL') hardKw.push(row);
+      else softKw.push(row);
+    } else {
+      posKwOk += 1;
+    }
+  }
+
+  // RSA Path2 / AG checks
+  if (adType && url && slug) {
+    adRows += 1;
+    const expected = lookupAgExpected(ag);
+    if (expected && expected[0] !== '__truck__' && !expected.includes(slug)) {
+      agUrlIssues.push({
+        source: 'ad',
+        line: r.__line,
+        campaign,
+        ad_group: ag,
+        keyword: '',
+        expected_slugs: expected.join('|'),
+        expected_theme: themeOf(expected),
         actual_slug: slug,
         actual_theme: SLUG_THEME[slug] || slug,
-        snippet: descs.slice(0, 100),
-        severity: 'MEDIUM',
-        issue: '説明文が他テーマ（ペット毛）のコピペのまま',
+        final_url: url,
+        suggested_url: url.replace(`/${slug}/`, `/${expected[0]}/`),
+        headline2: r['Headline 2'] || '',
+        path2: r['Path 2'] || '',
+        status: r.Status || '',
+        severity: 'CRITICAL',
+        issue: '広告グループテーマと広告Final URLが不一致',
+      });
+    }
+
+    const path2 = (r['Path 2'] || '').trim();
+    if (path2) {
+      for (const rule of PATH2_THEME) {
+        if (rule.words.some((w) => path2.includes(w))) {
+          if (!rule.ok.includes(slug)) {
+            path2Issues.push({
+              line: r.__line,
+              campaign,
+              ad_group: ag,
+              path2,
+              actual_slug: slug,
+              actual_theme: SLUG_THEME[slug] || slug,
+              final_url: url,
+              headline2: r['Headline 2'] || '',
+              severity: 'HIGH',
+              issue: '表示パス(Path2)のテーマとLPが不一致（CTR低下要因）',
+            });
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  // AG expected vs keyword URL
+  if (kw && !isNegative(r) && url && slug) {
+    const expected = lookupAgExpected(ag);
+    if (expected && expected[0] !== '__truck__' && !expected.includes(slug)) {
+      agUrlIssues.push({
+        source: 'keyword',
+        line: r.__line,
+        campaign,
+        ad_group: ag,
+        keyword: kw,
+        expected_slugs: expected.join('|'),
+        expected_theme: themeOf(expected),
+        actual_slug: slug,
+        actual_theme: SLUG_THEME[slug] || slug,
+        final_url: url,
+        suggested_url: url.replace(`/${slug}/`, `/${expected[0]}/`),
+        headline2: '',
+        path2: '',
+        status: r.Status || '',
+        severity: 'CRITICAL',
+        issue: '広告グループテーマとキーワードFinal URLが不一致',
       });
     }
   }
 }
 
-const hardU = uniq(hard, ['campaign', 'ad_group', 'actual_slug', 'final_url']);
+// Keyword URL vs Ad URL conflicts within AG
+for (const [key, entry] of agSlugMap.entries()) {
+  const [campaign, ad_group] = key.split('\0');
+  const onlyKw = [...entry.kwSlugs].filter((s) => !entry.adSlugs.has(s));
+  const onlyAd = [...entry.adSlugs].filter((s) => !entry.kwSlugs.has(s));
+  if (entry.kwSlugs.size && entry.adSlugs.size) {
+    const intersect = [...entry.kwSlugs].some((s) => entry.adSlugs.has(s));
+    if (!intersect || onlyKw.length || onlyAd.length) {
+      // Different themes between kw and ad
+      for (const kwSlug of entry.kwSlugs) {
+        for (const adSlug of entry.adSlugs) {
+          if (kwSlug === adSlug) continue;
+          const kwTheme = SLUG_THEME[kwSlug] || kwSlug;
+          const adTheme = SLUG_THEME[adSlug] || adSlug;
+          // Alias pairs (same theme) — skip
+          const sameTheme =
+            themeOf([kwSlug]) === themeOf([adSlug]) ||
+            (['kyuto-cleaning', 'vomit-cleaning', 'gero-cleaning'].includes(kwSlug) &&
+              ['kyuto-cleaning', 'vomit-cleaning', 'gero-cleaning'].includes(adSlug)) ||
+            (['shutchou-senmon', 'mobile-cleaning', 'specialist-cleaning'].includes(kwSlug) &&
+              ['shutchou-senmon', 'mobile-cleaning', 'specialist-cleaning'].includes(adSlug)) ||
+            (['oshikko', 'omorashi', 'pet-unko', 'pet-waste', 'pet-ke', 'pet-hair-odor'].includes(
+              kwSlug,
+            ) &&
+              ['oshikko', 'omorashi', 'pet-unko', 'pet-waste', 'pet-ke', 'pet-hair-odor'].includes(
+                adSlug,
+              ));
+          if (sameTheme) continue;
+          kwAdConflicts.push({
+            campaign,
+            ad_group,
+            keyword_slug: kwSlug,
+            keyword_theme: kwTheme,
+            ad_slug: adSlug,
+            ad_theme: adTheme,
+            sample_keywords: entry.kwSamples.join(' / '),
+            severity: isHardCrossTheme(kwTheme, adTheme) || isHardCrossTheme(adTheme, kwTheme)
+              ? 'CRITICAL'
+              : 'HIGH',
+            issue:
+              '同一AG内でキーワードFinal URLと広告Final URLが異なる（KW側URLが優先される）',
+            note: 'Google AdsではキーワードのFinal URLが広告より優先されます',
+          });
+        }
+      }
+    }
+  }
+}
+
+const hardKwU = uniq(hardKw, ['campaign', 'ad_group', 'keyword', 'actual_slug']);
+const softKwU = uniq(softKw, ['campaign', 'ad_group', 'keyword', 'actual_slug']);
+const agUrlU = uniq(agUrlIssues, ['campaign', 'ad_group', 'actual_slug', 'source']);
 const path2U = uniq(path2Issues, ['campaign', 'ad_group', 'path2', 'actual_slug']);
-const locU = uniq(locIssues, ['campaign', 'ad_group', 'location_pin']);
-const descU = uniq(descContam, ['campaign', 'ad_group', 'actual_slug']);
+const conflictU = uniq(kwAdConflicts, [
+  'campaign',
+  'ad_group',
+  'keyword_slug',
+  'ad_slug',
+]);
 
 const path2VomitWrongRows = path2Issues.filter((p) => p.path2.includes('嘔吐')).length;
+
+// Vomit → tobacco specifically
+const vomitToTobacco = [...hardKwU, ...softKwU].filter(
+  (r) =>
+    (r.kw_theme.includes('嘔吐') || r.kw_theme.includes('ゲロ')) &&
+    (r.actual_theme.includes('タバコ') || r.actual_slug.includes('tabako')),
+);
 
 fs.mkdirSync(outDir, { recursive: true });
 
 fs.writeFileSync(
   path.join(outDir, 'kw-lp-mismatch-hard.csv'),
-  toCsv(hardU, [
+  toCsv([...hardKwU, ...softKwU].sort((a, b) => a.severity.localeCompare(b.severity)), [
     'severity',
+    'issue',
     'campaign',
     'ad_group',
+    'keyword',
+    'match_type',
+    'kw_theme',
     'expected_theme',
     'expected_slugs',
     'actual_theme',
     'actual_slug',
     'final_url',
     'suggested_url',
-    'headline2',
-    'path2',
     'status',
     'line',
+  ]),
+  'utf8',
+);
+
+fs.writeFileSync(
+  path.join(outDir, 'kw-lp-mismatch-ag-url.csv'),
+  toCsv(agUrlU, [
+    'severity',
+    'issue',
+    'source',
+    'campaign',
+    'ad_group',
+    'keyword',
+    'expected_theme',
+    'expected_slugs',
+    'actual_theme',
+    'actual_slug',
+    'final_url',
+    'suggested_url',
+    'status',
+    'line',
+  ]),
+  'utf8',
+);
+
+fs.writeFileSync(
+  path.join(outDir, 'kw-lp-kw-vs-ad-url-conflict.csv'),
+  toCsv(conflictU, [
+    'severity',
+    'issue',
+    'campaign',
+    'ad_group',
+    'keyword_slug',
+    'keyword_theme',
+    'ad_slug',
+    'ad_theme',
+    'sample_keywords',
+    'note',
   ]),
   'utf8',
 );
@@ -453,6 +755,7 @@ fs.writeFileSync(
   path.join(outDir, 'kw-lp-mismatch-path2.csv'),
   toCsv(path2U, [
     'severity',
+    'issue',
     'campaign',
     'ad_group',
     'path2',
@@ -465,124 +768,137 @@ fs.writeFileSync(
   'utf8',
 );
 
-const criticalByType = {};
-for (const h of hardU) {
-  const key = `${h.expected_theme} → ${h.actual_theme}`;
-  criticalByType[key] = (criticalByType[key] || 0) + 1;
+const hardPatterns = {};
+for (const h of hardKwU) {
+  const key = `${h.kw_theme} → ${h.actual_theme}`;
+  hardPatterns[key] = (hardPatterns[key] || 0) + 1;
+}
+const softPatterns = {};
+for (const h of softKwU) {
+  const key = `${h.kw_theme} → ${h.actual_theme}`;
+  softPatterns[key] = (softPatterns[key] || 0) + 1;
+}
+const conflictPatterns = {};
+for (const c of conflictU) {
+  const key = `KW:${c.keyword_theme} ≠ AD:${c.ad_theme}`;
+  conflictPatterns[key] = (conflictPatterns[key] || 0) + 1;
 }
 
-const path2Counter = {};
-for (const p of path2U) {
-  const key = `Path2「${p.path2}」→ LP「${p.actual_theme}」`;
-  path2Counter[key] = (path2Counter[key] || 0) + 1;
-}
+const md = `# Google Ads キーワード ↔ LP ミスマッチ監査
 
-const md = `# Google Ads キーワード／広告グループ ↔ LP ミスマッチ監査
-
-**対象:** Ads Editor RSAエクスポート（\`${path.basename(inputPath)}\`）  
-**件数:** 広告行 ${rows.length} / 監査日: ${new Date().toISOString().slice(0, 10)}  
-**再実行:** \`node scripts/audit-ads-kw-lp-mismatch.mjs <export.tsv>\`
+**対象:** \`${path.basename(inputPath)}\`  
+**形式:** ${hasKeywordCol ? 'フルアカウント（Keyword列あり）' : 'RSA広告のみ'} / 広告行 ${adRows} / キーワード行(URL付き) ${posKwWithUrl}  
+**監査日:** ${new Date().toISOString().slice(0, 10)}  
+**再実行:** \`npm run audit:ads-kw-lp -- <export.tsv|csv>\`
 
 ---
 
 ## 結論（CTR低下の候補）
 
-1. **CRITICAL: Final URLの取り違え**が ${hardU.length} 件（広告グループ単位・ユニーク）
-   - 典型: **「灯油」AG → \`pet-ke\`（ペット毛）LP** — 検索意図とLPが完全不一致
-   - 典型: **「嘔吐」AG → \`shutchou-senmon\` / \`kuruma-nioi-keshi\`** — 嘔吐検索者に別テーマLP
-2. **HIGH: 表示パス Path 2 のテーマ不一致**が ${path2U.length} 件
-   - 特に Path 2「**嘔吐ニオイ清掃**」が嘔吐以外のLP（タバコ・汗・シート等）に大量流用
-   - 広告プレビュー上の関連性が崩れ、**CTR低下の直接要因**になりやすい
-3. **MEDIUM: 説明文のコピペ汚染**（他テーマ「ペット毛」文言）が ${descU.length} 件
-4. **MEDIUM: LOCATIONピンとキャンペーン地域の不一致**が ${locU.length} 件
+### ご心配の「嘔吐 → タバコLP」について
 
-> 注: 本CSVは**キーワード行ではなくRSA広告行**です。1KW1LP運用でも、Ads側は「1テーマ1AG・複数KW→同一テーマLP」構成（\`docs/google-ads/campaign-structure.md\`）のため、**Ad Group名 ≒ キーワードテーマ**として検証しています。
+**該当なし（${vomitToTobacco.length}件）。** 嘔吐系キーワードがタバコ系LP（\`tabako-yani\` / \`chuko-tabako\`）に直接紐づいているケースは検出されませんでした。
+
+### ただし CRITICAL な取り違えは残存
+
+1. **キーワード単位の Final URL が誤っている**（広告URLより**キーワードURLが優先**される）
+   - 典型: **「車内 灯油 こぼし」→ \`pet-ke\`（ペット毛）** … ${hardKwU.filter((h) => h.kw_theme === '灯油').length}件
+   - 広告側は \`touyu-kobosi\` に直っていても、**キーワードに \`pet-ke\` が残っていると着地はペット毛LPのまま**
+2. **同一AG内で KW URL ≠ 広告 URL** … ${conflictU.length}件（詳細CSV参照）
+3. Path 2 テーマ不一致 … ${path2U.length}件（前回より改善していれば 0 に近い）
+
+| 指標 | 件数 |
+|------|------|
+| キーワード×URL 一致 | ${posKwOk} |
+| CRITICAL（異系統テーマ取り違え） | ${hardKwU.length} |
+| MEDIUM（近いテーマのずれ） | ${softKwU.length} |
+| テーマ判定不能KW | ${posKwUnknown} |
+| KW↔広告URLコンフリクト | ${conflictU.length} |
+| Path2不一致 | ${path2U.length}（うち嘔吐パス誤用広告行 ${path2VomitWrongRows}） |
 
 ---
 
-## 1. CRITICAL — Ad Group テーマ ≠ Final URL
+## 1. CRITICAL — キーワードテーマ ≠ Final URL
 
-| # | キャンペーン | 広告グループ | 期待テーマ | 実際のLP | 修正先URL例 |
-|---|-------------|-------------|-----------|---------|------------|
-${hardU
+| # | キャンペーン | 広告グループ | キーワード | 期待 | 実際LP | 修正先 |
+|---|-------------|-------------|-----------|------|--------|--------|
+${hardKwU
   .map(
     (h, i) =>
-      `| ${i + 1} | ${h.campaign} | ${h.ad_group} | ${h.expected_theme} (\`${h.expected_slugs}\`) | ${h.actual_theme} (\`${h.actual_slug}\`) | ${h.suggested_url} |`,
+      `| ${i + 1} | ${h.campaign} | ${h.ad_group} | ${h.keyword} | ${h.expected_theme} | ${h.actual_theme} (\`${h.actual_slug}\`) | ${h.suggested_url} |`,
   )
-  .join('\n')}
+  .join('\n') || '| （なし） | | | | | | |'}
 
-### パターン集計
+### CRITICAL パターン集計
 
 | パターン | 件数 |
 |---------|------|
-${Object.entries(criticalByType)
+${Object.entries(hardPatterns)
   .sort((a, b) => b[1] - a[1])
   .map(([k, n]) => `| ${k} | ${n} |`)
-  .join('\n')}
+  .join('\n') || '| （なし） | |'}
 
-**最優先修正:** 「車内 灯油 こぼし」→ Final URL を \`/regions/{region}/touyu-kobosi/\` に統一（現状 \`pet-ke\` になっている地域が複数）。
+**最優先:** 灯油キーワードの Final URL を全地域 \`/regions/{region}/touyu-kobosi/\` に修正（キーワード行）。広告側だけ直しても着地は変わりません。
 
 ---
 
-## 2. HIGH — Path 2（表示URL）テーマ不一致
+## 2. HIGH — 同一AG内 KW URL ≠ 広告 URL
 
-広告の表示パスがLPテーマと食い違うと、検索結果上で「意図と違うサービス」に見えCTRが落ちます。
+Google Ads では **キーワードの Final URL が広告より優先**されます。
 
-### 頻出パターン
+| キャンペーン | 広告グループ | KW側 | 広告側 | サンプルKW |
+|-------------|-------------|------|--------|-----------|
+${conflictU
+  .filter((c) => c.severity === 'CRITICAL')
+  .map(
+    (c) =>
+      `| ${c.campaign} | ${c.ad_group} | ${c.keyword_theme} (\`${c.keyword_slug}\`) | ${c.ad_theme} (\`${c.ad_slug}\`) | ${c.sample_keywords} |`,
+  )
+  .join('\n') || '| （CRITICALなし） | | | | |'}
+
+全件: \`kw-lp-kw-vs-ad-url-conflict.csv\`（${conflictU.length}行）
+
+---
+
+## 3. MEDIUM — 近接テーマのずれ（参考）
+
+完全な異系統ではないが、1KW1LP方針からずれる例（上位）:
 
 | パターン | 件数 |
 |---------|------|
-${Object.entries(path2Counter)
+${Object.entries(softPatterns)
   .sort((a, b) => b[1] - a[1])
   .slice(0, 20)
   .map(([k, n]) => `| ${k} | ${n} |`)
-  .join('\n')}
-
-**推奨:** Path 2 を LP / AG テーマに合わせる（例: タバコAGなら \`タバコ消臭\`、灯油なら \`灯油こぼし\`、シートなら \`シート洗浄\`）。汎用の「嘔吐ニオイ清掃」の横断流用をやめる。
-
-詳細: \`kw-lp-mismatch-path2.csv\`（${path2U.length} 行）  
-うち Path2 に「嘔吐」を含む不一致広告行: **${path2VomitWrongRows}**
-
----
-
-## 3. MEDIUM — 説明文のテーマ汚染
-
-説明文に「ペット毛」が残ったまま、別テーマAG/LPに紐づいている例: **${descU.length}** AG
+  .join('\n') || '| （なし） | |'}
 
 代表例:
 
-${descU
-  .slice(0, 15)
+${softKwU
+  .slice(0, 20)
   .map(
-    (d) =>
-      `- [${d.campaign}] AG「${d.ad_group}」→ \`${d.actual_slug}\` … ${d.snippet.slice(0, 60)}…`,
+    (h) =>
+      `- [${h.campaign}] 「${h.keyword}」(${h.kw_theme}) → \`${h.actual_slug}\`（${h.actual_theme}）`,
   )
-  .join('\n')}
+  .join('\n') || '（なし）'}
 
 ---
 
-## 4. MEDIUM — LOCATION ピン不一致
+## 4. Path 2（表示URL）
 
-| キャンペーン | 広告グループ | ピン | URL |
-|-------------|-------------|------|-----|
-${locU
-  .slice(0, 30)
-  .map(
-    (x) =>
-      `| ${x.campaign} | ${x.ad_group} | ${x.location_pin} | ${x.final_url} |`,
-  )
-  .join('\n')}
+不一致ユニーク: **${path2U.length}** / 嘔吐パス誤用広告行: **${path2VomitWrongRows}**
+
+${path2U.length ? '詳細: `kw-lp-mismatch-path2.csv`' : '今回のエクスポートでは Path 2 のテーマ汚染はほぼ解消されています。'}
 
 ---
 
 ## 修正チェックリスト（Google Ads Editor）
 
-1. [ ] \`kw-lp-mismatch-hard.csv\` の \`suggested_url\` で Final URL を一括修正
-2. [ ] 灯油AGは全地域で \`touyu-kobosi\` になっているか再確認
-3. [ ] 嘔吐AG（\`AG_緊急_嘔吐\` / \`車 嘔吐 クリーニング\`）は \`kyuto-cleaning\` または \`vomit-cleaning\` のみ
-4. [ ] Path 2 をテーマ別に書き換え（嘔吐パスの横断流用を停止）
-5. [ ] 説明文の「ペット毛」「中古車タバコ」等のコピペ残骸をAGテーマに合わせて差し替え
-6. [ ] LOCATION(City) ピンがキャンペーン都道府県と一致しているか確認
+1. [ ] \`kw-lp-mismatch-hard.csv\` の CRITICAL 行で、**キーワードの Final URL** を \`suggested_url\` に変更
+2. [ ] 灯油: KW・広告とも \`touyu-kobosi\` に揃える（KW側 \`pet-ke\` 残存に注意）
+3. [ ] \`kw-lp-kw-vs-ad-url-conflict.csv\` で同一AGのURL二重設定を解消
+4. [ ] 「車 シート 嘔吐 臭い」等、嘔吐を含むKWは \`kyuto-cleaning\` / \`vomit-cleaning\` へ
+5. [ ] 「沖縄 レンタカー 嘔吐」は \`hoken-kyuto\` または \`kyuto-cleaning\` へ
 
 ---
 
@@ -595,7 +911,6 @@ ${locU
 | ペット毛 | \`pet-ke\` |
 | タバコヤニ | \`tabako-yani\` / \`tobacco-odor\` |
 | 中古車タバコ | \`chuko-tabako\` |
-| 匂い消し | \`kuruma-nioi-keshi\` / \`odor-removal\` |
 
 サイト定義: \`src/data/adKeywordPages.ts\` / \`src/data/lpAdPages.ts\`  
 Ads設計: \`docs/google-ads/campaign-structure.md\`
@@ -606,14 +921,22 @@ fs.writeFileSync(path.join(outDir, 'kw-lp-mismatch-report.md'), md, 'utf8');
 console.log(
   JSON.stringify(
     {
-      rows: rows.length,
-      hard_unique: hardU.length,
-      path2_unique: path2U.length,
-      path2_vomit_wrong_rows: path2VomitWrongRows,
-      loc_unique: locU.length,
-      desc_unique: descU.length,
+      input: path.basename(inputPath),
+      hasKeywordCol,
+      adRows,
+      posKwWithUrl,
+      posKwOk,
+      hardCritical: hardKwU.length,
+      softMedium: softKwU.length,
+      posKwUnknown,
+      agUrlIssues: agUrlU.length,
+      kwAdConflicts: conflictU.length,
+      path2Unique: path2U.length,
+      path2VomitWrongRows,
+      vomitToTobacco: vomitToTobacco.length,
+      hardPatterns,
+      conflictPatterns,
       outDir,
-      criticalByType,
     },
     null,
     2,
