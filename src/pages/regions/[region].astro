@@ -131,9 +131,6 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
-      {regionalAnswerFirst && (
-        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
-      )}
       {!isTruck && !isBus && (
         <AdLpQuickFacts
           displayName={displayName}
@@ -142,6 +139,9 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
           durationLabel="約1.5〜3時間"
           areaLabel={`${displayName}へ出張費無料`}
         />
+      )}
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
       {!isTruck && !isBus && (
         <EmergencyChecklist

@@ -153,9 +153,6 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         mainTitle={heroMainTitle}
         fvImage={subareaFv}
       />
-      {regionalAnswerFirst && (
-        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
-      )}
       {!isTruck && !isBus && (
         <AdLpQuickFacts
           displayName={`${displayName}（大阪府）`}
@@ -164,6 +161,9 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
           durationLabel="約1.5〜3時間"
           areaLabel={`${displayName}（大阪府）へ出張費無料`}
         />
+      )}
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
       {!isTruck && !isBus && (
         <EmergencyChecklist
