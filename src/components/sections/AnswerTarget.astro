@@ -1,5 +1,6 @@
 ---
 import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+import { LINE_URL, TEL } from '../../lib/site';
 
 interface Props {
   text: string;
@@ -12,25 +13,41 @@ const { text, points = [], voiceLine } = Astro.props;
 const contentUpdated = formatContentFreshnessJa();
 ---
 
-<section id="answer-target" aria-label="緊急時の結論" class="py-6 sm:py-8 bg-green-50 border-b border-green-200">
+<section id="answer-target" aria-label="緊急時の結論" class="py-4 sm:py-6 bg-green-50 border-b border-green-200">
   <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
-    <p class="text-xs font-bold text-blue-700 tracking-wide mb-3">
+    <p class="text-xs font-bold text-blue-700 tracking-wide mb-2">
       最終更新：{contentUpdated}
     </p>
     {voiceLine && (
-      <p class="speakable-voice text-sm md:text-base font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4 leading-relaxed">
+      <p class="speakable-voice text-sm md:text-base font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2 mb-3 leading-snug">
         {voiceLine}
       </p>
     )}
-    <div class="answer-lead text-base md:text-lg text-gray-800 leading-relaxed font-medium bg-white p-5 md:p-6 rounded-xl border border-green-300 shadow-sm text-left">
+    <div class="answer-lead text-sm md:text-base text-gray-800 leading-relaxed font-medium bg-white p-4 md:p-5 rounded-xl border border-green-300 shadow-sm text-left">
       <p>{text}</p>
       {points.length > 0 && (
-        <ul class="mt-4 space-y-2 text-sm md:text-base text-gray-700 list-disc list-inside">
+        <ul class="mt-3 space-y-1.5 text-sm md:text-base text-gray-700 list-disc list-inside">
           {points.map((point) => (
             <li>{point}</li>
           ))}
         </ul>
       )}
+      <div class="mt-4 flex flex-col sm:flex-row gap-2">
+        <a
+          href={`tel:${TEL}`}
+          class="inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2.5 text-sm font-black text-white shadow-sm hover:bg-red-700"
+        >
+          電話で空き確認 {TEL}
+        </a>
+        <a
+          href={LINE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-lg bg-[#06C755] px-4 py-2.5 text-sm font-black text-white shadow-sm hover:bg-[#05a346]"
+        >
+          LINEで写真見積もり
+        </a>
+      </div>
     </div>
   </div>
 </section>
