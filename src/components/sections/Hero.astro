@@ -64,34 +64,35 @@ const priceHookNote = adHero?.priceHookNote ?? (isTruck || isBus
   ? '※現車確認後に確定／追加費用は作業前にご説明'
   : '※座席単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途');
 
-const gap = 'mb-2.5 max-md:mb-2 sm:mb-3';
-const gapTight = 'mb-2 max-md:mb-1.5 sm:mb-2';
+const gap = 'mb-2.5 max-md:mb-1.5 sm:mb-3';
+const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
 ---
 
 {/*
   スマホ特化FV:
   - 上部に写真を実ブロックで確保（隠れない）
   - 文字は写真の下。小さくしすぎない
+  - キャンペーン（抗菌コート無料）は初回表示内に必ず入れる
   - 大きなCTAはフッター固定に任せ、画面内は控えめ
 */}
 <section class="relative w-full overflow-hidden bg-white md:min-h-[88vh] md:flex md:items-start">
-    {/* スマホ：上部写真帯（実寸）。PC：全画面背景 */}
-    <div class="relative z-0 w-full max-md:h-[48vw] max-md:min-h-[12.5rem] max-md:max-h-[15.5rem] md:absolute md:inset-0 md:h-full">
+    {/* スマホ：上部写真帯（キャンペーンを折りたたみ内に残すため控えめ）。PC：全画面背景 */}
+    <div class="relative z-0 w-full max-md:h-[28vw] max-md:min-h-[6.75rem] max-md:max-h-[8.25rem] md:absolute md:inset-0 md:h-full">
         <img
             src={fvImage}
             alt={`${displayName}対応 ${STORE_NAME}`}
-            class="h-full w-full object-cover object-[center_30%] md:object-[center_bottom] md:object-right"
+            class="h-full w-full object-cover object-[center_28%] md:object-[center_bottom] md:object-right"
             loading="eager"
             fetchpriority="high"
         />
         {/* スマホは下端だけ白へ馴染ませる。PCは左テキスト用グラデ */}
         <div
-            class="pointer-events-none absolute inset-0 max-md:bg-gradient-to-t max-md:from-white max-md:via-white/20 max-md:to-transparent md:bg-gradient-to-r md:from-white/90 md:via-white/45 md:to-transparent"
+            class="pointer-events-none absolute inset-0 max-md:bg-gradient-to-t max-md:from-white max-md:via-white/15 max-md:to-transparent md:bg-gradient-to-r md:from-white/90 md:via-white/45 md:to-transparent"
             aria-hidden="true"
         ></div>
     </div>
 
-    <div class="relative z-20 w-full px-3.5 pb-3 pt-1 sm:px-6 md:container md:mx-auto md:px-16 md:pb-8 md:pt-6">
+    <div class="relative z-20 w-full px-3.5 pb-2 pt-0.5 sm:px-6 md:container md:mx-auto md:px-16 md:pb-8 md:pt-6">
         <div class="max-w-xl md:max-w-2xl">
             {/* 1. バッジ */}
             <div class:list={[gapTight, 'flex flex-wrap gap-1.5']}>
@@ -117,12 +118,12 @@ const gapTight = 'mb-2 max-md:mb-1.5 sm:mb-2';
             {/* 3. メインキャッチ — 読みやすさ優先（縮小しすぎない） */}
             <h1 class:list={[
                 gap,
-                'font-black leading-[1.22] tracking-tight text-blue-900',
+                'font-black leading-[1.2] tracking-tight text-blue-900',
                 resolvedMainTitle
-                    ? 'text-[clamp(1.4rem,5.4vw,2.4rem)] md:text-4xl lg:text-5xl'
+                    ? 'text-[clamp(1.35rem,5.2vw,2.35rem)] md:text-4xl lg:text-5xl'
                     : adHero
-                        ? 'text-[clamp(1.6rem,6.8vw,3.1rem)] md:text-7xl lg:text-8xl'
-                        : 'text-[clamp(1.9rem,8.8vw,6rem)] md:text-7xl lg:text-8xl',
+                        ? 'text-[clamp(1.55rem,6.5vw,3.1rem)] md:text-7xl lg:text-8xl'
+                        : 'text-[clamp(1.85rem,8.5vw,6rem)] md:text-7xl lg:text-8xl',
             ]}>
                 {resolvedMainTitle ? (
                     <span class="block max-w-[98%] font-black leading-tight">{resolvedMainTitle}</span>
@@ -135,8 +136,8 @@ const gapTight = 'mb-2 max-md:mb-1.5 sm:mb-2';
             </h1>
 
             {/* 4. 赤帯 */}
-            <div class:list={[gap, 'inline-block max-w-full rounded-xl bg-red-600 px-3 py-2.5 shadow-lg sm:rounded-2xl sm:px-5 sm:py-2.5']}>
-                <p class="text-[clamp(1.25rem,5vw,1.75rem)] font-black leading-snug tracking-wide text-white sm:text-xl md:text-3xl">
+            <div class:list={[gap, 'inline-block max-w-full rounded-xl bg-red-600 px-3 py-2 shadow-lg sm:rounded-2xl sm:px-5 sm:py-2.5']}>
+                <p class="text-[clamp(1.2rem,4.8vw,1.7rem)] font-black leading-snug tracking-wide text-white sm:text-xl md:text-3xl">
                     {adHero ? (
                         <>
                             <span class="whitespace-nowrap">{adHero.highlightLine1}</span><wbr /><span class="whitespace-nowrap">{adHero.highlightLine2}</span>
@@ -156,30 +157,40 @@ const gapTight = 'mb-2 max-md:mb-1.5 sm:mb-2';
             </div>
 
             {/* 5. 価格フック — CTR核。大きく読みやすく */}
-            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-amber-400 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 px-3.5 py-3.5 text-white shadow-xl sm:px-5']}>
+            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-amber-400 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 px-3 py-2.5 text-white shadow-xl sm:px-5 sm:py-3.5']}>
                 <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                     <span class="shrink-0 rounded-md bg-amber-400 px-2 py-0.5 text-xs font-black text-blue-950">料金目安</span>
-                    <span class="whitespace-nowrap text-[clamp(1.55rem,6.8vw,2.25rem)] font-black tracking-tight text-amber-300 sm:text-3xl md:text-4xl">
+                    <span class="whitespace-nowrap text-[clamp(1.5rem,6.5vw,2.2rem)] font-black tracking-tight text-amber-300 sm:text-3xl md:text-4xl">
                         {priceHookMain}
                     </span>
                 </div>
-                <p class="mt-1.5 text-[1rem] font-bold leading-snug text-blue-50 sm:text-base md:text-lg">
+                <p class="mt-1 text-[0.95rem] font-bold leading-snug text-blue-50 sm:mt-1.5 sm:text-base md:text-lg">
                     {priceHookSub}
                 </p>
-                <p class="mt-1 text-xs font-medium leading-snug text-blue-100/90 sm:text-sm">
+                <p class="mt-0.5 text-[11px] font-medium leading-snug text-blue-100/90 sm:mt-1 sm:text-xs md:text-sm">
                     {priceHookNote}
                 </p>
             </div>
 
-            {/* 6. トップCTA
+            {/* 6. キャンペーン — スマホ初回表示で必ず見せる（価格の直後） */}
+            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-yellow-400 bg-yellow-100 px-3 py-2.5 shadow-lg sm:rounded-3xl sm:border-4 sm:p-4 md:p-5']}>
+                <p class="text-[0.9rem] font-bold leading-tight text-gray-800 sm:text-base md:text-lg">
+                    <span class="whitespace-nowrap">今なら、通常2,000円の</span>
+                </p>
+                <p class="text-[1.35rem] font-black leading-[1.15] text-red-600 sm:text-3xl md:text-5xl">
+                    <span class="whitespace-nowrap">抗菌コート無料！</span>
+                </p>
+            </div>
+
+            {/* 7. トップCTA
                 スマホ: フッター固定CTAがあるため案内文のみ（過度なボタン重複を避ける）
                 PC: 従来の大きめ2ボタンを表示 */}
             <div class:list={[gap, 'w-full max-w-xl']} data-cta-section="hero_top_cta">
-                <div class="rounded-xl border border-blue-200 bg-blue-50/90 px-3 py-2.5 text-center md:hidden">
-                    <p class="text-[1rem] font-black leading-snug text-gray-900">
+                <div class="rounded-xl border border-blue-200 bg-blue-50/90 px-3 py-2 text-center md:hidden">
+                    <p class="text-[0.95rem] font-black leading-snug text-gray-900">
                         ご相談・見積は<span class="text-red-600">画面下のボタン</span>から
                     </p>
-                    <p class="mt-1 text-xs font-bold text-gray-600">
+                    <p class="mt-0.5 text-[11px] font-bold text-gray-600">
                         LINE写真見積／電話｜{displayName}エリア出張対応
                     </p>
                 </div>
@@ -206,16 +217,6 @@ const gapTight = 'mb-2 max-md:mb-1.5 sm:mb-2';
                         作業前見積／追加料金は事前説明後のみ／{displayName}エリア出張対応
                     </p>
                 </div>
-            </div>
-
-            {/* 7. キャンペーン */}
-            <div class:list={[gap, 'inline-block w-full max-w-xl rounded-2xl border-[3px] border-yellow-400 bg-yellow-100 p-3 shadow-lg sm:rounded-3xl sm:border-4 sm:p-4 md:p-5']}>
-                <p class="mb-0.5 text-[0.95rem] font-bold leading-tight text-gray-800 sm:text-base md:text-lg">
-                    <span class="whitespace-nowrap">今月末まで、</span><wbr /><span class="whitespace-nowrap">通常2,000円の</span>
-                </p>
-                <p class="text-[1.4rem] font-black leading-[1.1] text-red-600 sm:text-3xl md:text-5xl">
-                    <span class="whitespace-nowrap">抗菌コート</span><wbr /> <span class="whitespace-nowrap">無料！</span>
-                </p>
             </div>
 
             {/* 8. サブキャッチ */}
