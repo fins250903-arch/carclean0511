@@ -46,10 +46,14 @@ const {
         <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{areaLabel}</p>
       </div>
     </div>
-    <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:justify-center sm:items-center">
+    <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-center">
+      {/* スマホはフッター固定CTAがあるため、料金表リンク中心に抑える */}
+      <p class="text-center text-sm font-bold text-gray-800 md:hidden">
+        相談は<span class="text-red-600">画面下のLINE・電話</span>から
+      </p>
       <a
         href={`tel:${TEL}`}
-        class="inline-flex items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-blue-900"
+        class="hidden items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-blue-900 md:inline-flex"
       >
         電話で無料相談（{TEL}）
       </a>
@@ -57,7 +61,7 @@ const {
         href={LINE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c]"
+        class="hidden items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c] md:inline-flex"
       >
         LINEで写真見積もり
       </a>

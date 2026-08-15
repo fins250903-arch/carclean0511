@@ -32,6 +32,19 @@ export function yen(amount: number): string {
   return `${amount.toLocaleString('ja-JP')}円`;
 }
 
+/**
+ * Google Ads CTR用の共通価格フック（車LP専用・トラック/バスは使わない）。
+ * RSA・FV・QuickFactsで同一文言に揃える。
+ */
+export function carFvPriceHookMain(): string {
+  return `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`;
+}
+
+export function carFvPriceHookSub(displayName?: string): string {
+  const area = displayName ? `${displayName}へ出張費エリア無料` : '税込・出張費エリア無料';
+  return `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜${area}`;
+}
+
 /** AIO comparison table — basic wash tier (tax included). Lead with seat hook for Ads/AIO alignment. */
 export function carComparisonPriceSummary(): string {
   return `座席1脚（1シート）${yen(CAR_PRICING.seatSingleBasic)}〜／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜（基本洗浄）／消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜／普通車 ${yen(CAR_PRICING.regularBasic)}〜`;
