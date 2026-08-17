@@ -1,11 +1,21 @@
 ---
-title: "【世田谷区】スズキ・スペーシアの腐敗した牛乳のニオイ解決"
-date: 2026-03-24
-categories: 
-  - "jisseki"
-  - "toukyou"
-  - "tokublo"
-coverImage: "スペーシアカスタム.jpg"
+date: 2026-08-17
+title: 【世田谷区】スズキ・スペーシアの腐敗した牛乳のニオイ解決
+shortSlug: spaciamilk
+areaName: 東京都　世田谷区・関東エリア
+coverImage: usiro.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    最近のバックルは保安部品一体型で、分解することがほぼ不可能です。
+
+    最悪部品の完全交換という対応しかできないみたいですね。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - toukyou
+  - tokublo
 ---
 
 閑静な住宅街での作業でしたが、車内は少し深刻な状態でした。  
