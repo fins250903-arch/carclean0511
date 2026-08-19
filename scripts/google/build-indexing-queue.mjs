@@ -12,6 +12,9 @@ const SITE = (process.env.SITE_URL ?? 'https://carinteriorcleaning.jp').replace(
 /** adKeywordPages.ts と同期 */
 const PRIORITY_REGION_IDS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka'];
 
+/** src/data/noindexRegions.ts と同期。Search から一時除外中の地域は Indexing API に送らない */
+const NOINDEX_REGION_IDS = new Set(['kumamoto']);
+
 function parseRegions(ts) {
   const re = /\{\s*id:\s*'([^']+)',\s*name:\s*'([^']+)'\s*\}/g;
   const out = [];
@@ -56,8 +59,9 @@ export function buildIndexingQueue() {
   const regions = parseRegions(regionsTs);
   const slugs = parseKeywordSlugs(kwTs);
 
-  const priority = regions.filter((r) => PRIORITY_REGION_IDS.includes(r.id));
-  const other = regions.filter((r) => !PRIORITY_REGION_IDS.includes(r.id));
+  const indexable = regions.filter((r) => !NOINDEX_REGION_IDS.has(r.id));
+  const priority = indexable.filter((r) => PRIORITY_REGION_IDS.includes(r.id));
+  const other = indexable.filter((r) => !PRIORITY_REGION_IDS.includes(r.id));
 
   const ordered = [];
   const phases = [];

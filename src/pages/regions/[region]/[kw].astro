@@ -51,6 +51,7 @@ import {
   resolveAdHighlight,
 } from '../../../data/adKeywordPages';
 import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
+import { isNoindexRegionId } from '../../../data/noindexRegions';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
@@ -206,7 +207,7 @@ const deepTroubles = resolveAdDeepTroubles(kw.deepTroubles, regionName);
 
 /** slug から niche を解決 */
 const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'car';
-const noindex = isNoindexKeywordSlug(kwSlug);
+const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
 ---
 
 <MainLayout
