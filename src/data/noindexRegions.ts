@@ -26,6 +26,11 @@ export function isNoindexRegionId(regionIdOrParam: string): boolean {
   return NOINDEX_REGION_SET.has(baseRegionId(regionIdOrParam));
 }
 
+/** Public nav / area lists should omit temporarily hidden regions. */
+export function filterIndexableRegions<T extends { id: string }>(list: readonly T[]): T[] {
+  return list.filter((item) => !isNoindexRegionId(item.id));
+}
+
 /** Match `/regions/{id}/`, `/regions/{id}-truck/`, `/regions/{id}-bus/`, and nested LPs. */
 const NOINDEX_REGION_PATH = new RegExp(
   `^/regions/(?:${NOINDEX_REGION_IDS.join('|')})(?:-truck|-bus)?(?:/|$)`,

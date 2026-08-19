@@ -1,6 +1,7 @@
 ---
 import { STORE_NAME, LINE_URL, TEL } from '../../lib/site';
 import { regions } from '../../data/regions';
+import { filterIndexableRegions } from '../../data/noindexRegions';
 
 interface Props {
   regionName: string;
@@ -14,7 +15,7 @@ const { regionName, displayName, path } = Astro.props;
 // Filter out city-level links and unused regions mentioned by user
 // "北海道" "横浜市""名古屋市" "福岡市""広島県""京都市""岡山県" are to be excluded or standardized.
 // We'll use the standardized regions list.
-const regionalLinks = regions.map(r => ({
+const regionalLinks = filterIndexableRegions(regions).map(r => ({
     href: r.id === 'osaka' ? '/' : `/regions/${r.id}`,
     label: r.name
 })).filter(l => !["北海道", "横浜市", "名古屋市", "福岡市", "京都市", "広島県", "岡山県"].includes(l.label));
