@@ -60,6 +60,7 @@ import {
   buildAioContentFaqs,
 } from '../../../../data/aioKeywordContent';
 import { getRegionSubareaFvImage } from '../../../../data/fvImageMap';
+import { isNoindexRegionId } from '../../../../data/noindexRegions';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -130,6 +131,7 @@ const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(sub
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
+const noindex = isNoindexRegionId(regionId);
 ---
 
 <MainLayout
@@ -138,6 +140,7 @@ const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
   keywords={metadata.keywords}
   canonical={metadata.alternates?.canonical}
   ogImage={subareaFv}
+  noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
