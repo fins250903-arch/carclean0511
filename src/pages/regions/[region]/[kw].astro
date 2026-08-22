@@ -114,6 +114,17 @@ const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
 const aioKw = getAioKeywordContent(kwSlug);
 const answerFirst = aioKw?.answerFirst(regionName, displayName);
 const customDefinition = aioKw?.customDefinition?.(regionName);
+const fvCopy = findFvCopy(regionId, kwSlug);
+const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
+const quickFacts = getAdLpQuickFacts(kwSlug);
+const intentGuide = getAdLpIntentGuide(kwSlug);
+const muteEmergencyTone = isNonEmergencyTroubleType(aioKw?.troubleType);
+/** Visible FAQ extras must match FAQPage schema (AIOContent includeExtended ↔ schema) */
+const aioVisibleFaqs = buildAioContentFaqs(regionName, {
+  includeExtended: !muteEmergencyTone,
+  extraFaqs: aioKw?.extraFaqs,
+});
+/** Bottom FAQ: skip extended to avoid duplicating AIOContent's FAQ block */
 const aioExtraFaqs = buildAioContentFaqs(regionName, {
   includeExtended: false,
   extraFaqs: aioKw?.extraFaqs,
@@ -131,16 +142,10 @@ const jsonLdData = generateJsonLd(
       displayName,
       metadata,
     }),
-    extraFaqs: buildAioContentFaqs(regionName, { extraFaqs: aioKw?.extraFaqs }),
+    extraFaqs: aioVisibleFaqs,
   },
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
-
-const fvCopy = findFvCopy(regionId, kwSlug);
-const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
-const quickFacts = getAdLpQuickFacts(kwSlug);
-const intentGuide = getAdLpIntentGuide(kwSlug);
-const muteEmergencyTone = isNonEmergencyTroubleType(aioKw?.troubleType);
 const voiceLine = muteEmergencyTone
   ? `${displayName}エリアへ出張対応。料金・所要時間の目安を確認のうえ、お電話・LINEで空き状況をご案内します。`
   : buildVoiceEmergencyLine(displayName);

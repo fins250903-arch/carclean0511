@@ -170,6 +170,12 @@ export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
     priceHint: '空き状況を電話で案内',
   },
   {
+    situation: '夜中・休日に吐かれた／今すぐ来てほしい',
+    now: '消臭スプレー禁止・換気・365日24時間受付へ電話',
+    menu: '当日深夜〜翌朝の即日枠を案内',
+    priceHint: '空き状況を電話で案内',
+  },
+  {
     situation: '近くの業者を今すぐ呼びたい（地下駐車場）',
     now: 'エリアと希望時間を伝えて空き枠を確認',
     menu: '出張洗浄（エリアにより電源条件が異なります）',
@@ -182,6 +188,68 @@ export const VOMIT_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] =
   REGIONAL_SITUATION_DIAGNOSIS.filter(
     (r) => !r.situation.includes('灯油'),
   );
+
+/** GEO: pet waste / hair — situation → menu */
+export const PET_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
+  {
+    situation: 'ペットが助手席で粗相（尿・便）した直後',
+    now: '固形物除去→タオルで吸い取り→香料スプレー禁止',
+    menu: '酵素分解＋座席リンサー（消臭セット）',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: '乾いて見えないがアンモニア臭が残る',
+    now: '汚染箇所の写真を撮って相談（見た目判断は不可）',
+    menu: '座席1脚〜の酵素＋リンサー',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: '毛だらけで掃除機では取れない',
+    now: '無理にブラシで擦らない（織り目に押し込む）',
+    menu: '特殊ブラシ・ピンセット手作業＋リンサー',
+    priceHint: `毛追加${yen(5_000)}〜／消臭${yen(CAR_PRICING.lightDeodorize)}〜`,
+  },
+  {
+    situation: '運転中・手が離せないときの粗相',
+    now: '安全停車→換気→タオル押さえる→電話/LINE',
+    menu: '最短即日出張枠の空き確認',
+    priceHint: '空き状況を電話で案内',
+  },
+  {
+    situation: 'チャイルドシート／カートも一緒に洗いたい',
+    now: '取り外し可否を写真で共有',
+    menu: '座席＋チャイルドシート洗浄（要見積）',
+    priceHint: '見積（素材で変動）',
+  },
+];
+
+/** GEO: tobacco — DIY boundary + menu */
+export const TOBACCO_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
+  {
+    situation: '中古車納車直後からタバコ臭い',
+    now: '芳香剤を外して本体臭を確認。販売店清掃との差を写真共有',
+    menu: '天井〜フロア丸洗い＋オゾン脱臭',
+    priceHint: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+  },
+  {
+    situation: '天井がベタつく／ヤニが目立つ',
+    now: '市販クリーナーで強く擦らない（ムラ・傷み）',
+    menu: '天井重点の温水リンサー＋ヤニ分解',
+    priceHint: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+  },
+  {
+    situation: '消臭剤・オゾン後に数日で戻る',
+    now: 'マスキング終了。内部ヤニ除去が必要',
+    menu: '丸ごと洗浄（完全無臭化は70〜80%目安）',
+    priceHint: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+  },
+  {
+    situation: '軽い喫煙・短期間のみ',
+    now: '換気＋シート表面の状態確認',
+    menu: '座席〜天井の範囲見積（部分可）',
+    priceHint: '見積（範囲で変動）',
+  },
+];
 
 /** 地域ごとの事例用サンプル市区町村（大阪固定を回避） */
 const REGION_SAMPLE_CITIES: Record<string, string> = {
@@ -246,8 +314,23 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'pet-waste',
     checklistHeading: '車内でうんち・粗相した直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。車内清掃「特急便」は${regionName}内へ最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜（消臭セット）。`,
+      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。香料スプレーは使わず、タオルで水分を吸い取ってから電話相談を。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜（消臭セット）。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    situationDiagnosis: PET_SITUATION_DIAGNOSIS,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内うんち・粗相の除菌洗浄事例`,
+      body: `${city}でペットの粗相後、「自分で拭いたが酸っぱい臭いとシミが残った」とのご依頼。固形物除去後の汚染座席へ酵素分解と温水リンサーを実施し、衛生面と臭いを同日中に改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'うんち汚れは自分で消毒すれば十分？',
+        a: '表面の固形物除去と換気までは自助で構いません。ただし繊維・ウレタン内部の菌と臭いまでは家庭用消毒では届きにくく、香料スプレーは悪化しやすいです。プロの酵素＋リンサーが安全です。',
+      },
+      {
+        q: '部分洗浄だけ頼めますか？',
+        a: `はい。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜から対応します。フロアや隙間まで飛散している場合は写真見積で範囲を確定します。`,
+      },
+    ],
   },
   'touyu-kobosi': {
     troubleType: 'kerosene',
@@ -272,6 +355,21 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     answerFirst: (regionName) =>
       `【結論】${regionName}で車内のペット毛・粗相は、掃除機だけでは繊維の織り目に残る毛と臭いの元を除去できません。特殊ブラシ・ピンセットによる手作業と温水リンサー洗浄の組み合わせが必要です。車内清掃「特急便」は${regionName}全域へ最短即日出張。ペット毛追加${yen(5_000)}〜、消臭洗浄セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    situationDiagnosis: PET_SITUATION_DIAGNOSIS,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜ペット毛の手作業除去＋リンサー事例`,
+      body: `${city}のミニバンで「週1のドライブ後に助手席が毛だらけ」とのご依頼。特殊ブラシとピンセットで織り目の毛を手作業除去し、リンサーで皮脂臭も同時ケアした事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'ペットの毛は掃除機で十分取れますか？',
+        a: '表面の浮き毛は取れますが、織り目に刺さった毛は残ります。無理にブラシで擦ると奥へ押し込むため、専用ツールでの手作業が必要です。',
+      },
+      {
+        q: '毛取りと消臭はセットが必要？',
+        a: `毛だけの場合は毛取り追加${yen(5_000)}〜が目安です。尿・皮脂臭がある場合は消臭セット${yen(CAR_PRICING.lightDeodorize)}〜との併用をご案内します。`,
+      },
+    ],
   },
   oshikko: {
     troubleType: 'pet-waste',
@@ -296,10 +394,17 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   },
   omorashi: {
     troubleType: 'pet-waste',
-    checklistHeading: '車内のおもらし・尿染み、自分で何をすればいい？',
+    checklistHeading: '渋滞中・運転中のおもらし｜車内の尿染み、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。子ども・高齢者のおもらしも、座席1脚から対応します。`,
+      `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。運転中・手が離せないときは安全停車→タオルで吸い取り→香料スプレー禁止→電話相談が初動です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。子ども・高齢者のおもらしも、座席1脚から対応します。`,
     emergencyChecklist: EMERGENCY_URINE_CHECKLIST,
+    situationDiagnosis: PET_SITUATION_DIAGNOSIS.filter(
+      (r) =>
+        r.situation.includes('乾いて') ||
+        r.situation.includes('運転中') ||
+        r.situation.includes('チャイルド') ||
+        r.situation.includes('粗相'),
+    ),
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
       title: `${regionName}・${city}｜車内おもらしのシミ・臭い改善事例`,
       body: `${city}でお子様のおもらし後、「乾いてから黄色っぽいシミとアンモニア臭が残った」とのご相談。座席のリンサー抽出と乾燥を実施し、見た目のシミと臭いを大幅に改善した事例です。`,
@@ -313,19 +418,38 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '料金はいつ上がりますか？',
         a: `座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜が目安です。フロア到達・複数席・消臭剤多用後・長期間放置は範囲見積になります。`,
       },
+      {
+        q: '尿染みが乾いたあとのシミはどうやって取る？',
+        a: '乾いたシミは表面拭きでは落ちにくく、ウレタン内部の色素・臭いが残ります。温水リンサーでの抽出が基本で、放置期間が長いほど工程が増えます。写真で無料診断できます。',
+      },
     ],
   },
   'pet-unko': {
     troubleType: 'pet-waste',
     checklistHeading: 'ペットが車で粗相したときの消し方｜今すぐやること',
     answerFirst: (regionName) =>
-      `【結論】${regionName}でペットの粗相（うんち・尿）は、除菌と消臭をセットにした出張リンサー洗浄が安全です。${regionName}内へ最短即日対応。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}でペットの粗相（うんち・尿）は、除菌と消臭をセットにした出張リンサー洗浄が安全です。自分で拭いたあとに臭いが戻るのは内部層に原因が残っているためです。${regionName}内へ365日24時間受付・最短即日対応。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜／座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    situationDiagnosis: PET_SITUATION_DIAGNOSIS,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜ペット粗相の酵素分解洗浄事例`,
+      body: `${city}で犬の粗相後、「ファブリーズで隠したが翌日アンモニア臭が戻った」とのご相談。酵素分解と温水リンサーで臭いの元を抽出し、再発を抑えた事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'ペットが助手席で粗相した。部分洗浄だけ頼める？',
+        a: `はい。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜から対応します。隙間・フロアまで浸透している場合は写真で範囲を確認し、必要最小限のメニューをご提案します。`,
+      },
+      {
+        q: 'ファブリーズでペット臭は消えますか？',
+        a: '消えません。香料マスキングのため内部の尿成分は残り、湿度で再発します。使用後でも酵素＋リンサーで対応可能です（薬剤残留がある場合は工程が増えることがあります）。',
+      },
+    ],
   },
   'shanai-nioi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。臭いの出方を特定し、40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
     situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
@@ -342,6 +466,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       {
         q: '完全に無臭になりますか？',
         a: '多くのケースで大幅改善しますが、長年の喫煙や猫尿の深部浸透などは限界があります。施工前に改善見込みを正直にお伝えします。',
+      },
+      {
+        q: '車内のにおいの取り方で、自分でやる順番は？',
+        a: '①芳香剤・消臭剤を外す ②全窓換気（内気循環OFF） ③原因が嘔吐・尿・灯油ならスプレー禁止でタオル吸い取り ④翌日も残る／ON時だけ臭うならプロへ。重曹は軽い生活臭の応急までに留め、染み込み臭には使っても限界です。',
       },
     ],
   },
@@ -405,7 +533,15 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'tabako-yani': {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のタバコヤニ・臭いは、天井・シート・フロアを丸ごと温水洗浄し、オゾン脱臭を併用するのが最も効果的です。市販消臭剤はマスキングに留まり、天井裏のヤニは残ります。当店は${regionName}内へ出張対応。完全無臭化の成功率は70〜80%ですが、限界まで清潔な状態へ引き上げます。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。`,
+      `【結論】${regionName}で車内のタバコヤニ・臭いは、天井・シート・フロアを丸ごと温水洗浄し、オゾン脱臭を併用するのが最も効果的です。市販消臭剤はマスキングに留まり、天井裏のヤニは残ります。当店は${regionName}内へ最短即日出張対応。完全無臭化の成功率は70〜80%（限界は事前説明）ですが、限界まで清潔な状態へ引き上げます。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。`,
+    situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
+    smellCauseTable: SMELL_CAUSE_TABLE.filter((r) =>
+      ['タバコ・ヤニ', '加齢臭・皮脂', 'エアコン内部', 'カビ・湿気'].includes(r.cause),
+    ),
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜タバコヤニ・天井ベタつき改善事例`,
+      body: `${city}の中古普通車で「天井がベタつき、消臭剤を外すとタバコ臭が戻る」とのご依頼。天井〜シートの温水リンサーとオゾン仕上げで、ヤニのべたつきと臭いを大幅改善した事例です（完全無臭化は限界がある旨を事前説明）。`,
+    })),
     customDefinition: (regionName) =>
       `${regionName}の車内タバコヤニ除去とは、天井からフロアまで温水リンサー洗浄とオゾン脱臭で、繊維に蓄積したタール・ニコチンを物理的に除去する出張専門サービスです。`,
     extraFaqs: [
@@ -413,14 +549,33 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '中古車のタバコ臭は100%消せますか？',
         a: '長年喫煙された車は天井裏・エアコン内部までヤニが浸透しており、完全無臭化は困難な場合があります。当店は施工前に臭いの程度を確認し、洗浄で改善可能な範囲を正直にお伝えします。成功率の目安は70〜80%です。',
       },
+      {
+        q: 'ディーラー清掃と専門洗浄の違いは？',
+        a: '販売店の簡易清掃は表面中心が多く、天井裏のヤニまでは取りきれないことがあります。専門の温水抽出はヤニの吸着先である汚れを洗い流すため、再発しにくい仕上がりを目指します。',
+      },
     ],
   },
   'chuko-tabako': {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で中古車のタバコ臭を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。`,
+      `【結論】${regionName}で中古車のタバコ臭を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
+    situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の中古車タバコ臭消しとは、蓄積したタール・ニコチンを温水抽出で除去し、オゾン脱臭で仕上げる出張専門サービスです。`,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜中古車タバコ臭のリセット事例`,
+      body: `${city}で納車直後の中古車「芳香剤を外すとタバコ臭」とのご相談。天井・シート中心の丸洗いとオゾンで、前オーナー臭を実用レベルまで改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'オゾンだけ・消臭剤だけではダメですか？',
+        a: '一時的な改善には有効な場合がありますが、天井・シートに残るヤニ汚れが臭いの発生源のため再発しやすいです。当店は洗浄を主、オゾンを仕上げ補助として使います。',
+      },
+      {
+        q: '納車前に販売店で清掃済みでも依頼できますか？',
+        a: 'はい。簡易清掃後でも内部ヤニが残るケースは多いです。臭いの戻り方を伺い、必要な範囲だけをご提案します。',
+      },
+    ],
   },
   'chuko-kareisyu': {
     troubleType: 'aging-odor',
@@ -542,7 +697,22 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'ac-kusai': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車のエアコンが臭い場合、原因はエバポレーター内部のカビです。消臭スプレーやフィルター交換だけでは再発します。エアコン内部洗浄${yen(CAR_PRICING.acInternalWash)}〜で${regionName}内へ出張対応します。`,
+      `【結論】${regionName}で車のエアコンが臭い場合、原因はエバポレーター内部のカビです。消臭スプレーやフィルター交換だけでは再発します。エアコンON時だけ臭うなら内部洗浄、シートに座ると臭うなら車内洗浄が先です。エアコン内部洗浄${yen(CAR_PRICING.acInternalWash)}〜で${regionName}内へ最短即日出張対応します。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS.filter((r) =>
+      r.situation.includes('エアコン') || r.situation.includes('シート') || r.situation.includes('天井'),
+    ),
+    customDefinition: (regionName) =>
+      `${regionName}の車エアコン臭い対策とは、エバポレーター内部のカビ・雑菌を専用洗浄で除去し、ON時の酸っぱい・カビ臭を根本改善する出張サービスです。`,
+    extraFaqs: [
+      {
+        q: 'フィルター交換でエアコン臭は消えますか？',
+        a: '吸入側のゴミ対策には有効ですが、ON時だけの酸っぱい・カビ臭はエバポレーター内部が原因のことが多く、内部洗浄が必要です。',
+      },
+      {
+        q: 'シート臭いとエアコン臭いの見分け方は？',
+        a: 'エアコンOFFでもシートに鼻を近づけると臭うならシート側、ON時だけならエアコン内部側です。両方混ざるケースも多く、写真と症状で最適メニューを提案します。',
+      },
+    ],
   },
   'evaporator-senjo': {
     troubleType: 'ac',
@@ -581,13 +751,44 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'pet-nioi': {
     troubleType: 'pet-waste',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のペット臭は、尿・毛・皮脂がシート内部に蓄積していることが原因です。消臭剤では再発し、温水リンサーと酵素分解が必要です。${regionName}内へ最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内のペット臭は、尿・毛・皮脂がシート内部に蓄積していることが原因です。消臭剤では再発し、温水リンサーと酵素分解が必要です。${regionName}内へ365日24時間受付・最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは状況診断表で確認できます。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
+    situationDiagnosis: PET_SITUATION_DIAGNOSIS,
+    smellCauseTable: SMELL_CAUSE_TABLE.filter((r) =>
+      ['ペット尿・便', '加齢臭・皮脂', 'カビ・湿気'].includes(r.cause),
+    ),
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜ペット臭の根本消臭事例`,
+      body: `${city}で「ペット同乗後に車内が獣臭く、消臭剤で隠しても戻る」とのご依頼。尿染み箇所の酵素分解と車内リンサーで臭いの元を抽出し、日常利用に戻れた事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'ペット臭は芳香剤でごまかせますか？',
+        a: 'ごまかせません。芳香剤は上書きに過ぎず、湿度でアンモニア臭が再発します。原因の尿・皮脂を酵素とリンサーで除去するのが先です。',
+      },
+      {
+        q: '犬と猫で難易度は違いますか？',
+        a: '猫尿は染み込みが深く、完全無臭化が難しい場合があります。犬尿・粗相は改善しやすい傾向です。見込みは施工前に正直にお伝えします。',
+      },
+    ],
   },
   ase: {
     troubleType: 'seat',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の汗臭い・汗ジミは、シートに染み込んだ皮脂と菌が原因です。換気だけでは消えず、温水リンサーによるシート洗浄が効果的です。${regionName}内へ出張対応。`,
+      `【結論】${regionName}で車内の汗臭い・汗ジミは、シートに染み込んだ皮脂と菌が原因です。換気だけでは消えず、温水リンサーによるシート洗浄が効果的です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜／消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
+    situationDiagnosis: ODOR_SITUATION_DIAGNOSIS.filter((r) =>
+      r.situation.includes('シート') || r.situation.includes('黄ばみ') || r.situation.includes('天井'),
+    ),
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜汗ジミ・皮脂臭のシート洗浄事例`,
+      body: `${city}の通勤車で運転席の汗ジミと皮脂臭のご相談。布シートへ泡洗い＋リンサー抽出し、座面の黄ばみと臭いを改善した事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: '汗臭いシートは自分で拭けば消えますか？',
+        a: '表面の皮脂は軽く改善することがありますが、ウレタン内部の菌までは届きません。翌日以降も臭いが残るならリンサー洗浄が境界です。',
+      },
+    ],
   },
   'hoken-kyuto': {
     troubleType: 'vomit',
@@ -611,9 +812,23 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '運転中に子供が吐いたとき、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で子どもの車内嘔吐は、4日以内の出張リンサー洗浄が最も確実です。市販消臭スプレーは使わず、固形物をこすらず取り除き、40℃温水でシート内部まで洗浄します。手が離せない緊急時も365日24時間受付。${regionName}内へ最短即日出張、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で子どもの車内嘔吐は、4日以内の出張リンサー洗浄が最も確実です。市販消臭スプレーは使わず、固形物をこすらず取り除き、40℃温水でシート内部まで洗浄します。運転中・手が離せない緊急時も365日24時間受付。安全停車→換気→電話で空き確認が最短ルートです。${regionName}内へ最短即日出張、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜子どもの車内嘔吐・即日復旧事例`,
+      body: `${city}への移動中にお子様が嘔吐。翌朝の送迎が必要なケースで、当日枠の出張リンサーによりチャイルドシート周辺と座席を無臭化し、翌朝の利用に間に合わせた事例です。`,
+    })),
+    extraFaqs: [
+      {
+        q: 'チャイルドシートも一緒に洗ってくれる？',
+        a: '取り外し可能なものは一緒に洗浄できる場合があります。固定式・素材により可否が分かれるため、写真で事前確認します。',
+      },
+      {
+        q: '夜中や休日でも子どもの嘔吐に来てくれる？',
+        a: '365日24時間受付です。空き枠があれば最短即日（深夜〜翌朝含む）をご案内します。まずはお電話で希望時間をお伝えください。',
+      },
+    ],
   },
   'dengen-fuyou': {
     answerFirst: (regionName) =>
@@ -734,11 +949,11 @@ export const REGIONAL_EMERGENCY_CHECKLIST: EmergencyChecklistRow[] = [
 ];
 
 export const REGIONAL_CHECKLIST_HEADING =
-  '車内で吐いた・灯油をこぼした直後、自分で何をすればいい？';
+  '車内で吐いた・灯油をこぼした直後、自分で何をすればいい？｜車のシートのシミの落とし方の初動';
 
 /** Voice / emergency search line shown under Hero (AnswerTarget) */
 export function buildVoiceEmergencyLine(regionName: string): string {
-  return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ出張車内清掃のご相談が可能です。お急ぎの方はお電話ください。`;
+  return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃をご案内します。嘔吐・おもらし・灯油こぼしなど「今日中に何とかしたい」方はお電話ください。`;
 }
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
@@ -793,5 +1008,17 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
     a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
+  },
+  {
+    q: '夜中に車で吐かれた。今から来てくれる？最短どれくらいで到着する？',
+    a: '365日24時間受付のため、夜間でも空き枠があれば最短即日（当日深夜〜翌朝）の出張をご案内できます。到着目安はエリアと稼働状況により、首都圏・関西主要部はおおむね数時間以内の枠が出やすい一方、混雑時は翌日午前になることもあります。嘔吐は4日ルールがあるため、まず電話で「今すぐ／今夜／明朝」の希望を伝えて空きを確定するのが最短ルートです。',
+  },
+  {
+    q: '車のシートのシミの落とし方は？自分でやる限界とプロの境界は？',
+    a: '表面の軽い飲みこぼしなら、乾いた布で叩き吸い→ぬるま湯で軽く叩き拭きまでが自助の安全圏です。ゴシゴシ擦る・強い洗剤・塩素系は繊維を傷めシミを広げます。嘔吐・尿・灯油・ペット粗相、または一晩置いて酸っぱい／アンモニア臭が残る場合はウレタン内部まで浸透しているため、温水リンサー抽出のプロ境界です。座席1脚から出張対応でき、写真3枚で境界判断の無料相談が可能です。',
+  },
+  {
+    q: '渋滞中に子どもがおもらしした。運転中で手が離せないとき、最初に何をすればいい？',
+    a: 'まず安全な場所に停車（路肩・SA・パーキング）し、チャイルドシートや衣類の汚染範囲を確認してください。乾いたタオルで押さえて水分を吸い取り、こすらない・ファブリーズ等の香料スプレーは使わないのが鉄則です。換気してから走行を再開し、到着後できるだけ早く写真をLINEで送るか電話で相談してください。乾いて見えなくなっても尿は内部に残るため、当日〜翌日の座席1脚洗浄が再発防止になります。',
   },
 ];
