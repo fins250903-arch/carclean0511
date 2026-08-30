@@ -532,8 +532,306 @@ export const AD_LP_PROCESS_GUIDES: Record<string, AdLpProcessGuide> = {
     ],
     caveat: '500cc超は洗浄だけでは限界の場合があります。部品交換や保険活用も選択肢として提示します。',
   },
+  'kyuto-cleaning': {
+    heading: '車内嘔吐クリーニングの工程',
+    intro: '酸性の吐瀉物はこすらず除去し、アルカリ中和＋温水リンサーでシート奥まで抽出します。',
+    steps: [
+      {
+        title: '固形物の安全除去',
+        body: 'こすらずすくい取り、汚染範囲を広げない初動を徹底します。',
+      },
+      {
+        title: 'アルカリ中和',
+        body: '嘔吐物の酸性を特殊アルカリ電解水で中和し、臭いの定着を抑えます。',
+      },
+      {
+        title: '温水リンサー抽出',
+        body: '約40℃温水でウレタン層まで洗い出し、吸引で回収します。',
+      },
+      {
+        title: '乾燥・利用目安の案内',
+        body: '当日〜翌日の乗車目安と、保険申請用の記録も必要に応じてご案内します。',
+      },
+    ],
+    tiers: [
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '嘔吐・ゲロ臭の標準',
+      },
+      {
+        label: '座席1脚から',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: '1席のみのとき',
+      },
+      {
+        label: '所要時間',
+        price: '約2〜4時間',
+        note: '乾いた後の固着は長め',
+      },
+    ],
+    caveat: '4日以上放置や広範囲汚染は完全無臭が難しい場合があります。見込みは現地で説明します。',
+  },
+  'shanai-nioi': {
+    heading: '車内の臭い取り・消臭の流れ',
+    intro: '原因（生活臭・タバコ・ペット・エアコン等）を切り分け、香料ではなく洗浄で除去します。',
+    steps: ODOR_STEPS,
+    tiers: [
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '原因洗浄の標準',
+      },
+      {
+        label: 'エアコン内部洗浄',
+        price: `${yen(CAR_PRICING.acInternalWash)}〜`,
+        note: 'ON時だけ臭う場合に追加',
+      },
+      {
+        label: '所要時間',
+        price: '約1.5〜3時間',
+        note: '複合臭は長め',
+      },
+    ],
+    caveat: '長年の喫煙・猫尿などは完全無臭を保証できない場合があります。',
+  },
+  'chuko-tabako': {
+    heading: '中古車タバコ臭・ヤニ洗浄の流れ',
+    intro: '天井・シート・エアコンに吸着したタールは、丸ごと洗浄とオゾン仕上げが有効です。',
+    steps: [
+      {
+        title: '喫煙歴・臭いの程度確認',
+        body: '天井のヤニ黄ばみ、シート、吹き出し口の臭いを確認し、改善見込みを先にお伝えします。',
+      },
+      {
+        title: '天井・シートの温水洗浄',
+        body: 'ヤニとニコチンが染みた繊維をリンサー抽出し、臭いの吸着源を減らします。',
+      },
+      {
+        title: '必要ならエアコン内部も',
+        body: 'ON時にヤニ臭が強い場合は、エバポレーター寄りの内部洗浄を追加します。',
+      },
+      {
+        title: 'オゾン仕上げと限界説明',
+        body: '仕上げ脱臭後も、長年喫煙車は完全無臭化が70〜80%程度の場合があります。',
+      },
+    ],
+    tiers: [
+      {
+        label: '普通車消臭セット',
+        price: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+        note: '中古車タバコ臭の標準',
+      },
+      {
+        label: 'エアコン内部洗浄',
+        price: `${yen(CAR_PRICING.acInternalWash)}〜`,
+        note: 'オプション',
+      },
+      {
+        label: '所要時間',
+        price: '約2.5〜4時間',
+        note: '天井洗浄込み',
+      },
+    ],
+    caveat: '天井裏までヤニが回った車は完全無臭を保証できません。納車前でも対応可能です。',
+  },
+  'tabako-yani': {
+    heading: 'タバコヤニ・喫煙臭洗浄の流れ',
+    intro: 'ヤニは天井からフロアまで広域吸着しやすいため、部分拭きでは戻りやすいです。',
+    steps: [
+      {
+        title: 'ヤニ付着箇所の特定',
+        body: '天井・ピラー・シート・フロアの黄ばみと臭いを確認します。',
+      },
+      {
+        title: '温水リンサー洗浄',
+        body: 'タール・ニコチンを洗い流し、香料マスキングに頼りません。',
+      },
+      {
+        title: 'オゾン脱臭',
+        body: '洗浄後の残留臭を仕上げで低減します。',
+      },
+      {
+        title: '再発しやすい条件の説明',
+        body: 'エアコン内部や天井裏の限界も事前に共有します。',
+      },
+    ],
+    tiers: [
+      {
+        label: '普通車消臭セット',
+        price: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+        note: 'ヤニ・喫煙臭',
+      },
+      {
+        label: '軽自動車消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '車格による',
+      },
+      {
+        label: '所要時間',
+        price: '約2.5〜4時間',
+        note: '広範囲ほど長め',
+      },
+    ],
+    caveat: '完全無臭化の目安は70〜80%。限界まで清潔な状態へ引き上げます。',
+  },
+  unko: {
+    heading: 'うんち汚れ・除菌洗浄の工程',
+    intro: '衛生リスクがあるため、固形物除去後は除菌とリンサー抽出をセットで行います。',
+    steps: [
+      {
+        title: '固形物・汚染範囲の除去',
+        body: 'こすらず取り除き、シート溝・フロアまで広がりを確認します。',
+      },
+      {
+        title: '酵素分解＋除菌',
+        body: '臭いと菌の温床になりやすい残渣を酵素と除菌工程で処理します。',
+      },
+      {
+        title: '温水リンサー抽出',
+        body: '繊維奥まで洗い流し、吸引回収します。',
+      },
+      {
+        title: '乾燥仕上げ',
+        body: '湿気が残ると臭いが戻りやすいため、換気・乾燥まで行います。',
+      },
+    ],
+    tiers: [
+      {
+        label: '座席1脚（消臭）',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: '1席の粗相',
+      },
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '複数席・強い臭い',
+      },
+      {
+        label: '所要時間',
+        price: '約1〜2.5時間',
+        note: '下痢便は長め',
+      },
+    ],
+    caveat: '長時間放置で染みが固定化したケースは、見た目の完全復元が難しい場合があります。',
+  },
+  'pet-unko': {
+    heading: 'ペット粗相（うんち・尿）の洗浄工程',
+    intro: '毛・尿・便の複合汚染は、吸引だけでは足りず洗浄と酵素分解が必要です。',
+    steps: [
+      {
+        title: '汚染箇所の特定',
+        body: 'シート・トランク・マット下まで臭いの出所を確認します。',
+      },
+      {
+        title: '酵素分解＋除菌',
+        body: 'ペット由来の臭い分子を分解し、衛生面もケアします。',
+      },
+      {
+        title: 'リンサー抽出と毛の除去',
+        body: '洗い流しと同時に、織り目の毛も手作業で取り除きます。',
+      },
+      {
+        title: '乾燥・仕上げ',
+        body: '同乗しやすい状態へ戻し、再発しやすい湿気も抑えます。',
+      },
+    ],
+    tiers: [
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: 'ペット粗相の標準',
+      },
+      {
+        label: '座席1脚から',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: '後部座席のみ可',
+      },
+      {
+        label: '所要時間',
+        price: '約1.5〜3時間',
+        note: '毛の量で前後',
+      },
+    ],
+    caveat: '長年の尿染みは完全無臭が難しい場合があります。限界は事前に説明します。',
+  },
+  'specialist-cleaning': {
+    heading: '車内クリーニング専門店の施工の流れ',
+    intro: '基本洗浄と消臭セットを分けてご案内。必要な工程だけを出張で行います。',
+    steps: LIGHT_STEPS,
+    tiers: [
+      {
+        label: '基本洗浄',
+        price: `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`,
+        note: '黄ばみ・生活汚れ',
+      },
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '嘔吐・特殊臭',
+      },
+      {
+        label: '所要時間',
+        price: '約1.5〜3時間',
+        note: '範囲により前後',
+      },
+    ],
+    caveat: 'シートベルト単体の臭いなど部分案件も、必要な範囲だけ見積もりします。',
+  },
+  'kodomo-kyuto': {
+    heading: '子どもの車内嘔吐対応の工程',
+    intro: '翌日の送迎に間に合わせるため、中和とリンサー抽出を優先して復旧します。',
+    steps: [
+      {
+        title: '固形物をこすらず除去',
+        body: 'チャイルドシート周りも含め、汚染を広げない初動を徹底します。',
+      },
+      {
+        title: '中和＋温水抽出',
+        body: '酸性の吐瀉物を中和し、シート奥まで洗い出します。',
+      },
+      {
+        title: '乾燥と利用目安',
+        body: '当日〜翌日の乗車可否をその場でご案内します。',
+      },
+      {
+        title: '再発防止のアドバイス',
+        body: '市販スプレーを使わない理由と、換気のコツもお伝えします。',
+      },
+    ],
+    tiers: [
+      {
+        label: '消臭セット',
+        price: `${yen(CAR_PRICING.lightDeodorize)}〜`,
+        note: '子どもの嘔吐の標準',
+      },
+      {
+        label: '座席1脚から',
+        price: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+        note: '1席のみ',
+      },
+      {
+        label: '所要時間',
+        price: '約2〜4時間',
+        note: '急ぎ案件も空き次第',
+      },
+    ],
+    caveat: 'チャイルドシート本体の洗濯可否は製品により異なります。可能な範囲でご案内します。',
+  },
+};
+
+const PROCESS_GUIDE_ALIASES: Record<string, string> = {
+  'gero-cleaning': 'kyuto-cleaning',
+  'vomit-cleaning': 'kyuto-cleaning',
+  'tobacco-odor': 'tabako-yani',
+  'pet-waste': 'pet-unko',
+  'odor-removal': 'kuruma-nioi-keshi',
+  'mobile-cleaning': 'specialist-cleaning',
+  'seat-washing': 'seat-senjo',
+  'mold-odor': 'shanai-nioi',
 };
 
 export function getAdLpProcessGuide(slug: string): AdLpProcessGuide | undefined {
-  return AD_LP_PROCESS_GUIDES[slug];
+  const key = PROCESS_GUIDE_ALIASES[slug] ?? slug;
+  return AD_LP_PROCESS_GUIDES[key];
 }

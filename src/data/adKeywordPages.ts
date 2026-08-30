@@ -410,7 +410,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>中古車タバコ臭</strong>は、ヤニ付着箇所が広いほど、部分消臭では限界が出ます。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアを中心に洗浄・消臭します。<br /><strong>${rn}</strong>の納車前・納車直後どちらにも対応可能です。`,
     problemEmpathyImage: KW_IMAGES.chukoTabako,
-    mainTitle: (r, d) => `【${r}】中古車のタバコ臭を完全退治！内装丸ごと洗浄で新車のような快適空間へ`,
+    mainTitle: (r, d) => `【${r}】中古車のタバコ臭・煙草ヤニを洗浄除去｜内装丸ごとで快適空間へ`,
     deepTroubles: [
       'せっかく買った中古車なのに、エアコンやシートから染み出るタバコの臭いが我慢できない',
       '子供やタバコ嫌いの家族を乗せたいが、「臭くて乗りたくない」と拒否されてしまう',
