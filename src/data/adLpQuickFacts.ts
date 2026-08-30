@@ -31,25 +31,25 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
   },
   'ac-nioi': {
     intentLabel: 'エアコン臭い対策',
-    priceLabel: `エアコン内部洗浄 ${yen(CAR_PRICING.acInternalWash)}〜（車内洗浄とセット可）`,
+    priceLabel: `エアコン内部洗浄（簡易）${yen(CAR_PRICING.acInternalWash)}〜（車内消臭セット可）`,
     durationLabel: '約1〜2.5時間',
     areaLabel: areaDefault,
   },
   'ac-kusai': {
     intentLabel: 'エアコン臭い対策',
-    priceLabel: `エアコン内部洗浄 ${yen(CAR_PRICING.acInternalWash)}〜（車内洗浄とセット可）`,
+    priceLabel: `エアコン内部洗浄（簡易）${yen(CAR_PRICING.acInternalWash)}〜（車内消臭セット可）`,
     durationLabel: '約1〜2.5時間',
     areaLabel: areaDefault,
   },
   'car-ac-cleaning': {
     intentLabel: '車エアコンクリーニング',
-    priceLabel: `エアコン内部洗浄 ${yen(CAR_PRICING.acInternalWash)}〜／消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
+    priceLabel: `エアコン内部洗浄（簡易）${yen(CAR_PRICING.acInternalWash)}〜／消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
     durationLabel: '約1〜3時間',
     areaLabel: areaDefault,
   },
   'evaporator-senjo': {
     intentLabel: 'エバポレーター洗浄',
-    priceLabel: `エアコン内部洗浄 ${yen(CAR_PRICING.acInternalWash)}〜（シート洗浄セット可）`,
+    priceLabel: `エアコン内部洗浄（簡易）${yen(CAR_PRICING.acInternalWash)}〜（シート洗浄セット可）`,
     durationLabel: '約1〜2.5時間',
     areaLabel: areaDefault,
   },
@@ -162,12 +162,15 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
 const QUICK_FACTS_ALIASES: Record<string, string> = {
   'gero-cleaning': 'kyuto-cleaning',
   'vomit-cleaning': 'kyuto-cleaning',
+  'hoken-kyuto': 'kyuto-cleaning',
   'tobacco-odor': 'tabako-yani',
   'pet-waste': 'pet-unko',
   'odor-removal': 'kuruma-nioi-keshi',
   'mobile-cleaning': 'specialist-cleaning',
   'seat-washing': 'seat-senjo',
   'mold-odor': 'shanai-nioi',
+  'ac-mold': 'evaporator-senjo',
+  'pet-hair-odor': 'oshikko',
 };
 
 export function getAdLpQuickFacts(slug: string): AdLpQuickFactSet | undefined {

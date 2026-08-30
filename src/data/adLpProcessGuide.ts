@@ -823,12 +823,15 @@ export const AD_LP_PROCESS_GUIDES: Record<string, AdLpProcessGuide> = {
 const PROCESS_GUIDE_ALIASES: Record<string, string> = {
   'gero-cleaning': 'kyuto-cleaning',
   'vomit-cleaning': 'kyuto-cleaning',
+  'hoken-kyuto': 'kyuto-cleaning',
   'tobacco-odor': 'tabako-yani',
   'pet-waste': 'pet-unko',
   'odor-removal': 'kuruma-nioi-keshi',
   'mobile-cleaning': 'specialist-cleaning',
   'seat-washing': 'seat-senjo',
   'mold-odor': 'shanai-nioi',
+  'ac-mold': 'evaporator-senjo',
+  'pet-hair-odor': 'oshikko',
 };
 
 export function getAdLpProcessGuide(slug: string): AdLpProcessGuide | undefined {

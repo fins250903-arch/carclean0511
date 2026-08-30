@@ -96,11 +96,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
       `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.petNioi,
+    ogImage: KW_IMAGES.omorashi,
     heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
-    fvImage: KW_IMAGES.petNioi,
+    fvImage: KW_IMAGES.omorashi,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
@@ -108,7 +108,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
-    problemEmpathyImage: KW_IMAGES.petNioi,
+    problemEmpathyImage: KW_IMAGES.omorashi,
     problemEmpathyAlt: '後部座席のペットおしっこ汚れのイメージ（施工関連）',
     mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
     deepTroubles: [
@@ -136,7 +136,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「レンタカー返却前に気づいたけど、間に合うか不安…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>おもらし</strong>後は、まず水分を吸わせたうえで、残った尿成分を洗い出すのが基本です。<br />私たちは<strong>${dn}</strong>まで出張し、状況に合わせた泡洗い・消臭・乾燥まで行います。<br />ご自身では難しい「奥までのニオイ」も、車内クリーニングのプロにお任せください。`,
-    problemEmpathyImage: KW_IMAGES.petNioi,
+    problemEmpathyImage: KW_IMAGES.omorashi,
     problemEmpathyAlt: '座席の染み・生活臭が気になる車内のイメージ',
     mainTitle: (r, d) => `【${r}】車のおもらし・シートの尿染みを早急解決！無かったことに`,
     deepTroubles: [
@@ -237,7 +237,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `車エアコン 臭い ${r}, 車 エアコン カビ臭 ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜エアコン臭い対策`,
-    heroHighlight: ['エアコン臭い', '車内洗浄で改善'],
+    heroHighlight: ['エアコン臭い', '内部から洗浄'],
     heroSubcatch: (d) => `${d}の車エアコン臭い`,
     fvImage: KW_IMAGES.acNioi,
     heroFooter: kwFooter('エアコン臭い'),
@@ -246,7 +246,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「ディーラーではエアコンフィルター交換だけで、改善しなかった…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車エアコン臭い</strong>は、ダクト内だけでなく、車内全体の湿度や汚れとも関係します。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せて臭いの原因を減らします。<br />状況に応じて施工範囲をご提案し、無理なオプションは押し付けません。`,
+      `<strong>車エアコン臭い</strong>の本命は、ダッシュボード内エバポレーターのカビ・雑菌です。フィルター交換だけでは再発しやすいです。<br /><strong>${dn}</strong>へ出張し、<strong>エアコン内部洗浄（簡易）</strong>で吹き出し口から洗浄・吸引し、必要なら車内消臭セットもご提案します。<br />状況に応じて施工範囲をご提案し、無理なオプションは押し付けません。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '車内のスチーム洗浄・臭い対策のイメージ',
     mainTitle: (r) => `【${r}】車エアコン臭い対策｜ON時の酸っぱい・カビ臭を出張で改善`,
@@ -265,7 +265,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `エアコン クサイ ${r}, エアコン 臭い 対策 ${r}, エアコン カビ臭 ${r}, 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜エアコン 臭い・クサイ`,
-    heroHighlight: ['エアコン クサイ', '車内洗浄で改善'],
+    heroHighlight: ['エアコン クサイ', '内部から洗浄'],
     heroSubcatch: (d) => `${d}のエアコン臭い・クサイ対策`,
     fvImage: KW_IMAGES.acNioi,
     heroFooter: kwFooter('エアコン臭い'),
@@ -275,7 +275,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「エアコンクリーニングを頼んでも、すぐにクサイ臭が戻ってきた…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
+      `<strong>エアコン 臭い・クサイ</strong>は、エバポレーター内部のカビが原因のことが多いです。<br /><strong>${dn}</strong>へ出張し、<strong>エアコン内部洗浄（簡易）</strong>で臭いの元を減らし、必要なら車内洗浄もセットでご案内します。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
     mainTitle: (r) => `【${r}】エアコンが臭い・クサイ対策｜ON時の酸っぱい臭を出張内部洗浄`,
@@ -326,7 +326,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「消臭キャンだけでは根本解決にならなかった…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>加齢臭</strong>対策は、臭いの付着面を広く洗うことが近道です。<br /><strong>${dn}</strong>へ出張し、天井・シート・フロアマットまで状況に応じて洗浄します。<br />共用車やビジネス車の印象改善にも、車内クリーニングをご活用ください。`,
-    problemEmpathyImage: KW_IMAGES.tabakoYani,
+    problemEmpathyImage: KW_IMAGES.chukoKareisyu,
     problemEmpathyAlt: '加齢臭・車内の体臭が気になる座席・天井のイメージ',
     mainTitle: (r) => `【${r}】車の加齢臭・体臭対策｜天井・シートまで出張消臭洗浄`,
     deepTroubles: [
@@ -538,7 +538,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `車 エアコンクリーニング ${r}, カーエアコン クリーニング ${r}, 車内クリーニング ${r}, エアコン カビ臭 ${r}`,
     ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜車 エアコンクリーニング`,
-    heroHighlight: ['エアコン臭い', '車内洗浄セット'],
+    heroHighlight: ['エアコン臭い', '内部洗浄セット'],
     heroSubcatch: (d) => `${d}の車エアコンクリーニング`,
     fvImage: KW_IMAGES.acNioi,
     heroFooter: kwFooter('エアコン臭い'),
@@ -547,7 +547,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「ディーラーではエアコンフィルター交換だけで改善しなかった…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車 エアコンクリーニング</strong>は、ダクト周りと車内全体の洗浄を組み合わせるのが近道です。<br /><strong>${dn}</strong>へ出張し、状況に応じた施工範囲をご提案します。`,
+      `<strong>車 エアコンクリーニング</strong>は、エバポレーター<strong>内部洗浄（簡易）</strong>と、必要に応じた車内消臭の組み合わせが近道です。<br /><strong>${dn}</strong>へ出張し、状況に応じた施工範囲をご提案します。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
     problemEmpathyAlt: '車エアコン・車内の臭い対策イメージ',
     mainTitle: (r) => `【${r}】車エアコンクリーニング出張｜カビ・酸っぱい臭いを内部洗浄で対策`,
