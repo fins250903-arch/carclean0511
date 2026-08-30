@@ -43,7 +43,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、潮風の塩分除去、シートのカビ臭、タバコ臭、砂汚れ、レンタカー清掃" },
             { label: "使用技術", value: "40℃温水洗浄、除菌消臭、特殊アルカリ洗浄剤（無害化タイプ）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -114,7 +114,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、タバコ臭、黄砂・PM2.5アレルギー対策、ペットの毛・臭い" },
             { label: "使用技術", value: "40℃温水高圧吸引、除菌消臭、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / ミニバン：36,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / ミニバン：38,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -175,7 +175,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐（車酔い）、加齢臭、タバコ臭、ペット臭、本革シートの汚れ、飲みこぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -236,7 +236,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、タバコ臭、ペット臭、飲みこぼし、ダニ・カビ対策" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -297,7 +297,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐（ゲロ）の除菌消臭、加齢臭、ペット臭、タバコのヤニ汚れ、飲みこぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（使用後無害化）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つ専門員が直接訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / ミニバン：36,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / ミニバン：38,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -355,7 +355,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、タバコ臭、トラックキャビンの汚れ、砂汚れ、飲みこぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / トラックキャビン：35,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / トラックキャビン：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -412,7 +412,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、ペット臭（獣臭）、砂・海水汚れ、加齢臭、タバコ臭、食べこぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、安定化二酸化塩素消臭、業務用リンサー、オゾン脱臭" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 大型車・SUV：36,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 大型車・SUV：38,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -494,7 +494,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、タバコ臭、ペット臭、食べこぼし、カビ臭" },
             { label: "使用技術", value: "オゾン脱臭、酵素クリーニング、40℃温水洗浄、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -553,7 +553,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、火山灰（ヨナ）汚れ、ペット臭、タバコ臭、飲みこぼし" },
             { label: "使用技術", value: "100℃高温スチーム洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -608,7 +608,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐、加齢臭、タバコ臭、食べこぼし（抹茶・コーヒー）、カビ臭" },
             { label: "使用技術", value: "40℃温水洗浄、植物由来酵素洗浄（京友禅発想）、天然フィトンチッド消臭、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -663,7 +663,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐・車酔い、灯油こぼし、ペット粗相、タバコ・加齢臭、融雪剤の泥汚れ、湿気・カビ臭" },
             { label: "使用技術", value: "灯油中和洗浄、40℃温水高圧洗浄、100℃スチーム、特殊アルカリ洗浄剤、業務用リンサー、エバポレーター洗浄" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問（宮城県内契約出張枠）" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜 / 灯油専用洗浄：別途見積（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜 / 灯油専用洗浄：別途見積（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -718,7 +718,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "タバコ臭、加齢臭、ダニ・ハウスダスト、嘔吐、ペット臭" },
             { label: "使用技術", value: "強力バキューム吸引、40℃温水洗浄、抗菌コーティング、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -775,7 +775,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "加齢臭、嘔吐、泥汚れ（キャンプ）、アレルギー対策、タバコ臭" },
             { label: "使用技術", value: "アルカリ電解水洗浄、大量清水すすぎ、温水リンサー、界面活性剤低減施工" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -829,7 +829,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐・車酔い、灯油こぼし、ペット粗相、タバコ・加齢臭、キャンプ・砂汚れ、東京通勤の汗臭" },
             { label: "使用技術", value: "40℃温水高圧洗浄、100℃スチーム、隙間専用ノズル洗浄、特殊アルカリ洗浄剤、業務用リンサー、エバポレーター洗浄" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問（栃木県内契約出張枠）" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜 / 灯油専用洗浄：別途見積（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜 / 灯油専用洗浄：別途見積（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -885,7 +885,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐・車酔い、灯油こぼし、ペット粗相、タバコ・加齢臭、工場通勤の汗臭、カビ・湿気臭" },
             { label: "使用技術", value: "40℃温水高圧洗浄、100℃スチーム、特殊アルカリ洗浄剤、業務用リンサー、エバポレーター洗浄" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問（群馬県内契約出張枠）" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜 / 灯油専用洗浄：別途見積（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜 / 灯油専用洗浄：別途見積（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -941,7 +941,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "輸入車・本革シートの嘔吐、ペット臭、加齢臭、タバコ臭、食べこぼし" },
             { label: "使用技術", value: "本革専用クリーニング、40℃温水高圧洗浄、酵素消臭、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、高級車の取扱実績も豊富なベテラン専門員が訪問" },
-            { label: "目安料金", value: "普通車：28,000円〜 / 輸入車・本革シート：別途見積" }
+            { label: "目安料金", value: "普通車：29,000円〜 / 輸入車・本革シート：別途見積" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -1000,7 +1000,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な解決悩み", value: "嘔吐（車酔い）、灯油こぼし、加齢臭、タバコ臭、ペット臭、雪解け後の泥汚れ" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤（分解後無害）、業務用リンサー" },
             { label: "スタッフ", value: "施工歴3年以上、年間300台以上の実績を持つベテラン専門員が訪問" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -1054,7 +1054,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "四日市市、津市、伊勢市、松阪市、鈴鹿市、桑名市ほか三重県全域" },
             { label: "主な解決悩み", value: "嘔吐、灯油こぼし、ペット臭、タバコ臭、車酔い" },
             { label: "使用技術", value: "40℃温水高圧洗浄、灯油中和洗浄、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 灯油除去：30,000円〜/席（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 灯油除去：30,000円〜/席（税込）" }
         ]
     },
     "岐阜県": {
@@ -1074,7 +1074,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "岐阜市、大垣市、多治見市、各務原市、高山市ほか岐阜県全域" },
             { label: "主な解決悩み", value: "嘔吐、灯油こぼし、ペット臭、タバコ臭、長距離ドライブの車酔い" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ]
     },
     "静岡県": {
@@ -1094,7 +1094,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "静岡市、浜松市、沼津市、富士市、磐田市、焼津市ほか静岡県全域" },
             { label: "主な解決悩み", value: "嘔吐、車酔い、灯油こぼし、ペット臭、タバコ臭、黄砂・PM2.5" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -1132,7 +1132,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "奈良市、橿原市、生駒市、大和郡山市、天理市ほか奈良県全域" },
             { label: "主な解決悩み", value: "嘔吐、車酔い、ペット臭、タバコ臭、加齢臭" },
             { label: "使用技術", value: "40℃温水高圧洗浄、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -1170,7 +1170,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "佐賀市、唐津市、鳥栖市、伊万里市、武雄市ほか佐賀県全域" },
             { label: "主な解決悩み", value: "嘔吐、中古車タバコ臭、加齢臭、ペット臭、灯油こぼし" },
             { label: "使用技術", value: "40℃温水高圧洗浄、オゾン脱臭、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",
@@ -1210,7 +1210,7 @@ export const regionalPosts: Record<string, RegionalPost> = {
             { label: "主な対応エリア", value: "下関市、宇部市、山陽小野田市、周南市、下松市、光市、柳井市、美祢市ほか山口県西部（本州・離島除く）" },
             { label: "主な解決悩み", value: "嘔吐、灯油こぼし、タクシー・観光バス清掃、トラック荷台付近の臭い、中古車タバコ臭" },
             { label: "使用技術", value: "40℃温水高圧洗浄、除菌消臭、特殊アルカリ洗浄剤、業務用リンサー" },
-            { label: "目安料金", value: "軽自動車：22,000円〜 / 普通車：28,000円〜（税込）" }
+            { label: "目安料金", value: "軽自動車：24,000円〜 / 普通車：29,000円〜（税込）" }
         ],
         structuredData: {
             "@context": "https://schema.org",

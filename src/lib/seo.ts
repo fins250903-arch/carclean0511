@@ -98,6 +98,8 @@ import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl }
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
+import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
+import { CAR_PRICING, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
     AUTHOR,
@@ -344,7 +346,9 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
 export const generateAdKeywordRegionMetadata = (regionName: string, path: string, kw: AdKeywordPageDef): Metadata => {
 
-    const title = `${regionName}の${kw.seoTitle}｜${STORE_NAME}`;
+    const seoTitle = typeof kw.seoTitle === 'function' ? kw.seoTitle(regionName) : kw.seoTitle;
+
+    const title = `${regionName}の${seoTitle}｜${STORE_NAME}`;
 
     const description = kw.seoDescription(regionName);
 
@@ -396,7 +400,7 @@ export const generateAdKeywordRegionMetadata = (regionName: string, path: string
 
                     height: 630,
 
-                    alt: `${regionName} ${kw.seoTitle} ${STORE_NAME}`,
+                    alt: `${regionName} ${seoTitle} ${STORE_NAME}`,
 
                 },
 
@@ -585,7 +589,14 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         speakable: {
             '@type': 'SpeakableSpecification',
-            cssSelector: ['.answer-lead', '#aio-content .bg-blue-50'],
+            cssSelector: [
+                '.answer-lead',
+                '.speakable-voice',
+                '#aio-content .bg-blue-50',
+                '#emergency-checklist h2',
+                '#nioi-answer .answer-lead',
+                '#situation-diagnosis h2',
+            ],
         },
 
     };
@@ -638,7 +649,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         telephone: OPERATOR.telephone,
 
-        priceRange: isTruck ? '¥35,000〜' : isBus ? '¥22,000〜' : '¥22,000〜',
+        priceRange: isTruck
+          ? `¥${TRUCK_PRICING.ton2Cab.toLocaleString('ja-JP')}〜`
+          : isBus
+            ? '応相談'
+            : `¥${CAR_PRICING.seatSingleBasic.toLocaleString('ja-JP')}〜`,
 
         paymentAccepted: [...OPERATOR.paymentAccepted],
 
@@ -806,13 +821,17 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             priceCurrency: 'JPY',
 
-            price: isTruck ? '35000' : '22000',
+            price: isTruck
+              ? String(TRUCK_PRICING.ton2Cab)
+              : String(CAR_PRICING.seatSingleBasic),
 
             priceSpecification: {
 
                 '@type': 'PriceSpecification',
 
-                minPrice: isTruck ? '35000' : '22000',
+                minPrice: isTruck
+                  ? String(TRUCK_PRICING.ton2Cab)
+                  : String(CAR_PRICING.seatSingleBasic),
 
                 priceCurrency: 'JPY',
 
@@ -881,7 +900,29 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
     const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
-    const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])];
+    const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
+        if (!needsOutletBorrow(regionName)) return faq;
+        const powerRelated =
+            faq.q.includes('電源') ||
+            faq.q.includes('マンション') ||
+            faq.a.includes('発電機') ||
+            faq.a.includes('電源・水道') ||
+            faq.a.includes('電源不要');
+        if (!powerRelated) return faq;
+        if (faq.q.includes('電源') || faq.q.includes('水道や電源')) {
+            return { ...faq, a: powerFaqAnswer(regionName) };
+        }
+        return {
+            ...faq,
+            a: faq.a
+                .replace(/電源・水道の確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
+                .replace(/電源確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
+                .replace(/自社車両に高性能発電機を搭載しておりますので、現場での電源確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
+                .replace(/電源不要の自社車両で、/g, '')
+                .replace(/電源・水道不要/g, OUTLET_BORROW_SHORT)
+                .replace(/電源不要/g, OUTLET_BORROW_SHORT),
+        };
+    });
 
     const faqPage = {
 
@@ -1048,13 +1089,22 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             currency: 'JPY',
 
-            value: isTruck ? '35000' : isBus ? '22000' : '22000',
+            value: isTruck
+              ? String(TRUCK_PRICING.ton2Cab)
+              : isBus
+                ? String(CAR_PRICING.seatSingleBasic)
+                : String(CAR_PRICING.seatSingleBasic),
 
         },
 
         supply: [
 
-            { '@type': 'HowToSupply', name: '出張用専用車両（電源・水道不要）' },
+            {
+                '@type': 'HowToSupply',
+                name: needsOutletBorrow(regionName)
+                    ? `出張用専用車両（${OUTLET_BORROW_SHORT}）`
+                    : '出張用専用車両（電源・水道不要）',
+            },
 
             { '@type': 'HowToSupply', name: '100℃スチーム洗浄機' },
 
@@ -1070,7 +1120,10 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             name: item.title,
 
-            text: item.desc,
+            text:
+                item.title.includes('現地') || item.desc.includes('電源')
+                    ? powerFlowDesc(regionName)
+                    : item.desc,
 
             url: `${url}#step-${index + 1}`,
 

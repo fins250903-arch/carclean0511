@@ -1,6 +1,7 @@
 ---
 import { getRegionCustomization } from '../../data/regionCustomization';
 import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
+import { powerHighlightLine } from '../../lib/powerPolicy';
 import type { ServiceNiche } from '../../lib/niche';
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
 const custom = getRegionCustomization(regionName, subareaId);
 const updated = formatContentFreshnessJa();
+const powerLine = powerHighlightLine(regionName);
 
 const serviceFocus =
   niche === 'truck'
@@ -49,7 +51,7 @@ const serviceFocus =
       <ul class="grid md:grid-cols-2 gap-2 text-sm text-gray-600">
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 本部（岡山）：品質・機材・研修・保険書類</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 現場（{displayName}）：出張施工・即日対応</li>
-        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 電源・水道不要（発電機・水タンク搭載）</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {powerLine}</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 出張費は{regionName}内原則無料</li>
       </ul>
     </div>

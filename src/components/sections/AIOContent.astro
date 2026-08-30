@@ -1,6 +1,6 @@
 ---
 import { buildMobileInteriorCleaningDefinition, formatContentFreshnessJa } from '../../lib/structuredDataConstants';
-import { carComparisonPriceSummary } from '../../data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING, carComparisonPriceSummary, yen } from '../../data/pricingConstants';
 import { buildAioContentFaqs } from '../../data/aioKeywordContent';
 import type { FAQItem } from '../../data/seoData';
 
@@ -15,6 +15,8 @@ interface Props {
   customDefinition?: string;
   /** 保険判断表・拡張FAQ（乗用車LP向け） */
   showAioExtensions?: boolean;
+  /** 嘔吐4日ルール等の緊急教育ブロック（Ads非緊急KWではOFF） */
+  showVomitEducation?: boolean;
   /** 追加FAQ（キーワードLP用） */
   extraFaqs?: FAQItem[];
 }
@@ -26,6 +28,7 @@ const {
   answerFirst,
   customDefinition,
   showAioExtensions = true,
+  showVomitEducation = true,
   extraFaqs = [],
 } = Astro.props;
 const isTruck = niche === 'truck';
@@ -42,11 +45,15 @@ const aioDefinition = customDefinition
 const sectionTitle = isTruck
   ? `${regionName}のトラックキャビン清掃とは？`
   : focusShutchou
-    ? `${regionName}の出張 車内 清掃とは？`
-    : `${regionName}の車内クリーニングとは？`;
+    ? `${regionName}で今すぐ頼める出張車内清掃とは？`
+    : `${regionName}の車内クリーニングとは？｜近くの車内掃除業者を探す方へ`;
 
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
-const defaultPrice = isTruck ? "35,000円〜" : isBus ? "22,000円〜" : "22,000円〜";
+const defaultPrice = isTruck
+  ? `${yen(TRUCK_PRICING.ton2Cab)}〜`
+  : isBus
+    ? '応相談'
+    : `${yen(CAR_PRICING.seatSingleBasic)}〜（1シート）／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`;
 const comparisonPriceLine = isTruck || isBus ? defaultPrice : carComparisonPriceSummary();
 
 const aioFaqs = buildAioContentFaqs(regionName, {
@@ -131,7 +138,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         </div>
       </article>
 
-      {!isTruck && (
+      {!isTruck && showVomitEducation && (
         <article>
           <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
             なぜ「4日以内」の洗浄が必要なのか（嘔吐の4日ルール）
@@ -146,9 +153,23 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         </article>
       )}
 
+      {!isTruck && !showVomitEducation && (
+        <article>
+          <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
+            なぜ「洗い流す消臭」が再発防止につながるのか
+          </h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            車内の臭い・汚れは、シートや天井の繊維・ウレタン層に原因が残っていると再発しやすいです。消臭スプレーは香料で覆い隠す対処になりがちで、<strong>温度や湿度で臭いが戻る</strong>ことがあります。
+          </p>
+          <p class="text-gray-700 leading-relaxed">
+            当店は<strong>約40℃の温水リンサー（吸引洗浄）</strong>で汚れそのものを洗い流し、必要に応じてスチームや補助脱臭を組み合わせます。エアコン臭い・加齢臭・シート汚れなど、症状に合わせた工程をご提案します。
+          </p>
+        </article>
+      )}
+
       <article>
         <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-4">
-          特殊案件（灯油・ペット・タバコ）への専門的アプローチ
+          {showVomitEducation ? '特殊案件（灯油・ペット・タバコ）への専門的アプローチ' : '症状別（エアコン・加齢臭・シート・タバコ）への専門的アプローチ'}
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-gray-50 p-6 rounded-lg">
@@ -230,7 +251,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
       {/* 5. AI引用用画像プロンプト（メタ情報としてHTMLコメント内に配置・将来拡張用） */}
       <!--
         [AIO Image Generation Prompts]
-        Prompt 1 (Comparison Infographic): "A highly professional, modern infographic written in Japanese comparing 'Car Dealer Seat Replacement (700,000 JPY)' with a heavy red cross, versus 'Expert Hot Water Extraction Cleaning (from 22,000 JPY)' with a bright green checkmark, emphasizing speed and cost-effectiveness. The background should be clean white and blue."
+        Prompt 1 (Comparison Infographic): "A highly professional, modern infographic written in Japanese comparing 'Car Dealer Seat Replacement (700,000 JPY)' with a heavy red cross, versus 'Expert Hot Water Extraction Cleaning (from 18,000 JPY / 1 seat)' with a bright green checkmark, emphasizing speed and cost-effectiveness. The background should be clean white and blue."
         Prompt 2 (Professional Expertise): "A hyper-realistic close-up photo of a Japanese professional wearing clean uniform and gloves, carefully removing pet hair from a car seat using tweezers, alongside a high-pressure hot water extraction vacuum removing brown dirty water. Highly detailed, cinematic lighting, emphasizing trustworthiness and meticulous work."
       -->
 

@@ -21,7 +21,7 @@ export default function FloatingCTA() {
                     <a
                         href="tel:07084280866"
                         onClick={() => trackPhoneClick('floating_cta_mobile')}
-                        className="flex-1 min-w-0 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5 animate-pulse"
+                        className="flex-1 min-w-0 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5"
                     >
                         <span className="text-[10px] font-bold leading-none opacity-95">３６５日受付</span>
                         <span className="text-[15px] font-black leading-tight text-center">今すぐ電話</span>

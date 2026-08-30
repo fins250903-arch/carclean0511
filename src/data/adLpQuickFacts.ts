@@ -106,6 +106,27 @@ export const AD_LP_QUICK_FACTS: Record<string, AdLpQuickFactSet> = {
     intentLabel: '車内の臭い対策',
     priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
     durationLabel: '約1.5〜3時間',
+    intentLabel: '中古車加齢臭対策',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.regularDeodorize)}〜`,
+    durationLabel: '約2〜3.5時間',
+    areaLabel: areaDefault,
+  },
+  'shanai-nioi': {
+    intentLabel: '車内の臭い対策',
+    priceLabel: `消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
+  omorashi: {
+    intentLabel: 'おもらし・尿染み',
+    priceLabel: `座席1脚消臭セット ${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+    durationLabel: '約1.5〜3時間',
+    areaLabel: areaDefault,
+  },
+  ase: {
+    intentLabel: '汗臭・汗ジミ洗浄',
+    priceLabel: `座席1脚 ${yen(CAR_PRICING.seatSingleBasic)}〜`,
+    durationLabel: '約1〜2時間',
     areaLabel: areaDefault,
   },
   'kyuto-cleaning': {

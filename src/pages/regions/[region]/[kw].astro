@@ -43,15 +43,24 @@ import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
-import { buildAioContentFaqs, getAioKeywordContent } from '../../../data/aioKeywordContent';
+import { buildAioContentFaqs, getAioKeywordContent, buildVoiceEmergencyLine } from '../../../data/aioKeywordContent';
 import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
+import {
+  resolveAdDeepTroubles,
+  resolveAdField,
+  resolveAdHighlight,
+} from '../../../data/adKeywordPages';
 import { isNoindexKeywordSlug } from '../../../data/noindexKeywordSlugs';
+import { isNoindexRegionId } from '../../../data/noindexRegions';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
 import AdLpProcessGuide from '../../../components/sections/AdLpProcessGuide.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
 import { getAdLpProcessGuide } from '../../../data/adLpProcessGuide';
+import AdLpIntentGuide from '../../../components/sections/AdLpIntentGuide.astro';
+import { getAdLpIntentGuide, isNonEmergencyTroubleType } from '../../../data/adLpIntentGuides';
+import { carFvPriceHookMain, carFvPriceHookSub, CAR_PRICING, yen } from '../../../data/pricingConstants';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -107,6 +116,21 @@ const metadata = generateAdKeywordRegionMetadata(regionName, path, kw);
 const aioKw = getAioKeywordContent(kwSlug);
 const answerFirst = aioKw?.answerFirst(regionName, displayName);
 const customDefinition = aioKw?.customDefinition?.(regionName);
+const fvCopy = findFvCopy(regionId, kwSlug);
+const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
+const quickFacts = getAdLpQuickFacts(kwSlug);
+const intentGuide = getAdLpIntentGuide(kwSlug);
+const muteEmergencyTone = isNonEmergencyTroubleType(aioKw?.troubleType);
+/** Visible FAQ extras must match FAQPage schema (AIOContent includeExtended ↔ schema) */
+const aioVisibleFaqs = buildAioContentFaqs(regionName, {
+  includeExtended: !muteEmergencyTone,
+  extraFaqs: aioKw?.extraFaqs,
+});
+/** Bottom FAQ: skip extended to avoid duplicating AIOContent's FAQ block */
+const aioExtraFaqs = buildAioContentFaqs(regionName, {
+  includeExtended: false,
+  extraFaqs: aioKw?.extraFaqs,
+});
 const jsonLdData = generateJsonLd(
   regionName,
   path,
@@ -120,44 +144,81 @@ const jsonLdData = generateJsonLd(
       displayName,
       metadata,
     }),
-    extraFaqs: buildAioContentFaqs(regionName, { extraFaqs: aioKw?.extraFaqs }),
+    extraFaqs: aioVisibleFaqs,
   },
 );
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const voiceLine = muteEmergencyTone
+  ? `${displayName}エリアへ出張対応。料金・所要時間の目安を確認のうえ、お電話・LINEで空き状況をご案内します。`
+  : buildVoiceEmergencyLine(displayName);
+const heroHighlight = resolveAdHighlight(kw.heroHighlight, regionName);
 
 const fvCopy = findFvCopy(regionId, kwSlug);
 const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
 const quickFacts = getAdLpQuickFacts(kwSlug);
 const processGuide = getAdLpProcessGuide(kwSlug);
+/** 車KW LPもCTRフック「1シート 18,000円から」を主表示。KW固有価格はサブへ（重複は避ける） */
+const isBusKw = kwSlug === 'bus-senmon';
+const seatHookMain = carFvPriceHookMain();
+const kwSpecificPrice = quickFacts?.priceLabel;
+const kwPriceIsSeatLike =
+  !!kwSpecificPrice &&
+  (kwSpecificPrice.includes('1シート') ||
+    kwSpecificPrice.includes('座席1脚') ||
+    kwSpecificPrice.includes(yen(CAR_PRICING.seatSingleBasic)));
+const kwPriceHookMain = isBusKw
+  ? (kwSpecificPrice ?? 'バス座席洗浄 応相談')
+  : seatHookMain;
+const kwPriceHookSub = isBusKw
+  ? `${displayName}へ出張対応｜税込見積`
+  : [
+      kwSpecificPrice && !kwPriceIsSeatLike ? kwSpecificPrice : null,
+      carFvPriceHookSub(displayName),
+    ]
+      .filter(Boolean)
+      .join('｜');
+const quickFactsPriceLabel = isBusKw
+  ? (kwSpecificPrice ?? 'バス座席洗浄 応相談')
+  : kwSpecificPrice && !kwPriceIsSeatLike
+    ? `${seatHookMain}／${kwSpecificPrice}`
+    : `${seatHookMain}／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`;
 
 const adHero = fvHero
   ? {
       ...fvHero,
       fvImage: kw.fvImage,
       mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
+      priceHookMain: kwPriceHookMain,
+      priceHookSub: kwPriceHookSub,
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
     }
   : {
-      subtitle: kw.heroSubtitle(displayName),
-      highlightLine1: kw.heroHighlight[0],
-      highlightLine2: kw.heroHighlight[1],
+      subtitle: kw.heroSubtitle(displayName, regionName),
+      highlightLine1: heroHighlight[0],
+      highlightLine2: heroHighlight[1],
       subcatch: kw.heroSubcatch(displayName),
       fvImage: kw.fvImage,
       footerText: kw.heroFooter(displayName),
       mainTitle: kw.mainTitle?.(regionName, displayName),
+      priceHookMain: kwPriceHookMain,
+      priceHookSub: kwPriceHookSub,
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
     };
 
 const adProblem = {
-  header: kw.problemHeader,
-  subHeader: kw.problemSubHeader,
-  dealerQuote: kw.problemDealerQuote,
+  header: resolveAdField(kw.problemHeader, regionName),
+  subHeader: resolveAdField(kw.problemSubHeader, regionName),
+  dealerQuote: resolveAdField(kw.problemDealerQuote, regionName),
   bodyHtml: kw.problemBodyHtml(regionName, displayName),
   empathyImage: kw.problemEmpathyImage,
-  empathyAlt: kw.problemEmpathyAlt ?? '',
+  empathyAlt: resolveAdField(kw.problemEmpathyAlt, regionName),
 };
+
+const deepTroubles = resolveAdDeepTroubles(kw.deepTroubles, regionName);
 
 /** slug から niche を解決 */
 const pageNiche: 'car' | 'truck' | 'bus' = kwSlug === 'bus-senmon' ? 'bus' : 'car';
-const noindex = isNoindexKeywordSlug(kwSlug);
+const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
 ---
 
 <MainLayout
@@ -173,12 +234,11 @@ const noindex = isNoindexKeywordSlug(kwSlug);
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={pageNiche} adHero={adHero} />
-      {answerFirst && <AnswerTarget text={answerFirst} />}
       {quickFacts && (
         <AdLpQuickFacts
           displayName={displayName}
           intentLabel={quickFacts.intentLabel}
-          priceLabel={quickFacts.priceLabel}
+          priceLabel={quickFactsPriceLabel}
           durationLabel={quickFacts.durationLabel}
           areaLabel={quickFacts.areaLabel(displayName)}
         />
@@ -192,24 +252,35 @@ const noindex = isNoindexKeywordSlug(kwSlug);
           caveat={processGuide.caveat}
         />
       )}
+      {answerFirst && (
+        <AnswerTarget text={answerFirst} voiceLine={voiceLine} />
+      )}
+      {intentGuide && <AdLpIntentGuide block={intentGuide} />}
       <TroubleSympathy
         displayName={displayName}
-        deepTroubles={kw.deepTroubles}
+        deepTroubles={deepTroubles}
         troubleType={aioKw?.troubleType}
       />
       {aioKw?.emergencyChecklist && (
-        <EmergencyChecklist rows={aioKw.emergencyChecklist} regionName={regionName} />
+        <EmergencyChecklist
+          rows={aioKw.emergencyChecklist}
+          regionName={regionName}
+          heading={aioKw.checklistHeading}
+        />
       )}
       <KeywordAioExtras
         smellCauseTable={aioKw?.smellCauseTable}
         keroseneSeverityMatrix={aioKw?.keroseneSeverityMatrix}
+        situationDiagnosis={aioKw?.situationDiagnosis}
       />
       <AIOContent
         regionName={regionName}
         niche={pageNiche}
         focusShutchou={kwSlug === 'shutchou-senmon' || kwSlug === 'mobile-cleaning'}
         customDefinition={customDefinition}
-        extraFaqs={aioKw?.extraFaqs}
+        extraFaqs={aioKw?.extraFaqs ?? []}
+        showAioExtensions={!muteEmergencyTone}
+        showVomitEducation={!muteEmergencyTone && aioKw?.troubleType !== 'pet-waste'}
       />
       {aioKw?.nicheCaseStudy && (
         <NicheCaseStudy block={aioKw.nicheCaseStudy(regionName)} />
@@ -235,11 +306,11 @@ const noindex = isNoindexKeywordSlug(kwSlug);
       />
       <Targets />
       <AreaCoverage regionName={regionName} />
-      <Flow niche={pageNiche} />
+      <Flow niche={pageNiche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
       <CTA />
-      <FAQ niche={pageNiche} extraFaqs={aioKw?.extraFaqs} />
+      <FAQ niche={pageNiche} extraFaqs={aioExtraFaqs} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink

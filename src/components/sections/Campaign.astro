@@ -1,4 +1,6 @@
 ---
+import { LINE_URL, TEL } from '../../lib/site';
+
 interface Props {
   displayName: string;
 }
@@ -6,21 +8,37 @@ interface Props {
 const { displayName } = Astro.props;
 ---
 
-<section class="py-8 bg-accent/10 border-y-4 border-accent">
+<section class="py-8 bg-accent/10 border-y-4 border-accent" data-cta-section="campaign_mid_cta">
     <div class="container mx-auto px-8 text-center">
         <h2 class="text-3xl md:text-5xl font-black text-red-600 mb-4 drop-shadow-sm bg-white/80 inline-block px-4 py-2 rounded-lg">
             {displayName}WEBキャンペーン
         </h2>
-        <div class="bg-yellow-50 border-4 border-yellow-400 px-12 py-10 rounded-xl shadow-xl max-w-3xl mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-300">
+        <div class="bg-yellow-50 border-4 border-yellow-400 px-8 md:px-12 py-8 md:py-10 rounded-xl shadow-xl max-w-3xl mx-auto transform rotate-1 hover:rotate-0 transition-transform duration-300">
             <p class="text-2xl font-bold text-gray-800 mb-2">
                 今なら、通常2,000円の
             </p>
             <p class="text-4xl md:text-6xl font-black text-red-600 mb-4 animate-pulse">
                 抗菌コート 無料！
             </p>
-            <p class="text-gray-700 font-bold">
+            <p class="text-gray-700 font-bold mb-6">
                 クリーニング後のきれいな状態を長持ちさせ、菌の繁殖を抑えます。
             </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 max-w-2xl mx-auto">
+                <a
+                    href={LINE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 bg-[#06C755] hover:bg-[#05a346] text-white font-black py-3.5 px-5 rounded-xl shadow-lg transition-transform hover:scale-[1.02]"
+                >
+                    LINEで写真見積もり
+                </a>
+                <a
+                    href={`tel:${TEL}`}
+                    class="flex-1 bg-red-600 hover:bg-red-700 text-white font-black py-3.5 px-5 rounded-xl shadow-lg transition-transform hover:scale-[1.02]"
+                >
+                    電話で空き確認 {TEL}
+                </a>
+            </div>
         </div>
     </div>
 </section>

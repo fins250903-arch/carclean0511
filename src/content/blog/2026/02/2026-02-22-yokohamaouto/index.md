@@ -1,10 +1,16 @@
 ---
-title: "【横浜市】日産 マーチの坂道での車酔い…嘔吐トラブルの消臭施工の事例"
-date: 2026-02-22
-categories: 
-  - "jisseki"
-  - "kanagawa"
-coverImage: "マーチ.jpg"
+date: 2026-07-24
+title: 【横浜市】日産 マーチの坂道での車酔い…嘔吐トラブルの消臭施工の事例
+categories:
+  - jisseki
+  - kanagawa
+shortSlug: yokohamaouto
+coverImage: mae.jpg
+seo:
+  meta_description: 後部座席に乗っていたお子様が急な坂道で車酔いしてしまった際の、嘔吐物の処理と消臭・除菌
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 アップダウンの激しい坂道が多く、細い道のストップ＆ゴーが続く横浜市エリア。後部座席に乗っていたお子様が急な坂道で車酔いしてしまった際の、嘔吐物の処理と消臭・除菌クリーニングのご依頼でした。

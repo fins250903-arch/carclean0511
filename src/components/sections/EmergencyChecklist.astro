@@ -4,19 +4,21 @@ import type { EmergencyChecklistRow } from '@/data/aioKeywordContent';
 interface Props {
   rows: EmergencyChecklistRow[];
   regionName?: string;
+  heading?: string;
 }
 
-const { rows, regionName } = Astro.props;
+const { rows, regionName, heading } = Astro.props;
+const title = heading ?? '業者が来る前に｜やること・やってはいけないこと';
 ---
 
 <section id="emergency-checklist" class="py-12 bg-amber-50 border-y border-amber-200">
   <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
     <h2 class="text-xl font-bold text-gray-900 sm:text-2xl mb-2 text-center">
-      業者が来る前に｜やること・やってはいけないこと
+      {title}
     </h2>
     {regionName && (
       <p class="text-sm text-gray-600 text-center mb-8">
-        {regionName}の緊急トラブル向けチェックリスト
+        {regionName}の緊急トラブル向けチェックリスト｜車のシートのシミの落とし方の初動もここに含まれます
       </p>
     )}
     <div class="overflow-x-auto rounded-xl border border-amber-200 shadow-sm bg-white">

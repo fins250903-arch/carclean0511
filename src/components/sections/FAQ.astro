@@ -1,17 +1,43 @@
 ---
 import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import type { ServiceNiche } from '../../lib/niche';
+import { needsOutletBorrow, powerFaqAnswer } from '../../lib/powerPolicy';
 
 interface Props {
   niche?: ServiceNiche;
   extraFaqs?: FAQItem[];
+  regionName?: string;
 }
 
-const { niche = 'car', extraFaqs = [] } = Astro.props;
+const { niche = 'car', extraFaqs = [], regionName } = Astro.props;
 
 const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
-const faqs = [...baseFaqs, ...extraFaqs];
+
+const faqs = [...baseFaqs, ...extraFaqs].map((faq) => {
+  if (!regionName || !needsOutletBorrow(regionName)) return faq;
+  const powerRelated =
+    faq.q.includes('電源') ||
+    faq.q.includes('マンション') ||
+    faq.a.includes('発電機') ||
+    faq.a.includes('電源・水道') ||
+    faq.a.includes('電源不要');
+  if (!powerRelated) return faq;
+  if (faq.q.includes('電源') || faq.q.includes('水道や電源')) {
+    return { ...faq, a: powerFaqAnswer(regionName) };
+  }
+  // Soft-replace generator claims in related answers
+  return {
+    ...faq,
+    a: faq.a
+      .replace(/電源・水道の確保は不要です[。.]?/g, '20ｍ以内での家庭用１００Vコンセントをお借りします。')
+      .replace(/電源確保は不要です[。.]?/g, '20ｍ以内での家庭用１００Vコンセントをお借りします。')
+      .replace(/自社車両に高性能発電機を搭載しておりますので、現場での電源確保は不要です[。.]?/g, '20ｍ以内での家庭用１００Vコンセントをお借りします。')
+      .replace(/当店の出張車両は発電機・水タンクを積載しているため、/g, '')
+      .replace(/発電機・水タンク完備のため、/g, '')
+      .replace(/電源不要の自社車両で、/g, ''),
+  };
+});
 ---
 
 <section class="py-10 bg-gray-50" id="faq">

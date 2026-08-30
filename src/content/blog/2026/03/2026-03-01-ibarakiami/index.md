@@ -1,11 +1,17 @@
 ---
-title: "【茨城県水戸市】スイフト、大洗帰りの「潮の香」を消し去る"
-date: 2026-03-01
-categories: 
-  - "jisseki"
-  - "tokublo"
-  - "ibaraki"
-coverImage: "スズキ・スイフトusiro.jpg"
+date: 2026-07-31
+title: 【茨城県水戸市】スイフト、大洗帰りの「潮の香」を消し去る
+categories:
+  - jisseki
+  - tokublo
+  - ibaraki
+shortSlug: ibarakiami
+coverImage: 2.jpg
+seo:
+  meta_description: 魚介類の匂いは、車という密閉空間では凶器にすらなります
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 水戸から大洗へ、週末の釣りは最高の贅沢です。しかし、トランクの中でクーラーボックスから漏れ出したアミエビの汁。これはなかなかの強敵でした。

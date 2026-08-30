@@ -37,18 +37,25 @@ import ServiceMutualLink from '../../components/sections/ServiceMutualLink.astro
 import EmergencyChecklist from '../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../components/sections/NioiAnswerTarget.astro';
+import KeywordAioExtras from '../../components/sections/KeywordAioExtras.astro';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
   buildRegionalNioiAnswerFirst,
+  buildVoiceEmergencyLine,
   getRegionalHeroMainTitle,
   REGIONAL_EMERGENCY_CHECKLIST,
+  REGIONAL_CHECKLIST_HEADING,
+  REGIONAL_SITUATION_DIAGNOSIS,
   buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 import HubIntentBridge from '../../components/sections/HubIntentBridge.astro';
 import AdLpProcessGuide from '../../components/sections/AdLpProcessGuide.astro';
 import { getAdLpProcessGuide } from '../../data/adLpProcessGuide';
+import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
+import { CAR_PRICING, yen } from '../../data/pricingConstants';
+import { isNoindexRegionId } from '../../data/noindexRegions';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -89,6 +96,7 @@ const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 
 const regionId = Astro.params.region?.replace(/-truck$/, '').replace(/-bus$/, '');
+const noindex = isNoindexRegionId(regionId ?? '');
 const post = getRegionalPost(regionName);
 const regionCustom = getRegionCustomization(regionName);
 const displayName = post?.displayName || regionName;
@@ -108,12 +116,13 @@ const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
   extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
 });
 const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
-const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName) : undefined;
-const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName) : undefined;
-const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName) : undefined;
+const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
+const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
+const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
 const hubProcessGuide =
   !isTruck && !isBus ? getAdLpProcessGuide('interior-cleaning') : undefined;
+const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
 ---
 
@@ -123,6 +132,7 @@ const hubProcessGuide =
   keywords={metadata.keywords}
   canonical={metadata.alternates.canonical}
   ogImage={isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png'}
+  noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
 
@@ -145,7 +155,26 @@ const hubProcessGuide =
       {/* Pricing early: Ads often lands 通常清掃 KW on region hubs (empty Final URL) */}
       <Pricing regionName={regionName} niche={niche} />
       {!isTruck && !isBus && (
-        <EmergencyChecklist rows={REGIONAL_EMERGENCY_CHECKLIST} regionName={regionName} />
+        <AdLpQuickFacts
+          displayName={displayName}
+          intentLabel="出張車内クリーニング"
+          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+          durationLabel="約1.5〜3時間"
+          areaLabel={`${displayName}へ出張費無料`}
+        />
+      )}
+      {regionalAnswerFirst && (
+        <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
+      )}
+      {!isTruck && !isBus && (
+        <EmergencyChecklist
+          rows={REGIONAL_EMERGENCY_CHECKLIST}
+          regionName={regionName}
+          heading={REGIONAL_CHECKLIST_HEADING}
+        />
+      )}
+      {!isTruck && !isBus && (
+        <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
       {regionalNioiAnswer && (
         <NioiAnswerTarget regionName={regionName} answerText={regionalNioiAnswer} />
@@ -170,11 +199,11 @@ const hubProcessGuide =
       <RegionalAchievements regionName={regionName} displayName={displayName} niche={niche} />
       <Targets />
       <AreaCoverage regionName={regionName} />
-      <Flow niche={niche} />
+      <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
       <CTA />
-      <FAQ niche={niche} />
+      <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />

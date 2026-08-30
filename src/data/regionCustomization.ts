@@ -84,7 +84,8 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('山口県'),
   },
   沖縄県: {
-    localDispatchLine: '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。',
+    localDispatchLine:
+      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。20ｍ以内での家庭用１００Vコンセントをお借りします。',
     hqFieldParagraph: defaultHqParagraph('沖縄県'),
   },
   三重県: {
@@ -113,7 +114,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     aioSummaryExtra:
       '前橋・高崎・伊勢崎・太田の各エリアに契約出張枠があり、関越道・上信越道の渋滞トラブルや草津・榛名湖ドライブ帰りの嘔吐、内陸の冬に多い灯油こぼしにも地元密着で即対応します。',
     localDispatchLine:
-      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
+      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけます。作業場所から20ｍ以内での家庭用１００Vコンセントをお借りします。',
     hqFieldParagraph: defaultHqParagraph('群馬県'),
   },
   和歌山県: {
@@ -187,7 +188,7 @@ export function getRegionCustomization(regionName: string, subareaId?: string): 
       return {
         ...regionCustomizations['大阪府'],
         localDispatchLine: sub.localDispatchLine,
-        aioSummaryExtra: `${sub.displayName}（大阪府）へ最短即日の出張車内清掃。${sub.localDispatchLine}`,
+        aioSummaryExtra: `${sub.displayName}（大阪府）へ最短即日の出張車内清掃。お急ぎの方は電話で空き状況をご案内。${sub.localDispatchLine}`,
       };
     }
   }

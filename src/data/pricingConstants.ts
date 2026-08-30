@@ -32,12 +32,25 @@ export function yen(amount: number): string {
   return `${amount.toLocaleString('ja-JP')}円`;
 }
 
-/** AIO comparison table — basic wash tier (tax included). */
+/**
+ * Google Ads CTR用の共通価格フック（車LP専用・トラック/バスは使わない）。
+ * RSA・FV・QuickFactsで同一文言に揃える。
+ */
+export function carFvPriceHookMain(): string {
+  return `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`;
+}
+
+export function carFvPriceHookSub(displayName?: string): string {
+  const area = displayName ? `${displayName}へ出張費エリア無料` : '税込・出張費エリア無料';
+  return `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜${area}`;
+}
+
+/** AIO comparison table — basic wash tier (tax included). Lead with seat hook for Ads/AIO alignment. */
 export function carComparisonPriceSummary(): string {
-  return `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜（基本洗浄）／消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜／普通車 ${yen(CAR_PRICING.regularBasic)}〜／座席1脚 ${yen(CAR_PRICING.seatSingleBasic)}〜`;
+  return `座席1脚（1シート）${yen(CAR_PRICING.seatSingleBasic)}〜／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜（基本洗浄）／消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜／普通車 ${yen(CAR_PRICING.regularBasic)}〜`;
 }
 
 /** FAQ / snippet — clarifies basic vs deodorize set. */
 export function carPricingFaqSnippet(): string {
-  return `当店は軽自動車基本洗浄${yen(CAR_PRICING.lightBasic)}〜、嘔吐・灯油などの消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（普通車${yen(CAR_PRICING.regularBasic)}〜／消臭セット${yen(CAR_PRICING.regularDeodorize)}〜）。出張費は対応エリア無料です。`;
+  return `当店は座席1脚（1シート）${yen(CAR_PRICING.seatSingleBasic)}〜、軽自動車基本洗浄${yen(CAR_PRICING.lightBasic)}〜、嘔吐・灯油などの消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（普通車${yen(CAR_PRICING.regularBasic)}〜／消臭セット${yen(CAR_PRICING.regularDeodorize)}〜）。出張費は対応エリア無料です。`;
 }

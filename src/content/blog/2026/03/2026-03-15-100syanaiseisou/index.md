@@ -1,10 +1,16 @@
 ---
-title: "身近な100均5品で愛車を復活！1週間後の嘔吐臭も消せるかも！"
-date: 2026-03-15
-categories: 
-  - "tokublo"
-  - "seisou"
-coverImage: "シエンタ-家族旅行1-e1771336762154.jpg"
+date: 2026-08-02
+title: 身近な100均5品で愛車を復活！1週間後の嘔吐臭も消せるかも！
+categories:
+  - tokublo
+  - seisou
+shortSlug: 100syanaiseisou
+coverImage: siennta-semotare-unti-2.jpg
+seo:
+  meta_description: 鍵を握るのは「中和」という化学反応。嘔吐物の正体は強酸性なので、正反対のアルカリ性である重曹をぶつけるのが一番合理的です。
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 あの日の惨劇から1週間。
