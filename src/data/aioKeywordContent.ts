@@ -314,21 +314,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'pet-waste',
     checklistHeading: '車内でうんち・粗相した直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。車内清掃「特急便」は${regionName}内へ最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1〜2.5時間）。`,
-    emergencyChecklist: EMERGENCY_PET_CHECKLIST,
-    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
-      title: `${regionName}・${city}｜車内うんち汚れの除菌洗浄事例`,
-      body: `${city}でペットの粗相後、市販シートクリーナーでは臭いが残ったケース。酵素分解と温水リンサーでシート溝まで除菌洗浄し、同日中に乗れる状態へ復旧。衛生面の不安を先に説明したうえで施工した事例です。`,
-    })),
-    extraFaqs: [
-      {
-        q: 'うんち汚れは自分で拭いただけでも大丈夫？',
-        a: '表面の固形物除去は有効ですが、繊維奥の残渣や菌は残りやすく臭いが再発します。除菌とリンサー抽出のセットを推奨します。',
-      },
-      {
-        q: '料金と所要時間の目安は？',
-        a: `座席1脚（消臭）${yen(CAR_PRICING.seatSingleDeodorize)}〜、複数席や強い臭いは消臭セット${yen(CAR_PRICING.lightDeodorize)}〜が目安です。所要は約1〜2.5時間です。`,
-      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。香料スプレーは使わず、タオルで水分を吸い取ってから電話相談を。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜（消臭セット）。`,
+      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。香料スプレーは使わず、タオルで水分を吸い取ってから電話相談を。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1〜2.5時間）。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
     situationDiagnosis: PET_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -339,6 +325,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       {
         q: 'うんち汚れは自分で消毒すれば十分？',
         a: '表面の固形物除去と換気までは自助で構いません。ただし繊維・ウレタン内部の菌と臭いまでは家庭用消毒では届きにくく、香料スプレーは悪化しやすいです。プロの酵素＋リンサーが安全です。',
+      },
+      {
+        q: '料金と所要時間の目安は？',
+        a: `座席1脚（消臭）${yen(CAR_PRICING.seatSingleDeodorize)}〜、複数席や強い臭いは消臭セット${yen(CAR_PRICING.lightDeodorize)}〜が目安です。所要は約1〜2.5時間です。`,
       },
       {
         q: '部分洗浄だけ頼めますか？',
@@ -463,8 +453,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'shanai-nioi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の臭いが消えない場合、原因は嘔吐・ペット・タバコ・灯油・カビ・加齢臭・エアコン内部のいずれかにあり、消臭スプレーではウレタン層の「臭いの元」を除去できません。臭いの種類を特定し、40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1.5〜3時間）。`,
-      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1.5〜3時間）。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
     situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
@@ -590,6 +579,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
       `【結論】${regionName}で中古車のタバコ臭（煙草・ヤニ臭）を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜（所要約2.5〜4時間）。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
+    situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の中古車タバコ臭消しとは、蓄積したタール・ニコチンを温水抽出で除去し、オゾン脱臭で仕上げる出張専門サービスです。`,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -604,18 +594,6 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       {
         q: '料金と所要時間の目安は？',
         a: `普通車の消臭セット${yen(CAR_PRICING.regularDeodorize)}〜が目安です。天井洗浄込みで約2.5〜4時間かかることが多いです。`,
-      `【結論】${regionName}で中古車のタバコ臭を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
-    situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
-    customDefinition: (regionName) =>
-      `${regionName}の中古車タバコ臭消しとは、蓄積したタール・ニコチンを温水抽出で除去し、オゾン脱臭で仕上げる出張専門サービスです。`,
-    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
-      title: `${regionName}・${city}｜中古車タバコ臭のリセット事例`,
-      body: `${city}で納車直後の中古車「芳香剤を外すとタバコ臭」とのご相談。天井・シート中心の丸洗いとオゾンで、前オーナー臭を実用レベルまで改善した事例です。`,
-    })),
-    extraFaqs: [
-      {
-        q: 'オゾンだけ・消臭剤だけではダメですか？',
-        a: '一時的な改善には有効な場合がありますが、天井・シートに残るヤニ汚れが臭いの発生源のため再発しやすいです。当店は洗浄を主、オゾンを仕上げ補助として使います。',
       },
       {
         q: '納車前に販売店で清掃済みでも依頼できますか？',

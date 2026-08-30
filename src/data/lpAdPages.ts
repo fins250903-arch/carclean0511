@@ -31,12 +31,9 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
         : `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。電源・水道不要・最短即日。`,
     seoKeywords: (r) =>
       `車内 クリーニング ${r}, 車内 洗浄 ${r}, 車内 清掃 ${r}, 車 クリーニング ${r}, 出張 車内クリーニング ${r}`,
-    ogImage: FV_PASSENGER_HERO,
+    ogImage: KW_IMAGES.rinserWork,
     heroSubtitle: (d) => `${d}｜車内クリーニング（基本洗浄）`,
     heroHighlight: ['基本洗浄', '黄ばみ・生活汚れ'],
-    ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d) => `${d}｜車内クリーニング・シート洗浄専門`,
-    heroHighlight: ['シート丸ごと', 'プロ洗浄＆消臭'],
     heroSubcatch: (d) => `${d}の出張車内クリーニング`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内クリーニング'),
@@ -44,10 +41,9 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     problemSubHeader: '通常の黄ばみ・生活汚れなら基本洗浄。嘔吐・灯油などは別メニューで明確にご案内します。',
     problemDealerQuote: '「洗車店ではシートの黄ばみや臭いが取れず、ディーラーは数日後の予約しか…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内クリーニング（基本洗浄）</strong>は、シートの黄ばみ・生活汚れ・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄まで一貫対応します。<br />嘔吐・灯油・ペット粗相などの特殊臭は消臭セットへご案内します。電源・水道は不要です。`,
       needsOutletBorrow(rn)
-        ? `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。${OUTLET_BORROW_SHORT}。`
-        : `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。電源・水道は不要です。`,
+        ? `<strong>車内クリーニング（基本洗浄）</strong>は、シートの黄ばみ・生活汚れ・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄まで一貫対応します。<br />嘔吐・灯油・ペット粗相などの特殊臭は消臭セットへご案内します。${OUTLET_BORROW_SHORT}。`
+        : `<strong>車内クリーニング（基本洗浄）</strong>は、シートの黄ばみ・生活汚れ・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄まで一貫対応します。<br />嘔吐・灯油・ペット粗相などの特殊臭は消臭セットへご案内します。電源・水道は不要です。`,
     problemEmpathyImage: KW_IMAGES.sienta3After,
     problemEmpathyAlt: '車内クリーニング後の清潔な車内イメージ',
     mainTitle: (r) => `${r}の車内クリーニング｜基本洗浄で黄ばみ・生活汚れを出張リセット`,
