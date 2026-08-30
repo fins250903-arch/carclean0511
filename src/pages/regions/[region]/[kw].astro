@@ -153,9 +153,6 @@ const voiceLine = muteEmergencyTone
   : buildVoiceEmergencyLine(displayName);
 const heroHighlight = resolveAdHighlight(kw.heroHighlight, regionName);
 
-const fvCopy = findFvCopy(regionId, kwSlug);
-const fvHero = fvCopy ? resolveFvHero(fvCopy, regionName, displayName) : null;
-const quickFacts = getAdLpQuickFacts(kwSlug);
 const processGuide = getAdLpProcessGuide(kwSlug);
 /** 車KW LPもCTRフック「1シート 18,000円から」を主表示。KW固有価格はサブへ（重複は避ける） */
 const isBusKw = kwSlug === 'bus-senmon';
