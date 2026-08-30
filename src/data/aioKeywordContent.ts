@@ -314,7 +314,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'pet-waste',
     checklistHeading: '車内でうんち・粗相した直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。香料スプレーは使わず、タオルで水分を吸い取ってから電話相談を。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜（消臭セット）。`,
+      `【結論】${regionName}で車内のうんち汚れは、除菌とリンサー抽出をセットで行うのが安全です。大腸菌等の衛生リスクがあるため、固形物除去後はプロの温水洗浄・酵素分解が必要です。香料スプレーは使わず、タオルで水分を吸い取ってから電話相談を。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1〜2.5時間）。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
     situationDiagnosis: PET_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -325,6 +325,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       {
         q: 'うんち汚れは自分で消毒すれば十分？',
         a: '表面の固形物除去と換気までは自助で構いません。ただし繊維・ウレタン内部の菌と臭いまでは家庭用消毒では届きにくく、香料スプレーは悪化しやすいです。プロの酵素＋リンサーが安全です。',
+      },
+      {
+        q: '料金と所要時間の目安は？',
+        a: `座席1脚（消臭）${yen(CAR_PRICING.seatSingleDeodorize)}〜、複数席や強い臭いは消臭セット${yen(CAR_PRICING.lightDeodorize)}〜が目安です。所要は約1〜2.5時間です。`,
       },
       {
         q: '部分洗浄だけ頼めますか？',
@@ -449,7 +453,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'shanai-nioi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜（所要約1.5〜3時間）。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
     situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
@@ -470,6 +474,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
       {
         q: '車内のにおいの取り方で、自分でやる順番は？',
         a: '①芳香剤・消臭剤を外す ②全窓換気（内気循環OFF） ③原因が嘔吐・尿・灯油ならスプレー禁止でタオル吸い取り ④翌日も残る／ON時だけ臭うならプロへ。重曹は軽い生活臭の応急までに留め、染み込み臭には使っても限界です。',
+      },
+      {
+        q: '原因が分からなくても相談できますか？',
+        a: 'はい。ON時だけ臭うか、常に臭うかなど症状から切り分け、エアコン洗浄か車内消臭かをご提案します。',
       },
     ],
   },
@@ -513,7 +521,15 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '完全に無臭になりますか？',
         a: '多くのケースで大幅改善しますが、長年の喫煙・猫尿・灯油の深部浸透などは限界があります。施工前に改善見込みを正直にお伝えし、無理な約束はしません。',
       },
+      {
+        q: '匂い消しと車内クリーニングの違いは？',
+        a: '匂い消しは臭いの原因除去が主目的、車内クリーニング（基本洗浄）は黄ばみ・生活汚れの見た目改善が主目的です。臭いが強い場合は消臭セットをご案内します。',
+      },
     ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車の匂い消し事例`,
+      body: `${city}で「消臭スプレーでは消えない車の匂い」とのご相談。生活臭とシート臭の複合と特定し、消臭セットで洗い出し。限界説明のうえで施工し、日常利用しやすい状態へ改善した事例です。`,
+    })),
   },
   'shanai-shoshu': {
     troubleType: 'odor',
@@ -529,6 +545,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         a: '可能です。座席1脚からの部分施工もご案内します。ただし臭いがエアコン循環している場合は車内全体の洗浄をご提案することがあります。',
       },
     ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜車内消臭・脱臭事例`,
+      body: `${city}で「車内がなんとなく臭く、原因が分からない」とのご相談。シート臭い中心と判断し部分〜セット洗浄で改善。エアコンON時だけ臭う場合は内部洗浄も案内した事例です。`,
+    })),
   },
   'tabako-yani': {
     troubleType: 'tobacco',
@@ -558,18 +578,22 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'chuko-tabako': {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で中古車のタバコ臭を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
+      `【結論】${regionName}で中古車のタバコ臭（煙草・ヤニ臭）を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜（所要約2.5〜4時間）。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
     situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の中古車タバコ臭消しとは、蓄積したタール・ニコチンを温水抽出で除去し、オゾン脱臭で仕上げる出張専門サービスです。`,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
-      title: `${regionName}・${city}｜中古車タバコ臭のリセット事例`,
-      body: `${city}で納車直後の中古車「芳香剤を外すとタバコ臭」とのご相談。天井・シート中心の丸洗いとオゾンで、前オーナー臭を実用レベルまで改善した事例です。`,
+      title: `${regionName}・${city}｜中古車タバコ臭の丸ごと洗浄事例`,
+      body: `${city}で納車直後の中古車から強い喫煙臭。天井のヤニ黄ばみとシートをリンサー洗浄し、オゾンで仕上げ。完全無臭は約束せず、大幅改善の見込みを先に共有したうえで施工した事例です。`,
     })),
     extraFaqs: [
       {
-        q: 'オゾンだけ・消臭剤だけではダメですか？',
-        a: '一時的な改善には有効な場合がありますが、天井・シートに残るヤニ汚れが臭いの発生源のため再発しやすいです。当店は洗浄を主、オゾンを仕上げ補助として使います。',
+        q: '中古車のタバコ臭はオゾンだけで取れますか？',
+        a: '一時的に薄まることはありますが、天井・シートのヤニが残ると戻りやすいです。温水洗浄で吸着源を除去する方が再発しにくいです。',
+      },
+      {
+        q: '料金と所要時間の目安は？',
+        a: `普通車の消臭セット${yen(CAR_PRICING.regularDeodorize)}〜が目安です。天井洗浄込みで約2.5〜4時間かかることが多いです。`,
       },
       {
         q: '納車前に販売店で清掃済みでも依頼できますか？',
@@ -717,15 +741,27 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'evaporator-senjo': {
     troubleType: 'ac',
     answerFirst: (regionName) =>
-      `【結論】${regionName}でエバポレーター（蒸発器）洗浄は、車のエアコン臭い・カビ臭の根本対策です。ダッシュボード内の部品を専用洗浄剤で洗浄し、吸引で汚れを除去します。簡易内部洗浄${yen(CAR_PRICING.acInternalWash)}〜。${regionName}内へ出張対応。シート洗浄とセットで車内全体の空気品質を改善できます。`,
+      `【結論】${regionName}でエバポレーター（蒸発器）洗浄は、車のエアコン臭い・カビ臭の根本対策です。ダッシュボード内の部品を専用洗浄剤で洗浄し、吸引で汚れを除去します。簡易内部洗浄${yen(CAR_PRICING.acInternalWash)}〜。${regionName}内へ出張対応（所要約1〜2.5時間）。シート洗浄とセットで車内全体の空気品質を改善できます。`,
     customDefinition: (regionName) =>
       `${regionName}のエバポレーター洗浄とは、車両ダッシュボード内の蒸発器に付着したカビ・雑菌を専門洗浄剤で分解・除去し、エアコンから出る臭いを根本改善する出張サービスです。`,
     extraFaqs: [
       {
+        q: 'エバポレーターとは何ですか？',
+        a: 'エアコン内部の蒸発器です。ここにカビが付くと、ON時だけ酸っぱい・カビ臭が出やすくなります。',
+      },
+      {
         q: '分解洗浄と簡易洗浄の違いは？',
         a: '当店のエアコン内部洗浄（簡易）は、出張で吹き出し口から洗浄・吸引する工程です。フル分解は工場預かりが必要な場合があり、臭いの程度・車種に応じて可否をご説明します。',
       },
+      {
+        q: 'シート洗浄とセットにした方がいいですか？',
+        a: `エアコン臭だけなら内部洗浄中心で足りることがあります。シート・天井の生活臭が併発している場合は座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜や消臭セットをご提案します。`,
+      },
     ],
+    nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
+      title: `${regionName}・${city}｜エバポレーター洗浄事例`,
+      body: `${city}の普通車で「エアコンON時だけカビ臭」とのご相談。簡易内部洗浄後、試運転で刺激臭が大幅に軽減。シート臭も軽度だったため追加は最小限にした事例です。`,
+    })),
   },
   'car-ac-cleaning': {
     troubleType: 'ac',
@@ -749,7 +785,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     })),
   },
   'pet-nioi': {
-    troubleType: 'pet-waste',
+    troubleType: 'pet-odor',
     answerFirst: (regionName) =>
       `【結論】${regionName}で車内のペット臭は、尿・毛・皮脂がシート内部に蓄積していることが原因です。消臭剤では再発し、温水リンサーと酵素分解が必要です。${regionName}内へ365日24時間受付・最短即日出張、消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは状況診断表で確認できます。`,
     emergencyChecklist: EMERGENCY_PET_CHECKLIST,
@@ -863,7 +899,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     ],
   },
   'specialist-cleaning': {
-    troubleType: 'seat',
+    troubleType: 'light',
     answerFirst: (regionName) =>
       `【結論】${regionName}の車内クリーニング専門店として、車内清掃「特急便」は年間300台超の施工実績。シート洗浄から消臭まで出張で対応し、${powerPhrase(regionName)}・最短即日です。${regionName}内へ365日24時間受付。`,
     customDefinition: (regionName) =>

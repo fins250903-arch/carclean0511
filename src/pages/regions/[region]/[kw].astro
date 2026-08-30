@@ -55,7 +55,9 @@ import { isNoindexRegionId } from '../../../data/noindexRegions';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
+import AdLpProcessGuide from '../../../components/sections/AdLpProcessGuide.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
+import { getAdLpProcessGuide } from '../../../data/adLpProcessGuide';
 import AdLpIntentGuide from '../../../components/sections/AdLpIntentGuide.astro';
 import { getAdLpIntentGuide, isNonEmergencyTroubleType } from '../../../data/adLpIntentGuides';
 import { carFvPriceHookMain, carFvPriceHookSub, CAR_PRICING, yen } from '../../../data/pricingConstants';
@@ -151,6 +153,7 @@ const voiceLine = muteEmergencyTone
   : buildVoiceEmergencyLine(displayName);
 const heroHighlight = resolveAdHighlight(kw.heroHighlight, regionName);
 
+const processGuide = getAdLpProcessGuide(kwSlug);
 /** 車KW LPもCTRフック「1シート 18,000円から」を主表示。KW固有価格はサブへ（重複は避ける） */
 const isBusKw = kwSlug === 'bus-senmon';
 const seatHookMain = carFvPriceHookMain();
@@ -235,6 +238,15 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
           priceLabel={quickFactsPriceLabel}
           durationLabel={quickFacts.durationLabel}
           areaLabel={quickFacts.areaLabel(displayName)}
+        />
+      )}
+      {processGuide && (
+        <AdLpProcessGuide
+          heading={processGuide.heading}
+          intro={processGuide.intro}
+          steps={processGuide.steps}
+          tiers={processGuide.tiers}
+          caveat={processGuide.caveat}
         />
       )}
       {answerFirst && (

@@ -1,0 +1,67 @@
+---
+interface Step {
+  title: string;
+  body: string;
+}
+
+interface Tier {
+  label: string;
+  price: string;
+  note: string;
+}
+
+interface Props {
+  heading: string;
+  intro: string;
+  steps: Step[];
+  tiers: Tier[];
+  caveat: string;
+}
+
+const { heading, intro, steps, tiers, caveat } = Astro.props;
+---
+
+<section
+  id="ad-lp-process-guide"
+  aria-label="施工工程と料金の目安"
+  class="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white"
+>
+  <div class="container mx-auto max-w-5xl px-4 py-8 md:py-10">
+    <div class="mb-6 text-center md:mb-8">
+      <h2 class="text-xl font-black tracking-tight text-slate-900 md:text-3xl">
+        {heading}
+      </h2>
+      <p class="mx-auto mt-2 max-w-3xl text-sm font-medium leading-relaxed text-slate-600 md:text-base">
+        {intro}
+      </p>
+    </div>
+
+    <ol class="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:mb-8">
+      {steps.map((step, index) => (
+        <li class="flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-sm font-black text-white">
+            {index + 1}
+          </span>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 md:text-base">{step.title}</h3>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600 md:text-sm">{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
+      {tiers.map((tier) => (
+        <div class="rounded-xl border border-slate-200 bg-white px-4 py-3 text-center shadow-sm">
+          <p class="text-[11px] font-bold tracking-wide text-slate-500">{tier.label}</p>
+          <p class="mt-1 text-base font-black text-slate-900 md:text-lg">{tier.price}</p>
+          <p class="mt-1 text-[11px] font-medium leading-snug text-slate-500">{tier.note}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-center text-xs font-medium leading-relaxed text-slate-500 md:text-sm">
+      {caveat}
+    </p>
+  </div>
+</section>

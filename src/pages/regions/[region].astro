@@ -50,6 +50,9 @@ import {
   buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
+import HubIntentBridge from '../../components/sections/HubIntentBridge.astro';
+import AdLpProcessGuide from '../../components/sections/AdLpProcessGuide.astro';
+import { getAdLpProcessGuide } from '../../data/adLpProcessGuide';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
 import { CAR_PRICING, yen } from '../../data/pricingConstants';
 import { isNoindexRegionId } from '../../data/noindexRegions';
@@ -117,6 +120,8 @@ const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(region
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
 const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const hubProcessGuide =
+  !isTruck && !isBus ? getAdLpProcessGuide('interior-cleaning') : undefined;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
 ---
@@ -134,6 +139,21 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
+      {regionalAnswerFirst && <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} />}
+      {(niche === 'car' || niche === 'truck') && regionId && (
+        <HubIntentBridge regionId={regionId} displayName={displayName} niche={niche} />
+      )}
+      {hubProcessGuide && (
+        <AdLpProcessGuide
+          heading={hubProcessGuide.heading}
+          intro={hubProcessGuide.intro}
+          steps={hubProcessGuide.steps}
+          tiers={hubProcessGuide.tiers}
+          caveat={hubProcessGuide.caveat}
+        />
+      )}
+      {/* Pricing early: Ads often lands 通常清掃 KW on region hubs (empty Final URL) */}
+      <Pricing regionName={regionName} niche={niche} />
       {!isTruck && !isBus && (
         <AdLpQuickFacts
           displayName={displayName}
@@ -182,7 +202,6 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
-      <Pricing regionName={regionName} niche={niche} />
       <CTA />
       <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />

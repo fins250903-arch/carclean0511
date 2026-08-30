@@ -1,0 +1,6 @@
+campaign,ad_group,theme,expected,actual_slug,final_url,path2,status,headline2
+千葉県＿車内クリーニング,int千葉_通常清掃,通常清掃,interior-cleaning,chiba,https://carinteriorcleaning.jp/regions/chiba/,嘔吐ニオイ清掃,Enabled,【92%満足】出張車内清掃
+宮城県＿車内クリーニング,int宮城_通常清掃,通常清掃,interior-cleaning,miyagi,https://carinteriorcleaning.jp/regions/miyagi/,嘔吐ニオイ清掃,Enabled,【92%満足】出張車内清掃
+愛知県＿車内クリーニング,int愛知_通常清掃,通常清掃,interior-cleaning,aichi,https://carinteriorcleaning.jp/regions/aichi/,嘔吐ニオイ清掃,Enabled,【92%満足】出張車内清掃
+栃木県＿車内クリーニング,int栃木_通常清掃,通常清掃,interior-cleaning,tochigi,https://carinteriorcleaning.jp/regions/tochigi/,嘔吐ニオイ清掃,Enabled,【92%満足】出張車内清掃
+群馬県＿車内クリーニング,int群馬_通常清掃,通常清掃,interior-cleaning,gunma,https://carinteriorcleaning.jp/regions/gunma/,嘔吐ニオイ清掃,Enabled,【92%満足】出張車内清掃

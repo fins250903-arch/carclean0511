@@ -1,0 +1,26 @@
+priority,field,campaign,ad_group,row_type,current,suggested,note
+CRITICAL,Final URL,愛知県＿車内クリーニング,int愛知_通常清掃,RSA,https://carinteriorcleaning.jp/regions/aichi/,https://carinteriorcleaning.jp/regions/aichi/interior-cleaning/,地域ハブ→通常清掃LP
+CRITICAL,Final URL,群馬県＿車内クリーニング,int群馬_通常清掃,RSA,https://carinteriorcleaning.jp/regions/gunma/,https://carinteriorcleaning.jp/regions/gunma/interior-cleaning/,地域ハブ→通常清掃LP
+CRITICAL,Final URL,千葉県＿車内クリーニング,int千葉_通常清掃,RSA,https://carinteriorcleaning.jp/regions/chiba/,https://carinteriorcleaning.jp/regions/chiba/interior-cleaning/,地域ハブ→通常清掃LP
+CRITICAL,Final URL,宮城県＿車内クリーニング,int宮城_通常清掃,RSA,https://carinteriorcleaning.jp/regions/miyagi/,https://carinteriorcleaning.jp/regions/miyagi/interior-cleaning/,地域ハブ→通常清掃LP
+CRITICAL,Final URL,栃木県＿車内クリーニング,int栃木_通常清掃,RSA,https://carinteriorcleaning.jp/regions/tochigi/,https://carinteriorcleaning.jp/regions/tochigi/interior-cleaning/,地域ハブ→通常清掃LP
+CRITICAL,Final URL,大阪府＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/osaka/oshikko/,https://carinteriorcleaning.jp/regions/osaka/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,大阪府＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/osaka/oshikko/,https://carinteriorcleaning.jp/regions/osaka/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,沖縄県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/okinawa/oshikko/,https://carinteriorcleaning.jp/regions/okinawa/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,宮城県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/miyagi/oshikko/,https://carinteriorcleaning.jp/regions/miyagi/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,宮城県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/miyagi/oshikko/,https://carinteriorcleaning.jp/regions/miyagi/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,愛知県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/aichi/oshikko/,https://carinteriorcleaning.jp/regions/aichi/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,愛知県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/aichi/oshikko/,https://carinteriorcleaning.jp/regions/aichi/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,千葉県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/chiba/oshikko/,https://carinteriorcleaning.jp/regions/chiba/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,千葉県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/chiba/oshikko/,https://carinteriorcleaning.jp/regions/chiba/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,兵庫県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/hyogo/oshikko/,https://carinteriorcleaning.jp/regions/hyogo/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,兵庫県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/hyogo/oshikko/,https://carinteriorcleaning.jp/regions/hyogo/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,福岡県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/fukuoka/oshikko/,https://carinteriorcleaning.jp/regions/fukuoka/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,福岡県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/fukuoka/oshikko/,https://carinteriorcleaning.jp/regions/fukuoka/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,群馬県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/gunma/oshikko/,https://carinteriorcleaning.jp/regions/gunma/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,群馬県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/gunma/oshikko/,https://carinteriorcleaning.jp/regions/gunma/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,栃木県＿車内クリーニング,車　 おもらし,KW:車 おもらし,https://carinteriorcleaning.jp/regions/tochigi/oshikko/,https://carinteriorcleaning.jp/regions/tochigi/omorashi/,おもらしKWがおしっこLPに着地
+CRITICAL,Final URL,栃木県＿車内クリーニング,AG_緊急_ペット,KW:車 おもらし シート 洗浄,https://carinteriorcleaning.jp/regions/tochigi/oshikko/,https://carinteriorcleaning.jp/regions/tochigi/omorashi/,おもらしKWがおしっこLPに着地
+HIGH,Path 2,(全キャンペーン),(非嘔吐テーマAG),RSA Path2,嘔吐ニオイ清掃,テーマ別パスへ置換,詳細は kw-lp-mismatch-path2-2026-07-26.csv（422行）
+MEDIUM,Description,(残5件),緊急_ペット等,RSA説明文,ペット毛文言,AGテーマ文言,reaudit参照
+MEDIUM,Final URL空,int*_通常清掃 / 消臭AG,Enabled QS KW,Keyword行,(空),テーマLPを設定,quality-score-by-keyword-2026-07-26.csv の no-url
