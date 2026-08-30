@@ -2,7 +2,8 @@
 
 **対象データ:** ユーザー提出 Ads Editor CSV（`ads-editor-full-2026-07-23.tsv` と同一ハッシュ）  
 **実施日:** 2026-08-30  
-**前提:** Pass1–3 で臭気/AC/尿系の H1・QuickFacts・ProcessGuide・共感分岐は投入済み
+**前提:** Pass1–3 で臭気/AC/尿系の H1・QuickFacts・ProcessGuide・共感分岐は投入済み  
+**正本 PR:** #31（`cursor/ads-qs-lpo-pass4-63c7`）。**#17（pass2）は supersede クローズ** — pass2 固有変更は本ブランチに包含済み。
 
 ---
 
