@@ -10,6 +10,8 @@ export type RegionalBlogDisplayPost = {
   image: string;
   url: string;
   category: string;
+  /** ISO publish date, used for Article.datePublished freshness */
+  datePublished?: string;
 };
 
 const BLOG_BASE = 'https://carinteriorcleaning.jp/blog';
@@ -76,15 +78,28 @@ export function getRegionIdFromName(regionName: string): string | undefined {
   return regions.find((r) => r.name === regionName)?.id;
 }
 
-/** 地区LPに表示する施工事例ブログ（最大2件） */
+/**
+ * 地区LPに表示する施工事例ブログ（最大2件）
+ *
+ * `latestPosts` に content collection 由来の最新記事を渡すと、そちらが優先される。
+ * 渡さない場合は従来の手動リスト（regionalBlogCases）にフォールバックする。
+ */
 export function getRegionalBlogDisplayPosts(
   regionId: string | undefined,
   regionName: string,
+  latestPosts: RegionalBlogDisplayPost[] = [],
 ): RegionalBlogDisplayPost[] {
   const id = regionId ?? getRegionIdFromName(regionName);
   const blogId = id === 'shiga' ? 'shiga' : id;
   const fromBlog = (blogId && regionalBlogCases[blogId]) || [];
-  const posts: RegionalBlogDisplayPost[] = fromBlog.map(caseToDisplayPost);
+  const posts: RegionalBlogDisplayPost[] = [...latestPosts];
+
+  for (const legacy of fromBlog.map(caseToDisplayPost)) {
+    if (posts.length >= 2) break;
+    if (!posts.some((p) => p.url === legacy.url || p.title === legacy.title)) {
+      posts.push(legacy);
+    }
+  }
 
   const regional = getRegionalPost(regionName);
   if (regional && posts.length < 2) {

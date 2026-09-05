@@ -127,6 +127,8 @@ type RegionOverrides = {
 
         url?: string;
 
+        datePublished?: string;
+
     };
 
     articles?: Array<{
@@ -138,6 +140,8 @@ type RegionOverrides = {
         image: string;
 
         url?: string;
+
+        datePublished?: string;
 
     }>;
 
@@ -994,9 +998,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             },
 
-            datePublished: '2024-01-01T00:00:00+09:00',
+            datePublished: src.datePublished ?? '2024-01-01T00:00:00+09:00',
 
-            dateModified: new Date().toISOString(),
+            dateModified: src.datePublished ?? new Date().toISOString(),
 
             about: {
 

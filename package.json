@@ -6,7 +6,8 @@
   "scripts": {
     "sync:513": "node ./scripts/sync-513-to-public.mjs",
     "sync:kw": "node ./scripts/sync-kw-images.mjs",
-    "sync:images": "npm run sync:513 && npm run sync:kw",
+    "sync:blog-images": "node ./scripts/sync-blog-post-images.mjs",
+    "sync:images": "npm run sync:513 && npm run sync:kw && npm run sync:blog-images",
     "dev": "npm run sync:images && npm run sync:blog-admin-index && astro dev",
     "start": "npm run sync:images && npm run sync:blog-admin-index && astro dev",
     "build": "npm run sync:images && npm run sync:blog-admin-index && astro build",

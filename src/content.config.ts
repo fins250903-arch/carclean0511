@@ -14,6 +14,17 @@ const blog = defineCollection({
 			categories: z.array(z.string()).optional(),
 			areaName: z.string().optional(),
 			shortSlug: z.string().optional(),
+			/** AIO: conclusion shown above the article body. Blank fields fall back to values parsed from the body. */
+			summary: z
+				.object({
+					answer_first: z.string().optional(),
+					car_model: z.string().optional(),
+					trouble: z.string().optional(),
+					method: z.string().optional(),
+					work_time: z.string().optional(),
+					price: z.string().optional(),
+				})
+				.optional(),
 			seo: z
 				.object({
 					meta_title: z.string().optional(),

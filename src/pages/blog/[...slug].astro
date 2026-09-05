@@ -4,13 +4,20 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import JsonLd from '../../components/seo/JsonLd.astro';
 import '../../styles/blog.css';
+import BlogAnswerFirst from '../../components/blog/BlogAnswerFirst.astro';
+import BlogInternalLinks from '../../components/blog/BlogInternalLinks.astro';
 import { canonicalUrl, SITE_URL } from '../../lib/site';
 import {
   buildArticleJsonLd,
+  buildBlogBreadcrumbJsonLd,
   resolveBlogMeta,
   resolvePostImage,
   toAbsoluteUrl,
 } from '../../lib/blogSeo';
+import { buildBlogAnswerFirst, toExcerpt } from '../../lib/blogAnswerFirst';
+import { buildBlogInternalLinks } from '../../lib/blogInternalLinks';
+import { getRegionNameById, resolvePostRegionIds } from '../../lib/blogRegion';
+import { isNoindexRegionId } from '../../data/noindexRegions';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -30,9 +37,30 @@ const heroImage = resolvePostImage(post.data.coverImage, postSlug) ?? null;
 const ogImagePath =
 	resolvePostImage(post.data.ogp?.og_image, postSlug) ?? heroImage;
 const ogImageAbs = ogImagePath ? toAbsoluteUrl(ogImagePath) : undefined;
-const { title, description, noindex, ogType } = resolveBlogMeta(post);
+
+const regionIds = resolvePostRegionIds(post);
+const primaryRegionId = regionIds.find((id) => !isNoindexRegionId(id));
+const primaryRegionName = primaryRegionId ? getRegionNameById(primaryRegionId) : undefined;
+
+const answer = buildBlogAnswerFirst({
+	title: post.data.title,
+	areaName: post.data.areaName,
+	body: post.body,
+	summary: post.data.summary,
+	fallbackArea: primaryRegionName,
+});
+const answerExcerpt = toExcerpt(answer.text, 150);
+
+const { title, description, noindex, ogType } = resolveBlogMeta(post, answerExcerpt);
 const pageTitle = `${title} | 車内清掃「特急便」`;
 const canonical = canonicalUrl(`/blog/${postSlug}`);
+
+const internalLinks = buildBlogInternalLinks({
+	regionIds,
+	trouble: answer.trouble,
+	area: answer.area,
+});
+
 const articleJsonLd = buildArticleJsonLd({
 	title,
 	description,
@@ -41,6 +69,19 @@ const articleJsonLd = buildArticleJsonLd({
 	publishedTime: post.data.date,
 	modifiedTime: post.data.updatedDate ?? post.data.date,
 	keywords: post.data.seo?.keywords,
+	regionName: primaryRegionName,
+	areaName: answer.area,
+	trouble: answer.trouble,
+	regionLpUrl: primaryRegionId ? canonicalUrl(`/regions/${primaryRegionId}`) : undefined,
+});
+const breadcrumbJsonLd = buildBlogBreadcrumbJsonLd({
+	postTitle: post.data.title,
+	postUrl: canonical,
+});
+const publishedLabel = post.data.date.toLocaleDateString('ja-JP', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
 });
 const { Content } = await render(post);
 ---
@@ -54,7 +95,7 @@ const { Content } = await render(post);
 	noindex={noindex}
 	ogType={ogType}
 >
-	<JsonLd slot="head" data={[articleJsonLd]} />
+	<JsonLd slot="head" data={[articleJsonLd, breadcrumbJsonLd]} />
 
 	<main class="blog-content min-h-screen bg-white pb-32 md:pb-12">
 		<article>
@@ -84,9 +125,13 @@ const { Content } = await render(post);
 					)}
 				</div>
 
+				<BlogAnswerFirst answer={answer} publishedLabel={publishedLabel} />
+
 				<div class="prose max-w-none">
 					<Content />
 				</div>
+
+				<BlogInternalLinks links={internalLinks} />
 
 				<div class="mt-16 bg-blue-50 rounded-2xl p-8 border border-blue-100 text-center shadow-sm">
 					<h3 class="text-2xl font-bold text-gray-900 mb-4">お車のお悩み、すぐ解決します！</h3>
