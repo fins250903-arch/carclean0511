@@ -1,0 +1,39 @@
+---
+import type { BlogAnswerFirst } from '../../lib/blogAnswerFirst';
+
+interface Props {
+  answer: BlogAnswerFirst;
+  publishedLabel: string;
+}
+
+const { answer, publishedLabel } = Astro.props;
+---
+
+<section
+  id="post-answer-first"
+  aria-label="この施工事例の結論"
+  class="not-prose mb-10 rounded-2xl border border-green-300 bg-green-50 p-5 shadow-sm md:p-6"
+>
+  <p class="mb-3 text-xs font-bold tracking-wide text-green-800">
+    結論から先に｜施工日 {publishedLabel}
+  </p>
+
+  <p class="answer-lead rounded-xl border border-green-200 bg-white p-4 text-left text-sm font-medium leading-relaxed text-gray-800 md:p-5 md:text-base">
+    {answer.text}
+  </p>
+
+  {answer.quickFacts.length > 0 && (
+    <dl class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+      {answer.quickFacts.map((fact) => (
+        <div class="rounded-xl border border-green-200 bg-white px-4 py-3">
+          <dt class="text-[11px] font-bold tracking-wide text-green-800">{fact.label}</dt>
+          <dd class="mt-0.5 text-sm font-bold text-gray-900 md:text-base">{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+
+  <p class="mt-4 text-xs leading-relaxed text-gray-600">
+    ※費用と作業時間は、この1台の実測値です。汚れの範囲・素材・車種で変わるため、正確な金額は写真をお送りいただければ当日中にご案内します。
+  </p>
+</section>
