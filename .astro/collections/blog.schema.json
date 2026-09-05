@@ -25,8 +25,34 @@
         "type": "string"
       }
     },
+    "areaName": {
+      "type": "string"
+    },
     "shortSlug": {
       "type": "string"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "answer_first": {
+          "type": "string"
+        },
+        "car_model": {
+          "type": "string"
+        },
+        "trouble": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "work_time": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        }
+      }
     },
     "seo": {
       "type": "object",
