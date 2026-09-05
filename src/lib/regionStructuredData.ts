@@ -37,6 +37,7 @@ export type RegionSeoOverrides = {
     description: string;
     image: string;
     url?: string;
+    datePublished?: string;
   }>;
   localBusiness?: {
     areaServed?: unknown;
@@ -63,9 +64,10 @@ export function buildRegionSeoOverrides({
     description: c.excerpt,
     image: c.image,
     url: c.url,
+    datePublished: c.datePublished,
   }));
 
-  const articlesFromRegional =
+  const articlesFromRegional: NonNullable<RegionSeoOverrides['articles']> =
     post?.title && post?.excerpt && post?.image
       ? [
           {
@@ -76,7 +78,7 @@ export function buildRegionSeoOverrides({
         ]
       : [];
 
-  const articles = [...articlesFromBlog];
+  const articles: NonNullable<RegionSeoOverrides['articles']> = [...articlesFromBlog];
   for (const a of articlesFromRegional) {
     if (articles.length >= 2) break;
     if (!articles.some((x) => x.headline === a.headline)) {
