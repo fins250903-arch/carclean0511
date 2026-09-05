@@ -1,5 +1,23 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { SITE_URL, STORE_NAME } from '@/lib/site';
 import { AUTHOR } from '@/lib/structuredDataConstants';
+
+const CONTENT_DIR = path.resolve(process.cwd(), 'src/content/blog');
+
+/**
+ * Images the CMS committed next to the Markdown file are published to
+ * `/blog-media/` by `npm run sync:blog-images`; older posts keep their assets
+ * under `/posts/`.
+ */
+function resolveContentImage(postSlug: string, fileName: string): string | undefined {
+  for (const candidate of [fileName, path.posix.join('images', fileName)]) {
+    if (existsSync(path.join(CONTENT_DIR, postSlug, candidate))) {
+      return `/blog-media/${postSlug}/${candidate}`;
+    }
+  }
+  return undefined;
+}
 
 /** Resolve Decap CMS image paths to site-relative URLs. */
 export function resolvePostImage(
@@ -17,7 +35,10 @@ export function resolvePostImage(
     return `/posts/${normalized}`;
   }
 
-  return `/posts/${postSlug}/images/${normalized}`;
+  return (
+    resolveContentImage(postSlug, normalized) ??
+    `/posts/${postSlug}/images/${normalized}`
+  );
 }
 
 export function toAbsoluteUrl(path: string, site: string = SITE_URL): string {

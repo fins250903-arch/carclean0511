@@ -153,5 +153,14 @@ npm run dev
 | `public/admin/blog-index.json` | 記事メタデータ（`npm run sync:blog-admin-index` で更新） |
 | `public/admin/regions.json` | 地域ラベル（`npm run sync:admin-regions` で更新） |
 | `api/auth.js`, `api/callback.js` | GitHub OAuth（Vercel Functions） |
-| `src/content/blog/` | 記事 Markdown |
-| `public/posts/` | 記事画像 |
+| `src/content/blog/` | 記事 Markdown（CMS が画像も同じフォルダに保存します） |
+| `public/posts/` | 旧記事の画像（git 管理） |
+| `public/blog-media/` | `src/content/blog` の画像を公開用にコピー（`npm run sync:blog-images` が自動生成・git 管理外） |
+
+### 画像が表示されない場合
+
+Decap CMS は画像を記事の Markdown と同じフォルダ（`src/content/blog/...`）に保存しますが、
+Astro はこの場所を直接配信しません。`npm run dev` / `npm run build` の実行時に
+`sync:blog-images` が `public/blog-media/` へ自動コピーするため、通常は意識不要です。
+
+ローカルで画像が出ないときは `npm run sync:blog-images` を実行してください。
