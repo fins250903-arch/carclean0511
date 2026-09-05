@@ -2,9 +2,12 @@
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
 import '../../styles/blog.css';
-import { canonicalUrl } from '../../lib/site';
+import { canonicalUrl, SITE_URL, STORE_NAME } from '../../lib/site';
 import { resolvePostImage } from '../../lib/blogSeo';
+import { buildBlogAnswerFirst, toExcerpt } from '../../lib/blogAnswerFirst';
+import { getRegionNameById, resolvePostRegionIds } from '../../lib/blogRegion';
 import {
 	type BlogPost,
 	buildRegionBlogGroups,
@@ -21,6 +24,48 @@ const getImageSrc = (post: BlogPost) => {
 	const slug = getSlug(post);
 	return resolvePostImage(post.data.coverImage, slug) ?? resolvePostImage(post.data.ogp?.og_image, slug);
 };
+/** Answer-First lead doubles as the card excerpt so AI crawlers read facts, not a diary opening */
+const excerptCache = new Map<string, string>();
+const getExcerpt = (post: BlogPost) => {
+	const cached = excerptCache.get(post.id);
+	if (cached) return cached;
+	const answer = buildBlogAnswerFirst({
+		title: post.data.title,
+		areaName: post.data.areaName,
+		body: post.body,
+		summary: post.data.summary,
+		fallbackArea: getRegionNameById(resolvePostRegionIds(post)[0] ?? ''),
+	});
+	const excerpt = toExcerpt(answer.text, 110);
+	excerptCache.set(post.id, excerpt);
+	return excerpt;
+};
+
+const listingJsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Blog',
+		'@id': `${SITE_URL}/blog/`,
+		name: `${STORE_NAME} 施工実例ブログ`,
+		description:
+			'出張車内クリーニング・消臭洗浄の施工事例を、地域・トラブル別に公開しています。各記事に費用と作業時間の実測値を掲載しています。',
+		inLanguage: 'ja-JP',
+		publisher: { '@id': `${SITE_URL}/#organization` },
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'ItemList',
+		'@id': `${SITE_URL}/blog/#latest`,
+		name: '最新の施工事例',
+		numberOfItems: Math.min(allPosts.length, 20),
+		itemListElement: allPosts.slice(0, 20).map((post, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			url: canonicalUrl(`/blog/${getSlug(post)}`),
+			name: post.data.title,
+		})),
+	},
+];
 ---
 
 <MainLayout
@@ -28,6 +73,8 @@ const getImageSrc = (post: BlogPost) => {
 	description="車内クリーニング・消臭洗浄の施工事例やお役立ち情報をお届けするブログです。"
 	canonical={canonicalUrl('/blog')}
 >
+	<JsonLd slot="head" data={listingJsonLd} />
+
 	<main class="blog-content min-h-screen bg-gray-50 py-12 pb-32 md:pb-12">
 		<div class="max-w-5xl mx-auto px-4 sm:px-6">
 			<div class="text-center mb-12">
@@ -71,9 +118,12 @@ const getImageSrc = (post: BlogPost) => {
 												<p class="text-sm text-gray-500 mb-2">
 													<FormattedDate date={post.data.updatedDate ?? post.data.date} />
 												</p>
-												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base">
 													{post.data.title}
 												</h3>
+												<p class="mt-2 text-sm leading-relaxed text-gray-600 flex-1">
+													{getExcerpt(post)}
+												</p>
 											</div>
 										</a>
 									</article>
@@ -113,9 +163,12 @@ const getImageSrc = (post: BlogPost) => {
 												<p class="text-sm text-gray-500 mb-2">
 													<FormattedDate date={post.data.updatedDate ?? post.data.date} />
 												</p>
-												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base flex-1">
+												<h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug text-base">
 													{post.data.title}
 												</h3>
+												<p class="mt-2 text-sm leading-relaxed text-gray-600 flex-1">
+													{getExcerpt(post)}
+												</p>
 											</div>
 										</a>
 									</article>
