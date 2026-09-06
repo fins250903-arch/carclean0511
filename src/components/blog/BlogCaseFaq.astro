@@ -1,0 +1,23 @@
+---
+import type { FAQItem } from '../../data/seoData';
+
+interface Props {
+  faqs: FAQItem[];
+}
+
+const { faqs } = Astro.props;
+---
+
+{faqs.length > 0 && (
+  <section id="post-faq" class="not-prose mt-12" aria-label="よくある質問">
+    <h2 class="mb-4 text-lg font-bold text-gray-900">この事例についてよくある質問</h2>
+    <dl class="space-y-3">
+      {faqs.map((faq) => (
+        <div class="rounded-xl border border-gray-200 bg-white px-4 py-3">
+          <dt class="font-bold text-gray-900">{faq.q}</dt>
+          <dd class="mt-1 text-sm leading-relaxed text-gray-700">{faq.a}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}

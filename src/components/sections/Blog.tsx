@@ -12,7 +12,16 @@ type BlogPost = {
     url: string;
 };
 
-export default function Blog({ regionName: propRegionName, displayName: propDisplayName }: { regionName?: string, displayName?: string }) {
+export default function Blog({
+    regionName: propRegionName,
+    displayName: propDisplayName,
+    posts,
+}: {
+    regionName?: string;
+    displayName?: string;
+    /** Latest posts resolved from the content collection at build time */
+    posts?: BlogPost[];
+}) {
     const context = useRegion();
     const regionName = propRegionName || context.regionName;
     const displayName = propDisplayName || context.displayName;
@@ -20,7 +29,10 @@ export default function Blog({ regionName: propRegionName, displayName: propDisp
 
     const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
-    const regionalDisplayPosts: BlogPost[] = getRegionalBlogDisplayPosts(regionId, regionName);
+    const regionalDisplayPosts: BlogPost[] =
+        posts && posts.length > 0
+            ? posts
+            : getRegionalBlogDisplayPosts(regionId, regionName);
 
     const handlePostClick = (post: BlogPost) => {
         if (post.url) {
@@ -30,12 +42,8 @@ export default function Blog({ regionName: propRegionName, displayName: propDisp
         }
     };
 
-    const renderPostCard = (post: BlogPost, index: number) => (
-        <article 
-            key={index} 
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-            onClick={() => handlePostClick(post)}
-        >
+    const cardBody = (post: BlogPost) => (
+        <>
             <div className="h-48 overflow-hidden">
                 <img 
                     src={post.image} 
@@ -63,8 +71,28 @@ export default function Blog({ regionName: propRegionName, displayName: propDisp
                     詳しく見る <span className="text-lg">→</span>
                 </span>
             </div>
-        </article>
+        </>
     );
+
+    /** Real anchors so crawlers follow region LP → 施工事例ブログ */
+    const renderPostCard = (post: BlogPost, index: number) =>
+        post.url ? (
+            <a
+                key={index}
+                href={post.url}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col no-underline"
+            >
+                {cardBody(post)}
+            </a>
+        ) : (
+            <article
+                key={index}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
+                onClick={() => handlePostClick(post)}
+            >
+                {cardBody(post)}
+            </article>
+        );
 
     return (
         <section className="py-12 bg-gray-50 border-t border-gray-200" id="blog">

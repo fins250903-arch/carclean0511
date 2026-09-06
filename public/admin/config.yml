@@ -49,16 +49,65 @@ collections:
         hint: '例: trucksaitama'
         pattern: ['^[a-z0-9-]+$', '英数字とハイフンのみ']
 
-      - label: 地域名称（市区町村・エリア名）
+      - label: 地域名称（都道府県＋市区町村）
         name: areaName
         widget: string
         required: false
-        hint: '例: 横浜市、吹田市、那覇市 — 記事内の施工エリアを入力'
+        hint: '新規記事では必ず入力してください。例: 愛知県あま市、神奈川県横浜市西区 — 都道府県から書くと地区LPの施工実例へ自動掲載されます'
 
       - label: サムネイル画像
         name: coverImage
         widget: image
         required: false
+
+      - label: 'AIO要約（記事冒頭の結論・空欄は本文から自動生成）'
+        name: 'summary'
+        widget: 'object'
+        summary: 'Answer-First（結論）'
+        collapsed: false
+        fields:
+          - {
+              label: '結論文（Answer-First・120〜160文字）',
+              name: 'answer_first',
+              widget: 'text',
+              required: false,
+              hint: '空欄でOK。未入力の場合は「エリア・お悩み・施工内容・作業時間・費用」から自動生成されます。手入力する場合は「どこで・何を・どう直し・いくらかかったか」の順で書いてください'
+            }
+          - {
+              label: '車種',
+              name: 'car_model',
+              widget: 'string',
+              required: false,
+              hint: '例: トヨタ エスティマ、メルセデス Cクラス'
+            }
+          - {
+              label: 'お悩み・トラブル内容',
+              name: 'trouble',
+              widget: 'string',
+              required: false,
+              hint: '空欄なら本文から自動判定。例: 嘔吐（ゲロ）汚れとニオイ、おもらし・尿の染み込み'
+            }
+          - {
+              label: '施工内容',
+              name: 'method',
+              widget: 'string',
+              required: false,
+              hint: '空欄なら本文から自動判定。例: 業務用リンサーの温水抽出洗浄＋オゾン消臭'
+            }
+          - {
+              label: '作業時間',
+              name: 'work_time',
+              widget: 'string',
+              required: false,
+              hint: '例: 約3時間 — 本文に「作業時間：3時間」と書けば自動抽出されます'
+            }
+          - {
+              label: '費用（税込）',
+              name: 'price',
+              widget: 'string',
+              required: false,
+              hint: '例: 28,000円 — 本文に「費用：28,000円」と書けば自動抽出されます'
+            }
 
       - label: "SEO対策（検索エンジン用設定）"
         name: "seo"
@@ -76,8 +125,8 @@ collections:
               label: "メタ・ディスクリプション（記事の要約）",
               name: "meta_description",
               widget: "text",
-              required: true,
-              hint: "検索結果の解説文です。SNSのシェア時にも使われます（推奨：120文字前後）"
+              required: false,
+              hint: "検索結果の解説文です（推奨：120文字前後・160文字以内）。本文の途中を貼り付けず、結論を要約してください。空欄または160文字超の場合は上記のAnswer-First結論文が自動で使われます"
             }
           - {
               label: "主要キーワード（フォーカスキーワード）",
@@ -118,3 +167,24 @@ collections:
         name: body
         widget: markdown
         required: true
+        hint: '見出し（##）を残したまま書き換えてください。AIと検索エンジンが「費用」「作業時間」を抜き出せる形式です'
+        default: |
+          ## ご相談内容
+
+          （いつ・どこで・何が起きたか。お客様の言葉をそのまま書くと強い記事になります）
+
+          ## 現車確認でわかったこと
+
+          （汚れの範囲・染み込みの深さ・素材。写真で伝わらない判断根拠を書きます）
+
+          ## 実際の作業
+
+          （使用した機材と洗浄剤、手順、気をつけた点）
+
+          ## 作業時間と費用
+
+          作業時間：3時間 / 費用：28,000円
+
+          ## お客様の声・仕上がり
+
+          （お客様の反応、シート交換を避けられた等の結果）

@@ -1,34 +1,13 @@
 import type { CollectionEntry } from 'astro:content';
 import { regions } from '@/data/regions';
+import { normalizeRegionCategory, resolvePostRegionIds } from '@/lib/blogRegion';
 
 export type BlogPost = CollectionEntry<'blog'>;
 
-/** Legacy CMS category slugs → canonical region id (regions.ts) */
-const REGION_CATEGORY_ALIASES: Record<string, string> = {
-  oosaka: 'osaka',
-  toukyou: 'tokyo',
-  kyouto: 'kyoto',
-  hyougo: 'hyogo',
-  siga: 'shiga',
-  sizuoka: 'shizuoka',
-};
-
-const REGION_ID_SET = new Set(regions.map((r) => r.id));
-
-/** Non-region taxonomy tags (jisseki, tokublo, seisou, …) — ignored for regional grouping */
-export function normalizeRegionCategory(category: string): string | null {
-  const key = category.trim().toLowerCase();
-  const resolved = REGION_CATEGORY_ALIASES[key] ?? key;
-  return REGION_ID_SET.has(resolved) ? resolved : null;
-}
+export { normalizeRegionCategory };
 
 export function getPostRegionIds(post: BlogPost): string[] {
-  const ids = new Set<string>();
-  for (const cat of post.data.categories ?? []) {
-    const regionId = normalizeRegionCategory(cat);
-    if (regionId) ids.add(regionId);
-  }
-  return [...ids];
+  return resolvePostRegionIds(post);
 }
 
 /** Sort key: latest edit or publish time */

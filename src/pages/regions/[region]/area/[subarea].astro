@@ -7,7 +7,9 @@
 import MainLayout from '../../../../layouts/MainLayout.astro';
 import { ALL_SUBAREA_PATHS } from '../../../../data/regionSubareas';
 import { generateRegionMetadata, generateJsonLd } from '../../../../lib/seo';
+import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../../lib/getRegionalBlogDisplayPosts';
+import { getLatestRegionalPosts } from '../../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../../../data/questionnaireTestimonials';
 import JsonLd from '../../../../components/seo/JsonLd.astro';
@@ -105,7 +107,8 @@ const {
 
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
-const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
+const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const subareaLabel = `${displayName}（${regionName}）`;
 
 const regionOverrides = buildRegionSeoOverrides({
@@ -209,7 +212,7 @@ const noindex = isNoindexRegionId(regionId);
         displayName={subareaLabel}
         niche={niche}
       />
-      <Blog client:visible regionName={regionName} displayName={subareaLabel} />
+      <Blog client:visible regionName={regionName} displayName={subareaLabel} posts={blogCases} />
       <ServiceMutualLink
         regionName={regionName}
         displayName={subareaLabel}

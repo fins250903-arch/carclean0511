@@ -7,7 +7,9 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import { osakaSubRegions, getRegionCustomization } from '../../../data/regionCustomization';
 import { generateRegionMetadata, generateJsonLd } from '../../../lib/seo';
 import { getRegionalPost } from '../../../lib/getRegionalPost';
+import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
+import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
 import JsonLd from '../../../components/seo/JsonLd.astro';
@@ -93,7 +95,8 @@ const { subareaId, displayName, niche, path } = Astro.props as {
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
 const post = getRegionalPost(REGION_NAME);
-const blogCases = getRegionalBlogDisplayPosts('osaka', REGION_NAME);
+const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), 'osaka');
+const blogCases = getRegionalBlogDisplayPosts('osaka', REGION_NAME, latestBlogPosts);
 const custom = getRegionCustomization(REGION_NAME, subareaId);
 
 const regionOverrides = buildRegionSeoOverrides({
@@ -210,7 +213,7 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         niche={niche}
         subareaId={subareaId}
       />
-      <Blog client:visible regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
+      <Blog client:visible regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} posts={blogCases} />
       <ServiceMutualLink
         regionName={REGION_NAME}
         displayName={`${displayName}（大阪府）`}

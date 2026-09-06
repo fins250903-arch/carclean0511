@@ -10,7 +10,9 @@ import {
   generateJsonLd,
 } from '../../../lib/seo';
 import { getRegionalPost } from '../../../lib/getRegionalPost';
+import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
+import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import { buildAdKeywordJsonLdOptions } from '../../../lib/keywordSchemaOptions';
 import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
@@ -98,7 +100,8 @@ const regionBasePath = `/regions/${regionId}`;
 
 const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
-const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
+const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const questionnaireStructuredData = generateQuestionnaireJsonLd(
   regionName,
   displayName,
@@ -297,7 +300,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
       <CTA />
       <FAQ niche={pageNiche} extraFaqs={aioExtraFaqs} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
-      <Blog client:visible regionName={regionName} displayName={displayName} />
+      <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />
       <ServiceMutualLink
         regionName={regionName}
         displayName={displayName}

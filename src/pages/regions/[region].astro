@@ -6,7 +6,9 @@ import { generateRegionMetadata, generateJsonLd } from '../../lib/seo';
 import type { ServiceNiche } from '../../lib/niche';
 import { regionPath } from '../../lib/niche';
 import { getRegionalPost } from '../../lib/getRegionalPost';
+import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPosts';
+import { getLatestRegionalPosts } from '../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../data/questionnaireTestimonials';
 import JsonLd from '../../components/seo/JsonLd.astro';
@@ -97,7 +99,8 @@ const noindex = isNoindexRegionId(regionId ?? '');
 const post = getRegionalPost(regionName);
 const regionCustom = getRegionCustomization(regionName);
 const displayName = post?.displayName || regionName;
-const blogCases = getRegionalBlogDisplayPosts(regionId, regionName);
+const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
+const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const questionnaireStructuredData = generateQuestionnaireJsonLd(regionName, displayName, path);
 const regionOverrides = buildRegionSeoOverrides({
     regionName,
@@ -186,7 +189,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <CTA />
       <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
-      <Blog client:visible regionName={regionName} displayName={displayName} />
+      <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <ContactForm client:visible regionName={regionName} />
       <OperatorInfo regionName={regionName} displayName={displayName} />
