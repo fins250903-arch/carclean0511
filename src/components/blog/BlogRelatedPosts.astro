@@ -1,0 +1,32 @@
+---
+import type { RelatedBlogPost } from '../../lib/blogRelatedPosts';
+
+interface Props {
+  posts: RelatedBlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <nav
+    id="post-related-cases"
+    aria-label="関連する施工事例"
+    class="not-prose mt-12 rounded-2xl border border-blue-100 bg-blue-50 p-6"
+  >
+    <h2 class="mb-4 text-lg font-bold text-gray-900">同じ症状の施工事例</h2>
+    <ul class="space-y-3">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={post.href}
+            class="block rounded-xl border border-blue-100 bg-white px-4 py-3 transition-colors hover:border-blue-300 hover:bg-white"
+          >
+            <span class="block font-bold text-blue-700">{post.title}</span>
+            <span class="mt-0.5 block text-sm leading-relaxed text-gray-600">{post.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
