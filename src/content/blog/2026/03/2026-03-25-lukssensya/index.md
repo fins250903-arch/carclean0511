@@ -1,10 +1,22 @@
 ---
-title: "【北九州市】日産・ルークスの長年の生活臭リセット"
-date: 2026-03-25
-categories: 
-  - "jisseki"
-  - "fukuoka"
-coverImage: "日産・ルークス-e1774429448542.webp"
+date: 2026-09-11
+title: 【北九州市】日産・ルークスの長年の生活臭リセット
+shortSlug: lukssensya
+areaName: 福岡県北九州市若松区
+coverImage: 日産・ルークス-e1774429448542.webp
+seo:
+  noindex: false
+  meta_description: |-
+    原車確認をしたところ、特にシートの黒ずみが目立っていたため、強力なリンサー洗浄機を投入。 作業後のバケツには、長年の汚れが凝縮された茶色の水。
+
+    これを見ることが、作業者としての醍醐味でもあります。
+
+    お客様は想定以外の茶色に驚いていました。 こんなシートに座っていたのかと思うと、やはり気持ちが悪い。頼んでよかったと言われました。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - fukuoka
 ---
 
 潮風の影響か、少ししっとりとした汚れが蓄積していました。  
