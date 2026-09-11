@@ -1,10 +1,20 @@
 ---
-title: "【水戸市】日産・マーチのコーヒーこぼれシミ抜き"
-date: 2026-03-25
-categories: 
-  - "jisseki"
-  - "ibaraki"
-coverImage: "日産・マーチmae-1.jpg"
+date: 2026-09-11
+title: 【水戸市】日産・マーチのコーヒーこぼれシミ抜き
+shortSlug: machcoffee
+areaName: 茨城県水戸市
+coverImage: 日産・マーチmae-1.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    電装系が近い場所なので、水分量に細心の注意を払いながら、シミ吸出しを実施。
+
+    いつものように洗浄剤と水を溶かしたものを吹き出しながら吸い上げるという機材で実際に行ったところ、水の色がコーヒー色にどんどん変わっていきました。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - ibaraki
 ---
 
 偕楽園の梅が美しい季節。カップホルダーから溢れたコーヒーがセンターコンソールの奥まで浸透していました。通勤中にうっかり手が当たってこぼしてしまった。慌てて車を止めて吹き上げたが、染み込んでしまったものがなかなか取れない。  
