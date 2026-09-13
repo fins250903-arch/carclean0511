@@ -81,6 +81,51 @@
       "permanent": true
     },
     {
+      "source": "/regions/kanagawa/kyuto-cleaning/",
+      "destination": "/regions/kanagawa/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/ibaraki/kyuto-cleaning/",
+      "destination": "/regions/ibaraki/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/mie/kyuto-cleaning/",
+      "destination": "/regions/mie/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/gifu/kyuto-cleaning/",
+      "destination": "/regions/gifu/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/shizuoka/kyuto-cleaning/",
+      "destination": "/regions/shizuoka/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/kyoto/kyuto-cleaning/",
+      "destination": "/regions/kyoto/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/nara/kyuto-cleaning/",
+      "destination": "/regions/nara/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/shiga/kyuto-cleaning/",
+      "destination": "/regions/shiga/vomit-cleaning/",
+      "permanent": true
+    },
+    {
+      "source": "/regions/saga/kyuto-cleaning/",
+      "destination": "/regions/saga/vomit-cleaning/",
+      "permanent": true
+    },
+    {
       "source": "/regions/tokyo/seat-senjo/",
       "destination": "/regions/tokyo/seat-washing/",
       "permanent": true

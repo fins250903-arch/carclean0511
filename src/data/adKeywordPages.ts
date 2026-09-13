@@ -233,11 +233,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応の車の匂い取り。マスキングではなく、汚れと臭い分子を洗い流す本格洗浄を行います。`,
     seoKeywords: (r) =>
       `車の匂い取り ${r}, 車 消臭 ${r}, 車内クリーニング ${r}, 臭い 取り ${r}, シート洗浄 ${r}`,
-    ogImage: KW_IMAGES.steam,
+    ogImage: KW_IMAGES.shanaiNioi,
     heroSubtitle: (d) => `${d}｜車の匂い取り`,
     heroHighlight: ['匂いの元を', '洗浄で除去'],
     heroSubcatch: (d) => `${d}の車の匂い取り出張`,
-    fvImage: KW_IMAGES.steam,
+    // Prefer odor pain-point visual over generic steam action shot
+    fvImage: KW_IMAGES.shanaiNioi,
     heroFooter: kwFooter('車の匂い'),
     problemHeader: '「香水や消臭剤ではごまかせない、根強い臭い…」',
     problemSubHeader: '臭いは「付け足し」より「洗い出し」が根本対策になります。',
@@ -245,8 +246,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「オゾン処理だけ勧められたけど、一時的で戻ってしまった…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>車の匂い取り</strong>は、臭い分子の吸着先である汚れを落とすことが重要です。<br /><strong>${dn}</strong>の指定場所へ出張し、高温スチームや専用洗剤を組み合わせて施工します。<br /><strong>${rn}</strong>エリアでも、プロの車内クリーニングで快適な空間を目指します。`,
-    problemEmpathyImage: KW_IMAGES.steam,
-    problemEmpathyAlt: 'スチーム洗浄による車内の臭い除去イメージ',
+    problemEmpathyImage: KW_IMAGES.shanaiNioi,
+    problemEmpathyAlt: '車内の強い臭いに困るドライバーのイメージ',
     mainTitle: (r) => `【${r}】車の匂い取り出張｜消臭スプレーでは消えない臭いを洗浄で根本除去`,
     deepTroubles: [
       '消臭剤や芳香剤を足しても、数日で元の臭いが戻って困る',
@@ -362,11 +363,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応のペット臭。毛・皮脂・唾液の複合臭を、洗浄と消臭の工程でまとめてケアします。`,
     seoKeywords: (r) =>
       `ペット臭 車 ${r}, 犬 臭い 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}, ペット 車 ${r}`,
-    ogImage: KW_IMAGES.petMess,
+    ogImage: KW_IMAGES.petNioi,
     heroSubtitle: (d) => `${d}｜ペット臭対策`,
     heroHighlight: ['ペット臭', '洗浄＋消臭'],
     heroSubcatch: (d) => `${d}の車内ペット臭`,
-    fvImage: KW_IMAGES.petMess,
+    fvImage: KW_IMAGES.petNioi,
     heroFooter: kwFooter('ペット臭'),
     problemHeader: '「ワンちゃん同乗が多くて、車がペット臭に…」',
     problemSubHeader: '毛と皮脂がセットで臭いの原因になり、ブラシだけでは限界があります。',
@@ -374,8 +375,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「ペット専門店の消臭は高額で、乗用車は断られた…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>ペット臭</strong>は、シートやトランク、天井にまで広がっていることがあります。<br /><strong>${dn}</strong>へ出張し、毛の除去から洗浄・乾燥・消臭まで一括で対応します。<br /><strong>${rn}</strong>のペットファミリーに選ばれる車内クリーニングです。`,
-    problemEmpathyImage: KW_IMAGES.petKe,
-    problemEmpathyAlt: 'ペット同乗後の後部座席 of the image',
+    problemEmpathyImage: KW_IMAGES.petNioi,
+    problemEmpathyAlt: 'ペット臭・汚れが残る車内シートのイメージ',
     mainTitle: (r, d) => `【${r}】車のペット臭・獣臭を徹底消臭！プロの除菌洗浄で愛車を快適に`,
     deepTroubles: [
       '愛犬をいつも車に乗せているため、車内全体にペット特有の獣臭や体臭が染み付いている',
