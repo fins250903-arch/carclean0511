@@ -77,11 +77,11 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
 */}
 <section class="relative w-full overflow-hidden bg-white md:min-h-[88vh] md:flex md:items-start">
     {/* スマホ：上部写真帯（キャンペーンを折りたたみ内に残すため控えめ）。PC：全画面背景 */}
-    <div class="relative z-0 w-full max-md:h-[28vw] max-md:min-h-[6.75rem] max-md:max-h-[8.25rem] md:absolute md:inset-0 md:h-full">
+    <div class="relative z-0 w-full max-md:h-[36vw] max-md:min-h-[8.5rem] max-md:max-h-[11rem] md:absolute md:inset-0 md:h-full">
         <img
             src={fvImage}
-            alt={`${displayName}対応 ${STORE_NAME}`}
-            class="h-full w-full object-cover object-[center_28%] md:object-[center_bottom] md:object-right"
+            alt={`${displayName}対応 ${STORE_NAME}｜嘔吐・灯油・おもらし等の緊急車内クリーニング施工イメージ`}
+            class="h-full w-full object-cover object-[center_32%] md:object-[center_bottom] md:object-right"
             loading="eager"
             fetchpriority="high"
         />
@@ -98,6 +98,9 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
             <div class:list={[gapTight, 'flex flex-wrap gap-1.5']}>
                 <span class="inline-flex rounded-full bg-red-600 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
                     ３６５日２４時間受付中
+                </span>
+                <span class="inline-flex rounded-full bg-amber-500 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
+                    最短即日・緊急対応
                 </span>
                 <span class="inline-flex rounded-full bg-blue-900 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
                     "出張"車内クリーニング業者
@@ -247,7 +250,7 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                         </>
                     ) : (
                         <>
-                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="whitespace-nowrap text-red-600 underline decoration-4">すぐ対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
+                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="whitespace-nowrap text-red-600 underline decoration-4">最短即日対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
                         </>
                     )
                 )}
