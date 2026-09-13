@@ -121,11 +121,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
       `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.omorashi,
+    ogImage: KW_IMAGES.seatStainDark,
     heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
     heroHighlight: ['おしっこ染み', '臭いの元から除去'],
     heroSubcatch: (d) => `${d}の車内おしっこ対応`,
-    fvImage: KW_IMAGES.omorashi,
+    fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
     problemSubHeader: '応急処置だけでは尿成分が残り、時間が経つほど臭いが強くなることがあります。',
@@ -133,7 +133,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
       `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
-    problemEmpathyImage: KW_IMAGES.omorashi,
+    problemEmpathyImage: KW_IMAGES.seatStainDark,
     problemEmpathyAlt: 'おしっこ・尿染みが残る車内シートのイメージ（施工関連）',
     mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
     deepTroubles: [
@@ -149,11 +149,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}の出張対応。おもらしによるシートの染み・臭いを、見える化せず丁寧に洗浄・乾燥します。`,
     seoKeywords: (r) =>
       `車 おもらし ${r}, 車内 おもらし ${r}, シート 尿 ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.omorashi,
+    ogImage: KW_IMAGES.seatStainDark,
     heroSubtitle: (d) => `${d}｜おもらし・シート洗浄`,
     heroHighlight: ['おもらしシミ', '最短即日洗浄'],
     heroSubcatch: (d) => `${d}の車内おもらしトラブル`,
-    fvImage: KW_IMAGES.omorashi,
+    // NOTE: `omorashi.png` is a stock "troubled customer" parking shot — use seat stain for intent match
+    fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('おもらし・シミ'),
     problemHeader: '「おもらしがシートに染みて、車に乗るたび気になる…」',
     problemSubHeader: '乾いてからでは臭いとシミが固定化しやすい。早めの洗浄がカギです。',
@@ -161,7 +162,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「レンタカー返却前に気づいたけど、間に合うか不安…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>おもらし</strong>後は、まず水分を吸わせたうえで、残った尿成分を洗い出すのが基本です。<br />私たちは<strong>${dn}</strong>まで出張し、状況に合わせた泡洗い・消臭・乾燥まで行います。<br />ご自身では難しい「奥までのニオイ」も、車内クリーニングのプロにお任せください。`,
-    problemEmpathyImage: KW_IMAGES.omorashi,
+    problemEmpathyImage: KW_IMAGES.seatStainDark,
     problemEmpathyAlt: 'おもらし・尿染みが残る車内シートのイメージ',
     mainTitle: (r, d) => `【${r}】車のおもらし・シートの尿染みを早急解決！無かったことに`,
     deepTroubles: [
@@ -470,11 +471,12 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。灯油こぼしは引火・臭い・材質痛みのリスク大。早急な洗浄と臭気対策を優先します。`,
     seoKeywords: (r) =>
       `車内 灯油 こぼし ${r}, 灯油 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}, 緊急 ${r}`,
-    ogImage: KW_IMAGES.touyuKobosi,
+    ogImage: KW_IMAGES.rinserWork,
     heroSubtitle: (d) => `${d}｜灯油こぼし緊急`,
     heroHighlight: ['灯油こぼし', '最短即日洗浄'],
     heroSubcatch: (d) => `${d}の車内灯油対応`,
-    fvImage: KW_IMAGES.touyuKobosi,
+    // NOTE: `touyu-kobosi.webp` duplicates the parking stock shot — use rinser extraction for intent match
+    fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('灯油こぼし'),
     problemHeader: '「車内に灯油をこぼして、臭いがキツすぎる…」',
     problemSubHeader: '灯油は揮発し続け、シートやフロアに染み込むと長期化しやすいトラブルです。',
@@ -482,8 +484,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       '「自分で拭いたら広がって、ますます臭くなった…」',
     problemBodyHtml: (rn, dn) =>
       `<strong>車内 灯油 こぼし</strong>は、安全確認のうえ、染み出しを最小化する手順が重要です。<br /><strong>${dn}</strong>へ急行し、吸油・洗浄・乾燥・消臭までプロの工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼を優先して受け付けています。`,
-    problemEmpathyImage: KW_IMAGES.touyuKobosi,
-    problemEmpathyAlt: '車内灯油こぼし・油染みの緊急洗浄イメージ',
+    problemEmpathyImage: KW_IMAGES.seatStainDark,
+    problemEmpathyAlt: '車内灯油こぼし後のシート汚れ・緊急洗浄イメージ',
     mainTitle: (r, d) => `【${r}】車内の灯油こぼし緊急消臭！頭痛がする強烈な油臭さをプロが元から分解`,
     deepTroubles: [
       '冬場にポリタンクから灯油が漏れ、フロアマットの下までベタベタに染み込んでしまった',
