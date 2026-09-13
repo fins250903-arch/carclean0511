@@ -5,6 +5,27 @@ import type { AdKeywordPageDef } from './adKeywordPages';
 /** 重点8地域（広告LP出し分け対象） */
 const PRIORITY_REGIONS = ['chiba', 'aichi', 'osaka', 'hyogo', 'fukuoka', 'okinawa', 'tokyo', 'saitama'] as const;
 
+/** 嘔吐専用URL（ユーザー指定17都府県）— kyuto-cleaning からリダイレクト */
+const VOMIT_CLEANING_REGIONS = [
+  'tokyo',
+  'kanagawa',
+  'saitama',
+  'ibaraki',
+  'chiba',
+  'aichi',
+  'mie',
+  'gifu',
+  'shizuoka',
+  'osaka',
+  'kyoto',
+  'hyogo',
+  'nara',
+  'shiga',
+  'fukuoka',
+  'saga',
+  'okinawa',
+] as const;
+
 function kwFooter(topic: string) {
   return (displayName: string) => `${displayName}の${topic}　まとめて対応します。`;
 }
@@ -154,10 +175,10 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     problemEmpathyAlt: '車の匂い消し・スチーム洗浄イメージ',
     mainTitle: (r) => `${r}で車の匂い消し｜消臭スプレーでは消えない臭いを根絶`,
   },
-  // 12 嘔吐緊急（重点6地域）
+  // 12 嘔吐緊急（指定17都府県）
   {
     slug: 'vomit-cleaning',
-    targetRegionIds: [...PRIORITY_REGIONS],
+    targetRegionIds: [...VOMIT_CLEANING_REGIONS],
     seoTitle: '車 嘔吐 クリーニング',
     seoDescription: (r) =>
       `${r}対応の車内嘔吐クリーニング。胃酸・未消化物をシート奥まで洗い流し、最短即日出張で消臭。`,
@@ -165,7 +186,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
       `車 嘔吐 クリーニング ${r}, 嘔吐 車内清掃 ${r}, 車 ゲロ 消臭 即日 ${r}, 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.vomitStain,
     heroSubtitle: (d) => `${d}｜車 嘔吐 クリーニング`,
-    heroHighlight: ['嘔吐・車酔い', '早急プロ洗浄'],
+    heroHighlight: ['嘔吐・車酔い', '最短即日洗浄'],
     heroSubcatch: (d) => `${d}の車内嘔吐クリーニング`,
     fvImage: KW_IMAGES.vomitStain,
     heroFooter: kwFooter('嘔吐汚れ・臭い'),
@@ -370,7 +391,7 @@ export const LPO_SLUG_REDIRECTS: { source: string; destination: string }[] = [
   { source: '/regions/aichi/pet-unko/', destination: '/regions/aichi/pet-waste/' },
   { source: '/regions/osaka/shanai-nioi/', destination: '/regions/osaka/mold-odor/' },
   { source: '/regions/hyogo/oshikko/', destination: '/regions/hyogo/pet-hair-odor/' },
-  ...PRIORITY_REGIONS.map((id) => ({
+  ...VOMIT_CLEANING_REGIONS.map((id) => ({
     source: `/regions/${id}/kyuto-cleaning/`,
     destination: `/regions/${id}/vomit-cleaning/`,
   })),

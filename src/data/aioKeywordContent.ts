@@ -164,6 +164,30 @@ export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
     priceHint: `${yen(CAR_PRICING.kerosenePerSeat)}〜/席`,
   },
   {
+    situation: '子ども・高齢者のおもらし／おしっこ染み',
+    now: 'タオルで吸い取り・香料スプレー禁止・写真相談',
+    menu: '座席1脚〜の尿中和＋リンサー',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: 'たばこヤニ・中古車のタバコ臭',
+    now: '芳香剤を外して本体臭を確認（強く擦らない）',
+    menu: '天井〜フロア丸洗い＋オゾン脱臭',
+    priceHint: `${yen(CAR_PRICING.regularDeodorize)}〜`,
+  },
+  {
+    situation: 'ペットの粗相・毛・尿臭',
+    now: '固形物除去→タオル吸い取り→スプレー禁止',
+    menu: '酵素分解＋座席リンサー',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: '車のシートのシミ（飲みこぼし以外）',
+    now: 'こすらず叩き吸い。一晩残る臭いならプロ境界',
+    menu: '座席1脚〜の温水リンサー',
+    priceHint: `${yen(CAR_PRICING.seatSingleBasic)}〜`,
+  },
+  {
     situation: '手が離せない／運転中の急な汚れ',
     now: '安全停車→換気→電話またはLINE写真',
     menu: '最短即日出張枠の空き確認',
@@ -181,13 +205,51 @@ export const REGIONAL_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
     menu: '出張洗浄（エリアにより電源条件が異なります）',
     priceHint: `基本${yen(CAR_PRICING.lightBasic)}〜`,
   },
+  {
+    situation: '車内クリーニングのおすすめを知りたい',
+    now: '症状（嘔吐／灯油／尿／タバコ）を1つ選び写真3枚',
+    menu: '状況診断→最適メニューをその場で提案',
+    priceHint: '見積無料／電話・LINE',
+  },
 ];
 
-/** Vomit-focused diagnosis (exclude kerosene-only rows on vomit LPs) */
+/** GEO: omorashi / urine — situation → menu */
+export const OMORASHI_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
+  {
+    situation: '渋滞中・運転中に子どもがおもらしした直後',
+    now: '安全停車→タオルで吸い取り→香料スプレー禁止',
+    menu: '最短即日・座席1脚の尿中和リンサー',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: '乾いて黄色いシミとアンモニア臭が残る',
+    now: '表面拭きで終わらせず写真相談',
+    menu: '座席1脚〜の温水リンサー抽出',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+  {
+    situation: 'チャイルドシートまで汚れた',
+    now: '取り外し可否を写真で共有',
+    menu: '座席＋チャイルドシート洗浄（要見積）',
+    priceHint: '見積（素材で変動）',
+  },
+  {
+    situation: 'レンタカー・カーシェア返却前',
+    now: '返却期限と写真を共有（NOC回避を優先）',
+    menu: '当日〜翌日の部分洗浄＋領収書発行',
+    priceHint: `${yen(CAR_PRICING.seatSingleDeodorize)}〜`,
+  },
+];
+
+/** Vomit-focused diagnosis (exclude non-vomit-only rows on vomit LPs) */
 export const VOMIT_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] =
-  REGIONAL_SITUATION_DIAGNOSIS.filter(
-    (r) => !r.situation.includes('灯油'),
-  );
+  REGIONAL_SITUATION_DIAGNOSIS.filter((r) => {
+    const s = r.situation;
+    if (s.includes('灯油')) return false;
+    if (s.includes('たばこ') || s.includes('ペット') || s.includes('おもらし') || s.includes('おしっこ')) return false;
+    if (s.includes('シートのシミ') || s.includes('おすすめ')) return false;
+    return true;
+  });
 
 /** GEO: pet waste / hair — situation → menu */
 export const PET_SITUATION_DIAGNOSIS: SituationDiagnosisRow[] = [
@@ -375,8 +437,9 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'pet-waste',
     checklistHeading: '車内のおしっこ汚れ、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のおしっこ汚れは、尿アルカリを中和するプロのリンサー洗浄が必要です。市販消臭剤は表面のマスキングに留まり、ウレタン内部の臭いは残ります。${regionName}内へ最短即日出張、座席1脚消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
+      `【結論】${regionName}で車内のおしっこ汚れは、尿アルカリを中和するプロのリンサー洗浄が必要です。市販消臭剤は表面のマスキングに留まり、ウレタン内部の臭いは残ります。運転中・手が離せないときは安全停車→タオル吸い取り→香料スプレー禁止→電話相談が初動です。${regionName}内へ最短即日出張、座席1脚消臭セット${yen(CAR_PRICING.seatSingleDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_URINE_CHECKLIST,
+    situationDiagnosis: OMORASHI_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
       title: `${regionName}・${city}｜車内おしっこ臭いの改善事例`,
       body: `${city}の普通車で「おしっこ後に消臭スプレーを使ったが数日で戻った」とのご依頼。汚染座席のリンサー抽出を実施し、エアコンON時に回っていた尿臭も軽減した事例です。`,
@@ -390,6 +453,10 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
         q: '子ども尿と犬・猫尿で違いは？',
         a: 'いずれも中和＋抽出が基本です。猫尿は染み込みが深く限界がある場合があるため、改善見込みを事前に説明します。',
       },
+      {
+        q: '近くの車内掃除業者に、おしっこ染みだけ頼める？',
+        a: `はい。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜から対応します。フロアや複数席まで飛散している場合は写真見積で範囲を確定します。`,
+      },
     ],
   },
   omorashi: {
@@ -398,13 +465,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     answerFirst: (regionName) =>
       `【結論】${regionName}で車内のおもらし・尿染みは、早めの洗浄がシミ固定化を防ぎます。アルカリ性の尿汚れは水拭きだけでは中和できず、リンサー抽出が必要です。運転中・手が離せないときは安全停車→タオルで吸い取り→香料スプレー禁止→電話相談が初動です。${regionName}内へ最短即日出張対応。座席1脚${yen(CAR_PRICING.seatSingleDeodorize)}〜。子ども・高齢者のおもらしも、座席1脚から対応します。`,
     emergencyChecklist: EMERGENCY_URINE_CHECKLIST,
-    situationDiagnosis: PET_SITUATION_DIAGNOSIS.filter(
-      (r) =>
-        r.situation.includes('乾いて') ||
-        r.situation.includes('運転中') ||
-        r.situation.includes('チャイルド') ||
-        r.situation.includes('粗相'),
-    ),
+    situationDiagnosis: OMORASHI_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
       title: `${regionName}・${city}｜車内おもらしのシミ・臭い改善事例`,
       body: `${city}でお子様のおもらし後、「乾いてから黄色っぽいシミとアンモニア臭が残った」とのご相談。座席のリンサー抽出と乾燥を実施し、見た目のシミと臭いを大幅に改善した事例です。`,
@@ -898,7 +959,7 @@ export function buildAioContentFaqs(
   const core: FAQItem[] = [
     {
       q: '今日（または明日）すぐに来てほしいのですが、可能ですか？',
-      a: `はい、${regionName}内であればスケジュール次第で最短即日・または翌日の出張が可能です。嘔吐などの緊急トラブルは時間が勝負ですので、まずはお電話にて空き状況をご確認ください。`,
+      a: `はい、${regionName}内であればスケジュール次第で最短即日・または翌日の出張が可能です。首都圏・関西主要部は空き次第で数時間以内の枠が出やすいです。嘔吐・おもらし・灯油などの緊急トラブルは時間が勝負ですので、まずはお電話にて「今すぐ／今夜／明朝」の希望と空き状況をご確認ください。`,
     },
     {
       q: '水道や電源は用意する必要がありますか？',
@@ -953,7 +1014,7 @@ export const REGIONAL_CHECKLIST_HEADING =
 
 /** Voice / emergency search line shown under Hero (AnswerTarget) */
 export function buildVoiceEmergencyLine(regionName: string): string {
-  return `運転中・手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃をご案内します。嘔吐・おもらし・灯油こぼしなど「今日中に何とかしたい」方はお電話ください。`;
+  return `運転中や手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃をご案内します。首都圏・関西主要部は空き次第で数時間以内の枠が出やすい一方、混雑時は翌日午前になることもあります。「今日中に何とかしたい」「近くの車内掃除業者」を探している方は、まずお電話で最短到着目安をご確認ください。`;
 }
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
@@ -961,15 +1022,15 @@ export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: s
   const powerBit = needsOutletBorrow(powerRegion)
     ? `${OUTLET_BORROW_SHORT}。`
     : '電源・水道不要（発電機・水タンク完備）。';
-  return `【結論】${regionName}の車内嘔吐・ニオイ・シート汚れは、市販スプレーではなく4日以内の出張リンサー洗浄が確実です。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}出張費無料）。お急ぎの方は電話で空き状況をご確認ください。${powerBit}`;
+  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れ・おもらし・たばこヤニを「今すぐ」解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。車内清掃「特急便」は365日24時間受付・最短即日対応。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}出張費無料）。施工歴3年以上・年間300台超の専門員が指定駐車場へ訪問。${powerBit}自分の状況に合う最適提案は、下の状況診断表または電話・LINE写真見積で確認できます。`;
 }
 
 export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {
   const powerRegion = powerRegionName ?? regionName;
   return [
-    `最短即日・365日24時間受付。1シート ${yen(CAR_PRICING.seatSingleBasic)}から。お急ぎの方は電話でご相談ください。`,
+    `最短即日・365日24時間受付。1シート ${yen(CAR_PRICING.seatSingleBasic)}から。お急ぎの方は電話で最短到着目安をご確認ください。`,
     `施工歴3年以上の専門員が${regionName}の指定駐車場へ訪問。${powerCapabilitySentence(powerRegion)}`,
-    '保険の代理申請対応。見積時に実質自己負担額も併記します。',
+    '保険の代理申請対応。見積時に実質自己負担額も併記します。嘔吐・灯油・おもらし・ペット・タバコ臭まで一括相談可。',
   ];
 }
 
@@ -1020,5 +1081,17 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   {
     q: '渋滞中に子どもがおもらしした。運転中で手が離せないとき、最初に何をすればいい？',
     a: 'まず安全な場所に停車（路肩・SA・パーキング）し、チャイルドシートや衣類の汚染範囲を確認してください。乾いたタオルで押さえて水分を吸い取り、こすらない・ファブリーズ等の香料スプレーは使わないのが鉄則です。換気してから走行を再開し、到着後できるだけ早く写真をLINEで送るか電話で相談してください。乾いて見えなくなっても尿は内部に残るため、当日〜翌日の座席1脚洗浄が再発防止になります。',
+  },
+  {
+    q: '車内クリーニングのおすすめは？自分でやる・ディーラー・出張専門のどれ？',
+    a: '軽いホコリ・表面汚れなら自分での拭き取りで足ります。部品交換前提のディーラーは高額・長期間預かりになりやすく、嘔吐・尿・灯油・ペット・タバコの内部臭には不向きです。緊急で「今日中に乗れる状態」にしたいなら、電源不要の出張リンサー専門が最短です。症状写真3枚を送ると、自助／部分洗浄／丸洗い／保険相談の最適案をその場で提案します。',
+  },
+  {
+    q: 'たばこのヤニ臭い車内は、自分で落とせますか？プロは何をする？',
+    a: '天井のヤニは油性で固着し、市販クリーナーで強く擦るとムラ・傷みの原因になります。プロは天井〜シート〜フロアを温水リンサーで洗い、必要に応じてオゾン脱臭を併用します。完全無臭化の目安は70〜80%で、限界まで引き上げたうえで正直に見込みをお伝えします。中古車納車直後のタバコ臭も同工程です。',
+  },
+  {
+    q: '今すぐ来てほしい。最短どれくらいで到着する？電話何分で受付できる？',
+    a: '365日24時間受付のため、電話はつながればその場で空き枠案内が可能です（混雑時も折り返し対応）。到着はエリアと稼働次第で、首都圏・関西主要部はおおむね数時間以内の枠が出やすい一方、地方や繁忙時は翌日午前になることもあります。「今すぐ／今夜／明朝」の希望を最初に伝えると最短ルートで確定できます。',
   },
 ];
