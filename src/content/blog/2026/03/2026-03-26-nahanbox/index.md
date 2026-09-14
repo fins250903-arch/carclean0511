@@ -1,11 +1,26 @@
 ---
-title: "【那覇市】ホンダ・N-BOXの砂と汗の汚れクリーニング"
-date: 2026-03-26
-categories: 
-  - "jisseki"
-  - "okinawa"
-  - "tokublo"
-coverImage: "70C4D80A-2D4F-4C2D-A45B-D697EBAF836F-1-e1774520068164.jpg"
+date: 2026-09-14
+title: 【那覇市】ホンダ・N-BOXの砂と汗の汚れクリーニング
+shortSlug: nahanbox
+areaName: 沖縄県那覇市
+coverImage: 70C4D80A-2D4F-4C2D-A45B-D697EBAF836F-1-e1774520068164.jpg
+seo:
+  noindex: false
+  meta_description: |
+    塩分を含んだ汚れは生地を傷めるため、本来であれば、早めの対処が正解です。
+
+    どこに連絡すれば車の中を洗浄してもらえるかが分からず、時間が経ってしまったそうです。
+    でも、当店を選んでいただいた以上、徹底的に洗浄をしていきます。
+
+    最初に、 たっぷりの水で塩分を洗い流し、業務用の洗浄剤を溶かした、
+
+    やや温かめにしたお湯で洗浄をかけていきます。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - okinawa
+  - tokublo
 ---
 
 沖縄の太陽の下、海遊びの後にシートが汗と砂で汚れてしまったケース。  
