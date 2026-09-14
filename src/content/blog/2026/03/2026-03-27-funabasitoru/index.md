@@ -1,10 +1,23 @@
 ---
-title: "【船橋市】ダイハツ・トールの「お漏らしによるシミとニオイ」を除去"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "chiba"
-coverImage: "line_oa_chat_260323_145103-e1774616139337.jpg"
+date: 2026-09-14
+title: 【船橋市】ダイハツ・トールの「お漏らしによるシミとニオイ」を除去
+shortSlug: funabasitoru
+areaName: 千葉県船橋市
+coverImage: line_oa_chat_260323_145103-e1774616139337.jpg
+seo:
+  noindex: false
+  meta_description: >
+    洗浄剤と水を混ぜたものをお湯に変えて、さらに徹底的にすすい出して洗浄を行いました。洗剤の残りがないように注意しながら、すすぎもしっかりと行っています。  
+
+    臭いがかなり気になるということでしたので、オゾン消臭を追加で施工いたしました。
+
+
+    臭いも完全に分解され、綺麗になりました。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - chiba
 ---
 
 船橋の活気ある住宅街。小さなお子様がチャイルドシートから漏らしてしまったとのご相談でした。  
