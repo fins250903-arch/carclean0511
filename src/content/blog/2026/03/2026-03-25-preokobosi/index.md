@@ -1,5 +1,5 @@
 ---
-date: 2026-03-25
+date: 2026-09-14
 title: 【西宮市】スバル・プレオの子供の食べこぼし洗浄
 shortSlug: preokobosi
 areaName: 兵庫県 西宮市
