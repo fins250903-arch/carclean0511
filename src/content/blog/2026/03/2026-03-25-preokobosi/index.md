@@ -1,11 +1,21 @@
 ---
-title: "【西宮市】スバル・プレオの子供の食べこぼし洗浄"
 date: 2026-03-25
-categories: 
-  - "jisseki"
-  - "hyougo"
-  - "tokublo"
-coverImage: "line_oa_chat_260323_145617-e1774427668876.jpg"
+title: 【西宮市】スバル・プレオの子供の食べこぼし洗浄
+shortSlug: preokobosi
+areaName: 兵庫県 西宮市
+coverImage: line_oa_chat_260323_145617-e1774427668876.jpg
+seo:
+  noindex: true
+  meta_description: |-
+    普段見えないシートを跳ね上げた下の部分まで、徹底的にバキュームと水洗い。
+
+    グミ系のものは少し溶けて変形してへばりついて、除去するのが大変でした。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - hyougo
+  - tokublo
 ---
 
 甲子園球場近くの賑やかなエリア。  
