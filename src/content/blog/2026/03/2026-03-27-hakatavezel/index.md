@@ -1,10 +1,18 @@
 ---
-title: "【福岡市】ホンダ・ヴェゼルの「海帰りの砂と塩害対策」"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "fukuoka"
-coverImage: "ホンダ・ヴェゼル2-e1774622274667.jpg"
+date: 2026-09-15
+title: 【福岡市】ホンダ・ヴェゼルの「海帰りの砂と塩害対策」
+shortSlug: hakatavezel
+areaName: 福岡県福岡市
+coverImage: ホンダ・ヴェゼル2-e1774622274667.jpg
+seo:
+  noindex: false
+  meta_description: 目に見えない塩分を中和するため、特殊な洗浄液を使用。特にシート下の金属部分に入り込んだ砂は、ブロアーで弾き飛ばしてから吸引しました。
+    シートの隙間、金具の部分などを確認しながらの手作業のため、かなり時間はかかりました。シートの上も砂が落ちていたので、洗浄をかけました。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - fukuoka
 ---
 
  博多湾の近くのお客様。  
