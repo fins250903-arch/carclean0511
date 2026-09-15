@@ -1,5 +1,5 @@
 ---
-date: 2026-03-27
+date: 2026-09-15
 title: 【宜野湾市】ホンダ・バモスの「ビーチの砂と食べこぼし」
 shortSlug: ginowanvamos
 areaName: 沖縄県宜野湾市
