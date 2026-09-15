@@ -1,10 +1,21 @@
 ---
-title: "【柏市】スバル・インプレッサの「芳香剤のニオイ酔い」を軽減"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "chiba"
-coverImage: "line_oa_chat_260323_145159-e1774616537711.jpg"
+date: 2026-09-15
+title: 【柏市】スバル・インプレッサの「芳香剤のニオイ酔い」を軽減
+shortSlug: kasiwasubaru
+areaName: 千葉県柏市
+coverImage: line_oa_chat_260323_145159-e1774616537711.jpg
+seo:
+  noindex: false
+  meta_description: |
+    油分を含んだ芳香剤は、通常の水洗いでは落ちません。アルカリ性の洗浄剤と温水を使い、少しずつ溶かし出しながら回収しました。
+
+    オゾンでニオイ成分を分解するという形で、かなり軽減ができました。元々芳香剤自体はとても良い香りですので、気にならない程度まで抑えることができました。  
+    この程度であれば十分に車に乗れるということで了承いただき、作業を終了いたしました。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - chiba
 ---
 
 柏の並木道が綺麗なエリアです。  
