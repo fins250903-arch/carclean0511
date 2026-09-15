@@ -1,11 +1,25 @@
 ---
-title: "【宜野湾市】ホンダ・バモスの「ビーチの砂と食べこぼし」"
 date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "okinawa"
-  - "tokublo"
-coverImage: "ホンダ・バモスyoko-e1774623942550.jpg"
+title: 【宜野湾市】ホンダ・バモスの「ビーチの砂と食べこぼし」
+shortSlug: ginowanvamos
+areaName: 沖縄県宜野湾市
+coverImage: ホンダ・バモスyoko-e1774623942550.jpg
+seo:
+  noindex: true
+  meta_description: >-
+    レジャー後の砂がカーペットの奥深くまで入り込んでいました。
+
+
+    車内での飲食もして、少し食べこぼしがあったり、シートにシミがついている、全体洗浄の依頼がありました。砂は掃除機で吸い取れない部分もあるので、端っこに入り込んでいるものは、
+
+
+    強力なブロアーで叩き出しながら、業務用の高圧バキュームで一気に回収。 
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - okinawa
+  - tokublo
 ---
 
 宜野湾のビーチ近くのお客様。
