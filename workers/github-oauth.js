@@ -1,15 +1,26 @@
 /**
- * GitHub OAuth for Decap CMS on Cloudflare Workers.
+ * GitHub OAuth for Decap CMS, plus host-level SEO redirects.
  *
  * Dashboard secrets (Workers → Settings → Variables and Secrets):
  *   GITHUB_CLIENT_ID
  *   GITHUB_CLIENT_SECRET
  *
+ * Optional runtime var:
+ *   FORCE_HTTPS=true  — 301 HTTP → https://carinteriorcleaning.jp
+ *   (keep false until SSL/TLS → Edge Certificates is Active)
+ *
  * Local: copy `.dev.vars.example` to `.dev.vars`.
  *
- * Only `/api/*` is routed here (`assets.run_worker_first` in wrangler.jsonc).
- * Static pages are served from `dist/` and never hit this file.
+ * `assets.run_worker_first: true` sends every request here first.
+ * Static pages then go to `env.ASSETS.fetch` (`dist/` + `public/_redirects`).
  */
+
+import {
+  canonicalHostRedirect,
+  isWorkersDevHost,
+  workersDevRobotsTxt,
+  withWorkersDevNoindex,
+} from './seo.js';
 
 function normalizePathname(pathname) {
   if (pathname.length > 1 && pathname.endsWith('/')) {
@@ -91,18 +102,56 @@ async function oauthCallback(request, env) {
   });
 }
 
+async function handleOauth(request, env, pathname) {
+  if (pathname === '/api/auth') {
+    return authorizeRedirect(request, env);
+  }
+
+  if (pathname === '/api/callback') {
+    return oauthCallback(request, env);
+  }
+
+  if (pathname.startsWith('/api')) {
+    return new Response('Not found', { status: 404 });
+  }
+
+  return null;
+}
+
+function fetchAssets(request, env) {
+  if (!env.ASSETS) {
+    return new Response('Not found', { status: 404 });
+  }
+  return env.ASSETS.fetch(request);
+}
+
 export default {
   async fetch(request, env) {
-    const pathname = normalizePathname(new URL(request.url).pathname);
+    const url = new URL(request.url);
 
-    if (pathname === '/api/auth') {
-      return authorizeRedirect(request, env);
+    if (isWorkersDevHost(url.hostname)) {
+      const pathname = normalizePathname(url.pathname);
+      if (pathname === '/robots.txt') {
+        return workersDevRobotsTxt();
+      }
+      const apiRes = await handleOauth(request, env, pathname);
+      if (apiRes) {
+        return withWorkersDevNoindex(apiRes);
+      }
+      return withWorkersDevNoindex(await fetchAssets(request, env));
     }
 
-    if (pathname === '/api/callback') {
-      return oauthCallback(request, env);
+    const hostRedirect = canonicalHostRedirect(request, env);
+    if (hostRedirect) {
+      return hostRedirect;
     }
 
-    return new Response('Not found', { status: 404 });
+    const pathname = normalizePathname(url.pathname);
+    const apiRes = await handleOauth(request, env, pathname);
+    if (apiRes) {
+      return apiRes;
+    }
+
+    return fetchAssets(request, env);
   },
 };
