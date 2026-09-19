@@ -13,7 +13,7 @@
     "build": "npm run sync:images && npm run sync:blog-admin-index && astro build",
     "preview": "astro preview",
     "cf:dev": "wrangler dev",
-    "cf:deploy": "npm run build && wrangler deploy",
+    "cf:deploy": "npm run build && node ./scripts/verify-dist-css.mjs && wrangler deploy --keep-vars --autoconfig=false",
     "test:oauth": "node --test workers/github-oauth.test.js",
     "astro": "astro",
     "export:lp-urls": "node ./scripts/export-lp-urls.mjs",
