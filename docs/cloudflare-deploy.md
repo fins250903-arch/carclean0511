@@ -2,13 +2,22 @@
 
 ## いまの状態（公開済み）
 
-サイト本体は Cloudflare に載っています。
+サイト本体は Cloudflare Worker **carclean0511** に載っています。
 
 **確認用 URL:** https://carclean0511.fins250903.workers.dev/regions/osaka/
 
-本番の `https://carinteriorcleaning.jp` は、DNS がまだ Xserver / Vercel のため **今も Vercel のまま** です。広告やお客様向け URL は変えていません。
+JPRS のネームサーバーは Cloudflare に切り替わっています。
 
-残作業は「ドメインを Cloudflare に向ける」だけです。手順は下の「4. ドメイン」を見てください。
+- `harlan.ns.cloudflare.com`
+- `teagan.ns.cloudflare.com`
+
+Cloudflare ゾーンは **active** です。Worker には `carinteriorcleaning.jp` と `www.carinteriorcleaning.jp` を接続済みです。
+
+DNS キャッシュが残っている回線では、まだ Vercel の IP（`216.198.79.1`）に届くことがあります。反映は数分〜数時間です。
+
+HTTPS の証明書がエッジに乗るまで、Cloudflare IP へ先に向いた端末では `https://` が一時的に開けないことがあります。開けないときは確認用 URL を使ってください。ダッシュボードの **SSL/TLS → Edge Certificates** が Active になれば本番 HTTPS も通ります。
+
+ブログ管理の GitHub ログイン用に、Worker の Production Secrets へ `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` を入れてください。
 
 ---
 
@@ -97,28 +106,24 @@ GitHub OAuth App の Callback URL はこれまでどおりです。
 
 ---
 
-## 4. ドメインを Worker につなぐ（いまここ）
+## 4. ドメイン（ネームサーバー変更済み）
 
 Worker には次を接続済みです。
 
 - `carinteriorcleaning.jp`
 - `www.carinteriorcleaning.jp`
 
-ゾーンはまだ **pending** です。インターネット上のネームサーバーが Xserver のままなので、お客様向け URL はまだ Vercel です。
+Xserver 側のネームサーバーは次の 2 本です（JPRS に反映済み）。
 
-### 次にやること（Xserver のネームサーバー変更）
+- `harlan.ns.cloudflare.com`
+- `teagan.ns.cloudflare.com`
 
-1. Xserver サーバーパネルにログイン: https://secure.xserver.ne.jp/xapanel/login/xserver/
-2. **ドメイン** → **ネームサーバー設定**
-3. `carinteriorcleaning.jp` を選ぶ
-4. 「その他のネームサーバーを使う」にして、次の 2 本だけ入れる（3本目以降は空）
-   - `harlan.ns.cloudflare.com`
-   - `teagan.ns.cloudflare.com`
-5. 変更を保存する
+### 切り替えたあとに見ること
 
-反映まで数分〜数時間かかることがあります。このチャットに「ネームサーバー変えた」と送ってください。こちらで本番 URL が Cloudflare になったか確認します。
-
-切り替え中も、確認用 URL は使えます: https://carclean0511.fins250903.workers.dev/regions/osaka/
+1. ダッシュボードでゾーンが **Active** であること
+2. **SSL/TLS → Edge Certificates** に証明書があること（初回は数分〜最大 24 時間）
+3. `https://carinteriorcleaning.jp/regions/osaka/` の応答ヘッダが `server: cloudflare` になること
+4. 確認用 URL と見た目が同じこと: https://carclean0511.fins250903.workers.dev/regions/osaka/
 
 ---
 
