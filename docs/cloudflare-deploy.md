@@ -97,23 +97,21 @@ GitHub OAuth App の Callback URL はこれまでどおりです。
 
 ---
 
-## 4. ドメインを Worker につなぐ
+## 4. ドメインを Worker につなぐ（いまここ）
 
-サイトの本番 URL は `https://carinteriorcleaning.jp` です。
+Worker 側の公開は済みです。本番ドメインをつなぐには、**Cloudflare にゾーン（サイト）を追加**する必要があります。こちらのログイン権限ではゾーンを作れません。
 
-1. Worker **carclean0511** → **Settings → Domains & Routes**
-2. **Add → Custom Domain**
-3. `carinteriorcleaning.jp` を追加
-4. `www.carinteriorcleaning.jp` も追加する場合は、ダッシュボードの **Redirect Rules** で www → apex（`https://carinteriorcleaning.jp/...`）へ 301 してください。`_redirects` ではホスト名ごとの転送はできません。
+いまの DNS は Xserver と Vercel が混在しています。お客様向けの `carinteriorcleaning.jp` は **まだ Vercel** です。次の操作だけでは止まりません。
 
-ドメインの DNS が **まだ Vercel 側** のときは:
+### お客様のブラウザでやること（1画面）
 
-1. ドメイン管理画面でネームサーバーを Cloudflare に切り替える  
-   **または** Cloudflare にゾーンを追加して案内されたネームサーバーに変更する
-2. 切り替わるまで数時間かかることがあります
-3. 切り替わるまで Vercel 側のサイトは動いたままなので、急いで消さなくて大丈夫です
+1. すでにログインしている Cloudflare で開く: https://dash.cloudflare.com/6e757bcffbbc2c6d612e923c5644e865
+2. **Add a domain / ドメインを追加**
+3. `carinteriorcleaning.jp` を入力 → Continue
+4. プランは **Free** のまま Continue
+5. 画面に出るネームサーバー 2 本（`*.ns.cloudflare.com`）をこのチャットに貼る
 
-旧 `*.vercel.app` は、Vercel 側のリダイレクトを残しておけばそのまま本番へ飛びます。
+**この時点では Xserver のネームサーバーはまだ変えないでください。** 先に 2 本をこちらへ送ってもらえれば、止めない順番で案内します。ゾーンが有効になったら、こちらで Worker に `carinteriorcleaning.jp` と `www` を接続します。
 
 ---
 
