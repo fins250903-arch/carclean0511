@@ -15,6 +15,8 @@ dist
 .astro
 
 .vercel
+.wrangler
+.dev.vars
 
 desktop.ini
 Thumbs.db

@@ -1,0 +1,11 @@
+{
+  // Static Astro site (output: "static") — do NOT add @astrojs/cloudflare.
+  // That adapter is only for SSR / on-demand rendering and is what Cloudflare
+  // tried to auto-install when this file was missing.
+  "name": "carclean0511",
+  "compatibility_date": "2026-09-19",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash"
+  }
+}

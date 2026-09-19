@@ -17,3 +17,4 @@ This repo is a **static Astro 6 site** (`output: 'static'`) — a set of Japanes
 - `sync:blog-admin-index` regenerates `public/admin/blog-index.json` from `src/content/blog` on every dev/build — expected output like `Generated blog-index.json with N posts`.
 - `.env` is git-ignored; copy `.env.example` to `.env`. The only local-relevant var is `PUBLIC_GTM_ID` (Google Tag Manager). `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` are only needed for the Decap CMS OAuth serverless functions on Vercel, not for local dev.
 - Node version is pinned to `22` via `.nvmrc`.
+- **Cloudflare Workers**: this is a **static** site. Deploy with `wrangler.jsonc` (`assets.directory: ./dist`). Do **not** run `npx astro add cloudflare` / install `@astrojs/cloudflare` — that adapter is for SSR only. Path redirects live in `public/_redirects` (copied to `dist/` at build). Decap CMS GitHub OAuth (`api/*.js`) is still Vercel-only until replaced with a Worker.

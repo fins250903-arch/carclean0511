@@ -1,0 +1,34 @@
+# Path redirects previously defined in vercel.json.
+# Host-based redirects (www / *.vercel.app) are not supported here;
+# configure those in the Cloudflare dashboard (Redirect Rules / DNS).
+
+/regions/chiba/shutchou-senmon/ /regions/chiba/mobile-cleaning/ 301
+/regions/hyogo/seat-senjo/ /regions/hyogo/seat-washing/ 301
+/regions/osaka/kuruma-nioi-keshi/ /regions/osaka/odor-removal/ 301
+/regions/aichi/evaporator-senjo/ /regions/aichi/ac-mold/ 301
+/regions/aichi/tabako-yani/ /regions/aichi/tobacco-odor/ 301
+/regions/aichi/pet-unko/ /regions/aichi/pet-waste/ 301
+/regions/osaka/shanai-nioi/ /regions/osaka/mold-odor/ 301
+/regions/hyogo/oshikko/ /regions/hyogo/pet-hair-odor/ 301
+/regions/chiba/kyuto-cleaning/ /regions/chiba/vomit-cleaning/ 301
+/regions/aichi/kyuto-cleaning/ /regions/aichi/vomit-cleaning/ 301
+/regions/osaka/kyuto-cleaning/ /regions/osaka/vomit-cleaning/ 301
+/regions/hyogo/kyuto-cleaning/ /regions/hyogo/vomit-cleaning/ 301
+/regions/fukuoka/kyuto-cleaning/ /regions/fukuoka/vomit-cleaning/ 301
+/regions/okinawa/kyuto-cleaning/ /regions/okinawa/vomit-cleaning/ 301
+/regions/tokyo/kyuto-cleaning/ /regions/tokyo/vomit-cleaning/ 301
+/regions/saitama/kyuto-cleaning/ /regions/saitama/vomit-cleaning/ 301
+/regions/kanagawa/kyuto-cleaning/ /regions/kanagawa/vomit-cleaning/ 301
+/regions/ibaraki/kyuto-cleaning/ /regions/ibaraki/vomit-cleaning/ 301
+/regions/mie/kyuto-cleaning/ /regions/mie/vomit-cleaning/ 301
+/regions/gifu/kyuto-cleaning/ /regions/gifu/vomit-cleaning/ 301
+/regions/shizuoka/kyuto-cleaning/ /regions/shizuoka/vomit-cleaning/ 301
+/regions/kyoto/kyuto-cleaning/ /regions/kyoto/vomit-cleaning/ 301
+/regions/nara/kyuto-cleaning/ /regions/nara/vomit-cleaning/ 301
+/regions/shiga/kyuto-cleaning/ /regions/shiga/vomit-cleaning/ 301
+/regions/saga/kyuto-cleaning/ /regions/saga/vomit-cleaning/ 301
+/regions/tokyo/seat-senjo/ /regions/tokyo/seat-washing/ 301
+/regions/saitama/seat-senjo/ /regions/saitama/seat-washing/ 301
+/regions/tokyo/kuruma-nioi-keshi/ /regions/tokyo/odor-removal/ 301
+/regions/saitama/kuruma-nioi-keshi/ /regions/saitama/odor-removal/ 301
+/ /regions/osaka/ 301
