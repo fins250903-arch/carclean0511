@@ -99,19 +99,24 @@ GitHub OAuth App の Callback URL はこれまでどおりです。
 
 ## 4. ドメインを Worker につなぐ（いまここ）
 
-Worker 側の公開は済みです。本番ドメインをつなぐには、**Cloudflare にゾーン（サイト）を追加**する必要があります。こちらのログイン権限ではゾーンを作れません。
+ゾーン `carinteriorcleaning.jp` は追加済みです。ネームサーバーは次です。
 
-いまの DNS は Xserver と Vercel が混在しています。お客様向けの `carinteriorcleaning.jp` は **まだ Vercel** です。次の操作だけでは止まりません。
+- `harlan.ns.cloudflare.com`
+- `teagan.ns.cloudflare.com`
 
-### お客様のブラウザでやること（1画面）
+ゾーン状態はまだ **pending**（Xserver 側のネームサーバーが未変更）です。お客様向け URL はまだ Vercel です。
 
-1. すでにログインしている Cloudflare で開く: https://dash.cloudflare.com/6e757bcffbbc2c6d612e923c5644e865
-2. **Add a domain / ドメインを追加**
-3. `carinteriorcleaning.jp` を入力 → Continue
-4. プランは **Free** のまま Continue
-5. 画面に出るネームサーバー 2 本（`*.ns.cloudflare.com`）をこのチャットに貼る
+Worker への接続は、Cloudflare が取り込んだ A / CNAME が残っていると失敗します。
 
-**この時点では Xserver のネームサーバーはまだ変えないでください。** 先に 2 本をこちらへ送ってもらえれば、止めない順番で案内します。ゾーンが有効になったら、こちらで Worker に `carinteriorcleaning.jp` と `www` を接続します。
+### 次にやること（DNS の A/CNAME だけ削除）
+
+1. 開く: https://dash.cloudflare.com/6e757bcffbbc2c6d612e923c5644e865/carinteriorcleaning.jp/dns/records
+2. 次だけ削除する（MX / TXT は残す）
+   - 名前 `@` または `carinteriorcleaning.jp` の A / AAAA / CNAME
+   - 名前 `www` の A / AAAA / CNAME
+3. このチャットに「消した」と送る
+
+こちらで Worker に `carinteriorcleaning.jp` と `www` を接続したあと、Xserver のネームサーバーを上記 2 本へ変更します。**Xserver はまだ変えないでください。**
 
 ---
 
