@@ -2,5 +2,5 @@
 # Same names as Cloudflare Workers → Settings → Variables and Secrets.
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
-# Set true only after production HTTPS (Universal SSL) is Active.
+# Local wrangler dev stays on http://127.0.0.1 (Worker skips HTTPS on localhost).
 FORCE_HTTPS=false

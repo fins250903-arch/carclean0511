@@ -43,7 +43,7 @@ Vercel の容量・転送量が増えたので、同じ HTML を **Cloudflare Wo
 | ページを HTML にする | パソコンまたは Cloudflare のビルド（`npm run build`） |
 | HTML を置く・配る | Cloudflare Worker（静的ファイル） |
 | ブログ管理の GitHub ログイン | 同じ Worker の `/api/auth` と `/api/callback` |
-| www 転送・確認用 URL の noindex | 同じ Worker（`workers/seo.js`） |
+| www / HTTPS / 旧パスの 301・確認用 URL の noindex | 同じ Worker（`workers/seo.js`） |
 
 **やってはいけないこと**
 
@@ -186,10 +186,11 @@ npx wrangler secret put GITHUB_CLIENT_SECRET
 1. `https://carinteriorcleaning.jp/regions/osaka/` が開く
 2. `https://carinteriorcleaning.jp/` が大阪ページへ飛ぶ
 3. 旧キーワード URL（例: `/regions/osaka/kyuto-cleaning/`）が新 URL へ 301 される
-4. `http://www.carinteriorcleaning.jp/regions/osaka/` が本番ドメインへ 301 される
-5. 確認用 URL の HTML に `X-Robots-Tag: noindex, nofollow` が付く
-6. `https://carinteriorcleaning.jp/admin/` で GitHub ログインできる
-7. 電話・LINE・フォームの GTM 計測がこれまでどおり動く
+4. `http://www.carinteriorcleaning.jp/regions/osaka/` が `https://carinteriorcleaning.jp/regions/osaka/` へ **1回** 301 される
+5. 旧キーワード URL（www 付きでも）が新 URL へ **1回** 301 される
+6. 確認用 URL の HTML に `X-Robots-Tag: noindex, nofollow` が付く
+7. `https://carinteriorcleaning.jp/admin/` で GitHub ログインできる
+8. 電話・LINE・フォームの GTM 計測がこれまでどおり動く
 
 ブログ記事を Publish すると GitHub の `main` に commit され、Cloudflare が再ビルドします（以前の Vercel 自動デプロイと同じ流れです）。
 
@@ -205,31 +206,33 @@ Google も AI 概要も、**同じ正規 URL** を見ます。本番はこれま
 | --- | --- |
 | canonical | 全ページが `https://carinteriorcleaning.jp`（`src/lib/site.ts`）。ホストを変えていない |
 | sitemap | `https://carinteriorcleaning.jp/sitemap-index.xml`（`robots.txt` と同じ） |
-| 旧キーワード URL | `public/_redirects` で 301（Vercel の path ルールと同じ一覧） |
+| 旧キーワード URL | Worker が 301（`workers/path-redirects.js`）。`public/_redirects` は予備 |
 | `/` | `/regions/osaka/` へ 301 |
 | www | Worker が `www.carinteriorcleaning.jp` → 本番ドメインへ 301 |
+| HTTP → HTTPS | `FORCE_HTTPS=true`（apex の証明書は Active） |
 | 末尾スラッシュ | `html_handling: force-trailing-slash`（Astro の `trailingSlash: 'always'` と一致） |
 | 確認用 URL | `*.workers.dev` は `X-Robots-Tag: noindex` と `robots.txt` の `Disallow: /` |
-| HTTP → HTTPS | **証明書が Active になってから** `FORCE_HTTPS=true`（下の手順） |
+
+www・HTTP・旧パスが重なっても **301 は 1 回** です（例: `http://www…/kyuto-cleaning/` → `https://carinteriorcleaning.jp/…/vomit-cleaning/`）。
 
 **やってはいけないこと**
 
-- 証明書がまだ無いときに HTTP → HTTPS や HSTS を有効にしない（ブラウザが HTTPS 専用を記憶し、開けなくなります）
 - 確認用 `workers.dev` を Search Console に登録しない
-- 旧パスをまとめて全県 301 しない（例: 全市の `kyuto-cleaning`。Vercel と同じ行だけ 301 する）
+- 旧パスをまとめて全県 301 しない（例: 全市の `kyuto-cleaning`。Vercel と同じ行だけ 301 する。他県の旧スラッグは広告の最終 URL のまま）
+- HSTS を Worker で二重に長くしない（Vercel 時代の HSTS が残っている端末はすでに HTTPS 専用）
 
-### 証明書が Active になったあと
+### Search Console / AIO
 
-1. ダッシュボード **SSL/TLS → Edge Certificates** が Active
-2. `https://carinteriorcleaning.jp/regions/osaka/` が `server: cloudflare` で開く
-3. Worker の Production 変数 `FORCE_HTTPS` を `true` にする（`wrangler.jsonc` の `vars` も `true` にして再デプロイ）
-4. 任意: ダッシュボード **SSL/TLS → Edge Certificates → Always Use HTTPS** も On
+1. プロパティは **`https://carinteriorcleaning.jp/`** だけ（www と workers.dev は使わない）
+2. サイトマップ `https://carinteriorcleaning.jp/sitemap-index.xml` を再送信
+3. 旧 URL の「URL 検査」で 301 先が正規 URL になっていること
+4. `carclean2026.vercel.app` は Vercel 側が 404（`DEPLOYMENT_NOT_FOUND`）になっている。インデックスに残っていれば Search Console の削除を使う。Worker にも同じホスト 301 を入れてあり、Vercel に何かを載せ直した場合の受け皿になる
 
-Vercel の `*.vercel.app` → 本番ドメインの 308 は、Vercel 側に残してあります。DNS が Cloudflare に切り替わったあとも、Vercel を止めるまでは `carclean2026.vercel.app` がその 308 を返します。止める前に Search Console で本番ドメインのカバレッジを確認してください。
+`www` の DNS がまだ Vercel（`*.vercel-dns.com`）のときは、Vercel の 308 で本番へ飛びます。Cloudflare の www カスタムドメインに切り替わったあとは Worker の 301 です。どちらも正規 URL は同じです。
 
 ---
 
 ## 9. Vercel はどうする？
 
-DNS を Cloudflare に向けて、数日問題ないことを確認してから Vercel プロジェクトを止めてください。
-`vercel.json` と `api/*.js` は **切り戻し用に残してあります**。Cloudflare 側の本体は `wrangler.jsonc` と `workers/github-oauth.js` です。
+apex は Cloudflare です。`www` の DNS がまだ Vercel の間は、www の 308 のために Vercel プロジェクトを残してください。www が Worker に切り替わったら Vercel は止めて構いません。
+`carclean2026.vercel.app` はすでに 404 です。`vercel.json` と `api/*.js` は **切り戻し用に残してあります**。Cloudflare 側の本体は `wrangler.jsonc` と `workers/github-oauth.js` です。

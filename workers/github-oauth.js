@@ -1,22 +1,23 @@
 /**
- * GitHub OAuth for Decap CMS, plus host-level SEO redirects.
+ * GitHub OAuth for Decap CMS, plus host / HTTPS / old-path SEO redirects.
  *
  * Dashboard secrets (Workers → Settings → Variables and Secrets):
  *   GITHUB_CLIENT_ID
  *   GITHUB_CLIENT_SECRET
  *
- * Optional runtime var:
+ * Runtime var:
  *   FORCE_HTTPS=true  — 301 HTTP → https://carinteriorcleaning.jp
- *   (keep false until SSL/TLS → Edge Certificates is Active)
+ *   (apex HTTPS is live; keep true in production)
  *
  * Local: copy `.dev.vars.example` to `.dev.vars`.
  *
  * `assets.run_worker_first: true` sends every request here first.
- * Static pages then go to `env.ASSETS.fetch` (`dist/` + `public/_redirects`).
+ * Host + old-path + HTTP 301s run here (one hop). Static pages then go to
+ * `env.ASSETS.fetch` (`dist/` + `public/_redirects` as a fallback).
  */
 
 import {
-  canonicalHostRedirect,
+  canonicalRedirect,
   isWorkersDevHost,
   workersDevRobotsTxt,
   withWorkersDevNoindex,
@@ -138,12 +139,16 @@ export default {
       if (apiRes) {
         return withWorkersDevNoindex(apiRes);
       }
+      const previewRedirect = canonicalRedirect(request, env);
+      if (previewRedirect) {
+        return previewRedirect;
+      }
       return withWorkersDevNoindex(await fetchAssets(request, env));
     }
 
-    const hostRedirect = canonicalHostRedirect(request, env);
-    if (hostRedirect) {
-      return hostRedirect;
+    const seoRedirect = canonicalRedirect(request, env);
+    if (seoRedirect) {
+      return seoRedirect;
     }
 
     const pathname = normalizePathname(url.pathname);
