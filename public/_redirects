@@ -1,6 +1,9 @@
-# Path redirects previously defined in vercel.json.
-# Host-based redirects (www / *.vercel.app) are not supported here;
-# configure those in the Cloudflare dashboard (Redirect Rules / DNS).
+# Path redirects previously defined in vercel.json (301).
+# The Worker (workers/path-redirects.js) applies the same map first so
+# www + HTTP + old path become one 301. This file is the assets fallback.
+# Host redirects live in workers/seo.js — _redirects is path-only.
+# Trailing slashes are enforced by wrangler.jsonc html_handling: force-trailing-slash.
+# Do not add every-region kyuto-cleaning rules — those old slugs are still live.
 
 /regions/chiba/shutchou-senmon/ /regions/chiba/mobile-cleaning/ 301
 /regions/hyogo/seat-senjo/ /regions/hyogo/seat-washing/ 301
