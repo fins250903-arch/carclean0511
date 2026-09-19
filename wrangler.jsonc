@@ -17,5 +17,17 @@
     "binding": "ASSETS",
     "html_handling": "force-trailing-slash",
     "run_worker_first": ["/api/*"]
-  }
+  },
+  "routes": [
+    {
+      "pattern": "carinteriorcleaning.jp",
+      "custom_domain": true,
+      "zone_id": "bd167301fa6612490ed06067eb4614fe"
+    },
+    {
+      "pattern": "www.carinteriorcleaning.jp",
+      "custom_domain": true,
+      "zone_id": "bd167301fa6612490ed06067eb4614fe"
+    }
+  ]
 }

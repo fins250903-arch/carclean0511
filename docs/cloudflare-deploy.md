@@ -99,24 +99,26 @@ GitHub OAuth App の Callback URL はこれまでどおりです。
 
 ## 4. ドメインを Worker につなぐ（いまここ）
 
-ゾーン `carinteriorcleaning.jp` は追加済みです。ネームサーバーは次です。
+Worker には次を接続済みです。
 
-- `harlan.ns.cloudflare.com`
-- `teagan.ns.cloudflare.com`
+- `carinteriorcleaning.jp`
+- `www.carinteriorcleaning.jp`
 
-ゾーン状態はまだ **pending**（Xserver 側のネームサーバーが未変更）です。お客様向け URL はまだ Vercel です。
+ゾーンはまだ **pending** です。インターネット上のネームサーバーが Xserver のままなので、お客様向け URL はまだ Vercel です。
 
-Worker への接続は、Cloudflare が取り込んだ A / CNAME が残っていると失敗します。
+### 次にやること（Xserver のネームサーバー変更）
 
-### 次にやること（DNS の A/CNAME だけ削除）
+1. Xserver サーバーパネルにログイン: https://secure.xserver.ne.jp/xapanel/login/xserver/
+2. **ドメイン** → **ネームサーバー設定**
+3. `carinteriorcleaning.jp` を選ぶ
+4. 「その他のネームサーバーを使う」にして、次の 2 本だけ入れる（3本目以降は空）
+   - `harlan.ns.cloudflare.com`
+   - `teagan.ns.cloudflare.com`
+5. 変更を保存する
 
-1. 開く: https://dash.cloudflare.com/6e757bcffbbc2c6d612e923c5644e865/carinteriorcleaning.jp/dns/records
-2. 次だけ削除する（MX / TXT は残す）
-   - 名前 `@` または `carinteriorcleaning.jp` の A / AAAA / CNAME
-   - 名前 `www` の A / AAAA / CNAME
-3. このチャットに「消した」と送る
+反映まで数分〜数時間かかることがあります。このチャットに「ネームサーバー変えた」と送ってください。こちらで本番 URL が Cloudflare になったか確認します。
 
-こちらで Worker に `carinteriorcleaning.jp` と `www` を接続したあと、Xserver のネームサーバーを上記 2 本へ変更します。**Xserver はまだ変えないでください。**
+切り替え中も、確認用 URL は使えます: https://carclean0511.fins250903.workers.dev/regions/osaka/
 
 ---
 
