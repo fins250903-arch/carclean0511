@@ -1,0 +1,4 @@
+# Local secrets for `npm run cf:dev` (copy to `.dev.vars`, never commit).
+# Same names as Cloudflare Workers → Settings → Variables and Secrets.
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=

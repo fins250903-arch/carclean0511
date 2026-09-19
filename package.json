@@ -12,6 +12,9 @@
     "start": "npm run sync:images && npm run sync:blog-admin-index && astro dev",
     "build": "npm run sync:images && npm run sync:blog-admin-index && astro build",
     "preview": "astro preview",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "test:oauth": "node --test workers/github-oauth.test.js",
     "astro": "astro",
     "export:lp-urls": "node ./scripts/export-lp-urls.mjs",
     "export:google-ads-keywords": "node ./scripts/export-google-ads-keywords.mjs",
@@ -49,6 +52,7 @@
     "@types/react-dom": "^18.3.7",
     "googleapis": "^171.4.0",
     "tailwindcss": "^4.0.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.135.0"
   }
 }

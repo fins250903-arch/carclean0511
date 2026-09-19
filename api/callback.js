@@ -1,5 +1,6 @@
 /**
- * GitHub OAuth callback for Decap CMS on Vercel.
+ * GitHub OAuth callback for Decap CMS on Vercel (rollback only).
+ * Production on Cloudflare uses workers/github-oauth.js instead.
  */
 export default async function handler(req, res) {
   const code = req.query.code;

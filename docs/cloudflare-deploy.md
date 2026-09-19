@@ -1,68 +1,175 @@
-# Cloudflare への公開手順（初心者向け）
+# Cloudflare Workers へ移す手順（超初心者向け）
 
-このサイトは **完成した HTML をそのまま置く静的サイト** です。
-Vercel の「サーバーでページを作る」機能は使っていません。
+このサイトは **Astro で先に HTML を全部作っておく静的サイト** です。
+Vercel の「アクセスのたびにサーバーでページを作る」機能は使っていません。
 
-## 今回のエラーは何だったか
+Vercel の容量・転送量が増えたので、同じ HTML を **Cloudflare Workers** から配信します。
 
-ログの途中までは **成功** しています。
+---
 
-1. `npm run build` → 約 1100 ページの生成完了（`Success: Build command completed`）
-2. そのあと Cloudflare が `npx wrangler deploy` を実行
-3. リポジトリに `wrangler.jsonc` が無かったため、Wrangler が「Astro のサーバー版としてセットアップし直す」と判断
-4. `npx astro add cloudflare` が `@astrojs/cloudflare` をインストールしようとして失敗
+## 1. 全体像（3つの箱）
 
-`@astrojs/cloudflare` は **SSR（アクセスのたびにサーバーで HTML を作る）用** です。
-このサイトは `output: 'static'` なので **不要** です。入れると逆に壊れます。
+```
+① GitHub のソースコード（Astro）
+        ↓  npm run build
+② dist/ フォルダ（完成した HTML・画像・CSS）
+        ↓  wrangler deploy
+③ Cloudflare Worker「carclean0511」が世界中に配信
+```
 
-## この PR で入る修正
+| 役割 | どこがやるか |
+| --- | --- |
+| ページを HTML にする | パソコンまたは Cloudflare のビルド（`npm run build`） |
+| HTML を置く・配る | Cloudflare Worker（静的ファイル） |
+| ブログ管理の GitHub ログイン | 同じ Worker の `/api/auth` と `/api/callback` |
 
-- `wrangler.jsonc` … `dist/` を静的ファイルとして公開する設定
-- `public/_redirects` … 以前 `vercel.json` にあった URL の 301 転送
+**やってはいけないこと**
 
-## Cloudflare ダッシュボードで確認すること
+- `npx astro add cloudflare` を実行しない
+- `@astrojs/cloudflare` を `package.json` に足さない
 
-Workers のプロジェクト設定を、次のまま（または次に直して）再デプロイしてください。
+これらは **SSR（アクセスのたびにサーバーで HTML を作る）用** です。このサイトは `output: 'static'` なので不要です。入れるとビルドが壊れます。
+
+---
+
+## 2. リポジトリ側で用意してあるもの
+
+| ファイル | 役割 |
+| --- | --- |
+| `wrangler.jsonc` | Worker 名と `dist/` の公開設定。`/api/*` だけプログラムを動かす |
+| `workers/github-oauth.js` | Decap CMS の GitHub ログイン（以前の `api/*.js` 相当） |
+| `public/_redirects` | 旧 URL → 新 URL の 301 転送（ビルドで `dist/_redirects` にコピーされる） |
+| `package.json` の `cf:dev` / `cf:deploy` | 手元での確認と公開コマンド |
+
+Astro の設定（`astro.config.mjs` の `output: 'static'`）は **変えません**。
+
+---
+
+## 3. Cloudflare ダッシュボードでの Worker 設定
+
+GitHub 連携はすでに Worker 名 **carclean0511** でつながっています。
+ダッシュボードで次を確認してください。
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/) にログイン
+2. **Workers & Pages** → **carclean0511** を開く
+3. **Settings → Build**（ビルド設定）
 
 | 項目 | 値 |
 | --- | --- |
+| Git repository | `fins250903-arch/carclean0511` |
+| Production branch | `main` |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
-| Output / build directory | `dist` |
-| Node.js | 22 |
+| Non-production deploy | `npx wrangler versions upload`（そのままで可） |
+| Root directory | （空＝リポジトリの一番上） |
+| Node.js | **22** |
 
-再デプロイ後のログに、次が出ていれば成功です。
+4. **Settings → Variables and Secrets** に次を入れる
+
+**ビルド用（Build）** — `npm run build` のときにだけ使う
+
+| 名前 | 種類 | 値 |
+| --- | --- | --- |
+| `PUBLIC_GTM_ID` | Text | `GTM-WLNM4GWN`（未設定でもコード側の初期値で入ります） |
+
+**本番用（Runtime / Production）** — ブログ管理のログインに必須
+
+| 名前 | 種類 | 値 |
+| --- | --- | --- |
+| `GITHUB_CLIENT_ID` | Secret | GitHub OAuth App の Client ID |
+| `GITHUB_CLIENT_SECRET` | Secret | GitHub OAuth App の Client Secret |
+
+GitHub OAuth App の Callback URL はこれまでどおりです。
+
+`https://carinteriorcleaning.jp/api/callback`
+
+---
+
+## 4. ドメインを Worker につなぐ
+
+サイトの本番 URL は `https://carinteriorcleaning.jp` です。
+
+1. Worker **carclean0511** → **Settings → Domains & Routes**
+2. **Add → Custom Domain**
+3. `carinteriorcleaning.jp` を追加
+4. `www.carinteriorcleaning.jp` も追加する場合は、ダッシュボードの **Redirect Rules** で www → apex（`https://carinteriorcleaning.jp/...`）へ 301 してください。`_redirects` ではホスト名ごとの転送はできません。
+
+ドメインの DNS が **まだ Vercel 側** のときは:
+
+1. ドメイン管理画面でネームサーバーを Cloudflare に切り替える  
+   **または** Cloudflare にゾーンを追加して案内されたネームサーバーに変更する
+2. 切り替わるまで数時間かかることがあります
+3. 切り替わるまで Vercel 側のサイトは動いたままなので、急いで消さなくて大丈夫です
+
+旧 `*.vercel.app` は、Vercel 側のリダイレクトを残しておけばそのまま本番へ飛びます。
+
+---
+
+## 5. デプロイの流れ（普段）
+
+`main` に push すると Cloudflare が自動で:
+
+1. `npm run build`（約 900〜1100 ページを `dist/` に生成）
+2. `npx wrangler deploy`（Worker + 静的ファイルを公開）
+
+成功ログの目安:
 
 - `Success: Build command completed`
-- `Uploaded` / `Deployed`（`astro add cloudflare` は出ない）
+- `Uploaded` / `Deployed`
 
-次の文言が出たら、まだ古い設定で動いています。この PR が `main` に入っているか確認してください。
+失敗の目安（まだ古い設定）:
 
 - `Configuring project for Astro with "astro add cloudflare"`
 - `Error installing dependencies`
 
-## ダッシュボード側でやらないこと
+---
 
-- 「Astro 用にセットアップしますか？」→ **No / 変更しない**
-- `npx astro add cloudflare` を自分で実行しない
-- `@astrojs/cloudflare` を `package.json` に足さない
+## 6. 自分のパソコンから試す場合
 
-## ドメイン（www と Vercel の旧 URL）
+Node.js 22 が必要です（`.nvmrc`）。
 
-`_redirects` では **ホスト名ごとの転送はできません**。
-次は Cloudflare の「Redirect Rules」か DNS で設定します。
+```bash
+cp .env.example .env
+cp .dev.vars.example .dev.vars
+# .dev.vars に GitHub OAuth の値を書く（ログイン試験をするときだけ）
 
-- `www.carinteriorcleaning.jp` → `https://carinteriorcleaning.jp/...`
-- `*.vercel.app` → 本番ドメイン（Vercel 側のリダイレクトを残してもよい）
+npm install
+npm run build
+npm run cf:dev
+```
 
-## ブログ管理画面（Decap CMS）のログイン
+ブラウザで `http://127.0.0.1:8787/regions/osaka/` を開きます。
+`/` は `/regions/osaka/` へ 301 されます。
 
-`api/auth.js` と `api/callback.js` は **Vercel のサーバーレス関数** です。
-静的ホストだけに移すと `/admin/` の GitHub ログインが動きません。
+本番アカウントへ直接上げる場合（API トークンが必要）:
 
-当面の選択肢:
+```bash
+npx wrangler login
+npm run cf:deploy
+```
 
-1. サイト本体だけ Cloudflare、CMS ログインは Vercel に残す
-2. あとから Cloudflare Worker で OAuth を作り直す
+ブログ管理の秘密情報だけ後から入れる場合:
 
-サイト公開そのものは 1 のままで進められます。
+```bash
+npx wrangler secret put GITHUB_CLIENT_ID
+npx wrangler secret put GITHUB_CLIENT_SECRET
+```
+
+---
+
+## 7. 切り替えたあとの確認リスト
+
+1. `https://carinteriorcleaning.jp/regions/osaka/` が開く
+2. `https://carinteriorcleaning.jp/` が大阪ページへ飛ぶ
+3. 旧キーワード URL（例: `/regions/osaka/kyuto-cleaning/`）が新 URL へ 301 される
+4. `https://carinteriorcleaning.jp/admin/` で GitHub ログインできる
+5. 電話・LINE・フォームの GTM 計測がこれまでどおり動く
+
+ブログ記事を Publish すると GitHub の `main` に commit され、Cloudflare が再ビルドします（以前の Vercel 自動デプロイと同じ流れです）。
+
+---
+
+## 8. Vercel はどうする？
+
+DNS を Cloudflare に向けて、数日問題ないことを確認してから Vercel プロジェクトを止めてください。
+`vercel.json` と `api/*.js` は **切り戻し用に残してあります**。Cloudflare 側の本体は `wrangler.jsonc` と `workers/github-oauth.js` です。

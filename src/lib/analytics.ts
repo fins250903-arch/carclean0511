@@ -1,4 +1,4 @@
-/** Google Tag Manager container ID (override via PUBLIC_GTM_ID in Vercel / .env) */
+/** Google Tag Manager container ID (override via PUBLIC_GTM_ID in Cloudflare build vars / .env) */
 export const GTM_ID = import.meta.env.PUBLIC_GTM_ID ?? 'GTM-WLNM4GWN';
 
 declare global {

@@ -1,11 +1,20 @@
 {
-  // Static Astro site (output: "static") — do NOT add @astrojs/cloudflare.
-  // That adapter is only for SSR / on-demand rendering and is what Cloudflare
-  // tried to auto-install when this file was missing.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Static Astro site (output: "static"). Do NOT run `npx astro add cloudflare`
+  // or install @astrojs/cloudflare — that adapter is for SSR only and will break
+  // this project. Pages are pre-built into dist/; the Worker only handles
+  // Decap CMS GitHub OAuth at /api/*.
   "name": "carclean0511",
+  "main": "workers/github-oauth.js",
   "compatibility_date": "2026-09-19",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": "./dist",
-    "html_handling": "auto-trailing-slash"
+    "binding": "ASSETS",
+    "html_handling": "force-trailing-slash",
+    "run_worker_first": ["/api/*"]
   }
 }

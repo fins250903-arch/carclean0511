@@ -1,7 +1,7 @@
 # ブログ編集（Decap CMS）
 
 ブログ記事の作成・更新は **Decap CMS**（WordPress 風 UI）を使用します。  
-記事は **carclean0511** リポジトリに直接 commit され、Vercel が本番サイトを再ビルドします。
+記事は **carclean0511** リポジトリに直接 commit され、Cloudflare Workers が本番サイトを再ビルドします。
 
 | 機能 | 対応 |
 |------|------|
@@ -13,7 +13,7 @@
 | タイトル SEO | 32文字目安（meta_title） |
 | スラッグ | 英字のみ → `2026-05-31-xxx` 形式 |
 | 画像 | 本文へ貼り付け／ドラッグ。未設定時 1枚目をサムネイルに自動設定 |
-| SAVE → 公開 | GitHub `fins250903-arch/carclean0511` に commit → Vercel 再デプロイ |
+| SAVE → 公開 | GitHub `fins250903-arch/carclean0511` に commit → Cloudflare Worker 再デプロイ |
 
 ## 編集画面 URL
 
@@ -33,14 +33,16 @@
 4. Callback URL: `https://carinteriorcleaning.jp/api/callback`
 5. Client ID / Client Secret を控える
 
-### 2. Vercel 環境変数（carclean0511 プロジェクト）
+### 2. Cloudflare Worker の Secrets（carclean0511）
+
+Dashboard → Workers & Pages → **carclean0511** → Settings → Variables and Secrets
 
 | 変数名 | 値 |
 |--------|-----|
-| `GITHUB_CLIENT_ID` | OAuth App の Client ID |
-| `GITHUB_CLIENT_SECRET` | OAuth App の Client Secret |
+| `GITHUB_CLIENT_ID` | OAuth App の Client ID（Secret） |
+| `GITHUB_CLIENT_SECRET` | OAuth App の Client Secret（Secret） |
 
-設定後、プロジェクトを **Redeploy** してください。
+設定後、Worker を再デプロイしてください。手順の全体は `docs/cloudflare-deploy.md` を参照。
 
 OAuth App の GitHub リポジトリアクセスは `fins250903-arch/carclean0511` への write 権限が必要です。
 
