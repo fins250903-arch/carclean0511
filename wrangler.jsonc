@@ -5,6 +5,7 @@
   // this project. Pages are pre-built into dist/; the Worker only handles
   // Decap CMS GitHub OAuth at /api/*.
   "name": "carclean0511",
+  "account_id": "6e757bcffbbc2c6d612e923c5644e865",
   "main": "workers/github-oauth.js",
   "compatibility_date": "2026-09-19",
   "workers_dev": true,

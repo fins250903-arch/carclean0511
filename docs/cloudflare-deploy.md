@@ -1,5 +1,17 @@
 # Cloudflare Workers へ移す手順（超初心者向け）
 
+## いまの状態（公開済み）
+
+サイト本体は Cloudflare に載っています。
+
+**確認用 URL:** https://carclean0511.fins250903.workers.dev/regions/osaka/
+
+本番の `https://carinteriorcleaning.jp` は、DNS がまだ Xserver / Vercel のため **今も Vercel のまま** です。広告やお客様向け URL は変えていません。
+
+残作業は「ドメインを Cloudflare に向ける」だけです。手順は下の「4. ドメイン」を見てください。
+
+---
+
 このサイトは **Astro で先に HTML を全部作っておく静的サイト** です。
 Vercel の「アクセスのたびにサーバーでページを作る」機能は使っていません。
 
