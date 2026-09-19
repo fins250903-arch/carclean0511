@@ -1,6 +1,7 @@
-# Path redirects previously defined in vercel.json.
-# Host-based redirects (www / *.vercel.app) are not supported here;
-# configure those in the Cloudflare dashboard (Redirect Rules / DNS).
+# Path redirects previously defined in vercel.json (301).
+# Host redirects (www → apex) and workers.dev noindex live in the Worker
+# (workers/seo.js). Do not add host-based rules here — _redirects is path-only.
+# Trailing slashes are enforced by wrangler.jsonc html_handling: force-trailing-slash.
 
 /regions/chiba/shutchou-senmon/ /regions/chiba/mobile-cleaning/ 301
 /regions/hyogo/seat-senjo/ /regions/hyogo/seat-washing/ 301

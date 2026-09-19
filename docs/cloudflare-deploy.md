@@ -43,6 +43,7 @@ Vercel の容量・転送量が増えたので、同じ HTML を **Cloudflare Wo
 | ページを HTML にする | パソコンまたは Cloudflare のビルド（`npm run build`） |
 | HTML を置く・配る | Cloudflare Worker（静的ファイル） |
 | ブログ管理の GitHub ログイン | 同じ Worker の `/api/auth` と `/api/callback` |
+| www 転送・確認用 URL の noindex | 同じ Worker（`workers/seo.js`） |
 
 **やってはいけないこと**
 
@@ -57,9 +58,10 @@ Vercel の容量・転送量が増えたので、同じ HTML を **Cloudflare Wo
 
 | ファイル | 役割 |
 | --- | --- |
-| `wrangler.jsonc` | Worker 名と `dist/` の公開設定。`/api/*` だけプログラムを動かす |
+| `wrangler.jsonc` | Worker 名と `dist/` の公開設定。全リクエストを Worker が先に処理（SEO 転送 + `/api/*`） |
 | `workers/github-oauth.js` | Decap CMS の GitHub ログイン（以前の `api/*.js` 相当） |
-| `public/_redirects` | 旧 URL → 新 URL の 301 転送（ビルドで `dist/_redirects` にコピーされる） |
+| `workers/seo.js` | www → 本番ドメインの 301、確認用 URL の noindex |
+| `public/_redirects` | 旧パス → 新パスの 301（ビルドで `dist/_redirects` にコピーされる） |
 | `package.json` の `cf:dev` / `cf:deploy` | 手元での確認と公開コマンド |
 
 Astro の設定（`astro.config.mjs` の `output: 'static'`）は **変えません**。
@@ -184,14 +186,50 @@ npx wrangler secret put GITHUB_CLIENT_SECRET
 1. `https://carinteriorcleaning.jp/regions/osaka/` が開く
 2. `https://carinteriorcleaning.jp/` が大阪ページへ飛ぶ
 3. 旧キーワード URL（例: `/regions/osaka/kyuto-cleaning/`）が新 URL へ 301 される
-4. `https://carinteriorcleaning.jp/admin/` で GitHub ログインできる
-5. 電話・LINE・フォームの GTM 計測がこれまでどおり動く
+4. `http://www.carinteriorcleaning.jp/regions/osaka/` が本番ドメインへ 301 される
+5. 確認用 URL の HTML に `X-Robots-Tag: noindex, nofollow` が付く
+6. `https://carinteriorcleaning.jp/admin/` で GitHub ログインできる
+7. 電話・LINE・フォームの GTM 計測がこれまでどおり動く
 
 ブログ記事を Publish すると GitHub の `main` に commit され、Cloudflare が再ビルドします（以前の Vercel 自動デプロイと同じ流れです）。
 
 ---
 
-## 8. Vercel はどうする？
+## 8. 検索を落とさない設定（AIO / SEO）
+
+Google も AI 概要も、**同じ正規 URL** を見ます。本番はこれまでどおり次の 1 本です。
+
+`https://carinteriorcleaning.jp/…`（末尾スラッシュあり）
+
+| 信号 | Cloudflare 側の扱い |
+| --- | --- |
+| canonical | 全ページが `https://carinteriorcleaning.jp`（`src/lib/site.ts`）。ホストを変えていない |
+| sitemap | `https://carinteriorcleaning.jp/sitemap-index.xml`（`robots.txt` と同じ） |
+| 旧キーワード URL | `public/_redirects` で 301（Vercel の path ルールと同じ一覧） |
+| `/` | `/regions/osaka/` へ 301 |
+| www | Worker が `www.carinteriorcleaning.jp` → 本番ドメインへ 301 |
+| 末尾スラッシュ | `html_handling: force-trailing-slash`（Astro の `trailingSlash: 'always'` と一致） |
+| 確認用 URL | `*.workers.dev` は `X-Robots-Tag: noindex` と `robots.txt` の `Disallow: /` |
+| HTTP → HTTPS | **証明書が Active になってから** `FORCE_HTTPS=true`（下の手順） |
+
+**やってはいけないこと**
+
+- 証明書がまだ無いときに HTTP → HTTPS や HSTS を有効にしない（ブラウザが HTTPS 専用を記憶し、開けなくなります）
+- 確認用 `workers.dev` を Search Console に登録しない
+- 旧パスをまとめて全県 301 しない（例: 全市の `kyuto-cleaning`。Vercel と同じ行だけ 301 する）
+
+### 証明書が Active になったあと
+
+1. ダッシュボード **SSL/TLS → Edge Certificates** が Active
+2. `https://carinteriorcleaning.jp/regions/osaka/` が `server: cloudflare` で開く
+3. Worker の Production 変数 `FORCE_HTTPS` を `true` にする（`wrangler.jsonc` の `vars` も `true` にして再デプロイ）
+4. 任意: ダッシュボード **SSL/TLS → Edge Certificates → Always Use HTTPS** も On
+
+Vercel の `*.vercel.app` → 本番ドメインの 308 は、Vercel 側に残してあります。DNS が Cloudflare に切り替わったあとも、Vercel を止めるまでは `carclean2026.vercel.app` がその 308 を返します。止める前に Search Console で本番ドメインのカバレッジを確認してください。
+
+---
+
+## 9. Vercel はどうする？
 
 DNS を Cloudflare に向けて、数日問題ないことを確認してから Vercel プロジェクトを止めてください。
 `vercel.json` と `api/*.js` は **切り戻し用に残してあります**。Cloudflare 側の本体は `wrangler.jsonc` と `workers/github-oauth.js` です。
