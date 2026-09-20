@@ -1,10 +1,24 @@
 ---
-title: "【那覇市】トヨタ・ライズの「潮風と湿気によるカビ対策」"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "okinawa"
-coverImage: "toyotarize-mae-e1774623027203.jpg"
+date: 2026-09-20
+title: 【那覇市】トヨタ・ライズの「潮風と湿気によるカビ対策」
+shortSlug: naharaizu
+areaName: 沖縄県那覇市
+coverImage: toyotarize-mae-e1774623027203.jpg
+seo:
+  noindex: false
+  meta_description: |
+    シートが黒くて分かりづらかったということがあって、思いのほかカビが広がっていたと。
+
+    気づいた時にはカビの匂いが車の中に充満していて困ったということでした。沖縄特有の湿気は手強いですが、高温スチームでカビ菌を殺菌します。  
+    抗菌・抗カビ剤を配合した洗浄液で根こそぎ除菌。
+
+    作業中は車内の換気を徹底し、最後はしっかり乾燥させました。  
+    最後に原因菌を完全に死滅させるためにオゾン消臭をしました。 かなり長めに作動さして換気を十分に行いました。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - okinawa
 ---
 
  那覇の青い空の下、湿度が高いため発生してしまったシートのカビ洗浄です。  
