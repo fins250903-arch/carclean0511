@@ -3,7 +3,7 @@ date: 2026-09-20
 title: 【那覇市】トヨタ・ライズの「潮風と湿気によるカビ対策」
 shortSlug: naharaizu
 areaName: 沖縄県那覇市
-coverImage: toyotarize-mae-e1774623027203.jpg
+coverImage: mazda-cx-8-2.jpg
 seo:
   noindex: false
   meta_description: |
