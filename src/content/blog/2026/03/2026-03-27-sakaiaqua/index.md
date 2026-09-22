@@ -1,10 +1,22 @@
 ---
-title: "【堺市】トヨタ・アクアの「お子様の嘔吐トラブル」を徹底除菌"
 date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "oosaka"
-coverImage: "トヨタ-アクア-e1774615269951.jpg"
+title: 【堺市】トヨタ・アクアの「お子様の嘔吐トラブル」を徹底除菌
+shortSlug: sakaiaqua
+areaName: 大阪府堺市
+coverImage: koubu.jpg
+seo:
+  meta_description: |-
+    特に苦労したのはシートレールの隙間です。
+
+    奥の方まで入り込んだ汚れは、分解できない構造だったため、
+
+    高圧スチームと細いノズルを駆使して、根気強く掻き出しました。
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - oosaka
 ---
 
 堺の臨海部は風が強い日も多いですが、今日は穏やかな晴天で絶好の洗浄日和でした。  
