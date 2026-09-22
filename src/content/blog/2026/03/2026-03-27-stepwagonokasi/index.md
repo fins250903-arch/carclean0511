@@ -1,11 +1,24 @@
 ---
-title: "【豊田市】ホンダ・ステップワゴンの「お菓子の食べかすとダニ対策」"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "aichi"
-  - "tokublo"
-coverImage: "ホンダ・ステップワゴン-e1774618150811.webp"
+date: 2026-09-22
+title: 【豊田市】ホンダ・ステップワゴンの「お菓子の食べかすとダニ対策」
+shortSlug: stepwagonokasi
+areaName: 愛知県豊田市
+coverImage: 3.jpg
+seo:
+  noindex: false
+  meta_description: |+
+    お菓子のカスは蒸気を当てて柔らかくして、全部かき出して吸い取ることができました。
+
+    洗浄剤を流し込んで、それを乾湿掃除機で吸い取り、水分をなるべく残さないようにして完了です。
+
+    高温スチームでダニの死滅も狙い、衛生的な環境を整えました。
+
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - aichi
+  - tokublo
 ---
 
 クルマの街・豊田市での作業。  
