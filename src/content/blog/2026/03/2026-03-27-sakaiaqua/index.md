@@ -1,5 +1,5 @@
 ---
-date: 2026-03-27
+date: 2026-09-22
 title: 【堺市】トヨタ・アクアの「お子様の嘔吐トラブル」を徹底除菌
 shortSlug: sakaiaqua
 areaName: 大阪府堺市
