@@ -1,10 +1,22 @@
 ---
-title: "【神戸市】トヨタ・シエンタの「嘔吐あとの消臭施工」"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "hyougo"
-coverImage: "times_sienta_4779-scaled-1-e1774619230405.webp"
+date: 2026-09-23
+title: 【神戸市】トヨタ・シエンタの「嘔吐あとの消臭施工」
+shortSlug: sientaouto
+areaName: 兵庫県 神戸市
+coverImage: siennta-semotare-unti-3.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    理由は圧倒的に匂いが強烈になった、残っているという内容です。
+
+    本来であれば、嘔吐して早めの洗浄が一番効果的です。 時間の経過とともに中で固着して、
+
+    匂いの原因がどんどん広がっていきます。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - hyougo
 ---
 
 神戸の坂道が多いエリアでの作業。  
