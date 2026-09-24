@@ -85,7 +85,7 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
 */}
 <section class="relative w-full overflow-hidden bg-white md:min-h-[88vh] md:flex md:items-start">
     {/* スマホ：上部写真帯（キャンペーンを折りたたみ内に残すため控えめ）。PC：全画面背景 */}
-    <div class="relative z-0 w-full max-md:h-[36vw] max-md:min-h-[8.5rem] max-md:max-h-[11rem] md:absolute md:inset-0 md:h-full">
+    <div class="relative z-0 w-full max-md:h-[28vw] max-md:min-h-[6.5rem] max-md:max-h-[8rem] md:absolute md:inset-0 md:h-full">
         <img
             src={fvImage}
             alt={fvAlt}
@@ -110,8 +110,8 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                 <span class="inline-flex rounded-full bg-amber-500 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
                     到着は空き次第・当日〜翌朝
                 </span>
-                <span class="inline-flex rounded-full bg-blue-900 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
-                    "出張"車内クリーニング業者
+                <span class="hidden rounded-full bg-blue-900 px-2.5 py-1 text-[13px] font-bold text-white shadow-md sm:inline-flex sm:px-4 sm:py-1.5 sm:text-sm md:text-base">
+                    出張の車内クリーニング業者
                 </span>
             </div>
 
@@ -183,24 +183,14 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                 </p>
             </div>
 
-            {/* 6. キャンペーン — スマホ初回表示で必ず見せる（価格の直後） */}
-            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-yellow-400 bg-yellow-100 px-3 py-2.5 shadow-lg sm:rounded-3xl sm:border-4 sm:p-4 md:p-5']}>
-                <p class="text-[0.9rem] font-bold leading-tight text-gray-800 sm:text-base md:text-lg">
-                    <span class="whitespace-nowrap">今なら、通常2,000円の</span>
-                </p>
-                <p class="text-[1.35rem] font-black leading-[1.15] text-red-600 sm:text-3xl md:text-5xl">
-                    <span class="whitespace-nowrap">抗菌コート無料！</span>
-                </p>
-            </div>
-
-            {/* 7. トップCTA — スマホも実ボタン（電話を主、LINEは写真見積） */}
+            {/* 6. トップCTA — 料金の直後。キャンペーンより上に置き、スマホ1画面に電話を残す */}
             <div class:list={[gap, 'w-full max-w-xl']} data-cta-section="hero_top_cta">
                 <div class="flex flex-col gap-2 md:gap-3">
                     <a
                         href={`tel:${TEL}`}
                         class="flex w-full flex-col items-center justify-center gap-0.5 rounded-2xl bg-red-600 px-4 py-3.5 text-center text-lg font-black text-white shadow-xl ring-2 ring-red-300/80 transition-transform hover:bg-red-700 sm:flex-row sm:gap-2 md:px-8 md:py-4 md:text-2xl"
                     >
-                        <span class="whitespace-nowrap">今すぐ電話 {TEL}</span>
+                        <span>今すぐ電話 {TEL}</span>
                         <span class="text-sm font-bold opacity-95 whitespace-nowrap">お急ぎの方は電話</span>
                     </a>
                     <a
@@ -217,6 +207,16 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                         LINE写真で概算無料 → 現場で作業前に確定 → 了承後だけ施工
                     </p>
                 </div>
+            </div>
+
+            {/* 7. キャンペーン */}
+            <div class:list={[gap, 'w-full max-w-xl rounded-2xl border-[3px] border-yellow-400 bg-yellow-100 px-3 py-2.5 shadow-lg sm:rounded-3xl sm:border-4 sm:p-4 md:p-5']}>
+                <p class="text-[0.9rem] font-bold leading-tight text-gray-800 sm:text-base md:text-lg">
+                    <span class="whitespace-nowrap">今なら、通常2,000円の</span>
+                </p>
+                <p class="text-[1.35rem] font-black leading-[1.15] text-red-600 sm:text-3xl md:text-5xl">
+                    <span class="whitespace-nowrap">抗菌コート無料！</span>
+                </p>
             </div>
 
             {/* 8. サブキャッチ */}
@@ -243,11 +243,11 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                 ) : (
                     isBus ? (
                         <>
-                            <span class="whitespace-nowrap">バス座席の嘔吐・灯油の</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="whitespace-nowrap text-red-600 underline decoration-4">即日対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
+                            <span class="whitespace-nowrap">バス座席の嘔吐・灯油は</span><wbr /><span class="whitespace-nowrap text-red-600 underline decoration-4">空き次第でお伺い</span>
                         </>
                     ) : (
                         <>
-                            <span class="whitespace-nowrap">嘔吐・灯油こぼしの</span><wbr /><span class="whitespace-nowrap">緊急トラブル</span> <span class="whitespace-nowrap text-red-600 underline decoration-4">最短即日対応</span><wbr /> <span class="whitespace-nowrap">お伺いします</span>
+                            <span class="whitespace-nowrap">嘔吐・灯油こぼしは</span><wbr /><span class="whitespace-nowrap text-red-600 underline decoration-4">空き次第でお伺い</span>
                         </>
                     )
                 )}

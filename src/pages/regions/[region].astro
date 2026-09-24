@@ -120,7 +120,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
-const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const heroMainTitle = isTruck
+  ? `${displayName}のトラックキャビン清掃`
+  : isBus
+    ? `${displayName}のバス車内清掃`
+    : getRegionalHeroMainTitle(regionName);
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
 ---

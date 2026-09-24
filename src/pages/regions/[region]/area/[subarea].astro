@@ -131,7 +131,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel, regionName) : undefined;
-const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const heroMainTitle = isTruck
+  ? `${subareaLabel}のトラックキャビン清掃`
+  : isBus
+    ? `${subareaLabel}のバス車内清掃`
+    : getRegionalHeroMainTitle(regionName);
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
 const noindex = isNoindexRegionId(regionId);

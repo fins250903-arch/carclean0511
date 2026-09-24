@@ -1014,7 +1014,7 @@ export const REGIONAL_CHECKLIST_HEADING =
 
 /** Voice / emergency search line shown under Hero (AnswerTarget) */
 export function buildVoiceEmergencyLine(regionName: string): string {
-  return `受付は365日24時間です。到着は空き次第で、首都圏・関西主要部は数時間以内の枠が出やすく、混雑時は翌日の午前になることもあります。${regionName}へ出張します。運転中は安全な場所に停めてから、電話で到着目安をご確認ください。`;
+  return `受付は365日24時間です。到着は空き次第で、当日か翌朝になることが多いです。混んでいるときは翌日の午前になることもあります。${regionName}へ出張します。運転中は安全な場所に停めてから、電話で到着目安をご確認ください。`;
 }
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
@@ -1028,7 +1028,7 @@ export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: s
 export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {
   const powerRegion = powerRegionName ?? regionName;
   return [
-    `最短即日・365日24時間受付。1シート ${yen(CAR_PRICING.seatSingleBasic)}から。お急ぎの方は電話で最短到着目安をご確認ください。`,
+    `受付は365日24時間。到着は空き次第で当日〜翌朝。1シート ${yen(CAR_PRICING.seatSingleBasic)}から。お急ぎの方は電話で到着目安をご確認ください。`,
     `施工歴3年以上の専門員が${regionName}の指定駐車場へ訪問。${powerCapabilitySentence(powerRegion)}`,
     '保険の代理申請対応。見積時に実質自己負担額も併記します。嘔吐・灯油・おもらし・ペット・タバコ臭まで一括相談可。',
   ];
@@ -1042,7 +1042,7 @@ export function getRegionalHeroMainTitle(regionName: string): string | undefined
 
 export function buildRegionalNioiAnswerFirst(regionName: string, powerRegionName?: string): string {
   const powerRegion = powerRegionName ?? regionName;
-  return `表面の軽い臭いは換気と重曹で一時改善できますが、嘔吐・ペット・タバコ・灯油のニオイはシート内部（ウレタン層）に原因が残るため、消臭スプレーだけでは再発します。臭いが翌日以降も残る場合は、温水リンサー抽出洗浄のプロ依頼が必要です。車内清掃「特急便」は${regionName}内へ365日24時間受付・最短即日出張。施工歴3年以上の専門員が40℃温水とアルカリ電解水で原因を物理抽出します。${powerCapabilitySentence(powerRegion)}嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは、下の状況診断表でも確認できます。`;
+  return `表面の軽い臭いは換気と重曹で一時改善できますが、嘔吐・ペット・タバコ・灯油のニオイはシート内部（ウレタン層）に原因が残るため、消臭スプレーだけでは再発します。臭いが翌日以降も残る場合は、シートの奥まで洗い流す出張洗浄（リンサー）が必要です。受付は365日24時間。到着は空き次第で当日〜翌朝です。車内清掃「特急便」は${regionName}へ出張します。${powerCapabilitySentence(powerRegion)}嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。自分の状況に合うメニューは、下の状況診断表でも確認できます。`;
 }
 
 export const AIO_EXTENDED_FAQS: FAQItem[] = [

@@ -303,7 +303,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
-    problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
+    problemEmpathyAlt: 'エアコンの吹き出し口と、臭いの原因になる汚れのイメージ',
+    mainTitle: (r) => `【${r}】エアコンの臭いを洗浄で改善`,
   },
   {
     slug: 'ase',
@@ -318,6 +319,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroSubcatch: (d) => `${d}の汗ジミ・車内洗浄`,
     fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('汗ジミ・皮脂汚れ'),
+    mainTitle: (r) => `【${r}】汗・皮脂の臭いをシートから洗浄`,
     problemHeader: '「汗の臭いが車内に染み付いて、自分でも気になる…」',
     problemSubHeader: '革・布ともに皮脂は蓄積しやすく、放置すると臭いが強まります。',
     problemDealerQuote:
@@ -860,7 +862,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     deepTroubles: [
       'カー用品店の消臭スプレーを何本も試したが、数日で元の臭いが戻る',
       '芳香剤の甘い香りと生活臭が混ざり、車内が余計に不快になった',
-      'オzon脱臭も試したが一時的で、シートからの臭いが再発する',
+      'オゾン脱臭も試したが一時的で、シートからの臭いが再発する',
     ],
   },
   // ===== バス専門LP =====
@@ -878,13 +880,14 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroSubcatch: (d) => `${d} バス専門・出張で即対応`,
     fvImage: KW_IMAGES.busFv,
     heroFooter: (d) => `次の運行までに、プロが${d}へ急行します`,
+    mainTitle: (r) => `【${r}】バス車内の嘔吐・汚れを運行前に洗浄`,
     problemHeader: '「運行中に乗客が嘔吐してしまった…次の出発まで時間がない」',
     problemSubHeader: 'バスならではの車内汚染トラブル、一人で抱え込んでいませんか？',
     problemDealerQuote:
-      '「従業員にゲロの処理を頼んだら、次から出勤を渋るようになってしまった…」',
+      '「従業員に嘔吐の処理を頼んだら、次から出勤を渋るようになってしまった…」',
     problemBodyHtml: (rn, dn) =>
-      `観光バス・レンタカーバス・送迎バスの運行中、こんな<strong>悪夢のようなトラブル</strong>が突然起きることがあります。<br /><br />
-      <strong>① 乗客が車内で突然嘔吐（ゲロ）してしまった</strong><br />
+      `観光バス・レンタカーバス・送迎バスの運行中に、次のようなトラブルが起きることがあります。<br /><br />
+      <strong>① 乗客が車内で突然嘔吐してしまった</strong><br />
       胃液・未消化物がシートのウレタン奥まで染み込み、酸っぱい腐敗臭が車内全体に広がります。放置すれば時間が経つほど臭いは固着し、除去が困難になっていきます。<br /><br />
       <strong>② ジュース・アルコール・油分の多い弁当を大量にこぼされた</strong><br />
       バスは車内が広いぶん、汚染が床・通路・隣席・窓際まで一気に拡大します。「あの席だけ」では済まないのがバスの怖さです。<br /><br />
