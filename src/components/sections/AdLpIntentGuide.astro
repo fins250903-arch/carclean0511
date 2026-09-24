@@ -31,10 +31,10 @@ const hasHint = Boolean(block.columns[2]);
         <tbody class="divide-y divide-gray-200">
           {block.rows.map((row) => (
             <tr>
-              <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap align-top">{row.label}</td>
+              <td class="px-3 py-3 align-top font-medium whitespace-normal text-gray-900 md:px-4">{row.label}</td>
               <td class="px-4 py-3 text-gray-700 align-top">{row.detail}</td>
               {hasHint && (
-                <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium align-top whitespace-nowrap">{row.hint}</td>
+                <td class="bg-blue-50 px-3 py-3 align-top font-medium whitespace-normal text-blue-800 md:px-4">{row.hint}</td>
               )}
             </tr>
           ))}

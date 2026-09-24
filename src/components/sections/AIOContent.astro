@@ -19,6 +19,8 @@ interface Props {
   showVomitEducation?: boolean;
   /** 追加FAQ（キーワードLP用） */
   extraFaqs?: FAQItem[];
+  /** Bottom FAQ.astro already lists these questions. Keep false on ad LPs. */
+  showInlineFaq?: boolean;
 }
 
 const {
@@ -30,6 +32,7 @@ const {
   showAioExtensions = true,
   showVomitEducation = true,
   extraFaqs = [],
+  showInlineFaq = false,
 } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
@@ -230,7 +233,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         </article>
       )}
 
-      {/* 3. FAQセクション */}
+      {showInlineFaq && (
       <article class="bg-gray-50 rounded-2xl p-8">
         <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">よくあるご質問（専門家が回答）</h3>
         <dl class="space-y-6">
@@ -247,6 +250,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
           ))}
         </dl>
       </article>
+      )}
 
       {/* 5. AI引用用画像プロンプト（メタ情報としてHTMLコメント内に配置・将来拡張用） */}
       <!--

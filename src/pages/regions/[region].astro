@@ -53,6 +53,7 @@ import {
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
+import CancelPolicy from '../../components/sections/CancelPolicy.astro';
 import { CAR_PRICING, yen } from '../../data/pricingConstants';
 import { isNoindexRegionId } from '../../data/noindexRegions';
 
@@ -119,7 +120,11 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
-const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
+const heroMainTitle = isTruck
+  ? `${displayName}の出張トラックキャビン清掃`
+  : isBus
+    ? `${displayName}の出張バス車内清掃`
+    : getRegionalHeroMainTitle(regionName);
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
 ---
@@ -137,15 +142,14 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
       <Hero regionName={regionName} displayName={displayName} niche={niche} mainTitle={heroMainTitle} />
-      {!isTruck && !isBus && (
-        <AdLpQuickFacts
-          displayName={displayName}
-          intentLabel="出張車内クリーニング"
-          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
-          durationLabel="最短即日空き確認／作業1.5〜3時間"
-          areaLabel={`${displayName}へ出張費無料`}
-        />
-      )}
+      <AdLpQuickFacts
+        displayName={displayName}
+        niche={niche}
+        intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
+        priceLabel={isTruck || isBus ? undefined : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+        durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
+        areaLabel={`${displayName}へ出張費無料`}
+      />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -156,6 +160,11 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
           heading={REGIONAL_CHECKLIST_HEADING}
         />
       )}
+      <Problem regionName={regionName} displayName={displayName} niche={niche} />
+      <Pricing regionName={regionName} niche={niche} />
+      <CancelPolicy />
+      <CTA />
+      <QuestionnaireTestimonials client:visible displayName={displayName} />
       {!isTruck && !isBus && (
         <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
@@ -167,26 +176,21 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
         niche={niche}
         focusShutchou
         showAioExtensions={!isTruck}
+        showInlineFaq={false}
       />
       <RegionAIContent regionName={regionName} displayName={displayName} />
-      <Problem regionName={regionName} displayName={displayName} niche={niche} />
       <Solution regionName={regionName} displayName={displayName} niche={niche} />
       <Comparison displayName={displayName} />
-      
       <Campaign displayName={displayName} />
       <Reasons displayName={displayName} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={displayName} />
-      
-      <QuestionnaireTestimonials client:visible displayName={displayName} />
       <RegionalAchievements regionName={regionName} displayName={displayName} niche={niche} />
       <Targets />
       <AreaCoverage regionName={regionName} />
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
-      <Pricing regionName={regionName} niche={niche} />
-      <CTA />
       <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />

@@ -57,6 +57,7 @@ import { isNoindexRegionId } from '../../../data/noindexRegions';
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
+import CancelPolicy from '../../../components/sections/CancelPolicy.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
 import AdLpIntentGuide from '../../../components/sections/AdLpIntentGuide.astro';
 import { getAdLpIntentGuide, isNonEmergencyTroubleType } from '../../../data/adLpIntentGuides';
@@ -187,7 +188,7 @@ const adHero = fvHero
       mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
       priceHookMain: kwPriceHookMain,
       priceHookSub: kwPriceHookSub,
-      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
     }
   : {
       subtitle: kw.heroSubtitle(displayName, regionName),
@@ -199,7 +200,7 @@ const adHero = fvHero
       mainTitle: kw.mainTitle?.(regionName, displayName),
       priceHookMain: kwPriceHookMain,
       priceHookSub: kwPriceHookSub,
-      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で概算見積可',
+      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
     };
 
 const adProblem = {
@@ -256,6 +257,11 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
           heading={aioKw.checklistHeading}
         />
       )}
+      <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
+      <Pricing regionName={regionName} niche={pageNiche} />
+      <CancelPolicy />
+      <CTA />
+      <QuestionnaireTestimonials client:visible displayName={displayName} />
       <KeywordAioExtras
         smellCauseTable={aioKw?.smellCauseTable}
         keroseneSeverityMatrix={aioKw?.keroseneSeverityMatrix}
@@ -269,23 +275,18 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
         extraFaqs={aioKw?.extraFaqs ?? []}
         showAioExtensions={!muteEmergencyTone}
         showVomitEducation={!muteEmergencyTone && aioKw?.troubleType !== 'pet-waste'}
+        showInlineFaq={false}
       />
       {aioKw?.nicheCaseStudy && (
         <NicheCaseStudy block={aioKw.nicheCaseStudy(regionName)} />
       )}
       <RegionAIContent regionName={regionName} displayName={displayName} />
-      <Problem regionName={regionName} displayName={displayName} niche={pageNiche} adProblem={adProblem} />
-      {/* Pricing early: Ads Landing page experience needs price visibility near intent content */}
-      <Pricing regionName={regionName} niche={pageNiche} />
-      <QuestionnaireTestimonials client:visible displayName={displayName} />
       <Solution regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Comparison displayName={displayName} />
-
       <Campaign displayName={displayName} />
       <Reasons displayName={displayName} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={displayName} />
-
       <RegionalAchievements
         regionName={regionName}
         displayName={displayName}
@@ -297,7 +298,6 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
       <Flow niche={pageNiche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
-      <CTA />
       <FAQ niche={pageNiche} extraFaqs={aioExtraFaqs} regionName={regionName} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={pageNiche} />
       <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />

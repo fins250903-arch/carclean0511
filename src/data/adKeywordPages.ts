@@ -233,12 +233,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応の車の匂い取り。マスキングではなく、汚れと臭い分子を洗い流す本格洗浄を行います。`,
     seoKeywords: (r) =>
       `車の匂い取り ${r}, 車 消臭 ${r}, 車内クリーニング ${r}, 臭い 取り ${r}, シート洗浄 ${r}`,
-    ogImage: KW_IMAGES.shanaiNioi,
+    ogImage: KW_IMAGES.kurumaNioitori,
     heroSubtitle: (d) => `${d}｜車の匂い取り`,
     heroHighlight: ['匂いの元を', '洗浄で除去'],
     heroSubcatch: (d) => `${d}の車の匂い取り出張`,
-    // Prefer odor pain-point visual over generic steam action shot
-    fvImage: KW_IMAGES.shanaiNioi,
+    fvImage: KW_IMAGES.kurumaNioitori,
     heroFooter: kwFooter('車の匂い'),
     problemHeader: '「香水や消臭剤ではごまかせない、根強い臭い…」',
     problemSubHeader: '臭いは「付け足し」より「洗い出し」が根本対策になります。',
@@ -290,11 +289,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。エアコンが臭い・クサイときは車内洗浄とセットで。カビ臭・酸っぱいニオイの原因を洗浄で減らします。`,
     seoKeywords: (r) =>
       `エアコン クサイ ${r}, エアコン 臭い 対策 ${r}, エアコン カビ臭 ${r}, 車内クリーニング ${r}`,
-    ogImage: KW_IMAGES.rinser,
+    ogImage: KW_IMAGES.acNioi,
     heroSubtitle: (d) => `${d}｜エアコン 臭い・クサイ`,
     heroHighlight: ['エアコン クサイ', '車内洗浄で改善'],
     heroSubcatch: (d) => `${d}のエアコン臭い・クサイ対策`,
-    fvImage: KW_IMAGES.rinser,
+    fvImage: KW_IMAGES.acNioi,
     heroFooter: kwFooter('エアコン臭い'),
     problemHeader: '「エアコンをつけるとクサイ・酸っぱい臭いがする…」',
     problemSubHeader:
@@ -304,7 +303,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>エアコン 臭い・クサイ</strong>は、車内の湿度と汚れが重なると悪化しやすい症状です。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアの洗浄と併せてニオイの元を減らします。<br /><strong>${rn}</strong>エリアのご相談を受付中です。`,
     problemEmpathyImage: KW_IMAGES.acNioi,
-    problemEmpathyAlt: 'エアコン臭い・車内のクサイ対策イメージ',
+    problemEmpathyAlt: 'エアコンの吹き出し口と、臭いの原因になる汚れのイメージ',
+    mainTitle: (r) => `【${r}】エアコンの臭いを洗浄で改善`,
   },
   {
     slug: 'ase',
@@ -319,6 +319,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroSubcatch: (d) => `${d}の汗ジミ・車内洗浄`,
     fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('汗ジミ・皮脂汚れ'),
+    mainTitle: (r) => `【${r}】汗・皮脂の臭いをシートから洗浄`,
     problemHeader: '「汗の臭いが車内に染み付いて、自分でも気になる…」',
     problemSubHeader: '革・布ともに皮脂は蓄積しやすく、放置すると臭いが強まります。',
     problemDealerQuote:
@@ -391,11 +392,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。タバコのヤニは天井・トリムに付着しやすい頑固汚れ。専用洗浄で目に見える差を狙います。`,
     seoKeywords: (r) =>
       `タバコ 臭い 車 ${r}, ヤニ 車 ${r}, 車内クリーニング ${r}, 天井 洗浄 ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.chukoTabako,
+    ogImage: KW_IMAGES.tabakoYani,
     heroSubtitle: (d) => `${d}｜タバコ・ヤニ除去`,
     heroHighlight: ['タバコ臭・ヤニ', '天井まで洗浄'],
     heroSubcatch: (d) => `${d}のタバコ臭い・ヤニ`,
-    fvImage: KW_IMAGES.chukoTabako,
+    fvImage: KW_IMAGES.tabakoYani,
     heroFooter: kwFooter('タバコ臭・ヤニ'),
     problemHeader: '「タバコ臭とヤニで、天井が黄色くなっている…」',
     problemSubHeader: 'ヤニ汚れは油性で固着し、拭き取りだけでは広がることもあります。',
@@ -445,11 +446,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
       `${r}対応。中古車の加齢臭は生活臭の蓄積。シート・天井・荷室まで洗浄しリフレッシュします。`,
     seoKeywords: (r) =>
       `中古車 加齢臭 ${r}, 車内 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
-    ogImage: KW_IMAGES.rinserWork,
+    ogImage: KW_IMAGES.chukoKareisyu,
     heroSubtitle: (d) => `${d}｜中古車加齢臭`,
     heroHighlight: ['中古車加齢臭', '生活臭を洗浄'],
     heroSubcatch: (d) => `${d}の中古車加齢臭対策`,
-    fvImage: KW_IMAGES.rinserWork,
+    fvImage: KW_IMAGES.chukoKareisyu,
     heroFooter: kwFooter('中古車加齢臭'),
     problemHeader: '「中古車なのに、なんとなく『生活臭』がする…」',
     problemSubHeader: '前オーナーの皮脂・汗・加齢臭成分が内装に残っているケースがあります。',
@@ -861,7 +862,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     deepTroubles: [
       'カー用品店の消臭スプレーを何本も試したが、数日で元の臭いが戻る',
       '芳香剤の甘い香りと生活臭が混ざり、車内が余計に不快になった',
-      'オzon脱臭も試したが一時的で、シートからの臭いが再発する',
+      'オゾン脱臭も試したが一時的で、シートからの臭いが再発する',
     ],
   },
   // ===== バス専門LP =====
@@ -879,13 +880,14 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     heroSubcatch: (d) => `${d} バス専門・出張で即対応`,
     fvImage: KW_IMAGES.busFv,
     heroFooter: (d) => `次の運行までに、プロが${d}へ急行します`,
+    mainTitle: (r) => `【${r}】バス車内の嘔吐・汚れを運行前に洗浄`,
     problemHeader: '「運行中に乗客が嘔吐してしまった…次の出発まで時間がない」',
     problemSubHeader: 'バスならではの車内汚染トラブル、一人で抱え込んでいませんか？',
     problemDealerQuote:
-      '「従業員にゲロの処理を頼んだら、次から出勤を渋るようになってしまった…」',
+      '「従業員に嘔吐の処理を頼んだら、次から出勤を渋るようになってしまった…」',
     problemBodyHtml: (rn, dn) =>
-      `観光バス・レンタカーバス・送迎バスの運行中、こんな<strong>悪夢のようなトラブル</strong>が突然起きることがあります。<br /><br />
-      <strong>① 乗客が車内で突然嘔吐（ゲロ）してしまった</strong><br />
+      `観光バス・レンタカーバス・送迎バスの運行中に、次のようなトラブルが起きることがあります。<br /><br />
+      <strong>① 乗客が車内で突然嘔吐してしまった</strong><br />
       胃液・未消化物がシートのウレタン奥まで染み込み、酸っぱい腐敗臭が車内全体に広がります。放置すれば時間が経つほど臭いは固着し、除去が困難になっていきます。<br /><br />
       <strong>② ジュース・アルコール・油分の多い弁当を大量にこぼされた</strong><br />
       バスは車内が広いぶん、汚染が床・通路・隣席・窓際まで一気に拡大します。「あの席だけ」では済まないのがバスの怖さです。<br /><br />

@@ -41,7 +41,7 @@ const { smellCauseTable, keroseneSeverityMatrix, situationDiagnosis } = Astro.pr
                     <td class="px-4 py-3 font-medium text-gray-900">{row.situation}</td>
                     <td class="px-4 py-3 text-gray-700">{row.now}</td>
                     <td class="px-4 py-3 text-gray-700">{row.menu}</td>
-                    <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium whitespace-nowrap">{row.priceHint}</td>
+                    <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium whitespace-normal">{row.priceHint}</td>
                   </tr>
                 ))}
               </tbody>
@@ -71,7 +71,7 @@ const { smellCauseTable, keroseneSeverityMatrix, situationDiagnosis } = Astro.pr
               <tbody class="divide-y divide-gray-200">
                 {smellCauseTable.map((row) => (
                   <tr>
-                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">{row.cause}</td>
+                    <td class="px-4 py-3 font-medium text-gray-900 whitespace-normal">{row.cause}</td>
                     <td class="px-4 py-3 text-gray-700">{row.signal}</td>
                     <td class="px-4 py-3 text-gray-700">{row.firstAid}</td>
                     <td class="px-4 py-3 text-blue-800 bg-blue-50 font-medium">{row.proNeeded}</td>
@@ -105,7 +105,7 @@ const { smellCauseTable, keroseneSeverityMatrix, situationDiagnosis } = Astro.pr
               <tbody class="divide-y divide-gray-200">
                 {keroseneSeverityMatrix.map((row) => (
                   <tr>
-                    <td class="px-4 py-3 font-bold text-gray-900 whitespace-nowrap">{row.level}</td>
+                    <td class="px-4 py-3 font-bold text-gray-900 whitespace-normal">{row.level}</td>
                     <td class="px-4 py-3 text-gray-700">{row.volume}</td>
                     <td class="px-4 py-3 text-gray-700">{row.penetration}</td>
                     <td class="px-4 py-3 text-gray-700">{row.action}</td>
