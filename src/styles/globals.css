@@ -21,6 +21,13 @@ body {
   line-height: 1.6;
 }
 
+/* Keep Japanese phrases together, then wrap the whole phrase to the next line. */
+@utility phrase-wrap {
+  word-break: auto-phrase;
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
 @utility mobile-text {
   text-align: justify;
   text-justify: inter-character;

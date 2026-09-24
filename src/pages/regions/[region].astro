@@ -121,9 +121,9 @@ const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(region
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
 const heroMainTitle = isTruck
-  ? `${displayName}のトラックキャビン清掃`
+  ? `${displayName}の出張トラックキャビン清掃`
   : isBus
-    ? `${displayName}のバス車内清掃`
+    ? `${displayName}の出張バス車内清掃`
     : getRegionalHeroMainTitle(regionName);
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : undefined;
 
@@ -145,7 +145,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <AdLpQuickFacts
         displayName={displayName}
         niche={niche}
-        intentLabel={isTruck ? 'トラックキャビン清掃' : isBus ? 'バス車内清掃' : '出張車内クリーニング'}
+        intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
         priceLabel={isTruck || isBus ? undefined : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={`${displayName}へ出張費無料`}

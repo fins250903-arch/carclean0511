@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 const resolvedIntent = intentLabel
-  ?? (niche === 'truck' ? 'トラックキャビン清掃' : niche === 'bus' ? 'バス車内清掃' : '出張車内クリーニング');
+  ?? (niche === 'truck' ? '出張トラックキャビン清掃' : niche === 'bus' ? '出張バス車内清掃' : '出張車内クリーニング');
 
 const resolvedPrice = priceLabel
   ?? (niche === 'truck'
@@ -45,13 +45,13 @@ const resolvedWork = durationLabel
   class="border-b border-blue-100 bg-gradient-to-b from-blue-50/80 to-white"
 >
   <div class="container mx-auto max-w-5xl px-4 py-5 md:py-6">
-    <p class="mb-3 text-center text-sm font-bold text-blue-900 md:text-base">
+    <p class="mb-3 break-words text-center text-sm font-bold leading-snug text-blue-900 md:text-base">
       {displayName}の{resolvedIntent} — 料金・受付・到着がすぐ分かります
     </p>
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
         <p class="text-[11px] font-bold tracking-wide text-blue-700">料金目安（税込）</p>
-        <p class="mt-1 text-base font-black leading-snug text-gray-900 md:text-lg">{resolvedPrice}</p>
+        <p class="mt-1 break-words text-base font-black leading-snug text-gray-900 md:text-lg">{resolvedPrice}</p>
       </div>
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
         <p class="text-[11px] font-bold tracking-wide text-blue-700">時間の目安</p>
@@ -61,30 +61,33 @@ const resolvedWork = durationLabel
       </div>
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
         <p class="text-[11px] font-bold tracking-wide text-blue-700">対応エリア</p>
-        <p class="mt-1 text-base font-black leading-snug text-gray-900 md:text-lg">{areaLabel}</p>
+        <p class="mt-1 break-words text-base font-black leading-snug text-gray-900 md:text-lg">{areaLabel}</p>
       </div>
     </div>
-    <p class="mt-3 text-center text-sm font-bold leading-relaxed text-gray-800">
-      LINE写真で概算無料 → 現場で作業前に確定 → 了承後だけ施工
+    <p class="mt-3 break-words text-center text-sm font-bold leading-relaxed text-gray-800">
+      <span class="block sm:inline">LINE写真で、相談無料</span>
+      <span class="block sm:inline"> → 現場で作業前に確定</span>
+      <span class="block sm:inline"> → 了承後だけ施工</span>
     </p>
     <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-center">
       <a
         href={`tel:${TEL}`}
-        class="inline-flex items-center justify-center whitespace-normal rounded-xl bg-red-600 px-5 py-3 text-center text-sm font-black text-white shadow-md transition hover:bg-red-700"
+        class="flex w-full flex-col items-center justify-center whitespace-normal rounded-xl bg-red-600 px-5 py-3 text-center text-sm font-black text-white shadow-md transition hover:bg-red-700 sm:w-auto sm:flex-row sm:gap-2"
       >
-        今すぐ電話（{TEL}）
+        <span class="block leading-tight">今すぐ電話</span>
+        <span class="block text-xs leading-tight">{TEL}</span>
       </a>
       <a
         href={LINE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c]"
+        class="flex w-full items-center justify-center break-words rounded-xl bg-[#06C755] px-5 py-3 text-center text-sm font-black text-white shadow-md transition hover:bg-[#05b34c] sm:w-auto"
       >
         LINEで写真見積もり
       </a>
       <a
         href="#pricing"
-        class="inline-flex items-center justify-center rounded-xl border border-blue-300 bg-white px-5 py-3 text-sm font-bold text-blue-900 shadow-sm transition hover:bg-blue-50"
+        class="flex w-full items-center justify-center break-words rounded-xl border border-blue-300 bg-white px-5 py-3 text-center text-sm font-bold text-blue-900 shadow-sm transition hover:bg-blue-50 sm:w-auto"
       >
         詳しい料金表を見る
       </a>
