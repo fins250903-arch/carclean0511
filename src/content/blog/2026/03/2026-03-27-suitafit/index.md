@@ -1,10 +1,22 @@
 ---
-title: "【吹田市】ホンダ・フィットの「ペットの粗相によるニオイ」を根絶"
-date: 2026-03-27
-categories: 
-  - "jisseki"
-  - "oosaka"
-coverImage: "ホンダ-フィット22-1-e1774615609480.jpg"
+date: 2026-09-24
+title: 【吹田市】ホンダ・フィットの「ペットの粗相によるニオイ」を根絶
+shortSlug: suitafit
+areaName: 大阪府吹田市
+coverImage: 22.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    シート内部のウレタンまで液体が浸透していたため、専用のリンサーで何度も吸い上げる作業を繰り返しました。
+
+    シートの中にかなり染み込んでいるものは、なかなか吸い上げてもキリがない状態でした。3回ほど繰り返したところ、洗浄液の色も透明になってきました。
+
+    液体の色が透明になるまで粘った甲斐あり、無臭の状態に戻せました。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - oosaka
 ---
 
 万博記念公園の緑が眩しい吹田市での作業です。  
