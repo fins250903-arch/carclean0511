@@ -1,7 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import { canonicalUrl } from '../../lib/site';
-import { STORE_NAME } from '../../lib/site';
+import { canonicalUrl, LINE_URL, TEL, STORE_NAME } from '../../lib/site';
 
 const gold = "#d4a853";
 ---
@@ -18,7 +17,7 @@ const gold = "#d4a853";
         <div class="absolute inset-0 z-0">
             <img 
                 src="/images/coating/fv_bg_ai.png" 
-                alt="Background" 
+                alt="福岡の出張ガラスコーティングと車内クリーニングの施工イメージ" 
                 class="w-full h-full object-cover opacity-40"
             />
         </div>
@@ -36,6 +35,10 @@ const gold = "#d4a853";
             <p class="text-lg md:text-xl font-bold text-[#e2e8f0] mb-7 drop-shadow-md">
                 出張対応 ─ あなたの駐車場がプロの施工場に
             </p>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6">
+                <a href={`tel:${TEL.replace(/-/g, '')}`} class="flex-1 bg-[#e53e3e] text-white py-4 px-4 rounded-xl font-black text-lg">今すぐ電話 {TEL}</a>
+                <a href={LINE_URL} target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#25d366] text-white py-4 px-4 rounded-xl font-black text-lg">LINEで見積もり</a>
+            </div>
             <div class="flex flex-col gap-3 max-w-sm mx-auto mb-6">
                 <div class="bg-[#0a1628]/80 border-2 border-[#d4a853] p-3.5 rounded-xl text-white text-lg md:text-xl animate-pulse">
                     🎁 6ヶ月目メンテナンス <strong style={`color: ${gold}`} class="text-2xl">無料</strong>
@@ -209,7 +212,7 @@ const gold = "#d4a853";
             {[
                 { q: "ガラスコーティングの持続期間は？", a: "1〜3年(定期メンテナンスをご利用の場合)の持続保証付きです。さらに6ヶ月目に無料メンテナンスを実施し、コーティングの状態を最適に保ちます。" },
                 { q: "出張対応エリアはどこまでですか？", a: "福岡市を中心に、北九州市・久留米市・春日市・大野城市・太宰府市・糸島市など福岡県の主要都市部に出張対応しています。" },
-                { q: "車内クリーニングの内容は？", a: "全シートをリンサーで徹底洗浄し、臭いを軽減する作業を行います。スチーム洗浄・掃除機・内装拭き上げも含まれます。" },
+                { q: "車内クリーニングの内容は？", a: "全シートの奥まで洗い流し（リンサー）、臭いを軽減します。スチーム洗浄・掃除機・内装拭き上げも含みます。" },
                 { q: "予約・問い合わせは何時までできますか？", a: "24時間365日、LINE・お電話・InstagramDMで受付中です。必ずお返事いたします。" },
                 { q: "料金は車種によって変わりますか？", a: "はい、車種やお車の状態によってお見積もりが変わります。まずはお気軽にLINEまたはお電話でお問い合わせください。すぐにお答えします。" },
                 { q: "マンションの駐車場でも来てくれますか？", a: "水と電源をお借りできれば、対応可能です。" }
@@ -231,6 +234,12 @@ const gold = "#d4a853";
         <a href="/regions/fukuoka/" class="inline-block bg-[#3b82f6] text-white py-4 px-8 rounded-lg font-bold hover:scale-105 transition-transform no-underline">
             ▶ 福岡 車内クリーニング専門店 ページへ
         </a>
+    </section>
+
+    <section class="py-12 px-4 bg-[#0a1628] text-center">
+        <h2 class="text-2xl font-black text-white mb-3">キャンセルについて</h2>
+        <p class="text-[#e2e8f0] font-bold mb-5">作業前のご連絡であればキャンセル料はかかりません。金額を了承したあとに施工します。</p>
+        <a href={`tel:${TEL.replace(/-/g, '')}`} class="inline-block bg-[#e53e3e] text-white py-4 px-8 rounded-xl font-black text-lg no-underline">今すぐ電話 {TEL}</a>
     </section>
 
     {/* FOOTER */}

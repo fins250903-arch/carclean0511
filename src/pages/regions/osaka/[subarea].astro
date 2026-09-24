@@ -50,7 +50,7 @@ import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astr
 import KeywordAioExtras from '../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../components/sections/AdLpQuickFacts.astro';
-import { CAR_PRICING, yen } from '../../../data/pricingConstants';
+import CancelPolicy from '../../../components/sections/CancelPolicy.astro';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
@@ -156,15 +156,13 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         mainTitle={heroMainTitle}
         fvImage={subareaFv}
       />
-      {!isTruck && !isBus && (
-        <AdLpQuickFacts
-          displayName={`${displayName}（大阪府）`}
-          intentLabel="出張車内クリーニング"
-          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
-          durationLabel="約1.5〜3時間"
-          areaLabel={`${displayName}（大阪府）へ出張費無料`}
-        />
-      )}
+      <AdLpQuickFacts
+        displayName={`${displayName}（大阪府）`}
+        niche={niche}
+        intentLabel={isTruck ? 'トラックキャビン清掃' : isBus ? 'バス車内清掃' : '出張車内クリーニング'}
+        durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
+        areaLabel={`${displayName}（大阪府）へ出張費無料`}
+      />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -175,6 +173,11 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
           heading={REGIONAL_CHECKLIST_HEADING}
         />
       )}
+      <Problem regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <Pricing regionName={REGION_NAME} niche={niche} />
+      <CancelPolicy />
+      <CTA />
+      <QuestionnaireTestimonials client:visible displayName={`${displayName}（大阪府）`} />
       {!isTruck && !isBus && (
         <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
@@ -186,26 +189,21 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         niche={niche}
         focusShutchou
         showAioExtensions={!isTruck}
+        showInlineFaq={false}
       />
       <RegionAIContent regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
-      <Problem regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Solution regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Comparison displayName={`${displayName}（大阪府）`} />
-
       <Campaign displayName={`${displayName}（大阪府）`} />
       <Reasons displayName={`${displayName}（大阪府）`} regionName={REGION_NAME} />
       <Benefits />
       <Roadmap displayName={`${displayName}（大阪府）`} />
-
-      <QuestionnaireTestimonials client:visible displayName={`${displayName}（大阪府）`} />
       <RegionalAchievements regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
       <Targets />
       <AreaCoverage regionName={REGION_NAME} />
       <Flow niche={niche} regionName={REGION_NAME} />
       <Profile displayName={`${displayName}（大阪府）`} />
       <Expertise />
-      <Pricing regionName={REGION_NAME} niche={niche} />
-      <CTA />
       <FAQ niche={niche} regionName={REGION_NAME} />
       <RegionLocalTrust
         regionName={REGION_NAME}

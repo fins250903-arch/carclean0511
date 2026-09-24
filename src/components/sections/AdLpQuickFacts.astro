@@ -1,12 +1,13 @@
 ---
 import { LINE_URL, TEL } from '../../lib/site';
-import { CAR_PRICING, yen } from '../../data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING, yen } from '../../data/pricingConstants';
 
 interface Props {
   displayName: string;
+  niche?: 'car' | 'truck' | 'bus';
   /** e.g. 消臭セット 26,000円〜 */
   priceLabel?: string;
-  /** e.g. 約1.5〜3時間 */
+  /** Work-time line only. Reception and arrival are labeled separately. */
   durationLabel?: string;
   /** e.g. 大阪市内・北摂ほか出張費無料 */
   areaLabel?: string;
@@ -16,11 +17,26 @@ interface Props {
 
 const {
   displayName,
-  priceLabel = `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`,
-  durationLabel = '最短即日空き確認／作業1.5〜3時間',
+  niche = 'car',
+  priceLabel,
+  durationLabel,
   areaLabel = `${displayName}へ出張費無料`,
-  intentLabel = '出張車内クリーニング',
+  intentLabel,
 } = Astro.props;
+
+const resolvedIntent = intentLabel
+  ?? (niche === 'truck' ? 'トラックキャビン清掃' : niche === 'bus' ? 'バス車内清掃' : '出張車内クリーニング');
+
+const resolvedPrice = priceLabel
+  ?? (niche === 'truck'
+    ? `2tキャビン ${yen(TRUCK_PRICING.ton2Cab)}〜`
+    : niche === 'bus'
+      ? '2連席1区画 22,000円〜'
+      : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`);
+
+const resolvedWork = durationLabel
+  ? (durationLabel.startsWith('作業') || durationLabel.startsWith('1区画') ? durationLabel : `作業 ${durationLabel}`)
+  : (niche === 'bus' ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間');
 ---
 
 <section
@@ -30,38 +46,39 @@ const {
 >
   <div class="container mx-auto max-w-5xl px-4 py-5 md:py-6">
     <p class="mb-3 text-center text-sm font-bold text-blue-900 md:text-base">
-      {displayName}の{intentLabel} — 広告から来た方も、料金と対応範囲がすぐ分かります
+      {displayName}の{resolvedIntent} — 料金・受付・到着がすぐ分かります
     </p>
     <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3">
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
         <p class="text-[11px] font-bold tracking-wide text-blue-700">料金目安（税込）</p>
-        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{priceLabel}</p>
+        <p class="mt-1 text-base font-black leading-snug text-gray-900 md:text-lg">{resolvedPrice}</p>
       </div>
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
-        <p class="text-[11px] font-bold tracking-wide text-blue-700">所要時間の目安</p>
-        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{durationLabel}</p>
+        <p class="text-[11px] font-bold tracking-wide text-blue-700">時間の目安</p>
+        <p class="mt-1 text-sm font-black leading-snug text-gray-900 md:text-base">受付 365日24時間</p>
+        <p class="text-sm font-bold leading-snug text-gray-800">到着 空き次第で当日〜翌朝</p>
+        <p class="text-sm font-bold leading-snug text-gray-700">{resolvedWork}</p>
       </div>
       <div class="rounded-xl border border-blue-200/80 bg-white px-4 py-3 text-center shadow-sm">
         <p class="text-[11px] font-bold tracking-wide text-blue-700">対応エリア</p>
-        <p class="mt-1 text-base font-black text-gray-900 md:text-lg">{areaLabel}</p>
+        <p class="mt-1 text-base font-black leading-snug text-gray-900 md:text-lg">{areaLabel}</p>
       </div>
     </div>
+    <p class="mt-3 text-center text-sm font-bold leading-relaxed text-gray-800">
+      LINE写真で概算無料 → 現場で作業前に確定 → 了承後だけ施工
+    </p>
     <div class="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-center">
-      {/* スマホはフッター固定CTAがあるため、料金表リンク中心に抑える */}
-      <p class="text-center text-sm font-bold text-gray-800 md:hidden">
-        相談は<span class="text-red-600">画面下のLINE・電話</span>から
-      </p>
       <a
         href={`tel:${TEL}`}
-        class="hidden items-center justify-center rounded-xl bg-blue-800 px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-blue-900 md:inline-flex"
+        class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-red-700"
       >
-        電話で無料相談（{TEL}）
+        今すぐ電話（{TEL}）
       </a>
       <a
         href={LINE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c] md:inline-flex"
+        class="inline-flex items-center justify-center rounded-xl bg-[#06C755] px-5 py-3 text-sm font-black text-white shadow-md transition hover:bg-[#05b34c]"
       >
         LINEで写真見積もり
       </a>

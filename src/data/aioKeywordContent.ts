@@ -1014,7 +1014,7 @@ export const REGIONAL_CHECKLIST_HEADING =
 
 /** Voice / emergency search line shown under Hero (AnswerTarget) */
 export function buildVoiceEmergencyLine(regionName: string): string {
-  return `運転中や手が離せない緊急事態でも、365日24時間受付。電話1本で${regionName}へ最短即日の出張車内清掃をご案内します。首都圏・関西主要部は空き次第で数時間以内の枠が出やすい一方、混雑時は翌日午前になることもあります。「今日中に何とかしたい」「近くの車内掃除業者」を探している方は、まずお電話で最短到着目安をご確認ください。`;
+  return `受付は365日24時間です。到着は空き次第で、首都圏・関西主要部は数時間以内の枠が出やすく、混雑時は翌日の午前になることもあります。${regionName}へ出張します。運転中は安全な場所に停めてから、電話で到着目安をご確認ください。`;
 }
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
@@ -1022,7 +1022,7 @@ export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: s
   const powerBit = needsOutletBorrow(powerRegion)
     ? `${OUTLET_BORROW_SHORT}。`
     : '電源・水道不要（発電機・水タンク完備）。';
-  return `【結論】${regionName}で車内嘔吐・ニオイ・シート汚れ・おもらし・たばこヤニを「今すぐ」解決するなら、市販消臭スプレーを使わず、4日以内に出張リンサー洗浄を依頼してください。車内清掃「特急便」は365日24時間受付・最短即日対応。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}出張費無料）。施工歴3年以上・年間300台超の専門員が指定駐車場へ訪問。${powerBit}自分の状況に合う最適提案は、下の状況診断表または電話・LINE写真見積で確認できます。`;
+  return `【結論】${regionName}で車内の嘔吐・ニオイ・シート汚れ・おもらし・たばこヤニを今すぐ解決するなら、市販の消臭スプレーは使わず、4日以内にシートの奥まで洗い流す出張洗浄（リンサー）を依頼してください。受付は365日24時間。到着は空き次第で当日〜翌朝です。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐の消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}は出張費無料）。施工歴3年以上・年間300台超の専門員が指定の駐車場へ伺います。${powerBit}状況に合う提案は、電話かLINEの写真見積で確認できます。`;
 }
 
 export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {

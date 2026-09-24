@@ -5,17 +5,13 @@
 import { KW_IMAGES } from '@/lib/assets513';
 
 /** Shared car FV pool — never use FV_PASSENGER_HERO here */
+/** General area pages: work and cabin photos only. Symptom close-ups stay on keyword LPs. */
 export const SUBAREA_CAR_FV_POOL = [
   KW_IMAGES.rinserWork,
   KW_IMAGES.steam,
   KW_IMAGES.sienta3After,
-  KW_IMAGES.seatStainDark,
-  KW_IMAGES.vomitStain,
   KW_IMAGES.minivanInterior,
-  KW_IMAGES.petMess,
-  KW_IMAGES.sienta3Before,
   KW_IMAGES.rinser,
-  KW_IMAGES.vomitDetail,
 ] as const;
 
 export const SUBAREA_TRUCK_FV_POOL = [
@@ -26,7 +22,6 @@ export const SUBAREA_TRUCK_FV_POOL = [
 
 export const SUBAREA_BUS_FV_POOL = [
   KW_IMAGES.busFv,
-  '/images/cases/dumpcar_cleaning.png',
 ] as const;
 
 function pickFromPool(pool: readonly string[], key: string): string {
@@ -40,9 +35,9 @@ export const OSAKA_SUBAREA_CAR_FV: Record<string, string> = {
   'osaka-city': KW_IMAGES.rinserWork,
   kitasen: KW_IMAGES.steam,
   kitakawachi: KW_IMAGES.sienta3After,
-  nakakawachi: KW_IMAGES.seatStainDark,
+  nakakawachi: KW_IMAGES.rinser,
   minamikawachi: KW_IMAGES.minivanInterior,
-  senshu: KW_IMAGES.petMess,
+  senshu: KW_IMAGES.sienta3After,
 };
 
 /** Osaka subarea truck FV — vary vs regional truck-fv.png */
@@ -58,11 +53,11 @@ export const OSAKA_SUBAREA_TRUCK_FV: Record<string, string> = {
 /** Osaka subarea bus FV */
 export const OSAKA_SUBAREA_BUS_FV: Record<string, string> = {
   'osaka-city': KW_IMAGES.busFv,
-  kitasen: '/images/cases/dumpcar_cleaning.png',
+  kitasen: KW_IMAGES.busFv,
   kitakawachi: KW_IMAGES.busFv,
-  nakakawachi: '/images/cases/dumpcar_cleaning.png',
+  nakakawachi: KW_IMAGES.busFv,
   minamikawachi: KW_IMAGES.busFv,
-  senshu: '/images/cases/dumpcar_cleaning.png',
+  senshu: KW_IMAGES.busFv,
 };
 
 export function getOsakaSubareaFvImage(
