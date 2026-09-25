@@ -1,10 +1,20 @@
 ---
-title: "【船橋市】日産・マーチ 芳香剤がこぼれたことによる異臭対策"
-date: 2026-03-30
-categories: 
-  - "jisseki"
-  - "chiba"
-coverImage: "日産・マーチmae-2-e1774883698743.jpg"
+date: 2026-09-25
+title: 【船橋市】ホンダ・フィット 芳香剤がこぼれたことによる異臭対策
+shortSlug: funabasimti
+areaName: 千葉県船橋市
+coverImage: 22.jpg
+seo:
+  meta_description: |-
+    プラスチックパーツの隙間に液体が入り込んでいたため、専用の洗浄液で中和しながら慎重に拭き上げました。
+
+    匂いの素を徹底的に洗浄していきました。香りで困るのは、洗浄の際のかすかな良い匂いと芳香剤が混ざり合って別の匂いに変わってしまうことです。
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - chiba
 ---
 
 お気に入りの芳香剤が設置ミスで倒れて漏れ出し、逆に強烈な匂いに。  
