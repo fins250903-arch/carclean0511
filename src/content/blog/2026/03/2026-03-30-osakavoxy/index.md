@@ -1,10 +1,26 @@
 ---
-title: "【大阪市】トヨタ・ヴォクシー　 お子様の嘔吐汚れを徹底洗浄"
-date: 2026-03-30
-categories: 
-  - "jisseki"
-  - "oosaka"
-coverImage: "トヨタ・ノアkoubuzaseki-e1774881454495.jpg"
+date: 2026-09-26
+title: 【大阪市】トヨタ・ヴォクシー　 お子様の嘔吐汚れを徹底洗浄
+shortSlug: osakavoxy
+areaName: 大阪府大阪市
+coverImage: voxy3.jpg
+seo:
+  meta_description: |-
+    マンションの駐車場で発電機を動かしての作業となりました。
+
+    おおまかな清掃は行った時には終えられていました。
+
+    　嘔吐のシミと臭いが車内に充満していました。早速清掃作業を開始。
+
+    シートレールの隙間に入り込んだ汚れが最大の難所でしたが、少し乾燥していたので、ブロワーで一気に溝からかき出しました。
+
+    さらに、専用の細部ブラシとバキュームを駆使して、アルカリ電解水をかけ、分解せずに奥まで除菌を完了させました。  
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - oosaka
 ---
 
 御堂筋走行中の渋滞中に体調を崩されたとのこと。  
