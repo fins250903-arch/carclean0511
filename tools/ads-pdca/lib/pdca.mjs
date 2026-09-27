@@ -108,7 +108,7 @@ export function buildReport(input) {
     warnings.push('表示シェア（広告率）の列がないため、掲載率は未算出です。');
   }
   if (leads.length > 0 && !sourceFiltered) {
-    warnings.push('媒体列がないため、台帳の全行を広告経由として集計しています。');
+    warnings.push('媒体列がないため、成約率は台帳全体の数値です。広告経由だけには絞っていません。');
   }
 
   const actions = [];

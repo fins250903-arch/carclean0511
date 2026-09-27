@@ -32,8 +32,8 @@ const ALIASES = [
       'searchimpressionshare',
     ],
   ],
-  ['date', ['問い合わせ日', '問合せ日', '受付日', '日付', 'date']],
-  ['status', ['ステータス', '状況', '進捗', '結果', 'status']],
+  ['date', ['受注日', '問い合わせ日', '問合せ日', '受付日', '日付', 'date']],
+  ['status', ['区分', 'ステータス', '状況', '進捗', '結果', 'status']],
   ['closedFlag', ['成約フラグ', '受注フラグ', '成約', '受注', '契約']],
   ['closedCount', ['成約数', '受注数', '契約数']],
   ['inquiryCount', ['問い合わせ数', '問合せ数', 'リード数']],
@@ -68,6 +68,12 @@ export function parseNumber(value) {
   if (!text || text === '-' || text === '—' || text === '--') return null;
   text = text.replace(/[¥￥,\s円]/g, '').replace(/%/g, '');
   if (!text) return null;
+  if (text.includes('+')) {
+    const parts = text.split('+').map((part) => Number(part));
+    if (parts.length > 1 && parts.every((part) => Number.isFinite(part))) {
+      return parts.reduce((total, part) => total + part, 0);
+    }
+  }
   const parsed = Number(text);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -120,6 +126,9 @@ export function mapFields(raw) {
   }
   for (const field of RATE_FIELDS) {
     mapped[field] = parseRate(picked[field]);
+  }
+  if (mapped.closedFlag == null && mapped.revenue != null && mapped.revenue > 0) {
+    mapped.closedFlag = true;
   }
   return mapped;
 }

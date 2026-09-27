@@ -48,10 +48,23 @@ export function parseCsv(text) {
   return rows.filter((cells) => cells.some((value) => String(value).trim() !== ''));
 }
 
-export function matrixToObjects(matrix) {
+const HEADER_MARKERS = ['受注金額', '顧客名', '表示回数', 'キャンペーン', 'クリック数'];
+
+function compactHeader(value) {
+  return String(value ?? '').replace(/[\s　]/g, '');
+}
+
+export function matrixToObjects(matrix, headerIndex = 0) {
   if (!matrix?.length) return [];
-  const headers = matrix[0].map((header) => String(header ?? '').trim());
-  return matrix.slice(1).map((cells) => {
+  const headerRow = matrix[headerIndex] ?? [];
+  const headers = headerRow.map((header, index) => {
+    const name = String(header ?? '').trim();
+    if (name) return name;
+    const samples = matrix.slice(headerIndex + 1, headerIndex + 8).map((row) => row[index]);
+    if (samples.some((cell) => /問合/.test(String(cell ?? '')))) return '区分';
+    return '';
+  });
+  return matrix.slice(headerIndex + 1).map((cells) => {
     const record = {};
     headers.forEach((header, index) => {
       if (!header) return;
@@ -59,4 +72,19 @@ export function matrixToObjects(matrix) {
     });
     return record;
   });
+}
+
+/** Order sheets often put a totals row above the real header. */
+export function objectsFromMatrix(matrix) {
+  if (!matrix?.length) return [];
+  const limit = Math.min(matrix.length, 15);
+  let headerIndex = 0;
+  for (let index = 0; index < limit; index += 1) {
+    const cells = (matrix[index] ?? []).map(compactHeader);
+    if (cells.some((cell) => HEADER_MARKERS.some((marker) => cell === marker || cell.includes(marker)))) {
+      headerIndex = index;
+      break;
+    }
+  }
+  return matrixToObjects(matrix, headerIndex);
 }

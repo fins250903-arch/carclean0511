@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseCsv } from './lib/csv.mjs';
+import { objectsFromMatrix, parseCsv } from './lib/csv.mjs';
 import { mapFields, parseNumber, parseRate } from './lib/fields.mjs';
 import { assertInternalOutput } from './lib/paths.mjs';
 import { buildReport } from './lib/pdca.mjs';
@@ -27,6 +27,24 @@ test('parses yen, percents, and quoted csv', () => {
   assert.equal(parseRate('80%'), 0.8);
   const matrix = parseCsv('キーワード,費用\n"車,内",\"1,200\"\n');
   assert.equal(matrix[1][0], '車,内');
+});
+
+test('reads an order book whose header is below a totals row', () => {
+  const records = objectsFromMatrix([
+    ['', '', '', '0'],
+    ['', '受注日', '顧客名', '連絡先', '受注金額'],
+    ['問合', '6/5', '山田太郎', '090-0000-0000', ''],
+    ['1', '6/8', '佐藤花子', '080-1111-2222', '28,000+10,000'],
+  ]);
+  const report = buildReport({ adsRecords: [], dealRecords: records, sourceLabel: '2609' });
+  assert.equal(report.kpis.inquiries, 2);
+  assert.equal(report.kpis.closed, 1);
+  assert.equal(report.kpis.closeRate, 0.5);
+  assert.equal(report.kpis.adRevenue, 38000);
+  const html = renderReport(report);
+  assert.equal(html.includes('山田太郎'), false);
+  assert.equal(html.includes('090-0000-0000'), false);
+  assert.match(report.warnings.join('\n'), /台帳全体/);
 });
 
 test('drops personal columns', () => {

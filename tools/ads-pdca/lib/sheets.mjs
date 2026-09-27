@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import { matrixToObjects } from './csv.mjs';
+import { objectsFromMatrix } from './csv.mjs';
 
 const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 
@@ -45,7 +45,7 @@ export async function fetchSpreadsheetTables(spreadsheetId, credentials) {
   const tables = properties.map((sheet, index) => ({
     sheetId: sheet.sheetId,
     title: sheet.title,
-    records: matrixToObjects(values.data.valueRanges?.[index]?.values ?? []),
+    records: objectsFromMatrix(values.data.valueRanges?.[index]?.values ?? []),
   }));
 
   return { title: meta.data.properties?.title || 'spreadsheet', tables };
