@@ -1,10 +1,20 @@
 ---
-title: "【千葉市】トヨタ・ヤリス 浜べで　あそんだ砂と塩害の同時ケア"
-date: 2026-03-30
-categories: 
-  - "jisseki"
-  - "chiba"
-coverImage: "トヨタ-ヤリス-1-e1774883509653.jpg"
+date: 2026-09-27
+title: 【千葉市】トヨタ・ヤリス 浜べで　あそんだ砂と塩害の同時ケア
+shortSlug: tibayarisu
+areaName: 千葉県千葉市
+coverImage: 2.jpg
+seo:
+  noindex: false
+  meta_description: >
+    シートの隙間に入り込んだ砂は、振動を与えながら浮かせ　業務用掃除機で吸い出す特殊な手法で一掃し、シートとマットを洗浄剤を出しながら、吸い上げる機械で徹底洗浄  
+
+    　塩分による金属パーツへのダメージも防げたと思います。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - chiba
 ---
 
  稲毛海岸で子供を連れて浜辺でのレジャー後、子供は砂遊びに夢中になり、くつの中に入っていた砂、服にも残っていたようで　車内が砂まみれに。  
