@@ -8,12 +8,13 @@ function quoteSheet(title) {
 }
 
 export async function fetchSpreadsheetTables(spreadsheetId, credentials) {
-  const auth = new google.auth.JWT(
-    credentials.client_email,
-    null,
-    credentials.private_key,
-    [SHEETS_SCOPE],
-  );
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: credentials.client_email,
+      private_key: credentials.private_key,
+    },
+    scopes: [SHEETS_SCOPE],
+  });
   const sheets = google.sheets({ version: 'v4', auth });
   let meta;
   try {
