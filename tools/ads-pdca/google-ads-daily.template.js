@@ -2,7 +2,7 @@
  * Google Ads script. Paste into Google Ads → Tools → Bulk actions → Scripts.
  * It writes daily metrics into a private spreadsheet. It does not touch the public site.
  *
- * Replace __SPREADSHEET_ID__ before use. Schedule the script daily.
+ * SPREADSHEET_ID below is filled before pasting. Schedule the script daily.
  */
 var SPREADSHEET_ID = '__SPREADSHEET_ID__';
 var TIME_ZONE = 'Asia/Tokyo';
