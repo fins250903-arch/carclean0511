@@ -47,6 +47,17 @@ test('reads an order book whose header is below a totals row', () => {
   assert.match(report.warnings.join('\n'), /台帳全体/);
 });
 
+test('does not treat a missing conversion column as zero conversions', () => {
+  const report = buildReport({
+    adsRecords: [{ キャンペーン: '大阪', クリック数: 100, 費用: 8000, クリック率: '10%' }],
+    dealRecords: [],
+  });
+  assert.equal(report.kpis.conversions, null);
+  assert.equal(report.actions.some((item) => item.code === 'negative-keyword'), false);
+  assert.equal(report.actions.some((item) => item.code === 'phase-1'), false);
+  assert.ok(Math.abs(report.kpis.impressions - 1000) < 1);
+});
+
 test('drops personal columns', () => {
   const mapped = mapFields(deals[0]);
   assert.equal(mapped.status, '成約');

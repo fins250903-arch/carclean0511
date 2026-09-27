@@ -13,7 +13,7 @@ export function normHeader(value) {
 const ALIASES = [
   ['campaign', ['キャンペーン名', 'キャンペーン', 'campaign']],
   ['adGroup', ['広告グループ名', '広告グループ', 'adgroup']],
-  ['keyword', ['検索キーワード', '検索語句', 'キーワード', 'keyword']],
+  ['keyword', ['検索広告キーワード', '検索キーワード', '検索語句', '検索ネットワーク', 'キーワード', 'keyword']],
   ['impressions', ['表示回数', 'インプレッション', 'impressions', 'imp']],
   ['clicks', ['クリック数', 'クリック', 'clicks']],
   ['ctr', ['クリック率', 'clickthroughrate', 'ctr']],

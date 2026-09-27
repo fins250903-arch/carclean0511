@@ -91,13 +91,15 @@ export function buildReport(input) {
   const inquiries = leadInquiries ?? sheetInquiryCount;
   const closed = leadClosed ?? sheetClosedCount;
   const closeRate = ratio(closed, inquiries);
-  const closeCpa = ratio(cost, closed);
+  const closeCpa = sourceFiltered ? ratio(cost, closed) : null;
   const adRevenue = adLeads
     .filter(isClosedLead)
     .reduce((total, row) => total + (row.revenue ?? 0), 0);
 
   if (ads.length === 0) {
     warnings.push('広告の表示回数・クリック・費用がないため、クリック率と獲得単価は未算出です。');
+  } else if (conversions == null) {
+    warnings.push('コンバージョン列がないため、問い合わせ率と問い合わせ獲得単価は未算出です。');
   }
   if (leads.length === 0 && sheetClosedCount == null) {
     warnings.push('成約台帳がないため、成約率と成約獲得単価は未算出です。');
@@ -108,13 +110,13 @@ export function buildReport(input) {
     warnings.push('表示シェア（広告率）の列がないため、掲載率は未算出です。');
   }
   if (leads.length > 0 && !sourceFiltered) {
-    warnings.push('媒体列がないため、成約率は台帳全体の数値です。広告経由だけには絞っていません。');
+    warnings.push('媒体列がないため、成約率は台帳全体の数値です。広告費を成約件数で割った獲得単価は出していません。');
   }
 
   const actions = [];
-  const conversionBase = conversions ?? 0;
+  const conversionBase = conversions;
 
-  if (conversionBase >= RULES.phase3Conversions) {
+  if (conversionBase != null && conversionBase >= RULES.phase3Conversions) {
     actions.push(
       action(
         'Plan',
@@ -124,7 +126,7 @@ export function buildReport(input) {
         `コンバージョン ${conversionBase} 件。入札を最大化コンバージョン、または目標CPAへ進める。`,
       ),
     );
-  } else if (conversionBase >= RULES.phase2Conversions) {
+  } else if (conversionBase != null && conversionBase >= RULES.phase2Conversions) {
     const target = roundYen((cpa ?? 0) * RULES.tcpaMultiplier);
     actions.push(
       action(
@@ -135,7 +137,7 @@ export function buildReport(input) {
         `コンバージョン ${conversionBase} 件。目標CPAは実績 ${roundYen(cpa) ?? '—'} 円の 1.2 倍（${target ?? '—'} 円）。`,
       ),
     );
-  } else if (ads.length > 0) {
+  } else if (ads.length > 0 && conversionBase != null) {
     actions.push(
       action(
         'Plan',
@@ -172,11 +174,11 @@ export function buildReport(input) {
 
   for (const row of ads) {
     const name = row.label || '(名称なし)';
-    if ((row.impressions ?? 0) >= RULES.minImpressions && (row.conversions ?? 0) === 0) {
+    if (row.conversions != null && (row.impressions ?? 0) >= RULES.minImpressions && row.conversions === 0) {
       actions.push(
         action('Do', 'high', 'negative-keyword', name, `表示 ${row.impressions} 回でコンバージョン 0。除外キーワード候補。`),
       );
-    } else if ((row.impressions ?? 0) >= RULES.minImpressions && (row.conversions ?? 0) >= 1) {
+    } else if (row.conversions != null && (row.impressions ?? 0) >= RULES.minImpressions && row.conversions >= 1) {
       actions.push(
         action('Do', 'medium', 'add-keyword', name, `表示 ${row.impressions} 回でコンバージョン ${row.conversions}。フレーズ一致で追加を検討。`),
       );
