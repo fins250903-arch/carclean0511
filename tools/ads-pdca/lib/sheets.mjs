@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import { matrixToObjects } from './csv.mjs';
+import { objectsFromMatrix } from './csv.mjs';
 
 const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 
@@ -8,12 +8,13 @@ function quoteSheet(title) {
 }
 
 export async function fetchSpreadsheetTables(spreadsheetId, credentials) {
-  const auth = new google.auth.JWT(
-    credentials.client_email,
-    null,
-    credentials.private_key,
-    [SHEETS_SCOPE],
-  );
+  const auth = new google.auth.GoogleAuth({
+    credentials: {
+      client_email: credentials.client_email,
+      private_key: credentials.private_key,
+    },
+    scopes: [SHEETS_SCOPE],
+  });
   const sheets = google.sheets({ version: 'v4', auth });
   let meta;
   try {
@@ -44,7 +45,7 @@ export async function fetchSpreadsheetTables(spreadsheetId, credentials) {
   const tables = properties.map((sheet, index) => ({
     sheetId: sheet.sheetId,
     title: sheet.title,
-    records: matrixToObjects(values.data.valueRanges?.[index]?.values ?? []),
+    records: objectsFromMatrix(values.data.valueRanges?.[index]?.values ?? []),
   }));
 
   return { title: meta.data.properties?.title || 'spreadsheet', tables };

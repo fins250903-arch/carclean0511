@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseCsv } from './lib/csv.mjs';
+import { objectsFromMatrix, parseCsv } from './lib/csv.mjs';
 import { mapFields, parseNumber, parseRate } from './lib/fields.mjs';
 import { assertInternalOutput } from './lib/paths.mjs';
+import { buildAdsScript } from './print-ads-script.mjs';
 import { buildReport } from './lib/pdca.mjs';
 import { renderReport } from './lib/render.mjs';
 import { selectInputs } from './lib/select.mjs';
@@ -27,6 +28,69 @@ test('parses yen, percents, and quoted csv', () => {
   assert.equal(parseRate('80%'), 0.8);
   const matrix = parseCsv('キーワード,費用\n"車,内",\"1,200\"\n');
   assert.equal(matrix[1][0], '車,内');
+});
+
+test('reads an order book whose header is below a totals row', () => {
+  const records = objectsFromMatrix([
+    ['', '', '', '0'],
+    ['', '受注日', '顧客名', '連絡先', '受注金額'],
+    ['問合', '6/5', '山田太郎', '090-0000-0000', ''],
+    ['1', '6/8', '佐藤花子', '080-1111-2222', '28,000+10,000'],
+  ]);
+  const report = buildReport({ adsRecords: [], dealRecords: records, sourceLabel: '2609' });
+  assert.equal(report.kpis.inquiries, 2);
+  assert.equal(report.kpis.closed, 1);
+  assert.equal(report.kpis.closeRate, 0.5);
+  assert.equal(report.kpis.adRevenue, 38000);
+  const html = renderReport(report);
+  assert.equal(html.includes('山田太郎'), false);
+  assert.equal(html.includes('090-0000-0000'), false);
+  assert.match(report.warnings.join('\n'), /台帳全体/);
+});
+
+test('does not treat a missing conversion column as zero conversions', () => {
+  const report = buildReport({
+    adsRecords: [{ キャンペーン: '大阪', クリック数: 100, 費用: 8000, クリック率: '10%' }],
+    dealRecords: [],
+  });
+  assert.equal(report.kpis.conversions, null);
+  assert.equal(report.actions.some((item) => item.code === 'negative-keyword'), false);
+  assert.equal(report.actions.some((item) => item.code === 'phase-1'), false);
+  assert.ok(Math.abs(report.kpis.impressions - 1000) < 1);
+});
+
+test('states the click rate on the latest daily row', () => {
+  const report = buildReport({
+    adsRecords: [
+      { 日付: '2026-09-25', 表示回数: 1000, クリック数: 50, 費用: 4000 },
+      { 日付: '2026-09-26', 表示回数: 2000, クリック数: 200, 費用: 8000 },
+    ],
+    dealRecords: [],
+    sourceLabel: '広告日次',
+  });
+  assert.equal(report.asOf.date, '2026-09-26');
+  assert.equal(report.asOf.ctr, 0.1);
+  assert.equal(report.kpis.clicks, 250);
+  const html = renderReport(report);
+  assert.match(html, /2026年9月26日時点のクリック率は 10.0% です。/);
+});
+
+test('prefers the daily ads log over other ads tabs', () => {
+  const selected = selectInputs(
+    [
+      { sheetId: 1, title: 'キャンペーン', records: [{ キャンペーン: '大阪', 表示回数: 10, クリック数: 1, 費用: 100 }] },
+      { sheetId: 2, title: '広告日次', records: [{ 日付: '2026-09-26', 表示回数: 20, クリック数: 2, 費用: 200 }] },
+    ],
+    null,
+  );
+  assert.equal(selected.adsRecords[0].日付, '2026-09-26');
+  assert.equal(selected.warnings.length, 0);
+});
+
+test('fills the ads script without leaving the placeholder id', () => {
+  const script = buildAdsScript('sheetId123', 'var ID = "__SPREADSHEET_ID__";\n');
+  assert.equal(script.includes('__SPREADSHEET_ID__'), false);
+  assert.match(script, /sheetId123/);
 });
 
 test('drops personal columns', () => {

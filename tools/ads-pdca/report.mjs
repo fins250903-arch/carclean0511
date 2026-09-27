@@ -6,7 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { matrixToObjects, parseCsv } from './lib/csv.mjs';
+import { objectsFromMatrix, parseCsv } from './lib/csv.mjs';
 import { loadEnv, readServiceAccount } from './lib/env.mjs';
 import { assertInternalOutput } from './lib/paths.mjs';
 import { buildReport } from './lib/pdca.mjs';
@@ -17,7 +17,7 @@ import { fetchSpreadsheetTables } from './lib/sheets.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 function readRecords(file) {
-  return matrixToObjects(parseCsv(fs.readFileSync(file, 'utf8')));
+  return objectsFromMatrix(parseCsv(fs.readFileSync(file, 'utf8')));
 }
 
 function parseArgs(argv) {

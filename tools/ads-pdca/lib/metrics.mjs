@@ -38,10 +38,14 @@ export function prepareRows(records) {
     .map((record) => mapFields(record))
     .filter((row) => !isTotalLabel(row.campaign) && !isTotalLabel(row.keyword) && !isTotalLabel(row.adGroup))
     .map((row) => {
-      const ctr = ratio(row.clicks, row.impressions) ?? row.ctr;
+      let impressions = row.impressions;
+      if ((impressions == null || impressions === 0) && row.clicks != null && row.ctr != null && row.ctr > 0) {
+        impressions = row.clicks / row.ctr;
+      }
+      const ctr = ratio(row.clicks, impressions) ?? row.ctr;
       const cvr = ratio(row.conversions, row.clicks) ?? row.cvr;
       const cpa = ratio(row.cost, row.conversions) ?? row.cpa;
-      return { ...row, ctr, cvr, cpa, label: entityLabel(row) };
+      return { ...row, impressions, ctr, cvr, cpa, label: entityLabel(row) };
     });
 }
 

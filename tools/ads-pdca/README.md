@@ -16,6 +16,10 @@ GOOGLE_SERVICE_ACCOUNT_JSON=
 
 Share the spreadsheet with the service account email as Viewer. Enable the Google Sheets API on that Google Cloud project.
 
+## Daily history
+
+`google-ads-daily.template.js` is pasted into Google Ads → Tools → Bulk actions → Scripts and scheduled daily. It appends one row per day to the private spreadsheet tab `広告日次`, including the date and click-through rate. `npm run pdca:ads-script` fills the spreadsheet id from `.env` and writes `tools/ads-pdca/private/google-ads-daily.js`, which is gitignored.
+
 ## Run
 
 ```bash

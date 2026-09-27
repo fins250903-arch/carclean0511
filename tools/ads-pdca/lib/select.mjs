@@ -20,10 +20,11 @@ export function selectInputs(tables, focusGid) {
   const focus = focusGid == null ? null : described.find((table) => String(table.sheetId) === String(focusGid)) ?? null;
   const adsTables = described.filter((table) => table.ads);
   const dealTables = described.filter((table) => table.deals);
-  const ads = pick(adsTables, focus);
+  const dailyLog = adsTables.find((table) => table.title === '広告日次');
+  const ads = dailyLog ?? pick(adsTables, focus);
   const deals = pick(dealTables, focus);
   const warnings = [];
-  if (adsTables.length > 1) {
+  if (!dailyLog && adsTables.length > 1) {
     warnings.push(`広告実績のタブが複数あるため「${ads.title}」だけを使いました。`);
   }
   if (dealTables.length > 1) {

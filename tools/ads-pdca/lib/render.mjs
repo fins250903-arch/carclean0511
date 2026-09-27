@@ -59,6 +59,7 @@ export function renderReport(report) {
     main { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
     .banner { background: #7f1d1d; color: #fff; padding: 12px 16px; font-weight: 700; }
     h1 { font-size: 1.6rem; margin: 24px 0 8px; }
+    .asof { font-size: 1.25rem; font-weight: 700; }
     h2 { font-size: 1.1rem; margin: 28px 0 8px; }
     .meta, .note, .label { color: #57534e; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
@@ -73,7 +74,9 @@ export function renderReport(report) {
   <p class="banner">社外秘。LP・広告・外部共有には使わない内部資料です。</p>
   <main>
     <h1>広告 PDCA 判定</h1>
+    ${asOfHtml(report)}
     <p class="meta">作成 ${escapeHtml(generated)} / ソース ${escapeHtml(report.sourceLabel)} / 広告行 ${report.counts.ads} / 広告経由の台帳 ${report.counts.leads}</p>
+    ${historyHtml(report)}
     <div class="cards">
       ${card('クリック率', percent(k.ctr), 'クリック ÷ 表示回数。目標 5% 以上')}
       ${card('問い合わせ率', percent(k.cvr), '広告コンバージョン ÷ クリック。緊急系の目安 5–10%')}
@@ -110,6 +113,26 @@ export function renderActionsCsv(report) {
     lines.push([item.phase, item.severity, item.code, item.entity, item.detail].map(csvCell).join(','));
   }
   return `${lines.join('\n')}\n`;
+}
+
+function formatJapaneseDate(isoDate) {
+  const match = String(isoDate ?? '').match(/(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return String(isoDate ?? '');
+  return `${match[1]}年${Number(match[2])}月${Number(match[3])}日`;
+}
+
+function asOfHtml(report) {
+  if (!report.asOf?.date || report.asOf.ctr == null) return '';
+  return `<p class="asof">${escapeHtml(formatJapaneseDate(report.asOf.date))}時点のクリック率は ${escapeHtml(percent(report.asOf.ctr))} です。</p>`;
+}
+
+function historyHtml(report) {
+  const history = report.history ?? [];
+  if (history.length === 0) return '';
+  const rows = [...history].reverse().slice(0, 31).map((day) => (
+    `<tr><td>${escapeHtml(formatJapaneseDate(day.date))}</td><td>${escapeHtml(percent(day.ctr))}</td><td>${escapeHtml(count(day.clicks))}</td><td>${escapeHtml(count(day.impressions))}</td><td>${escapeHtml(yen(day.cost))}</td><td>${escapeHtml(count(day.conversions))}</td><td>${escapeHtml(yen(day.cpa))}</td></tr>`
+  )).join('');
+  return `<h2>日次のクリック率</h2><table><thead><tr><th>日付</th><th>クリック率</th><th>クリック</th><th>表示</th><th>費用</th><th>コンバージョン</th><th>獲得単価</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 function csvCell(value) {

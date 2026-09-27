@@ -23,6 +23,7 @@
     "gsc:index": "node ./scripts/google/submit-indexing-queue.mjs",
     "gsc:rank": "node ./scripts/google/search-analytics.mjs",
     "pdca:report": "node ./tools/ads-pdca/report.mjs",
+    "pdca:ads-script": "node ./tools/ads-pdca/print-ads-script.mjs",
     "pdca:test": "node --test ./tools/ads-pdca/test.mjs"
   },
   "dependencies": {
