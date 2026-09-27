@@ -39,6 +39,31 @@ function roundYen(value) {
   return Math.round(value);
 }
 
+function dateKey(value) {
+  const match = String(value ?? '').match(/(\d{4})\D*(\d{1,2})\D*(\d{1,2})/);
+  if (!match) return null;
+  return `${match[1]}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
+}
+
+export function accountDailyHistory(rows) {
+  const byDay = new Map();
+  for (const row of rows) {
+    if (row.keyword || row.campaign || row.adGroup) continue;
+    const key = dateKey(row.date);
+    if (!key) continue;
+    byDay.set(key, {
+      date: key,
+      impressions: row.impressions,
+      clicks: row.clicks,
+      cost: row.cost,
+      conversions: row.conversions,
+      ctr: row.ctr,
+      cpa: row.cpa,
+    });
+  }
+  return [...byDay.values()].sort((a, b) => a.date.localeCompare(b.date));
+}
+
 function action(phase, severity, code, entity, detail) {
   return { phase, severity, code, entity, detail };
 }
@@ -215,10 +240,13 @@ export function buildReport(input) {
 
   const severityRank = { high: 0, medium: 1, low: 2 };
   actions.sort((a, b) => severityRank[a.severity] - severityRank[b.severity] || a.phase.localeCompare(b.phase));
+  const history = accountDailyHistory(ads);
 
   return {
     sourceLabel: input.sourceLabel || 'internal',
     warnings,
+    history,
+    asOf: history.at(-1) ?? null,
     counts: { ads: ads.length, leads: adLeads.length },
     kpis: {
       impressions,
