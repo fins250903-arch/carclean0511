@@ -20,3 +20,7 @@ dist
 
 desktop.ini
 Thumbs.db
+
+# Internal ads PDCA output. Business metrics stay off the site and out of git.
+tools/ads-pdca/output/
+tools/ads-pdca/private/
