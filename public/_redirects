@@ -31,4 +31,50 @@
 /regions/saitama/seat-senjo/ /regions/saitama/seat-washing/ 301
 /regions/tokyo/kuruma-nioi-keshi/ /regions/tokyo/odor-removal/ 301
 /regions/saitama/kuruma-nioi-keshi/ /regions/saitama/odor-removal/ 301
+
+# Legacy category URLs used as ad final URLs. Neither path is a blog post.
+/blog/seisou https://carinteriorcleaning.jp/blog/ 301
+/blog/seisou/ https://carinteriorcleaning.jp/blog/ 301
+/blog/jisseki/ibaraki https://carinteriorcleaning.jp/blog/?region=ibaraki 301
+/blog/jisseki/ibaraki/ https://carinteriorcleaning.jp/blog/?region=ibaraki 301
+
+# Same destinations as the slashed rules above, for ad URLs that omit the trailing slash.
+# Absolute Location so clients that mishandle relative redirects still land on the page.
+/regions/chiba/shutchou-senmon https://carinteriorcleaning.jp/regions/chiba/mobile-cleaning/ 301
+/regions/hyogo/seat-senjo https://carinteriorcleaning.jp/regions/hyogo/seat-washing/ 301
+/regions/osaka/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/osaka/odor-removal/ 301
+/regions/aichi/evaporator-senjo https://carinteriorcleaning.jp/regions/aichi/ac-mold/ 301
+/regions/aichi/tabako-yani https://carinteriorcleaning.jp/regions/aichi/tobacco-odor/ 301
+/regions/aichi/pet-unko https://carinteriorcleaning.jp/regions/aichi/pet-waste/ 301
+/regions/osaka/shanai-nioi https://carinteriorcleaning.jp/regions/osaka/mold-odor/ 301
+/regions/hyogo/oshikko https://carinteriorcleaning.jp/regions/hyogo/pet-hair-odor/ 301
+/regions/chiba/kyuto-cleaning https://carinteriorcleaning.jp/regions/chiba/vomit-cleaning/ 301
+/regions/aichi/kyuto-cleaning https://carinteriorcleaning.jp/regions/aichi/vomit-cleaning/ 301
+/regions/osaka/kyuto-cleaning https://carinteriorcleaning.jp/regions/osaka/vomit-cleaning/ 301
+/regions/hyogo/kyuto-cleaning https://carinteriorcleaning.jp/regions/hyogo/vomit-cleaning/ 301
+/regions/fukuoka/kyuto-cleaning https://carinteriorcleaning.jp/regions/fukuoka/vomit-cleaning/ 301
+/regions/okinawa/kyuto-cleaning https://carinteriorcleaning.jp/regions/okinawa/vomit-cleaning/ 301
+/regions/tokyo/kyuto-cleaning https://carinteriorcleaning.jp/regions/tokyo/vomit-cleaning/ 301
+/regions/saitama/kyuto-cleaning https://carinteriorcleaning.jp/regions/saitama/vomit-cleaning/ 301
+/regions/kanagawa/kyuto-cleaning https://carinteriorcleaning.jp/regions/kanagawa/vomit-cleaning/ 301
+/regions/ibaraki/kyuto-cleaning https://carinteriorcleaning.jp/regions/ibaraki/vomit-cleaning/ 301
+/regions/mie/kyuto-cleaning https://carinteriorcleaning.jp/regions/mie/vomit-cleaning/ 301
+/regions/gifu/kyuto-cleaning https://carinteriorcleaning.jp/regions/gifu/vomit-cleaning/ 301
+/regions/shizuoka/kyuto-cleaning https://carinteriorcleaning.jp/regions/shizuoka/vomit-cleaning/ 301
+/regions/kyoto/kyuto-cleaning https://carinteriorcleaning.jp/regions/kyoto/vomit-cleaning/ 301
+/regions/nara/kyuto-cleaning https://carinteriorcleaning.jp/regions/nara/vomit-cleaning/ 301
+/regions/shiga/kyuto-cleaning https://carinteriorcleaning.jp/regions/shiga/vomit-cleaning/ 301
+/regions/saga/kyuto-cleaning https://carinteriorcleaning.jp/regions/saga/vomit-cleaning/ 301
+/regions/tokyo/seat-senjo https://carinteriorcleaning.jp/regions/tokyo/seat-washing/ 301
+/regions/saitama/seat-senjo https://carinteriorcleaning.jp/regions/saitama/seat-washing/ 301
+/regions/tokyo/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/tokyo/odor-removal/ 301
+/regions/saitama/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/saitama/odor-removal/ 301
+
 / /regions/osaka/ 301
+
+# Ads Editor often requests region URLs without a trailing slash. Cloudflare's
+# html_handling would answer those with a relative 307; an absolute 301 is stable.
+# These pattern rules must stay last: Cloudflare counts every rule after the first
+# pattern against the dynamic-rule budget.
+/regions/:region https://carinteriorcleaning.jp/regions/:region/ 301
+/regions/:region/:kw https://carinteriorcleaning.jp/regions/:region/:kw/ 301
