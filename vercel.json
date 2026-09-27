@@ -146,6 +146,26 @@
       "permanent": true
     },
     {
+      "source": "/blog/seisou",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/seisou/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/jisseki/ibaraki",
+      "destination": "/blog/?region=ibaraki",
+      "permanent": true
+    },
+    {
+      "source": "/blog/jisseki/ibaraki/",
+      "destination": "/blog/?region=ibaraki",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/regions/osaka/",
       "permanent": true
