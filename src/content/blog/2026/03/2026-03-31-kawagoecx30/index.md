@@ -1,10 +1,18 @@
 ---
-title: "【埼玉県　川越市】マツダ・CX30「灯油の漏れ出し」を緊急消臭"
-date: 2026-03-31
-categories: 
-  - "jisseki"
-  - "saitama"
-coverImage: "マツダ-MAZDA2-yuka.jpg"
+date: 2026-09-28
+title: 【埼玉県　川越市】マツダ・CX30「灯油の漏れ出し」を緊急消臭
+shortSlug: kawagoecx30
+areaName: 埼玉県　川越市
+coverImage: mazda2-yuka.jpg
+seo:
+  noindex: false
+  meta_description: "カーペット下の防音材まで灯油が回っていたため、吸着剤と専用洗剤を併用しました。マット類の下も　はぐって確認しましたが、そ\
+    れほど広がっている様子はなく、床材等に影響は見られませんでした。  "
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - saitama
 ---
 
 小江戸の情緒ある街並みを横目に、灯油をこぼされたお客様のもとへ。  
