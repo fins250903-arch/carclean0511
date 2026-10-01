@@ -1,10 +1,19 @@
 ---
-title: "【柏市】スズキ スペーシア 食べこぼしのカビ臭を高温スチームで撃退"
-date: 2026-04-04
-categories: 
-  - "jisseki"
-  - "chiba"
-coverImage: "スペーシアカスタム-e1775309908612.jpg"
+date: 2026-10-01
+title: 【柏市】スズキ スペーシア 食べこぼしのカビ臭を高温スチームで撃退
+shortSlug: kasiwaspcia
+areaName: 千葉県柏市
+coverImage: 4.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    特にチャイルドシートの固定金具（ISOFIX）の奥は、まるでお菓子の貯金箱のようになっており、細いピックで掻き出す作業はまるで発掘調査でした。  
+    仕上げに高濃度のアルコールで徹底的に殺菌し、あの嫌な青臭さを完全に絶ちました。
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - chiba
 ---
 
 ベッドタウンとして賑わう柏の住宅地。  
