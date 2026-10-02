@@ -1,10 +1,18 @@
 ---
-title: "【さいたま市】トヨタ・シエンタ「泥汚れ砂の混じったニオイ」清掃"
-date: 2026-03-31
-categories: 
-  - "jisseki"
-  - "saitama"
-coverImage: "トヨタ・シエンタ-hidarikarazennseki-e1774948366196.webp"
+date: 2026-10-02
+title: 【さいたま市】トヨタ・シエンタ「泥汚れ砂の混じったニオイ」清掃
+shortSlug: saitamasienta
+areaName: 埼玉県さいたま市
+coverImage: times_sienta_4779-scaled-1-.webp
+seo:
+  noindex: false
+  meta_description: 実際に作業してみると、
+    フロアカーペットの繊維に深く入り込んだ砂は、掃除機だけでは吸い取れません。シートを含めて叩き出しながらバキュームをかける地道な作業で、室内の空気が澄んでいくのが実感できました。シートというか、洗浄剤を混ぜたお湯で徹底的に洗いました
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - saitama
 ---
 
 大宮駅周辺の賑やかなエリアから少し離れた住宅地での作業。  
