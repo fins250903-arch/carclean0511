@@ -1,10 +1,21 @@
 ---
-title: "【町田市】ホンダ フリードの泥汚れと砂の徹底洗浄で新車の輝きを"
 date: 2026-04-04
-categories: 
-  - "jisseki"
-  - "toukyou"
-coverImage: "ホンダ-フリード-e1775309624490.webp"
+title: 【町田市】ホンダ フリードの泥汚れと砂の徹底洗浄で新車の輝きを
+shortSlug: matidahonda
+areaName: 東京都町田市
+coverImage: ホンダ-フリード-e1775309624490.webp
+seo:
+  meta_description: >-
+    専用のマスクをしていても口の中がジャリッとするほどの粉塵。舞い上がった砂を瞬時に強力バキュームで吸い取る、という右と左の連携プレイをひたすら続けます。
+
+
+    一番泣かされたのは、シートベルトのバックル根本の隙間。ここは保安部品なので絶対に分解してはいけません。しかし内部で砂が噛むと「カチッ」とハマらなくなる危険があります。  
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - toukyou
 ---
 
 緑豊かな公園が多い町田エリア。  
