@@ -1,5 +1,5 @@
 ---
-date: 2026-04-04
+date: 2026-10-03
 title: 【町田市】ホンダ フリードの泥汚れと砂の徹底洗浄で新車の輝きを
 shortSlug: matidahonda
 areaName: 東京都町田市
