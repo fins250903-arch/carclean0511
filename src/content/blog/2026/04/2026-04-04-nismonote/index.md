@@ -1,10 +1,20 @@
 ---
-title: "【久留米市】日産 ノート 牛乳をこぼした腐敗臭を徹底的な分解洗浄で除去"
-date: 2026-04-04
-categories: 
-  - "jisseki"
-  - "fukuoka"
-coverImage: "日産-ノート-new-e1775310762458.jpg"
+date: 2026-10-04
+title: 【久留米市】日産 ノート 牛乳をこぼした腐敗臭を徹底的な分解洗浄で除去
+shortSlug: nismonote
+areaName: 福岡県久留米市
+coverImage: 日産-ノート-new-e1775310762458.jpg
+seo:
+  noindex: false
+  meta_description: |-
+    ドロドロになった牛乳を専用のヘラで優しく集め、バキュームで吸い取る。
+
+    シートの下の狭い隙間は手が入りにくく、ボルトを数本外してシートを少し浮かせるというイレギュラーな対応も強いられました。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - fukuoka
 ---
 
 筑後川の恵みを受ける久留米市。  
