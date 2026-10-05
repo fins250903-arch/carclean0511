@@ -1,9 +1,15 @@
 ---
-title: "犬のうんち、100均で撃退"
-date: 2026-04-05
-categories: 
-  - "tokublo"
-coverImage: "犬-e1775403332839.jpg"
+date: 2026-10-05
+title: 犬のうんち、100均で撃退
+categories:
+  - tokublo
+shortSlug: dogunti
+coverImage: 犬-e1775403332839.jpg
+seo:
+  meta_description: どうしてプロ仕様の洗剤じゃなく100均アイテムで落ちるのか。 答えはシンプルで、汚れの性質に合わせて中和させるからです。
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 ドアを開けた瞬間の、あのツンとした空気。
