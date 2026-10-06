@@ -1,10 +1,21 @@
 ---
-title: "【名古屋市】レクサス RXタバコヤニ汚れ染み付いた臭い完全除去"
-date: 2026-04-04
-categories: 
-  - "jisseki"
-  - "aichi"
-coverImage: "レクサス-RX-e1775310288569.jpg"
+date: 2026-10-06
+title: 【名古屋市】レクサス RXタバコヤニ汚れ染み付いた臭い完全除去
+shortSlug: lecsusyani
+areaName: 愛知県名古屋市
+coverImage: レクサス-RX-e1775310288569.jpg
+seo:
+  noindex: false
+  meta_description: >-
+    アルカリ電解水を、細かな霧状にしてマイクロファイバークロスに吹き付けました。水分量はギリギリまで絞り、天井を「擦る」のではなく、優しく「撫でる」ようにしてヤニの成分をクロスに移行させていきます。
+
+
+    一撫でするだけで、真っ白だったクロスが茶色く染まる。この作業を、首が痛くなるのをこらえながら天井全面にミリ単位で行っていきます。  
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - aichi
 ---
 
 名古屋の中心部からほど近い高級マンションの地下駐車場。  
