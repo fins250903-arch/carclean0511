@@ -1,10 +1,16 @@
 ---
-title: "【西宮市】ホンダステップワゴン 魚釣りクーラーボックス汁を脱臭"
-date: 2026-04-04
-categories: 
-  - "jisseki"
-  - "hyougo"
-coverImage: "ホンダ・ステップワゴン-e1775311103134.webp"
+date: 2026-10-09
+title: 【西宮市】ホンダステップワゴン 魚釣りクーラーボックス汁を脱臭
+shortSlug: stepwgnnisi
+areaName: 兵庫県西宮市
+coverImage: ホンダ・ステップワゴン-e1775311103134.webp
+seo:
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - hyougo
 ---
 
 海沿いの風情が漂う西宮。  
