@@ -48,6 +48,7 @@ import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
 import { buildAioContentFaqs, getAioKeywordContent, buildVoiceEmergencyLine } from '../../../data/aioKeywordContent';
 import { findFvCopy, resolveFvHero } from '../../../data/fvAdGroupCopy';
 import {
+  alignAdHeroToMatchPhrase,
   resolveAdDeepTroubles,
   resolveAdField,
   resolveAdHighlight,
@@ -181,27 +182,30 @@ const quickFactsPriceLabel = isBusKw
     ? `${seatHookMain}／${kwSpecificPrice}`
     : `${seatHookMain}／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`;
 
-const adHero = fvHero
-  ? {
-      ...fvHero,
-      fvImage: kw.fvImage,
-      mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
-      priceHookMain: kwPriceHookMain,
-      priceHookSub: kwPriceHookSub,
-      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
-    }
-  : {
-      subtitle: kw.heroSubtitle(displayName, regionName),
-      highlightLine1: heroHighlight[0],
-      highlightLine2: heroHighlight[1],
-      subcatch: kw.heroSubcatch(displayName),
-      fvImage: kw.fvImage,
-      footerText: kw.heroFooter(displayName),
-      mainTitle: kw.mainTitle?.(regionName, displayName),
-      priceHookMain: kwPriceHookMain,
-      priceHookSub: kwPriceHookSub,
-      priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
-    };
+const adHero = alignAdHeroToMatchPhrase(
+  kwSlug,
+  fvHero
+    ? {
+        ...fvHero,
+        fvImage: kw.fvImage,
+        mainTitle: fvHero.mainTitle ?? kw.mainTitle?.(regionName, displayName),
+        priceHookMain: kwPriceHookMain,
+        priceHookSub: kwPriceHookSub,
+        priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
+      }
+    : {
+        subtitle: kw.heroSubtitle(displayName, regionName),
+        highlightLine1: heroHighlight[0],
+        highlightLine2: heroHighlight[1],
+        subcatch: kw.heroSubcatch(displayName),
+        fvImage: kw.fvImage,
+        footerText: kw.heroFooter(displayName),
+        mainTitle: kw.mainTitle?.(regionName, displayName),
+        priceHookMain: kwPriceHookMain,
+        priceHookSub: kwPriceHookSub,
+        priceHookNote: '※症状・範囲により変動。作業前に見積提示／写真で相談可',
+      },
+);
 
 const adProblem = {
   header: resolveAdField(kw.problemHeader, regionName),

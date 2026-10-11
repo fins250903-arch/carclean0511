@@ -356,7 +356,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '車内で吐いた直後、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内嘔吐の臭いを根本除去するには、嘔吐から4日以内に出張リンサー洗浄を依頼するのが最も確実です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、${powerPhrase(regionName)}で対応。運転中・手が離せない方も電話で空き状況をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
+      `【結論】${regionName}の車 ゲロ 掃除は、嘔吐から4日以内の出張リンサー洗浄が最も確実です。車 嘔吐 クリーニングも同じ工程です。市販の消臭スプレーは使わず、固形物をこすらず取り除いたうえで、40℃温水と特殊アルカリ電解水でシート内部（ウレタン層）まで抽出洗浄します。車内清掃「特急便」は${regionName}全域へ最短即日出張、${powerPhrase(regionName)}で対応。運転中・手が離せない方も電話で空き状況をご案内。軽自動車基本${yen(CAR_PRICING.lightBasic)}〜、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。保険適用のご相談も承ります。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -398,7 +398,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'kerosene',
     checklistHeading: '車に灯油をこぼしたときの消し方｜今すぐやること',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内灯油こぼしは、火気厳禁で換気し、新聞紙で吸い取る（擦らない）のが第一応急処置です。灯油はシート内部・フロア下吸音材まで浸透すると完全消臭が困難なため、100cc以上の大量こぼしは専門洗浄が必要です。当店は${regionName}内へ最短即日出張。灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜／席。500cc超で部品交換が必要な場合も見極めのうえ保険活用をご提案します。`,
+      `【結論】${regionName}で車 灯油 こぼしたときは、火気厳禁で換気し、新聞紙で吸い取る（擦らない）のが第一応急処置です。灯油はシート内部・フロア下吸音材まで浸透すると完全消臭が困難なため、100cc以上の大量こぼしは専門洗浄が必要です。当店は${regionName}内へ最短即日出張。灯油専用洗浄${yen(CAR_PRICING.kerosenePerSeat)}〜／席。500cc超で部品交換が必要な場合も見極めのうえ保険活用をご提案します。`,
     emergencyChecklist: EMERGENCY_KEROSENE_CHECKLIST,
     keroseneSeverityMatrix: KEROSENE_SEVERITY_MATRIX,
     situationDiagnosis: REGIONAL_SITUATION_DIAGNOSIS.filter((r) =>
@@ -510,7 +510,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'shanai-nioi': {
     troubleType: 'odor',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で車内 カビ臭い、または車内の臭いが消えない場合、原因はエアコン内部・シート染み込み・タバコ・加齢臭・湿気カビなどに分かれ、消臭スプレーではウレタン層の「臭いの元」を除去できません。自分でできるのは換気・芳香剤の撤去・軽い表面拭きまで。臭いが翌日以降も残る／エアコンON時だけ臭う／嘔吐・尿・灯油のあと、はプロ境界です。40℃温水リンサーで原因を物理抽出する出張洗浄が必要です。${regionName}内へ最短即日出張。消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     smellCauseTable: SMELL_CAUSE_TABLE,
     situationDiagnosis: ODOR_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
@@ -594,7 +594,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'tabako-yani': {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で車内のタバコヤニ・臭いは、天井・シート・フロアを丸ごと温水洗浄し、オゾン脱臭を併用するのが最も効果的です。市販消臭剤はマスキングに留まり、天井裏のヤニは残ります。当店は${regionName}内へ最短即日出張対応。完全無臭化の成功率は70〜80%（限界は事前説明）ですが、限界まで清潔な状態へ引き上げます。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。`,
+      `【結論】${regionName}の車 天井 ヤニは、天井・シート・フロアを丸ごと温水洗浄し、オゾン脱臭を併用するのが最も効果的です。市販消臭剤はマスキングに留まり、天井裏のヤニは残ります。当店は${regionName}内へ最短即日出張対応。完全無臭化の成功率は70〜80%（限界は事前説明）ですが、限界まで清潔な状態へ引き上げます。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。`,
     situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
     smellCauseTable: SMELL_CAUSE_TABLE.filter((r) =>
       ['タバコ・ヤニ', '加齢臭・皮脂', 'エアコン内部', 'カビ・湿気'].includes(r.cause),
@@ -619,7 +619,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'chuko-tabako': {
     troubleType: 'tobacco',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で中古車のタバコ臭を落とすには、オゾン・消臭剤だけでなく天井・シートの温水リンサー洗浄が必要です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
+      `【結論】${regionName}の中古車 納車 臭いは、オゾン・消臭剤だけでは落ちません。天井・シートの温水リンサー洗浄が必要です。中古車タバコ臭も同じ工程です。喫煙歴が長い車は天井裏のヤニが原因のため、丸ごと洗浄が効果的です。${regionName}内へ最短即日出張。普通車消臭セット${yen(CAR_PRICING.regularDeodorize)}〜。完全無臭化の目安は70〜80%で、限界は事前に説明します。`,
     situationDiagnosis: TOBACCO_SITUATION_DIAGNOSIS,
     customDefinition: (regionName) =>
       `${regionName}の中古車タバコ臭消しとは、蓄積したタール・ニコチンを温水抽出で除去し、オゾン脱臭で仕上げる出張専門サービスです。`,
@@ -855,7 +855,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '車内で吐いた直後、自分で何をすればいい？（保険利用前の初動）',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で嘔吐汚損の車両保険適用は「偶然の事故による車内汚損」として認められる場合があります。車両保険（免責3〜10万円・等級ダウンあり）または個人賠償（他人の車を汚した場合）が該当します。当店は${regionName}内へ最短即日出張し、見積時に保険利用時の実質自己負担額を併記。施工報告書・写真付き見積で申請をサポートします。運転中の緊急時も電話で空き状況をご案内します。`,
+      `【結論】${regionName}のレンタカー ルームクリーニングと、嘔吐汚損の車両保険適用は別です。保険は「偶然の事故による車内汚損」として認められる場合があります。車両保険（免責3〜10万円・等級ダウンあり）または個人賠償（他人の車を汚した場合）が該当します。当店は${regionName}内へ最短即日出張し、見積時に保険利用時の実質自己負担額を併記。施工報告書・写真付き見積で申請をサポートします。運転中の緊急時も電話で空き状況をご案内します。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     extraFaqs: [
@@ -873,7 +873,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     troubleType: 'vomit',
     checklistHeading: '運転中に子供が吐いたとき、自分で何をすればいい？',
     answerFirst: (regionName) =>
-      `【結論】${regionName}で子どもの車内嘔吐は、4日以内の出張リンサー洗浄が最も確実です。市販消臭スプレーは使わず、固形物をこすらず取り除き、40℃温水でシート内部まで洗浄します。運転中・手が離せない緊急時も365日24時間受付。安全停車→換気→電話で空き確認が最短ルートです。${regionName}内へ最短即日出張、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
+      `【結論】${regionName}で子供 車で吐いたときは、4日以内の出張リンサー洗浄が最も確実です。市販消臭スプレーは使わず、固形物をこすらず取り除き、40℃温水でシート内部まで洗浄します。運転中・手が離せない緊急時も365日24時間受付。安全停車→換気→電話で空き確認が最短ルートです。${regionName}内へ最短即日出張、嘔吐消臭セット${yen(CAR_PRICING.lightDeodorize)}〜。`,
     emergencyChecklist: EMERGENCY_VOMIT_CHECKLIST,
     situationDiagnosis: VOMIT_SITUATION_DIAGNOSIS,
     nicheCaseStudy: regionalCaseStudy((city, regionName) => ({
@@ -894,8 +894,8 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   'dengen-fuyou': {
     answerFirst: (regionName) =>
       needsOutletBorrow(regionName)
-        ? `【結論】${regionName}の出張施工では、${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
-        : `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
+        ? `【結論】${regionName}のマンション 駐車場 車内清掃では、${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
+        : `【結論】${regionName}のマンション 駐車場 車内清掃は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
     extraFaqs: [
       {
         q: 'マンションの地下駐車場でも施工できますか？',
@@ -905,7 +905,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   },
   'shutchou-senmon': {
     answerFirst: (regionName) =>
-      `【結論】${regionName}の出張車内清掃専門店として、車内清掃「特急便」は365日24時間受付・最短即日対応です。嘔吐・灯油・ペット・タバコ臭など特殊案件に特化し、${powerPhrase(regionName)}でご指定の駐車場へ訪問。施工歴3年以上・年間300台超の専門員が対応します。`,
+      `【結論】${regionName}の車内 丸洗い 出張は、365日24時間受付・最短即日対応です。嘔吐・灯油・ペット・タバコ臭など特殊案件に特化し、${powerPhrase(regionName)}でご指定の駐車場へ訪問。出張 車内 清掃の専門員が対応します。`,
     customDefinition: (regionName) =>
       `${regionName}の出張車内清掃専門サービスとは、プロの温水リンサー・特殊アルカリ電解水を用い、ご指定場所へ訪問してシート内部まで洗浄・消臭するサービスです。ディーラー持ち込み不要・即日復旧が可能です。`,
   },
