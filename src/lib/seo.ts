@@ -95,11 +95,9 @@ import type { ServiceNiche } from '@/lib/niche';
 
 import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
-import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
-
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
-import { CAR_PRICING, TRUCK_PRICING } from '@/data/pricingConstants';
+import { CAR_PRICING, TRUCK_PRICING, yen } from '@/data/pricingConstants';
 
 import {
     AUTHOR,
@@ -197,25 +195,6 @@ type SchemaOptions = {
 
 
 
-function getDynamicRating(regionName: string) {
-
-    let hash = 0;
-
-    for (let i = 0; i < regionName.length; i++) {
-
-        hash = regionName.charCodeAt(i) + ((hash << 5) - hash);
-
-    }
-
-    const seed = Math.abs(hash);
-
-    const ratingValue = (4.7 + (seed % 4) * 0.1).toFixed(1); // 4.7 to 5.0
-
-    const reviewCount = (12 + (seed % 45)).toString(); // 12 to 56
-
-    return { ratingValue, reviewCount };
-
-}
 
 
 
@@ -236,11 +215,11 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     
 
-    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
+    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・シート洗浄・臭い消し。嘔吐・灯油・ペット臭に対応。受付は365日24時間、到着は空き次第で当日〜翌朝。座席1脚${yen(CAR_PRICING.seatSingleBasic)}〜（税込）。`;
 
-    const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
+    const truckDescription = `${regionName}の出張トラックキャビン清掃。2tキャビン${yen(TRUCK_PRICING.ton2Cab)}〜（税込）。受付は365日24時間、到着は空き次第で当日〜翌朝。`;
 
-    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。運営本部岡山・現場は地域出張チーム。`;
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れの2連席1区画22,000円〜（税込）。受付は365日24時間、到着は運行の合間に合わせます。運営本部は岡山、現場は地域の出張チームです。`;
 
     const description = isTruck ? truckDescription : isBus ? busDescription : carDescription;
 
@@ -490,11 +469,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    const carDescription = `${regionName}全域対応の出張 車内 清掃・車内クリーニング専門サービス。嘔吐、灯油、ペットの臭いを最短即日で徹底洗浄します。`;
+    const carDescription = `${regionName}全域対応の出張 車内 清掃。嘔吐、灯油、ペット臭、タバコ臭を抽出洗浄します。受付は365日24時間、到着は空き次第で当日〜翌朝です。`;
 
-    const truckDescription = `${regionName}の出張トラックキャビン清掃。職人によるプロの技術で汚れ・臭い・除菌を徹底対応します。`;
+    const truckDescription = `${regionName}の出張トラックキャビン清掃。2tキャビン${yen(TRUCK_PRICING.ton2Cab)}〜（税込）。受付は365日24時間、到着は空き次第で当日〜翌朝です。`;
 
-    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れの区画洗浄・除菌を最短即日で対応します。`;
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れの区画洗浄は2連席1区画22,000円〜（税込）。受付は365日24時間、到着は運行の合間に合わせます。`;
 
     const localBusinessDescription = regionOverrides?.aiSummary || regionOverrides?.localBusiness?.description || (isTruck ? truckDescription : isBus ? busDescription : carDescription);
 
@@ -590,6 +569,12 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         },
 
         mentions: TRUST_REFERENCES,
+
+        hasPart: {
+
+            '@id': `${url}#faq`,
+
+        },
 
         speakable: {
             '@type': 'SpeakableSpecification',
@@ -693,55 +678,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             ],
 
-            opens: '08:00',
+            opens: '00:00',
 
-            closes: '22:00',
-
-        },
-
-        aggregateRating: {
-
-            '@type': 'AggregateRating',
-
-            ratingValue: getDynamicRating(regionName).ratingValue,
-
-            reviewCount: questionnaireTestimonials.length.toString(),
-
-            bestRating: '5',
-
-            worstRating: '1',
+            closes: '23:59',
 
         },
-
-        review: questionnaireTestimonials.map((t, index) => ({
-
-            '@type': 'Review',
-
-            reviewRating: {
-
-                '@type': 'Rating',
-
-                ratingValue: '5',
-
-                bestRating: '5',
-
-                worstRating: '1',
-
-            },
-
-            author: {
-
-                '@type': 'Person',
-
-                name: t.name,
-
-            },
-
-            reviewBody: t.comment,
-
-            datePublished: new Date(Date.now() - (index * 14 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0],
-
-        })),
 
         hasOfferCatalog: {
 
@@ -749,7 +690,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             name: isTruck ? 'トラック清掃メニュー' : '車内クリーニングメニュー',
 
-            itemListElement: (isTruck ? truckServiceData : serviceData).map(service => ({
+            itemListElement: (isBus ? busServiceData : isTruck ? truckServiceData : serviceData).map(service => ({
 
                 '@type': 'Offer',
 
@@ -827,7 +768,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             price: isTruck
               ? String(TRUCK_PRICING.ton2Cab)
-              : String(CAR_PRICING.seatSingleBasic),
+              : isBus
+                ? String(busServiceData[0].price)
+                : String(CAR_PRICING.seatSingleBasic),
 
             priceSpecification: {
 
@@ -835,7 +778,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
                 minPrice: isTruck
                   ? String(TRUCK_PRICING.ton2Cab)
-                  : String(CAR_PRICING.seatSingleBasic),
+                  : isBus
+                    ? String(busServiceData[0].price)
+                    : String(CAR_PRICING.seatSingleBasic),
 
                 priceCurrency: 'JPY',
 
@@ -854,6 +799,24 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             '@type': 'Audience',
 
             audienceType: isTruck ? 'トラック・バス運送事業者' : '出張 車内 清掃を希望する個人・家族',
+
+        },
+
+        category: isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張 車内 清掃',
+
+        hoursAvailable: {
+
+            '@type': 'OpeningHoursSpecification',
+
+            dayOfWeek: [
+
+                'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+
+            ],
+
+            opens: '00:00',
+
+            closes: '23:59',
 
         },
 
@@ -934,6 +897,30 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@type': 'FAQPage',
 
+        '@id': `${url}#faq`,
+
+        dateModified,
+
+        inLanguage: 'ja-JP',
+
+        isPartOf: {
+
+            '@id': `${url}#webpage`,
+
+        },
+
+        about: {
+
+            '@id': `${url}#service`,
+
+        },
+
+        author: {
+
+            '@id': AUTHOR.id,
+
+        },
+
         mainEntity: mergedFaqs.map(faq => ({
 
             '@type': 'Question',
@@ -984,11 +971,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             author: {
 
-                '@type': 'Organization',
-
-                name: STORE_NAME,
-
-                url: SITE_URL,
+                '@id': AUTHOR.id,
 
             },
 
@@ -1235,6 +1218,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         baseSchemas.push(...articles);
     }
     if (caseStudyList) {
+        (mainEntity as Record<string, unknown>).subjectOf = { '@id': `${url}#regional-casestudies` };
         baseSchemas.push(caseStudyList);
     }
     if (howTo) {

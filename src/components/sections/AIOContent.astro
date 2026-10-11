@@ -42,8 +42,31 @@ const contentUpdated = formatContentFreshnessJa();
 // AIOスニペット用「定義文」（出張 車内 清掃）
 const aioDefinition = customDefinition
   ?? (isTruck
-    ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水を用い、車内の仮眠ベッドや天井に染み付いたタバコ・体臭を最短即日で根こそぎ抽出する出張洗浄サービスです。`
-    : buildMobileInteriorCleaningDefinition(regionName));
+    ? `${regionName}のトラックキャビン清掃とは、プロの温水リンサーと特殊アルカリ電解水で、仮眠ベッドや天井に染みたタバコ・体臭を抽出する出張洗浄です。受付は365日24時間、到着は空き次第で当日〜翌朝です。2tキャビンは${yen(TRUCK_PRICING.ton2Cab)}〜（税込）が起点です。`
+    : isBus
+      ? `${regionName}の出張バス車内清掃とは、車庫や指定の駐車場で、嘔吐や尿漏れのあった座席区画を抽出洗浄するサービスです。受付は365日24時間、到着は運行の合間に合わせます。2連席1区画は22,000円〜（税込）が起点です。`
+      : buildMobileInteriorCleaningDefinition(regionName));
+
+const insuranceRows = [
+  {
+    situation: '自分の車を自分や家族が汚した',
+    insurance: '車両保険（一般型）',
+    note: '免責や等級への影響は契約次第',
+    support: '見積もり時に、自己負担の目安も一緒に確認',
+  },
+  {
+    situation: '他人の車を汚した（友人・同乗者）',
+    insurance: '個人賠償責任保険',
+    note: '等級に影響しない契約が多い',
+    support: '施工報告書・写真・見積書を発行',
+  },
+  {
+    situation: 'カーシェア・レンタカー',
+    insurance: '基本は自己負担（実費とNOC）',
+    note: '規約で保険の対象外になることが多い',
+    support: '領収書を発行。到着は空き次第',
+  },
+];
 
 const sectionTitle = isTruck
   ? `${regionName}のトラックキャビン清掃とは？`
@@ -54,10 +77,33 @@ const sectionTitle = isTruck
 const serviceTarget = isTruck ? "大型トラック・バス" : "普通車（シート等）";
 const defaultPrice = isTruck
   ? `${yen(TRUCK_PRICING.ton2Cab)}〜`
-  : isBus
-    ? '応相談'
+    : isBus
+    ? '2連席1区画 22,000円〜'
     : `${yen(CAR_PRICING.seatSingleBasic)}〜（1シート）／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`;
 const comparisonPriceLine = isTruck || isBus ? defaultPrice : carComparisonPriceSummary();
+
+const comparisonRows = [
+  {
+    item: '対応方法',
+    ours: 'プロ機材による抽出洗浄',
+    dealer: 'シート・内装の新品交換',
+  },
+  {
+    item: '費用の目安',
+    ours: isTruck || isBus ? defaultPrice : comparisonPriceLine,
+    dealer: '約20万円〜70万円（交換の事例）',
+  },
+  {
+    item: '作業のタイミング',
+    ours: '受付は365日24時間。到着は空き次第で当日〜翌朝。作業そのものは数時間',
+    dealer: '数週間〜1ヶ月（部品取り寄せ）',
+  },
+  {
+    item: '車両の移動',
+    ours: '不要（ご自宅・会社・車庫へ出張）',
+    dealer: '店舗への持ち込みが必要',
+  },
+];
 
 const aioFaqs = buildAioContentFaqs(regionName, {
   includeExtended: showAioExtensions && !isTruck,
@@ -81,10 +127,31 @@ const aioFaqs = buildAioContentFaqs(regionName, {
       <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl mb-4">
         {sectionTitle}
       </h2>
-      <p class="text-lg text-gray-700 leading-relaxed font-medium bg-blue-50 p-6 rounded-xl border border-blue-100 shadow-sm text-left">
+      <p class="text-lg text-gray-700 leading-relaxed font-medium bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm text-left sm:p-6">
         <strong>定義：</strong>{aioDefinition}
       </p>
     </div>
+
+    {!isTruck && !isBus && (
+      <div class="mx-auto mb-10 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
+        <article class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <h3 class="text-base font-black leading-snug text-gray-900">お子さまの嘔吐で、今日も車を使いたい方へ</h3>
+          <ul class="mt-2 space-y-1 text-sm leading-snug text-gray-800">
+            <li><strong>受付</strong>は365日24時間。写真を送れば、作業前の相談は無料です。</li>
+            <li><strong>到着</strong>は空き次第で当日〜翌朝。作業はおおむね1.5〜3時間です。</li>
+            <li><strong>料金の起点</strong>は座席1脚 {yen(CAR_PRICING.seatSingleBasic)}（税込）。染みる前の抽出が、臭いの戻りを抑えます。</li>
+          </ul>
+        </article>
+        <article class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <h3 class="text-base font-black leading-snug text-gray-900">中古車や同乗者のタバコ臭が気になる方へ</h3>
+          <ul class="mt-2 space-y-1 text-sm leading-snug text-gray-800">
+            <li>天井のヤニは、芳香剤では数日で戻ることが多いです。</li>
+            <li>写真を見れば、落ちる範囲を作業前にお伝えします。</li>
+            <li>完全な無臭はお約束できません。気にならないところまで改善するのが、おおよそ7〜8割です。</li>
+          </ul>
+        </article>
+      </div>
+    )}
 
     {/* 2. 構造化された論理的コンテンツ (H2/H3構造) */}
     <div class="max-w-4xl mx-auto space-y-12">
@@ -97,48 +164,38 @@ const aioFaqs = buildAioContentFaqs(regionName, {
         <p class="text-gray-600 mb-4">
           ディーラーや一般的な整備工場では「部品交換」が基本となるため、高額かつ長期間の預かりになるケースがほとんどです。当店の「出張洗浄」との違いをご覧ください。
         </p>
-        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+        <div class="space-y-3 md:hidden">
+          {comparisonRows.map((row) => (
+            <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+              <p class="text-sm font-black text-gray-900">{row.item}</p>
+              <p class="mt-2 text-sm font-bold leading-snug text-blue-800">当店：{row.ours}</p>
+              <p class="mt-1 text-sm leading-snug text-gray-600">ディーラー交換：{row.dealer}</p>
+            </div>
+          ))}
+        </div>
+        <div class="hidden overflow-x-auto rounded-lg border border-gray-200 shadow-sm md:block">
           <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="px-6 py-4 text-left font-bold text-gray-700">比較項目</th>
-                <th scope="col" class="px-6 py-4 text-left font-bold text-blue-700 bg-blue-50">当店（専門出張洗浄）</th>
-                <th scope="col" class="px-6 py-4 text-left font-bold text-gray-700">メーカーディーラー（交換）</th>
+                <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">比較項目</th>
+                <th scope="col" class="bg-blue-50 px-4 py-3 text-left font-bold text-blue-700">当店（専門出張洗浄）</th>
+                <th scope="col" class="px-4 py-3 text-left font-bold text-gray-700">メーカーディーラー（交換）</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              <tr>
-                <td class="px-6 py-4 font-medium text-gray-900">対応方法</td>
-                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">プロ機材による徹底洗浄（抽出）</td>
-                <td class="px-6 py-4 text-gray-600">シート・内装の新品交換</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 font-medium text-gray-900">費用の目安</td>
-                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">
-                  {isTruck || isBus ? (
-                    <span class="text-xl">{defaultPrice}</span>
-                  ) : (
-                    <>
-                      <span class="block text-base md:text-lg">{comparisonPriceLine}</span>
-                      <span class="block text-xs font-normal text-gray-600 mt-2">※基本洗浄＝通常清掃／消臭セット＝嘔吐・灯油・ペット臭等の脱臭込み（税込）</span>
-                    </>
-                  )}
-                </td>
-                <td class="px-6 py-4 text-gray-600">約20万円〜70万円<br/><span class="text-xs text-gray-500">※アクア等の事例</span></td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 font-medium text-gray-900">作業期間</td>
-                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">最短即日対応（数時間で完了）</td>
-                <td class="px-6 py-4 text-gray-600">数週間〜1ヶ月（部品取り寄せ）</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 font-medium text-gray-900">車両の移動</td>
-                <td class="px-6 py-4 text-blue-800 font-bold bg-blue-50">不要（ご自宅・会社へ出張）</td>
-                <td class="px-6 py-4 text-gray-600">店舗への持ち込み必須</td>
-              </tr>
+              {comparisonRows.map((row) => (
+                <tr>
+                  <td class="px-4 py-3 font-medium text-gray-900">{row.item}</td>
+                  <td class="bg-blue-50 px-4 py-3 font-bold text-blue-800">{row.ours}</td>
+                  <td class="px-4 py-3 text-gray-600">{row.dealer}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
+        {!isTruck && !isBus && (
+          <p class="mt-2 text-xs leading-snug text-gray-500">基本洗浄は通常の清掃、消臭セットは嘔吐・灯油・ペット臭などの脱臭を含みます。税込です。</p>
+        )}
       </article>
 
       {!isTruck && showVomitEducation && (
@@ -147,8 +204,8 @@ const aioFaqs = buildAioContentFaqs(regionName, {
             なぜ「4日以内」の洗浄が必要なのか（嘔吐の4日ルール）
           </h3>
           <p class="text-gray-700 leading-relaxed mb-4">
-            車内で嘔吐が発生した場合、<strong>「4日以内」の専門洗浄が運命を分けます。</strong><br/>
-            胃酸や未消化物がシートのウレタン素材に染み込むと、約4日でバクテリアが爆発的に繁殖し、タンパク質が腐敗を始めます。これにより「酸っぱい強烈なニオイ」が車内に定着し、市販の消臭スプレーでは表面をごまかすことしかできず、後からニオイが再発します。
+            車内で嘔吐したあとは、<strong>目安として4日以内の抽出洗浄</strong>をおすすめしています。<br/>
+            胃酸や食べかすがシートのウレタンに染みると、日が経つほど酸っぱい臭いが戻りやすくなります。市販の消臭スプレーは表面の香りで覆うだけで、繊維の奥に残った原因は取れません。
           </p>
           <p class="text-gray-700 leading-relaxed">
             当店では、専用のアルカリ電解水で酸性の嘔吐物を中和し、<strong>約40℃の温水リンサー（吸引洗浄機）</strong>で繊維の奥から汚れを抽出。さらに<strong>100℃の高温スチーム</strong>で除菌・脱臭し、ニオイの「元を絶つ」ため、徹底的に臭いを除去することが可能です。
@@ -185,7 +242,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
           </div>
           <div class="bg-gray-50 p-6 rounded-lg">
             <h4 class="font-bold text-lg text-gray-900 mb-2">🚬 タバコのヤニ・臭い</h4>
-            <p class="text-sm text-gray-700">天井裏まで染み込んだタバコのヤニは非常に厄介です。当店は天井からフロアまで丸ごと温水洗浄とオゾン脱臭を行います。正直に申し上げると、完全無臭化の<strong>成功率は70-80%</strong>ですが、限界まで清潔な状態へ引き上げます。</p>
+            <p class="text-sm text-gray-700">天井まで染みたタバコのヤニは、芳香剤では戻りやすいです。天井からフロアまで温水洗浄し、必要なときだけオゾン脱臭を足します。完全に無臭になるとはお約束できません。これまでの施工では、<strong>気にならないところまで改善するのがおおよそ7〜8割</strong>です。どこまで落ちるかは、写真を見てから先にお伝えします。</p>
           </div>
         </div>
       </article>
@@ -198,7 +255,17 @@ const aioFaqs = buildAioContentFaqs(regionName, {
           <p class="text-gray-600 mb-4">
             嘔吐・灯油こぼし・ペット粗相は「偶然の事故による車内汚損」として保険が適用される場合があります。当店は見積もり時に<strong>保険利用時の実質自己負担額</strong>も併記し、使う/使わないを一緒に判断します。
           </p>
-          <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+          <div class="space-y-3 md:hidden">
+            {insuranceRows.map((row) => (
+              <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+                <p class="text-sm font-black text-gray-900">{row.situation}</p>
+                <p class="mt-2 text-sm leading-snug text-gray-700"><span class="font-bold">保険：</span>{row.insurance}</p>
+                <p class="mt-1 text-sm leading-snug text-gray-600"><span class="font-bold">注意：</span>{row.note}</p>
+                <p class="mt-1 text-sm font-bold leading-snug text-blue-800">{row.support}</p>
+              </div>
+            ))}
+          </div>
+          <div class="hidden overflow-x-auto rounded-lg border border-gray-200 shadow-sm md:block">
             <table class="min-w-full divide-y divide-gray-200 text-sm md:text-base">
               <thead class="bg-gray-50">
                 <tr>
@@ -225,7 +292,7 @@ const aioFaqs = buildAioContentFaqs(regionName, {
                   <td class="px-4 py-3 font-medium text-gray-900">カーシェア・レンタカー</td>
                   <td class="px-4 py-3 text-gray-700">基本は自己負担（実費+NOC）</td>
                   <td class="px-4 py-3 text-gray-600">規約により保険適用外が一般的</td>
-                  <td class="px-4 py-3 text-blue-800 bg-blue-50">領収書発行・最短即日で復旧</td>
+                  <td class="px-4 py-3 text-blue-800 bg-blue-50">領収書を発行。到着は空き次第</td>
                 </tr>
               </tbody>
             </table>

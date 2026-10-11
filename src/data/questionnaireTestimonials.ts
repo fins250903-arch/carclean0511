@@ -1,5 +1,3 @@
-import { canonicalUrl } from '@/lib/site';
-
 export interface Testimonial {
   id: string;
   name: string;
@@ -49,26 +47,15 @@ export const questionnaireTestimonials: Testimonial[] = [
   }
 ];
 
-export const generateQuestionnaireJsonLd = (regionName: string, displayName: string, path: string) => {
-  const itemReviewedId = `${canonicalUrl(path)}#localbusiness`;
-
-  return questionnaireTestimonials.map((t, index) => ({
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@id": itemReviewedId,
-      "@type": "LocalBusiness"
-    },
-    "author": {
-      "@type": "Person",
-      "name": t.name
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5"
-    },
-    "reviewBody": t.comment,
-    "datePublished": new Date(Date.now() - index * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-  }));
+/**
+ * Handwritten notes stay visible on the page.
+ * They are not emitted as Review JSON-LD: there is no collected star score or review date,
+ * and marking up our own quotes as ratings is self-serving.
+ */
+export const generateQuestionnaireJsonLd = (
+  _regionName: string,
+  _displayName: string,
+  _path: string,
+): Record<string, unknown>[] => {
+  return [];
 };
