@@ -49,7 +49,7 @@ import NioiAnswerTarget from '../../../../components/sections/NioiAnswerTarget.a
 import KeywordAioExtras from '../../../../components/sections/KeywordAioExtras.astro';
 import RegionLocalTrust from '../../../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../../../components/sections/AdLpQuickFacts.astro';
-import CancelPolicy from '../../../../components/sections/CancelPolicy.astro';
+import { CAR_PRICING, yen } from '../../../../data/pricingConstants';
 import {
   buildRegionalAnswerTargetPoints,
   buildRegionalAnswerFirst,
@@ -131,11 +131,7 @@ const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel, regionName) : undefined;
-const heroMainTitle = isTruck
-  ? `${subareaLabel}の出張トラックキャビン清掃`
-  : isBus
-    ? `${subareaLabel}の出張バス車内清掃`
-    : getRegionalHeroMainTitle(regionName);
+const heroMainTitle = !isTruck && !isBus ? getRegionalHeroMainTitle(regionName) : undefined;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
 const noindex = isNoindexRegionId(regionId);
@@ -160,13 +156,15 @@ const noindex = isNoindexRegionId(regionId);
         mainTitle={heroMainTitle}
         fvImage={subareaFv}
       />
-      <AdLpQuickFacts
-        displayName={subareaLabel}
-        niche={niche}
-        intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
-        durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
-        areaLabel={`${subareaLabel}へ出張費無料`}
-      />
+      {!isTruck && !isBus && (
+        <AdLpQuickFacts
+          displayName={subareaLabel}
+          intentLabel="出張車内クリーニング"
+          priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+          durationLabel="約1.5〜3時間"
+          areaLabel={`${subareaLabel}へ出張費無料`}
+        />
+      )}
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -177,11 +175,6 @@ const noindex = isNoindexRegionId(regionId);
           heading={REGIONAL_CHECKLIST_HEADING}
         />
       )}
-      <Problem regionName={regionName} displayName={subareaLabel} niche={niche} />
-      <Pricing regionName={regionName} niche={niche} />
-      <CancelPolicy />
-      <CTA />
-      <QuestionnaireTestimonials client:visible displayName={subareaLabel} />
       {!isTruck && !isBus && (
         <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
@@ -193,21 +186,26 @@ const noindex = isNoindexRegionId(regionId);
         niche={niche}
         focusShutchou
         showAioExtensions={!isTruck}
-        showInlineFaq={false}
       />
       <RegionAIContent regionName={regionName} displayName={subareaLabel} />
+      <Problem regionName={regionName} displayName={subareaLabel} niche={niche} />
       <Solution regionName={regionName} displayName={subareaLabel} niche={niche} />
       <Comparison displayName={subareaLabel} />
+
       <Campaign displayName={subareaLabel} />
       <Reasons displayName={subareaLabel} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={subareaLabel} />
+
+      <QuestionnaireTestimonials client:visible displayName={subareaLabel} />
       <RegionalAchievements regionName={regionName} displayName={subareaLabel} niche={niche} />
       <Targets />
       <AreaCoverage regionName={regionName} />
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={subareaLabel} />
       <Expertise />
+      <Pricing regionName={regionName} niche={niche} />
+      <CTA />
       <FAQ niche={niche} regionName={regionName} />
       <RegionLocalTrust
         regionName={regionName}

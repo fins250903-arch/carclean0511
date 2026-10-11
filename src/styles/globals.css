@@ -21,13 +21,6 @@ body {
   line-height: 1.6;
 }
 
-/* Keep Japanese phrases together, then wrap the whole phrase to the next line. */
-@utility phrase-wrap {
-  word-break: auto-phrase;
-  line-break: strict;
-  overflow-wrap: anywhere;
-}
-
 @utility mobile-text {
   text-align: justify;
   text-justify: inter-character;
@@ -44,7 +37,7 @@ body {
 
 /* FloatingCTA の高さ分のパディング確保 */
 @utility pb-floating {
-  padding-bottom: 7.5rem;
+  padding-bottom: 5.75rem;
   @media (min-width: 768px) {
     padding-bottom: 4.5rem;
   }
