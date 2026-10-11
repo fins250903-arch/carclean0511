@@ -1,9 +1,15 @@
 ---
-title: "【水戸市】スズキ・スイフトの「農作業の土汚れ」を一掃"
-date: 2026-04-15
-categories: 
-  - "tokublo"
-coverImage: "スズキ-スイフト-e1776263918575.jpg"
+date: 2026-10-11
+title: 【水戸市】スズキ・スイフトの「農作業の土汚れ」を一掃
+shortSlug: mitoswift
+areaName: 茨城県水戸市
+coverImage: スズキ-スイフト-e1776263918575.jpg
+seo:
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - tokublo
 ---
 
 偕楽園の梅がほころぶ季節の水戸市。  
