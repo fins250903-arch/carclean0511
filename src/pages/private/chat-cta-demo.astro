@@ -83,6 +83,7 @@ const scenarios = [
         if (payload && payload.event_category === 'chat_cta') {
           if (log.querySelector('.placeholder')) log.innerHTML = '';
           var row = document.createElement('li');
+          row.className = 'break-all';
           row.textContent =
             new Date().toLocaleTimeString('ja-JP') + '  ' + payload.event + '  ' + JSON.stringify(payload);
           log.appendChild(row);
