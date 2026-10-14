@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { MessageCircle, X, ChevronLeft, Phone, Send, Check } from 'lucide-react';
 import { trackChatEvent } from '@/lib/analytics';
-import { LINE_URL, TEL } from '@/lib/site';
+import { FORMSPREE_ENDPOINT, TEL, buildLinePrefillUrl } from '@/lib/site';
 import type { ServiceNiche } from '@/lib/niche';
 import {
   BUS_VEHICLE_OPTIONS,
@@ -12,6 +12,7 @@ import {
   TRUCK_VEHICLE_OPTIONS,
   VEHICLE_OPTIONS,
   buildHandoffSummary,
+  composeAreaLabel,
   estimate,
   isLateNight,
   type ChatAnswers,
@@ -35,7 +36,7 @@ interface Props {
   regionName?: string;
   displayName?: string;
   niche?: ServiceNiche;
-  /** POST target for the callback request. Omitted = local simulation (prototype). */
+  /** POST target for the callback request. Defaults to the shared Formspree inbox. */
   callbackEndpoint?: string;
   /** Seconds of dwell time before the teaser bubble appears. 0 disables it. */
   teaserDelaySeconds?: number;
@@ -56,10 +57,10 @@ export default function ChatCta({
   regionName,
   displayName,
   niche = 'car',
-  callbackEndpoint,
+  callbackEndpoint = FORMSPREE_ENDPOINT,
   teaserDelaySeconds = 20,
 }: Props) {
-  const areaLabel = displayName || regionName || '対応エリア';
+  const areaLabel = composeAreaLabel(regionName, displayName);
 
   const [open, setOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
@@ -172,6 +173,8 @@ export default function ChatCta({
     });
   }, [step]);
 
+  const linePrefillUrl = useMemo(() => buildLinePrefillUrl(summary), [summary]);
+
   const handleLineClick = useCallback(async () => {
     trackChatEvent('chat_cta_click', { event_label: 'line' });
     try {
@@ -179,9 +182,8 @@ export default function ChatCta({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 4000);
     } catch {
-      // Clipboard denied — the LINE talk screen still opens, the user just types it.
+      // Clipboard denied — the LINE talk still opens with the message in the URL.
     }
-    window.open(LINE_URL, '_blank', 'noopener,noreferrer');
   }, [summary]);
 
   const submitCallback = useCallback(
@@ -191,29 +193,31 @@ export default function ChatCta({
       setSending(true);
       setCallbackError(null);
 
+      const slotLabel = CALLBACK_SLOT_OPTIONS.find((o) => o.id === slot)?.label ?? slot;
       const payload = {
-        phone,
-        slot: CALLBACK_SLOT_OPTIONS.find((o) => o.id === slot)?.label ?? slot,
+        _subject: `【折り返し予約】${areaLabel}`,
+        name: 'チャット折り返し予約',
+        tel: phone,
+        region: regionName || areaLabel,
+        area: areaLabel,
         city,
-        region: areaLabel,
+        slot: slotLabel,
         niche,
-        summary,
         estimate: est?.priceLabel ?? '',
+        message: summary,
         page: typeof window === 'undefined' ? '' : window.location.href,
+        source: 'cta_chat',
+        _gotcha: honeypot,
       };
 
       try {
-        if (callbackEndpoint) {
-          const response = await fetch(callbackEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify(payload),
-          });
-          if (!response.ok) throw new Error(`status ${response.status}`);
-        } else {
-          await new Promise((resolve) => window.setTimeout(resolve, 600));
-        }
-        trackChatEvent('chat_callback_submit', { event_label: payload.slot });
+        const response = await fetch(callbackEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(`status ${response.status}`);
+        trackChatEvent('chat_callback_submit', { event_label: slotLabel });
         setStep('thanks');
       } catch {
         setCallbackError('送信に失敗しました。お急ぎの場合はお電話ください。');
@@ -221,7 +225,7 @@ export default function ChatCta({
         setSending(false);
       }
     },
-    [areaLabel, callbackEndpoint, city, est, honeypot, niche, phone, slot, summary],
+    [areaLabel, callbackEndpoint, city, est, honeypot, niche, phone, regionName, slot, summary],
   );
 
   const currentOptions: ChoiceOption<string>[] | null =
@@ -454,14 +458,17 @@ export default function ChatCta({
                       );
                     }
                     return (
-                      <button
+                      <a
                         key={key}
-                        type="button"
+                        href={linePrefillUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-cta-location="chat_result_line"
                         onClick={handleLineClick}
                         className="flex items-center justify-center gap-2 rounded-full bg-[#06C755] py-3 font-bold text-white shadow"
                       >
                         LINEで写真を送って確定見積
-                      </button>
+                      </a>
                     );
                   })}
                 </div>

@@ -2,7 +2,7 @@
 
 **ブランチ**: `cursor/cta-chatbot-proposal-1abd`
 **目的**: LPのCTAに「24時間いつでも料金・対応内容に自動回答し、折り返し電話／LINEにつなぐ」チャット導線を追加する
-**このラウンドの範囲**: 方式の提案と動作プロトタイプまで。**LP（regions / keyword LP 計約900ページ）への組み込みは行わない。**
+**このラウンドの範囲**: 方式決定済み。フェーズ2は **大阪・福岡・宮城の car LP のみ** に設置。
 
 ---
 
@@ -63,10 +63,10 @@ Q4 希望時期      今すぐ・今日中／明日〜今週中／日程は相�
 
 | 時間帯 | 第1 | 第2 | 第3 |
 |--------|-----|-----|-----|
-| 7:00〜23:00 | 今すぐ電話 | LINEで写真見積 | 折り返し予約 |
-| 23:00〜7:00 | **折り返し予約** | 今すぐ電話 | LINEで写真見積 |
+| 7:00〜23:00 JST | 今すぐ電話 | LINEで写真見積 | 折り返し予約 |
+| 23:00〜7:00 JST | **折り返し予約** | 今すぐ電話 | LINEで写真見積 |
 
-受付自体は365日24時間なので電話導線は常に残すが、深夜は「朝イチで折り返します」のほうが心理的ハードルが低い。
+受付自体は365日24時間なので電話導線は常に残すが、深夜は電話を第1ボタンから外す。判定は訪問者TZではなく **Asia/Tokyo**。
 
 ---
 
@@ -90,11 +90,7 @@ estimate / page（gclid付きの流入URL）
 | **2. Vercel Function（`api/callback.js`）＋ nodemailer** | `nodemailer` は既に依存にある | 文面・宛先を自由に制御 | Cloudflare Workers 静的運用に切り替える場合は動かない |
 | 3. LINE Messaging API で店舗公式アカウントへ push | 通知が最速 | スマホに即着弾 | チャネル作成とシークレット管理が必要。**LINE Notifyは2025年3月終了済みなので不可** |
 
-**推奨は 1 → 3 の順**。まずFormspreeで出して完了率を測り、受注が乗ってきたらLINE push通知に差し替える。スパム対策は honeypot（実装済み）＋ 必要なら Cloudflare Turnstile。
-
-### デプロイ先の確認が必要な点
-
-`api/*.js` は Vercel 専用です。`wrangler.jsonc` でCloudflare Workers（静的）へ寄せる計画がある場合、案2は選べません。**本番の受け口をどちらに置くかだけ先に決めてください。**
+**採用: 案1 Formspree**（`https://formspree.io/f/xknlodez`、お問い合わせフォームと同一受信箱。`source: cta_chat` で区別）。スパム対策は honeypot。
 
 ---
 
@@ -102,11 +98,10 @@ estimate / page（gclid付きの流入URL）
 
 現在のLINE導線は `https://lin.ee/Xs8Orp2`（友だち追加）で、ユーザーは友だち追加後に状況を一から打ち直しています。ここが最大の離脱点です。
 
-- **改善案**: `https://line.me/R/oaMessage/@<公式アカウントID>/?<エンコード済み本文>` 形式に切り替えると、トーク画面に診断結果が**入力済み**の状態で開きます。
-  例：`【大阪／普通車／嘔吐／座席1脚／今日中】概算 18,000円〜25,000円 の件で相談したいです。写真を送ります。`
-- これには LINE公式アカウントの **@ID（ベーシックID または プレミアムID）** が必要です。リポジトリ内には短縮URLしか無いため、**@IDをご共有ください。**
-- @IDが用意できるまでのフォールバックとして、プロトタイプでは要約をクリップボードにコピーしてからLINEを開く実装にしてあります。
-- さらに LINE側に応答メッセージ／リッチメニューを設定すれば、LP外（LINEトーク内）でも同じ一次回答を24時間返せます。
+- **採用**: `https://line.me/R/oaMessage/@648itxlw/?<エンコード済み本文>` でトーク画面に診断結果を入力済みで開く。
+  例：`【福岡県／普通車／嘔吐／座席1脚／今日中】概算 18,000円〜25,000円 の件で相談したいです。写真を送ります。`
+- クリップボードへのコピーも併用（デスクトップでプリフィルが効かない場合の保険）。
+- 既存の友だち追加URL（`lin.ee/Xs8Orp2`）はフローティングCTA側に残す。
 
 ---
 
@@ -131,9 +126,9 @@ estimate / page（gclid付きの流入URL）
 
 | フェーズ | 内容 | 状態 |
 |----------|------|------|
-| 0 | 方式決定・プロトタイプで文言と分岐を確定 | **本PR。完了** |
-| 1 | 折り返し受け口を本番接続（Formspree or Function）＋ LINE @ID の反映 | 要・依頼者判断 |
-| 2 | 大阪・兵庫・宮城の car LP のみに設置し、CVRを比較 | 未着手 |
+| 0 | 方式決定・プロトタイプで文言と分岐を確定 | **完了** |
+| 1 | 折り返し受け口を Formspree 接続＋ LINE @648itxlw の本文プリフィル | **完了** |
+| 2 | **大阪・福岡・宮城** の car LP のみに設置し、CVRを比較 | **本PR** |
 | 3 | 全region / keyword LP へ展開。truck / bus のシナリオを追加 | 未着手 |
 | 4 | 必要なら自由入力を追加（まずFAQ全文検索、それでも不足ならLLMフォールバック） | 未着手 |
 
@@ -141,30 +136,33 @@ estimate / page（gclid付きの流入URL）
 
 ---
 
-## 7. 今回の成果物（LPには一切触れていません）
+## 7. 地域の出し分け（福岡ページで「大阪」と出ないこと）
+
+検証ログの「【大阪／…】」は **デモページが大阪府で固定されていた** ためです。本番LPでは各ページが自分の `regionName` を props で渡します。
+
+- `/regions/fukuoka/` → `regionName="福岡県"` → 挨拶・LINE本文・折り返しメールは **福岡県**
+- `/regions/osaka/` → `大阪府`
+- `/regions/miyagi/` → `宮城県`
+- サブエリア例：`/regions/fukuoka/area/fukuoka-city/` → `福岡市（福岡県）`
+
+`RegionContext` のフォールバック（プロバイダ無し時の「大阪」）はチャットでは使いません。ページから明示的に渡します。
+
+## 8. 設置ファイル
 
 | ファイル | 内容 |
 |----------|------|
-| `src/data/chatCtaScenario.ts` | 選択肢の定義、`estimate()`（pricingConstants由来）、引き継ぎ要約、深夜判定 |
-| `src/components/chat/ChatCta.tsx` | チャットUI本体（起動ボタン／吹き出し／4設問／概算カード／3分岐CTA／折り返しフォーム） |
-| `src/pages/private/chat-cta-demo.astro` | 検証用サンドボックス。noindex・sitemap除外・`Disallow: /private/` 配下 |
-| `src/lib/analytics.ts` | `trackChatEvent()` を追加（既存の関数は変更なし） |
-| `astro.config.mjs` | sitemapから `/private/` を除外 |
-
-既存のLPコンポーネント（`Hero` / `CTA` / `FloatingCTA` / `ContactForm` ほか）は**1行も変更していません**。
+| `src/lib/chatCta.ts` | フェーズ2対象判定（osaka / fukuoka / miyagi × car） |
+| `src/lib/site.ts` | `LINE_OA_ID` / `FORMSPREE_ENDPOINT` / `buildLinePrefillUrl()` |
+| `src/data/chatCtaScenario.ts` | `composeAreaLabel()`、JSTの深夜判定、`estimate()` |
+| `src/components/chat/ChatCta.tsx` | ウィジェット本体 |
+| `src/pages/regions/[region].astro` ほか | 対象LPへの設置 |
+| `src/pages/private/chat-cta-demo.astro` | 大阪／福岡／宮城を切り替えて確認するサンドボックス |
 
 ### 確認方法
 
 ```bash
 npm run dev
-# http://localhost:4321/private/chat-cta-demo/
+# http://localhost:4321/private/chat-cta-demo/   ← タブで福岡に切替
+# http://localhost:4321/regions/fukuoka/
+# http://localhost:4321/regions/osaka/
 ```
-
----
-
-## 8. 決めていただきたいこと
-
-1. 折り返し電話の受け口は **Formspree** と **Vercel Function** のどちらにするか（本番がVercelかCloudflareかに依存）
-2. LINE公式アカウントの **@ID**（本文プリフィルに必要）
-3. 深夜帯（23:00〜7:00）に電話を第1CTAから外す運用でよいか
-4. フェーズ2の対象を大阪・兵庫・宮城の3県に限定してよいか

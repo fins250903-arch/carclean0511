@@ -8,7 +8,21 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/carinterierclean/';
 
 export const LINE_URL = 'https://lin.ee/Xs8Orp2';
 
+/** LINE Official Account basic ID. Used to open a talk with the estimate already typed. */
+export const LINE_OA_ID = '@648itxlw';
+
 export const TEL = '070-8428-0866';
+
+/** Same Formspree inbox as `ContactForm.tsx`. Chat callbacks add `source: cta_chat`. */
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xknlodez';
+
+/** Opens LINE with `message` pre-filled. Falls back to the friend-add short URL if the ID is missing. */
+export function buildLinePrefillUrl(message: string): string {
+  const id = LINE_OA_ID.replace(/^@/, '').trim();
+  if (!id) return LINE_URL;
+  const encoded = encodeURIComponent(message);
+  return `https://line.me/R/oaMessage/@${id}/?${encoded}`;
+}
 
 /** 運営者情報（特定商取引法・LocalBusiness構造化データ・E-E-A-T強化用） */
 export const OPERATOR = {

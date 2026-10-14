@@ -56,6 +56,7 @@ import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
 import CancelPolicy from '../../components/sections/CancelPolicy.astro';
 import { CAR_PRICING, yen } from '../../data/pricingConstants';
 import { isNoindexRegionId } from '../../data/noindexRegions';
+import { showChatCta } from '../../lib/chatCta';
 
 // React Components
 import { RegionProvider } from '../../lib/RegionContext';
@@ -64,6 +65,7 @@ import Testimonials from '../../components/sections/Testimonials';
 import Blog from '../../components/sections/Blog';
 import ContactForm from '../../components/sections/ContactForm';
 import FloatingCTA from '../../components/sections/FloatingCTA';
+import ChatCta from '../../components/chat/ChatCta';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -198,6 +200,9 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <ContactForm client:visible regionName={regionName} />
       <OperatorInfo regionName={regionName} displayName={displayName} />
       <Closing regionName={regionName} displayName={displayName} niche={niche} path={path} />
+      {showChatCta(regionId, niche) && (
+        <ChatCta client:idle regionName={regionName} displayName={displayName} niche={niche} />
+      )}
       <FloatingCTA client:load />
     </main>
   </RegionProvider>

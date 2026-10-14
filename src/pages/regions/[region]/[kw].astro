@@ -69,6 +69,8 @@ import Testimonials from '../../../components/sections/Testimonials';
 import Blog from '../../../components/sections/Blog';
 import ContactForm from '../../../components/sections/ContactForm';
 import FloatingCTA from '../../../components/sections/FloatingCTA';
+import ChatCta from '../../../components/chat/ChatCta';
+import { showChatCta } from '../../../lib/chatCta';
 
 export async function getStaticPaths() {
   const paths: {
@@ -312,6 +314,9 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
       <ContactForm client:visible regionName={regionName} />
       <OperatorInfo regionName={regionName} displayName={displayName} />
       <Closing regionName={regionName} displayName={displayName} niche={pageNiche} path={path} />
+      {showChatCta(regionId, pageNiche) && (
+        <ChatCta client:idle regionName={regionName} displayName={displayName} niche={pageNiche} />
+      )}
       <FloatingCTA client:load />
     </main>
   </RegionProvider>

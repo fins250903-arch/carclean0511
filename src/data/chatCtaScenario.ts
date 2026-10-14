@@ -3,7 +3,7 @@
  *
  * Prices are derived from `pricingConstants.ts` so the chat can never quote a number
  * that contradicts the LP, Google Ads copy, or the FAQ structured data.
- * Not wired into any LP yet — see docs/cta-chatbot-plan.md.
+ * Phase 2: mounted on Osaka / Fukuoka / Miyagi car LPs only — see docs/cta-chatbot-plan.md.
  */
 import { CAR_PRICING, TRUCK_PRICING, yen } from './pricingConstants';
 import type { ServiceNiche } from '../lib/niche';
@@ -228,6 +228,22 @@ export function estimate(answers: ChatAnswers, niche: ServiceNiche = 'car'): Est
   };
 }
 
+/**
+ * Customer-facing area label for greetings and LINE/callback handoff.
+ * Always prefers the page's prefecture (`regionName`) so a Fukuoka LP cannot
+ * leak a hardcoded "大阪". Subarea pages compose as `福岡市（福岡県）`.
+ */
+export function composeAreaLabel(regionName?: string, displayName?: string): string {
+  const region = regionName?.trim() ?? '';
+  const display = displayName?.trim() ?? '';
+  if (display && region) {
+    if (display === region) return region;
+    if (display.includes(region)) return display;
+    return `${display}（${region}）`;
+  }
+  return display || region || '対応エリア';
+}
+
 /** One-line summary handed to LINE / the callback request so staff skip the re-interview. */
 export function buildHandoffSummary(
   answers: ChatAnswers,
@@ -253,10 +269,17 @@ export function buildHandoffSummary(
 }
 
 /**
- * 23:00–07:00 は電話が取りづらい前提で「折り返し予約」を第一候補に入れ替える。
+ * 23:00–07:00 JST は電話を第1ボタンから外し、折り返し予約を先頭にする。
+ * 判定は訪問者の端末タイムゾーンではなく Asia/Tokyo（スタッフが取れる時間）に固定する。
  * 受付自体は365日24時間のため、電話導線は常に併記する。
  */
 export function isLateNight(now: Date = new Date()): boolean {
-  const hour = now.getHours();
+  const hour = Number(
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Tokyo',
+      hour: 'numeric',
+      hourCycle: 'h23',
+    }).format(now),
+  );
   return hour >= 23 || hour < 7;
 }
