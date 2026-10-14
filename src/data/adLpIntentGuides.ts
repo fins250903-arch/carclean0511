@@ -132,7 +132,7 @@ export const AD_LP_INTENT_GUIDES: Record<string, IntentGuideBlock> = {
     ],
   },
   'shanai-nioi': {
-    title: '車内の臭い｜7秒診断',
+    title: '車内 カビ臭い｜7秒診断',
     lead: '「なんとなく臭い」を、出方から原因候補へ落とします。',
     columns: ['チェック', '疑わしい原因', '次の一手'],
     rows: [

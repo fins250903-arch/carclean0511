@@ -116,15 +116,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'oshikko',
-    seoTitle: '車 おしっこ汚れ・臭い対策',
+    seoTitle: '猫 おしっこ 車 消臭',
     seoDescription: (r) =>
-      `${r}対応。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
+      `${r}の猫 おしっこ 車 消臭。ペットやお子様のおしっこがシートに染みた緊急トラブルも、消臭洗浄で素早く対応します。`,
     seoKeywords: (r) =>
-      `車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}, 消臭 ${r}`,
+      `猫 おしっこ 車 消臭 ${r}, 車 おしっこ ${r}, 車内 おしっこ ${r}, ペット おしっこ 車 ${r}, シート 尿 ${r}`,
     ogImage: KW_IMAGES.seatStainDark,
-    heroSubtitle: (d) => `${d}｜おしっこ汚れ・消臭`,
-    heroHighlight: ['おしっこ染み', '臭いの元から除去'],
-    heroSubcatch: (d) => `${d}の車内おしっこ対応`,
+    heroSubtitle: (d) => `${d}｜猫 おしっこ 車 消臭`,
+    heroHighlight: ['猫 おしっこ 車 消臭', '臭いの元から除去'],
+    heroSubcatch: (d) => `${d}の猫 おしっこ 車 消臭`,
     fvImage: KW_IMAGES.seatStainDark,
     heroFooter: kwFooter('おしっこ汚れ・臭い'),
     problemHeader: '「おしっこがシートに染みて、臭いが消えない…」',
@@ -132,10 +132,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「自分で拭いたつもりだけど、数日後にムッとする臭いが…どうしよう」',
     problemBodyHtml: (rn, dn) =>
-      `ペットやお子様の<strong>おしっこ</strong>は、繊維の奥に浸透しやすく、市販消臭スプレーでは表面だけの対策になりがちです。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流す専用工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
+      `<strong>猫 おしっこ 車 消臭</strong>は、繊維の奥に浸透した尿を洗い出す工程が必要です。ペットやお子様の<strong>車 おしっこ</strong>も同様です。<br /><strong>${dn}</strong>へ出張し、尿アルカリを中和しながら洗い流します。<br /><strong>${rn}</strong>エリアの緊急ご依頼も受付中です。`,
     problemEmpathyImage: KW_IMAGES.seatStainDark,
     problemEmpathyAlt: 'おしっこ・尿染みが残る車内シートのイメージ（施工関連）',
-    mainTitle: (r, d) => `【${r}】車のおしっこ汚れ・臭い対策！プロの消臭洗浄でスピード解決`,
+    mainTitle: (r) => `【${r}】猫 おしっこ 車 消臭｜尿染みをプロ洗浄でスピード解決`,
     deepTroubles: [
       'ペットやお子様がおしっこをシートに…乾いてしまってどこから臭うか分からない',
       '車内にムッとする尿臭が充満し、エアコンをかけるとさらに臭いが循環する',
@@ -200,15 +200,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'shanai-nioi',
-    seoTitle: '車内の臭い・原因洗い出し',
+    seoTitle: '車内 カビ臭い',
     seoDescription: (r) =>
-      `${r}の車内の臭い。エアコン・シート・荷室の複合臭も、原因に合わせた洗浄と消臭で改善を目指します。`,
+      `${r}の車内 カビ臭い。エアコン・シート・荷室の複合臭も、原因に合わせた洗浄と消臭で改善を目指します。車内の臭いの切り分けにも対応します。`,
     seoKeywords: (r) =>
-      `車内の臭い ${r}, 車 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}, 車 ニオイ ${r}`,
+      `車内 カビ臭い ${r}, 車内の臭い ${r}, 車 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
     ogImage: KW_IMAGES.shanaiNioi,
-    heroSubtitle: (d) => `${d}｜車内の臭い専門`,
-    heroHighlight: ['車内の臭い', '原因から洗浄'],
-    heroSubcatch: (d) => `${d}の車内消臭・洗浄`,
+    heroSubtitle: (d) => `${d}｜車内 カビ臭い`,
+    heroHighlight: ['車内 カビ臭い', '原因から洗浄'],
+    heroSubcatch: (d) => `${d}の車内 カビ臭い`,
     fvImage: KW_IMAGES.shanaiNioi,
     heroFooter: kwFooter('車内の臭い'),
     problemHeader: '「車内がなんとなく臭くて、窓を開けても消えない…」',
@@ -216,10 +216,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「消臭スプレーを何本使っても、数日で元に戻る…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内の臭い</strong>は、汚れ・カビ・ヤニ・飲食など複合要因であることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランク・ダクト周りまで状況に応じて洗浄します。<br />「臭いの元」を残さないことが、再発防止の近道です。`,
+      `<strong>車内 カビ臭い</strong>ときは、湿気で増えたカビに加え、汚れ・ヤニ・飲食が重なっていることが多いです。<br /><strong>${dn}</strong>へ出張し、シート・天井・トランク・ダクト周りまで状況に応じて洗浄します。<br /><strong>車内の臭い</strong>の元を残さないことが、再発防止の近道です。`,
     problemEmpathyImage: KW_IMAGES.shanaiNioi,
     problemEmpathyAlt: '荷室まわりの生活臭・こもったニオイのイメージ',
-    mainTitle: (r) => `【${r}】車内の臭い対策｜原因を切り分けて出張消臭洗浄`,
+    mainTitle: (r) => `【${r}】車内 カビ臭い｜車内の臭いを原因から出張洗浄`,
     deepTroubles: [
       'なんとなく車内が臭く、芳香剤を外すとすぐに戻る',
       'エアコンON時とシートで臭いの出方が違い、何を頼めばいいか分からない',
@@ -387,15 +387,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'tabako-yani',
-    seoTitle: 'タバコ臭・ヤニ汚れ洗浄',
+    seoTitle: '車 天井 ヤニ',
     seoDescription: (r) =>
-      `${r}対応。タバコのヤニは天井・トリムに付着しやすい頑固汚れ。専用洗浄で目に見える差を狙います。`,
+      `${r}の車 天井 ヤニ。タバコのヤニは天井・トリムに付着しやすい頑固汚れ。専用洗浄で目に見える差を狙います。`,
     seoKeywords: (r) =>
-      `タバコ 臭い 車 ${r}, ヤニ 車 ${r}, 車内クリーニング ${r}, 天井 洗浄 ${r}, 消臭 ${r}`,
+      `車 天井 ヤニ ${r}, タバコ 臭い 車 ${r}, ヤニ 車 ${r}, 車内クリーニング ${r}, 天井 洗浄 ${r}`,
     ogImage: KW_IMAGES.tabakoYani,
-    heroSubtitle: (d) => `${d}｜タバコ・ヤニ除去`,
-    heroHighlight: ['タバコ臭・ヤニ', '天井まで洗浄'],
-    heroSubcatch: (d) => `${d}のタバコ臭い・ヤニ`,
+    heroSubtitle: (d) => `${d}｜車 天井 ヤニ`,
+    heroHighlight: ['車 天井 ヤニ', '天井まで洗浄'],
+    heroSubcatch: (d) => `${d}の車 天井 ヤニ`,
     fvImage: KW_IMAGES.tabakoYani,
     heroFooter: kwFooter('タバコ臭・ヤニ'),
     problemHeader: '「タバコ臭とヤニで、天井が黄色くなっている…」',
@@ -405,7 +405,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemBodyHtml: (rn, dn) =>
       `<strong>タバコの匂い</strong>と<strong>ヤニ汚れ</strong>は、天井・柱・シートに付着し複合的に臭います。<br /><strong>${dn}</strong>へ出張し、付着度に合わせた洗剤濃度と工程で洗浄します。<br />見えにくい部分まで、プロの車内クリーニングでケアします。`,
     problemEmpathyImage: KW_IMAGES.tabakoYani,
-    mainTitle: (r, d) => `【${r}】車のタバコ臭・ヤニ汚れ洗浄！天井の黄ばみと頑固な臭いを徹底除去`,
+    mainTitle: (r) => `【${r}】車 天井 ヤニ｜黄ばみとタバコ臭を徹底除去`,
     deepTroubles: [
       'タバコの煙で天井が茶色くベタベタにヤニ汚れ…車内が常にヤニ臭い',
       '中古車を購入したら前オーナーの喫煙臭が染み付いていて、乗るたびに頭が痛くなる',
@@ -414,15 +414,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'chuko-tabako',
-    seoTitle: '中古車タバコ臭',
+    seoTitle: '中古車 納車 臭い',
     seoDescription: (r) =>
-      `${r}対応。中古車のタバコ臭は内装全体へ広がっていることが多く、広範囲洗浄が有効です。`,
+      `${r}の中古車 納車 臭い。前オーナーのタバコ臭は内装全体へ広がっていることが多く、広範囲洗浄が有効です。`,
     seoKeywords: (r) =>
-      `中古車 タバコ臭 ${r}, 車 タバコ 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
+      `中古車 納車 臭い ${r}, 中古車 タバコ臭 ${r}, 車 タバコ 臭い ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
     ogImage: KW_IMAGES.chukoTabako,
-    heroSubtitle: (d) => `${d}｜中古車タバコ臭`,
-    heroHighlight: ['中古車タバコ臭', '内装まるごと'],
-    heroSubcatch: (d) => `${d}の中古車タバコ臭`,
+    heroSubtitle: (d) => `${d}｜中古車 納車 臭い`,
+    heroHighlight: ['中古車 納車 臭い', '内装まるごと'],
+    heroSubcatch: (d) => `${d}の中古車 納車 臭い`,
     fvImage: KW_IMAGES.chukoTabako,
     heroFooter: kwFooter('中古車タバコ臭'),
     problemHeader: '「中古車を買ったら、タバコ臭がひどかった…」',
@@ -430,9 +430,9 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「ディーラーでは内装クリーニングの予約が遠く、我慢できない…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>中古車タバコ臭</strong>は、ヤニ付着箇所が広いほど、部分消臭では限界が出ます。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアを中心に洗浄・消臭します。<br /><strong>${rn}</strong>の納車前・納車直後どちらにも対応可能です。`,
+      `<strong>中古車 納車 臭い</strong>は、ヤニ付着箇所が広いほど、部分消臭では限界が出ます。<br /><strong>${dn}</strong>へ出張し、シート・天井・フロアを中心に洗浄・消臭します。<br /><strong>中古車タバコ臭</strong>も、<strong>${rn}</strong>の納車前・納車直後どちらにも対応可能です。`,
     problemEmpathyImage: KW_IMAGES.chukoTabako,
-    mainTitle: (r, d) => `【${r}】中古車のタバコ臭を完全退治！内装丸ごと洗浄で新車のような快適空間へ`,
+    mainTitle: (r) => `【${r}】中古車 納車 臭い｜内装丸ごと洗浄で快適な車内へ`,
     deepTroubles: [
       'せっかく買った中古車なのに、エアコンやシートから染み出るタバコの臭いが我慢できない',
       '子供やタバコ嫌いの家族を乗せたいが、「臭くて乗りたくない」と拒否されてしまう',
@@ -468,15 +468,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'touyu-kobosi',
-    seoTitle: '車内灯油こぼし',
+    seoTitle: '車 灯油 こぼした',
     seoDescription: (r) =>
-      `${r}対応。灯油こぼしは引火・臭い・材質痛みのリスク大。早急な洗浄と臭気対策を優先します。`,
+      `${r}で車 灯油 こぼしたときの出張洗浄。引火・臭い・材質痛みのリスクが大きいため、早急な洗浄と臭気対策を優先します。`,
     seoKeywords: (r) =>
-      `車内 灯油 こぼし ${r}, 灯油 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}, 緊急 ${r}`,
+      `車 灯油 こぼした ${r}, 車内 灯油 こぼし ${r}, 灯油 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d) => `${d}｜灯油こぼし緊急`,
-    heroHighlight: ['灯油こぼし', '最短即日洗浄'],
-    heroSubcatch: (d) => `${d}の車内灯油対応`,
+    heroSubtitle: (d) => `${d}｜車 灯油 こぼした`,
+    heroHighlight: ['車 灯油 こぼした', '最短即日洗浄'],
+    heroSubcatch: (d) => `${d}の車 灯油 こぼした`,
     // NOTE: `touyu-kobosi.webp` duplicates the parking stock shot — use rinser extraction for intent match
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('灯油こぼし'),
@@ -485,10 +485,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「自分で拭いたら広がって、ますます臭くなった…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内 灯油 こぼし</strong>は、安全確認のうえ、染み出しを最小化する手順が重要です。<br /><strong>${dn}</strong>へ急行し、吸油・洗浄・乾燥・消臭までプロの工程で対応します。<br /><strong>${rn}</strong>エリアの緊急ご依頼を優先して受け付けています。`,
+      `<strong>車 灯油 こぼした</strong>あとは、安全確認のうえ、染み出しを最小化する手順が重要です。<br /><strong>${dn}</strong>へ急行し、吸油・洗浄・乾燥・消臭までプロの工程で対応します。<br /><strong>車内 灯油 こぼし</strong>の緊急ご依頼を、<strong>${rn}</strong>で優先して受け付けています。`,
     problemEmpathyImage: KW_IMAGES.seatStainDark,
     problemEmpathyAlt: '車内灯油こぼし後のシート汚れ・緊急洗浄イメージ',
-    mainTitle: (r, d) => `【${r}】車内の灯油こぼし緊急消臭！頭痛がする強烈な油臭さをプロが元から分解`,
+    mainTitle: (r) => `【${r}】車 灯油 こぼした｜強烈な油臭をプロが元から分解`,
     deepTroubles: [
       '冬場にポリタンクから灯油が漏れ、フロアマットの下までベタベタに染み込んでしまった',
       '車内に充満する強烈な灯油の臭いで、運転中に吐き気や頭痛がして非常に危険',
@@ -526,15 +526,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   // --- 追加キーワードLP（全地域） ---
   {
     slug: 'kyuto-cleaning',
-    seoTitle: '車 嘔吐 クリーニング',
+    seoTitle: '車 ゲロ 掃除',
     seoDescription: (r) =>
-      `${r}対応の車内嘔吐クリーニング。胃酸・未消化物をシート奥まで洗い流し、臭いの再発を防ぎます。最短即日出張。`,
+      `${r}の車 ゲロ 掃除。胃酸・未消化物をシート奥まで洗い流し、臭いの再発を防ぎます。車 嘔吐 クリーニングも最短即日出張。`,
     seoKeywords: (r) =>
-      `車 嘔吐 クリーニング ${r}, 嘔吐 車内清掃 ${r}, ゲロ 車 ${r}, 車内クリーニング ${r}, 消臭 ${r}`,
+      `車 ゲロ 掃除 ${r}, 車 嘔吐 クリーニング ${r}, 嘔吐 車内清掃 ${r}, ゲロ 車 ${r}, 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.vomitStain,
-    heroSubtitle: (d) => `${d}｜車 嘔吐 クリーニング`,
-    heroHighlight: ['嘔吐・車酔い', '早急プロ洗浄'],
-    heroSubcatch: (d) => `${d}の車内嘔吐クリーニング`,
+    heroSubtitle: (d) => `${d}｜車 ゲロ 掃除`,
+    heroHighlight: ['車 ゲロ 掃除', '早急プロ洗浄'],
+    heroSubcatch: (d) => `${d}の車 ゲロ 掃除`,
     fvImage: KW_IMAGES.vomitStain,
     heroFooter: kwFooter('嘔吐汚れ・臭い'),
     problemHeader: '「子どもや同乗者の嘔吐で、車内が使えない…」',
@@ -542,10 +542,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「自分で拭いたけど臭いが消えず、ディーラーは数日後の予約しか…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車 嘔吐 クリーニング</strong>は、シート深部までの洗浄が必須です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。<br /><strong>${rn}</strong>の緊急ご依頼を優先して受け付けています。`,
+      `<strong>車 ゲロ 掃除</strong>は、シート深部までの洗浄が必須です。<strong>車 嘔吐 クリーニング</strong>と同じ工程で、<strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応します。<br /><strong>${rn}</strong>の緊急ご依頼を優先して受け付けています。`,
     problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '嘔吐汚れのシート洗浄前イメージ',
-    mainTitle: (r, d) => `【${r}】車の嘔吐クリーニング緊急便｜今すぐ消臭で元通りに`,
+    mainTitle: (r) => `【${r}】車 ゲロ 掃除｜嘔吐も今すぐ消臭で元通りに`,
     deepTroubles: [
       '子供が急に車酔いしてシートに嘔吐…胃酸の酸っぱい臭いが取れない',
       '自分で拭き取ったけれど、時間が経つにつれて腐敗臭が強くなってきた',
@@ -610,17 +610,17 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'shutchou-senmon',
-    seoTitle: '出張 車内 清掃 専門店',
+    seoTitle: '車内 丸洗い 出張',
     seoDescription: (r) =>
       needsOutletBorrow(r)
-        ? `${r}の出張 車内 清掃専門店。${OUTLET_BORROW_SHORT}。嘔吐・臭い・灯油こぼしも最短即日対応。`
-        : `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
+        ? `${r}の車内 丸洗い 出張。${OUTLET_BORROW_SHORT}。嘔吐・臭い・灯油こぼしも最短即日対応。`
+        : `${r}の車内 丸洗い 出張。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
-      `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
+      `車内 丸洗い 出張 ${r}, 出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}`,
     ogImage: KW_IMAGES.steam,
-    heroSubtitle: (d) => `${d}｜出張車内クリーニング専門`,
-    heroHighlight: ['出張専門', '即日対応'],
-    heroSubcatch: (d) => `${d}の出張車内クリーニング`,
+    heroSubtitle: (d) => `${d}｜車内 丸洗い 出張`,
+    heroHighlight: ['車内 丸洗い 出張', '即日対応'],
+    heroSubcatch: (d) => `${d}の車内 丸洗い 出張`,
     fvImage: KW_IMAGES.steam,
     heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: '「店に預けられない・すぐ直したい車内トラブル」',
@@ -628,10 +628,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「近くの洗車店では臭いが取れず、ディーラーは予約が遠い…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>出張 車内 クリーニング 専門店</strong>として、<strong>${dn}</strong>全域へ駆けつけます。<br />プロ機材で嘔吐・臭い・シート汚れを根本洗浄します。`,
+      `<strong>車内 丸洗い 出張</strong>として、<strong>${dn}</strong>全域へ駆けつけます。<br /><strong>出張 車内 清掃 専門店</strong>の機材で、嘔吐・臭い・シート汚れを根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '出張車内クリーニングの施工イメージ',
-    mainTitle: (r) => `出張車内クリーニング専門店｜${r}で最短即日対応`,
+    mainTitle: (r) => `【${r}】車内 丸洗い 出張｜最短即日対応`,
   },
   {
     slug: 'shanai-shoshu',
@@ -719,15 +719,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'hoken-kyuto',
-    seoTitle: '車内 嘔吐 保険 適用',
+    seoTitle: 'レンタカー ルームクリーニング',
     seoDescription: (r) =>
-      `${r}対応。車内嘔吐・灯油こぼしの保険適用相談と出張クリーニング。代理申請・施工報告書発行で安心。`,
+      `${r}のレンタカー ルームクリーニング。嘔吐・タバコ臭の実費清掃と、保険・NOCの相談、施工報告書発行に対応します。`,
     seoKeywords: (r) =>
-      `車内 嘔吐 保険 ${r}, 車 嘔吐 保険 適用 ${r}, 灯油 こぼし 保険 ${r}, 車両保険 車内 ${r}, 嘔吐 消臭 ${r}`,
+      `レンタカー ルームクリーニング ${r}, 車内 嘔吐 保険 ${r}, レンタカー 車内 嘔吐 清掃 ${r}, 灯油 こぼし 保険 ${r}, 嘔吐 消臭 ${r}`,
     ogImage: KW_IMAGES.vomitDetail,
-    heroSubtitle: (d) => `${d}｜嘔吐・保険適用相談`,
-    heroHighlight: ['保険代理申請', '嘔吐・灯油対応'],
-    heroSubcatch: (d) => `${d}の車内嘔吐・保険相談`,
+    heroSubtitle: (d) => `${d}｜レンタカー ルームクリーニング`,
+    heroHighlight: ['レンタカー ルームクリーニング', '報告書発行'],
+    heroSubcatch: (d) => `${d}のレンタカー ルームクリーニング`,
     fvImage: KW_IMAGES.vomitDetail,
     heroFooter: kwFooter('嘔吐汚れ・保険相談'),
     problemHeader: '「車内の嘔吐・灯油こぼし、保険が使えるか分からない…」',
@@ -735,10 +735,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「保険会社に何を言えばいいか分からず、結局自分で払った…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内 嘔吐 保険</strong>の適用は、状況・契約内容により異なります。<br /><strong>${dn}</strong>では保険代理申請のサポートと、<strong>嘔吐・灯油</strong>の出張クリーニングを一括対応します。<br /><strong>${rn}</strong>のお客様向けに施工報告書・領収書を発行します。`,
+      `<strong>レンタカー ルームクリーニング</strong>は、返却前の嘔吐・臭いを駐車場で洗い出す出張作業です。<br /><strong>車内 嘔吐 保険</strong>の適用は契約内容により異なります。<strong>${dn}</strong>では見積・施工報告書と、嘔吐・灯油の洗浄を一括で対応します。<br /><strong>${rn}</strong>のお客様向けに領収書を発行します。`,
     problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '嘔吐トラブル後の車内清掃・保険相談イメージ',
-    mainTitle: (r, d) => `【${r}】車内嘔吐・灯油こぼしの保険適用相談！代理申請＋即日出張施工`,
+    mainTitle: (r) => `【${r}】レンタカー ルームクリーニング｜嘔吐・臭いを即日出張洗浄`,
     deepTroubles: [
       '同乗者や子どもの嘔吐で車内が汚れたが、保険が使えるか判断できない',
       'カーシェアやレンタカーで第三者が汚した場合、NOCや賠償の手続きが複雑',
@@ -747,28 +747,22 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'dengen-fuyou',
-    seoTitle: (r) =>
-      needsOutletBorrow(r)
-        ? '車内清掃 100Vコンセント借用 出張'
-        : '車内清掃 電源不要 出張',
+    seoTitle: 'マンション 駐車場 車内清掃',
     seoDescription: (r) =>
       needsOutletBorrow(r)
         ? `${r}対応。${OUTLET_BORROW_SHORT}。マンション・戸建て駐車場でもその場で施工可能。`
         : `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
     seoKeywords: (r) =>
       needsOutletBorrow(r)
-        ? `車内清掃 100Vコンセント ${r}, 車内クリーニング 出張 ${r}, マンション 車内清掃 ${r}, コンセント借用 ${r}`
-        : `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
+        ? `マンション 駐車場 車内清掃 ${r}, 車内清掃 100Vコンセント ${r}, 車内クリーニング 出張 ${r}, コンセント借用 ${r}`
+        : `マンション 駐車場 車内清掃 ${r}, 車内清掃 電源不要 ${r}, 車内クリーニング 出張 ${r}, 水道不要 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d, r) =>
-      needsOutletBorrow(r)
-        ? `${d}｜100Vコンセント借用 出張`
-        : `${d}｜電源・水道不要 出張`,
+    heroSubtitle: (d) => `${d}｜マンション 駐車場 車内清掃`,
     heroHighlight: (r) =>
       needsOutletBorrow(r)
-        ? ['100Vコンセント', '20ｍ以内で借用']
-        : ['電源不要', 'マンション駐車場OK'],
-    heroSubcatch: (d) => `${d}の出張車内清掃`,
+        ? ['マンション 駐車場 車内清掃', '100Vコンセント借用']
+        : ['マンション 駐車場 車内清掃', '電源・水道不要'],
+    heroSubcatch: (d) => `${d}のマンション 駐車場 車内清掃`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: (r) =>
@@ -785,8 +779,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
         : '「近くの洗車店は電源が必要で、マンションでは断られた…」',
     problemBodyHtml: (rn, dn) =>
       needsOutletBorrow(rn)
-        ? `<strong>車内清掃</strong>の出張施工では、${OUTLET_BORROW_SHORT}。<strong>${dn}</strong>のマンション・戸建て駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
-        : `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+        ? `<strong>マンション 駐車場 車内清掃</strong>では、${OUTLET_BORROW_SHORT}。<strong>${dn}</strong>のマンション・戸建て駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
+        : `<strong>マンション 駐車場 車内清掃</strong>は、発電機と水タンクを搭載して出張します。<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: (r) =>
       needsOutletBorrow(r)
@@ -794,8 +788,8 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
         : '電源不要の出張車内清掃・スチーム洗浄イメージ',
     mainTitle: (r) =>
       needsOutletBorrow(r)
-        ? `【${r}】家庭用100Vコンセント借用の出張車内清掃！20ｍ以内で施工`
-        : `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
+        ? `【${r}】マンション 駐車場 車内清掃｜100Vコンセントを借用して施工`
+        : `【${r}】マンション 駐車場 車内清掃｜電源不要で即日施工`,
     deepTroubles: (r) =>
       needsOutletBorrow(r)
         ? [
@@ -811,15 +805,15 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'kodomo-kyuto',
-    seoTitle: '子供 車 嘔吐 シート洗浄',
+    seoTitle: '子供 車で吐いた',
     seoDescription: (r) =>
-      `${r}対応。子供の車酔い・嘔吐によるシート汚れを出張で即日洗浄。胃酸臭・再発防止までプロ施工。`,
+      `${r}で子供 車で吐いたときの出張洗浄。車酔いのシート汚れを即日対応し、胃酸臭の再発を防ぎます。`,
     seoKeywords: (r) =>
-      `子供 車 吐いた ${r}, 車 嘔吐 子供 ${r}, 車酔い 嘔吐 シート ${r}, 車内 嘔吐 出張 ${r}, ゲロ 車 ${r}`,
+      `子供 車で吐いた ${r}, 子供 車 吐いた ${r}, 車 嘔吐 子供 ${r}, 車酔い 嘔吐 シート ${r}, ゲロ 車 ${r}`,
     ogImage: KW_IMAGES.vomitStain,
-    heroSubtitle: (d) => `${d}｜子供の嘔吐・車酔い対応`,
-    heroHighlight: ['子供の嘔吐', '即日出張洗浄'],
-    heroSubcatch: (d) => `${d}の子供嘔吐シート洗浄`,
+    heroSubtitle: (d) => `${d}｜子供 車で吐いた`,
+    heroHighlight: ['子供 車で吐いた', '即日出張洗浄'],
+    heroSubcatch: (d) => `${d}の子供 車で吐いた`,
     fvImage: KW_IMAGES.vomitStain,
     heroFooter: kwFooter('子供の嘔吐汚れ'),
     problemHeader: '「子供が車酔いして嘔吐…明日学校に送るのに臭いが…」',
@@ -827,10 +821,10 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     problemDealerQuote:
       '「自分で拭いたけど、子どもが「臭い」と言って乗りたがらない…」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>子供 車 吐いた</strong>トラブルは、早急なプロ洗浄が最善です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応。お子様にも安心な洗剤を使用します。<br /><strong>${rn}</strong>の緊急ご依頼を優先受付中です。`,
+      `<strong>子供 車で吐いた</strong>あとは、早急なプロ洗浄が最善です。<br /><strong>${dn}</strong>へ出張し、中和・すすぎ・吸引・乾燥まで一貫対応。お子様にも安心な洗剤を使用します。<br /><strong>${rn}</strong>の緊急ご依頼を優先受付中です。`,
     problemEmpathyImage: KW_IMAGES.vomitStain,
     problemEmpathyAlt: '子供の嘔吐汚れシート洗浄前イメージ',
-    mainTitle: (r, d) => `【${r}】子供の車酔い・嘔吐シート洗浄！即日出張で明日から安心`,
+    mainTitle: (r) => `【${r}】子供 車で吐いた｜シートを即日洗浄して明日から安心`,
     deepTroubles: [
       '長距離ドライブ中に子どもが急に嘔吐し、後部座席が使えなくなった',
       'ジュースや未消化物がシートの隙間に入り込み、取れない',
@@ -869,24 +863,24 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   {
     slug: 'bus-senmon',
     targetRegionIds: ['ibaraki', 'chiba', 'saitama', 'tokyo', 'kanagawa', 'aichi', 'shiga', 'kyoto', 'hyogo', 'osaka', 'fukuoka', 'okinawa', 'gunma', 'tochigi', 'miyagi'],
-    seoTitle: 'バス専門 車内洗浄・嘔吐消臭',
+    seoTitle: 'マイクロバス 車内清掃',
     seoDescription: (r) =>
-      `${r}のバス専門 出張車内洗浄。観光バス・レンタカーバス・送迎バスの嘔吐・尿漏れ・飲食物汚染を最短即日対応。次の運行に間に合わせます。`,
+      `${r}のマイクロバス 車内清掃とトラック 車内 清掃。送迎バス・観光バスの嘔吐・尿漏れ・飲食物汚染を最短即日対応。次の運行に間に合わせます。`,
     seoKeywords: (r) =>
-      `バス 車内洗浄 ${r}, バス 嘔吐 清掃 ${r}, 観光バス 消臭 ${r}, バス 車内クリーニング ${r}, バス 出張清掃 ${r}`,
+      `マイクロバス 車内清掃 ${r}, トラック 車内 清掃 ${r}, バス 車内洗浄 ${r}, バス 嘔吐 清掃 ${r}, 観光バス 消臭 ${r}`,
     ogImage: KW_IMAGES.busFv,
-    heroSubtitle: (d) => `${d}｜バス専門 車内洗浄・消臭`,
-    heroHighlight: ['バス車内洗浄', '嘔吐・汚染を即日解決'],
-    heroSubcatch: (d) => `${d} バス専門・出張で即対応`,
+    heroSubtitle: (d) => `${d}｜マイクロバス 車内清掃`,
+    heroHighlight: ['マイクロバス 車内清掃', 'トラック 車内 清掃'],
+    heroSubcatch: (d) => `${d}のマイクロバス 車内清掃`,
     fvImage: KW_IMAGES.busFv,
     heroFooter: (d) => `次の運行までに、プロが${d}へ急行します`,
-    mainTitle: (r) => `【${r}】バス車内の嘔吐・汚れを運行前に洗浄`,
+    mainTitle: (r) => `【${r}】マイクロバス 車内清掃｜トラック 車内 清掃も運行前に`,
     problemHeader: '「運行中に乗客が嘔吐してしまった…次の出発まで時間がない」',
     problemSubHeader: 'バスならではの車内汚染トラブル、一人で抱え込んでいませんか？',
     problemDealerQuote:
       '「従業員に嘔吐の処理を頼んだら、次から出勤を渋るようになってしまった…」',
     problemBodyHtml: (rn, dn) =>
-      `観光バス・レンタカーバス・送迎バスの運行中に、次のようなトラブルが起きることがあります。<br /><br />
+      `<strong>マイクロバス 車内清掃</strong>と<strong>トラック 車内 清掃</strong>は、運行の合間に駐車場で行います。観光バス・レンタカーバス・送迎バスでも、次のようなトラブルが起きることがあります。<br /><br />
       <strong>① 乗客が車内で突然嘔吐してしまった</strong><br />
       胃液・未消化物がシートのウレタン奥まで染み込み、酸っぱい腐敗臭が車内全体に広がります。放置すれば時間が経つほど臭いは固着し、除去が困難になっていきます。<br /><br />
       <strong>② ジュース・アルコール・油分の多い弁当を大量にこぼされた</strong><br />
@@ -907,4 +901,57 @@ export const AD_KEYWORD_SLUG_SET = new Set(AD_KEYWORD_PAGES.map((p) => p.slug));
 
 export function getAdKeywordPage(slug: string): AdKeywordPageDef | undefined {
   return AD_KEYWORD_PAGES.find((p) => p.slug === slug);
+}
+
+/**
+ * Exact Google Ads phrases that must appear in the visible LP
+ * (title, H1, subtitle) for landing-page relevance.
+ * First phrase is primary. Extra phrases are required on the same URL.
+ */
+export const AD_KEYWORD_MATCH_PHRASES: Record<string, readonly string[]> = {
+  'kyuto-cleaning': ['車 ゲロ 掃除'],
+  'kodomo-kyuto': ['子供 車で吐いた'],
+  oshikko: ['猫 おしっこ 車 消臭'],
+  'touyu-kobosi': ['車 灯油 こぼした'],
+  'shutchou-senmon': ['車内 丸洗い 出張'],
+  'dengen-fuyou': ['マンション 駐車場 車内清掃'],
+  'chuko-tabako': ['中古車 納車 臭い'],
+  'shanai-nioi': ['車内 カビ臭い'],
+  'bus-senmon': ['マイクロバス 車内清掃', 'トラック 車内 清掃'],
+  'hoken-kyuto': ['レンタカー ルームクリーニング'],
+  'tabako-yani': ['車 天井 ヤニ'],
+};
+
+export type AdHeroMatchFields = {
+  subtitle: string;
+  mainTitle?: string;
+  highlightLine1: string;
+  highlightLine2: string;
+  subcatch: string;
+};
+
+/** Force the ad phrase into the hero even when a regional FV override uses older wording. */
+export function alignAdHeroToMatchPhrase<T extends AdHeroMatchFields>(
+  slug: string,
+  hero: T,
+): T {
+  const phrases = AD_KEYWORD_MATCH_PHRASES[slug];
+  if (!phrases?.length) return hero;
+  const [primary, extra] = phrases;
+  const head = hero.subtitle.includes('｜')
+    ? hero.subtitle.slice(0, hero.subtitle.indexOf('｜'))
+    : hero.subtitle;
+  const next: T = {
+    ...hero,
+    subtitle: `${head}｜${primary}`,
+    highlightLine1: primary,
+    highlightLine2: extra ?? hero.highlightLine2,
+    subcatch: hero.subcatch.includes(primary) ? hero.subcatch : `${head}の${primary}`,
+  };
+  if (next.mainTitle && !next.mainTitle.includes(primary)) {
+    next.mainTitle = extra
+      ? `${primary}｜${extra}｜${next.mainTitle}`
+      : `${primary}｜${next.mainTitle}`;
+  }
+  return next;
 }
