@@ -33,7 +33,11 @@ const lineMatch = LINE_URL.replace(/^https?:\/\//, '');
 
     function isLineHref(href) {
       if (!href) return false;
-      return href.indexOf(lineMatch) !== -1 || /lin\.ee\//i.test(href);
+      return (
+        href.indexOf(lineMatch) !== -1 ||
+        /lin\.ee\//i.test(href) ||
+        /line\.me\/R\/oaMessage/i.test(href)
+      );
     }
 
     function labelFromElement(el) {

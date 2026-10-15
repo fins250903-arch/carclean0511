@@ -1,0 +1,80 @@
+---
+/**
+ * Prototype sandbox for the CTA chat widget (docs/cta-chatbot-plan.md).
+ * noindex, excluded from the sitemap, covered by `Disallow: /private/` in robots.txt.
+ */
+import MainLayout from '../../layouts/MainLayout.astro';
+import ChatCtaDemoHost from '../../components/chat/ChatCtaDemoHost';
+import FloatingCTA from '../../components/sections/FloatingCTA';
+import { CAR_PRICING, yen } from '../../data/pricingConstants';
+import { FORMSPREE_ENDPOINT, LINE_OA_ID } from '../../lib/site';
+---
+
+<MainLayout
+  title="CTAチャット プロトタイプ（社内検証用）"
+  description="LP組み込み前の検証ページです。"
+  noindex
+>
+  <main class="min-h-screen bg-gray-100 pb-floating">
+    <div class="mx-auto max-w-3xl px-5 py-10">
+      <p class="inline-block rounded-full bg-amber-200 px-3 py-1 text-xs font-bold text-amber-900">
+        社内検証用・noindex
+      </p>
+      <h1 class="mt-4 text-2xl font-black text-gray-800">CTAチャットボット プロトタイプ</h1>
+      <p class="mt-3 text-sm leading-relaxed text-gray-600">
+        右下の「30秒で料金診断」から起動します。質問は4つで、料金は
+        <code class="rounded bg-white px-1">src/data/pricingConstants.ts</code>
+        から算出します（座席1脚 {yen(CAR_PRICING.seatSingleBasic)}〜／軽自動車 {yen(CAR_PRICING.lightBasic)}〜）。
+        折り返しは Formspree（<code>{FORMSPREE_ENDPOINT}</code>）、LINE は {LINE_OA_ID} へ本文プリフィルします。
+      </p>
+
+      <div class="mt-8">
+        <ChatCtaDemoHost client:load />
+      </div>
+
+      <section class="mt-6 rounded-2xl bg-white p-5 shadow-sm">
+        <h2 class="text-sm font-black text-gray-800">dataLayer イベントログ</h2>
+        <p class="mt-2 text-xs text-gray-500">
+          GTM に送られる計測イベントをリアルタイム表示します（この検証ページ限定）。
+        </p>
+        <ol id="event-log" class="mt-3 space-y-1 font-mono text-[11px] text-gray-700">
+          <li class="placeholder text-gray-400">（まだイベントはありません）</li>
+        </ol>
+      </section>
+
+      <section class="mt-6 rounded-2xl border-2 border-dashed border-gray-300 p-5">
+        <h2 class="text-sm font-black text-gray-800">フェーズ2の設置範囲</h2>
+        <ul class="mt-2 space-y-1 text-xs leading-relaxed text-gray-600">
+          <li>・大阪・福岡・宮城の <strong>car LP のみ</strong>（都道府県／キーワード／サブエリア）</li>
+          <li>・truck / bus LP、他県、コーティングLPには置いていません</li>
+          <li>・深夜 23:00〜7:00（JST）は電話を第1ボタンから外し、折り返し予約を先頭にします</li>
+        </ul>
+      </section>
+    </div>
+
+    <FloatingCTA client:load />
+  </main>
+</MainLayout>
+
+<script is:inline>
+  (function () {
+    var log = document.getElementById('event-log');
+    if (!log) return;
+    window.dataLayer = window.dataLayer || [];
+    var originalPush = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = function () {
+      for (var i = 0; i < arguments.length; i += 1) {
+        var payload = arguments[i];
+        if (payload && payload.event_category === 'chat_cta') {
+          if (log.querySelector('.placeholder')) log.innerHTML = '';
+          var row = document.createElement('li');
+          row.className = 'break-all';
+          row.textContent =
+            new Date().toLocaleTimeString('ja-JP') + '  ' + payload.event + '  ' + JSON.stringify(payload);
+          log.appendChild(row);
+        }
+      }
+      return originalPush.apply(null, arguments);
+    };
+  })();
+</script>

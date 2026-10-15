@@ -11,7 +11,8 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !isNoindexRegionPathname(page),
+      // `/private/` holds internal prototypes that must never reach the index.
+      filter: (page) => !isNoindexRegionPathname(page) && !page.includes('/private/'),
     }),
     mdx(),
   ],

@@ -25,3 +25,19 @@ export function trackLineClick(location = 'floating_cta'): void {
 export function trackFormSubmit(): void {
   pushDataLayer('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
 }
+
+/**
+ * CTA chat widget funnel. `chat_callback_submit` is the conversion to import into
+ * Google Ads; the rest are micro-conversions used to find where the dialog drops off.
+ */
+export type ChatEvent =
+  | 'chat_open'
+  | 'chat_step'
+  | 'chat_estimate_shown'
+  | 'chat_cta_click'
+  | 'chat_callback_submit'
+  | 'chat_abandon';
+
+export function trackChatEvent(event: ChatEvent, params: Record<string, string> = {}): void {
+  pushDataLayer(event, { event_category: 'chat_cta', ...params });
+}

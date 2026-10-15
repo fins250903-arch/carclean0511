@@ -43,6 +43,8 @@ import QuestionnaireTestimonials from '../../../../components/sections/Questionn
 import Blog from '../../../../components/sections/Blog';
 import ContactForm from '../../../../components/sections/ContactForm';
 import FloatingCTA from '../../../../components/sections/FloatingCTA';
+import ChatCta from '../../../../components/chat/ChatCta';
+import { showChatCta } from '../../../../lib/chatCta';
 import EmergencyChecklist from '../../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../../components/sections/NioiAnswerTarget.astro';
@@ -228,6 +230,9 @@ const noindex = isNoindexRegionId(regionId);
       <ContactForm client:visible regionName={regionName} />
       <OperatorInfo regionName={regionName} displayName={subareaLabel} />
       <Closing regionName={regionName} displayName={subareaLabel} niche={niche} path={path} />
+      {showChatCta(regionId, niche) && (
+        <ChatCta client:idle regionName={regionName} displayName={subareaLabel} niche={niche} />
+      )}
       <FloatingCTA client:load />
     </main>
   </RegionProvider>

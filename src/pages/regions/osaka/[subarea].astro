@@ -44,6 +44,8 @@ import Testimonials from '../../../components/sections/Testimonials';
 import Blog from '../../../components/sections/Blog';
 import ContactForm from '../../../components/sections/ContactForm';
 import FloatingCTA from '../../../components/sections/FloatingCTA';
+import ChatCta from '../../../components/chat/ChatCta';
+import { showChatCta } from '../../../lib/chatCta';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NioiAnswerTarget from '../../../components/sections/NioiAnswerTarget.astro';
@@ -229,6 +231,9 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
       <ContactForm client:visible regionName={REGION_NAME} />
       <OperatorInfo regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
       <Closing regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path} />
+      {showChatCta('osaka', niche) && (
+        <ChatCta client:idle regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      )}
       <FloatingCTA client:load />
     </main>
   </RegionProvider>
