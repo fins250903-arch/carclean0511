@@ -1,9 +1,14 @@
 ---
-title: "あわてないで落ち着いて！嘔吐物処理で、やってはいけないこととは"
-date: 2026-04-19
-categories: 
-  - "seisou"
-coverImage: "kodomo_hakike_otokonoko.png"
+date: 2026-10-17
+title: あわてないで落ち着いて！嘔吐物処理で、やってはいけないこととは
+categories:
+  - seisou
+shortSlug: childouto
+coverImage: kodomo_hakike_otokonoko.png
+seo:
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 何か調子悪そう、もうちょっと耐えてほしい！  
