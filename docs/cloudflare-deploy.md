@@ -41,6 +41,18 @@ Workers のプロジェクト設定を、次のまま（または次に直して
 - `Configuring project for Astro with "astro add cloudflare"`
 - `Error installing dependencies`
 
+## チャットボタン用の3つの値
+
+Dialogflow の埋め込みコードからコピーした3つは、**Settings → Build → Build variables and secrets** に入れる。
+
+| 名前 | 値 |
+| --- | --- |
+| `PUBLIC_DIALOGFLOW_PROJECT_ID` | 埋め込みコードの `project-id` |
+| `PUBLIC_DIALOGFLOW_AGENT_ID` | 埋め込みコードの `agent-id` |
+| `PUBLIC_DIALOGFLOW_LOCATION` | 通常は `global` |
+
+このサイトは先に HTML を作ってから置く。ランタイムの Variables and Secrets に入れても、できた HTML には入らない。保存したあと Deployments で Retry deployment する。未設定のあいだ、チャットボタンは出ない。
+
 ## ダッシュボード側でやらないこと
 
 - 「Astro 用にセットアップしますか？」→ **No / 変更しない**

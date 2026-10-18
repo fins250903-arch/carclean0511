@@ -115,24 +115,29 @@
 
 この3つは秘密の鍵ではない。サービスアカウントの JSON や API キーはコピーしない。
 
-## 8. Vercel に渡す
+## 8. Cloudflare に渡す
 
-Vercel は、サイトをインターネットに出している場所です。
+このサイトの公開先は Cloudflare です。Vercel は使いません。
 
-1. https://vercel.com を開いてログインする
-2. このサイトのプロジェクトを開く
-3. 上の Settings を押す
-4. 左の Environment Variables を押す
-5. 次の3行を、1行ずつ追加する。Name は左、Value は右
+チャットの3つの名前は、HTML を作るとき（ビルド）に埋め込みます。公開後に動く「Variables and Secrets」へ入れても、ボタンは出ません。入れる場所は **Build variables and secrets**（ビルド変数）です。
+
+1. https://dash.cloudflare.com を開いてログインする
+2. 左の **Workers & Pages**（Workers と Pages）を押す
+3. このサイトの Worker を開く。名前は `carclean0511` のことが多い
+4. 上の **Settings**（設定）を押す
+5. 左または画面内の **Build**（ビルド）を押す
+6. **Build variables and secrets**（ビルド変数とシークレット）を探す
+7. Add で、次の3つを追加する。名前は左、値は右。種類はプレーンテキストでよい
 
 ```
-PUBLIC_DIALOGFLOW_PROJECT_ID    コピーした project-id
-PUBLIC_DIALOGFLOW_AGENT_ID      コピーした agent-id
-PUBLIC_DIALOGFLOW_LOCATION      global
+PUBLIC_DIALOGFLOW_PROJECT_ID     コピーした project-id
+PUBLIC_DIALOGFLOW_AGENT_ID       コピーした agent-id
+PUBLIC_DIALOGFLOW_LOCATION       global
 ```
 
-6. 環境は Production にチェックを入れる
-7. Save する
-8. 上の Deployments を開き、いちばん上の行の右側「…」から Redeploy を押す
+8. Save する
+9. **Deployments**（デプロイ）を開き、いちばん上の行で **Retry deployment**（再試行）を押す
 
-Redeploy が終わると、サイトの右下にチャットの丸いボタンが出ます。ボタンは、この3つを入れて再公開するまで出ません。
+再試行が終わり、ログに `Success: Build command completed` と `Deployed` が出ると、サイトの右下にチャットの丸いボタンが出ます。保存しただけでは出ません。
+
+Build command は `npm run build`、Deploy command は `npx wrangler deploy` のままにします。`astro add cloudflare` は押さないでください。
