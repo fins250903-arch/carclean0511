@@ -28,3 +28,5 @@ tools/ads-pdca/private/
 # Internal chatbot knowledge from order sheets. Aggregates stay off the site and out of git.
 tools/chatbot-knowledge/output/
 tools/chatbot-knowledge/private/
+tools/chatbot-knowledge/**/__pycache__/
+*.pyc
