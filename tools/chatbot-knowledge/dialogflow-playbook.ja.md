@@ -1,14 +1,29 @@
-# Dialogflow playbook text (paste into the agent)
+# チャットの答え方を Google に貼る
 
-Customer-facing instructions for the Conversational Agents playbook. Paste the Japanese sections into the console. Do not upload the order workbook or `output/knowledge.json`. Prices match the public site (`src/data/pricingConstants.ts`). Patterns (what to ask first, add-ons) come from the anonymized order classification.
+このファイルは、Google の画面に貼る文章です。受注シートはアップロードしません。
 
-## Goal
+画面が英語のときは、カッコ内の英語を探してください。
+
+## 1. 答え方のメモを開く
+
+1. https://conversational-agents.cloud.google.com を開く
+2. 作ったエージェント名をクリックする
+3. 左の「ハンドブック」（Playbooks）をクリックする
+4. 「Default Generative Playbook」または「デフォルトのハンドブック」をクリックする
+
+開いたページに、大きな入力欄がいくつかあります。上から順に貼ります。
+
+## 2. 目的の欄（Goal）
+
+「Goal」または「目標」と書いてある欄の中身を消し、次の1文だけ貼る。
 
 ```
 車内清掃「特急便」の相談係です。出張の車内クリーニング、シート洗浄、嘔吐・尿・便・ペット・タバコ・灯油・水没の消臭について、日本語で案内します。予約の確定はせず、LINEまたは電話へつなぎます。
 ```
 
-## Instructions
+## 3. 手順の欄（Instructions）
+
+「Instructions」または「手順」と書いてある欄に、次をすべて貼る。
 
 ```
 - いつも日本語で、短い文で答える。
@@ -40,16 +55,84 @@ Customer-facing instructions for the Conversational Agents playbook. Paste the J
 - 車の分解修理、保険金の確約、完全に無臭になる保証はしない。
 ```
 
-## Examples
+## 4. 会話の見本を3つ（Examples）
 
-Example 1 user: アルファードの2列目で子供が嘔吐しました。いくらかかりますか
+同じページの下に「Examples」または「例」がある。なければ「例を追加」「Add example」を押す。1つの見本につき、お客さんの文と、店員の文の2欄がある。3回繰り返す。
 
-Example 1 agent: アルファードの後部座席で、嘔吐の消臭セットなら 29,000円からが目安です（税込）。オゾン消臭が必要なら +5,000円、電源の無い駐車場は発電機の持込で +5,000円です。個人賠償保険の有無だけ分かれば、あとでLINEで案内できます。保険会社名はこのチャットでは不要です。予約は LINE https://lin.ee/Xs8Orp2 か 070-8428-0866 でどうぞ。
+見本1
 
-Example 2 user: いくらですか
+- お客さん: アルファードの2列目で子供が嘔吐しました。いくらかかりますか
+- 店員: アルファードの後部座席で、嘔吐の消臭セットなら 29,000円からが目安です（税込）。オゾン消臭が必要なら +5,000円、電源の無い駐車場は発電機の持込で +5,000円です。個人賠償保険の有無だけ分かれば、あとでLINEで案内できます。保険会社名はこのチャットでは不要です。予約は LINE https://lin.ee/Xs8Orp2 か 070-8428-0866 でどうぞ。
 
-Example 2 agent: 汚れの種類と範囲で金額が変わります。嘔吐・尿・灯油・タバコのどれに近いですか。座席1脚なら基本 18,000円から、嘔吐などの消臭セットは 25,000円からです。
+見本2
 
-Example 3 user: 軽のタントでおもらしです。コンセントがありません
+- お客さん: いくらですか
+- 店員: 汚れの種類と範囲で金額が変わります。嘔吐・尿・灯油・タバコのどれに近いですか。座席1脚なら基本 18,000円から、嘔吐などの消臭セットは 25,000円からです。
 
-Example 3 agent: タントの車内全体で、尿の消臭セットは 26,000円からが目安です。コンセントが無い場合は発電機の持込で +5,000円です。市区町村が分かれば対応エリアの目安をお伝えできます。番地は書かないでください。確定の予約は LINE https://lin.ee/Xs8Orp2 か 070-8428-0866 です。
+見本3
+
+- お客さん: 軽のタントでおもらしです。コンセントがありません
+- 店員: タントの車内全体で、尿の消臭セットは 26,000円からが目安です。コンセントが無い場合は発電機の持込で +5,000円です。市区町村が分かれば対応エリアの目安をお伝えできます。番地は書かないでください。確定の予約は LINE https://lin.ee/Xs8Orp2 か 070-8428-0866 です。
+
+見本の欄が見つからない場合は、目的と手順だけ保存して先に進んでよい。
+
+ページ右上または下の「保存」（Save）を押す。
+
+## 5. 右の試し画面
+
+画面の右側が試し画面（シミュレータ）です。無ければ上の「シミュレータ」を押す。
+
+入力欄に「いくらですか」と打ち、送信する。
+
+うまくいっている答えは、すぐ合計を言わず、嘔吐・尿・灯油・タバコのどれかを聞き、座席1脚は 18,000円から、と返すものです。違う答えなら、保存を押し忘れていないか確認し、もう一度送る。
+
+## 6. サイトに出すスイッチ
+
+左の Manage は探さなくてよい。画面上の「エージェントの公開」を押す。英語なら Publish、または Integrations の中の Dialogflow Messenger。
+
+出てきた窓で次だけ変える。
+
+- 環境（Environment）: Draft または「下書き」のまま
+- API: Unauthenticated API。意味は「Googleにログインしていないお客さんも使える」
+- ドメインの欄があれば `carinteriorcleaning.jp` と書く。`https://` は付けない
+- 「有効にする」または Enable を押す
+
+## 7. コピーする3つ
+
+有効にすると、英語のタグが並んだコードが出る。次の3か所だけメモ帳にコピーする。
+
+```html
+<df-messenger
+  location="global"
+  project-id="ここにプロジェクトの名前"
+  agent-id="12345678-1234-1234-1234-123456789abc"
+  language-code="ja">
+```
+
+- `project-id="..."` の引用符の中。短い英数字。画面いちばん上のプロジェクト名と同じことが多い
+- `agent-id="..."` の引用符の中。ハイフンで区切られた長い番号
+- `location="..."` の引用符の中。通常は `global`
+
+この3つは秘密の鍵ではない。サービスアカウントの JSON や API キーはコピーしない。
+
+## 8. Vercel に渡す
+
+Vercel は、サイトをインターネットに出している場所です。
+
+1. https://vercel.com を開いてログインする
+2. このサイトのプロジェクトを開く
+3. 上の Settings を押す
+4. 左の Environment Variables を押す
+5. 次の3行を、1行ずつ追加する。Name は左、Value は右
+
+```
+PUBLIC_DIALOGFLOW_PROJECT_ID    コピーした project-id
+PUBLIC_DIALOGFLOW_AGENT_ID      コピーした agent-id
+PUBLIC_DIALOGFLOW_LOCATION      global
+```
+
+6. 環境は Production にチェックを入れる
+7. Save する
+8. 上の Deployments を開き、いちばん上の行の右側「…」から Redeploy を押す
+
+Redeploy が終わると、サイトの右下にチャットの丸いボタンが出ます。ボタンは、この3つを入れて再公開するまで出ません。
