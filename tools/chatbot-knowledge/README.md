@@ -23,3 +23,9 @@ python3 ./tools/chatbot-knowledge/classify_orders.py --xlsx /path/to/private.xls
 ```
 
 The workbook stays outside the repo. Pass `--out` only for another path under this tool's `output/` directory. The writer refuses `src/`, `public/`, and `dist/`.
+
+## Dialogflow / Vertex embed
+
+`dialogflow-playbook.ja.md` is the text to paste into a Conversational Agents playbook. It uses the public site price list plus the question order learned from the aggregates. Do not upload the workbook or `output/knowledge.json` to Google Cloud.
+
+The site shows the chat bubble only when `PUBLIC_DIALOGFLOW_PROJECT_ID` and `PUBLIC_DIALOGFLOW_AGENT_ID` are set. Those IDs are not secret keys. Do not put a service-account JSON or an API key in `PUBLIC_*` variables.

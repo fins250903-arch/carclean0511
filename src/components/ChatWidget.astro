@@ -1,0 +1,49 @@
+---
+/**
+ * Dialogflow CX Messenger (Vertex AI Conversational Agents).
+ * Renders only when public, non-secret IDs are set. No API key belongs here.
+ */
+import { STORE_NAME } from '@/lib/site';
+
+const projectId = String(import.meta.env.PUBLIC_DIALOGFLOW_PROJECT_ID ?? '').trim();
+const agentId = String(import.meta.env.PUBLIC_DIALOGFLOW_AGENT_ID ?? '').trim();
+const location = String(import.meta.env.PUBLIC_DIALOGFLOW_LOCATION ?? 'global').trim();
+
+const projectOk = /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(projectId);
+const agentOk = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(agentId);
+const locationOk = /^(global|[a-z]+(?:-[a-z0-9]+)+)$/.test(location);
+const enabled = projectOk && agentOk && locationOk;
+---
+
+{
+  enabled && (
+    <>
+      <script
+        is:inline
+        src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"
+      />
+      <df-messenger
+        location={location}
+        project-id={projectId}
+        agent-id={agentId}
+        language-code="ja"
+        storage-option="none"
+        max-query-length="256"
+      >
+        <df-messenger-chat-bubble
+          chat-title={STORE_NAME}
+          chat-subtitle="料金と汚れの相談"
+          placeholder-text="車種と汚れを入力"
+          bot-writing-text="確認しています"
+        />
+      </df-messenger>
+      <style is:inline>
+        df-messenger {
+          z-index: 1100;
+          --df-messenger-primary-color: #0066cc;
+          --df-messenger-font-family: 'Noto Sans JP', sans-serif;
+        }
+      </style>
+    </>
+  )
+}
