@@ -96,7 +96,7 @@
 4. 左の縦アイコンにマウスを乗せ、**Integrations** と出たものを押しても同じです。中の **Conversational Messenger** で **Connect** を押す
 5. 開いた窓の中を下まで見る
    - すでに有効なら、英語のコードが出ている
-   - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄があれば `carinteriorcleaning.jp` と書く（`https://` は付けない）。**Enable the unauthenticated API** を押す。押したあとにコードが出る
+   - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄は空のままにする（`carinteriorcleaning.jp` は書かない）。**Enable the unauthenticated API** を押す。押したあとにコードが出る。ボタンが灰色で押せないときは、このプロジェクトの請求（お支払い）がまだオフです
 
 上の Project 欄に出ている短い名前が `project-id` です。`agent-id` は窓のコードか、ブラウザのアドレスの `agents/` のうしろにあります。
 
@@ -138,7 +138,7 @@ agent-id=ここにコピーした長い番号
 
 チャットの丸いボタンは、電話と LINE の帯の上に出ます。ボタンを押すと「車内清掃「特急便」」と「料金と汚れの相談」の窓が開きます。
 
-メッセージを送って `Something went wrong, please try again.` と出るときは、Google の Unauthenticated API がまだ無効です。**Conversational Messenger** の窓で、次を押します。
+メッセージを送って `Something went wrong, please try again.` と出るときは、サイトの不具合ではありません。Google が「ログインしていない人からの質問」を拒否しています。Google の返答は `Unauthenticated API is disabled`（誰でも話せる設定がオフ）です。**Conversational Messenger** の窓で、次を押します。
 
 - Environment は Draft
 - API は Unauthenticated API
