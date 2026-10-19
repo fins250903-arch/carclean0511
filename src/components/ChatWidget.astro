@@ -39,8 +39,48 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
           bottom: 96px;
           --df-messenger-primary-color: #0066cc;
           --df-messenger-font-family: 'Noto Sans JP', sans-serif;
+          --df-messenger-button-font-size: 16px;
+          --df-messenger-button-padding: 14px 16px;
+          --df-messenger-button-border-radius: 12px;
         }
       </style>
     </>
   )
 }
+
+<script>
+  import {
+    contactButtonCard,
+    shouldOfferContactButtons,
+    textFromMessengerMessages,
+  } from '@/lib/chatContactButtons';
+  import { pushDataLayer } from '@/lib/analytics';
+  import { LINE_URL, TEL } from '@/lib/site';
+
+  let contactLock = false;
+
+  window.addEventListener('df-response-received', (event) => {
+    if (contactLock) return;
+    const detail = (event as CustomEvent).detail as { data?: { messages?: unknown } } | undefined;
+    const text = textFromMessengerMessages(detail?.data?.messages);
+    if (!shouldOfferContactButtons(text)) return;
+    const messenger = document.querySelector('df-messenger') as
+      | (HTMLElement & { renderCustomCard?: (payload: unknown[]) => void })
+      | null;
+    if (!messenger || typeof messenger.renderCustomCard !== 'function') return;
+    contactLock = true;
+    messenger.renderCustomCard(contactButtonCard(TEL, LINE_URL));
+    window.setTimeout(() => {
+      contactLock = false;
+    }, 1000);
+  });
+
+  window.addEventListener('df-button-clicked', (event) => {
+    const href = String((event as CustomEvent).detail?.actionLink || '');
+    if (/^tel:/i.test(href)) {
+      pushDataLayer('phone_click', { event_category: 'conversion', event_label: 'chat_widget' });
+    } else if (/lin\.ee/i.test(href)) {
+      pushDataLayer('line_click', { event_category: 'conversion', event_label: 'chat_widget' });
+    }
+  });
+</script>
