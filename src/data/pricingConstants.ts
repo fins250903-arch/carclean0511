@@ -40,7 +40,45 @@ export function carFvPriceHookMain(): string {
   return `1シート ${yen(CAR_PRICING.seatSingleBasic)}から`;
 }
 
-export function carFvPriceHookSub(displayName?: string): string {
+/** Prefectures where the published price does not include travel. */
+const TRAVEL_FEE_EXTRA_REGIONS = [
+  '熊本県',
+  '福井県',
+  '和歌山県',
+  '滋賀県',
+  '岐阜県',
+  '静岡県',
+  '佐賀県',
+] as const;
+
+export const TRAVEL_FEE_EXTRA_NOTE = '地域により出張費が加算されます。詳細は、お問合せ下さい';
+
+export function isTravelFeeExtra(regionName?: string | null): boolean {
+  if (!regionName) return false;
+  return TRAVEL_FEE_EXTRA_REGIONS.some((name) => regionName.includes(name));
+}
+
+export function travelFeeAreaLabel(displayName: string, regionName?: string): string {
+  if (isTravelFeeExtra(regionName ?? displayName)) {
+    return `${displayName}は地域により出張費が加算されます`;
+  }
+  return `${displayName}へ出張費無料`;
+}
+
+/** Swap published “travel is free” sentences on the seven extra-fee prefectures. */
+export function rewriteTravelFeeText(text: string, regionName?: string): string {
+  if (!isTravelFeeExtra(regionName)) return text;
+  const note = `${TRAVEL_FEE_EXTRA_NOTE}。`;
+  return text
+    .replaceAll('出張費は原則無料です。', note)
+    .replaceAll('出張費は対応エリア無料です。', note)
+    .replaceAll('対応エリアは出張費無料でご案内します。', note);
+}
+
+export function carFvPriceHookSub(displayName?: string, regionName?: string): string {
+  if (isTravelFeeExtra(regionName ?? displayName)) {
+    return `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜税込`;
+  }
   const area = displayName ? `${displayName}へ出張費エリア無料` : '税込・出張費エリア無料';
   return `軽自動車 ${yen(CAR_PRICING.lightBasic)}〜｜${area}`;
 }

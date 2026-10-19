@@ -1,5 +1,6 @@
 ---
 import { getRegionCustomization } from '../../data/regionCustomization';
+import { isTravelFeeExtra, TRAVEL_FEE_EXTRA_NOTE } from '../../data/pricingConstants';
 import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
 import { powerHighlightLine } from '../../lib/powerPolicy';
 import type { ServiceNiche } from '../../lib/niche';
@@ -52,7 +53,7 @@ const serviceFocus =
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 本部（岡山）：品質・機材・研修・保険書類</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 現場（{displayName}）：出張施工・即日対応</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {powerLine}</li>
-        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 出張費は{regionName}内原則無料</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {isTravelFeeExtra(regionName) ? TRAVEL_FEE_EXTRA_NOTE : `出張費は${regionName}内原則無料`}</li>
       </ul>
     </div>
   </div>

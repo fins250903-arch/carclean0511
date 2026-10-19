@@ -1,5 +1,11 @@
 ---
-import { CAR_PRICING, TRUCK_PRICING, yen } from '../../data/pricingConstants';
+import {
+  CAR_PRICING,
+  TRUCK_PRICING,
+  TRAVEL_FEE_EXTRA_NOTE,
+  isTravelFeeExtra,
+  yen,
+} from '../../data/pricingConstants';
 
 interface Props {
   regionName: string;
@@ -9,6 +15,8 @@ interface Props {
 const { regionName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
+const travelExtra = isTravelFeeExtra(regionName);
+const travelFeeLine = travelExtra ? `${TRAVEL_FEE_EXTRA_NOTE}。` : `出張費は${regionName}エリア無料。`;
 
 const fmt = (n: number) => n.toLocaleString('ja-JP');
 
@@ -88,7 +96,9 @@ const truckRows = [
         <div class="text-center mb-14">
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">料金プラン</h2>
             <p class="text-lg md:text-xl text-gray-600">
-                {regionName}エリアは出張費無料！プロの機材と技術で、{isBus ? 'バス車内の汚染トラブルを根本解決' : '車内の悩みを根本解決'}します。
+                {travelExtra
+                  ? `${regionName}へ出張します。${TRAVEL_FEE_EXTRA_NOTE}。`
+                  : `${regionName}エリアは出張費無料！`}プロの機材と技術で、{isBus ? 'バス車内の汚染トラブルを根本解決' : '車内の悩みを根本解決'}します。
             </p>
             <p class="mx-auto mt-4 max-w-xl break-words text-sm font-bold leading-relaxed text-gray-800 md:text-base">
                 <span class="block sm:inline">LINE写真で、相談無料</span>
@@ -207,7 +217,7 @@ const truckRows = [
                   <li>空間への消臭作業（基本プラン内）</li>
                 </ul>
               </div>
-              <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。汚染状況により変動する場合があります。</p>
+              <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。{travelFeeLine}汚染状況により変動する場合があります。</p>
             </div>
 
             {/* 追加オプション */}
@@ -342,7 +352,7 @@ const truckRows = [
                     ※実際の金額は、現車を確認させていただいてからのご案内となります。
                 </p>
             </div>
-            <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。</p>
+            <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。{travelFeeLine}</p>
         </div>
         )}
 
@@ -425,7 +435,11 @@ const truckRows = [
             <div class="relative z-10 text-center">
                 <h3 class="text-2xl md:text-4xl font-black mb-4">【{regionName}のお客様へ】</h3>
                 <p class="text-lg md:text-2xl font-bold leading-relaxed mb-8">
-                    現在、キャンペーンにつき<span class="text-yellow-400 underline decoration-4">出張料無料</span>にて承っております。<br />
+                    {travelExtra ? (
+                      <>{TRAVEL_FEE_EXTRA_NOTE}。<br /></>
+                    ) : (
+                      <>現在、キャンペーンにつき<span class="text-yellow-400 underline decoration-4">出張料無料</span>にて承っております。<br /></>
+                    )}
                     「今すぐどうにかしたい」トラブル、プロの特急便にお任せください！
                 </p>
                 <a

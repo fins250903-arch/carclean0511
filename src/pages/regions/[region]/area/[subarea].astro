@@ -14,6 +14,7 @@ import { buildRegionSeoOverrides } from '../../../../lib/regionStructuredData';
 import { generateQuestionnaireJsonLd } from '../../../../data/questionnaireTestimonials';
 import JsonLd from '../../../../components/seo/JsonLd.astro';
 import type { ServiceNiche } from '../../../../lib/niche';
+import { travelFeeAreaLabel } from '../../../../data/pricingConstants';
 import { regionPath } from '../../../../lib/niche';
 
 import Hero from '../../../../components/sections/Hero.astro';
@@ -165,7 +166,7 @@ const noindex = isNoindexRegionId(regionId);
         niche={niche}
         intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
-        areaLabel={`${subareaLabel}へ出張費無料`}
+        areaLabel={travelFeeAreaLabel(subareaLabel, regionName)}
       />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />

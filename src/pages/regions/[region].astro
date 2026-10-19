@@ -54,7 +54,7 @@ import {
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
 import CancelPolicy from '../../components/sections/CancelPolicy.astro';
-import { CAR_PRICING, yen } from '../../data/pricingConstants';
+import { CAR_PRICING, travelFeeAreaLabel, yen } from '../../data/pricingConstants';
 import { isNoindexRegionId } from '../../data/noindexRegions';
 
 // React Components
@@ -148,7 +148,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
         intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
         priceLabel={isTruck || isBus ? undefined : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
-        areaLabel={`${displayName}へ出張費無料`}
+        areaLabel={travelFeeAreaLabel(displayName, regionName)}
       />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />

@@ -59,7 +59,7 @@ const priceHookSub = adHero?.priceHookSub ?? (isTruck
   ? `4t合計 ${yen(TRUCK_PRICING.ton4Total)}〜｜税込`
   : isBus
     ? `運行スケジュールに合わせた出張対応｜税込見積`
-    : carFvPriceHookSub());
+    : carFvPriceHookSub(undefined, regionName));
 const priceHookNote = adHero?.priceHookNote ?? (isTruck || isBus
   ? '※現車確認後に確定／追加費用は作業前にご説明'
   : '※座席単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途');

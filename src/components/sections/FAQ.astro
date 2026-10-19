@@ -1,5 +1,6 @@
 ---
 import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
+import { rewriteTravelFeeText } from '../../data/pricingConstants';
 import type { ServiceNiche } from '../../lib/niche';
 import { needsOutletBorrow, powerFaqAnswer } from '../../lib/powerPolicy';
 
@@ -15,7 +16,9 @@ const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
 
 const faqs = [...baseFaqs, ...extraFaqs].map((faq) => {
-  if (!regionName || !needsOutletBorrow(regionName)) return faq;
+  const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+  if (!regionName || !needsOutletBorrow(regionName)) return withTravel;
+  faq = withTravel;
   const powerRelated =
     faq.q.includes('電源') ||
     faq.q.includes('マンション') ||
