@@ -25,6 +25,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
         max-query-length="256"
       >
         <df-messenger-chat-bubble
+          expanded
           chat-title={STORE_NAME}
           chat-subtitle="料金と汚れの相談"
           placeholder-text="車種と汚れを入力"
@@ -42,6 +43,11 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
           --df-messenger-button-font-size: 16px;
           --df-messenger-button-padding: 14px 16px;
           --df-messenger-button-border-radius: 12px;
+        }
+        @media (max-width: 640px) {
+          df-messenger {
+            --df-messenger-chat-window-height: 280px;
+          }
         }
       </style>
     </>
