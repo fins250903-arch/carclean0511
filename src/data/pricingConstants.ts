@@ -7,9 +7,9 @@ export const CAR_PRICING = {
   largeBasic: 38_000,
   largeDeodorize: 42_000,
   seatSingleBasic: 18_000,
-  seatSingleDeodorize: 25_000,
+  seatSingleDeodorize: 23_000,
   rearSeatBasic: 22_000,
-  rearSeatDeodorize: 29_000,
+  rearSeatDeodorize: 27_000,
   kerosenePerSeat: 30_000,
   /** Optional add-on: simple A/C evaporator mist wash */
   acInternalWash: 10_000,

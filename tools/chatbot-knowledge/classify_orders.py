@@ -49,8 +49,8 @@ SKIP_REASONS = {
 
 # Internal rate card from the 価格 sheet. Not customer data.
 MENU = {
-    "single_seat": {"basic": 18000, "deodorize_add": 7000},
-    "rear_seat": {"basic": 22000, "deodorize_add": 7000},
+    "single_seat": {"basic": 18000, "deodorize_add": 5000},
+    "rear_seat": {"basic": 22000, "deodorize_add": 5000},
     "full_kei": {"basic": 22000, "deodorize_add": 3000},
     "full_regular": {"basic": 28000, "deodorize_add": 4000},
     "full_large": {"basic": 36000, "deodorize_add": 5000},
