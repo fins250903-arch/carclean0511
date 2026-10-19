@@ -96,7 +96,7 @@
 4. 左の縦アイコンにマウスを乗せ、**Integrations** と出たものを押しても同じです。中の **Conversational Messenger** で **Connect** を押す
 5. 開いた窓の中を下まで見る
    - すでに有効なら、英語のコードが出ている
-   - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄は空のままにする（`carinteriorcleaning.jp` は書かない）。**Enable the unauthenticated API** を押す。押したあとにコードが出る。ボタンが灰色で押せないときは、このプロジェクトの請求（お支払い）がまだオフです
+   - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄は空のままにする（`carinteriorcleaning.jp` は書かない）。**Enable the unauthenticated API** を押す。押したあとにコードが出る。ボタンが灰色で押せないときは、下の「請求をオンにする」を先に行う
 
 上の Project 欄に出ている短い名前が `project-id` です。`agent-id` は窓のコードか、ブラウザのアドレスの `agents/` のうしろにあります。
 
@@ -146,3 +146,16 @@ agent-id=ここにコピーした長い番号
 - **Enable the unauthenticated API** を押す
 
 押したあと、ページを再読み込みして「いくらですか」と送ります。
+
+## 10. 請求をオンにする
+
+**Enable the unauthenticated API** が灰色のときは、プロジェクト `chatbotcarinteriocleaning` に支払い口座が付いていません。チャットの画面ではなく、Google Cloud の請求の画面で付けます。
+
+1. チャットを作ったときと同じ Google アカウントで、次を開く。https://console.cloud.google.com/billing/projects
+2. 上の方の **My projects**（マイプロジェクト）を押す
+3. 一覧から `chatbotcarinteriocleaning` を探す。Billing account の列が **Billing is disabled** なら、まだオフです
+4. その行の右端の縦三点（⋮）を押し、**Change billing** を押す
+5. すでに支払い口座があれば、それを選んで **Set account** を押す。一覧が空なら **Create account** を押し、名前、国（日本）、クレジットカードを入れて作ってから、もう一度 4 と 5 を行う
+6. チャットの画面に戻り、ページを再読み込みして **Enable the unauthenticated API** を押す
+
+オンにしても、その場で大きな金額は引き落とされません。使った分が、後からそのカードに請求されます。縦三点に **Change billing** が無いときは、その Google アカウントに請求を変える権限がありません。
