@@ -5,8 +5,8 @@
  */
 
 export const chatWidget = {
-  projectId: '',
-  agentId: '',
+  projectId: 'chatbotcarinteriocleaning',
+  agentId: 'd09f95ba-326a-432a-a2d2-77cdfccdbf50',
   location: 'global',
 } as const;
 
