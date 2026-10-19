@@ -133,3 +133,16 @@ agent-id=ここにコピーした長い番号
 こちらでサイトのファイル `src/data/chatWidget.ts` に入れます。公開のサイト（`main`）に入った次の更新で、右下に丸いボタンが出ます。3つが空のあいだは、ボタンは出ません。
 
 サービスアカウントの JSON や API キーは貼らないでください。
+
+## 9. 手元の画面で話す
+
+チャットの丸いボタンは、電話と LINE の帯の上に出ます。ボタンを押すと「車内清掃「特急便」」と「料金と汚れの相談」の窓が開きます。
+
+メッセージを送って `Something went wrong, please try again.` と出るときは、Google の Unauthenticated API がまだ無効です。Integrations の Dialogflow Messenger の窓で、次を押します。
+
+- Environment は Draft
+- API は Unauthenticated API
+- ドメインの欄は空のまま（手元の画面からも話せるようにするため）
+- **Enable the unauthenticated API** を押す
+
+押したあと、ページを再読み込みして「いくらですか」と送ります。
