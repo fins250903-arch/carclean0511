@@ -128,6 +128,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
 <script>
   import {
     contactButtonCard,
+    lineProvisionalUrl,
     provisionalNote,
     shouldOfferContactButtons,
     textFromMessengerMessages,
@@ -175,6 +176,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
     const input = document.getElementById('chat-compact-input') as HTMLInputElement | null;
     const text = input?.value.trim() || '';
     if (!text) return;
+    rememberLine(text);
     const { messenger, bubble } = chatParts();
     if (!messenger || !bubble) return;
     messenger.classList.add('chat-open');
@@ -195,12 +197,54 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
   phoneQuery.addEventListener('change', syncChatLayout);
   syncChatLayout();
 
-  window.addEventListener('df-user-input-entered', (event) => {
-    const input = String((event as CustomEvent).detail?.input || '').trim();
-    if (!input) return;
-    userLines.push(input);
+  function rememberLine(text: string) {
+    const value = text.trim();
+    if (!value || userLines[userLines.length - 1] === value) return;
+    userLines.push(value);
     if (userLines.length > 8) userLines.shift();
+  }
+
+  function pendingInputs(): string[] {
+    const values: string[] = [];
+    const compact = document.getElementById('chat-compact-input') as HTMLInputElement | null;
+    if (compact?.value.trim()) values.push(compact.value.trim());
+    const visit = (root: ParentNode) => {
+      root.querySelectorAll('input, textarea').forEach((el) => {
+        const value = (el as HTMLInputElement).value?.trim() || '';
+        if (value && value.length <= 200 && !/^https?:/i.test(value)) values.push(value);
+      });
+      root.querySelectorAll('*').forEach((el) => {
+        if (el.shadowRoot) visit(el.shadowRoot);
+      });
+    };
+    const host = document.querySelector('df-messenger');
+    if (host) visit(host);
+    return values;
+  }
+
+  function currentNote(botText = ''): string | null {
+    const bubble = document.querySelector('df-messenger-chat-bubble');
+    const box = bubble?.shadowRoot?.querySelector('.chat-wrapper') as HTMLElement | null;
+    return provisionalNote(`${botText}\n${box?.innerText || ''}`, [...userLines, ...pendingInputs()]);
+  }
+
+  window.addEventListener('df-user-input-entered', (event) => {
+    rememberLine(String((event as CustomEvent).detail?.input || ''));
   });
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      const anchor = (event.target as Element | null)?.closest?.('a[href]');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href') || '';
+      if (!/lin\.ee|line\.me/i.test(href)) return;
+      const note = currentNote();
+      if (!note) return;
+      anchor.setAttribute('href', lineProvisionalUrl(LINE_OA_ID, note));
+    },
+    true,
+  );
 
   window.addEventListener('df-response-received', (event) => {
     if (contactLock) return;
@@ -210,7 +254,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
     const { messenger } = chatParts();
     if (!messenger || typeof messenger.renderCustomCard !== 'function') return;
     contactLock = true;
-    const note = provisionalNote(text, userLines);
+    const note = currentNote(text);
     messenger.renderCustomCard(contactButtonCard(TEL, LINE_URL, note, LINE_OA_ID));
     window.setTimeout(() => {
       contactLock = false;

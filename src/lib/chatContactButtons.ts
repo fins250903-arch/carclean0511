@@ -39,9 +39,22 @@ export function textFromMessengerMessages(messages: unknown): string {
 const SHOP_PHONE = '07084280866';
 const FIELD_RE = /^(希望|車種|場所|電話|内容)\s*[:：]\s*(.+)$/;
 
+/** Japanese text expands about 9x when percent-encoded. Longer URLs are dropped by LINE. */
+const MAX_ENCODED = 800;
+const NOTE_FOOTER = '※この文章をそのまま送信してください。';
+
+export function fitLineNote(note: string, maxEncoded = MAX_ENCODED): string {
+  let text = note.trim();
+  while (text.length > 24 && encodeURIComponent(text).length > maxEncoded) {
+    const cut = text.lastIndexOf('\n');
+    text = (cut > 24 ? text.slice(0, cut) : text.slice(0, text.length - 8)).trimEnd();
+  }
+  return text;
+}
+
 export function lineProvisionalUrl(oaId: string, note: string): string {
   const id = oaId.startsWith('@') ? oaId : `@${oaId}`;
-  const text = note.trim().slice(0, 350);
+  const text = fitLineNote(note);
   return `https://line.me/R/oaMessage/${encodeURIComponent(id)}/?${encodeURIComponent(text)}`;
 }
 
@@ -61,9 +74,31 @@ function placeValue(raw: string): string | null {
   return value.slice(0, 40);
 }
 
-function noteFromFields(fields: string[]): string | null {
-  if (!fields.some((line) => line.startsWith('電話:') || line.startsWith('場所:'))) return null;
-  return ['【仮予約】車内清掃「特急便」', ...fields, '※チャットの内容です。確定はお店からの連絡後です。'].join('\n');
+function spokenLines(userLines: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of userLines) {
+    let value = raw.replace(/\s+/g, ' ').trim();
+    if (!value) continue;
+    if (/番地|号室|号棟|マンション|アパート/.test(value)) value = placeValue(value) || '';
+    value = value.slice(0, 80);
+    if (!value || seen.has(value)) continue;
+    seen.add(value);
+    out.push(value);
+  }
+  return out.slice(-4);
+}
+
+function composeNote(fields: string[], spoken: string[]): string | null {
+  if (!fields.length && !spoken.length) return null;
+  const lines = ['【問合せ】車内清掃「特急便」'];
+  for (const line of spoken) lines.push(`入力: ${line}`);
+  for (const field of fields) {
+    if (spoken.some((line) => field.endsWith(line))) continue;
+    lines.push(field);
+  }
+  lines.push(NOTE_FOOTER);
+  return fitLineNote(lines.join('\n'));
 }
 
 function noteFromBlock(text: string): string | null {
@@ -85,16 +120,17 @@ function noteFromBlock(text: string): string | null {
     const value = key === '電話' ? phoneValue(raw) : key === '場所' ? placeValue(raw) : raw.slice(0, 40);
     if (value) fields.push(`${key}: ${value}`);
   }
-  return noteFromFields(fields);
+  return composeNote(fields, []);
 }
 
 function noteFromUserLines(userLines: string[]): string | null {
   const text = userLines.join('\n');
-  if (!text.trim()) return null;
+  const spoken = spokenLines(userLines);
+  if (!text.trim() && !spoken.length) return null;
   const fields: string[] = [];
   if (/折り返し/.test(text)) fields.push('希望: 折り返し電話');
   else if (/予約/.test(text)) fields.push('希望: 今すぐの仮予約');
-  const postal = text.match(/\d{3}-?\d{4}/);
+  const postal = text.match(/(?<![0-9-])[1-9]\d{2}-\d{4}(?![0-9-])/);
   const city = text.match(/[\u4e00-\u9fff]{1,12}[市区町村]/);
   const place = placeValue(postal?.[0] || city?.[0] || '');
   if (place) fields.push(`場所: ${place}`);
@@ -103,11 +139,21 @@ function noteFromUserLines(userLines: string[]): string | null {
   if (phone) fields.push(`電話: ${phone}`);
   const soil = text.match(/嘔吐|尿|便|灯油|タバコ|たばこ|ペット|水没/);
   if (soil) fields.push(`内容: ${soil[0]}`);
-  return noteFromFields(fields);
+  return composeNote(fields, spoken);
 }
 
 export function provisionalNote(botText: string, userLines: string[] = []): string | null {
-  return noteFromBlock(botText) || noteFromUserLines(userLines);
+  const block = noteFromBlock(botText);
+  const fromUser = noteFromUserLines(userLines);
+  if (block && fromUser) {
+    const extra = spokenLines(userLines)
+      .filter((line) => !block.includes(line))
+      .map((line) => `入力: ${line}`);
+    if (!extra.length) return fitLineNote(block);
+    const body = block.replace(NOTE_FOOTER, '').trim();
+    return fitLineNote([body, ...extra, NOTE_FOOTER].join('\n'));
+  }
+  return block || fromUser;
 }
 
 export function contactButtonCard(
