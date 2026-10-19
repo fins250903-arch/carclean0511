@@ -15,7 +15,7 @@ export default function FloatingCTA() {
                         className="flex-1 min-w-0 bg-[#06C755] hover:bg-[#05a346] text-white rounded-xl py-3.5 px-2 shadow-lg active:scale-[0.98] transition-transform flex flex-col items-center justify-center gap-0.5"
                     >
                         <span className="text-[10px] font-bold leading-none opacity-95">必ずお返事！</span>
-                        <span className="text-[15px] font-black leading-tight text-center">LINEで見積もり</span>
+                        <span className="text-[15px] font-black leading-tight text-center">LINE問合せ</span>
                         <span className="text-[10px] font-bold leading-none opacity-90">写真で即見積</span>
                     </a>
                     <a
@@ -50,7 +50,7 @@ export default function FloatingCTA() {
                         <div className="flex items-center gap-4">
                             <a href="https://lin.ee/Xs8Orp2" target="_blank" rel="noopener noreferrer" onClick={() => trackLineClick('floating_cta_desktop')} className="bg-[#06C755] hover:bg-[#05a346] text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2 text-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                                LINEで見積もり
+                                LINE問合せ
                             </a>
                         </div>
                     </div>

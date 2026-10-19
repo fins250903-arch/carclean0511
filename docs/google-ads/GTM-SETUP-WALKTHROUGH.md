@@ -214,7 +214,7 @@ GTM: https://tagmanager.google.com/ → コンテナ **GTM-WLNM4GWN**
 6. Tag Assistant で確認:
    - `phone_click` イベントが発生
    - `Google広告 - CV 電話問い合わせ` が **Tags Fired**
-7. **「LINEで見積もり」** をタップ → `line_click` + LINE CVタグ発火
+7. **「LINE問合せ」** をタップ → `line_click` + LINE CVタグ発火
 8. ページ中央の青いCTAセクションのボタンでも同様にテスト
 
 ---

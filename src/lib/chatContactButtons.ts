@@ -128,7 +128,7 @@ export function contactButtonCard(
     {
       type: 'button',
       icon: { type: 'chat', color: '#06C755' },
-      text: note ? 'この内容で問合せ' : 'LINEで見積もり',
+      text: note ? 'この内容で問合せ' : 'LINE問合せ',
       anchor: { href: lineHref, target: '_blank' },
     },
   ];
