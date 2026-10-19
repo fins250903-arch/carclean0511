@@ -1,5 +1,5 @@
 import type { FAQItem } from '@/data/seoData';
-import { CAR_PRICING, yen } from '@/data/pricingConstants';
+import { CAR_PRICING, isTravelFeeExtra, TRAVEL_FEE_EXTRA_NOTE, yen } from '@/data/pricingConstants';
 import {
   needsOutletBorrow,
   powerCapabilitySentence,
@@ -1022,7 +1022,10 @@ export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: s
   const powerBit = needsOutletBorrow(powerRegion)
     ? `${OUTLET_BORROW_SHORT}。`
     : '電源・水道不要（発電機・水タンク完備）。';
-  return `【結論】${regionName}で車内の嘔吐・ニオイ・シート汚れ・おもらし・たばこヤニを今すぐ解決するなら、市販の消臭スプレーは使わず、4日以内にシートの奥まで洗い流す出張洗浄（リンサー）を依頼してください。受付は365日24時間。到着は空き次第で当日〜翌朝です。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐の消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（税込・${regionName}は出張費無料）。施工歴3年以上・年間300台超の専門員が指定の駐車場へ伺います。${powerBit}状況に合う提案は、電話かLINEの写真見積で確認できます。`;
+  const travelBit = isTravelFeeExtra(regionName) || isTravelFeeExtra(powerRegion)
+    ? `税込。${TRAVEL_FEE_EXTRA_NOTE}`
+    : `税込・${regionName}は出張費無料`;
+  return `【結論】${regionName}で車内の嘔吐・ニオイ・シート汚れ・おもらし・たばこヤニを今すぐ解決するなら、市販の消臭スプレーは使わず、4日以内にシートの奥まで洗い流す出張洗浄（リンサー）を依頼してください。受付は365日24時間。到着は空き次第で当日〜翌朝です。1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽 ${yen(CAR_PRICING.lightBasic)}〜／嘔吐の消臭セット ${yen(CAR_PRICING.lightDeodorize)}〜（${travelBit}）。施工歴3年以上・年間300台超の専門員が指定の駐車場へ伺います。${powerBit}状況に合う提案は、電話かLINEの写真見積で確認できます。`;
 }
 
 export function buildRegionalAnswerTargetPoints(regionName: string, powerRegionName?: string): string[] {

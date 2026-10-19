@@ -1,5 +1,11 @@
 ---
-import { CAR_PRICING, TRUCK_PRICING, yen } from '../../data/pricingConstants';
+import {
+  CAR_PRICING,
+  TRUCK_PRICING,
+  TRAVEL_FEE_EXTRA_NOTE,
+  isTravelFeeExtra,
+  yen,
+} from '../../data/pricingConstants';
 
 interface Props {
   regionName: string;
@@ -9,8 +15,15 @@ interface Props {
 const { regionName, niche = 'car' } = Astro.props;
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
+const travelExtra = isTravelFeeExtra(regionName);
+const travelFeeLine = travelExtra ? `${TRAVEL_FEE_EXTRA_NOTE}。` : `出張費は${regionName}エリア無料。`;
 
 const fmt = (n: number) => n.toLocaleString('ja-JP');
+
+/** Partial-seat deodorize add-on stays at the previous car prices on truck and bus pages. */
+const partialSeatDeodorize = isTruck || isBus ? 25_000 : CAR_PRICING.seatSingleDeodorize;
+const partialRearDeodorize = isTruck || isBus ? 29_000 : CAR_PRICING.rearSeatDeodorize;
+const partialDeodorizeAddon = isTruck || isBus ? '+7,000円' : '+5,000円';
 
 const carRows = [
   {
@@ -83,7 +96,9 @@ const truckRows = [
         <div class="text-center mb-14">
             <h2 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">料金プラン</h2>
             <p class="text-lg md:text-xl text-gray-600">
-                {regionName}エリアは出張費無料！プロの機材と技術で、{isBus ? 'バス車内の汚染トラブルを根本解決' : '車内の悩みを根本解決'}します。
+                {travelExtra
+                  ? `${regionName}へ出張します。${TRAVEL_FEE_EXTRA_NOTE}。`
+                  : `${regionName}エリアは出張費無料！`}プロの機材と技術で、{isBus ? 'バス車内の汚染トラブルを根本解決' : '車内の悩みを根本解決'}します。
             </p>
             <p class="mx-auto mt-4 max-w-xl break-words text-sm font-bold leading-relaxed text-gray-800 md:text-base">
                 <span class="block sm:inline">LINE写真で、相談無料</span>
@@ -202,7 +217,7 @@ const truckRows = [
                   <li>空間への消臭作業（基本プラン内）</li>
                 </ul>
               </div>
-              <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。汚染状況により変動する場合があります。</p>
+              <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。{travelFeeLine}汚染状況により変動する場合があります。</p>
             </div>
 
             {/* 追加オプション */}
@@ -337,7 +352,7 @@ const truckRows = [
                     ※実際の金額は、現車を確認させていただいてからのご案内となります。
                 </p>
             </div>
-            <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。出張費は{regionName}エリア無料。</p>
+            <p class="text-xs text-gray-400 mt-4 text-right">※ 料金はすべて税込表示です。{travelFeeLine}</p>
         </div>
         )}
 
@@ -347,7 +362,7 @@ const truckRows = [
                 <span class="w-1.5 h-10 bg-primary rounded-full inline-block"></span>
                 【個別】部分クリーニング
             </h3>
-            <p class="text-gray-500 text-sm mb-2">消臭・脱臭を追加する場合は一律 <strong class="text-orange-500">+7,000円</strong></p>
+            <p class="text-gray-500 text-sm mb-2">消臭・脱臭を追加する場合は一律 <strong class="text-orange-500">{partialDeodorizeAddon}</strong></p>
             <p class="text-amber-800 text-sm mb-6 font-medium">※部分クリーニングは追加出張料がかかる場合があります</p>
 
             <div class="overflow-x-auto">
@@ -367,7 +382,7 @@ const truckRows = [
                                 <span class="text-xs text-primary font-bold">円</span>
                             </td>
                             <td class="px-4 py-3 text-center">
-                                <span class="text-xl md:text-2xl font-black text-orange-500">{fmt(CAR_PRICING.seatSingleDeodorize)}</span>
+                                <span class="text-xl md:text-2xl font-black text-orange-500">{fmt(partialSeatDeodorize)}</span>
                                 <span class="text-xs text-orange-500 font-bold">円</span>
                             </td>
                         </tr>
@@ -378,7 +393,7 @@ const truckRows = [
                                 <span class="text-xs text-primary font-bold">円</span>
                             </td>
                             <td class="px-4 py-3 text-center">
-                                <span class="text-xl md:text-2xl font-black text-orange-500">{fmt(CAR_PRICING.rearSeatDeodorize)}</span>
+                                <span class="text-xl md:text-2xl font-black text-orange-500">{fmt(partialRearDeodorize)}</span>
                                 <span class="text-xs text-orange-500 font-bold">円</span>
                             </td>
                         </tr>
@@ -420,14 +435,18 @@ const truckRows = [
             <div class="relative z-10 text-center">
                 <h3 class="text-2xl md:text-4xl font-black mb-4">【{regionName}のお客様へ】</h3>
                 <p class="text-lg md:text-2xl font-bold leading-relaxed mb-8">
-                    現在、キャンペーンにつき<span class="text-yellow-400 underline decoration-4">出張料無料</span>にて承っております。<br />
+                    {travelExtra ? (
+                      <>{TRAVEL_FEE_EXTRA_NOTE}。<br /></>
+                    ) : (
+                      <>現在、キャンペーンにつき<span class="text-yellow-400 underline decoration-4">出張料無料</span>にて承っております。<br /></>
+                    )}
                     「今すぐどうにかしたい」トラブル、プロの特急便にお任せください！
                 </p>
                 <a
                     href="https://lin.ee/Xs8Orp2"
                     class="inline-flex max-w-full items-center justify-center gap-3 break-words bg-[#06C755] px-5 py-4 text-center text-lg font-black text-white shadow-xl transition-transform hover:scale-105 md:px-10 md:py-5 md:text-xl rounded-full"
                 >
-                    LINEで無料見積もり
+                    LINE問合せ
                 </a>
             </div>
             <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>

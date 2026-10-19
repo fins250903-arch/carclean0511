@@ -177,7 +177,7 @@ GTM: https://tagmanager.google.com/ → **GTM-WLNM4GWN**
 2. スマホ表示に切り替え
 3. **「今すぐ電話」** タップ  
    → Tag Assistant: `phone_click` + `Google広告 - CV 電話問い合わせ` が **Tags Fired**
-4. **「LINEで見積もり」** タップ  
+4. **「LINE問合せ」** タップ  
    → `line_click` + `Google広告 - CV LINE問い合わせ` が **Tags Fired**
 5. ページ中央の青いCTAのボタンでも同様にテスト
 

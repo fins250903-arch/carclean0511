@@ -41,6 +41,22 @@ Workers のプロジェクト設定を、次のまま（または次に直して
 - `Configuring project for Astro with "astro add cloudflare"`
 - `Error installing dependencies`
 
+## チャットボタン用の3つの値
+
+Cloudflare の **Build variables and secrets**（ビルド変数とシークレット）は使いません。画面に無くて問題ありません。
+
+埋め込みコードの3つは `src/data/chatWidget.ts` に書きます。
+
+| ファイルの欄 | 埋め込みコード |
+| --- | --- |
+| `projectId` | `project-id` |
+| `agentId` | `agent-id` |
+| `location` | 通常は `global` |
+
+空のあいだ、チャットボタンは出ません。値を入れて `main` に入ると、次のビルドで右下に出ます。
+
+同じ名前の `PUBLIC_DIALOGFLOW_*` をビルド時に渡した場合は、ファイルよりそちらが優先されます。ランタイムの Variables and Secrets には入れません。
+
 ## ダッシュボード側でやらないこと
 
 - 「Astro 用にセットアップしますか？」→ **No / 変更しない**

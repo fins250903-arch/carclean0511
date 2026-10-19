@@ -1,0 +1,228 @@
+---
+/**
+ * Dialogflow CX Messenger (Vertex AI Conversational Agents).
+ * Renders only when public, non-secret IDs are set. No API key belongs here.
+ */
+import { resolveChatWidget } from '@/data/chatWidget';
+import { STORE_NAME } from '@/lib/site';
+
+const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.env);
+---
+
+{
+  enabled && (
+    <>
+      <script
+        is:inline
+        src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"
+      />
+      <df-messenger
+        location={location}
+        project-id={projectId}
+        agent-id={agentId}
+        language-code="ja"
+        storage-option="none"
+        max-query-length="256"
+      >
+        <df-messenger-chat-bubble
+          chat-title={STORE_NAME}
+          chat-subtitle="料金と汚れの相談"
+          placeholder-text="車種と汚れを入力"
+          bot-writing-text="確認しています"
+        />
+      </df-messenger>
+      <form id="chat-compact" class="chat-compact">
+        <label for="chat-compact-input">すぐお答えします</label>
+        <input
+          id="chat-compact-input"
+          name="q"
+          type="text"
+          maxlength="256"
+          enterkeyhint="send"
+          autocomplete="off"
+          placeholder="車種と汚れ"
+        />
+        <button type="submit">送信</button>
+      </form>
+      <style is:inline>
+        df-messenger {
+          z-index: 1100;
+          position: fixed;
+          right: 16px;
+          bottom: 96px;
+          --df-messenger-primary-color: #0066cc;
+          --df-messenger-font-family: 'Noto Sans JP', sans-serif;
+          --df-messenger-button-font-size: 16px;
+          --df-messenger-button-padding: 14px 16px;
+          --df-messenger-button-border-radius: 12px;
+        }
+        .chat-compact {
+          display: none;
+        }
+        @media (max-width: 640px) {
+          df-messenger:not(.chat-open) {
+            visibility: hidden;
+            pointer-events: none;
+          }
+          df-messenger.chat-open {
+            --df-messenger-chat-window-height: min(420px, 58vh);
+          }
+          .chat-compact {
+            display: flex;
+            position: fixed;
+            z-index: 1100;
+            left: 12px;
+            right: 12px;
+            bottom: 108px;
+            align-items: center;
+            gap: 8px;
+            height: 48px;
+            margin: 0;
+            padding: 0 8px 0 12px;
+            border: 1px solid #c5d4ea;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+            font-family: 'Noto Sans JP', sans-serif;
+          }
+          df-messenger.chat-open ~ .chat-compact {
+            display: none;
+          }
+          .chat-compact label {
+            flex: 0 0 auto;
+            color: #0066cc;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+          }
+          .chat-compact input {
+            flex: 1 1 auto;
+            min-width: 0;
+            height: 32px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            color: #1f2937;
+            font-size: 16px;
+          }
+          .chat-compact input:focus {
+            outline: none;
+          }
+          .chat-compact button {
+            flex: 0 0 auto;
+            height: 34px;
+            border: 0;
+            border-radius: 999px;
+            padding: 0 12px;
+            background: #0066cc;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+          }
+        }
+      </style>
+    </>
+  )
+}
+
+<script>
+  import {
+    contactButtonCard,
+    provisionalNote,
+    shouldOfferContactButtons,
+    textFromMessengerMessages,
+  } from '@/lib/chatContactButtons';
+  import { pushDataLayer } from '@/lib/analytics';
+  import { LINE_OA_ID, LINE_URL, TEL } from '@/lib/site';
+
+  let contactLock = false;
+  const userLines: string[] = [];
+  const phoneQuery = window.matchMedia('(max-width: 640px)');
+
+  function chatParts() {
+    const messenger = document.querySelector('df-messenger') as
+      | (HTMLElement & { sendQuery?: (text: string) => void; renderCustomCard?: (payload: unknown[]) => void })
+      | null;
+    const bubble = document.querySelector('df-messenger-chat-bubble') as
+      | (HTMLElement & { openChat?: () => void; closeChat?: () => void })
+      | null;
+    return { messenger, bubble };
+  }
+
+  let layoutTries = 0;
+
+  function syncChatLayout() {
+    const { messenger, bubble } = chatParts();
+    if (!messenger || !bubble) return;
+    if (!phoneQuery.matches) {
+      messenger.classList.add('chat-open');
+      if (typeof bubble.openChat !== 'function') {
+        if (layoutTries < 20) {
+          layoutTries += 1;
+          window.setTimeout(syncChatLayout, 250);
+        }
+        return;
+      }
+      bubble.openChat();
+      return;
+    }
+    if (!messenger.classList.contains('chat-open')) bubble.closeChat?.();
+  }
+
+  const compactForm = document.getElementById('chat-compact');
+  compactForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = document.getElementById('chat-compact-input') as HTMLInputElement | null;
+    const text = input?.value.trim() || '';
+    if (!text) return;
+    const { messenger, bubble } = chatParts();
+    if (!messenger || !bubble) return;
+    messenger.classList.add('chat-open');
+    bubble.openChat?.();
+    messenger.sendQuery?.(text);
+    if (input) input.value = '';
+  });
+
+  window.addEventListener('df-chat-open-changed', (event) => {
+    if (!phoneQuery.matches) return;
+    const { messenger } = chatParts();
+    if (!messenger) return;
+    const isOpen = Boolean((event as CustomEvent).detail?.isOpen);
+    messenger.classList.toggle('chat-open', isOpen);
+  });
+
+  window.addEventListener('df-messenger-loaded', syncChatLayout);
+  phoneQuery.addEventListener('change', syncChatLayout);
+  syncChatLayout();
+
+  window.addEventListener('df-user-input-entered', (event) => {
+    const input = String((event as CustomEvent).detail?.input || '').trim();
+    if (!input) return;
+    userLines.push(input);
+    if (userLines.length > 8) userLines.shift();
+  });
+
+  window.addEventListener('df-response-received', (event) => {
+    if (contactLock) return;
+    const detail = (event as CustomEvent).detail as { data?: { messages?: unknown } } | undefined;
+    const text = textFromMessengerMessages(detail?.data?.messages);
+    if (!shouldOfferContactButtons(text)) return;
+    const { messenger } = chatParts();
+    if (!messenger || typeof messenger.renderCustomCard !== 'function') return;
+    contactLock = true;
+    const note = provisionalNote(text, userLines);
+    messenger.renderCustomCard(contactButtonCard(TEL, LINE_URL, note, LINE_OA_ID));
+    window.setTimeout(() => {
+      contactLock = false;
+    }, 1000);
+  });
+
+  window.addEventListener('df-button-clicked', (event) => {
+    const href = String((event as CustomEvent).detail?.actionLink || '');
+    if (/^tel:/i.test(href)) {
+      pushDataLayer('phone_click', { event_category: 'conversion', event_label: 'chat_widget' });
+    } else if (/lin\.ee|line\.me\/R\/oaMessage/i.test(href)) {
+      pushDataLayer('line_click', { event_category: 'conversion', event_label: 'chat_widget' });
+    }
+  });
+</script>

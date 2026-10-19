@@ -61,7 +61,7 @@ import CancelPolicy from '../../../components/sections/CancelPolicy.astro';
 import { getAdLpQuickFacts } from '../../../data/adLpQuickFacts';
 import AdLpIntentGuide from '../../../components/sections/AdLpIntentGuide.astro';
 import { getAdLpIntentGuide, isNonEmergencyTroubleType } from '../../../data/adLpIntentGuides';
-import { carFvPriceHookMain, carFvPriceHookSub, CAR_PRICING, yen } from '../../../data/pricingConstants';
+import { carFvPriceHookMain, carFvPriceHookSub, CAR_PRICING, isTravelFeeExtra, travelFeeAreaLabel, yen } from '../../../data/pricingConstants';
 
 import { RegionProvider } from '../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../components/sections/QuestionnaireTestimonials';
@@ -171,7 +171,7 @@ const kwPriceHookSub = isBusKw
   ? `${displayName}へ出張対応｜税込見積`
   : [
       kwSpecificPrice && !kwPriceIsSeatLike ? kwSpecificPrice : null,
-      carFvPriceHookSub(displayName),
+      carFvPriceHookSub(displayName, regionName),
     ]
       .filter(Boolean)
       .join('｜');
@@ -238,7 +238,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
           intentLabel={quickFacts.intentLabel}
           priceLabel={quickFactsPriceLabel}
           durationLabel={quickFacts.durationLabel}
-          areaLabel={quickFacts.areaLabel(displayName)}
+          areaLabel={isTravelFeeExtra(regionName) ? travelFeeAreaLabel(displayName, regionName) : quickFacts.areaLabel(displayName)}
         />
       )}
       {answerFirst && (

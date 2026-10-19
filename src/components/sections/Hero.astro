@@ -59,7 +59,7 @@ const priceHookSub = adHero?.priceHookSub ?? (isTruck
   ? `4t合計 ${yen(TRUCK_PRICING.ton4Total)}〜｜税込`
   : isBus
     ? `運行スケジュールに合わせた出張対応｜税込見積`
-    : carFvPriceHookSub());
+    : carFvPriceHookSub(undefined, regionName));
 const priceHookNote = adHero?.priceHookNote ?? (isTruck || isBus
   ? '※現車確認後に確定／追加費用は作業前にご説明'
   : '※座席単体の基本洗浄。嘔吐・灯油・強い臭いは消臭セット別途');
@@ -205,7 +205,7 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
                         class="flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-0.5 rounded-2xl bg-[#06C755] px-4 py-3 text-center text-base font-black text-white shadow-xl transition-transform hover:bg-[#05a346] md:px-8 md:py-4 md:text-2xl"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="shrink-0" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                        <span class="whitespace-normal">LINEで写真見積もり</span>
+                        <span class="whitespace-normal">LINE問合せ</span>
                         <span class="whitespace-normal text-sm font-bold opacity-90">相談無料</span>
                     </a>
                     <p class="rounded-md bg-white/80 px-2 py-1 text-center text-xs font-bold leading-snug text-gray-800 shadow-sm md:text-sm">

@@ -99,7 +99,7 @@ import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
-import { CAR_PRICING, TRUCK_PRICING } from '@/data/pricingConstants';
+import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
     AUTHOR,
@@ -845,7 +845,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             url,
 
-            description: `${regionName}エリアへの出張費無料（一部地域除く）・事前見積もり対応`,
+            description: isTravelFeeExtra(regionName)
+              ? `${regionName}は${TRAVEL_FEE_EXTRA_NOTE}。事前見積もり対応`
+              : `${regionName}エリアへの出張費無料（一部地域除く）・事前見積もり対応`,
 
         },
 
@@ -905,7 +907,9 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
     const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
-        if (!needsOutletBorrow(regionName)) return faq;
+        const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+        if (!needsOutletBorrow(regionName)) return withTravel;
+        faq = withTravel;
         const powerRelated =
             faq.q.includes('電源') ||
             faq.q.includes('マンション') ||

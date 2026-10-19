@@ -8,6 +8,9 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/carinterierclean/';
 
 export const LINE_URL = 'https://lin.ee/Xs8Orp2';
 
+/** Basic ID behind LINE_URL. Opens LINE with the provisional booking already typed. */
+export const LINE_OA_ID = '@648itxlw';
+
 export const TEL = '070-8428-0866';
 
 /** 運営者情報（特定商取引法・LocalBusiness構造化データ・E-E-A-T強化用） */
