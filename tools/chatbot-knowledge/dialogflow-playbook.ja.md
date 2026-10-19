@@ -92,8 +92,8 @@
 
 1. https://conversational-agents.cloud.google.com を開き、作ったエージェントの中に入る
 2. 画面右上の歯車の右にあるアイコンにマウスを乗せる
-3. **Publish** または **Publish agent** と出たアイコンを押す。これが Dialogflow Messenger の窓です
-4. 左の縦アイコンにマウスを乗せ、**Integrations** と出たものを押しても同じ窓に行けます。中の Dialogflow Messenger で **Connect** を押す
+3. **Publish** または **Publish agent** と出たアイコンを押す。出てくる **Conversational Messenger** が、サイトに出すチャットの窓です。Dialogflow Messenger という文字は、この画面にはありません
+4. 左の縦アイコンにマウスを乗せ、**Integrations** と出たものを押しても同じです。中の **Conversational Messenger** で **Connect** を押す
 5. 開いた窓の中を下まで見る
    - すでに有効なら、英語のコードが出ている
    - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄があれば `carinteriorcleaning.jp` と書く（`https://` は付けない）。**Enable the unauthenticated API** を押す。押したあとにコードが出る
@@ -138,7 +138,7 @@ agent-id=ここにコピーした長い番号
 
 チャットの丸いボタンは、電話と LINE の帯の上に出ます。ボタンを押すと「車内清掃「特急便」」と「料金と汚れの相談」の窓が開きます。
 
-メッセージを送って `Something went wrong, please try again.` と出るときは、Google の Unauthenticated API がまだ無効です。Integrations の Dialogflow Messenger の窓で、次を押します。
+メッセージを送って `Something went wrong, please try again.` と出るときは、Google の Unauthenticated API がまだ無効です。**Conversational Messenger** の窓で、次を押します。
 
 - Environment は Draft
 - API は Unauthenticated API
