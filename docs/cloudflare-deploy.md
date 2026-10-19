@@ -43,15 +43,19 @@ Workers のプロジェクト設定を、次のまま（または次に直して
 
 ## チャットボタン用の3つの値
 
-Dialogflow の埋め込みコードからコピーした3つは、**Settings → Build → Build variables and secrets** に入れる。
+Cloudflare の **Build variables and secrets**（ビルド変数とシークレット）は使いません。画面に無くて問題ありません。
 
-| 名前 | 値 |
+埋め込みコードの3つは `src/data/chatWidget.ts` に書きます。
+
+| ファイルの欄 | 埋め込みコード |
 | --- | --- |
-| `PUBLIC_DIALOGFLOW_PROJECT_ID` | 埋め込みコードの `project-id` |
-| `PUBLIC_DIALOGFLOW_AGENT_ID` | 埋め込みコードの `agent-id` |
-| `PUBLIC_DIALOGFLOW_LOCATION` | 通常は `global` |
+| `projectId` | `project-id` |
+| `agentId` | `agent-id` |
+| `location` | 通常は `global` |
 
-このサイトは先に HTML を作ってから置く。ランタイムの Variables and Secrets に入れても、できた HTML には入らない。保存したあと Deployments で Retry deployment する。未設定のあいだ、チャットボタンは出ない。
+空のあいだ、チャットボタンは出ません。値を入れて `main` に入ると、次のビルドで右下に出ます。
+
+同じ名前の `PUBLIC_DIALOGFLOW_*` をビルド時に渡した場合は、ファイルよりそちらが優先されます。ランタイムの Variables and Secrets には入れません。
 
 ## ダッシュボード側でやらないこと
 

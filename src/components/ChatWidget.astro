@@ -3,16 +3,10 @@
  * Dialogflow CX Messenger (Vertex AI Conversational Agents).
  * Renders only when public, non-secret IDs are set. No API key belongs here.
  */
+import { resolveChatWidget } from '@/data/chatWidget';
 import { STORE_NAME } from '@/lib/site';
 
-const projectId = String(import.meta.env.PUBLIC_DIALOGFLOW_PROJECT_ID ?? '').trim();
-const agentId = String(import.meta.env.PUBLIC_DIALOGFLOW_AGENT_ID ?? '').trim();
-const location = String(import.meta.env.PUBLIC_DIALOGFLOW_LOCATION ?? 'global').trim();
-
-const projectOk = /^[a-z][a-z0-9-]{4,28}[a-z0-9]$/.test(projectId);
-const agentOk = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(agentId);
-const locationOk = /^(global|[a-z]+(?:-[a-z0-9]+)+)$/.test(location);
-const enabled = projectOk && agentOk && locationOk;
+const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.env);
 ---
 
 {

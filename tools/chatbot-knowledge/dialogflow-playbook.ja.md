@@ -115,29 +115,18 @@
 
 この3つは秘密の鍵ではない。サービスアカウントの JSON や API キーはコピーしない。
 
-## 8. Cloudflare に渡す
+## 8. 3つをチャットに貼る
 
-このサイトの公開先は Cloudflare です。Vercel は使いません。
+Cloudflare の **Build variables and secrets**（ビルド変数とシークレット）は探しません。画面に無くて大丈夫です。Variables and Secrets にも入れません。
 
-チャットの3つの名前は、HTML を作るとき（ビルド）に埋め込みます。公開後に動く「Variables and Secrets」へ入れても、ボタンは出ません。入れる場所は **Build variables and secrets**（ビルド変数）です。
-
-1. https://dash.cloudflare.com を開いてログインする
-2. 左の **Workers & Pages**（Workers と Pages）を押す
-3. このサイトの Worker を開く。名前は `carclean0511` のことが多い
-4. 上の **Settings**（設定）を押す
-5. 左または画面内の **Build**（ビルド）を押す
-6. **Build variables and secrets**（ビルド変数とシークレット）を探す
-7. Add で、次の3つを追加する。名前は左、値は右。種類はプレーンテキストでよい
+メモ帳の3つを、次の形でこのチャットに貼ってください。
 
 ```
-PUBLIC_DIALOGFLOW_PROJECT_ID     コピーした project-id
-PUBLIC_DIALOGFLOW_AGENT_ID       コピーした agent-id
-PUBLIC_DIALOGFLOW_LOCATION       global
+location=global
+project-id=ここにコピーした短い名前
+agent-id=ここにコピーした長い番号
 ```
 
-8. Save する
-9. **Deployments**（デプロイ）を開き、いちばん上の行で **Retry deployment**（再試行）を押す
+こちらでサイトのファイル `src/data/chatWidget.ts` に入れます。公開のサイト（`main`）に入った次の更新で、右下に丸いボタンが出ます。3つが空のあいだは、ボタンは出ません。
 
-再試行が終わり、ログに `Success: Build command completed` と `Deployed` が出ると、サイトの右下にチャットの丸いボタンが出ます。保存しただけでは出ません。
-
-Build command は `npm run build`、Deploy command は `npx wrangler deploy` のままにします。`astro add cloudflare` は押さないでください。
+サービスアカウントの JSON や API キーは貼らないでください。
