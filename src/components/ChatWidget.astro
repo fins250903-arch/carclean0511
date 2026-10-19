@@ -51,13 +51,22 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
 <script>
   import {
     contactButtonCard,
+    provisionalNote,
     shouldOfferContactButtons,
     textFromMessengerMessages,
   } from '@/lib/chatContactButtons';
   import { pushDataLayer } from '@/lib/analytics';
-  import { LINE_URL, TEL } from '@/lib/site';
+  import { LINE_OA_ID, LINE_URL, TEL } from '@/lib/site';
 
   let contactLock = false;
+  const userLines: string[] = [];
+
+  window.addEventListener('df-user-input-entered', (event) => {
+    const input = String((event as CustomEvent).detail?.input || '').trim();
+    if (!input) return;
+    userLines.push(input);
+    if (userLines.length > 8) userLines.shift();
+  });
 
   window.addEventListener('df-response-received', (event) => {
     if (contactLock) return;
@@ -69,7 +78,8 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
       | null;
     if (!messenger || typeof messenger.renderCustomCard !== 'function') return;
     contactLock = true;
-    messenger.renderCustomCard(contactButtonCard(TEL, LINE_URL));
+    const note = provisionalNote(text, userLines);
+    messenger.renderCustomCard(contactButtonCard(TEL, LINE_URL, note, LINE_OA_ID));
     window.setTimeout(() => {
       contactLock = false;
     }, 1000);
@@ -79,7 +89,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
     const href = String((event as CustomEvent).detail?.actionLink || '');
     if (/^tel:/i.test(href)) {
       pushDataLayer('phone_click', { event_category: 'conversion', event_label: 'chat_widget' });
-    } else if (/lin\.ee/i.test(href)) {
+    } else if (/lin\.ee|line\.me\/R\/oaMessage/i.test(href)) {
       pushDataLayer('line_click', { event_category: 'conversion', event_label: 'chat_widget' });
     }
   });
