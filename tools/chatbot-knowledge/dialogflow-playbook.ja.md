@@ -86,20 +86,22 @@
 
 うまくいっている答えは、すぐ合計を言わず、嘔吐・尿・灯油・タバコのどれかを聞き、座席1脚は 18,000円から、と返すものです。違う答えなら、保存を押し忘れていないか確認し、もう一度送る。
 
-## 6. サイトに出すスイッチ
+## 6. 英語のコードを出す
 
-左の Manage は探さなくてよい。画面上の「エージェントの公開」を押す。英語なら Publish、または Integrations の中の Dialogflow Messenger。
+このコードは「エージェントの公開」（Publish）には出ません。次の順で開きます。
 
-出てきた窓で次だけ変える。
-
-- 環境（Environment）: Draft または「下書き」のまま
-- API: Unauthenticated API。意味は「Googleにログインしていないお客さんも使える」
-- ドメインの欄があれば `carinteriorcleaning.jp` と書く。`https://` は付けない
-- 「有効にする」または Enable を押す
+1. https://conversational-agents.cloud.google.com を開く
+2. 作ったエージェントを押して、中に入る
+3. 画面上の **Manage**（管理）を押す
+4. 左の **Integrations**（統合）を押す
+5. **Dialogflow Messenger**（Dialogflow CX Messenger と書いてある場合もある）の **Connect**（接続）を押す
+6. 開いた窓の中を見る
+   - すでに有効なら、英語のコードが窓の中に出ている。下までスクロールする
+   - 出ていなければ、Environment は Draft、API は Unauthenticated API を選ぶ。ドメインの欄があれば `carinteriorcleaning.jp` と書く（`https://` は付けない）。**Enable the unauthenticated API**（有効にする）を押す。押したあとにコードが出る
 
 ## 7. コピーする3つ
 
-有効にすると、英語のタグが並んだコードが出る。次の3か所だけメモ帳にコピーする。
+窓の中の英語のコードから、引用符の中だけをメモ帳にコピーする。
 
 ```html
 <df-messenger
