@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-This repo is a **static Astro 6 site** (`output: 'static'`) — a set of Japanese landing pages (LP) for a car interior cleaning business, plus an MDX blog and a Decap CMS admin. There is no long-running backend; `api/*.js` are Vercel serverless functions for Decap CMS GitHub OAuth (only relevant in production on Vercel).
+This repo is a **static Astro 6 site** (`output: 'static'`) — a set of Japanese landing pages (LP) for a car interior cleaning business, plus an MDX blog and a Decap CMS admin. There is no long-running backend. Decap CMS GitHub OAuth is served by the Cloudflare Worker in `workers/cms-auth.js` (`/api/auth`, `/api/callback`). `api/*.js` are the previous Vercel functions and are not what production calls.
 
 ### Services / how to run
 
@@ -17,4 +17,4 @@ This repo is a **static Astro 6 site** (`output: 'static'`) — a set of Japanes
 - `sync:blog-admin-index` regenerates `public/admin/blog-index.json` from `src/content/blog` on every dev/build — expected output like `Generated blog-index.json with N posts`.
 - `.env` is git-ignored; copy `.env.example` to `.env`. The only local-relevant var is `PUBLIC_GTM_ID` (Google Tag Manager). `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` are only needed for the Decap CMS OAuth serverless functions on Vercel, not for local dev.
 - Node version is pinned to `22` via `.nvmrc`.
-- **Cloudflare Workers**: this is a **static** site. Deploy with `wrangler.jsonc` (`assets.directory: ./dist`). Do **not** run `npx astro add cloudflare` / install `@astrojs/cloudflare` — that adapter is for SSR only. Path redirects live in `public/_redirects` (copied to `dist/` at build). Decap CMS GitHub OAuth (`api/*.js`) is still Vercel-only until replaced with a Worker.
+- **Cloudflare Workers**: this is a **static** site plus a tiny OAuth Worker. Deploy with `wrangler.jsonc` (`assets.directory: ./dist`, `main: ./workers/cms-auth.js`). Do **not** run `npx astro add cloudflare` / install `@astrojs/cloudflare` — that adapter is for SSR only. Path redirects live in `public/_redirects` (copied to `dist/` at build). The Worker handles only `/api/*` (`run_worker_first`); it needs runtime secrets `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, not build variables.
