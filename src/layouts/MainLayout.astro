@@ -13,7 +13,6 @@ interface Props {
 	ogImage?: string;
 	noindex?: boolean;
 	ogType?: string;
-	hideChat?: boolean;
 }
 
 const { 
@@ -24,7 +23,6 @@ const {
 	ogImage = '/images/fv-passenger-hero.png',
 	noindex = false,
 	ogType = 'website',
-	hideChat = false,
 } = Astro.props;
 
 const resolvedCanonical = canonical ? canonicalUrl(canonical) : canonicalUrl(Astro.url.pathname);
@@ -86,6 +84,6 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 		)}
 		<slot />
 		<ConversionTracking />
-		{!hideChat && <ChatWidget />}
+		<ChatWidget />
 	</body>
 </html>

@@ -72,6 +72,10 @@
 
 / /regions/osaka/ 301
 
+# Intake form lives on Google Forms. Keep both slash variants ahead of the pattern rules.
+/reserve https://forms.gle/Je7XySCMQVfkAwZQ7 302
+/reserve/ https://forms.gle/Je7XySCMQVfkAwZQ7 302
+
 # Ads Editor often requests region URLs without a trailing slash. Cloudflare's
 # html_handling would answer those with a relative 307; an absolute 301 is stable.
 # These pattern rules must stay last: Cloudflare counts every rule after the first
