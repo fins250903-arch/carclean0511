@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !isNoindexRegionPathname(page),
+      filter: (page) => !isNoindexRegionPathname(page) && !page.includes('/reserve/'),
     }),
     mdx(),
   ],

@@ -1,0 +1,26 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ReserveForm from '../components/sections/ReserveForm';
+import { STORE_NAME } from '../lib/site';
+---
+
+<MainLayout
+  title={`洗浄のご依頼 | ${STORE_NAME}`}
+  description="車種、ご希望日時、お名前、郵便番号、電話番号、汚れと現場の電源・お水・作業スペースを選んで送信できます。"
+  canonical="/reserve"
+  noindex={true}
+  hideChat={true}
+>
+  <main class="min-h-screen bg-white px-4 py-8 pb-40">
+    <div class="mx-auto max-w-lg">
+      <p class="text-sm font-bold text-[#0066CC]">{STORE_NAME}</p>
+      <h1 class="mt-1 text-2xl font-black text-gray-900">洗浄のご依頼</h1>
+      <p class="mt-3 text-sm leading-relaxed text-gray-600">
+        チェックと選択が中心です。車種、お名前、郵便番号、電話番号だけ入力してください。送信した内容は、この画面と問い合わせメール、LINEの文章に残ります。
+      </p>
+      <div class="mt-6">
+        <ReserveForm client:load />
+      </div>
+    </div>
+  </main>
+</MainLayout>
