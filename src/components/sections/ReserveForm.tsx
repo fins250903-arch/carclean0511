@@ -2,9 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { trackFormSubmit, trackLineClick } from '@/lib/analytics';
 import {
   AREA_OPTIONS,
-  CAR_MODELS,
   EMPTY_RESERVE,
-  MODEL_UNLISTED,
   RESERVE_THANKS,
   SOIL_OPTIONS,
   TIME_SLOTS,
@@ -210,33 +208,22 @@ export default function ReserveForm() {
         <FieldError message={errors.vehicleClass} />
       </fieldset>
 
-      <fieldset id="field-model" className="space-y-3">
-        <legend className="text-base font-black text-gray-900">車種</legend>
-        <p className="text-sm leading-relaxed text-gray-600">近い車種を選んでください。リストにない場合や、名前がわからない場合も選べます。</p>
-        <ChoiceButtons
+      <div id="field-model">
+        <label htmlFor="model" className="mb-2 block text-base font-black text-gray-900">
+          車種
+        </label>
+        <input
+          id="model"
           name="model"
-          options={CAR_MODELS}
           value={draft.model}
-          onChange={(value) => {
-            setField('model', value);
-            if (value !== MODEL_UNLISTED) setField('modelDetail', '');
-          }}
-          columns={1}
+          onChange={(event) => setField('model', event.target.value)}
+          autoComplete="off"
+          maxLength={40}
+          placeholder="例：プリウス（空欄でも送れます）"
+          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-base outline-none focus:border-[#0066CC]"
         />
-        {draft.model === MODEL_UNLISTED && (
-          <input
-            id="modelDetail"
-            name="modelDetail"
-            value={draft.modelDetail}
-            onChange={(event) => setField('modelDetail', event.target.value)}
-            autoComplete="off"
-            maxLength={40}
-            placeholder="わかる場合だけ、車種名"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-base outline-none focus:border-[#0066CC]"
-          />
-        )}
-        <FieldError message={errors.model || errors.modelDetail} />
-      </fieldset>
+        <FieldError message={errors.model} />
+      </div>
 
       <div id="field-date" className="space-y-3">
         <label htmlFor="date" className="block text-base font-black text-gray-900">

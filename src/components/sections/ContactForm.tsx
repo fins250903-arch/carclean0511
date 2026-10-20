@@ -31,7 +31,7 @@ export default function ContactForm({ regionName: propRegionName }: { regionName
                             className="mb-8 flex flex-col items-center justify-center rounded-2xl bg-[#06C755] px-6 py-5 text-center text-white shadow-lg"
                         >
                             <span className="text-lg font-black">洗浄のご依頼はこちら</span>
-                            <span className="mt-1 text-sm font-bold">車種・日時・汚れをチェックで送信。のちほどLINEでご返信します。</span>
+                            <span className="mt-1 text-sm font-bold">お名前と電話番号だけで送れます。のちほどLINEでご返信します。</span>
                         </a>
                         <form
                             className="space-y-6"

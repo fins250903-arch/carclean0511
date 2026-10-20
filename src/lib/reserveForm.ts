@@ -51,32 +51,6 @@ export const AREA_OPTIONS = [
   'その他',
 ] as const;
 
-export const CAR_SUGGESTIONS = [
-  'プリウス',
-  'アクア',
-  'ヤリス',
-  'ノート',
-  'フィット',
-  'タント',
-  'N-BOX',
-  'スペーシア',
-  'ハスラー',
-  'シエンタ',
-  'ノア',
-  'ヴォクシー',
-  'セレナ',
-  'ステップワゴン',
-  'アルファード',
-  'ヴェルファイア',
-  'ハリアー',
-  'ハイエース',
-] as const;
-
-export const MODEL_UNLISTED = 'リストにない';
-export const MODEL_UNKNOWN = '車種名がわからない';
-
-export const CAR_MODELS = [...CAR_SUGGESTIONS, MODEL_UNLISTED, MODEL_UNKNOWN] as const;
-
 const NOTE_FOOTER = '※この文章をそのまま送信してください。';
 const LINE_LIMIT = 800;
 
@@ -99,14 +73,12 @@ const LINE_SLOT: Record<string, string> = {
 
 const classIds = new Set<string>(VEHICLE_CLASSES.map((item) => item.id));
 const slotIds = new Set<string>(TIME_SLOTS.map((item) => item.id));
-const modelSet = new Set<string>(CAR_MODELS);
 const soilSet = new Set<string>(SOIL_OPTIONS);
 const areaSet = new Set<string>(AREA_OPTIONS);
 
 export type ReserveDraft = {
   vehicleClass: string;
   model: string;
-  modelDetail: string;
   date: string;
   slot: string;
   name: string;
@@ -123,7 +95,6 @@ export type ReserveDraft = {
 export const EMPTY_RESERVE: ReserveDraft = {
   vehicleClass: '',
   model: '',
-  modelDetail: '',
   date: '',
   slot: '',
   name: '',
@@ -181,9 +152,7 @@ function optionalChoice(value: string, allowed: Set<string>, message: string, er
 export function validateReserve(draft: ReserveDraft, today = japanToday()): Record<string, string> {
   const errors: Record<string, string> = {};
   optionalChoice(draft.vehicleClass, classIds, '車の種類を選び直してください。', errors, 'vehicleClass');
-  optionalChoice(draft.model, modelSet, '車種を選び直してください。', errors, 'model');
-  const detail = draft.modelDetail.trim();
-  if (draft.model === MODEL_UNLISTED && detail.length > 40) errors.modelDetail = '車種名は40文字以内にしてください。';
+  if (draft.model.trim().length > 40) errors.model = '車種は40文字以内にしてください。';
   optionalChoice(draft.slot, slotIds, '時間帯を選び直してください。', errors, 'slot');
   if (draft.date && (!/^\d{4}-\d{2}-\d{2}$/.test(draft.date) || draft.date < today)) {
     errors.date = '今日以降の日付を選んでください。';
@@ -212,8 +181,6 @@ function withinLineLimit(text: string): boolean {
 }
 
 function modelText(draft: ReserveDraft): string {
-  if (draft.model === MODEL_UNKNOWN) return 'わからない';
-  if (draft.model === MODEL_UNLISTED) return clip(draft.modelDetail, 24) || 'リストにない';
   return clip(draft.model, 24);
 }
 
@@ -313,13 +280,6 @@ export function reservePayload(draft: ReserveDraft): Record<string, string> {
   };
 }
 
-function modelFromQuery(value: string | null): { model: string; modelDetail: string } {
-  const raw = clip(value ?? '', 40);
-  if (!raw) return { model: '', modelDetail: '' };
-  if (modelSet.has(raw)) return { model: raw, modelDetail: '' };
-  return { model: MODEL_UNLISTED, modelDetail: raw };
-}
-
 function splitList(value: string | null): string[] {
   if (!value) return [];
   return value.split(/[、,・]/).map((item) => item.trim()).filter(Boolean);
@@ -335,7 +295,7 @@ export function draftFromSearch(params: URLSearchParams): ReserveDraft {
   const ok = (value: string) => (value === 'OK' || value === 'NO' ? value : '');
   return {
     vehicleClass: classIds.has(vehicleClass) ? vehicleClass : '',
-    ...modelFromQuery(params.get('model')),
+    model: clip(params.get('model') ?? '', 40),
     date: /^\d{4}-\d{2}-\d{2}$/.test(params.get('date') ?? '') ? (params.get('date') as string) : '',
     slot: slotIds.has(slot) ? slot : '',
     name: clip(params.get('name') ?? '', 40),

@@ -6,7 +6,7 @@ import { STORE_NAME } from '../lib/site';
 
 <MainLayout
   title={`洗浄のご依頼 | ${STORE_NAME}`}
-  description="お名前と電話番号だけで洗浄をご依頼できます。車種は一覧から選べます。"
+  description="お名前と電話番号だけで洗浄をご依頼できます。車種はわかるときだけ書いてください。"
   canonical="/reserve"
   noindex={true}
   hideChat={true}
@@ -16,7 +16,7 @@ import { STORE_NAME } from '../lib/site';
       <p class="text-sm font-bold text-[#0066CC]">{STORE_NAME}</p>
       <h1 class="mt-1 text-2xl font-black text-gray-900">洗浄のご依頼</h1>
       <p class="mt-3 text-sm leading-relaxed text-gray-600">
-        必須はお名前とお電話番号だけです。車種は一覧から選び、該当しない場合や名前がわからない場合も選べます。送信した内容は、この画面と問い合わせメール、LINEの文章に残ります。
+        必須はお名前とお電話番号だけです。車種は名称を書く欄です。わからないときは空欄のまま送れます。送信した内容は、この画面と問い合わせメール、LINEの文章に残ります。
       </p>
       <div class="mt-6">
         <ReserveForm client:load />
