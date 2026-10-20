@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { trackFormSubmit, trackLineClick } from '@/lib/analytics';
 import {
   AREA_OPTIONS,
-  CAR_SUGGESTIONS,
+  CAR_MODELS,
   EMPTY_RESERVE,
+  MODEL_UNLISTED,
   RESERVE_THANKS,
   SOIL_OPTIONS,
   TIME_SLOTS,
@@ -194,7 +195,7 @@ export default function ReserveForm() {
   return (
     <form className="space-y-8" onSubmit={onSubmit} noValidate>
       <p className="rounded-2xl bg-blue-50 px-4 py-3 text-sm font-bold text-[#004C99]">
-        選んだ内容は、送信後もこの画面に残ります。{RESERVE_THANKS}
+        必須はお名前とお電話番号だけです。わからない項目は、空欄のまま送れます。選んだ内容は、送信後もこの画面に残ります。{RESERVE_THANKS}
       </p>
 
       <fieldset id="field-vehicleClass" className="space-y-3">
@@ -209,28 +210,33 @@ export default function ReserveForm() {
         <FieldError message={errors.vehicleClass} />
       </fieldset>
 
-      <div id="field-model">
-        <label htmlFor="model" className="mb-2 block text-base font-black text-gray-900">
-          車種
-        </label>
-        <input
-          id="model"
+      <fieldset id="field-model" className="space-y-3">
+        <legend className="text-base font-black text-gray-900">車種</legend>
+        <p className="text-sm leading-relaxed text-gray-600">近い車種を選んでください。リストにない場合や、名前がわからない場合も選べます。</p>
+        <ChoiceButtons
           name="model"
-          list="car-suggestions"
+          options={CAR_MODELS}
           value={draft.model}
-          onChange={(event) => setField('model', event.target.value)}
-          autoComplete="off"
-          maxLength={40}
-          placeholder="例：プリウス、アルファード"
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-base outline-none focus:border-[#0066CC]"
+          onChange={(value) => {
+            setField('model', value);
+            if (value !== MODEL_UNLISTED) setField('modelDetail', '');
+          }}
+          columns={1}
         />
-        <datalist id="car-suggestions">
-          {CAR_SUGGESTIONS.map((model) => (
-            <option key={model} value={model} />
-          ))}
-        </datalist>
-        <FieldError message={errors.model} />
-      </div>
+        {draft.model === MODEL_UNLISTED && (
+          <input
+            id="modelDetail"
+            name="modelDetail"
+            value={draft.modelDetail}
+            onChange={(event) => setField('modelDetail', event.target.value)}
+            autoComplete="off"
+            maxLength={40}
+            placeholder="わかる場合だけ、車種名"
+            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-base outline-none focus:border-[#0066CC]"
+          />
+        )}
+        <FieldError message={errors.model || errors.modelDetail} />
+      </fieldset>
 
       <div id="field-date" className="space-y-3">
         <label htmlFor="date" className="block text-base font-black text-gray-900">
@@ -263,6 +269,7 @@ export default function ReserveForm() {
       <div id="field-name">
         <label htmlFor="name" className="mb-2 block text-base font-black text-gray-900">
           お名前
+          <span className="ml-2 text-sm font-bold text-red-600">必須</span>
         </label>
         <input
           id="name"
@@ -298,6 +305,7 @@ export default function ReserveForm() {
       <div id="field-phone">
         <label htmlFor="phone" className="mb-2 block text-base font-black text-gray-900">
           お電話番号
+          <span className="ml-2 text-sm font-bold text-red-600">必須</span>
         </label>
         <input
           id="phone"

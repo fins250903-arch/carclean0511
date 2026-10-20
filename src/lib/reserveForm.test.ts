@@ -5,6 +5,7 @@ import { AREA_OPTIONS, SOIL_OPTIONS, buildReserveNote, reserveLineUrl, validateR
 const ready: ReserveDraft = {
   vehicleClass: 'sedan',
   model: 'プリウス',
+  modelDetail: '',
   date: '2026-10-25',
   slot: 'am',
   name: '山田',
@@ -38,7 +39,8 @@ test('selecting every option still keeps phone, power, and parking', () => {
   const note = buildReserveNote({
     ...ready,
     vehicleClass: 'minivan',
-    model: 'アルファードハイブリッドエグゼクティブラウンジ',
+    model: 'リストにない',
+    modelDetail: 'アルファードハイブリッドエグゼクティブラウンジ',
     name: '山田太郎山田太郎山田太郎',
     soils: [...SOIL_OPTIONS],
     areas: [...AREA_OPTIONS],
@@ -50,14 +52,57 @@ test('selecting every option still keeps phone, power, and parking', () => {
   assert.match(note, /作業車: NO/);
 });
 
-test('soon slot does not require a date, and a past date is rejected', () => {
-  const soon = validateReserve({ ...ready, slot: 'soon', date: '' }, '2026-10-20');
-  assert.equal(soon.date, undefined);
-  assert.equal(soon.slot, undefined);
+test('only a name and phone are required', () => {
+  const minimal = validateReserve(
+    {
+      ...ready,
+      vehicleClass: '',
+      model: '',
+      modelDetail: '',
+      date: '',
+      slot: '',
+      postal: '',
+      soils: [],
+      areas: [],
+      power: '',
+      water: '',
+      doors: '',
+      parking: '',
+    },
+    '2026-10-20',
+  );
+  assert.deepEqual(minimal, {});
+  const note = buildReserveNote({
+    ...ready,
+    vehicleClass: '',
+    model: '',
+    modelDetail: '',
+    date: '',
+    slot: '',
+    postal: '',
+    soils: [],
+    areas: [],
+    power: '',
+    water: '',
+    doors: '',
+    parking: '',
+  });
+  assert.match(note, /名前: 山田/);
+  assert.match(note, /電話: 090-1234-5678/);
+  assert.equal(note.includes('車種:'), false);
+  assert.equal(note.includes('郵便:'), false);
+
+  const unknown = validateReserve({ ...ready, model: '車種名がわからない', vehicleClass: '', date: '', slot: '' }, '2026-10-20');
+  assert.equal(unknown.model, undefined);
+  assert.match(buildReserveNote({ ...ready, model: '車種名がわからない' }), /車種: わからない（セダン）/);
+  const unlisted = validateReserve({ ...ready, model: 'リストにない', modelDetail: '' }, '2026-10-20');
+  assert.equal(unlisted.model, undefined);
+  assert.match(buildReserveNote({ ...ready, model: 'リストにない', modelDetail: 'アクアクロスオーバー' }), /車種: アクアクロスオーバー/);
+
   const past = validateReserve({ ...ready, date: '2026-10-01' }, '2026-10-20');
   assert.equal(typeof past.date, 'string');
-  const missing = validateReserve({ ...ready, vehicleClass: '', soils: [], power: '' }, '2026-10-20');
-  assert.equal(typeof missing.vehicleClass, 'string');
-  assert.equal(typeof missing.soils, 'string');
-  assert.equal(typeof missing.power, 'string');
+  const missing = validateReserve({ ...ready, name: '', phone: '' }, '2026-10-20');
+  assert.equal(typeof missing.name, 'string');
+  assert.equal(typeof missing.phone, 'string');
+  assert.equal(missing.vehicleClass, undefined);
 });
