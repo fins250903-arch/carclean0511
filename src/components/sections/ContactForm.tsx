@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRegion } from '@/lib/RegionContext';
 import { trackFormSubmit } from '@/lib/analytics';
-import { RESERVE_FORM_URL } from '@/lib/site';
 import { Mail } from 'lucide-react';
 
 export default function ContactForm({ regionName: propRegionName }: { regionName?: string }) {
@@ -27,9 +26,7 @@ export default function ContactForm({ regionName: propRegionName }: { regionName
 
                     <div className="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-inner border border-gray-100">
                         <a
-                            href={RESERVE_FORM_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/reserve/"
                             onClick={() => trackFormSubmit()}
                             className="mb-8 flex flex-col items-center justify-center rounded-2xl bg-[#06C755] px-6 py-5 text-center text-white shadow-lg"
                         >

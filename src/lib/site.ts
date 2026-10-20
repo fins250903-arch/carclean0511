@@ -8,8 +8,8 @@ export const INSTAGRAM_URL = 'https://www.instagram.com/carinterierclean/';
 
 export const LINE_URL = 'https://lin.ee/Xs8Orp2';
 
-/** Published Google Form. Paste this URL into the official LINE greeting or auto-reply. */
-export const RESERVE_FORM_URL = 'https://forms.gle/Je7XySCMQVfkAwZQ7';
+/** On-site checklist. Paste this URL into the official LINE greeting or auto-reply. */
+export const RESERVE_FORM_URL = `${SITE_URL}/reserve/`;
 
 /** Message for the official LINE account to send instead of the handwritten questionnaire. */
 export const LINE_INTAKE_REPLY = [
