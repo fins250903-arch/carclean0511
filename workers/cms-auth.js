@@ -49,11 +49,11 @@ function missingConfigMessage(missing, env) {
   return (
     `ブログ管理のGitHubログイン設定がありません（${missing.join(', ')}）。\n` +
     `いま本番の Worker に入っている設定名: ${present}\n` +
-    'Cloudflare → Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production → Add。' +
+    'Cloudflare → Workers & Pages → carclean0511 → Settings → ランタイム変数とシークレット → Add。' +
     'Type は Secret。Variable name は GITHUB_CLIENT_ID と GITHUB_CLIENT_SECRET。' +
     'Value は GitHub の OAuth App の Client ID と Client Secret。' +
-    '入力後、その画面の Deploy を押してください。' +
-    'Settings → Builds の Build variables に入れた値は、ログイン時には読まれません。'
+    '入力後、その欄の Deploy を押してください。' +
+    '同じ Settings 内の「変数とシークレット」は別の欄で、ここに入れてもログインには届きません。'
   );
 }
 

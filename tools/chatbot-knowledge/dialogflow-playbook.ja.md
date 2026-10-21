@@ -141,7 +141,7 @@
 
 ## 8. 3つをチャットに貼る
 
-Cloudflare の **Build variables and secrets**（ビルド変数とシークレット）は探しません。画面に無くて大丈夫です。Variables and Secrets にも入れません。
+Cloudflare の **Build variables and secrets**（ビルド変数とシークレット）は探しません。画面に無くて大丈夫です。「ランタイム変数とシークレット」にも入れません。
 
 メモ帳の3つを、次の形でこのチャットに貼ってください。
 

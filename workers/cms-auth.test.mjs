@@ -28,6 +28,7 @@ test('auth explains a missing client id', async () => {
   const body = await response.text();
   assert.match(body, /GITHUB_CLIENT_ID/);
   assert.match(body, /GITHUB_CLIENT_SECRET/);
+  assert.match(body, /ランタイム変数とシークレット/);
   assert.match(body, /WRONG_NAME/);
   assert.equal(body.includes('super-secret-value'), false);
   assert.equal(body.includes('ASSETS'), false);

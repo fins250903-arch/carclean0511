@@ -55,7 +55,7 @@ Cloudflare の **Build variables and secrets**（ビルド変数とシークレ�
 
 空のあいだ、チャットボタンは出ません。値を入れて `main` に入ると、次のビルドで右下に出ます。
 
-同じ名前の `PUBLIC_DIALOGFLOW_*` をビルド時に渡した場合は、ファイルよりそちらが優先されます。ランタイムの Variables and Secrets には入れません。
+同じ名前の `PUBLIC_DIALOGFLOW_*` をビルド時に渡した場合は、ファイルよりそちらが優先されます。ランタイム変数とシークレットには入れません。
 
 ## ダッシュボード側でやらないこと
 
@@ -76,7 +76,7 @@ Cloudflare の **Build variables and secrets**（ビルド変数とシークレ�
 `/admin/` の「GitHub でログイン」は `/api/auth` と `/api/callback` を使います。
 ページ本体は静的ファイルのまま、この2つのURLだけ `workers/cms-auth.js` が処理します。
 
-Cloudflare の **Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production** に、GitHub OAuth App と同じ値を入れてください。Type は **Secret** にし、最後にその画面の **Deploy** を押します。Settings → Builds の Build variables に入れても、ログイン時には読まれません。
+Cloudflare の **Workers & Pages → carclean0511 → Settings → ランタイム変数とシークレット** に、GitHub OAuth App と同じ値を入れてください。Type は **Secret** にし、最後にその欄の **Deploy** を押します。同じ Settings 内の「変数とシークレット」は別の欄です。そこに入れてもログインには届きません。
 
 `wrangler.jsonc` の `keep_vars` は true です。ここに入れた値は、その後の Git デプロイでは消えません。Secret ではなく Text で入れた値が、この設定より前のデプロイで消えていることがあります。そのときは同じ2つを入れ直し、Deploy を押してください。
 
