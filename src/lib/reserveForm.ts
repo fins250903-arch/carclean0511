@@ -40,6 +40,8 @@ export const SOIL_OPTIONS = [
   'その他',
 ] as const;
 
+export const INQUIRY_OPTIONS = ['お見積り', '作業対応相談', 'ご依頼希望'] as const;
+
 export const AREA_OPTIONS = [
   '座席1脚',
   '後部座席',
@@ -49,27 +51,6 @@ export const AREA_OPTIONS = [
   'トランク・荷室',
   'エアコン',
   'その他',
-] as const;
-
-export const CAR_SUGGESTIONS = [
-  'プリウス',
-  'アクア',
-  'ヤリス',
-  'ノート',
-  'フィット',
-  'タント',
-  'N-BOX',
-  'スペーシア',
-  'ハスラー',
-  'シエンタ',
-  'ノア',
-  'ヴォクシー',
-  'セレナ',
-  'ステップワゴン',
-  'アルファード',
-  'ヴェルファイア',
-  'ハリアー',
-  'ハイエース',
 ] as const;
 
 const NOTE_FOOTER = '※この文章をそのまま送信してください。';
@@ -96,6 +77,7 @@ const classIds = new Set<string>(VEHICLE_CLASSES.map((item) => item.id));
 const slotIds = new Set<string>(TIME_SLOTS.map((item) => item.id));
 const soilSet = new Set<string>(SOIL_OPTIONS);
 const areaSet = new Set<string>(AREA_OPTIONS);
+const inquirySet = new Set<string>(INQUIRY_OPTIONS);
 
 export type ReserveDraft = {
   vehicleClass: string;
@@ -111,6 +93,8 @@ export type ReserveDraft = {
   water: string;
   doors: string;
   parking: string;
+  purposes: string[];
+  requests: string;
 };
 
 export const EMPTY_RESERVE: ReserveDraft = {
@@ -127,6 +111,8 @@ export const EMPTY_RESERVE: ReserveDraft = {
   water: '',
   doors: '',
   parking: '',
+  purposes: [],
+  requests: '',
 };
 
 export function japanToday(now = new Date()): string {
@@ -166,30 +152,31 @@ function knownList(values: string[], allowed: Set<string>): string[] {
   return out;
 }
 
+function optionalChoice(value: string, allowed: Set<string>, message: string, errors: Record<string, string>, key: string) {
+  if (value && !allowed.has(value)) errors[key] = message;
+}
+
 export function validateReserve(draft: ReserveDraft, today = japanToday()): Record<string, string> {
   const errors: Record<string, string> = {};
-  if (!classIds.has(draft.vehicleClass)) errors.vehicleClass = '車の種類を選んでください。';
-  const model = draft.model.trim();
-  if (!model) errors.model = '車種を入力してください。';
-  else if (model.length > 40) errors.model = '車種は40文字以内にしてください。';
-  if (!slotIds.has(draft.slot)) errors.slot = '時間帯を選んでください。';
+  optionalChoice(draft.vehicleClass, classIds, '車の種類を選び直してください。', errors, 'vehicleClass');
+  if (draft.model.trim().length > 40) errors.model = '車種は40文字以内にしてください。';
+  optionalChoice(draft.slot, slotIds, '時間帯を選び直してください。', errors, 'slot');
   if (draft.date && (!/^\d{4}-\d{2}-\d{2}$/.test(draft.date) || draft.date < today)) {
     errors.date = '今日以降の日付を選んでください。';
-  } else if (draft.slot !== 'soon' && !draft.date) {
-    errors.date = '希望日を選んでください。最短でよい場合は「最短・日時は相談」を選んでください。';
   }
   const name = draft.name.trim();
   if (!name) errors.name = 'お名前を入力してください。';
   else if (name.length > 40) errors.name = 'お名前は40文字以内にしてください。';
-  if (!/^\d{3}-\d{4}$/.test(normalizePostal(draft.postal))) errors.postal = '郵便番号は7桁で入力してください。';
+  const postal = draft.postal.trim();
+  if (postal && !/^\d{3}-\d{4}$/.test(normalizePostal(postal))) errors.postal = '郵便番号は7桁で入力してください。';
   const phoneDigits = asciiDigits(draft.phone).replace(/\D/g, '');
   if (!/^0\d{9,10}$/.test(phoneDigits)) errors.phone = '電話番号を確認してください。';
-  if (!draft.soils.length) errors.soils = '汚れの種類を1つ以上選んでください。';
-  if (!draft.areas.length) errors.areas = '汚れの範囲を1つ以上選んでください。';
-  if (draft.power !== 'OK' && draft.power !== 'NO') errors.power = '電源を選んでください。';
-  if (draft.water !== 'OK' && draft.water !== 'NO') errors.water = 'お水を選んでください。';
-  if (draft.doors !== 'OK' && draft.doors !== 'NO') errors.doors = 'ドアを全開できるかを選んでください。';
-  if (draft.parking !== 'OK' && draft.parking !== 'NO') errors.parking = '作業車を停められるかを選んでください。';
+  const ok = (value: string) => value === '' || value === 'OK' || value === 'NO';
+  if (!ok(draft.power)) errors.power = '電源を選び直してください。';
+  if (!ok(draft.water)) errors.water = 'お水を選び直してください。';
+  if (!ok(draft.doors)) errors.doors = 'ドアを全開できるかを選び直してください。';
+  if (!ok(draft.parking)) errors.parking = '作業車を停められるかを選び直してください。';
+  if (draft.requests.trim().length > 400) errors.requests = 'その他ご要望は400文字以内にしてください。';
   return errors;
 }
 
@@ -201,37 +188,71 @@ function withinLineLimit(text: string): boolean {
   return encodeURIComponent(text).length <= LINE_LIMIT;
 }
 
+function modelText(draft: ReserveDraft): string {
+  return clip(draft.model, 24);
+}
+
+function requestLines(value: string): string[] {
+  return value
+    .split(/\n/)
+    .map((line) => line.trim().replace(/^[・\-－*]\s*/, '').trim())
+    .filter(Boolean)
+    .slice(0, 12)
+    .map((line) => clip(line, 80));
+}
+
+function blank(value: string): string {
+  return value.trim() ? value.trim() : '未記入';
+}
+
 export function buildReserveNote(draft: ReserveDraft): string {
-  let model = clip(draft.model, 24);
+  let model = modelText(draft);
   let name = clip(draft.name, 20);
   const classLabel = LINE_CLASS[draft.vehicleClass] ?? '';
-  const slotLabel = LINE_SLOT[draft.slot] ?? clip(draft.slot, 8);
-  const when = draft.date ? `${draft.date} ${slotLabel}` : slotLabel;
+  const slotLabel = LINE_SLOT[draft.slot] ?? '';
+  const when = [draft.date, slotLabel].filter(Boolean).join(' ');
   let soils = knownList(draft.soils, soilSet);
   let areas = knownList(draft.areas, areaSet);
+  let purposes = knownList(draft.purposes, inquirySet);
+  let bullets = requestLines(draft.requests);
   let includeClass = Boolean(classLabel);
   let includeFooter = true;
 
   const render = () => {
-    const lines = [
-      '【洗浄希望】',
-      includeClass ? `車種: ${model}（${classLabel}）` : `車種: ${model}`,
-      `日時: ${when}`,
-      `名前: ${name}`,
-      `郵便: ${normalizePostal(draft.postal)}`,
-      `電話: ${normalizePhone(draft.phone)}`,
-      `汚れ: ${soils.join('・')}`,
-      `範囲: ${areas.join('・')}`,
-      `電源: ${draft.power}`,
-      `水: ${draft.water}`,
-      `ドア全開: ${draft.doors}`,
-      `作業車: ${draft.parking}`,
-    ];
+    const lines = ['【お問合わせ】'];
+    const shownClass = includeClass ? classLabel : '';
+    if (model && shownClass) lines.push(`車種: ${model}（${shownClass}）`);
+    else if (model) lines.push(`車種: ${model}`);
+    else if (shownClass) lines.push(`車種: ${shownClass}`);
+    if (when) lines.push(`日時: ${when}`);
+    lines.push(`名前: ${name}`);
+    const postal = normalizePostal(draft.postal);
+    if (/^\d{3}-\d{4}$/.test(postal)) lines.push(`郵便: ${postal}`);
+    lines.push(`電話: ${normalizePhone(draft.phone)}`);
+    if (soils.length) lines.push(`汚れ: ${soils.join('・')}`);
+    if (areas.length) lines.push(`範囲: ${areas.join('・')}`);
+    if (draft.power === 'OK' || draft.power === 'NO') lines.push(`電源: ${draft.power}`);
+    if (draft.water === 'OK' || draft.water === 'NO') lines.push(`水: ${draft.water}`);
+    if (draft.doors === 'OK' || draft.doors === 'NO') lines.push(`ドア全開: ${draft.doors}`);
+    if (draft.parking === 'OK' || draft.parking === 'NO') lines.push(`作業車: ${draft.parking}`);
+    if (purposes.length) lines.push(`内容: ${purposes.join('・')}`);
+    if (bullets.length) {
+      lines.push('要望:');
+      for (const bullet of bullets) lines.push(`・${bullet}`);
+    }
     if (includeFooter) lines.push(NOTE_FOOTER);
     return lines.join('\n');
   };
 
   const shrink = () => {
+    if (includeFooter) {
+      includeFooter = false;
+      return true;
+    }
+    if (includeClass) {
+      includeClass = false;
+      return true;
+    }
     if (soils.length > 1) {
       soils = soils.slice(0, 1);
       return true;
@@ -240,8 +261,12 @@ export function buildReserveNote(draft: ReserveDraft): string {
       areas = areas.slice(0, 1);
       return true;
     }
-    if (includeClass) {
-      includeClass = false;
+    if (purposes.length > 1) {
+      purposes = purposes.slice(0, 1);
+      return true;
+    }
+    if (bullets.length > 1) {
+      bullets = bullets.slice(0, -1);
       return true;
     }
     if (model.length > 8) {
@@ -250,10 +275,6 @@ export function buildReserveNote(draft: ReserveDraft): string {
     }
     if (name.length > 2) {
       name = name.slice(0, name.length - 1);
-      return true;
-    }
-    if (includeFooter) {
-      includeFooter = false;
       return true;
     }
     return false;
@@ -272,21 +293,24 @@ export function reserveLineUrl(draft: ReserveDraft, oaId = LINE_OA_ID): string {
 }
 
 export function reservePayload(draft: ReserveDraft): Record<string, string> {
+  const model = modelText(draft);
   return {
-    _subject: `洗浄希望 ${clip(draft.name, 40)} / ${clip(draft.model, 40)}`,
-    車種: clip(draft.model, 40),
-    車格: labelOf(VEHICLE_CLASSES, draft.vehicleClass),
-    希望日: draft.date || '未定',
-    時間帯: labelOf(TIME_SLOTS, draft.slot),
+    _subject: `お問合わせ ${clip(draft.name, 40)} / ${model || '車種未記入'}`,
+    お問合わせ: knownList(draft.purposes, inquirySet).join('、') || '未記入',
+    その他ご要望: requestLines(draft.requests).map((line) => `・${line}`).join('\n') || '未記入',
+    車種: blank(model),
+    車格: draft.vehicleClass ? labelOf(VEHICLE_CLASSES, draft.vehicleClass) : '未記入',
+    希望日: draft.date || '未記入',
+    時間帯: draft.slot ? labelOf(TIME_SLOTS, draft.slot) : '未記入',
     お名前: clip(draft.name, 40),
-    郵便番号: normalizePostal(draft.postal),
+    郵便番号: /^\d{3}-\d{4}$/.test(normalizePostal(draft.postal)) ? normalizePostal(draft.postal) : '未記入',
     電話番号: normalizePhone(draft.phone),
-    汚れの種類: knownList(draft.soils, soilSet).join('、'),
-    汚れの範囲: knownList(draft.areas, areaSet).join('、'),
-    電源20m: draft.power,
-    お水: draft.water,
-    ドア全開: draft.doors,
-    作業車駐車: draft.parking,
+    汚れの種類: knownList(draft.soils, soilSet).join('、') || '未記入',
+    汚れの範囲: knownList(draft.areas, areaSet).join('、') || '未記入',
+    電源20m: blank(draft.power),
+    お水: blank(draft.water),
+    ドア全開: blank(draft.doors),
+    作業車駐車: blank(draft.parking),
   };
 }
 
@@ -317,5 +341,7 @@ export function draftFromSearch(params: URLSearchParams): ReserveDraft {
     water: ok(water),
     doors: ok(doors),
     parking: ok(parking),
+    purposes: knownList(splitList(params.get('purpose')), inquirySet),
+    requests: clip(params.get('requests') ?? '', 400),
   };
 }
