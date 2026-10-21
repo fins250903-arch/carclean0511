@@ -37,7 +37,7 @@
 
 本番は Cloudflare です。`/api/auth` と `/api/callback` は `workers/cms-auth.js` が処理します。
 
-Workers の **Settings → Variables and Secrets**（ビルド変数ではない）に入れ、再デプロイしてください。
+**Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production** を開き、Type は **Secret** で2つ追加します。最後にその画面の **Deploy** を押してください。Settings → Builds の Build variables に入れた値は、ログイン時には読まれません。
 
 | 変数名 | 値 |
 |--------|-----|

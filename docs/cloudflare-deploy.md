@@ -76,7 +76,9 @@ Cloudflare の **Build variables and secrets**（ビルド変数とシークレ�
 `/admin/` の「GitHub でログイン」は `/api/auth` と `/api/callback` を使います。
 ページ本体は静的ファイルのまま、この2つのURLだけ `workers/cms-auth.js` が処理します。
 
-Cloudflare の **Workers → Settings → Variables and Secrets**（ランタイム変数）に、GitHub OAuth App と同じ値を入れてください。ビルド変数に入れてもログイン時には読めません。
+Cloudflare の **Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production** に、GitHub OAuth App と同じ値を入れてください。Type は **Secret** にし、最後にその画面の **Deploy** を押します。Settings → Builds の Build variables に入れても、ログイン時には読まれません。
+
+`wrangler.jsonc` の `keep_vars` は true です。ここに入れた値は、その後の Git デプロイでは消えません。Secret ではなく Text で入れた値が、この設定より前のデプロイで消えていることがあります。そのときは同じ2つを入れ直し、Deploy を押してください。
 
 | 変数名 | 値 |
 | --- | --- |

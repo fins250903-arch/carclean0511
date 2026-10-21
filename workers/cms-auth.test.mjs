@@ -20,11 +20,17 @@ test('auth redirects to GitHub with the site callback', () => {
 });
 
 test('auth explains a missing client id', async () => {
-  const response = handleAuth(new Request('https://carinteriorcleaning.jp/api/auth/'), {});
+  const response = handleAuth(new Request('https://carinteriorcleaning.jp/api/auth/'), {
+    ASSETS: {},
+    WRONG_NAME: 'super-secret-value',
+  });
   assert.equal(response.status, 500);
   const body = await response.text();
   assert.match(body, /GITHUB_CLIENT_ID/);
   assert.match(body, /GITHUB_CLIENT_SECRET/);
+  assert.match(body, /WRONG_NAME/);
+  assert.equal(body.includes('super-secret-value'), false);
+  assert.equal(body.includes('ASSETS'), false);
 });
 
 test('callback posts the Decap CMS success payload', async () => {

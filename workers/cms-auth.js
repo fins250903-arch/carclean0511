@@ -36,6 +36,27 @@ function requireClient(env) {
   return { clientId, clientSecret, missing };
 }
 
+function configuredNames(env) {
+  if (!env || typeof env !== 'object') return [];
+  return Object.keys(env)
+    .filter((key) => key !== 'ASSETS')
+    .sort();
+}
+
+function missingConfigMessage(missing, env) {
+  const names = configuredNames(env);
+  const present = names.length ? names.join(', ') : 'なし';
+  return (
+    `ブログ管理のGitHubログイン設定がありません（${missing.join(', ')}）。\n` +
+    `いま本番の Worker に入っている設定名: ${present}\n` +
+    'Cloudflare → Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production → Add。' +
+    'Type は Secret。Variable name は GITHUB_CLIENT_ID と GITHUB_CLIENT_SECRET。' +
+    'Value は GitHub の OAuth App の Client ID と Client Secret。' +
+    '入力後、その画面の Deploy を押してください。' +
+    'Settings → Builds の Build variables に入れた値は、ログイン時には読まれません。'
+  );
+}
+
 export function handleAuth(request, env) {
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return text('Method not allowed', 405);
@@ -43,10 +64,7 @@ export function handleAuth(request, env) {
 
   const { clientId, missing } = requireClient(env);
   if (!clientId) {
-    return text(
-      `ブログ管理のGitHubログイン設定がありません（${missing.join(', ')}）。Cloudflare Worker のランタイム変数に GitHub OAuth App の値を入れて再デプロイしてください。`,
-      500,
-    );
+    return text(missingConfigMessage(missing, env), 500);
   }
 
   const redirectUri = `${siteOrigin(request)}/api/callback`;
@@ -77,7 +95,7 @@ export async function handleCallback(request, env, fetchImpl = fetch) {
   if (!code || missing.length) {
     return text(
       missing.length
-        ? `ブログ管理のGitHubログイン設定がありません（${missing.join(', ')}）。`
+        ? missingConfigMessage(missing, env)
         : 'GitHubから認可コードが返りませんでした。管理画面からログインし直してください。',
       400,
     );
