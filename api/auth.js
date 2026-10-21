@@ -1,6 +1,7 @@
 /**
  * GitHub OAuth entry for Decap CMS on Vercel.
- * Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in Vercel project env.
+ * Production on Cloudflare uses workers/cms-auth.js instead.
+ * Set GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in the host env.
  */
 export default function handler(req, res) {
   const clientId = process.env.GITHUB_CLIENT_ID;

@@ -33,14 +33,16 @@
 4. Callback URL: `https://carinteriorcleaning.jp/api/callback`
 5. Client ID / Client Secret を控える
 
-### 2. Vercel 環境変数（carclean0511 プロジェクト）
+### 2. Cloudflare Worker のランタイム変数
+
+本番は Cloudflare です。`/api/auth` と `/api/callback` は `workers/cms-auth.js` が処理します。
+
+Workers の **Settings → Variables and Secrets**（ビルド変数ではない）に入れ、再デプロイしてください。
 
 | 変数名 | 値 |
 |--------|-----|
 | `GITHUB_CLIENT_ID` | OAuth App の Client ID |
 | `GITHUB_CLIENT_SECRET` | OAuth App の Client Secret |
-
-設定後、プロジェクトを **Redeploy** してください。
 
 OAuth App の GitHub リポジトリアクセスは `fins250903-arch/carclean0511` への write 権限が必要です。
 

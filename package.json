@@ -26,7 +26,8 @@
     "chatbot:knowledge:test": "python3 ./tools/chatbot-knowledge/test_classify.py",
     "pdca:report": "node ./tools/ads-pdca/report.mjs",
     "pdca:ads-script": "node ./tools/ads-pdca/print-ads-script.mjs",
-    "pdca:test": "node --test ./tools/ads-pdca/test.mjs"
+    "pdca:test": "node --test ./tools/ads-pdca/test.mjs",
+    "test:cms-auth": "node --test ./workers/cms-auth.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

@@ -73,12 +73,15 @@ Cloudflare の **Build variables and secrets**（ビルド変数とシークレ�
 
 ## ブログ管理画面（Decap CMS）のログイン
 
-`api/auth.js` と `api/callback.js` は **Vercel のサーバーレス関数** です。
-静的ホストだけに移すと `/admin/` の GitHub ログインが動きません。
+`/admin/` の「GitHub でログイン」は `/api/auth` と `/api/callback` を使います。
+ページ本体は静的ファイルのまま、この2つのURLだけ `workers/cms-auth.js` が処理します。
 
-当面の選択肢:
+Cloudflare の **Workers → Settings → Variables and Secrets**（ランタイム変数）に、GitHub OAuth App と同じ値を入れてください。ビルド変数に入れてもログイン時には読めません。
 
-1. サイト本体だけ Cloudflare、CMS ログインは Vercel に残す
-2. あとから Cloudflare Worker で OAuth を作り直す
+| 変数名 | 値 |
+| --- | --- |
+| `GITHUB_CLIENT_ID` | OAuth App の Client ID |
+| `GITHUB_CLIENT_SECRET` | OAuth App の Client Secret |
 
-サイト公開そのものは 1 のままで進められます。
+OAuth App の Callback URL は `https://carinteriorcleaning.jp/api/callback` のままです。
+変数を保存したあと、もう一度デプロイすると `/admin/#/collections/blog` からログインできます。

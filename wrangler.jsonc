@@ -2,10 +2,19 @@
   // Static Astro site (output: "static") — do NOT add @astrojs/cloudflare.
   // That adapter is only for SSR / on-demand rendering and is what Cloudflare
   // tried to auto-install when this file was missing.
+  //
+  // `main` only serves Decap CMS GitHub OAuth (`/api/auth`, `/api/callback`).
+  // Every other request stays on static assets, including `_redirects`.
+  // Runtime secrets (Workers → Settings → Variables), not build variables:
+  //   GITHUB_CLIENT_ID
+  //   GITHUB_CLIENT_SECRET
   "name": "carclean0511",
+  "main": "./workers/cms-auth.js",
   "compatibility_date": "2026-09-19",
   "assets": {
     "directory": "./dist",
-    "html_handling": "auto-trailing-slash"
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
   }
 }
