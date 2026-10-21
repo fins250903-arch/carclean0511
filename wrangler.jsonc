@@ -11,6 +11,10 @@
   "name": "carclean0511",
   "main": "./workers/cms-auth.js",
   "compatibility_date": "2026-09-19",
+  // Dashboard plaintext vars are wiped by `wrangler deploy` unless this is true.
+  // Secrets are kept either way. Required so GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET
+  // entered under Settings → Variables and Secrets survive the next Git build.
+  "keep_vars": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
