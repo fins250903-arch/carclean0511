@@ -3,6 +3,7 @@ import { trackFormSubmit, trackLineClick } from '@/lib/analytics';
 import {
   AREA_OPTIONS,
   EMPTY_RESERVE,
+  INQUIRY_OPTIONS,
   RESERVE_THANKS,
   SOIL_OPTIONS,
   TIME_SLOTS,
@@ -118,6 +119,28 @@ export default function ReserveForm() {
   const today = useMemo(() => japanToday(), []);
   const preview = useMemo(() => (Object.keys(validateReserve(draft, today)).length ? '' : buildReserveNote(draft)), [draft, today]);
 
+  function setRequests(value: string) {
+    if (!draft.requests && value && !value.startsWith('・')) {
+      setField('requests', `・${value}`);
+      return;
+    }
+    setField('requests', value);
+  }
+
+  function onRequestKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
+    event.preventDefault();
+    const el = event.currentTarget;
+    const start = el.selectionStart ?? draft.requests.length;
+    const end = el.selectionEnd ?? start;
+    const next = `${draft.requests.slice(0, start)}\n・${draft.requests.slice(end)}`;
+    setField('requests', next);
+    const caret = start + 2;
+    window.requestAnimationFrame(() => {
+      el.selectionStart = el.selectionEnd = caret;
+    });
+  }
+
   function setField<K extends keyof ReserveDraft>(key: K, value: ReserveDraft[K]) {
     setDraft((current) => ({ ...current, [key]: value }));
     setErrors((existing) => {
@@ -195,6 +218,36 @@ export default function ReserveForm() {
       <p className="rounded-2xl bg-blue-50 px-4 py-3 text-sm font-bold text-[#004C99]">
         必須はお名前とお電話番号だけです。わからない項目は、空欄のまま送れます。選んだ内容は、送信後もこの画面に残ります。{RESERVE_THANKS}
       </p>
+
+      <fieldset id="field-purposes" className="space-y-3">
+        <legend className="text-base font-black text-gray-900">お問合わせ内容（複数選べます）</legend>
+        <CheckButtons
+          name="purposes"
+          options={INQUIRY_OPTIONS}
+          values={draft.purposes}
+          onChange={(value) => setField('purposes', value)}
+        />
+        <FieldError message={errors.purposes} />
+      </fieldset>
+
+      <div id="field-requests">
+        <label htmlFor="requests" className="mb-2 block text-base font-black text-gray-900">
+          その他ご要望
+        </label>
+        <p className="mb-2 text-sm leading-relaxed text-gray-600">1行ずつ、自由に書けます。空欄でも送れます。</p>
+        <textarea
+          id="requests"
+          name="requests"
+          value={draft.requests}
+          rows={4}
+          maxLength={400}
+          placeholder={'・作業できる曜日\n・写真はあとで送ります'}
+          onChange={(event) => setRequests(event.target.value)}
+          onKeyDown={onRequestKeyDown}
+          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-base leading-relaxed outline-none focus:border-[#0066CC]"
+        />
+        <FieldError message={errors.requests} />
+      </div>
 
       <fieldset id="field-vehicleClass" className="space-y-3">
         <legend className="text-base font-black text-gray-900">車の種類</legend>
