@@ -2,12 +2,15 @@ import { defineConfig, fontProviders } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import tailwindcss from '@tailwindcss/vite';
 import { isNoindexRegionPathname } from './src/data/noindexRegions.ts';
 
 export default defineConfig({
   site: 'https://carinteriorcleaning.jp',
   trailingSlash: 'always',
   output: 'static',
+  // Keep Astro 6 HTML whitespace so inline text does not collapse after the v7 default.
+  compressHTML: true,
   integrations: [
     react(),
     sitemap({
@@ -15,6 +18,9 @@ export default defineConfig({
     }),
     mdx(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   fonts: [
     {
       provider: fontProviders.local(),
