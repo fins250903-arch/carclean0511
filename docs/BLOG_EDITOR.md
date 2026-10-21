@@ -37,7 +37,7 @@
 
 本番は Cloudflare です。`/api/auth` と `/api/callback` は `workers/cms-auth.js` が処理します。
 
-**Workers & Pages → carclean0511 → Settings → Variables and Secrets → Production** を開き、Type は **Secret** で2つ追加します。最後にその画面の **Deploy** を押してください。Settings → Builds の Build variables に入れた値は、ログイン時には読まれません。
+**Workers & Pages → carclean0511 → Settings → ランタイム変数とシークレット** を開き、Type は **Secret** で2つ追加します。最後にその欄の **Deploy** を押してください。同じ Settings 内の「変数とシークレット」は別の欄です。そこに入れてもログインには届きません。
 
 | 変数名 | 値 |
 |--------|-----|

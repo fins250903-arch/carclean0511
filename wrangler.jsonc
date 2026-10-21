@@ -5,7 +5,7 @@
   //
   // `main` only serves Decap CMS GitHub OAuth (`/api/auth`, `/api/callback`).
   // Every other request stays on static assets, including `_redirects`.
-  // Runtime secrets (Workers → Settings → Variables), not build variables:
+  // Runtime secrets: Settings → ランタイム変数とシークレット (not 「変数とシークレット」).
   //   GITHUB_CLIENT_ID
   //   GITHUB_CLIENT_SECRET
   "name": "carclean0511",
@@ -13,7 +13,7 @@
   "compatibility_date": "2026-09-19",
   // Dashboard plaintext vars are wiped by `wrangler deploy` unless this is true.
   // Secrets are kept either way. Required so GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET
-  // entered under Settings → Variables and Secrets survive the next Git build.
+  // entered under Settings → ランタイム変数とシークレット survive the next Git build.
   "keep_vars": true,
   "assets": {
     "directory": "./dist",
