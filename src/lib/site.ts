@@ -13,7 +13,7 @@ export const RESERVE_FORM_URL = `${SITE_URL}/reserve/`;
 
 /** Message for the official LINE account to send instead of the handwritten questionnaire. */
 export const LINE_INTAKE_REPLY = [
-  '洗浄のご依頼は、次のフォームからチェックするだけで送れます。',
+  'お問合わせは、次のフォームから送れます。',
   RESERVE_FORM_URL,
   '送信後、LINEにてご返信いたします。今しばらくお待ちくださいませ。',
   '写真は、このトークへ送ってください。',
