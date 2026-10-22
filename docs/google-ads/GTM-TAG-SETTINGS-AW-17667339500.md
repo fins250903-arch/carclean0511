@@ -5,7 +5,7 @@
 | 項目 | 値 |
 |---|---|
 | コンバージョンID | `AW-17667339500` |
-| GTMコンテナ | `GTM-WLNM4GWN` |
+| GTMコンテナ | `GTM-NC9FX82V` |
 | 対象サイト | https://carinteriorcleaning.jp/ |
 | 電話リンク | `tel:07084280866` |
 | LINEリンク | `https://lin.ee/Xs8Orp2` |
@@ -83,7 +83,7 @@
 
 ## PART B：GTM（ラベル取得後）
 
-GTM: https://tagmanager.google.com/ → **GTM-WLNM4GWN**
+GTM: https://tagmanager.google.com/ → **GTM-NC9FX82V**
 
 ### B-1. 組み込み変数（1回だけ）
 

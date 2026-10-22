@@ -1,7 +1,7 @@
 # Google広告 × GTM × LP コンバージョン計測 セットアップ手順（作業用）
 
 対象サイト: https://carinteriorcleaning.jp/  
-GTMコンテナ: `GTM-WLNM4GWN`  
+GTMコンテナ: `GTM-NC9FX82V`  
 LINE URL: `https://lin.ee/Xs8Orp2`  
 電話番号: `070-8428-0866`（リンクは `tel:07084280866`）
 
@@ -80,7 +80,7 @@ LINEコンバージョンラベル:
 
 | 項目 | 状態 |
 |---|---|
-| GTMスニペット（`GTM-WLNM4GWN`） | `MainLayout.astro` に全ページ共通で設置済み |
+| GTMスニペット（`GTM-NC9FX82V`） | `MainLayout.astro` に全ページ共通で設置済み |
 | 電話・LINEクリック計測 | `ConversionTracking.astro` で **全ページの全ボタン** を計測 |
 | dataLayerイベント名 | `phone_click`（電話）/ `line_click`（LINE） |
 
@@ -90,21 +90,21 @@ Vercelダッシュボード → プロジェクト → Settings → Environment 
 
 | 変数名 | 値 |
 |---|---|
-| `PUBLIC_GTM_ID` | `GTM-WLNM4GWN` |
+| `PUBLIC_GTM_ID` | `GTM-NC9FX82V` |
 
-未設定でもコードのデフォルトで `GTM-WLNM4GWN` が使われますが、明示設定を推奨します。
+未設定でもコードのデフォルトで `GTM-NC9FX82V` が使われますが、明示設定を推奨します。
 
 ### デプロイ後の確認
 
 1. https://carinteriorcleaning.jp/ を開く
 2. ページのソースを表示（Ctrl+U）
-3. `GTM-WLNM4GWN` が含まれることを確認
+3. `GTM-NC9FX82V` が含まれることを確認
 
 ---
 
 ## 【STEP 3】GTM：タグ・トリガーの設定
 
-GTM: https://tagmanager.google.com/ → コンテナ **GTM-WLNM4GWN**
+GTM: https://tagmanager.google.com/ → コンテナ **GTM-NC9FX82V**
 
 ### 3-1. 組み込み変数を有効化
 
@@ -247,5 +247,5 @@ GTM: https://tagmanager.google.com/ → コンテナ **GTM-WLNM4GWN**
 1. **コンバージョンID**（`AW-` で始まる番号）
 2. **電話用コンバージョンラベル**
 3. **LINE用コンバージョンラベル**
-4. GTMコンテナ `GTM-WLNM4GWN` の **編集権限** はありますか？
+4. GTMコンテナ `GTM-NC9FX82V` の **編集権限** はありますか？
 5. 以前作ったコンバージョンアクションは **削除して新規作成** しますか？それとも **既存のラベルを使い続け** ますか？
