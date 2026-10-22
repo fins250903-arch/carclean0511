@@ -29,11 +29,26 @@ const {
 
 const resolvedCanonical = canonical ? canonicalUrl(canonical) : canonicalUrl(Astro.url.pathname);
 const fullOgImage = new URL(ogImage, SITE_URL).toString();
+
+/** Official GTM install snippet. Kept as a string so Astro does not bundle the script. */
+const gtmHeadSnippet = `<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');</script>
+<!-- End Google Tag Manager -->`;
+
+const gtmNoscriptSnippet = `<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->`;
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
+		<Fragment set:html={gtmHeadSnippet} />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
@@ -66,24 +81,10 @@ const fullOgImage = new URL(ogImage, SITE_URL).toString();
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
-		{GTM_ID && (
-			<script is:inline define:vars={{ gtmId: GTM_ID }}>
-				(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-				})(window,document,'script','dataLayer',gtmId);
-			</script>
-		)}
-
 		<slot name="head" />
 	</head>
 	<body>
-		{GTM_ID && (
-			<noscript>
-				<iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
-			</noscript>
-		)}
+		<Fragment set:html={gtmNoscriptSnippet} />
 		<slot />
 		<ConversionTracking />
 		{!hideChat && <ChatWidget />}

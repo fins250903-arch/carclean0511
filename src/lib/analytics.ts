@@ -1,5 +1,14 @@
-/** Google Tag Manager container ID (override via PUBLIC_GTM_ID in Vercel / .env) */
-export const GTM_ID = import.meta.env.PUBLIC_GTM_ID ?? 'GTM-WLNM4GWN';
+/**
+ * Google Tag Manager container ID.
+ * Override with PUBLIC_GTM_ID in .env when a different container is required.
+ * Empty or non-GTM values fall back to the container installed on every page.
+ */
+const GTM_ID_PATTERN = /^GTM-[A-Z0-9]+$/;
+const configuredGtmId = import.meta.env.PUBLIC_GTM_ID;
+export const GTM_ID =
+  typeof configuredGtmId === 'string' && GTM_ID_PATTERN.test(configuredGtmId)
+    ? configuredGtmId
+    : 'GTM-NC9FX82V';
 
 declare global {
   interface Window {

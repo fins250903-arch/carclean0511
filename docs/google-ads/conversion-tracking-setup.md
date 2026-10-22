@@ -11,7 +11,7 @@
 
 | 項目 | 状態 |
 |------|------|
-| GTMスニペット | `MainLayout.astro`（`GTM-WLNM4GWN`） |
+| GTMスニペット | `MainLayout.astro`（`GTM-NC9FX82V`） |
 | 全ボタン計測 | `ConversionTracking.astro` → `phone_click` / `line_click` |
 | FloatingCTA | 同上イベント（二重送信なし・1クリック1イベント） |
 | GTM側タグ | **要設定**（リンカー + 電話CV + LINE CV） |
@@ -43,7 +43,7 @@ GTMでは **カスタムイベント** トリガーで各イベント名と完�
 ## 環境変数
 
 ```bash
-PUBLIC_GTM_ID=GTM-WLNM4GWN
+PUBLIC_GTM_ID=GTM-NC9FX82V
 ```
 
 ---
