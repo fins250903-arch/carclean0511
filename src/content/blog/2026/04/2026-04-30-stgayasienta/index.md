@@ -1,11 +1,17 @@
 ---
-title: "【世田谷区】トヨタ シエンタの子供の車酔い嘔吐ニオイを解決！"
-date: 2026-04-30
-categories: 
-  - "jisseki"
-  - "toukyou"
-  - "seisou"
-coverImage: "トヨタ・シエンタ3retume-e1777541560824.jpg"
+date: 2026-10-22
+title: 【世田谷区】トヨタ シエンタの子供の車酔い嘔吐ニオイを解決！
+shortSlug: stgayasienta
+areaName: 東京都世田谷区
+coverImage: トヨタ・シエンタ3retume-e1777541560824.jpg
+seo:
+  noindex: false
+ogp:
+  og_type: article
+categories:
+  - jisseki
+  - toukyou
+  - seisou
 ---
 
 世田谷の閑静な住宅街。  
