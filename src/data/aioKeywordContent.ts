@@ -6,6 +6,9 @@ import {
   powerCapabilitySentence,
   powerFaqAnswer,
   powerHighlightLine,
+  mansionUndergroundParkingAnswer,
+  replaceCrossRegionPowerCopy,
+  sameDayUndergroundParkingAnswer,
   OUTLET_BORROW_SHORT,
   POWER_BRING_IN_PARKING_SENTENCE,
 } from '@/lib/powerPolicy';
@@ -902,7 +905,7 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
     extraFaqs: [
       {
         q: 'マンションの地下駐車場でも施工できますか？',
-        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。多くの地域は発電機・水タンク完備です。福岡県・沖縄県はコンセントが無いマンション駐車場や青空駐車場でも電源持込（5,000円）で対応します。群馬県などは家庭用100Vコンセントの借用です。詳しくはお電話でご確認ください。',
+        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。詳しくはお電話でご確認ください。',
       },
     ],
   },
@@ -953,6 +956,18 @@ export function getAioKeywordContent(slug: string): AioKeywordContent | undefine
   return AIO_KEYWORD_CONTENT[key];
 }
 
+/** Keep each region LP on its own power rule. Shared FAQ strings must not name other prefectures. */
+function localizeFaqToRegion(faq: FAQItem, regionName: string): FAQItem {
+  if (faq.q.includes('マンション地下でも当日')) {
+    return { ...faq, a: sameDayUndergroundParkingAnswer(regionName) };
+  }
+  if (faq.q.includes('マンションの地下駐車場でも施工')) {
+    return { ...faq, a: mansionUndergroundParkingAnswer(regionName) };
+  }
+  const a = replaceCrossRegionPowerCopy(faq.a, regionName);
+  return a === faq.a ? faq : { ...faq, a };
+}
+
 /** AIOContent / JSON-LD 共通FAQ（表示とスキーマの一致用） */
 export function buildAioContentFaqs(
   regionName: string,
@@ -974,33 +989,17 @@ export function buildAioContentFaqs(
     },
   ];
   const extended = includeExtended
-    ? AIO_EXTENDED_FAQS.map((faq) => {
-        if (!needsOutletBorrow(regionName)) return faq;
-        if (!(faq.q.includes('マンション地下') || faq.a.includes('電源不要') || faq.a.includes('電源・水道不要'))) {
-          return faq;
-        }
-        // Replace the whole regional exception. A shorter "電源不要" swap used to
-        // land inside the generator clause and produce a contradictory sentence.
-        const regionalException =
-          /多くのエリアでは発電機・水タンク完備で電源・水道不要です。福岡県・沖縄県は、コンセントが無いマンション駐車場や青空駐車場でも発電機の電源持込（5,000円）で対応します。群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/;
-        if (!regionalException.test(faq.a)) return faq;
-        return {
-          ...faq,
-          a: faq.a.replace(
-            regionalException,
-            `${OUTLET_BORROW_SHORT}。水道もお借りする場合があります。`,
-          ),
-        };
-      })
+    ? AIO_EXTENDED_FAQS.map((faq) => localizeFaqToRegion(faq, regionName))
     : [];
   const resolvedExtra = extraFaqs.map((faq) => {
-    if (!needsOutletBorrow(regionName)) return faq;
-    if (!(faq.a.includes('電源不要') || faq.a.includes('電源・水道不要') || faq.a.includes('発電機'))) return faq;
+    const local = localizeFaqToRegion(faq, regionName);
+    if (!needsOutletBorrow(regionName)) return local;
+    if (!(local.a.includes('電源不要') || local.a.includes('電源・水道不要') || local.a.includes('発電機'))) {
+      return local;
+    }
     return {
-      ...faq,
-      a: needsOutletBorrow(regionName)
-        ? `${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
-        : faq.a,
+      ...local,
+      a: `${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`,
     };
   });
   return [...core, ...extended, ...resolvedExtra];
@@ -1078,7 +1077,7 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
-    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要です。福岡県・沖縄県は、コンセントが無いマンション駐車場や青空駐車場でも発電機の電源持込（5,000円）で対応します。群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
+    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。発電機・水タンク完備で、電源・水道は不要です。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
   },
   {
     q: '夜中に車で吐かれた。今から来てくれる？最短どれくらいで到着する？',
