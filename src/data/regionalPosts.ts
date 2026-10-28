@@ -58,10 +58,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Okinawa",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Okinawa"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "那覇市"},
                 {"@type": "AdministrativeArea", "name": "浦添市"},
@@ -94,18 +90,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 <p class="text-sm mt-2">作業時間：3時間 / 費用：39,800円。<br>お客様の感想：大満足！「あんなにキツかったニオイが全くしなくなった」と驚きの声をいただきました。</p>
             </div>
 
-            <div class="mt-10 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border-2 border-amber-200 text-center shadow-sm">
-                <h4 class="text-xl font-bold text-amber-900 mb-3 text-center flex items-center justify-center gap-2">
-                    ✨ 福岡エリア限定・特別プランのご案内
-                </h4>
-                <p class="text-amber-800 mb-6 text-center">
-                    車内クリーニングとセットで、高級ガラスコーティングが驚きの価格に。<br />
-                    外装も内装も新車のような輝きを取り戻したい方はこちら。
-                </p>
-                <a href="/coating/fukuoka/" class="inline-block bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-all transform hover:scale-105 no-underline">
-                    ガラスコーティング＋車内清掃セットを見る
-                </a>
-            </div>
         `,
         image: getImage(1),
         aiSummary: `福岡県全域に対応する車内クリーニング・消臭洗浄の出張専門店です。福岡市・北九州市をはじめ県内各所へ迅速に伺い、急な「嘔吐（ゲロ）の清掃」や「しつこいタバコ・加齢臭」、福岡特有の「黄砂・PM2.5汚れ」を業務用機材で根こそぎ除去。最短即日のスピード対応で、お急ぎのトラブルも確実に解決します。`,
@@ -128,10 +112,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Fukuoka",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Fukuoka"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "福岡市"},
@@ -190,10 +170,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Hyogo",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Hyogo"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "神戸市"},
                 {"@type": "AdministrativeArea", "name": "姫路市"},
@@ -250,10 +226,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Osaka",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Osaka"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "大阪市"},
@@ -312,10 +284,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Aichi",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Aichi"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "名古屋市"},
                 {"@type": "AdministrativeArea", "name": "豊田市"},
@@ -370,10 +338,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Ibaraki",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Ibaraki"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "水戸市"},
                 {"@type": "AdministrativeArea", "name": "つくば市"},
@@ -426,10 +390,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Chiba",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Chiba"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "千葉市"},
@@ -509,10 +469,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Kanagawa",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Kanagawa"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "横浜市"},
                 {"@type": "AdministrativeArea", "name": "川崎市"},
@@ -568,10 +524,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Kumamoto",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Kumamoto"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "熊本市"},
                 {"@type": "AdministrativeArea", "name": "八代市"},
@@ -622,10 +574,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Kyoto",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Kyoto"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "京都市"},
@@ -678,10 +626,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Miyagi",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Miyagi"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "仙台市"},
                 {"@type": "AdministrativeArea", "name": "名取市"},
@@ -732,10 +676,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Saitama",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Saitama"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "さいたま市"},
@@ -790,10 +730,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Shiga",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Shiga"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "大津市"},
                 {"@type": "AdministrativeArea", "name": "草津市"},
@@ -843,10 +779,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Tochigi",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Tochigi"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "宇都宮市"},
@@ -900,10 +832,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "addressRegion": "Gunma",
                 "addressCountry": "JP"
             },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Gunma"
-            },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "前橋市"},
                 {"@type": "AdministrativeArea", "name": "高崎市"},
@@ -955,10 +883,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Tokyo",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Tokyo"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "世田谷区"},
@@ -1014,10 +938,6 @@ export const regionalPosts: Record<string, RegionalPost> = {
                 "@type": "PostalAddress",
                 "addressRegion": "Fukui",
                 "addressCountry": "JP"
-            },
-            "geo": {
-                "@type": "GeoShape",
-                "addressRegion": "Fukui"
             },
             "areaServed": [
                 {"@type": "AdministrativeArea", "name": "福井市"},

@@ -139,22 +139,6 @@ for (const r of regions) {
   }
 }
 
-// コーティングLP
-no += 1;
-rows.push(
-  row([
-    no,
-    'コーティングLP',
-    'fukuoka',
-    '福岡県',
-    '',
-    'ガラスコーティング＋車内クリーニング',
-    `${SITE}/coating/fukuoka/`,
-    '/coating/fukuoka/',
-    '福岡限定セット',
-  ]),
-);
-
 const csvBody = rows.join('\r\n');
 const bom = '\uFEFF';
 const outDir = path.join(root, 'docs');
@@ -167,7 +151,6 @@ const counts = {
   regionalMain: regions.length,
   regionalTruck: regions.length,
   keyword: regions.length * keywords.length,
-  coating: 1,
   total: no,
 };
 console.log(JSON.stringify({ outPath, counts, regions: regions.length, keywords: keywords.length }, null, 2));

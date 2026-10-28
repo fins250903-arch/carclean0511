@@ -70,6 +70,10 @@
 /regions/tokyo/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/tokyo/odor-removal/ 301
 /regions/saitama/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/saitama/odor-removal/ 301
 
+# Fukuoka glass coating was discontinued.
+/coating/fukuoka/ /regions/fukuoka/ 301
+/coating/fukuoka https://carinteriorcleaning.jp/regions/fukuoka/ 301
+
 / /regions/osaka/ 301
 
 # Ads Editor often requests region URLs without a trailing slash. Cloudflare's

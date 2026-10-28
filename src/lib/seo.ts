@@ -81,6 +81,7 @@ export interface Metadata {
 
 
 import {
+    dedupeFaqItems,
     faqData,
     truckFaqData,
     busFaqData,
@@ -94,8 +95,6 @@ import {
 import type { ServiceNiche } from '@/lib/niche';
 
 import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
-
-import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
@@ -164,12 +163,6 @@ type SchemaOptions = {
     /** HowTo スキーマ（作業フロー5ステップ）を含めるか。デフォルト: true */
     includeHowTo?: boolean;
 
-    /** Event スキーマ（キャンペーン情報）を含めるか。デフォルト: true */
-    includeEvent?: boolean;
-
-    /** キャンペーン終了日（ISO 8601 形式: 'YYYY-MM-DD'）。デフォルト: '2026-12-31' */
-    campaignEndDate?: string;
-
     /** 広告キーワードLP：WebPage / LocalBusiness の文言・画像 */
     adKeywordSchema?: {
 
@@ -197,24 +190,18 @@ type SchemaOptions = {
 
 
 
-function getDynamicRating(regionName: string) {
-
-    let hash = 0;
-
-    for (let i = 0; i < regionName.length; i++) {
-
-        hash = regionName.charCodeAt(i) + ((hash << 5) - hash);
-
-    }
-
-    const seed = Math.abs(hash);
-
-    const ratingValue = (4.7 + (seed % 4) * 0.1).toFixed(1); // 4.7 to 5.0
-
-    const reviewCount = (12 + (seed % 45)).toString(); // 12 to 56
-
-    return { ratingValue, reviewCount };
-
+/** Emit geo only as GeoCoordinates with both coordinates. GeoShape + addressRegion is not valid. */
+function schemaGeoCoordinates(geo: Record<string, unknown> | undefined) {
+    if (!geo || geo['@type'] !== 'GeoCoordinates') return undefined;
+    const { latitude, longitude } = geo;
+    const hasLatitude = typeof latitude === 'number' || (typeof latitude === 'string' && latitude !== '');
+    const hasLongitude = typeof longitude === 'number' || (typeof longitude === 'string' && longitude !== '');
+    if (!hasLatitude || !hasLongitude) return undefined;
+    return {
+        '@type': 'GeoCoordinates' as const,
+        latitude,
+        longitude,
+    };
 }
 
 
@@ -635,7 +622,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@context': 'https://schema.org',
 
-        '@type': ['AutoBodyShop', 'LocalBusiness'],
+        '@type': 'LocalBusiness',
 
         '@id': `${url}#localbusiness`,
 
@@ -681,7 +668,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         },
 
-        geo: regionOverrides?.localBusiness?.geo,
+        geo: schemaGeoCoordinates(regionOverrides?.localBusiness?.geo),
 
         openingHoursSpecification: {
 
@@ -698,50 +685,6 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             closes: '22:00',
 
         },
-
-        aggregateRating: {
-
-            '@type': 'AggregateRating',
-
-            ratingValue: getDynamicRating(regionName).ratingValue,
-
-            reviewCount: questionnaireTestimonials.length.toString(),
-
-            bestRating: '5',
-
-            worstRating: '1',
-
-        },
-
-        review: questionnaireTestimonials.map((t, index) => ({
-
-            '@type': 'Review',
-
-            reviewRating: {
-
-                '@type': 'Rating',
-
-                ratingValue: '5',
-
-                bestRating: '5',
-
-                worstRating: '1',
-
-            },
-
-            author: {
-
-                '@type': 'Person',
-
-                name: t.name,
-
-            },
-
-            reviewBody: t.comment,
-
-            datePublished: new Date(Date.now() - (index * 14 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0],
-
-        })),
 
         hasOfferCatalog: {
 
@@ -906,7 +849,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
     const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
-    const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
+    const mergedFaqs = dedupeFaqItems([...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
         const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
         if (!needsOutletBorrow(regionName)) return withTravel;
         faq = withTravel;
@@ -930,7 +873,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
                 .replace(/電源・水道不要/g, OUTLET_BORROW_SHORT)
                 .replace(/電源不要/g, OUTLET_BORROW_SHORT),
         };
-    });
+    }));
 
     const faqPage = {
 
@@ -1016,7 +959,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
                 '@id': `${url}#localbusiness`,
 
-                '@type': ['AutoBodyShop', 'LocalBusiness'],
+                '@type': 'LocalBusiness',
 
             },
 
@@ -1141,81 +1084,6 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    // ---- Event スキーマ（キャンペーン）----
-    const includeEvent = schemaOptions?.includeEvent !== false; // デフォルト: true
-    const campaignEndDate = schemaOptions?.campaignEndDate || '2026-12-31';
-    const event = includeEvent ? {
-
-        '@context': 'https://schema.org',
-
-        '@type': 'Event',
-
-        '@id': `${url}#campaign-event`,
-
-        name: `${displayName}WEBキャンペーン｜抗菌コート無料プレゼント`,
-
-        description: `${displayName}でWEBからご予約のお客様限定。通常2,000円の抗菌コートを無料でプレゼント。車内クリーニング後のきれいな状態を長持ちさせ、菌の繁殖を抑えます。`,
-
-        startDate: '2024-01-01',
-
-        endDate: campaignEndDate,
-
-        eventStatus: 'https://schema.org/EventScheduled',
-
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-
-        location: {
-
-            '@type': 'Place',
-
-            name: regionName,
-
-            address: {
-
-                '@type': 'PostalAddress',
-
-                addressRegion: regionName,
-
-                addressCountry: 'JP',
-
-            },
-
-        },
-
-        organizer: {
-
-            '@type': 'Organization',
-
-            name: STORE_NAME,
-
-            url: SITE_URL,
-
-        },
-
-        offers: {
-
-            '@type': 'Offer',
-
-            name: '抗菌コート無料プレゼント（WEB予約限定）',
-
-            price: '0',
-
-            priceCurrency: 'JPY',
-
-            availability: 'https://schema.org/InStock',
-
-            validFrom: '2024-01-01',
-
-            validThrough: campaignEndDate,
-
-            url,
-
-        },
-
-    } : null;
-
-
-
     const author = {
         '@context': 'https://schema.org',
         '@type': 'Person',
@@ -1243,9 +1111,6 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     }
     if (howTo) {
         baseSchemas.push(howTo);
-    }
-    if (event) {
-        baseSchemas.push(event);
     }
 
     return baseSchemas;

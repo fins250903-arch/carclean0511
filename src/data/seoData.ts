@@ -8,6 +8,19 @@ export interface FAQItem {
     a: string;
 }
 
+/** Keep the first FAQ when base and extra lists repeat the same question. */
+export function dedupeFaqItems(faqs: FAQItem[]): FAQItem[] {
+    const seen = new Set<string>();
+    const unique: FAQItem[] = [];
+    for (const faq of faqs) {
+        const key = faq.q.trim().replace(/\s+/g, ' ');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        unique.push(faq);
+    }
+    return unique;
+}
+
 export interface FlowItem {
     iconName: 'Phone' | 'Truck' | 'Sparkles' | 'CreditCard' | 'Wind';
     title: string;

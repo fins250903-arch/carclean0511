@@ -1,5 +1,3 @@
-import { canonicalUrl } from '@/lib/site';
-
 export interface Testimonial {
   id: string;
   name: string;
@@ -48,27 +46,3 @@ export const questionnaireTestimonials: Testimonial[] = [
     image: "/images/questionnaires/dogsit.jpg"
   }
 ];
-
-export const generateQuestionnaireJsonLd = (regionName: string, displayName: string, path: string) => {
-  const itemReviewedId = `${canonicalUrl(path)}#localbusiness`;
-
-  return questionnaireTestimonials.map((t, index) => ({
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@id": itemReviewedId,
-      "@type": "LocalBusiness"
-    },
-    "author": {
-      "@type": "Person",
-      "name": t.name
-    },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5"
-    },
-    "reviewBody": t.comment,
-    "datePublished": new Date(Date.now() - index * 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-  }));
-};

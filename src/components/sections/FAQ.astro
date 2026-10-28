@@ -1,5 +1,5 @@
 ---
-import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
+import { dedupeFaqItems, faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import { rewriteTravelFeeText } from '../../data/pricingConstants';
 import type { ServiceNiche } from '../../lib/niche';
 import { needsOutletBorrow, powerFaqAnswer } from '../../lib/powerPolicy';
@@ -15,7 +15,7 @@ const { niche = 'car', extraFaqs = [], regionName } = Astro.props;
 const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
 
-const faqs = [...baseFaqs, ...extraFaqs].map((faq) => {
+const faqs = dedupeFaqItems([...baseFaqs, ...extraFaqs].map((faq) => {
   const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
   if (!regionName || !needsOutletBorrow(regionName)) return withTravel;
   faq = withTravel;
@@ -40,7 +40,7 @@ const faqs = [...baseFaqs, ...extraFaqs].map((faq) => {
       .replace(/発電機・水タンク完備のため、/g, '')
       .replace(/電源不要の自社車両で、/g, ''),
   };
-});
+}));
 ---
 
 <section class="py-10 bg-gray-50" id="faq">
