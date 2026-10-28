@@ -1,5 +1,9 @@
 ---
-import { powerReasonDesc, powerReasonTitle } from '../../lib/powerPolicy';
+import {
+  powerReasonDesc,
+  powerReasonTitle,
+  needsOutletBorrow,
+} from '../../lib/powerPolicy';
 import { CAR_PRICING, yen } from '../../data/pricingConstants';
 
 interface Props {
@@ -8,6 +12,8 @@ interface Props {
 }
 
 const { displayName, regionName } = Astro.props;
+
+const borrowPower = needsOutletBorrow(regionName);
 
 const reasons = [
     {

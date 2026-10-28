@@ -18,7 +18,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: '都心エリア',
       displayName: '都心',
       localDispatchLine:
-        '千代田・中央・港・新宿・渋谷など都心5区を中心に出張。オフィス街の地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '千代田・中央・港・新宿・渋谷など都心5区を中心に出張。オフィス街の地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'jonan',
@@ -63,7 +63,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: '川崎エリア',
       displayName: '川崎',
       localDispatchLine:
-        '川崎区・幸区・中原・高津・宮前・多摩・麻生など川崎市全域へ即日出張。駅前マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '川崎区・幸区・中原・高津・宮前・多摩・麻生など川崎市全域へ即日出張。駅前マンション地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'shonan',
@@ -94,7 +94,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: 'さいたま市内',
       displayName: 'さいたま市',
       localDispatchLine:
-        '大宮・浦和・与野・岩槻などさいたま市全区へ出張。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '大宮・浦和・与野・岩槻などさいたま市全区へ出張。マンション地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'nanbu',
@@ -125,7 +125,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: 'ベイエリア',
       displayName: 'ベイエリア',
       localDispatchLine:
-        '千葉市・船橋・市川・浦安・習志野などベイエリアへ即日出張。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '千葉市・船橋・市川・浦安・習志野などベイエリアへ即日出張。マンション地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'tokatsu',
@@ -194,7 +194,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: '阪神エリア',
       displayName: '阪神',
       localDispatchLine:
-        '西宮・芦屋・尼崎・宝塚・伊丹など阪神エリアへ即日出張。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '西宮・芦屋・尼崎・宝塚・伊丹など阪神エリアへ即日出張。マンション地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'higashi-harima',
@@ -225,7 +225,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: '南部エリア',
       displayName: '南部',
       localDispatchLine:
-        '宇治・城陽・木津川・精華・長岡京など府南部へ即日出張。マンション駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '宇治・城陽・木津川・精華・長岡京など府南部へ即日出張。マンション駐車場も電源不要で施工可能です。',
     },
     {
       id: 'hokubu',
@@ -431,7 +431,7 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: 'つくば・県南エリア',
       displayName: 'つくば・県南',
       localDispatchLine:
-        'つくば・土浦・取手・守谷・牛久など県南エリアを専門に回る出張チームが対応。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        'つくば・土浦・取手・守谷・牛久など県南エリアを専門に回る出張チームが対応。マンション地下駐車場も電源不要で施工可能です。',
     },
     {
       id: 'ken-sei',
@@ -472,21 +472,21 @@ export const REGION_SUBAREAS: Record<string, RegionSubarea[]> = {
       label: '前橋・高崎エリア',
       displayName: '前橋・高崎',
       localDispatchLine:
-        '前橋・高崎・伊勢崎・玉村など県央エリアへ即日出張。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '前橋・高崎・伊勢崎・玉村など県央エリアへ即日出張。作業場所から20ｍ以内での家庭用１００Vコンセントをお借りします。',
     },
     {
       id: 'toma',
       label: '東毛エリア',
       displayName: '東毛',
       localDispatchLine:
-        '太田・桐生・館林・みどりなど東毛エリアを専門に回る出張チームが対応。営業車・送迎車の復旧にも柔軟対応。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '太田・桐生・館林・みどりなど東毛エリアを専門に回る出張チームが対応。営業車・送迎車の復旧にも柔軟対応。20ｍ以内での家庭用１００Vコンセントをお借りします。',
     },
     {
       id: 'hokubu',
       label: '北部エリア',
       displayName: '北部',
       localDispatchLine:
-        '渋川・沼田・みなかみなど県北部へ出張。冬場の灯油こぼし・観光ドライブの嘔吐にも対応。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+        '渋川・沼田・みなかみなど県北部へ出張。冬場の灯油こぼし・観光ドライブの嘔吐にも対応。20ｍ以内での家庭用１００Vコンセントをお借りします。',
     },
   ],
 };

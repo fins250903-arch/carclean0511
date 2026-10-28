@@ -1,7 +1,8 @@
 ---
-import { dedupeFaqItems, faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
+import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import { rewriteTravelFeeText } from '../../data/pricingConstants';
 import type { ServiceNiche } from '../../lib/niche';
+import { rewriteFaqForRegion } from '../../lib/powerPolicy';
 
 interface Props {
   niche?: ServiceNiche;
@@ -14,12 +15,10 @@ const { niche = 'car', extraFaqs = [], regionName } = Astro.props;
 const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
 
-const faqs = dedupeFaqItems(
-  [...baseFaqs, ...extraFaqs].map((faq) => ({
-    ...faq,
-    a: rewriteTravelFeeText(faq.a, regionName),
-  })),
-);
+const faqs = [...baseFaqs, ...extraFaqs].map((faq) => {
+  const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+  return rewriteFaqForRegion(withTravel, regionName);
+});
 ---
 
 <section class="py-10 bg-gray-50" id="faq">
