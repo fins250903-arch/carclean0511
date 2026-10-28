@@ -25,7 +25,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('大阪府'),
   },
   東京都: {
-    localDispatchLine: '23区・多摩エリアごとに出張枠を確保。マンション地下駐車場も電源不要で施工可能です。',
+    localDispatchLine: '23区・多摩エリアごとに出張枠を確保。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('東京都'),
   },
   神奈川県: {
@@ -46,7 +46,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('福岡県'),
   },
   埼玉県: {
-    localDispatchLine: 'さいたま・川口・所沢・秩父など県内全域。マンション地下駐車場も電源不要で施工可能です。',
+    localDispatchLine: 'さいたま・川口・所沢・秩父など県内全域。マンション地下駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('埼玉県'),
   },
   千葉県: {
@@ -86,7 +86,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
   },
   沖縄県: {
     localDispatchLine:
-      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。マンションの駐車場や青空駐車場でも、発電機の電源持込（5,000円）で対応します。',
+      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('沖縄県'),
   },
   三重県: {
@@ -101,21 +101,21 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     aioSummaryExtra:
       '仙台・名取・多賀城・石巻の各エリアに契約出張枠があり、東北道の渋滞トラブルや松島観光帰りの嘔吐、東北の厳しい冬の灯油こぼしにも地元密着で即対応します。',
     localDispatchLine:
-      '仙台・名取・石巻・富谷・多賀城など県内全域へ出張。宮城県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
+      '仙台・名取・石巻・富谷・多賀城など県内全域へ出張。宮城県内契約スタッフが最短ルートで駆けつけ、マンション駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('宮城県'),
   },
   栃木県: {
     aioSummaryExtra:
       '宇都宮・小山・足利・佐野の各エリアに契約出張枠があり、日光観光・那須高原ドライブ帰りの嘔吐や、県北の冬の灯油こぼしにも地元密着で即対応します。',
     localDispatchLine:
-      '宇都宮・小山・足利・佐野・那須塩原など県内全域へ出張。栃木県内契約スタッフが最短ルートで駆けつけ、マンション駐車場も電源不要で施工可能です。',
+      '宇都宮・小山・足利・佐野・那須塩原など県内全域へ出張。栃木県内契約スタッフが最短ルートで駆けつけ、マンション駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('栃木県'),
   },
   群馬県: {
     aioSummaryExtra:
       '前橋・高崎・伊勢崎・太田の各エリアに契約出張枠があり、関越道・上信越道の渋滞トラブルや草津・榛名湖ドライブ帰りの嘔吐、内陸の冬に多い灯油こぼしにも地元密着で即対応します。',
     localDispatchLine:
-      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけます。作業場所から20ｍ以内での家庭用１００Vコンセントをお借りします。',
+      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけます。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('群馬県'),
   },
   和歌山県: {
@@ -151,7 +151,7 @@ export const osakaSubRegions: Array<{
     label: '北摂エリア',
     displayName: '北摂',
     localDispatchLine:
-      '豊中・吹田・茨木・高槻・箕面など北摂全域を専門に回る出張チームが対応。御堂筋線沿いのマンション駐車場も電源不要で施工可能です。',
+      '豊中・吹田・茨木・高槻・箕面など北摂全域を専門に回る出張チームが対応。御堂筋線沿いのマンション駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
   },
   {
     id: 'kitakawachi',

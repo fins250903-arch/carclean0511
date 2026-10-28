@@ -11,7 +11,6 @@ import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../../lib/getRegionalBlogDisplayPosts';
 import { getLatestRegionalPosts } from '../../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../../lib/regionStructuredData';
-import { generateQuestionnaireJsonLd } from '../../../../data/questionnaireTestimonials';
 import JsonLd from '../../../../components/seo/JsonLd.astro';
 import type { ServiceNiche } from '../../../../lib/niche';
 import { travelFeeAreaLabel } from '../../../../data/pricingConstants';
@@ -123,12 +122,7 @@ const metadata = generateRegionMetadata(subareaLabel, path, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
   extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
 });
-const questionnaireStructuredData = generateQuestionnaireJsonLd(
-  regionName,
-  subareaLabel,
-  path,
-);
-const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const combinedJsonLd = jsonLdData;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(subareaLabel, regionName) : undefined;
