@@ -1,6 +1,5 @@
 ---
 import { regionAreaData } from '../../data/regionAreaData';
-import { needsOutletBorrow, OUTLET_BORROW_SHORT } from '../../lib/powerPolicy';
 
 interface Props {
   regionName: string;
@@ -23,9 +22,8 @@ if (regionData) {
   });
 }
 
-const defaultReassurance = needsOutletBorrow(regionName)
-  ? `お電話一本で、ご自宅やご指定の場所までプロの機材を積んで伺います。${OUTLET_BORROW_SHORT}。駐車場があれば作業可能です。`
-  : 'お電話一本で、ご自宅やご指定の場所までプロの機材を積んで伺います。電源不要、水道不要（タンク持参）ですので、駐車場があればどこでも作業可能です。';
+const defaultReassurance =
+  'お電話一本で、ご自宅やご指定の場所までプロの機材を積んで伺います。電源不要、水道不要（タンク持参）ですので、駐車場があればどこでも作業可能です。';
 ---
 
 <section class="py-10 bg-gray-50 border-y border-gray-100">

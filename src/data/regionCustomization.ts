@@ -85,7 +85,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
   },
   沖縄県: {
     localDispatchLine:
-      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。20ｍ以内での家庭用１００Vコンセントをお借りします。',
+      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。発電機・水タンクを積載しているため、電源は不要です。',
     hqFieldParagraph: defaultHqParagraph('沖縄県'),
   },
   三重県: {
@@ -114,7 +114,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     aioSummaryExtra:
       '前橋・高崎・伊勢崎・太田の各エリアに契約出張枠があり、関越道・上信越道の渋滞トラブルや草津・榛名湖ドライブ帰りの嘔吐、内陸の冬に多い灯油こぼしにも地元密着で即対応します。',
     localDispatchLine:
-      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけます。作業場所から20ｍ以内での家庭用１００Vコンセントをお借りします。',
+      '前橋・高崎・伊勢崎・太田・桐生など県内全域へ出張。群馬県内契約スタッフが最短ルートで駆けつけます。発電機・水タンクを積載しているため、電源は不要です。',
     hqFieldParagraph: defaultHqParagraph('群馬県'),
   },
   和歌山県: {
