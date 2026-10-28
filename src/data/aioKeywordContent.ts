@@ -941,6 +941,18 @@ export function getAioKeywordContent(slug: string): AioKeywordContent | undefine
   return AIO_KEYWORD_CONTENT[key];
 }
 
+/** Keep each region LP on its own power rule. Shared FAQ strings must not name other prefectures. */
+function localizeFaqToRegion(faq: FAQItem, regionName: string): FAQItem {
+  if (faq.q.includes('マンション地下でも当日')) {
+    return { ...faq, a: sameDayUndergroundParkingAnswer(regionName) };
+  }
+  if (faq.q.includes('マンションの地下駐車場でも施工')) {
+    return { ...faq, a: mansionUndergroundParkingAnswer(regionName) };
+  }
+  const a = replaceCrossRegionPowerCopy(faq.a, regionName);
+  return a === faq.a ? faq : { ...faq, a };
+}
+
 /** AIOContent / JSON-LD 共通FAQ（表示とスキーマの一致用） */
 export function buildAioContentFaqs(
   regionName: string,
