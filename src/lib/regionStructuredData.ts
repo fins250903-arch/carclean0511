@@ -86,24 +86,6 @@ export function buildRegionSeoOverrides({
     }
   }
 
-  // Prefecture pages do not store latitude/longitude. A GeoShape that only
-  // sets addressRegion is not valid GeoCoordinates, so geo is omitted.
-  const storedGeo = post?.structuredData?.geo as
-    | { '@type'?: string; latitude?: unknown; longitude?: unknown }
-    | undefined;
-  const geo =
-    storedGeo?.['@type'] === 'GeoCoordinates' &&
-    storedGeo.latitude != null &&
-    storedGeo.latitude !== '' &&
-    storedGeo.longitude != null &&
-    storedGeo.longitude !== ''
-      ? {
-          '@type': 'GeoCoordinates' as const,
-          latitude: storedGeo.latitude,
-          longitude: storedGeo.longitude,
-        }
-      : undefined;
-
   return {
     displayName,
     aiSummary: aiSummaryOverride ?? post?.aiSummary,
@@ -111,7 +93,15 @@ export function buildRegionSeoOverrides({
     localBusiness: {
       areaServed,
       description,
-      ...(geo ? { geo } : {}),
+      geo: post?.structuredData?.geo
+        ? {
+            ...post.structuredData.geo,
+            addressRegion: regionName,
+          }
+        : {
+            '@type': 'GeoShape',
+            addressRegion: regionName,
+          },
     },
   };
 }

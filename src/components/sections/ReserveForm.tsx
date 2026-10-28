@@ -376,7 +376,6 @@ export default function ReserveForm() {
 
       <fieldset id="field-power" className="space-y-3">
         <legend className="text-base font-black text-gray-900">電源（コンセントから20m以内）</legend>
-        <p className="text-sm font-bold text-gray-600">無い場合も外部電源の持込が可能です（別途費用）。</p>
         <ChoiceButtons name="power" options={['OK', 'NO']} value={draft.power} onChange={(value) => setField('power', value)} />
         <FieldError message={errors.power} />
       </fieldset>

@@ -11,6 +11,7 @@ import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplayPosts';
 import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
+import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 import type { ServiceNiche } from '../../../lib/niche';
 import { regionPath } from '../../../lib/niche';
@@ -116,7 +117,12 @@ const jsonLdData = generateJsonLd(
   regionOverrides,
   niche,
 );
-const combinedJsonLd = jsonLdData;
+const questionnaireStructuredData = generateQuestionnaireJsonLd(
+  REGION_NAME,
+  `${displayName}（大阪府）`,
+  path,
+);
+const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
 const subareaLabel = `${displayName}（大阪府）`;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, REGION_NAME) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(subareaLabel, REGION_NAME) : undefined;
