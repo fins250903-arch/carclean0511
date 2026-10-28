@@ -98,7 +98,7 @@ import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl }
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
-import { needsOutletBorrow, OUTLET_BORROW_SHORT, powerFlowDesc, powerFaqAnswer } from '@/lib/powerPolicy';
+import { powerFlowDesc, powerSupplyName, rewriteFaqForRegion } from '@/lib/powerPolicy';
 import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
@@ -908,28 +908,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
     const mergedFaqs = [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
         const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
-        if (!needsOutletBorrow(regionName)) return withTravel;
-        faq = withTravel;
-        const powerRelated =
-            faq.q.includes('電源') ||
-            faq.q.includes('マンション') ||
-            faq.a.includes('発電機') ||
-            faq.a.includes('電源・水道') ||
-            faq.a.includes('電源不要');
-        if (!powerRelated) return faq;
-        if (faq.q.includes('電源') || faq.q.includes('水道や電源')) {
-            return { ...faq, a: powerFaqAnswer(regionName) };
-        }
-        return {
-            ...faq,
-            a: faq.a
-                .replace(/電源・水道の確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
-                .replace(/電源確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
-                .replace(/自社車両に高性能発電機を搭載しておりますので、現場での電源確保は不要です[。.]?/g, `${OUTLET_BORROW_SHORT}。`)
-                .replace(/電源不要の自社車両で、/g, '')
-                .replace(/電源・水道不要/g, OUTLET_BORROW_SHORT)
-                .replace(/電源不要/g, OUTLET_BORROW_SHORT),
-        };
+        return rewriteFaqForRegion(withTravel, regionName);
     });
 
     const faqPage = {
@@ -1109,9 +1088,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             {
                 '@type': 'HowToSupply',
-                name: needsOutletBorrow(regionName)
-                    ? `出張用専用車両（${OUTLET_BORROW_SHORT}）`
-                    : '出張用専用車両（電源・水道不要）',
+                name: powerSupplyName(regionName),
             },
 
             { '@type': 'HowToSupply', name: '100℃スチーム洗浄機' },

@@ -41,7 +41,8 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
     hqFieldParagraph: defaultHqParagraph('愛知県'),
   },
   福岡県: {
-    localDispatchLine: '福岡・北九州・筑豊・筑後の各エリアへ出張。博多駅周辺の法人車庫も対応可能です。',
+    localDispatchLine:
+      '福岡・北九州・筑豊・筑後の各エリアへ出張。博多駅周辺の法人車庫も対応可能です。マンションの駐車場や青空駐車場でも、発電機の電源持込（5,000円）で対応します。',
     hqFieldParagraph: defaultHqParagraph('福岡県'),
   },
   埼玉県: {
@@ -85,7 +86,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
   },
   沖縄県: {
     localDispatchLine:
-      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。20ｍ以内での家庭用１００Vコンセントをお借りします。',
+      '那覇・浦添・うるまなど沖縄本島全域。高湿度・カビ臭の専門洗浄にも対応。マンションの駐車場や青空駐車場でも、発電機の電源持込（5,000円）で対応します。',
     hqFieldParagraph: defaultHqParagraph('沖縄県'),
   },
   三重県: {

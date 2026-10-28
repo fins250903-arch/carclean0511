@@ -2,15 +2,16 @@ import type { FAQItem } from '@/data/seoData';
 import { CAR_PRICING, isTravelFeeExtra, TRAVEL_FEE_EXTRA_NOTE, yen } from '@/data/pricingConstants';
 import {
   needsOutletBorrow,
+  needsPowerBringIn,
   powerCapabilitySentence,
   powerFaqAnswer,
+  powerHighlightLine,
   OUTLET_BORROW_SHORT,
+  POWER_BRING_IN_PARKING_SENTENCE,
 } from '@/lib/powerPolicy';
 
 function powerPhrase(regionName: string): string {
-  return needsOutletBorrow(regionName)
-    ? OUTLET_BORROW_SHORT
-    : '電源・水道不要（発電機・水タンク完備）';
+  return powerHighlightLine(regionName);
 }
 
 export type EmergencyChecklistRow = {
@@ -893,13 +894,15 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   },
   'dengen-fuyou': {
     answerFirst: (regionName) =>
-      needsOutletBorrow(regionName)
-        ? `【結論】${regionName}の出張施工では、${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
-        : `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
+      needsPowerBringIn(regionName)
+        ? `【結論】${regionName}の出張施工は、発電機を搭載しているのでコンセントが無くても対応します。${POWER_BRING_IN_PARKING_SENTENCE}`
+        : needsOutletBorrow(regionName)
+          ? `【結論】${regionName}の出張施工では、${OUTLET_BORROW_SHORT}。作業場所からコンセントまでおおむね20m以内をご用意ください。水道もお借りする場合があります。`
+          : `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
     extraFaqs: [
       {
         q: 'マンションの地下駐車場でも施工できますか？',
-        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。電源・水道の条件はエリアにより異なります（多くの地域は発電機・水タンク完備、沖縄・群馬などは家庭用100Vコンセントの借用）。詳しくはお電話でご確認ください。',
+        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。多くの地域は発電機・水タンク完備です。福岡県・沖縄県はコンセントが無いマンション駐車場や青空駐車場でも電源持込（5,000円）で対応します。群馬県などは家庭用100Vコンセントの借用です。詳しくはお電話でご確認ください。',
       },
     ],
   },
@@ -973,19 +976,21 @@ export function buildAioContentFaqs(
   const extended = includeExtended
     ? AIO_EXTENDED_FAQS.map((faq) => {
         if (!needsOutletBorrow(regionName)) return faq;
-        if (faq.q.includes('マンション地下') || faq.a.includes('電源不要') || faq.a.includes('電源・水道不要')) {
-          return {
-            ...faq,
-            a: faq.a
-              .replace(
-                /多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/,
-                `${OUTLET_BORROW_SHORT}。水道もお借りする場合があります。`,
-              )
-              .replace(/電源・水道不要/g, OUTLET_BORROW_SHORT)
-              .replace(/電源不要/g, OUTLET_BORROW_SHORT),
-          };
+        if (!(faq.q.includes('マンション地下') || faq.a.includes('電源不要') || faq.a.includes('電源・水道不要'))) {
+          return faq;
         }
-        return faq;
+        // Replace the whole regional exception. A shorter "電源不要" swap used to
+        // land inside the generator clause and produce a contradictory sentence.
+        const regionalException =
+          /多くのエリアでは発電機・水タンク完備で電源・水道不要です。福岡県・沖縄県は、コンセントが無いマンション駐車場や青空駐車場でも発電機の電源持込（5,000円）で対応します。群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/;
+        if (!regionalException.test(faq.a)) return faq;
+        return {
+          ...faq,
+          a: faq.a.replace(
+            regionalException,
+            `${OUTLET_BORROW_SHORT}。水道もお借りする場合があります。`,
+          ),
+        };
       })
     : [];
   const resolvedExtra = extraFaqs.map((faq) => {
@@ -1019,9 +1024,11 @@ export function buildVoiceEmergencyLine(regionName: string): string {
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
   const powerRegion = powerRegionName ?? regionName;
-  const powerBit = needsOutletBorrow(powerRegion)
-    ? `${OUTLET_BORROW_SHORT}。`
-    : '電源・水道不要（発電機・水タンク完備）。';
+  const powerBit = needsPowerBringIn(powerRegion)
+    ? POWER_BRING_IN_PARKING_SENTENCE
+    : needsOutletBorrow(powerRegion)
+      ? `${OUTLET_BORROW_SHORT}。`
+      : '電源・水道不要（発電機・水タンク完備）。';
   const travelBit = isTravelFeeExtra(regionName) || isTravelFeeExtra(powerRegion)
     ? `税込。${TRAVEL_FEE_EXTRA_NOTE}`
     : `税込・${regionName}は出張費無料`;
@@ -1071,7 +1078,7 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
-    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要ですが、沖縄県・群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
+    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。多くのエリアでは発電機・水タンク完備で電源・水道不要です。福岡県・沖縄県は、コンセントが無いマンション駐車場や青空駐車場でも発電機の電源持込（5,000円）で対応します。群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
   },
   {
     q: '夜中に車で吐かれた。今から来てくれる？最短どれくらいで到着する？',
