@@ -1,5 +1,10 @@
 import { KW_IMAGES } from '@/lib/assets513';
-import { needsOutletBorrow, OUTLET_BORROW_SHORT } from '@/lib/powerPolicy';
+import {
+  needsOutletBorrow,
+  needsPowerBringIn,
+  OUTLET_BORROW_SHORT,
+  POWER_BRING_IN_PARKING_SENTENCE,
+} from '@/lib/powerPolicy';
 import { LPO_AD_PAGES } from './lpAdPages';
 
 /** 広告LP（乗用車・1キーワード1URL）。FV は `public/images/kw/`（本番配信済み） */
@@ -612,9 +617,11 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     slug: 'shutchou-senmon',
     seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      needsOutletBorrow(r)
-        ? `${r}の出張 車内 清掃専門店。${OUTLET_BORROW_SHORT}。嘔吐・臭い・灯油こぼしも最短即日対応。`
-        : `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
+      needsPowerBringIn(r)
+        ? `${r}の出張 車内 清掃専門店。${POWER_BRING_IN_PARKING_SENTENCE}嘔吐・臭い・灯油こぼしも最短即日対応。`
+        : needsOutletBorrow(r)
+          ? `${r}の出張 車内 清掃専門店。${OUTLET_BORROW_SHORT}。嘔吐・臭い・灯油こぼしも最短即日対応。`
+          : `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
     ogImage: KW_IMAGES.steam,
@@ -748,66 +755,94 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   {
     slug: 'dengen-fuyou',
     seoTitle: (r) =>
-      needsOutletBorrow(r)
-        ? '車内清掃 100Vコンセント借用 出張'
-        : '車内清掃 電源不要 出張',
+      needsPowerBringIn(r)
+        ? '車内清掃 電源持込 出張'
+        : needsOutletBorrow(r)
+          ? '車内清掃 100Vコンセント借用 出張'
+          : '車内清掃 電源不要 出張',
     seoDescription: (r) =>
-      needsOutletBorrow(r)
-        ? `${r}対応。${OUTLET_BORROW_SHORT}。マンション・戸建て駐車場でもその場で施工可能。`
-        : `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
+      needsPowerBringIn(r)
+        ? `${r}対応。${POWER_BRING_IN_PARKING_SENTENCE}`
+        : needsOutletBorrow(r)
+          ? `${r}対応。${OUTLET_BORROW_SHORT}。マンション・戸建て駐車場でもその場で施工可能。`
+          : `${r}対応。電源・水道不要の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
     seoKeywords: (r) =>
-      needsOutletBorrow(r)
-        ? `車内清掃 100Vコンセント ${r}, 車内クリーニング 出張 ${r}, マンション 車内清掃 ${r}, コンセント借用 ${r}`
-        : `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
+      needsPowerBringIn(r)
+        ? `車内清掃 電源持込 ${r}, 車内クリーニング 出張 ${r}, マンション 車内清掃 ${r}, 青空駐車場 車内清掃 ${r}`
+        : needsOutletBorrow(r)
+          ? `車内清掃 100Vコンセント ${r}, 車内クリーニング 出張 ${r}, マンション 車内清掃 ${r}, コンセント借用 ${r}`
+          : `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
     heroSubtitle: (d, r) =>
-      needsOutletBorrow(r)
-        ? `${d}｜100Vコンセント借用 出張`
-        : `${d}｜電源・水道不要 出張`,
+      needsPowerBringIn(r)
+        ? `${d}｜電源持込 出張`
+        : needsOutletBorrow(r)
+          ? `${d}｜100Vコンセント借用 出張`
+          : `${d}｜電源・水道不要 出張`,
     heroHighlight: (r) =>
-      needsOutletBorrow(r)
-        ? ['100Vコンセント', '20ｍ以内で借用']
-        : ['電源不要', 'マンション駐車場OK'],
+      needsPowerBringIn(r)
+        ? ['電源持込', '青空駐車場OK']
+        : needsOutletBorrow(r)
+          ? ['100Vコンセント', '20ｍ以内で借用']
+          : ['電源不要', 'マンション駐車場OK'],
     heroSubcatch: (d) => `${d}の出張車内清掃`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: (r) =>
-      needsOutletBorrow(r)
-        ? '「作業場所の近くに家庭用コンセントを用意できる…」'
-        : '「マンションの地下駐車場で、電源が使えない…」',
+      needsPowerBringIn(r)
+        ? '「マンションや青空駐車場にコンセントがない…」'
+        : needsOutletBorrow(r)
+          ? '「作業場所の近くに家庭用コンセントを用意できる…」'
+          : '「マンションの地下駐車場で、電源が使えない…」',
     problemSubHeader: (r) =>
-      needsOutletBorrow(r)
-        ? `${OUTLET_BORROW_SHORT}。店に預けずその場でプロ施工が可能です。`
-        : '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
+      needsPowerBringIn(r)
+        ? POWER_BRING_IN_PARKING_SENTENCE
+        : needsOutletBorrow(r)
+          ? `${OUTLET_BORROW_SHORT}。店に預けずその場でプロ施工が可能です。`
+          : '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
     problemDealerQuote: (r) =>
-      needsOutletBorrow(r)
-        ? '「他社では発電機対応と言われたが、このエリアはコンセント借用だと聞いた…」'
-        : '「近くの洗車店は電源が必要で、マンションでは断られた…」',
+      needsPowerBringIn(r)
+        ? '「青空駐車場は電源が無いと断られた…」'
+        : needsOutletBorrow(r)
+          ? '「他社では発電機対応と言われたが、このエリアはコンセント借用だと聞いた…」'
+          : '「近くの洗車店は電源が必要で、マンションでは断られた…」',
     problemBodyHtml: (rn, dn) =>
-      needsOutletBorrow(rn)
-        ? `<strong>車内清掃</strong>の出張施工では、${OUTLET_BORROW_SHORT}。<strong>${dn}</strong>のマンション・戸建て駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
-        : `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+      needsPowerBringIn(rn)
+        ? `<strong>車内清掃</strong>の出張施工は、発電機を搭載しているのでコンセントが無くても対応します。<strong>${dn}</strong>では${POWER_BRING_IN_PARKING_SENTENCE}<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
+        : needsOutletBorrow(rn)
+          ? `<strong>車内清掃</strong>の出張施工では、${OUTLET_BORROW_SHORT}。<strong>${dn}</strong>のマンション・戸建て駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`
+          : `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: (r) =>
-      needsOutletBorrow(r)
-        ? '家庭用100Vコンセント借用の出張車内清掃・スチーム洗浄イメージ'
-        : '電源不要の出張車内清掃・スチーム洗浄イメージ',
+      needsPowerBringIn(r)
+        ? '電源持込の出張車内清掃・スチーム洗浄イメージ'
+        : needsOutletBorrow(r)
+          ? '家庭用100Vコンセント借用の出張車内清掃・スチーム洗浄イメージ'
+          : '電源不要の出張車内清掃・スチーム洗浄イメージ',
     mainTitle: (r) =>
-      needsOutletBorrow(r)
-        ? `【${r}】家庭用100Vコンセント借用の出張車内清掃！20ｍ以内で施工`
-        : `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
+      needsPowerBringIn(r)
+        ? `【${r}】電源持込の出張車内清掃！マンション・青空駐車場でも即日施工`
+        : needsOutletBorrow(r)
+          ? `【${r}】家庭用100Vコンセント借用の出張車内清掃！20ｍ以内で施工`
+          : `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
     deepTroubles: (r) =>
-      needsOutletBorrow(r)
+      needsPowerBringIn(r)
         ? [
-            '作業場所からおおむね20ｍ以内に家庭用100Vコンセントを用意できるか不安',
+            'マンションや青空駐車場にコンセントがなく、他社に断られた',
             '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
-            '月極駐車場や戸建て駐車場で、その場施工ができる業者を探している',
+            '電源持込がいくらになるか、事前に知りたい',
           ]
-        : [
-            'マンションの地下駐車場にコンセントがなく、他社に断られた',
-            '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
-            '月極駐車場の管理規約で、洗車・清掃が制限されている',
-          ],
+        : needsOutletBorrow(r)
+          ? [
+              '作業場所からおおむね20ｍ以内に家庭用100Vコンセントを用意できるか不安',
+              '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
+              '月極駐車場や戸建て駐車場で、その場施工ができる業者を探している',
+            ]
+          : [
+              'マンションの地下駐車場にコンセントがなく、他社に断られた',
+              '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
+              '月極駐車場の管理規約で、洗車・清掃が制限されている',
+            ],
   },
   {
     slug: 'kodomo-kyuto',
