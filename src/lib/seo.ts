@@ -1033,7 +1033,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
             {
                 '@type': 'HowToSupply',
-                name: '出張用専用車両（電源・水道不要）',
+                name: '出張用専用車両（外部電源持込可能・別途費用）',
             },
 
             { '@type': 'HowToSupply', name: '100℃スチーム洗浄機' },

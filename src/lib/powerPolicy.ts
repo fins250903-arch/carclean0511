@@ -1,9 +1,11 @@
 /**
- * Every service area, including Fukuoka, Okinawa, and Gunma, brings a
- * generator and a water tank. Customers do not lend a household outlet.
+ * External power can be brought to the job for an extra fee.
+ * A site outlet may still be used when one is available.
+ * Do not say power is always included, or that the customer's outlet is never used.
+ * Water supply is not stated here.
  */
 
-/** No region borrows an outlet. The argument is ignored. */
+/** Kept for older call sites. No region has a special outlet-only rule. */
 export function needsOutletBorrow(
   _regionNameOrId?: string,
   _regionId?: string,
@@ -11,28 +13,36 @@ export function needsOutletBorrow(
   return false;
 }
 
+/** Owner's base phrase. */
+export const EXTERNAL_POWER_PHRASE =
+  '外部電源持込可能（別途費用）、コンセントの無いところでも作業可能です';
+
+/** Same fact as a sentence. */
+export const EXTERNAL_POWER_SENTENCE =
+  '外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。';
+
 /** Short bullet / highlight line */
 export function powerHighlightLine(_regionName?: string, _regionId?: string): string {
-  return '電源・水道不要（発電機・水タンク完備）';
+  return EXTERNAL_POWER_SENTENCE;
 }
 
 /** FAQ / answer-first body fragment */
 export function powerCapabilitySentence(_regionName?: string, _regionId?: string): string {
-  return '電源・水道は不要です（発電機・水タンク完備）。';
+  return EXTERNAL_POWER_SENTENCE;
 }
 
 export function powerFaqAnswer(_regionName?: string, _regionId?: string): string {
-  return 'いいえ、必要ありません。当店の出張車両には専用の発電機と水タンクを積載しているため、マンションの駐車場や月極駐車場、会社など、車が停められる場所であればどこでも作業可能です。';
+  return '現場にコンセントがある場合はそちらを使えます。無い場合は外部電源の持込が可能です（別途費用）。コンセントの無いところでも作業可能です。';
 }
 
 export function powerFlowDesc(_regionName?: string, _regionId?: string): string {
-  return '予定の日時にご自宅や職場へ伺います。電源不要の自社車両で、場所を選ばず施工を開始します。';
+  return `予定の日時にご自宅や職場へ伺います。${EXTERNAL_POWER_SENTENCE}`;
 }
 
 export function powerReasonTitle(_regionName?: string, _regionId?: string): string {
-  return '場所を選ばず電源不要';
+  return '外部電源持込可能（別途費用）';
 }
 
 export function powerReasonDesc(_regionName?: string, _regionId?: string): string {
-  return '発電機を持参しますので、ドアが開けられるスペースがあればどこでも作業可能です。';
+  return 'コンセントが無い場所でも作業できます。外部電源の持込は別途費用です。';
 }

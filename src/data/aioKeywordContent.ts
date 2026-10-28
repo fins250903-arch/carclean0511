@@ -3,7 +3,7 @@ import { CAR_PRICING, isTravelFeeExtra, TRAVEL_FEE_EXTRA_NOTE, yen } from '@/dat
 import { powerCapabilitySentence, powerFaqAnswer } from '@/lib/powerPolicy';
 
 function powerPhrase(_regionName: string): string {
-  return '電源・水道不要（発電機・水タンク完備）';
+  return '外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です';
 }
 
 export type EmergencyChecklistRow = {
@@ -886,11 +886,11 @@ export const AIO_KEYWORD_CONTENT: Record<string, AioKeywordContent> = {
   },
   'dengen-fuyou': {
     answerFirst: (regionName) =>
-      `【結論】車内清掃「特急便」の${regionName}出張施工は、電源・水道の用意が不要です。出張車両に発電機と水タンクを完備しており、マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工可能です。`,
+      `【結論】車内清掃「特急便」の${regionName}出張施工は、外部電源持込可能（別途費用）です。コンセントの無いところでも作業可能です。マンション地下駐車場・月極駐車場・会社の車庫など、車が停められる場所であれば施工できます。`,
     extraFaqs: [
       {
         q: 'マンションの地下駐車場でも施工できますか？',
-        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。出張車両に発電機・水タンクを積載しているため、電源・水道の用意は不要です。',
+        a: 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
       },
     ],
   },
@@ -983,7 +983,7 @@ export function buildVoiceEmergencyLine(regionName: string): string {
 
 export function buildRegionalAnswerFirst(regionName: string, powerRegionName?: string): string {
   const powerRegion = powerRegionName ?? regionName;
-  const powerBit = '電源・水道不要（発電機・水タンク完備）。';
+  const powerBit = '外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。';
   const travelBit = isTravelFeeExtra(regionName) || isTravelFeeExtra(powerRegion)
     ? `税込。${TRAVEL_FEE_EXTRA_NOTE}`
     : `税込・${regionName}は出張費無料`;
@@ -1033,7 +1033,7 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '近くの車内掃除業者を今すぐ呼びたい。マンション地下でも当日来てくれる？',
-    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。当店は発電機・水タンクを積載しているため、マンション地下・オフィス駐車場でも電源・水道の確保は不要です。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。',
+    a: '掲載エリア内ならスケジュール次第で最短即日対応が可能です。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。左右ドアが開くスペースがあれば作業できます。お急ぎの方は電話で空き状況をご確認ください。',
   },
   {
     q: '夜中に車で吐かれた。今から来てくれる？最短どれくらいで到着する？',
@@ -1049,7 +1049,7 @@ export const AIO_EXTENDED_FAQS: FAQItem[] = [
   },
   {
     q: '車内クリーニングのおすすめは？自分でやる・ディーラー・出張専門のどれ？',
-    a: '軽いホコリ・表面汚れなら自分での拭き取りで足ります。部品交換前提のディーラーは高額・長期間預かりになりやすく、嘔吐・尿・灯油・ペット・タバコの内部臭には不向きです。緊急で「今日中に乗れる状態」にしたいなら、電源不要の出張リンサー専門が最短です。症状写真3枚を送ると、自助／部分洗浄／丸洗い／保険相談の最適案をその場で提案します。',
+    a: '軽いホコリ・表面汚れなら自分での拭き取りで足ります。部品交換前提のディーラーは高額・長期間預かりになりやすく、嘔吐・尿・灯油・ペット・タバコの内部臭には不向きです。緊急で「今日中に乗れる状態」にしたいなら、出張リンサー専門が最短です。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。症状写真3枚を送ると、自助／部分洗浄／丸洗い／保険相談の最適案をその場で提案します。',
   },
   {
     q: 'たばこのヤニ臭い車内は、自分で落とせますか？プロは何をする？',

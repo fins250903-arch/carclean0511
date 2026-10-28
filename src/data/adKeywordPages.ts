@@ -611,7 +611,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     slug: 'shutchou-senmon',
     seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。嘔吐・臭い・灯油こぼしも最短即日対応。`,
+      `${r}の出張 車内 清掃専門店。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
     ogImage: KW_IMAGES.steam,
@@ -744,25 +744,25 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
   },
   {
     slug: 'dengen-fuyou',
-    seoTitle: '車内清掃 電源不要 出張',
+    seoTitle: '車内清掃 外部電源持込可能（別途費用） 出張',
     seoDescription: (r) =>
-      `${r}対応。電源・水道不要の出張車内清掃。発電機・水タンクを積載し、マンション地下駐車場・月極駐車場でもその場で施工可能。`,
+      `${r}対応。外部電源持込可能（別途費用）の出張車内清掃。マンション地下駐車場・月極駐車場でもその場で施工可能。`,
     seoKeywords: (r) =>
-      `車内清掃 電源不要 ${r}, 車内クリーニング 出張 電源不要 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}, 水道不要 ${r}`,
+      `車内清掃 外部電源持込 ${r}, コンセント無し 車内清掃 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d) => `${d}｜電源・水道不要 出張`,
-    heroHighlight: ['電源不要', 'マンション駐車場OK'],
+    heroSubtitle: (d) => `${d}｜外部電源持込可能（別途費用） 出張`,
+    heroHighlight: ['外部電源持込可能（別途費用）', 'マンション駐車場OK'],
     heroSubcatch: (d) => `${d}の出張車内清掃`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: '「マンションの地下駐車場で、電源が使えない…」',
-    problemSubHeader: '発電機・水タンク完備で、店に預けずその場でプロ施工が可能です。',
+    problemSubHeader: '外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     problemDealerQuote: '「近くの洗車店は電源が必要で、マンションでは断られた…」',
     problemBodyHtml: (_rn, dn) =>
-      `<strong>車内清掃 電源不要</strong>の出張施工。発電機と水タンクを搭載し、<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+      `<strong>車内清掃 外部電源持込可能（別途費用）</strong>の出張施工。<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
-    problemEmpathyAlt: '電源不要の出張車内清掃・スチーム洗浄イメージ',
-    mainTitle: (r) => `【${r}】電源・水道不要の出張車内清掃！マンション地下駐車場でも即日施工`,
+    problemEmpathyAlt: '外部電源持込可能（別途費用）の出張車内清掃・スチーム洗浄イメージ',
+    mainTitle: (r) => `【${r}】外部電源持込可能（別途費用）の出張車内清掃！マンション地下駐車場でも即日施工`,
     deepTroubles: [
       'マンションの地下駐車場にコンセントがなく、他社に断られた',
       '店舗型クリーニングは預け入れが面倒で、数日間車が使えない',
