@@ -153,6 +153,52 @@ export function powerAreaReassurance(regionName?: string, regionId?: string): st
   return 'お電話一本で、ご自宅やご指定の場所までプロの機材を積んで伺います。電源不要、水道不要（タンク持参）ですので、駐車場があればどこでも作業可能です。';
 }
 
+/**
+ * Power condition for the current region only.
+ * Region pages must not explain Fukuoka, Okinawa, and Gunma in the same answer.
+ */
+export function localPowerConditionSentence(regionName?: string, regionId?: string): string {
+  if (needsPowerBringIn(regionName, regionId)) {
+    return 'コンセントが無いマンション駐車場や青空駐車場でも、発電機の電源持込（5,000円）で対応します。';
+  }
+  if (needsOutletBorrow(regionName, regionId)) {
+    return `${OUTLET_BORROW_SHORT}。水道もお借りする場合があります。`;
+  }
+  return '発電機・水タンク完備で、電源・水道は不要です。';
+}
+
+export function sameDayUndergroundParkingAnswer(regionName?: string, regionId?: string): string {
+  return `掲載エリア内ならスケジュール次第で最短即日対応が可能です。${localPowerConditionSentence(regionName, regionId)}左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。`;
+}
+
+export function mansionUndergroundParkingAnswer(regionName?: string, regionId?: string): string {
+  return `はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。${localPowerConditionSentence(regionName, regionId)}詳しくはお電話でご確認ください。`;
+}
+
+const CROSS_REGION_POWER_CLAUSES: RegExp[] = [
+  /多くのエリアでは発電機・水タンク完備で電源・水道不要です。福岡県・沖縄県は、コンセントが無いマンション駐車場や青空駐車場でも発電機の電源持込（5,000円）で対応します。群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/g,
+  /多くの地域は発電機・水タンク完備です。福岡県・沖縄県はコンセントが無いマンション駐車場や青空駐車場でも電源持込（5,000円）で対応します。群馬県などは家庭用100Vコンセントの借用です。/g,
+  /福岡県・沖縄県は、?コンセントが無いマンション駐車場や青空駐車場でも、?発電機の電源持込（5,000円）で対応します。/g,
+  /群馬県では20ｍ以内での家庭用１００Vコンセントをお借りします。/g,
+  /群馬県などは家庭用100Vコンセントの借用です。/g,
+];
+
+/** Drop other-prefecture power policy from an answer and keep this region's rule. */
+export function replaceCrossRegionPowerCopy(
+  answer: string,
+  regionName?: string,
+  regionId?: string,
+): string {
+  const local = localPowerConditionSentence(regionName, regionId);
+  let next = answer;
+  for (const pattern of CROSS_REGION_POWER_CLAUSES) {
+    next = next.replace(pattern, local);
+  }
+  const doubled = `${local}${local}`;
+  while (next.includes(doubled)) next = next.replace(doubled, local);
+  return next;
+}
+
 function normalizeGeneratorClaim(answer: string): string {
   return answer.replace(GENERATOR_CLAIM_PATTERN, GENERATOR_NO_OUTLET_SENTENCE);
 }
@@ -180,12 +226,14 @@ export function rewriteFaqForRegion<T extends FaqLike>(faq: T, regionName?: stri
       return { ...faq, a: powerFaqAnswer(regionName) };
     }
     if (faq.q.includes('マンション') || faq.q.includes('駐車場')) {
-      return { ...faq, a: applyBringInParkingCopy(a) };
+      return { ...faq, a: replaceCrossRegionPowerCopy(applyBringInParkingCopy(a), regionName) };
     }
-    return { ...faq, a };
+    return { ...faq, a: replaceCrossRegionPowerCopy(a, regionName) };
   }
 
-  if (!needsOutletBorrow(regionName)) return { ...faq, a };
+  if (!needsOutletBorrow(regionName)) {
+    return { ...faq, a: replaceCrossRegionPowerCopy(a, regionName) };
+  }
 
   const powerRelated =
     faq.q.includes('電源') ||
@@ -206,5 +254,5 @@ export function rewriteFaqForRegion<T extends FaqLike>(faq: T, regionName?: stri
     .replace(/当店の出張車両は発電機・水タンクを積載しているため、/g, '')
     .replace(/発電機・水タンク完備のため、/g, '')
     .replace(/電源不要の自社車両で、/g, '');
-  return { ...faq, a: rewritten };
+  return { ...faq, a: replaceCrossRegionPowerCopy(rewritten, regionName) };
 }
