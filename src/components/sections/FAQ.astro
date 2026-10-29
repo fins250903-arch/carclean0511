@@ -2,24 +2,39 @@
 import { dedupeFaqItems, faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import { rewriteTravelFeeText } from '../../data/pricingConstants';
 import type { ServiceNiche } from '../../lib/niche';
+import { rewriteFaqForRegion } from '../../lib/powerPolicy';
+import { mentionsJapanesePlace } from '../../lib/placeNames';
 
 interface Props {
   niche?: ServiceNiche;
   extraFaqs?: FAQItem[];
   regionName?: string;
+  /** Nationwide page: drop place-specific items and repeated questions. */
+  omitPlaceNames?: boolean;
 }
 
-const { niche = 'car', extraFaqs = [], regionName } = Astro.props;
+const { niche = 'car', extraFaqs = [], regionName, omitPlaceNames = false } = Astro.props;
 
 const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
 
-const faqs = dedupeFaqItems(
-  [...baseFaqs, ...extraFaqs].map((faq) => ({
-    ...faq,
-    a: rewriteTravelFeeText(faq.a, regionName),
-  })),
+const mapped = dedupeFaqItems(
+  [...baseFaqs, ...extraFaqs].map((faq) => {
+    const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+    return rewriteFaqForRegion(withTravel, regionName);
+  }),
 );
+
+const seen = new Set<string>();
+const faqs = omitPlaceNames
+  ? mapped.filter((faq) => {
+      if (mentionsJapanesePlace(faq.q) || mentionsJapanesePlace(faq.a)) return false;
+      const key = faq.q.replace(/\s/g, '');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+  : mapped;
 ---
 
 <section class="py-10 bg-gray-50" id="faq">

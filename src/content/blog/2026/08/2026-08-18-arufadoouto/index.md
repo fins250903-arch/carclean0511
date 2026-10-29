@@ -3,6 +3,8 @@ date: 2026-08-18
 title: 【宮城県　多賀城市】アルファード　嘔吐シート洗浄　きれいになりました
 shortSlug: arufadoouto
 areaName: 宮城県多賀城市・東北エリア
+categories:
+  - miyagi
 coverImage: 10.jpg
 seo:
   noindex: false

@@ -97,7 +97,7 @@ import type { ServiceNiche } from '@/lib/niche';
 import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
-import { powerFlowDesc } from '@/lib/powerPolicy';
+import { powerFlowDesc, rewriteFaqForRegion } from '@/lib/powerPolicy';
 import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
@@ -850,10 +850,10 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
     const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
     const mergedFaqs = dedupeFaqItems(
-        [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => ({
-            ...faq,
-            a: rewriteTravelFeeText(faq.a, regionName),
-        })),
+        [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
+            const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+            return rewriteFaqForRegion(withTravel, regionName);
+        }),
     );
 
     const faqPage = {

@@ -3,6 +3,8 @@ date: 2026-08-08
 title: 【栃木県足利市】Fit　運転席の後部シートで粗相の洗浄対応！
 shortSlug: fitsosou
 areaName: 栃木県足利市
+categories:
+  - tochigi
 coverImage: 22.jpg
 seo:
   noindex: false

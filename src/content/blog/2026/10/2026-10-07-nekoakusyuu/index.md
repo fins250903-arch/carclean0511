@@ -3,6 +3,8 @@ date: 2026-10-07
 title: 【豊中市千里】車内にネコが入り住処に！悪臭が染みついて取れない
 shortSlug: nekoakusyuu
 areaName: 大阪府豊中市
+categories:
+  - osaka
 coverImage: accord4.jpg
 seo:
   noindex: false

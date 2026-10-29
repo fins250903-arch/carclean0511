@@ -3,6 +3,8 @@ date: 2026-08-16
 title: 【埼玉県　川越市】日産デイズ　助手席嘔吐洗浄をしました
 shortSlug: outodeizu
 areaName: 埼玉県川越市・関東地区
+categories:
+  - saitama
 coverImage: 1-e1777538448873.jpg
 seo:
   noindex: false

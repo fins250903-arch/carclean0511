@@ -10,6 +10,7 @@ ogp:
   og_type: article
 categories:
   - tokublo
+  - ibaraki
 ---
 
 偕楽園の梅がほころぶ季節の水戸市。  

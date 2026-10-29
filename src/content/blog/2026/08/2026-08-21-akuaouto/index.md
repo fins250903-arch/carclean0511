@@ -3,6 +3,8 @@ date: 2026-08-21
 title: 【福岡県田川市】車内　後部席で嘔吐　トヨタ　アクア現状復帰できました
 shortSlug: akuaouto
 areaName: 福岡県田川市
+categories:
+  - fukuoka
 coverImage: koubu.jpg
 seo:
   noindex: false

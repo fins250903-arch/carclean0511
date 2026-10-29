@@ -3,6 +3,8 @@ date: 2026-08-24
 title: 【愛知県大府市】10t トラックハイルーフ　タバコヤニ洗浄作業
 shortSlug: aichi10tyani
 areaName: 愛知県大府市・東海エリア
+categories:
+  - aichi
 coverImage: 10t-4.jpg
 seo:
   noindex: false

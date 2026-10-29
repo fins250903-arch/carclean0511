@@ -3,6 +3,8 @@ date: 2026-08-30
 title: "[福岡市東区] トヨタ　エスクワイヤ　車内　３列目でお子様の嘔吐 消臭"
 shortSlug: higasikuesukuwaiya
 areaName: 福岡市東区・九州エリア
+categories:
+  - fukuoka
 coverImage: koubuzaseki-e1774881454495-120x68.jpg
 seo:
   noindex: false

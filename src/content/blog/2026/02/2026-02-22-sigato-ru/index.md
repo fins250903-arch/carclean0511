@@ -11,7 +11,7 @@ ogp:
   og_type: article
 categories:
   - jisseki
-  - siga
+  - kanagawa
 ---
 休日に　まだ小さい　元気いっぱいのお子様を連れて遊びに行った\
 水のあるところで遊ばせて　濡れたままお子様を乗せて帰ったりしていたそうです\

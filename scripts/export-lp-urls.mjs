@@ -64,19 +64,33 @@ const header = [
 
 rows.push(row(header));
 
-// ルート（リダイレクト）
+// `/` は大阪LPへの入口。AI検索用の全国ページは /aio/
 no += 1;
 rows.push(
   row([
     no,
     'リダイレクト',
+    'osaka',
+    '大阪府',
     '—',
-    '—',
-    '—',
-    '—',
+    '大阪LPへの入口',
     `${SITE}/`,
     '/',
     '301 → /regions/osaka/',
+  ]),
+);
+no += 1;
+rows.push(
+  row([
+    no,
+    'AIO案内',
+    '—',
+    '—',
+    '—',
+    '地域密着の出張車内クリーニング',
+    `${SITE}/aio/`,
+    '/aio/',
+    'AI検索からのリンク用',
   ]),
 );
 
@@ -147,7 +161,8 @@ const outPath = path.join(outDir, 'lp-url-list.csv');
 fs.writeFileSync(outPath, bom + csvBody, 'utf8');
 
 const counts = {
-  redirect: 1,
+  osakaEntry: 1,
+  aio: 1,
   regionalMain: regions.length,
   regionalTruck: regions.length,
   keyword: regions.length * keywords.length,

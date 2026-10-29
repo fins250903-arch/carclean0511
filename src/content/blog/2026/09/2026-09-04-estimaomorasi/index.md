@@ -3,6 +3,8 @@ date: 2026-09-04
 title: 【愛知県あま市】エスティマ　2列目シート　介護施設から帰りにおもらし　
 shortSlug: estimaomorasi
 areaName: 愛知県あま市・東海エリア
+categories:
+  - aichi
 coverImage: 1.jpg
 seo:
   noindex: false

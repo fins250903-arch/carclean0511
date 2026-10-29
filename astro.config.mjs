@@ -4,6 +4,15 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 import { isNoindexRegionPathname } from './src/data/noindexRegions.ts';
+import {
+  isRedirectedSitemapUrl,
+  loadBlogLastmods,
+  loadRedirectSources,
+  withBlogLastmod,
+} from './src/lib/sitemapPolicy.ts';
+
+const redirectSources = loadRedirectSources();
+const blogLastmods = loadBlogLastmods();
 
 export default defineConfig({
   site: 'https://carinteriorcleaning.jp',
@@ -14,7 +23,13 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !isNoindexRegionPathname(page) && !page.includes('/reserve/'),
+      filter: (page) =>
+        !isNoindexRegionPathname(page) &&
+        !page.includes('/reserve/') &&
+        !isRedirectedSitemapUrl(page, redirectSources),
+      serialize(item) {
+        return withBlogLastmod(item, blogLastmods);
+      },
     }),
     mdx(),
   ],

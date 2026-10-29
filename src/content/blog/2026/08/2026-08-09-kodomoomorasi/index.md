@@ -3,6 +3,8 @@ date: 2026-08-09
 title: 【愛知県豊川市】シエンタ無事洗浄完了！２列目席で子ども　おもらし
 shortSlug: kodomoomorasi
 areaName: 愛知県豊川市
+categories:
+  - aichi
 coverImage: 0803-1.jpg
 seo:
   noindex: false

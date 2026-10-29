@@ -42,7 +42,7 @@ export const regionCustomizations: Record<string, RegionCustomization> = {
   },
   福岡県: {
     localDispatchLine:
-      '福岡・北九州・筑豊・筑後の各エリアへ出張。博多駅周辺の法人車庫も対応可能です。マンションの駐車場や青空駐車場でも、発電機の電源持込（5,000円）で対応します。',
+      '福岡・北九州・筑豊・筑後の各エリアへ出張。博多駅周辺の法人車庫も対応可能です。マンションの駐車場や青空駐車場でも外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
     hqFieldParagraph: defaultHqParagraph('福岡県'),
   },
   埼玉県: {
