@@ -15,7 +15,6 @@ import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplay
 import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import { buildAdKeywordJsonLdOptions } from '../../../lib/keywordSchemaOptions';
-import { generateQuestionnaireJsonLd } from '../../../data/questionnaireTestimonials';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 
 import Hero from '../../../components/sections/Hero.astro';
@@ -103,11 +102,6 @@ const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
 const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
 const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
-const questionnaireStructuredData = generateQuestionnaireJsonLd(
-  regionName,
-  displayName,
-  path,
-);
 const regionOverrides = buildRegionSeoOverrides({
   regionName,
   displayName,
@@ -149,7 +143,7 @@ const jsonLdData = generateJsonLd(
     extraFaqs: aioVisibleFaqs,
   },
 );
-const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const combinedJsonLd = jsonLdData;
 const voiceLine = muteEmergencyTone
   ? `${displayName}エリアへ出張対応。料金・所要時間の目安を確認のうえ、お電話・LINEで空き状況をご案内します。`
   : buildVoiceEmergencyLine(displayName);

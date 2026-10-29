@@ -10,7 +10,11 @@ import {
 
 test('redirect sources are the old URLs, not the national top or a live prefecture LP', () => {
   const sources = loadRedirectSources();
-  assert.equal(sources.size, 33);
+  assert.equal(sources.size, 34);
+  assert.equal(
+    isRedirectedSitemapUrl('https://carinteriorcleaning.jp/coating/fukuoka/', sources),
+    true,
+  );
   assert.equal(
     isRedirectedSitemapUrl(
       'https://carinteriorcleaning.jp/regions/chiba/shutchou-senmon/',

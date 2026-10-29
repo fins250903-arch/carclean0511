@@ -2,6 +2,10 @@
 # Host-based redirects (www / *.vercel.app) are not supported here;
 # configure those in the Cloudflare dashboard (Redirect Rules / DNS).
 
+# Fukuoka glass coating was discontinued.
+/coating/fukuoka/ /regions/fukuoka/ 301
+/coating/fukuoka https://carinteriorcleaning.jp/regions/fukuoka/ 301
+
 /regions/chiba/shutchou-senmon/ /regions/chiba/mobile-cleaning/ 301
 /regions/hyogo/seat-senjo/ /regions/hyogo/seat-washing/ 301
 /regions/osaka/kuruma-nioi-keshi/ /regions/osaka/odor-removal/ 301

@@ -112,11 +112,7 @@ export function buildIndexingQueue() {
     count: other.length * 2,
   });
 
-  // Phase 5: コーティング
-  ordered.push(url('/coating/fukuoka/'));
-  phases.push({ id: 'coating', label: 'コーティングLP', count: 1 });
-
-  // Phase 6: ブログ記事（すべて）
+  // Phase 5: ブログ記事（すべて）
   const blogDir = path.join(root, 'src/content/blog');
   const blogSlugs = collectBlogPaths(blogDir);
   for (const slug of blogSlugs) {

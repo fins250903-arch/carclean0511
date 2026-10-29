@@ -1,5 +1,5 @@
 ---
-import { faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
+import { dedupeFaqItems, faqData, truckFaqData, busFaqData, type FAQItem } from '../../data/seoData';
 import { rewriteTravelFeeText } from '../../data/pricingConstants';
 import type { ServiceNiche } from '../../lib/niche';
 import { rewriteFaqForRegion } from '../../lib/powerPolicy';
@@ -18,10 +18,12 @@ const { niche = 'car', extraFaqs = [], regionName, omitPlaceNames = false } = As
 const baseFaqs =
   niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
 
-const mapped = [...baseFaqs, ...extraFaqs].map((faq) => {
-  const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
-  return rewriteFaqForRegion(withTravel, regionName);
-});
+const mapped = dedupeFaqItems(
+  [...baseFaqs, ...extraFaqs].map((faq) => {
+    const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+    return rewriteFaqForRegion(withTravel, regionName);
+  }),
+);
 
 const seen = new Set<string>();
 const faqs = omitPlaceNames
