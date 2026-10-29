@@ -10,7 +10,7 @@ import {
 
 test('redirect sources are the old URLs, not the national top or a live prefecture LP', () => {
   const sources = loadRedirectSources();
-  assert.equal(sources.size, 32);
+  assert.equal(sources.size, 33);
   assert.equal(
     isRedirectedSitemapUrl(
       'https://carinteriorcleaning.jp/regions/chiba/shutchou-senmon/',
@@ -33,8 +33,12 @@ test('redirect sources are the old URLs, not the national top or a live prefectu
     isRedirectedSitemapUrl('https://carinteriorcleaning.jp/regions/chiba/', sources),
     false,
   );
-  assert.equal(isRedirectedSitemapUrl('https://carinteriorcleaning.jp/', sources), false);
-  assert.equal(sources.has('/'), false);
+  assert.equal(isRedirectedSitemapUrl('https://carinteriorcleaning.jp/', sources), true);
+  assert.equal(sources.has('/'), true);
+  assert.equal(
+    isRedirectedSitemapUrl('https://carinteriorcleaning.jp/aio/', sources),
+    false,
+  );
 });
 
 test('pattern rules are not treated as pages', () => {

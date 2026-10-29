@@ -19,6 +19,7 @@ test('national JSON-LD has no ratings and no Japanese place names', () => {
   assert.equal(mentionsJapanesePlace(serialized), false);
 
   const business = graph.find((node) => node['@type'] === 'LocalBusiness');
+  assert.equal(business?.url, 'https://carinteriorcleaning.jp/aio/');
   assert.equal(business?.telephone, '070-8428-0866');
   const area = business?.areaServed as { '@type': string; name: string };
   assert.equal(area['@type'], 'Country');

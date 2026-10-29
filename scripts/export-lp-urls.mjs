@@ -64,19 +64,33 @@ const header = [
 
 rows.push(row(header));
 
-// 全国トップ（各県LPへ案内。県ページが地域の正規URL）
+// `/` は大阪LPへの入口。AI検索用の全国ページは /aio/
 no += 1;
 rows.push(
   row([
     no,
-    '全国トップ',
+    'リダイレクト',
+    'osaka',
+    '大阪府',
     '—',
-    '—',
-    '—',
-    '全国の入り口',
+    '大阪LPへの入口',
     `${SITE}/`,
     '/',
-    '全国共通の案内',
+    '301 → /regions/osaka/',
+  ]),
+);
+no += 1;
+rows.push(
+  row([
+    no,
+    'AIO案内',
+    '—',
+    '—',
+    '—',
+    '地域密着の出張車内クリーニング',
+    `${SITE}/aio/`,
+    '/aio/',
+    'AI検索からのリンク用',
   ]),
 );
 
@@ -163,7 +177,8 @@ const outPath = path.join(outDir, 'lp-url-list.csv');
 fs.writeFileSync(outPath, bom + csvBody, 'utf8');
 
 const counts = {
-  nationalTop: 1,
+  osakaEntry: 1,
+  aio: 1,
   regionalMain: regions.length,
   regionalTruck: regions.length,
   keyword: regions.length * keywords.length,

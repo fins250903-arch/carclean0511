@@ -2,7 +2,8 @@ import { CAR_PRICING } from '@/data/pricingConstants';
 import { ORGANIZATION_SAME_AS } from '@/lib/structuredDataConstants';
 import { OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
-const HOME_URL = canonicalUrl('/');
+/** AI-search landing page. `/` stays the Osaka LP entry. */
+const HOME_URL = canonicalUrl('/aio');
 
 /**
  * Homepage JSON-LD. No self-served ratings and no prefecture or city names.

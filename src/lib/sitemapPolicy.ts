@@ -28,8 +28,8 @@ export function normalizePathname(input: string): string {
 
 /**
  * Source paths in `public/_redirects` that send visitors somewhere else.
- * Pattern rules (`:region`) are not real pages. `/` is included only when
- * a rule still redirects it. The national top has no such rule.
+ * Pattern rules (`:region`) are not real pages. `/` is included when it
+ * still redirects to the Osaka LP. The AI-search page is `/aio/`.
  */
 export function collectRedirectSources(redirectsText: string): Set<string> {
   const sources = new Set<string>();

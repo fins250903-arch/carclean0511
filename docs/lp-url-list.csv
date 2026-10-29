@@ -1,5 +1,5 @@
 ﻿番号,LP種別,地域ID,地域名,キーワードslug,訴求・キーワード名,URL,パス,備考
-1,全国トップ,—,—,—,全国の入り口,https://carinteriorcleaning.jp/,/,全国共通の案内
+1,リダイレクト,osaka,大阪府,—,大阪LPへの入口,https://carinteriorcleaning.jp/,/,301 → /regions/osaka/
 2,地域メインLP,aichi,愛知県,,愛知県 車内クリーニング,https://carinteriorcleaning.jp/regions/aichi/,/regions/aichi/,乗用車
 3,地域メインLP,okinawa,沖縄県,,沖縄県 車内クリーニング,https://carinteriorcleaning.jp/regions/okinawa/,/regions/okinawa/,乗用車
 4,地域メインLP,fukuoka,福岡県,,福岡県 車内クリーニング,https://carinteriorcleaning.jp/regions/fukuoka/,/regions/fukuoka/,乗用車
