@@ -3,6 +3,8 @@ date: 2026-08-22
 title: 【佐賀県神埼市】アルファード　子どもの嘔吐パンチングレザーのくぼみ　洗浄
 shortSlug: sagaarufado
 areaName: 佐賀県神埼市・九州地区
+categories:
+  - saga
 coverImage: 6.jpg
 seo:
   noindex: false

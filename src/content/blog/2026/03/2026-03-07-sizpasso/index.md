@@ -3,6 +3,7 @@ date: 2026-08-01
 title: 静岡県静岡市葵区：トヨタ・パッソお茶の街「うっかりシミ」対策
 categories:
   - tokublo
+  - shizuoka
 shortSlug: sizpasso
 coverImage: mae-160x90.jpg
 seo:

@@ -5,13 +5,17 @@ import { powerHighlightLine } from '../../lib/powerPolicy';
 interface Props {
   regionName: string;
   displayName: string;
+  /** Used when this region has no local post. Does not change region pages that have one. */
+  neutralSummary?: string;
 }
 
-const { regionName, displayName } = Astro.props;
+const { regionName, displayName, neutralSummary } = Astro.props;
 const post = getRegionalPost(regionName);
 const powerLine = powerHighlightLine(regionName);
+const summary = post?.aiSummary ?? neutralSummary;
+const specs = post?.specs;
 
-if (!post || !post.aiSummary || !post.specs) {
+if (!summary || (post && !specs)) {
     return null;
 }
 ---
@@ -42,7 +46,7 @@ if (!post || !post.aiSummary || !post.specs) {
             </div>
 
             <p class="text-gray-700 leading-relaxed text-lg">
-                {post.aiSummary}
+                {summary}
             </p>
             
             <div class="mt-6 pt-6 border-t border-gray-100">
@@ -62,22 +66,24 @@ if (!post || !post.aiSummary || !post.specs) {
             </p>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="bg-gray-100 px-6 py-3 border-b border-gray-200">
-                <h3 class="font-bold text-gray-700">施工サービス概要</h3>
-            </div>
-            <div class="divide-y divide-gray-100">
-                {post.specs.map((spec, index) => (
-                    <div class="grid grid-cols-1 md:grid-cols-4 p-4 hover:bg-gray-50 transition-colors">
-                        <div class="font-bold text-gray-600 md:col-span-1 mb-1 md:mb-0">
-                            {spec.label}
+        {specs && (
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-100 px-6 py-3 border-b border-gray-200">
+                    <h3 class="font-bold text-gray-700">施工サービス概要</h3>
+                </div>
+                <div class="divide-y divide-gray-100">
+                    {specs.map((spec) => (
+                        <div class="grid grid-cols-1 md:grid-cols-4 p-4 hover:bg-gray-50 transition-colors">
+                            <div class="font-bold text-gray-600 md:col-span-1 mb-1 md:mb-0">
+                                {spec.label}
+                            </div>
+                            <div class="text-gray-800 md:col-span-3">
+                                {spec.value}
+                            </div>
                         </div>
-                        <div class="text-gray-800 md:col-span-3">
-                            {spec.value}
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+        )}
     </div>
 </section>

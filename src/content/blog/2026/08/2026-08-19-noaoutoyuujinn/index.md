@@ -3,6 +3,8 @@ date: 2026-08-19
 title: 【兵庫県東灘区】ノア3列目シートに子どもが嘔吐、友人の車に！！
 shortSlug: noaoutoyuujinn
 areaName: 兵庫県東灘区・関西地区
+categories:
+  - hyogo
 coverImage: 1787145265583.jpg
 seo:
   noindex: false

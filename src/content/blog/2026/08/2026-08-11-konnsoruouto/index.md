@@ -3,6 +3,8 @@ date: 2026-08-11
 title: 【兵庫県宝塚市】日産ノート助手席嘔吐センターコンソール汚れ
 shortSlug: konnsoruouto
 areaName: 兵庫県 宝塚市
+categories:
+  - hyogo
 coverImage: new.jpg
 seo:
   noindex: false

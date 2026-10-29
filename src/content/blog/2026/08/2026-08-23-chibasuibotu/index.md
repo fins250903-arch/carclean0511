@@ -3,6 +3,8 @@ date: 2026-08-23
 title: 【千葉県】豪雨　一部水没　洗浄対応しました　ただし・・
 shortSlug: chibasuibotu
 areaName: 千葉県・関東エリア
+categories:
+  - chiba
 coverImage: 2.jpg
 seo:
   noindex: false

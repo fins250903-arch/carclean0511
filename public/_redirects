@@ -70,6 +70,11 @@
 /regions/tokyo/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/tokyo/odor-removal/ 301
 /regions/saitama/kuruma-nioi-keshi https://carinteriorcleaning.jp/regions/saitama/odor-removal/ 301
 
+# Osaka Neyagawa case was saved under a Fukuoka copy slug.
+/blog/2026/02/2026-02-22-fukuoknioi-copy/ /blog/2026/10/2026-10-26-neyagawa-stepwgn/ 301
+/blog/2026/02/2026-02-22-fukuoknioi-copy https://carinteriorcleaning.jp/blog/2026/10/2026-10-26-neyagawa-stepwgn/ 301
+
+# `/` stays the Osaka LP entry. The nationwide page for AI search is `/aio/`.
 / /regions/osaka/ 301
 
 # Ads Editor often requests region URLs without a trailing slash. Cloudflare's

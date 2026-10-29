@@ -11,7 +11,7 @@ ogp:
   og_type: article
 categories:
   - jisseki
-  - ibaraki
+  - kanagawa
 ---
 
 週末になると神奈川県鎌倉市に位置する腰越漁港など海沿いへ釣りに出かける方が多い地区

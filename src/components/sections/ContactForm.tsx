@@ -3,7 +3,13 @@ import { useRegion } from '@/lib/RegionContext';
 import { trackFormSubmit } from '@/lib/analytics';
 import { Mail } from 'lucide-react';
 
-export default function ContactForm({ regionName: propRegionName }: { regionName?: string }) {
+export default function ContactForm({
+    regionName: propRegionName,
+    areaPlaceholder = '例：大阪府大阪市...',
+}: {
+    regionName?: string;
+    areaPlaceholder?: string;
+}) {
     const context = useRegion();
     const regionName = propRegionName || context.regionName;
 
@@ -72,7 +78,7 @@ export default function ContactForm({ regionName: propRegionName }: { regionName
                                     name="region"
                                     defaultValue={regionName}
                                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                                    placeholder="例：大阪府大阪市..."
+                                    placeholder={areaPlaceholder}
                                 />
                             </div>
 

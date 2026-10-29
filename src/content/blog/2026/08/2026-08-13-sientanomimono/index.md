@@ -3,6 +3,8 @@ date: 2026-08-13
 title: "[豊橋市] トヨタ　シエンタ 後部座席の周辺　飲み物こぼし洗浄と消臭"
 shortSlug: sientanomimono
 areaName: 愛知県　豊橋市
+categories:
+  - aichi
 coverImage: 813-6.jpg
 seo:
   noindex: false

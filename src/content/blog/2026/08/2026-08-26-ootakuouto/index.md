@@ -3,6 +3,8 @@ date: 2026-08-26
 title: 【東京都大田区】ホンダシビック　車内嘔吐清掃　完了しました
 shortSlug: ootakuouto
 areaName: 東京都大田区・関東エリア
+categories:
+  - tokyo
 coverImage: 5.jpg
 seo:
   noindex: false

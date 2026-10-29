@@ -3,6 +3,8 @@ date: 2026-09-02
 title: 【名古屋市昭和区】タフト後部席で広範囲に嘔吐で床と前席の背面までも
 shortSlug: taftauto
 areaName: 名古屋市昭和区・東海エリア
+categories:
+  - aichi
 coverImage: taft-3.jpg
 seo:
   noindex: false

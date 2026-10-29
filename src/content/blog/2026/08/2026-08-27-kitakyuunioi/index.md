@@ -3,6 +3,8 @@ date: 2026-08-27
 title: 【福岡県北九州市】ステップワゴン　運転席　　おもらし　消臭施工の事例
 shortSlug: kitakyuunioi
 areaName: 福岡県北九州市
+categories:
+  - fukuoka
 coverImage: 0827-5.jpg
 seo:
   noindex: false

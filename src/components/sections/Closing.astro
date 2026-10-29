@@ -8,9 +8,11 @@ interface Props {
   displayName: string;
   niche?: 'car' | 'truck' | 'bus';
   path: string;
+  /** Nationwide page hides the prefecture link list. */
+  showAreaList?: boolean;
 }
 
-const { regionName, displayName, path } = Astro.props;
+const { regionName, displayName, path, showAreaList = true } = Astro.props;
 
 // Filter out city-level links and unused regions mentioned by user
 // "北海道" "横浜市""名古屋市" "福岡市""広島県""京都市""岡山県" are to be excluded or standardized.
@@ -73,7 +75,7 @@ const regionalLinks = filterIndexableRegions(regions).map(r => ({
             </div>
         </div>
 
-        <div class="space-y-4">
+        {showAreaList && <div class="space-y-4">
             <p class="text-sm font-bold text-gray-500 uppercase tracking-widest">対応エリア一覧</p>
             <div class="flex flex-wrap justify-center gap-3">
                 {regionalLinks.map((link) => (
@@ -85,7 +87,7 @@ const regionalLinks = filterIndexableRegions(regions).map(r => ({
                     </a>
                 ))}
             </div>
-        </div>
+        </div>}
     </div>
 </section>
 
