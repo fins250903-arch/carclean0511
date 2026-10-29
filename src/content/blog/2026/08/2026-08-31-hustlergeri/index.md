@@ -3,6 +3,8 @@ date: 2026-08-31
 title: 【群馬県伊勢崎市】スズキ・ハスラー　車内で下痢よごれ
 shortSlug: hustlergeri
 areaName: 群馬県伊勢崎市・北関東エリア
+categories:
+  - gunma
 coverImage: 2.jpg
 seo:
   noindex: false

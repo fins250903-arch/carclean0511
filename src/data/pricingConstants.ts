@@ -41,7 +41,7 @@ export function carFvPriceHookMain(): string {
 }
 
 /** Prefectures where the published price does not include travel. */
-const TRAVEL_FEE_EXTRA_REGIONS = [
+export const TRAVEL_FEE_EXTRA_REGIONS = [
   '熊本県',
   '福井県',
   '和歌山県',

@@ -1,7 +1,7 @@
 ---
 date: 2026-10-26
 title: 【寝屋川市】ホンダ ステップワゴンの食べこぼし洗浄消臭
-shortSlug: fukuoknioi2
+shortSlug: neyagawa-stepwgn
 areaName: 大阪府寝屋川市
 coverImage: 1015-.jpg
 seo:

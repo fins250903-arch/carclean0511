@@ -3,6 +3,8 @@ date: 2026-09-01
 title: 【兵庫県姫路市】トヨタ　エスクヮイア　ミニバンでの嘔吐　ニオイ対応しました
 shortSlug: himejiouto
 areaName: 兵庫県姫路市・関西エリア
+categories:
+  - hyogo
 coverImage: kojima-voxy260720-11.jpg
 seo:
   noindex: false

@@ -3,6 +3,8 @@ date: 2026-08-28
 title: "[埼玉県和光市] 大型トラックの車内で 嘔吐 　洗浄と消臭"
 shortSlug: wakoutruck
 areaName: 埼玉県和光市・関東エリア
+categories:
+  - saitama
 coverImage: s__18309127.jpg
 seo:
   noindex: false

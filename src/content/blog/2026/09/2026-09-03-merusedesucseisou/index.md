@@ -3,6 +3,8 @@ date: 2026-09-03
 title: 【 神奈川県横浜市西区】メルセデス　Cクラス　車内の全体清掃と消臭作業
 shortSlug: merusedesucseisou
 areaName: " 神奈川県横浜市西区・関東エリア"
+categories:
+  - kanagawa
 coverImage: c-class-0903-8.jpg
 seo:
   noindex: false

@@ -3,6 +3,8 @@ date: 2026-08-14
 title: 【蒲郡市】アルファード３列目右側　旅行中で子供の嘔吐対応しました
 shortSlug: gamagooriouto
 areaName: 愛知県蒲郡市・東海地区
+categories:
+  - aichi
 seo:
   noindex: false
   meta_description: |-

@@ -3,6 +3,8 @@ date: 2026-08-25
 title: "[沖縄県 うるま市 ] ハイラックス 中古車　タバコのヤニとニオイを除去！"
 shortSlug: hiluxtobacco
 areaName: 沖縄県 うるま市 ・沖縄エリア
+categories:
+  - okinawa
 coverImage: 8b9d7fc5-11e1-4b72-acf9-30b0bb2a3ed7.jpg
 seo:
   noindex: false

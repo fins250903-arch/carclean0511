@@ -64,19 +64,19 @@ const header = [
 
 rows.push(row(header));
 
-// ルート（リダイレクト）
+// 全国トップ（各県LPへ案内。県ページが地域の正規URL）
 no += 1;
 rows.push(
   row([
     no,
-    'リダイレクト',
+    '全国トップ',
     '—',
     '—',
     '—',
-    '—',
+    '全国の入り口',
     `${SITE}/`,
     '/',
-    '301 → /regions/osaka/',
+    '各県の正規ページは /regions/{id}/',
   ]),
 );
 
@@ -163,7 +163,7 @@ const outPath = path.join(outDir, 'lp-url-list.csv');
 fs.writeFileSync(outPath, bom + csvBody, 'utf8');
 
 const counts = {
-  redirect: 1,
+  nationalTop: 1,
   regionalMain: regions.length,
   regionalTruck: regions.length,
   keyword: regions.length * keywords.length,

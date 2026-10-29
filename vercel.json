@@ -166,8 +166,13 @@
       "permanent": true
     },
     {
-      "source": "/",
-      "destination": "/regions/osaka/",
+      "source": "/blog/2026/02/2026-02-22-fukuoknioi-copy",
+      "destination": "/blog/2026/10/2026-10-26-neyagawa-stepwgn/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2026/02/2026-02-22-fukuoknioi-copy/",
+      "destination": "/blog/2026/10/2026-10-26-neyagawa-stepwgn/",
       "permanent": true
     },
     {
