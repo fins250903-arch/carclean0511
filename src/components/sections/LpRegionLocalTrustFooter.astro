@@ -11,9 +11,10 @@ interface Props {
   displayName: string;
   niche?: ServiceNiche;
   subareaId?: string;
+  neutral?: boolean;
 }
 
-const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
+const { regionName, displayName, niche = 'car', subareaId, neutral = false } = Astro.props;
 ---
 
 <RegionLocalTrust
@@ -21,4 +22,5 @@ const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
   displayName={displayName}
   niche={niche}
   subareaId={subareaId}
+  neutral={neutral}
 />

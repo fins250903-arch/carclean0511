@@ -1,66 +1,144 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
-import { CAR_PRICING, yen } from '../data/pricingConstants';
 import { buildNationalJsonLd } from '../lib/nationalStructuredData';
-import { LINE_URL, STORE_NAME, TEL, canonicalUrl } from '../lib/site';
+import { STORE_NAME, canonicalUrl } from '../lib/site';
+import { localCaseStudies } from '../data/localCaseStudies';
+import { CAR_PRICING, travelFeeAreaLabel, yen } from '../data/pricingConstants';
+import {
+  buildRegionalAnswerTargetPoints,
+  buildRegionalAnswerFirst,
+  buildRegionalNioiAnswerFirst,
+  buildVoiceEmergencyLine,
+  REGIONAL_EMERGENCY_CHECKLIST,
+  REGIONAL_CHECKLIST_HEADING,
+  REGIONAL_SITUATION_DIAGNOSIS,
+  buildAioContentFaqs,
+} from '../data/aioKeywordContent';
 
+import Hero from '../components/sections/Hero.astro';
+import AIOContent from '../components/sections/AIOContent.astro';
+import RegionAIContent from '../components/sections/RegionAIContent.astro';
+import Problem from '../components/sections/Problem.astro';
+import Solution from '../components/sections/Solution.astro';
+import Comparison from '../components/sections/Comparison.astro';
+import Campaign from '../components/sections/Campaign.astro';
+import CTA from '../components/sections/CTA.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Reasons from '../components/sections/Reasons.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Roadmap from '../components/sections/Roadmap.astro';
+import Targets from '../components/sections/Targets.astro';
+import AreaCoverage from '../components/sections/AreaCoverage.astro';
+import Flow from '../components/sections/Flow.astro';
+import Profile from '../components/sections/Profile.astro';
+import Expertise from '../components/sections/Expertise.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import OperatorInfo from '../components/sections/OperatorInfo.astro';
+import Closing from '../components/sections/Closing.astro';
+import EmergencyChecklist from '../components/sections/EmergencyChecklist.astro';
+import AnswerTarget from '../components/sections/AnswerTarget.astro';
+import NioiAnswerTarget from '../components/sections/NioiAnswerTarget.astro';
+import KeywordAioExtras from '../components/sections/KeywordAioExtras.astro';
+import RegionLocalTrust from '../components/sections/LpRegionLocalTrustFooter.astro';
+import AdLpQuickFacts from '../components/sections/AdLpQuickFacts.astro';
+import CancelPolicy from '../components/sections/CancelPolicy.astro';
+
+import { RegionProvider } from '../lib/RegionContext';
+import QuestionnaireTestimonials from '../components/sections/QuestionnaireTestimonials';
+import ContactForm from '../components/sections/ContactForm';
+import FloatingCTA from '../components/sections/FloatingCTA';
+
+/** Shown in place of any prefecture or city name. */
+const LABEL = '地域密着';
+const path = '/';
 const jsonLd = buildNationalJsonLd();
-const telHref = `tel:${TEL.replace(/-/g, '')}`;
-const troubles = ['嘔吐', '臭い', 'シミ', 'ペットの毛', '食べこぼし'] as const;
-const description = `車内の嘔吐、臭い、シミ、ペットの毛、食べこぼしを、その場で洗浄・消臭します。電話 ${TEL}、LINEでも受け付けます。`;
+const neutralSummary =
+  'ご指定の駐車場へ伺い、シートと床を洗って、嘔吐・灯油・ペットの毛・食べこぼし・臭いの原因を吸い上げます。料金と作業時間は、写真を見てからご案内します。';
+const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
+  .map((id) => localCaseStudies.find((item) => item.id === id))
+  .filter((item) => item !== undefined);
 ---
 
 <MainLayout
-  title={STORE_NAME}
-  description={description}
+  title={`${LABEL}の出張車内クリーニング｜${STORE_NAME}`}
+  description="地域密着の出張車内クリーニングです。嘔吐、臭い、シミ、ペットの毛、食べこぼしを、ご指定の駐車場で洗浄・消臭します。電話とLINEでご相談ください。"
   keywords="車内清掃, 車内クリーニング, シート洗浄, 嘔吐, 消臭, ペットの毛, 食べこぼし"
-  canonical={canonicalUrl('/')}
-  hideChat
+  canonical={canonicalUrl(path)}
 >
   <JsonLd slot="head" data={jsonLd} />
 
-  <main class="min-h-screen bg-white">
-    <div class="mx-auto max-w-xl px-4 py-10 md:py-16">
-      <h1 class="text-2xl font-black text-gray-900">{STORE_NAME}</h1>
-      <p id="national-lead" class="mt-4 text-base leading-relaxed text-gray-800">
-        車のシートと床を、その場で洗う車内クリーニングです。
-      </p>
-
-      <h2 class="mt-8 text-sm font-bold text-gray-500">お困りごと</h2>
-      <ul class="mt-2 flex flex-wrap gap-2">
-        {troubles.map((item) => (
-          <li class="rounded-full bg-blue-50 px-3 py-1 text-base font-bold text-gray-900">{item}</li>
-        ))}
-      </ul>
-
-      <h2 class="mt-8 text-sm font-bold text-gray-500">対応内容</h2>
-      <p class="mt-2 text-base leading-relaxed text-gray-800">
-        ご指定の駐車場まで伺い、汚れたシートと床を洗って、臭いの原因を吸い上げます。
-      </p>
-
-      <p class="mt-8 text-base text-gray-800">
-        料金の目安は座席1脚 {yen(CAR_PRICING.seatSingleBasic)}から、軽自動車の基本洗浄 {yen(CAR_PRICING.lightBasic)}から（税込）です。
-      </p>
-
-      <div class="mt-8 flex flex-col gap-3">
-        <a
-          href={telHref}
-          class="flex flex-col items-center justify-center rounded-xl bg-red-600 px-4 py-4 text-white"
-        >
-          <span class="text-sm font-bold">電話</span>
-          <span class="text-2xl font-black">{TEL}</span>
-        </a>
-        <a
-          href={LINE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex flex-col items-center justify-center rounded-xl bg-green-500 px-4 py-4 text-white"
-        >
-          <span class="text-xl font-black">LINE</span>
-          <span class="text-sm font-bold">写真を送るとスムーズです</span>
-        </a>
-      </div>
-    </div>
-  </main>
+  <RegionProvider client:load regionName={LABEL} displayName={LABEL} niche="car" path={path}>
+    <main class="min-h-screen bg-white pb-floating md:pb-20">
+      <Hero
+        regionName={LABEL}
+        displayName={LABEL}
+        niche="car"
+        mainTitle={`${LABEL}の出張車内クリーニング`}
+      />
+      <AdLpQuickFacts
+        displayName={LABEL}
+        niche="car"
+        intentLabel="出張車内クリーニング"
+        priceLabel={`1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
+        durationLabel="作業 1.5〜3時間"
+        areaLabel={travelFeeAreaLabel(LABEL, LABEL)}
+      />
+      <AnswerTarget
+        text={buildRegionalAnswerFirst(LABEL, LABEL)}
+        points={buildRegionalAnswerTargetPoints(LABEL, LABEL)}
+        voiceLine={buildVoiceEmergencyLine(LABEL)}
+      />
+      <EmergencyChecklist
+        rows={REGIONAL_EMERGENCY_CHECKLIST}
+        regionName={LABEL}
+        heading={REGIONAL_CHECKLIST_HEADING}
+      />
+      <Problem regionName={LABEL} displayName={LABEL} niche="car" />
+      <Pricing regionName={LABEL} niche="car" />
+      <CancelPolicy />
+      <CTA />
+      <QuestionnaireTestimonials client:visible displayName={LABEL} />
+      <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
+      <NioiAnswerTarget regionName={LABEL} answerText={buildRegionalNioiAnswerFirst(LABEL, LABEL)} />
+      <AIOContent regionName={LABEL} niche="car" focusShutchou showAioExtensions showInlineFaq={false} />
+      <RegionAIContent regionName={LABEL} displayName={LABEL} neutralSummary={neutralSummary} />
+      <Solution regionName={LABEL} displayName={LABEL} niche="car" />
+      <Comparison displayName={LABEL} />
+      <Campaign displayName={LABEL} />
+      <Reasons displayName={LABEL} regionName={LABEL} />
+      <Benefits />
+      <Roadmap displayName={LABEL} />
+      <section class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">施工の写真</h2>
+            <p class="text-xl text-gray-600 font-bold">シートの奥まで洗ったあとの状態です。</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-10">
+            {caseStudies.map((item) => (
+              <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
+                <img src={item.image} alt={item.title} class="h-64 w-full object-cover" />
+                <div class="p-8">
+                  <h3 class="text-xl font-black text-gray-900 mb-4">{item.title}</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">{item.problem}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Targets />
+      <AreaCoverage regionName={LABEL} />
+      <Flow niche="car" regionName={LABEL} />
+      <Profile displayName={LABEL} />
+      <Expertise />
+      <FAQ niche="car" regionName={LABEL} extraFaqs={buildAioContentFaqs(LABEL)} omitPlaceNames />
+      <RegionLocalTrust regionName={LABEL} displayName={LABEL} niche="car" neutral />
+      <ContactForm client:visible regionName={LABEL} areaPlaceholder="例：ご住所" />
+      <OperatorInfo regionName={LABEL} displayName={LABEL} neutral />
+      <Closing regionName={LABEL} displayName={LABEL} niche="car" path={path} showAreaList={false} />
+      <FloatingCTA client:load />
+    </main>
+  </RegionProvider>
 </MainLayout>

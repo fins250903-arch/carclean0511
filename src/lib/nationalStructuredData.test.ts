@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { mentionsJapanesePlace } from './placeNames.ts';
 import { buildNationalJsonLd } from './nationalStructuredData.ts';
 
-test('national JSON-LD is Organization, LocalBusiness, and WebSite, without ratings or prefectures', () => {
+test('national JSON-LD has no ratings and no Japanese place names', () => {
   const graph = buildNationalJsonLd();
   assert.deepEqual(
     graph.map((node) => node['@type']),
@@ -14,10 +15,8 @@ test('national JSON-LD is Organization, LocalBusiness, and WebSite, without rati
   assert.equal(serialized.includes('ratingValue'), false);
   assert.equal(serialized.includes('"Review"'), false);
   assert.equal(serialized.includes('AutoBodyShop'), false);
-  assert.equal(serialized.includes('千葉'), false);
-  assert.equal(serialized.includes('大阪'), false);
-  assert.equal(serialized.includes('/regions/'), false);
   assert.equal(serialized.includes('/blog/'), false);
+  assert.equal(mentionsJapanesePlace(serialized), false);
 
   const business = graph.find((node) => node['@type'] === 'LocalBusiness');
   assert.equal(business?.telephone, '070-8428-0866');

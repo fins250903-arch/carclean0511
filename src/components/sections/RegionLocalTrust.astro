@@ -10,9 +10,11 @@ interface Props {
   displayName: string;
   niche?: ServiceNiche;
   subareaId?: string;
+  /** Nationwide page: no headquarters city or prefecture names. */
+  neutral?: boolean;
 }
 
-const { regionName, displayName, niche = 'car', subareaId } = Astro.props;
+const { regionName, displayName, niche = 'car', subareaId, neutral = false } = Astro.props;
 const custom = getRegionCustomization(regionName, subareaId);
 const updated = formatContentFreshnessJa();
 const powerLine = powerHighlightLine(regionName);
@@ -32,25 +34,34 @@ const serviceFocus =
 >
   <div class="container mx-auto px-4 md:px-8 max-w-4xl">
     <h2 id="local-trust-heading" class="text-xl md:text-2xl font-black text-gray-900 mb-4 text-center">
-      岡山本部 × {displayName}の出張体制
+      {neutral ? `${displayName}の出張体制` : `岡山本部 × ${displayName}の出張体制`}
     </h2>
     <p class="text-xs text-center text-gray-500 mb-6">最終更新：{updated}</p>
 
     <div class="bg-white rounded-2xl border border-blue-100 shadow-sm p-6 md:p-8 space-y-4 text-gray-700 leading-relaxed">
       <p>
-        <strong>車内清掃「特急便」</strong>の運営本部は<strong>岡山県岡山市</strong>（〒701-0212）にあります。
-        {displayName}のお客様には「遠方から来る業者」ではなく、<strong>{serviceFocus}</strong>に特化した
-        <strong>出張専門チームおよびエリア契約スタッフ</strong>が対応します。
+        {neutral ? (
+          <>
+            <strong>車内清掃「特急便」</strong>は、{displayName}の<strong>{serviceFocus}</strong>を
+            <strong>出張専門チーム</strong>がご指定の駐車場で洗浄・消臭します。
+          </>
+        ) : (
+          <>
+            <strong>車内清掃「特急便」</strong>の運営本部は<strong>岡山県岡山市</strong>（〒701-0212）にあります。
+            {displayName}のお客様には「遠方から来る業者」ではなく、<strong>{serviceFocus}</strong>に特化した
+            <strong>出張専門チームおよびエリア契約スタッフ</strong>が対応します。
+          </>
+        )}
       </p>
-      {custom.hqFieldParagraph && <p>{custom.hqFieldParagraph}</p>}
-      {custom.localDispatchLine && (
+      {!neutral && custom.hqFieldParagraph && <p>{custom.hqFieldParagraph}</p>}
+      {!neutral && custom.localDispatchLine && (
         <p class="bg-blue-50 border-l-4 border-primary p-4 rounded-r text-sm md:text-base">
           <strong>【{displayName}の出張・契約店舗ネットワーク】</strong><br />
           {custom.localDispatchLine}
         </p>
       )}
       <ul class="grid md:grid-cols-2 gap-2 text-sm text-gray-600">
-        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 本部（岡山）：品質・機材・研修・保険書類</li>
+        <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {neutral ? '本部：品質・機材・研修・保険書類' : '本部（岡山）：品質・機材・研修・保険書類'}</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> 現場（{displayName}）：出張施工・即日対応</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {powerLine}</li>
         <li class="flex gap-2"><span class="text-primary font-bold">✓</span> {isTravelFeeExtra(regionName) ? TRAVEL_FEE_EXTRA_NOTE : `出張費は${regionName}内原則無料`}</li>
