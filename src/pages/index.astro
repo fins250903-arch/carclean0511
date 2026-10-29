@@ -1,173 +1,66 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
-import CTA from '../components/sections/CTA.astro';
-import FloatingCTA from '../components/sections/FloatingCTA';
-import { listNationalServiceAreaGroups } from '../data/nationalServiceAreas';
-import { TRAVEL_FEE_EXTRA_REGIONS } from '../data/pricingConstants';
-import {
-  NATIONAL_PRICE_ROWS,
-  buildNationalJsonLd,
-} from '../lib/nationalStructuredData';
-import { LINE_URL, OPERATOR, STORE_NAME, TEL, canonicalUrl } from '../lib/site';
+import { CAR_PRICING, yen } from '../data/pricingConstants';
+import { buildNationalJsonLd } from '../lib/nationalStructuredData';
+import { LINE_URL, STORE_NAME, TEL, canonicalUrl } from '../lib/site';
 
-const areaGroups = listNationalServiceAreaGroups();
-const areaCount = areaGroups.reduce((sum, group) => sum + group.areas.length, 0);
 const jsonLd = buildNationalJsonLd();
 const telHref = `tel:${TEL.replace(/-/g, '')}`;
-const description =
-  '車内清掃「特急便」の全国トップです。千葉県・愛知県・大阪府など、対応している県のページで料金とエリアを案内します。本部は岡山県岡山市です。';
+const troubles = ['嘔吐', '臭い', 'シミ', 'ペットの毛', '食べこぼし'] as const;
+const description = `車内の嘔吐、臭い、シミ、ペットの毛、食べこぼしを、その場で洗浄・消臭します。電話 ${TEL}、LINEでも受け付けます。`;
 ---
 
 <MainLayout
-  title={`${STORE_NAME}｜全国の出張車内クリーニング`}
+  title={STORE_NAME}
   description={description}
-  keywords="車内清掃 特急便, 出張 車内クリーニング, シート洗浄, 千葉, 愛知, 大阪, 福岡"
+  keywords="車内清掃, 車内クリーニング, シート洗浄, 嘔吐, 消臭, ペットの毛, 食べこぼし"
   canonical={canonicalUrl('/')}
+  hideChat
 >
   <JsonLd slot="head" data={jsonLd} />
 
-  <main class="min-h-screen bg-white pb-floating md:pb-24 min-[641px]:pr-[22rem]">
-    <section class="relative overflow-hidden bg-white">
-      <div class="absolute inset-0">
-        <img
-          src="/images/fv-passenger-hero.png"
-          alt="出張車内クリーニングの施工イメージ"
-          class="h-full w-full object-cover object-[center_30%]"
-          width="1600"
-          height="900"
-        />
-        <div class="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white/85 md:bg-gradient-to-r md:from-white md:via-white/92 md:to-white/45"></div>
+  <main class="min-h-screen bg-white">
+    <div class="mx-auto max-w-xl px-4 py-10 md:py-16">
+      <h1 class="text-2xl font-black text-gray-900">{STORE_NAME}</h1>
+      <p id="national-lead" class="mt-4 text-base leading-relaxed text-gray-800">
+        車のシートと床を、その場で洗う車内クリーニングです。
+      </p>
+
+      <h2 class="mt-8 text-sm font-bold text-gray-500">お困りごと</h2>
+      <ul class="mt-2 flex flex-wrap gap-2">
+        {troubles.map((item) => (
+          <li class="rounded-full bg-blue-50 px-3 py-1 text-base font-bold text-gray-900">{item}</li>
+        ))}
+      </ul>
+
+      <h2 class="mt-8 text-sm font-bold text-gray-500">対応内容</h2>
+      <p class="mt-2 text-base leading-relaxed text-gray-800">
+        ご指定の駐車場まで伺い、汚れたシートと床を洗って、臭いの原因を吸い上げます。
+      </p>
+
+      <p class="mt-8 text-base text-gray-800">
+        料金の目安は座席1脚 {yen(CAR_PRICING.seatSingleBasic)}から、軽自動車の基本洗浄 {yen(CAR_PRICING.lightBasic)}から（税込）です。
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3">
+        <a
+          href={telHref}
+          class="flex flex-col items-center justify-center rounded-xl bg-red-600 px-4 py-4 text-white"
+        >
+          <span class="text-sm font-bold">電話</span>
+          <span class="text-2xl font-black">{TEL}</span>
+        </a>
+        <a
+          href={LINE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex flex-col items-center justify-center rounded-xl bg-green-500 px-4 py-4 text-white"
+        >
+          <span class="text-xl font-black">LINE</span>
+          <span class="text-sm font-bold">写真を送るとスムーズです</span>
+        </a>
       </div>
-
-      <div class="relative mx-auto max-w-5xl px-4 py-10 md:px-8 md:py-16">
-        <p class="mb-3 text-sm font-black tracking-wide text-primary">全国対応の出張専門店</p>
-        <h1 class="mb-4 text-3xl font-black leading-tight text-gray-900 md:text-5xl">
-          {STORE_NAME}
-        </h1>
-        <p id="national-lead" class="mb-6 max-w-3xl text-base leading-relaxed text-gray-800 md:text-lg">
-          ご指定の駐車場へ伺い、シートの洗浄と消臭を行う専門店です。
-          詳しい料金と対応エリアは、都道府県ごとのページにまとめています。
-          千葉県の方は千葉県のページ、愛知県の方は愛知県のページが、その地域の正式な案内です。
-          このページは全国の入り口です。
-        </p>
-        <div class="flex max-w-xl flex-col gap-3 sm:flex-row">
-          <a
-            href={telHref}
-            class="flex flex-1 flex-col items-center justify-center rounded-xl bg-red-600 px-4 py-4 text-white shadow-lg"
-          >
-            <span class="text-sm font-bold">電話で相談</span>
-            <span class="text-2xl font-black">{TEL}</span>
-          </a>
-          <a
-            href={LINE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex flex-1 flex-col items-center justify-center rounded-xl bg-green-500 px-4 py-4 text-white shadow-lg"
-          >
-            <span class="text-xl font-black">LINEで問合せ</span>
-            <span class="text-sm font-bold">写真を送るとスムーズです</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="service-areas" class="bg-blue-50 py-12 md:py-16">
-      <div class="mx-auto max-w-5xl px-4 md:px-8">
-        <h2 class="mb-2 text-2xl font-black text-gray-900 md:text-3xl">お住まいの県を選んでください</h2>
-        <p class="mb-8 text-base text-gray-700">
-          対応している都道府県は{areaCount}です。県名を押すと、その県のメインページが開きます。
-        </p>
-
-        <div class="space-y-8">
-          {areaGroups.map((group) => (
-            <div>
-              <h3 class="mb-3 text-lg font-black text-blue-900">{group.label}</h3>
-              <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-                {group.areas.map((area) => (
-                  <li>
-                    <a
-                      href={area.path}
-                      class="flex min-h-16 flex-col items-center justify-center rounded-2xl border-2 border-blue-200 bg-white px-3 py-4 text-center shadow-sm transition hover:border-primary hover:bg-blue-100"
-                    >
-                      <span class="text-xl font-black text-gray-900">{area.name}</span>
-                      <span class="text-sm font-bold text-primary">{area.name}のページへ</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="bg-white py-12 md:py-16">
-      <div class="mx-auto max-w-3xl px-4 md:px-8">
-        <h2 class="mb-2 text-2xl font-black text-gray-900 md:text-3xl">料金の目安</h2>
-        <p class="mb-6 text-base text-gray-700">
-          税込の出発点です。車種と汚れで変わります。正式な料金表は、選んだ県のページにあります。
-        </p>
-        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-          <table class="w-full text-left">
-            <tbody>
-              {NATIONAL_PRICE_ROWS.map((row) => (
-                <tr class="border-b border-gray-100 last:border-b-0">
-                  <th class="px-4 py-4 text-sm font-bold text-gray-700 md:text-base">{row.label}</th>
-                  <td class="px-4 py-4 text-right text-lg font-black text-primary">{row.value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-4 text-sm leading-relaxed text-gray-600">
-          {TRAVEL_FEE_EXTRA_REGIONS.join('、')}は、地域により出張費が加算されます。
-          それ以外の掲載県は、各県ページの料金に出張費が含まれます。離島・島しょ部は除きます。
-        </p>
-      </div>
-    </section>
-
-    <section id="company" class="border-t border-gray-100 bg-white py-12 md:py-16">
-      <div class="mx-auto max-w-3xl px-4 md:px-8">
-        <h2 class="mb-6 text-2xl font-black text-gray-900 md:text-3xl">会社情報</h2>
-        <dl class="overflow-hidden rounded-2xl border border-gray-200">
-          <div class="grid grid-cols-1 gap-1 border-b border-gray-100 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">屋号</dt>
-            <dd class="font-bold text-gray-900 md:col-span-3">{OPERATOR.storeName}</dd>
-          </div>
-          <div class="grid grid-cols-1 gap-1 border-b border-gray-100 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">代表者</dt>
-            <dd class="text-gray-900 md:col-span-3">{OPERATOR.representative}</dd>
-          </div>
-          <div class="grid grid-cols-1 gap-1 border-b border-gray-100 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">電話</dt>
-            <dd class="md:col-span-3">
-              <a href={telHref} class="text-lg font-black text-primary">{TEL}</a>
-            </dd>
-          </div>
-          <div class="grid grid-cols-1 gap-1 border-b border-gray-100 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">LINE</dt>
-            <dd class="md:col-span-3">
-              <a href={LINE_URL} class="font-bold text-primary" target="_blank" rel="noopener noreferrer">LINEで問合せ（{LINE_URL}）</a>
-            </dd>
-          </div>
-          <div class="grid grid-cols-1 gap-1 border-b border-gray-100 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">本部</dt>
-            <dd class="text-gray-900 md:col-span-3">〒{OPERATOR.postalCode}　{OPERATOR.fullAddress}</dd>
-          </div>
-          <div class="grid grid-cols-1 gap-1 px-5 py-4 md:grid-cols-4 md:gap-4">
-            <dt class="font-bold text-gray-600">決済</dt>
-            <dd class="text-gray-900 md:col-span-3">{OPERATOR.paymentAcceptedLabel}</dd>
-          </div>
-        </dl>
-        <p class="mt-4 text-sm leading-relaxed text-gray-600">
-          本部は岡山県岡山市で、予約受付と品質管理をしています。
-          施工は、選んだ県の対応エリアへ出張して行います。
-        </p>
-      </div>
-    </section>
-
-    <CTA />
-    <FloatingCTA client:load />
+    </div>
   </main>
 </MainLayout>
