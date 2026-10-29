@@ -1,13 +1,15 @@
 ---
-
-title: "内緒にしたい100均3品でプロ級！シエンタの汚れを新品に戻す"  
-date: 2026-05-24  
-categories: 
-
-- "tokublo"
-- "useiso"
-coverImage: "car_clean_man.jpg"
-
+date: 2026-10-29
+title: 内緒にしたい100均3品でプロ級！シエンタの汚れを新品に戻す
+categories:
+  - tokublo
+  - useiso
+shortSlug: 100kinyogore
+coverImage: car_clean_man.jpg
+seo:
+  noindex: false
+ogp:
+  og_type: article
 ---
 
 毎日シエンタを運転していると、ふとした瞬間にシートの汚れが目に入って、少しだけ気持ちが沈むことがあります。 豊田市の湿気にさらされ、3年も経てば、いくら気をつけていてもシートは家族の歴史を吸い込んでしまうものです。先日もWBC 開催で一目、有名選手見たいと 子供を連れて少し足を伸ばしてきました。すっごい人人・・・・
