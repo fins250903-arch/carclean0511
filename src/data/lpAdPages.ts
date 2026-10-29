@@ -1,10 +1,4 @@
 import { KW_IMAGES } from '@/lib/assets513';
-import {
-  needsOutletBorrow,
-  needsPowerBringIn,
-  OUTLET_BORROW_SHORT,
-  POWER_BRING_IN_PARKING_SENTENCE,
-} from '@/lib/powerPolicy';
 import type { AdKeywordPageDef } from './adKeywordPages';
 
 /** 重点8地域（広告LP出し分け対象） */
@@ -52,11 +46,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     ],
     seoTitle: '車内クリーニング・車内清掃',
     seoDescription: (r) =>
-      needsPowerBringIn(r)
-        ? `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。${POWER_BRING_IN_PARKING_SENTENCE}最短即日。`
-        : needsOutletBorrow(r)
-          ? `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。${OUTLET_BORROW_SHORT}。最短即日。`
-          : `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。電源・水道不要・最短即日。`,
+      `${r}対応の出張車内クリーニング。シート洗浄・消臭までプロが駐車場で施工。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。`,
     seoKeywords: (r) =>
       `車内 クリーニング ${r}, 車内 洗浄 ${r}, 車内 清掃 ${r}, 車 クリーニング ${r}, 出張 車内クリーニング ${r}`,
     ogImage: KW_IMAGES.rinserWork,
@@ -69,11 +59,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     problemSubHeader: '出張専門だから、ご自宅・職場の駐車場でそのままプロ洗浄できます。',
     problemDealerQuote: '「洗車店ではシートの黄ばみや臭いが取れず、ディーラーは数日後の予約しか…」',
     problemBodyHtml: (rn, dn) =>
-      needsPowerBringIn(rn)
-        ? `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。発電機を搭載しているのでコンセントが無くても対応します。${POWER_BRING_IN_PARKING_SENTENCE}`
-        : needsOutletBorrow(rn)
-          ? `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。${OUTLET_BORROW_SHORT}。`
-          : `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。電源・水道は不要です。`,
+      `<strong>車内クリーニング</strong>は、シートの黄ばみ・生活臭・飲みこぼしを丸ごと洗浄するサービスです。<br /><strong>${dn}</strong>へ出張し、温水リンサー洗浄・消臭まで一貫対応します。<br /><strong>${rn}</strong>内へ最短即日出張。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。`,
     problemEmpathyImage: KW_IMAGES.sienta3After,
     problemEmpathyAlt: '車内クリーニング後の清潔な車内イメージ',
     mainTitle: (r) => `${r}の車内クリーニング｜プロ出張で清潔な車内空間に`,
@@ -102,7 +88,7 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     problemSubHeader: '専門店選びで失敗したくない方へ。実績と出張対応で安心の施工を。',
     problemDealerQuote: '「安い業者に頼んだら臭いが戻ってきた…もう業者選びに失敗したくない」',
     problemBodyHtml: (rn, dn) =>
-      `<strong>車内クリーニング専門店</strong>として、<strong>${dn}</strong>全域へ出張対応します。<br />シート洗浄・消臭洗浄をプロ機材で施工。電源・水道不要で駐車場があればOKです。`,
+      `<strong>車内クリーニング専門店</strong>として、<strong>${dn}</strong>全域へ出張対応します。<br />シート洗浄・消臭洗浄をプロ機材で施工。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。`,
     problemEmpathyImage: KW_IMAGES.steam,
     problemEmpathyAlt: '出張車内クリーニング専門店の施工イメージ',
     mainTitle: (r) => `${r}の車内クリーニング専門店｜出張で即日キレイに`,
@@ -113,12 +99,12 @@ export const LPO_AD_PAGES: AdKeywordPageDef[] = [
     targetRegionIds: ['chiba'],
     seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      `${r}の出張 車内 清掃専門店。電源・水道不要で駐車場があればその場で施工。最短即日対応。`,
+      `${r}の出張 車内 清掃専門店。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。最短即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 車内クリーニング 専門店 ${r}, 車内清掃 出張 即日 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
     heroSubtitle: (d) => `${d}｜出張車内クリーニング専門`,
-    heroHighlight: ['出張専門', '電源不要・即日'],
+    heroHighlight: ['出張専門', '外部電源持込・即日'],
     heroSubcatch: (d) => `${d}の出張車内クリーニング`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('出張車内クリーニング'),

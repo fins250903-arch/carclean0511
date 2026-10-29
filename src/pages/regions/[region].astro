@@ -10,7 +10,6 @@ import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPosts';
 import { getLatestRegionalPosts } from '../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
-import { generateQuestionnaireJsonLd } from '../../data/questionnaireTestimonials';
 import JsonLd from '../../components/seo/JsonLd.astro';
 
 // Astro Components
@@ -102,7 +101,6 @@ const regionCustom = getRegionCustomization(regionName);
 const displayName = post?.displayName || regionName;
 const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
 const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
-const questionnaireStructuredData = generateQuestionnaireJsonLd(regionName, displayName, path);
 const regionOverrides = buildRegionSeoOverrides({
     regionName,
     displayName,
@@ -116,7 +114,7 @@ const metadata = generateRegionMetadata(regionName, path, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
   extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
 });
-const combinedJsonLd = [...jsonLdData, ...questionnaireStructuredData];
+const combinedJsonLd = jsonLdData;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
 const regionalAnswerPoints = !isTruck && !isBus ? buildRegionalAnswerTargetPoints(regionName, regionName) : undefined;
 const regionalNioiAnswer = !isTruck && !isBus ? buildRegionalNioiAnswerFirst(regionName, regionName) : undefined;
