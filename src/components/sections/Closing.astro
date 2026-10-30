@@ -1,5 +1,6 @@
 ---
-import { STORE_NAME, LINE_URL, TEL } from '../../lib/site';
+import { LINE_URL, TEL } from '../../lib/site';
+import SiteFooter from '../SiteFooter.astro';
 import { regions } from '../../data/regions';
 import { filterIndexableRegions } from '../../data/noindexRegions';
 
@@ -91,7 +92,4 @@ const regionalLinks = filterIndexableRegions(regions).map(r => ({
     </div>
 </section>
 
-{/* Copyright */}
-<footer class="bg-gray-900 text-white py-6 text-center text-sm">
-    <p>&copy; {new Date().getFullYear()} {STORE_NAME} All Rights Reserved.</p>
-</footer>
+<SiteFooter />
