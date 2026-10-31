@@ -1,6 +1,7 @@
 import { Phone, Truck, Sparkles, CreditCard, Wind } from 'lucide-react';
 import React from 'react';
 import { CAR_PRICING, carPricingFaqSnippet, yen } from '@/data/pricingConstants';
+import { PAYMENT_FLOW_SENTENCE } from '@/lib/site';
 
 // Interfaces
 export interface FAQItem {
@@ -85,7 +86,7 @@ export const faqData: FAQItem[] = [
     },
     {
         q: "支払い方法は何が使えますか？",
-        a: "現金とクレジットカード決済に対応しています。お見積もり時に金額をご提示し、ご納得いただいてからの施工となりますので、追加で高額な費用が発生することはありません。"
+        a: "お支払いは現金 / クレジットカードです。お見積もり時に金額をご提示し、ご納得いただいてからの施工となりますので、追加で高額な費用が発生することはありません。"
     },
     {
         q: "運営は岡山ですが、私の地域まで来てもらえますか？",
@@ -160,7 +161,7 @@ export const flowData: FlowItem[] = [
     {
         iconName: 'CreditCard',
         title: "完了確認・お支払い",
-        desc: "施工箇所の仕上がりをご確認いただき完了です。現金・カード・PayPayなど各種決済に対応しています。"
+        desc: `施工箇所の仕上がりをご確認いただき完了です。${PAYMENT_FLOW_SENTENCE}`
     },
     {
         iconName: 'Wind',
@@ -229,8 +230,8 @@ export const truckFlowData: FlowItem[] = [
     },
     {
         iconName: 'CreditCard',
-        title: "お支払い（請求書対応可）",
-        desc: "現地での確認後、お支払いとなります。法人様の場合は、後日の銀行振込や請求書払いにも柔軟に対応いたします。"
+        title: "完了確認・お支払い",
+        desc: `現地での確認後、お支払いとなります。${PAYMENT_FLOW_SENTENCE}`
     },
     {
         iconName: 'Wind',
@@ -277,7 +278,7 @@ export const busFlowData: FlowItem[] = [
     {
         iconName: 'CreditCard',
         title: "確認・お支払い",
-        desc: "法人様は請求書払いもご相談ください。"
+        desc: `確認後、${PAYMENT_FLOW_SENTENCE}`
     },
     {
         iconName: 'Wind',
