@@ -14,6 +14,7 @@ import {
   INSTAGRAM_URL,
   LINE_URL,
   OPERATOR,
+  PAYMENT_FLOW_SENTENCE,
   STORE_NAME,
   TEL,
 } from './site.ts';
@@ -88,7 +89,7 @@ export function buildLlmsTxt(): string {
     '1. 無料相談・お見積もり。LINEまたはお電話で状況を伺います。写真を送ると、より正確な見積もりができます。',
     `2. ご指定場所へ急行。${NATIONAL_POWER_WORDING}。持込費用は${yen(POWER_BRING_IN_FEE)}です。現場にコンセントがある場合は、そちらも使えます。`,
     '3. プロの徹底洗浄（1.5〜3時間）。100℃スチームでの殺菌と、リンサーによるすすぎ洗いで、汚れと臭いを抽出します。',
-    '4. 完了確認・お支払い。仕上がりを確認して完了です。現金・カード・PayPayなど各種決済に対応しています。',
+    `4. 完了確認・お支払い。仕上がりを確認して完了です。${PAYMENT_FLOW_SENTENCE}`,
     '5. 自然乾燥（3〜5時間）。窓を少し開けて乾かします。',
     '',
     `受付は365日24時間です。夜中や朝早くでも、お電話かLINEで相談できます。伺える時間は空き次第です。電話 ${TEL} とLINEは全国共通です。どの地域からでも同じ窓口です。${NATIONAL_POWER_WORDING}。`,

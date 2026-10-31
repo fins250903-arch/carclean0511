@@ -40,10 +40,13 @@ export const OPERATOR = {
   fullAddress: '岡山県岡山市南区当新田342',
   /** 連絡先 */
   telephone: TEL,
-  /** 決済手段 */
+  /** 決済手段。現金とクレジットカードのみ。 */
   paymentAccepted: ['現金', 'クレジットカード'],
-  paymentAcceptedLabel: '現金 / クレジットカード決済',
+  paymentAcceptedLabel: '現金 / クレジットカード',
 } as const;
+
+/** ご利用の流れと HowTo で共通の支払い文。 */
+export const PAYMENT_FLOW_SENTENCE = '現金・クレジットカードでお支払いいただけます。';
 
 /** FV表示地区と連動した「対応エリア」表記（離島・島しょ部を除く） */
 export function buildServiceAreaLabel(regionName: string): string {

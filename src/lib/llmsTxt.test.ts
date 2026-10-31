@@ -42,6 +42,8 @@ test('owner-confirmed facts, address, and published prices are present', () => {
   assert.equal(text.includes(`〒${OPERATOR.postalCode}　${OPERATOR.fullAddress}`), true);
   assert.equal(text.includes(OPERATOR.representative), true);
   assert.equal(text.includes(OPERATOR.paymentAcceptedLabel), true);
+  assert.equal(text.includes('現金・クレジットカードでお支払いいただけます。'), true);
+  assert.equal(/PayPay|paypay|各種決済/.test(text), false);
   assert.equal(text.includes(LINE_URL), true);
   assert.equal(text.includes('35,000円から'), false);
 });

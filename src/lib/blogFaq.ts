@@ -1,5 +1,6 @@
 import type { FAQItem } from '@/data/seoData';
 import type { BlogAnswerFirst } from '@/lib/blogAnswerFirst';
+import { PAYMENT_FLOW_SENTENCE } from '@/lib/site';
 
 /**
  * Visible FAQ + FAQPage schema must stay in lockstep (AIO cites both).
@@ -50,7 +51,7 @@ export function buildBlogFaqs(
 
   faqs.push({
     q: '支払い方法と見積もりの流れは？',
-    a: '写真またはお電話で当日中に目安をご案内し、ご納得後に施工します。現金とクレジットカードに対応しています。追加で高額な費用を請求することはありません。',
+    a: '写真またはお電話で当日中に目安をご案内し、ご納得後に施工します。お支払いは現金 / クレジットカードです。追加で高額な費用を請求することはありません。',
   });
 
   return faqs;
@@ -105,7 +106,7 @@ export function buildBlogHowToJsonLd(input: {
       '@type': 'HowToStep',
       position: 4,
       name: '仕上がり確認とお支払い',
-      text: 'お客様にニオイと見た目を確認いただき、現金またはクレジットカードでお支払いいただきます。',
+      text: `お客様にニオイと見た目を確認いただき、${PAYMENT_FLOW_SENTENCE}`,
     },
   ];
 
