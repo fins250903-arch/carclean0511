@@ -14,6 +14,7 @@ import {
 	getOtherBlogPosts,
 	sortPostsByNewest,
 } from '../../lib/blogListing';
+import SiteFooter from '../../components/SiteFooter.astro';
 
 const allPosts = sortPostsByNewest(await getCollection('blog'));
 const regionGroups = buildRegionBlogGroups(allPosts);
@@ -208,4 +209,7 @@ const listingJsonLd = [
 		prioritizeRegionSection();
 		document.addEventListener('DOMContentLoaded', prioritizeRegionSection);
 	</script>
+	<div class="pb-40 md:pb-6">
+		<SiteFooter />
+	</div>
 </MainLayout>

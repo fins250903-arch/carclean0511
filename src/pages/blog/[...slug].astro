@@ -9,6 +9,7 @@ import BlogInternalLinks from '../../components/blog/BlogInternalLinks.astro';
 import BlogRelatedPosts from '../../components/blog/BlogRelatedPosts.astro';
 import BlogCaseFaq from '../../components/blog/BlogCaseFaq.astro';
 import BlogConversionCta from '../../components/blog/BlogConversionCta.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
 import { canonicalUrl, SITE_URL } from '../../lib/site';
 import {
   buildArticleJsonLd,
@@ -185,4 +186,7 @@ const { Content } = await render(post);
 			</div>
 		</article>
 	</main>
+	<div class="pb-40 md:pb-6">
+		<SiteFooter />
+	</div>
 </MainLayout>

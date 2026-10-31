@@ -1,4 +1,30 @@
 ---
-/** 大阪府メインLPは /regions/osaka/ に集約。AI検索用の全国ページは /aio/ */
-return Astro.redirect('/regions/osaka/', 301);
+/**
+ * `/` stays the Osaka LP entry.
+ * Dev returns 301. Production Cloudflare `_redirects` also 301s to `/regions/osaka/`.
+ * The built file keeps that meta refresh and includes the shared footer so the
+ * HTML for `/` links to the nationwide page at `/aio/`.
+ */
+import '../styles/globals.css';
+import SiteFooter from '../components/SiteFooter.astro';
+
+if (import.meta.env.DEV) {
+  return Astro.redirect('/regions/osaka/', 301);
+}
 ---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to: /regions/osaka/</title>
+    <meta http-equiv="refresh" content="0;url=/regions/osaka/" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://carinteriorcleaning.jp/regions/osaka/" />
+  </head>
+  <body>
+    <a href="/regions/osaka/">Redirecting from <code>/</code> to <code>/regions/osaka/</code></a>
+    <SiteFooter />
+  </body>
+</html>

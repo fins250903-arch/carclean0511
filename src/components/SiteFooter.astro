@@ -1,0 +1,20 @@
+---
+import { STORE_NAME } from '../lib/site';
+
+/** `/aio/` already is the nationwide page, so it does not link to itself. */
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const showNationalLink = path !== '/aio';
+---
+
+<footer class="bg-gray-900 text-white py-6 text-center text-sm max-md:mb-20">
+  {
+    showNationalLink && (
+      <p class="mb-2">
+        <a href="/aio/" class="text-gray-300 hover:text-white">
+          全国対応・対応エリアについて
+        </a>
+      </p>
+    )
+  }
+  <p>&copy; {new Date().getFullYear()} {STORE_NAME} All Rights Reserved.</p>
+</footer>
