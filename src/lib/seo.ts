@@ -91,6 +91,7 @@ import {
     serviceData,
     truckServiceData,
     busServiceData,
+    type FAQItem,
 } from '@/data/seoData';
 import type { ServiceNiche } from '@/lib/niche';
 
@@ -98,6 +99,7 @@ import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl }
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
 import { powerFlowDesc, rewriteFaqForRegion } from '@/lib/powerPolicy';
+import { mentionsJapanesePlace } from '@/lib/placeNames';
 import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
@@ -438,6 +440,60 @@ export const generateAdKeywordRegionMetadata = (regionName: string, path: string
 };
 
 
+
+export type DisplayedFaqOptions = {
+    niche?: ServiceNiche;
+    regionName?: string;
+    extraFaqs?: FAQItem[];
+    /** Nationwide page: drop place-specific items and repeated questions. */
+    omitPlaceNames?: boolean;
+};
+
+/**
+ * Visible FAQ list for a landing page.
+ * Region JSON-LD and the FAQ section must call this with the same options.
+ */
+export function buildDisplayedFaqs({
+    niche = 'car',
+    regionName,
+    extraFaqs = [],
+    omitPlaceNames = false,
+}: DisplayedFaqOptions = {}): FAQItem[] {
+    const baseFaqs = niche === 'truck' ? truckFaqData : niche === 'bus' ? busFaqData : faqData;
+    const mapped = dedupeFaqItems(
+        [...baseFaqs, ...extraFaqs].map((faq) => {
+            const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
+            return rewriteFaqForRegion(withTravel, regionName);
+        }),
+    );
+
+    if (!omitPlaceNames) return mapped;
+
+    const seen = new Set<string>();
+    return mapped.filter((faq) => {
+        if (mentionsJapanesePlace(faq.q) || mentionsJapanesePlace(faq.a)) return false;
+        const key = faq.q.replace(/\s/g, '');
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
+/** FAQPage node. Question text must match the visible FAQ exactly. */
+export function buildFaqPageJsonLd(faqs: FAQItem[]): Record<string, unknown> {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.a,
+            },
+        })),
+    };
+}
 
 export const generateJsonLd = (regionName: string, path: string = '', regionOverrides?: RegionOverrides, niche: ServiceNiche = 'car', schemaOptions?: SchemaOptions) => {
 
@@ -848,37 +904,11 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    const baseFaqs = isTruck ? truckFaqData : isBus ? busFaqData : faqData;
-    const mergedFaqs = dedupeFaqItems(
-        [...baseFaqs, ...(schemaOptions?.extraFaqs ?? [])].map((faq) => {
-            const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
-            return rewriteFaqForRegion(withTravel, regionName);
-        }),
-    );
-
-    const faqPage = {
-
-        '@context': 'https://schema.org',
-
-        '@type': 'FAQPage',
-
-        mainEntity: mergedFaqs.map(faq => ({
-
-            '@type': 'Question',
-
-            name: faq.q,
-
-            acceptedAnswer: {
-
-                '@type': 'Answer',
-
-                text: faq.a
-
-            }
-
-        }))
-
-    };
+    const faqPage = buildFaqPageJsonLd(buildDisplayedFaqs({
+        niche,
+        regionName,
+        extraFaqs: schemaOptions?.extraFaqs,
+    }));
 
 
 

@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
-import { buildNationalJsonLd } from '../lib/nationalStructuredData';
+import { buildNationalJsonLd, buildNationalPageFaqs } from '../lib/nationalStructuredData';
 import { STORE_NAME, canonicalUrl } from '../lib/site';
 import { localCaseStudies } from '../data/localCaseStudies';
 import { CAR_PRICING, travelFeeAreaLabel, yen } from '../data/pricingConstants';
@@ -13,7 +13,6 @@ import {
   REGIONAL_EMERGENCY_CHECKLIST,
   REGIONAL_CHECKLIST_HEADING,
   REGIONAL_SITUATION_DIAGNOSIS,
-  buildAioContentFaqs,
 } from '../data/aioKeywordContent';
 
 import Hero from '../components/sections/Hero.astro';
@@ -52,6 +51,7 @@ import FloatingCTA from '../components/sections/FloatingCTA';
 /** Shown in place of any prefecture or city name. */
 const LABEL = '地域密着';
 const path = '/aio';
+const pageFaqs = buildNationalPageFaqs();
 const jsonLd = buildNationalJsonLd();
 const neutralSummary =
   'ご指定の駐車場へ伺い、シートと床を洗って、嘔吐・灯油・ペットの毛・食べこぼし・臭いの原因を吸い上げます。料金と作業時間は、写真を見てからご案内します。';
@@ -133,7 +133,7 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
       <Flow niche="car" regionName={LABEL} />
       <Profile displayName={LABEL} />
       <Expertise />
-      <FAQ niche="car" regionName={LABEL} extraFaqs={buildAioContentFaqs(LABEL)} omitPlaceNames />
+      <FAQ faqs={pageFaqs} />
       <RegionLocalTrust regionName={LABEL} displayName={LABEL} niche="car" neutral />
       <ContactForm client:visible regionName={LABEL} areaPlaceholder="例：ご住所" />
       <OperatorInfo regionName={LABEL} displayName={LABEL} neutral />
