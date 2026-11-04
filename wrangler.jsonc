@@ -21,5 +21,8 @@
     "html_handling": "auto-trailing-slash",
     "run_worker_first": ["/api/*"]
   },
+  // Branch builds run `npx wrangler preview`, which requires this block.
+  // Leave it empty: assets, compatibility, and the Worker entry stay above,
+  // so production `wrangler deploy` is unchanged.
   "previews": {}
 }
