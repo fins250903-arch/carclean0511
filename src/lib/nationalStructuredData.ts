@@ -2,7 +2,7 @@ import { buildAioContentFaqs } from '@/data/aioKeywordContent';
 import { CAR_PRICING } from '@/data/pricingConstants';
 import { dedupeFaqItems, type FAQItem } from '@/data/seoData';
 import { buildDisplayedFaqs, buildFaqPageJsonLd } from '@/lib/seo';
-import { ORGANIZATION_SAME_AS } from '@/lib/structuredDataConstants';
+import { ORGANIZATION_LOGO_URL, ORGANIZATION_SAME_AS } from '@/lib/structuredDataConstants';
 import { OPERATOR, SITE_URL, STORE_NAME, TEL, canonicalUrl } from '@/lib/site';
 
 /** Shown in place of any prefecture or city name. */
@@ -79,6 +79,7 @@ export function buildNationalJsonLd(): Record<string, unknown>[] {
     name: STORE_NAME,
     url: HOME_URL,
     telephone: OPERATOR.telephone,
+    logo: ORGANIZATION_LOGO_URL,
     sameAs,
   };
 
@@ -90,6 +91,7 @@ export function buildNationalJsonLd(): Record<string, unknown>[] {
     url: HOME_URL,
     telephone: OPERATOR.telephone,
     image: `${SITE_URL}/images/fv-passenger-hero.png`,
+    logo: ORGANIZATION_LOGO_URL,
     description:
       '地域密着の出張車内クリーニングです。嘔吐、臭い、シミ、ペットの毛、食べこぼしを、ご指定の駐車場で洗浄・消臭します。',
     priceRange: `¥${CAR_PRICING.seatSingleBasic.toLocaleString('ja-JP')}〜`,

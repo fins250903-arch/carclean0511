@@ -104,6 +104,7 @@ import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_N
 
 import {
     AUTHOR,
+    ORGANIZATION_LOGO_URL,
     ORGANIZATION_SAME_AS,
     TRUST_REFERENCES,
     buildMobileInteriorCleaningDefinition,
@@ -566,7 +567,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         address: operatorPostalAddress,
 
-        logo: `${SITE_URL}/images/representative_new.webp`,
+        logo: ORGANIZATION_LOGO_URL,
 
         founder: {
 
@@ -687,6 +688,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         alternateName: `${displayName}対応 ${STORE_NAME}${isTruck ? '（トラック清掃）' : isBus ? '（バス清掃）' : ''}`,
 
         image: absHeroImageForSchema,
+
+        logo: ORGANIZATION_LOGO_URL,
 
         description: localBusinessDescription,
 
@@ -947,6 +950,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
                 name: STORE_NAME,
 
                 url: SITE_URL,
+
+                logo: ORGANIZATION_LOGO_URL,
 
             },
 

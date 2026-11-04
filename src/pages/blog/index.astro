@@ -5,6 +5,7 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import JsonLd from '../../components/seo/JsonLd.astro';
 import '../../styles/blog.css';
 import { canonicalUrl, SITE_URL, STORE_NAME } from '../../lib/site';
+import { ORGANIZATION_LOGO_URL } from '../../lib/structuredDataConstants';
 import { resolvePostImage } from '../../lib/blogSeo';
 import { buildBlogAnswerFirst, toExcerpt } from '../../lib/blogAnswerFirst';
 import { getRegionNameById, resolvePostRegionIds } from '../../lib/blogRegion';
@@ -51,7 +52,13 @@ const listingJsonLd = [
 		description:
 			'出張車内クリーニング・消臭洗浄の施工事例を、地域・トラブル別に公開しています。各記事に費用と作業時間の実測値を掲載しています。',
 		inLanguage: 'ja-JP',
-		publisher: { '@id': `${SITE_URL}/#organization` },
+		publisher: {
+			'@id': `${SITE_URL}/#organization`,
+			'@type': 'Organization',
+			name: STORE_NAME,
+			url: SITE_URL,
+			logo: ORGANIZATION_LOGO_URL,
+		},
 	},
 	{
 		'@context': 'https://schema.org',

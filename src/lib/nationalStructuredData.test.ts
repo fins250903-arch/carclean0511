@@ -2,8 +2,38 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAioContentFaqs } from '../data/aioKeywordContent.ts';
 import { mentionsJapanesePlace } from './placeNames.ts';
+import { buildArticleJsonLd } from './blogSeo.ts';
 import { buildNationalJsonLd, buildNationalPageFaqs } from './nationalStructuredData.ts';
+import { ORGANIZATION_LOGO_URL } from './structuredDataConstants.ts';
 import { generateJsonLd } from './seo.ts';
+
+test('JSON-LD logo is the brand mark, and the representative photo stays on Person', () => {
+  const national = buildNationalJsonLd();
+  for (const type of ['Organization', 'LocalBusiness']) {
+    const node = national.find((item) => item['@type'] === type);
+    assert.equal(node?.logo, ORGANIZATION_LOGO_URL);
+  }
+  assert.equal(JSON.stringify(national).includes('representative_new'), false);
+
+  const region = generateJsonLd('大阪府', '/regions/osaka/');
+  const logos = region.flatMap((node) => (typeof node.logo === 'string' ? [node.logo] : []));
+  assert.equal(logos.length >= 2, true);
+  assert.equal(logos.every((logo) => logo === ORGANIZATION_LOGO_URL), true);
+
+  const person = region.find((node) => node['@type'] === 'Person');
+  assert.equal(person?.image, 'https://carinteriorcleaning.jp/images/representative_new.webp');
+
+  const business = region.find((node) => node['@type'] === 'LocalBusiness' && node.image);
+  assert.equal(String(business?.image).includes('representative_new'), false);
+
+  const article = buildArticleJsonLd({
+    title: '施工事例',
+    description: 'シート洗浄の事例です。',
+    url: 'https://carinteriorcleaning.jp/blog/example/',
+  });
+  const publisher = article.publisher as { logo?: string };
+  assert.equal(publisher.logo, ORGANIZATION_LOGO_URL);
+});
 
 test('national JSON-LD has no ratings and no Japanese place names', () => {
   const graph = buildNationalJsonLd();
