@@ -136,8 +136,9 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
       <FAQ faqs={pageFaqs} />
       <RegionLocalTrust regionName={LABEL} displayName={LABEL} niche="car" neutral />
       <ContactForm client:visible regionName={LABEL} areaPlaceholder="例：ご住所" />
-      <OperatorInfo regionName={LABEL} displayName={LABEL} neutral />
-      <Closing regionName={LABEL} displayName={LABEL} niche="car" path={path} showAreaList={false} />
+      <Closing regionName={LABEL} displayName={LABEL} niche="car" path={path} showAreaList={false}>
+        <OperatorInfo regionName={LABEL} displayName={LABEL} neutral />
+      </Closing>
       <FloatingCTA client:load />
     </main>
   </RegionProvider>

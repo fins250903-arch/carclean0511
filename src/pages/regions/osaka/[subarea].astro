@@ -221,8 +221,9 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         <a href={regionPath('osaka', niche)} class="text-primary font-bold underline">大阪府全体のLPへ</a>
       </p>
       <ContactForm client:visible regionName={REGION_NAME} />
-      <OperatorInfo regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
-      <Closing regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path} />
+      <Closing regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
+        <OperatorInfo regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
+      </Closing>
       <FloatingCTA client:load />
     </main>
   </RegionProvider>
