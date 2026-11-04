@@ -230,7 +230,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
-    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。運営本部岡山・現場は地域出張チーム。`;
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。現地の専門プロのスタッフが車庫へ出張します。`;
 
     const description = isTruck ? truckDescription : isBus ? busDescription : carDescription;
 
