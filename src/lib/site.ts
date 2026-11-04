@@ -45,6 +45,13 @@ export const OPERATOR = {
   paymentAcceptedLabel: '現金 / クレジットカード',
 } as const;
 
+/**
+ * Owner-confirmed headquarters and field staffing.
+ * Postal address in structured data stays the Okayama headquarters.
+ */
+export const HQ_FIELD_SENTENCE =
+  '本部は岡山、各地域へは現地の専門プロのスタッフが出張対応';
+
 /** ご利用の流れと HowTo で共通の支払い文。 */
 export const PAYMENT_FLOW_SENTENCE = '現金・クレジットカードでお支払いいただけます。';
 

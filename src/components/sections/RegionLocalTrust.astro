@@ -1,5 +1,6 @@
 ---
 import { getRegionCustomization } from '../../data/regionCustomization';
+import { HQ_FIELD_SENTENCE } from '../../lib/site';
 import { isTravelFeeExtra, TRAVEL_FEE_EXTRA_NOTE } from '../../data/pricingConstants';
 import { formatContentFreshnessJa } from '../../lib/structuredDataConstants';
 import { powerHighlightLine } from '../../lib/powerPolicy';
@@ -43,20 +44,19 @@ const serviceFocus =
         {neutral ? (
           <>
             <strong>車内清掃「特急便」</strong>は、{displayName}の<strong>{serviceFocus}</strong>を
-            <strong>出張専門チーム</strong>がご指定の駐車場で洗浄・消臭します。
+            ご指定の駐車場で洗浄・消臭します。{HQ_FIELD_SENTENCE}。
           </>
         ) : (
           <>
             <strong>車内清掃「特急便」</strong>の運営本部は<strong>岡山県岡山市</strong>（〒701-0212）にあります。
-            {displayName}のお客様には「遠方から来る業者」ではなく、<strong>{serviceFocus}</strong>に特化した
-            <strong>出張専門チームおよびエリア契約スタッフ</strong>が対応します。
+            {displayName}では<strong>{serviceFocus}</strong>を、現地の専門プロのスタッフがご指定の駐車場で洗浄・消臭します。
           </>
         )}
       </p>
       {!neutral && custom.hqFieldParagraph && <p>{custom.hqFieldParagraph}</p>}
       {!neutral && custom.localDispatchLine && (
         <p class="bg-blue-50 border-l-4 border-primary p-4 rounded-r text-sm md:text-base">
-          <strong>【{displayName}の出張・契約店舗ネットワーク】</strong><br />
+          <strong>【{displayName}の出張対応】</strong><br />
           {custom.localDispatchLine}
         </p>
       )}

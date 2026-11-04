@@ -101,6 +101,28 @@ test('region FAQPage does not pick up nationwide-only FAQ items', () => {
   const names = mainEntity.map((item) => item.name);
   assert.equal(names.includes('受付は何時でもできますか？'), false);
   assert.equal(names.includes('電話番号とLINEは、どの地域からでも同じですか？'), false);
+  const hq = mainEntity.find((item) => item.name.includes('運営は岡山'));
+  assert.equal(
+    hq?.acceptedAnswer.text,
+    'はい。本部は岡山、各地域へは現地の専門プロのスタッフが出張対応。ご指定の駐車場へ直接お伺いします。出張費は原則無料です。',
+  );
+  assert.equal(hq?.acceptedAnswer.text.includes('遠方'), false);
+  const org = graph.find((node) => node['@type'] === 'Organization' && node.address);
+  const address = org?.address as { addressRegion?: string; addressLocality?: string };
+  assert.equal(address.addressRegion, '岡山県');
+  assert.equal(address.addressLocality, '岡山市南区');
+
+  const bus = generateJsonLd('大阪府', '/regions/osaka-bus/', undefined, 'bus');
+  const busFaq = bus.find((node) => node['@type'] === 'FAQPage');
+  const busQuestions = busFaq?.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>;
+  const busHq = busQuestions.find((item) => item.name.includes('バスも来て'));
+  assert.equal(busHq?.name, '本部は岡山ですが、他の地域のバスも来てもらえますか？');
+  assert.equal(
+    busHq?.acceptedAnswer.text,
+    'はい。本部は岡山、各地域へは現地の専門プロのスタッフが出張対応。掲載エリア内のバス車庫へお伺いします。',
+  );
+  assert.equal(JSON.stringify(busFaq).includes('遠方'), false);
+
   const power = mainEntity.find((item) => item.name.includes('水道や電源'));
   assert.equal(
     power?.acceptedAnswer.text,

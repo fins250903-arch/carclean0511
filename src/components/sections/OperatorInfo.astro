@@ -1,5 +1,5 @@
 ---
-import { OPERATOR, buildServiceAreaLabel } from '../../lib/site';
+import { HQ_FIELD_SENTENCE, OPERATOR, buildServiceAreaLabel } from '../../lib/site';
 
 interface Props {
   /** FV表示地区と連動（例: 大阪府 → 対応エリア 大阪府（離島・島しょ部を除く）） */
@@ -47,10 +47,11 @@ const rows = [
             {row.label === '運営元所在地' && (
               <div class="px-5 pb-5 md:px-7 md:pb-7">
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 md:p-5">
+                  <p class="text-sm md:text-base font-bold text-gray-900 mb-3">{HQ_FIELD_SENTENCE}。</p>
                   <h3 class="text-base md:text-lg font-black text-gray-900 mb-3">【本部と現場の役割】</h3>
                   <ul class="space-y-2 text-sm md:text-base text-gray-700 leading-relaxed">
                     <li>・{neutral ? '本部' : '本部（岡山）'}：品質管理・予約受付・保険書類サポート・機材メンテナンス</li>
-                    <li>・{localFieldLabel}：出張施工専門チームおよびエリア契約スタッフ（掲載エリア内のご指定場所へ訪問）</li>
+                    <li>・{localFieldLabel}：現地の専門プロのスタッフが出張対応（掲載エリア内のご指定場所へ訪問）</li>
                     <li>・{neutral
                       ? 'お会いするのは出張の施工スタッフです。お電話・LINEでお住まいの場所をお伝えいただければ、最寄りの出張枠をご案内します。'
                       : `お客様がお会いするのは、${regionName}内で活動する施工スタッフです。ご不明点はお電話・LINEで「○○市に住んでいます」とお伝えいただければ、最寄りの出張枠をご案内します。`}</li>

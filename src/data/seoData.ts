@@ -1,7 +1,7 @@
 import { Phone, Truck, Sparkles, CreditCard, Wind } from 'lucide-react';
 import React from 'react';
 import { CAR_PRICING, carPricingFaqSnippet, yen } from '@/data/pricingConstants';
-import { PAYMENT_FLOW_SENTENCE } from '@/lib/site';
+import { HQ_FIELD_SENTENCE, PAYMENT_FLOW_SENTENCE } from '@/lib/site';
 
 // Interfaces
 export interface FAQItem {
@@ -90,7 +90,7 @@ export const faqData: FAQItem[] = [
     },
     {
         q: "運営は岡山ですが、私の地域まで来てもらえますか？",
-        a: "はい。本部は岡山県岡山市にありますが、掲載エリア内は出張専門チームおよびエリア契約スタッフが、ご指定の駐車場へ直接お伺いします。出張費は原則無料です。"
+        a: `はい。${HQ_FIELD_SENTENCE}。ご指定の駐車場へ直接お伺いします。出張費は原則無料です。`
     },
     {
         q: "カーシェア・レンタカーで嘔吐した場合、費用はいくら？保険は使えますか？",
@@ -254,8 +254,8 @@ export const busFaqData: FAQItem[] = [
         a: "1区画あたり約1.5〜2.5時間が目安です。翌朝の運行前完了を想定した夜間施工もご相談ください（エリア・空き次第）。"
     },
     {
-        q: "岡山の会社ですが大阪など遠方のバスも来てもらえますか？",
-        a: "運営本部は岡山ですが、各都道府県に出張専門チーム・契約スタッフがおり、掲載エリア内のバス車庫へお伺いします。"
+        q: "本部は岡山ですが、他の地域のバスも来てもらえますか？",
+        a: `はい。${HQ_FIELD_SENTENCE}。掲載エリア内のバス車庫へお伺いします。`
     },
 ];
 
