@@ -104,6 +104,7 @@ import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_N
 
 import {
     AUTHOR,
+    ORGANIZATION_LOGO_URL,
     ORGANIZATION_SAME_AS,
     TRUST_REFERENCES,
     buildMobileInteriorCleaningDefinition,
@@ -229,7 +230,7 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
 
     const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
-    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。運営本部岡山・現場は地域出張チーム。`;
+    const busDescription = `${regionName}の出張バス・マイクロバス車内清掃。嘔吐・尿漏れ区画22,000円〜。観光バス・送迎バス対応。最短即日。現地の専門プロのスタッフが車庫へ出張します。`;
 
     const description = isTruck ? truckDescription : isBus ? busDescription : carDescription;
 
@@ -566,7 +567,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         address: operatorPostalAddress,
 
-        logo: `${SITE_URL}/images/representative_new.webp`,
+        logo: ORGANIZATION_LOGO_URL,
 
         founder: {
 
@@ -687,6 +688,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
         alternateName: `${displayName}対応 ${STORE_NAME}${isTruck ? '（トラック清掃）' : isBus ? '（バス清掃）' : ''}`,
 
         image: absHeroImageForSchema,
+
+        logo: ORGANIZATION_LOGO_URL,
 
         description: localBusinessDescription,
 
@@ -947,6 +950,8 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
                 name: STORE_NAME,
 
                 url: SITE_URL,
+
+                logo: ORGANIZATION_LOGO_URL,
 
             },
 

@@ -40,6 +40,7 @@ test('owner-confirmed facts, address, and published prices are present', () => {
   assert.equal(text.includes(yen(TRUCK_PRICING.ton10Total)), true);
   assert.equal(text.includes('2連席1区画 22,000円〜'), true);
   assert.equal(text.includes(`〒${OPERATOR.postalCode}　${OPERATOR.fullAddress}`), true);
+  assert.equal(text.includes('本部は岡山、各地域へは現地の専門プロのスタッフが出張対応'), true);
   assert.equal(text.includes(OPERATOR.representative), true);
   assert.equal(text.includes(OPERATOR.paymentAcceptedLabel), true);
   assert.equal(text.includes('現金・クレジットカードでお支払いいただけます。'), true);

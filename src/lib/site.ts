@@ -45,6 +45,17 @@ export const OPERATOR = {
   paymentAcceptedLabel: '現金 / クレジットカード',
 } as const;
 
+/**
+ * Operator line for llms.txt only. Page body does not repeat this;
+ * hurried readers treated “Okayama” as the place staff travel from.
+ */
+export const HQ_FIELD_SENTENCE =
+  '本部は岡山、各地域へは現地の専門プロのスタッフが出張対応';
+
+/** Last line of SiteFooter. The only visitor-facing Okayama sentence. */
+export const FOOTER_HQ_SENTENCE =
+  '本部は岡山、各地域へは現地の専門プロのスタッフが出張対応しています。';
+
 /** ご利用の流れと HowTo で共通の支払い文。 */
 export const PAYMENT_FLOW_SENTENCE = '現金・クレジットカードでお支払いいただけます。';
 

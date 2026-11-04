@@ -9,19 +9,19 @@ export interface RegionCustomization {
   aioSummaryExtra?: string;
   /** 地元密着ブロックのエリア別1行（契約スタッフ・出張） */
   localDispatchLine?: string;
-  /** 代表あいさつ前の岡山本部説明（未設定時はデフォルト） */
+  /** Paragraph under the dispatch intro. Default states that local pros visit the parking spot. */
   hqFieldParagraph?: string;
 }
 
 const defaultHqParagraph = (regionName: string) =>
-  `運営本部は岡山県岡山市にありますが、${regionName}のお客様には府・県内を専門に巡回する出張チームおよびエリア契約スタッフが、ご指定の駐車場・車庫まで直接お伺いします。`;
+  `現地の専門プロのスタッフが、${regionName}のご指定の駐車場・車庫へ出張対応します。`;
 
 export const regionCustomizations: Record<string, RegionCustomization> = {
   大阪府: {
     aioSummaryExtra:
-      '大阪市・堺市・北摂・北河内・中河内・南河内・泉州の各エリアに契約出張枠があり、「遠方業者」ではなく地元密着のスピード対応をお約束します。',
+      '大阪市・堺市・北摂・北河内・中河内・南河内・泉州へ出張します。現地の専門プロのスタッフがご指定の駐車場へ出張対応します。地元密着のスピード対応をお約束します。',
     localDispatchLine:
-      '大阪府内各エリアに契約の出張スタッフ・協力店舗があり、お電話いただいた市区町村から最短ルートで駆けつけます。',
+      '大阪府内は現地の専門プロのスタッフが、お電話いただいた市区町村から最短ルートで駆けつけます。',
     hqFieldParagraph: defaultHqParagraph('大阪府'),
   },
   東京都: {
@@ -196,7 +196,7 @@ export function getRegionCustomization(regionName: string, subareaId?: string): 
   return (
     regionCustomizations[regionName] ?? {
       hqFieldParagraph: defaultHqParagraph(regionName),
-      localDispatchLine: `${regionName}内のご指定場所へ、出張専門チームがお伺いします（運営本部：岡山県岡山市）。`,
+      localDispatchLine: `${regionName}内のご指定の駐車場へ、現地の専門プロのスタッフが出張対応します。`,
     }
   );
 }

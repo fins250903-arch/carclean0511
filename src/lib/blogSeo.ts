@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { SITE_URL, STORE_NAME } from '@/lib/site';
-import { AUTHOR } from '@/lib/structuredDataConstants';
+import { AUTHOR, ORGANIZATION_LOGO_URL } from '@/lib/structuredDataConstants';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'src/content/blog');
 
@@ -97,6 +97,7 @@ export function buildArticleJsonLd(input: ArticleJsonLdInput) {
       '@id': `${SITE_URL}/#organization`,
       name: input.publisherName ?? STORE_NAME,
       url: SITE_URL,
+      logo: ORGANIZATION_LOGO_URL,
     },
     /** AI / voice answers should read the Answer-First lead, not the diary body */
     speakable: {

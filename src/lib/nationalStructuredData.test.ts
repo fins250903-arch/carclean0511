@@ -2,8 +2,38 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAioContentFaqs } from '../data/aioKeywordContent.ts';
 import { mentionsJapanesePlace } from './placeNames.ts';
+import { buildArticleJsonLd } from './blogSeo.ts';
 import { buildNationalJsonLd, buildNationalPageFaqs } from './nationalStructuredData.ts';
+import { ORGANIZATION_LOGO_URL } from './structuredDataConstants.ts';
 import { generateJsonLd } from './seo.ts';
+
+test('JSON-LD logo is the brand mark, and the representative photo stays on Person', () => {
+  const national = buildNationalJsonLd();
+  for (const type of ['Organization', 'LocalBusiness']) {
+    const node = national.find((item) => item['@type'] === type);
+    assert.equal(node?.logo, ORGANIZATION_LOGO_URL);
+  }
+  assert.equal(JSON.stringify(national).includes('representative_new'), false);
+
+  const region = generateJsonLd('大阪府', '/regions/osaka/');
+  const logos = region.flatMap((node) => (typeof node.logo === 'string' ? [node.logo] : []));
+  assert.equal(logos.length >= 2, true);
+  assert.equal(logos.every((logo) => logo === ORGANIZATION_LOGO_URL), true);
+
+  const person = region.find((node) => node['@type'] === 'Person');
+  assert.equal(person?.image, 'https://carinteriorcleaning.jp/images/representative_new.webp');
+
+  const business = region.find((node) => node['@type'] === 'LocalBusiness' && node.image);
+  assert.equal(String(business?.image).includes('representative_new'), false);
+
+  const article = buildArticleJsonLd({
+    title: '施工事例',
+    description: 'シート洗浄の事例です。',
+    url: 'https://carinteriorcleaning.jp/blog/example/',
+  });
+  const publisher = article.publisher as { logo?: string };
+  assert.equal(publisher.logo, ORGANIZATION_LOGO_URL);
+});
 
 test('national JSON-LD has no ratings and no Japanese place names', () => {
   const graph = buildNationalJsonLd();
@@ -71,6 +101,28 @@ test('region FAQPage does not pick up nationwide-only FAQ items', () => {
   const names = mainEntity.map((item) => item.name);
   assert.equal(names.includes('受付は何時でもできますか？'), false);
   assert.equal(names.includes('電話番号とLINEは、どの地域からでも同じですか？'), false);
+  const hq = mainEntity.find((item) => item.name === '私の地域まで来てもらえますか？');
+  assert.equal(
+    hq?.acceptedAnswer.text,
+    'はい。現地の専門プロのスタッフがご指定の駐車場へ出張対応します。出張費は原則無料です。',
+  );
+  assert.equal(hq?.acceptedAnswer.text.includes('岡山'), false);
+  const org = graph.find((node) => node['@type'] === 'Organization' && node.address);
+  const address = org?.address as { addressRegion?: string; addressLocality?: string };
+  assert.equal(address.addressRegion, '岡山県');
+  assert.equal(address.addressLocality, '岡山市南区');
+
+  const bus = generateJsonLd('大阪府', '/regions/osaka-bus/', undefined, 'bus');
+  const busFaq = bus.find((node) => node['@type'] === 'FAQPage');
+  const busQuestions = busFaq?.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>;
+  const busHq = busQuestions.find((item) => item.name.includes('バスでも来て'));
+  assert.equal(busHq?.name, 'どの地域のバスでも来てもらえますか？');
+  assert.equal(
+    busHq?.acceptedAnswer.text,
+    'はい。現地の専門プロのスタッフが、掲載エリア内のバス車庫へ出張対応します。',
+  );
+  assert.equal(JSON.stringify(busFaq).includes('遠方'), false);
+
   const power = mainEntity.find((item) => item.name.includes('水道や電源'));
   assert.equal(
     power?.acceptedAnswer.text,

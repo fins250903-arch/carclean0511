@@ -1,5 +1,11 @@
 import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME } from '@/lib/site';
 
+/**
+ * Square brand mark for JSON-LD Organization / LocalBusiness `logo`.
+ * The representative portrait stays on Person.image and the profile section.
+ */
+export const ORGANIZATION_LOGO_URL = `${SITE_URL}/images/logo-512.png`;
+
 /** 構造化データ・AIO用：代表者（Author / founder） */
 export const AUTHOR = {
   id: `${SITE_URL}/#author`,
