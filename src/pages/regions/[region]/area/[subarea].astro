@@ -221,8 +221,9 @@ const noindex = isNoindexRegionId(regionId);
         <a href={regionPath(regionId, niche)} class="text-primary font-bold underline">{regionName}全体のLPへ</a>
       </p>
       <ContactForm client:visible regionName={regionName} />
-      <OperatorInfo regionName={regionName} displayName={subareaLabel} />
-      <Closing regionName={regionName} displayName={subareaLabel} niche={niche} path={path} />
+      <Closing regionName={regionName} displayName={subareaLabel} niche={niche} path={path}>
+        <OperatorInfo regionName={regionName} displayName={subareaLabel} />
+      </Closing>
       <FloatingCTA client:load />
     </main>
   </RegionProvider>
