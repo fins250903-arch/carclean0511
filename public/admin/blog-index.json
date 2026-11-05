@@ -1,6 +1,60 @@
 {
-  "generatedAt": "2026-10-29T02:53:25.524Z",
+  "generatedAt": "2026-11-05T11:21:31.258Z",
   "posts": [
+    {
+      "slug": "2026-11-05-fukuokaseatkurozumi",
+      "postSlug": "2026/11/2026-11-05-fukuokaseatkurozumi",
+      "title": "【福岡】車の布シートの黒ずみ・皮脂汚れが落ちない！原因と自分でできるお手入れ",
+      "date": "2026-11-05",
+      "areaName": "",
+      "coverImage": "",
+      "imageUrl": ""
+    },
+    {
+      "slug": "2026-02-17-fukuokabanouto",
+      "postSlug": "2026/02/2026-02-17-fukuokabanouto",
+      "title": "[福岡市] コンパクトミニバンのシエンタ 嘔吐 消臭",
+      "date": "2026-11-01",
+      "areaName": "",
+      "coverImage": "sienta3retume-before.jpg",
+      "imageUrl": "/posts/2026/02/2026-02-17-fukuokabanouto/images/sienta3retume-before.jpg"
+    },
+    {
+      "slug": "2026-04-29-notecat",
+      "postSlug": "2026/04/2026-04-29-notecat",
+      "title": "【鎌倉市】ニッサン・ノート愛猫とのドライブの忘れ物",
+      "date": "2026-10-31",
+      "areaName": "神奈川県鎌倉市",
+      "coverImage": "日産-ノート.jpg",
+      "imageUrl": "/posts/2026/04/2026-04-29-notecat/images/日産-ノート.jpg"
+    },
+    {
+      "slug": "2026-05-30-trucksaitama",
+      "postSlug": "2026/05/2026-05-30-trucksaitama",
+      "title": "【埼玉県さいたま市】トラック4t 運転手交代時期でキャビン洗浄",
+      "date": "2026-10-31",
+      "areaName": "埼玉県さいたま市",
+      "coverImage": "20260530maruhat after1.jpg",
+      "imageUrl": "/posts/2026/05/2026-05-30-trucksaitama/images/20260530maruhat after1.jpg"
+    },
+    {
+      "slug": "2026-04-19-100kinyogore",
+      "postSlug": "2026/04/2026-04-19-100kinyogore",
+      "title": "内緒にしたい100均3品でプロ級！シエンタの汚れを新品に戻す",
+      "date": "2026-10-29",
+      "areaName": "",
+      "coverImage": "car_clean_man.jpg",
+      "imageUrl": "/posts/2026/04/2026-04-19-100kinyogore/images/car_clean_man.jpg"
+    },
+    {
+      "slug": "2026-10-29-fukuokapetnoke",
+      "postSlug": "2026/10/2026-10-29-fukuokapetnoke",
+      "title": "【福岡市】車のシートに刺さったペットの毛が取れない！原因と自分でできる対策",
+      "date": "2026-10-29",
+      "areaName": "",
+      "coverImage": "",
+      "imageUrl": ""
+    },
     {
       "slug": "2026-02-22-fukuoknioi",
       "postSlug": "2026/02/2026-02-22-fukuoknioi",
@@ -1100,15 +1154,6 @@
       "imageUrl": "/posts/2026/06/2026-06-07-hokennouto/images/kodomo_hakike_otokonoko.png"
     },
     {
-      "slug": "2026-02-17-fukuokabanouto",
-      "postSlug": "2026/02/2026-02-17-fukuokabanouto",
-      "title": "[福岡市] コンパクトミニバンのシエンタ 嘔吐 消臭",
-      "date": "2026-06-04",
-      "areaName": "",
-      "coverImage": "sienta3retume-before.jpg",
-      "imageUrl": "/posts/2026/02/2026-02-17-fukuokabanouto/images/sienta3retume-before.jpg"
-    },
-    {
       "slug": "2026-03-30-sakaipuriusu",
       "postSlug": "2026/03/2026-03-30-sakaipuriusu",
       "title": "【堺市】トヨタ・プリウス　 魚介類の煮汁こぼれによる腐敗臭解決",
@@ -1138,38 +1183,11 @@
     {
       "slug": "2026-06-01-4ttorakkusaitama",
       "postSlug": "2026/06/2026-06-01-4ttorakkusaitama",
-      "title": "【埼玉県　さいたま市】４ｔトラック　ドライバー交代で再美化施工",
+      "title": "【埼玉県　さいたま市】４ｔトラック　ドライバー交代に合わせて清掃",
       "date": "2026-06-01",
-      "areaName": "",
+      "areaName": "埼玉県　さいたま市",
       "coverImage": "s__18309127.jpg",
       "imageUrl": "/posts/2026/06/2026-06-01-4ttorakkusaitama/images/s__18309127.jpg"
-    },
-    {
-      "slug": "2026-05-30-trucksaitama",
-      "postSlug": "2026/05/2026-05-30-trucksaitama",
-      "title": "【埼玉県さいたま市】トラック4t 運転手交代時期でキャビン洗浄",
-      "date": "2026-05-30",
-      "areaName": "",
-      "coverImage": "20260530maruhat after1.jpg",
-      "imageUrl": "/posts/2026/05/2026-05-30-trucksaitama/images/20260530maruhat after1.jpg"
-    },
-    {
-      "slug": "2026-04-29-notecat",
-      "postSlug": "2026/04/2026-04-29-notecat",
-      "title": "【鎌倉市】ニッサン・ノート愛猫とのドライブの忘れ物",
-      "date": "2026-05-26",
-      "areaName": "",
-      "coverImage": "日産-ノート.jpg",
-      "imageUrl": "/posts/2026/04/2026-04-29-notecat/images/日産-ノート.jpg"
-    },
-    {
-      "slug": "2026-04-19-100kinyogore",
-      "postSlug": "2026/04/2026-04-19-100kinyogore",
-      "title": "内緒にしたい100均3品でプロ級！シエンタの汚れを新品に戻す",
-      "date": "2026-05-24",
-      "areaName": "",
-      "coverImage": "car_clean_man.jpg",
-      "imageUrl": "/posts/2026/04/2026-04-19-100kinyogore/images/car_clean_man.jpg"
     }
   ]
 }
