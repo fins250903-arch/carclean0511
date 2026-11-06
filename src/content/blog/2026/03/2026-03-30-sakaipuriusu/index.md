@@ -1,11 +1,16 @@
 ---
-date: 2026-06-04
+date: 2026-11-06
 title: 【堺市】トヨタ・プリウス　 魚介類の煮汁こぼれによる腐敗臭解決
 shortSlug: sakaipuriusu
+areaName: 大阪府堺市
+coverImage: 513bd9fb4c81975c3a979906c4c1aba8_t.jpeg
+seo:
+  noindex: false
+ogp:
+  og_type: article
 categories:
   - jisseki
   - oosaka
-coverImage: 513bd9fb4c81975c3a979906c4c1aba8_t.jpeg
 ---
 ####  港の近くにある市場は、いつ行っても活気があってワクワクする。
 
