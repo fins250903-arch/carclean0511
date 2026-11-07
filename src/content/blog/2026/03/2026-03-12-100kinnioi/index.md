@@ -1,10 +1,15 @@
 ---
-date: 2026-06-02
+date: 2026-11-07
 title: 100均3品で車シートの臭い撃退！プロ並みの消臭を15分で実現
 shortSlug: tokubio
+areaName: 福岡県福岡市東区
+coverImage: 1.jpg
+seo:
+  noindex: false
+ogp:
+  og_type: article
 categories:
   - aichi
-coverImage: 1.jpg
 ---
 ドアを開けた瞬間、モワッとしたあの重たい空気。 芳香剤でごまかそうとすればするほど、変な混ざり方をして余計に頭が痛くなる。そんな経験、誰しもあるのではないでしょうか。 友人や家族を乗せるとき、ふと「あ、今の臭い、気づかれたかな」と不安になるあの瞬間は、意外と心を削るものです。
 
