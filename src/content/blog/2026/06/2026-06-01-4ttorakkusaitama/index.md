@@ -1,5 +1,5 @@
 ---
-date: 2026-06-01
+date: 2026-11-07
 title: 【埼玉県　さいたま市】４ｔトラック　ドライバー交代に合わせて清掃　
 shortSlug: 4ttorakkusaitama
 areaName: 埼玉県　さいたま市
