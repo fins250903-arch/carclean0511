@@ -6,7 +6,7 @@
  */
 import MainLayout from '../../../../layouts/MainLayout.astro';
 import { ALL_SUBAREA_PATHS } from '../../../../data/regionSubareas';
-import { generateRegionMetadata, generateJsonLd } from '../../../../lib/seo';
+import { buildRegionPageFaqs, generateRegionMetadata, generateJsonLd } from '../../../../lib/seo';
 import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../../../lib/getRegionalBlogDisplayPosts';
 import { getLatestRegionalPosts } from '../../../../lib/regionalBlogFeed';
@@ -59,7 +59,6 @@ import {
   REGIONAL_EMERGENCY_CHECKLIST,
   REGIONAL_CHECKLIST_HEADING,
   REGIONAL_SITUATION_DIAGNOSIS,
-  buildAioContentFaqs,
 } from '../../../../data/aioKeywordContent';
 import { getRegionSubareaFvImage } from '../../../../data/fvImageMap';
 import { isNoindexRegionId } from '../../../../data/noindexRegions';
@@ -119,8 +118,9 @@ const regionOverrides = buildRegionSeoOverrides({
 });
 
 const metadata = generateRegionMetadata(subareaLabel, path, niche);
+const pageFaqs = buildRegionPageFaqs(regionName, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
-  extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
+  faqItems: pageFaqs,
 });
 const combinedJsonLd = jsonLdData;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(subareaLabel, regionName) : undefined;
@@ -203,7 +203,7 @@ const noindex = isNoindexRegionId(regionId);
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={subareaLabel} />
       <Expertise />
-      <FAQ niche={niche} regionName={regionName} />
+      <FAQ faqs={pageFaqs} />
       <RegionLocalTrust
         regionName={regionName}
         displayName={subareaLabel}
