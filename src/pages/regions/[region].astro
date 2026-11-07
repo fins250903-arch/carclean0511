@@ -2,7 +2,7 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import { regions } from '../../data/regions';
 import { getRegionCustomization } from '../../data/regionCustomization';
-import { generateRegionMetadata, generateJsonLd } from '../../lib/seo';
+import { buildRegionPageFaqs, generateRegionMetadata, generateJsonLd } from '../../lib/seo';
 import type { ServiceNiche } from '../../lib/niche';
 import { regionPath } from '../../lib/niche';
 import { getRegionalPost } from '../../lib/getRegionalPost';
@@ -48,7 +48,6 @@ import {
   REGIONAL_EMERGENCY_CHECKLIST,
   REGIONAL_CHECKLIST_HEADING,
   REGIONAL_SITUATION_DIAGNOSIS,
-  buildAioContentFaqs,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
@@ -111,8 +110,9 @@ const regionOverrides = buildRegionSeoOverrides({
 });
 
 const metadata = generateRegionMetadata(regionName, path, niche);
+const pageFaqs = buildRegionPageFaqs(regionName, niche);
 const jsonLdData = generateJsonLd(regionName, path, regionOverrides, niche, {
-  extraFaqs: !isTruck && !isBus ? buildAioContentFaqs(regionName) : [],
+  faqItems: pageFaqs,
 });
 const combinedJsonLd = jsonLdData;
 const regionalAnswerFirst = !isTruck && !isBus ? buildRegionalAnswerFirst(regionName, regionName) : undefined;
@@ -189,7 +189,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
-      <FAQ niche={niche} regionName={regionName} />
+      <FAQ faqs={pageFaqs} />
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />

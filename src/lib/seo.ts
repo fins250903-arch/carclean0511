@@ -98,6 +98,8 @@ import type { ServiceNiche } from '@/lib/niche';
 import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME, canonicalUrl } from '@/lib/site';
 
 import type { AdKeywordPageDef } from '@/data/adKeywordPages';
+import { buildAioContentFaqs } from '@/data/aioKeywordContent';
+import { rewriteArrivalFaq } from '@/lib/arrivalGuidance';
 import { powerFlowDesc, rewriteFaqForRegion } from '@/lib/powerPolicy';
 import { mentionsJapanesePlace } from '@/lib/placeNames';
 import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
@@ -188,6 +190,12 @@ type SchemaOptions = {
 
     /** Merge into FAQPage schema (keyword LP extras) */
     extraFaqs?: import('@/data/seoData').FAQItem[];
+
+    /**
+     * Visible FAQ list. When set, FAQPage uses this array and ignores extraFaqs
+     * so the schema cannot drift from the on-page FAQ.
+     */
+    faqItems?: import('@/data/seoData').FAQItem[];
 
 };
 
@@ -464,7 +472,8 @@ export function buildDisplayedFaqs({
     const mapped = dedupeFaqItems(
         [...baseFaqs, ...extraFaqs].map((faq) => {
             const withTravel = { ...faq, a: rewriteTravelFeeText(faq.a, regionName) };
-            return rewriteFaqForRegion(withTravel, regionName);
+            const withPower = rewriteFaqForRegion(withTravel, regionName);
+            return rewriteArrivalFaq(withPower, regionName);
         }),
     );
 
@@ -477,6 +486,19 @@ export function buildDisplayedFaqs({
         if (seen.has(key)) return false;
         seen.add(key);
         return true;
+    });
+}
+
+/**
+ * FAQ list for a prefecture LP (car, truck, or bus).
+ * Pass the result to both the FAQ section and generateJsonLd faqItems.
+ * Car pages include the AIO extras; truck and bus stay on their own lists.
+ */
+export function buildRegionPageFaqs(regionName: string, niche: ServiceNiche = 'car'): FAQItem[] {
+    return buildDisplayedFaqs({
+        niche,
+        regionName,
+        extraFaqs: niche === 'car' ? buildAioContentFaqs(regionName) : [],
     });
 }
 
@@ -907,7 +929,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
 
 
-    const faqPage = buildFaqPageJsonLd(buildDisplayedFaqs({
+    const faqPage = buildFaqPageJsonLd(schemaOptions?.faqItems ?? buildDisplayedFaqs({
         niche,
         regionName,
         extraFaqs: schemaOptions?.extraFaqs,
