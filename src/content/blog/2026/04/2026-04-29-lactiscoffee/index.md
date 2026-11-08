@@ -2,11 +2,16 @@
 date: 2026-06-04
 title: 愛知県【豊田市】トヨタ・アクア通勤途中のくつろぎコーヒー事故
 shortSlug: lactiscoffee
+areaName: 愛知県豊田市
+coverImage: 300x300.jpg
+seo:
+  noindex: false
+ogp:
+  og_type: article
 categories:
   - jisseki
   - aichi
   - tokublo
-coverImage: 300x300.jpg
 ---
 クルマの街、豊田。\
 \
@@ -46,4 +51,6 @@ coverImage: 300x300.jpg
 
 大満足！仕事の帰りに見たら跡形もなくなっていて、本当に救われたとのことです。
 
-作業データ：1時間 / 18000円
+作業データ：1時間
+
+費用： 18000円
