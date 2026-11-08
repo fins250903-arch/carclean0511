@@ -162,6 +162,13 @@ const noindex = isNoindexRegionId(regionId);
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={travelFeeAreaLabel(subareaLabel, regionName)}
       />
+      <ContactForm
+        client:load
+        placement="top"
+        regionName={regionName}
+        areaLabel={subareaLabel}
+        pagePath={path}
+      />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -220,7 +227,13 @@ const noindex = isNoindexRegionId(regionId);
       <p class="text-center text-sm text-gray-500 py-4">
         <a href={regionPath(regionId, niche)} class="text-primary font-bold underline">{regionName}全体のLPへ</a>
       </p>
-      <ContactForm client:visible regionName={regionName} />
+      <ContactForm
+        client:load
+        placement="bottom"
+        regionName={regionName}
+        areaLabel={subareaLabel}
+        pagePath={path}
+      />
       <Closing regionName={regionName} displayName={subareaLabel} niche={niche} path={path}>
         <OperatorInfo regionName={regionName} displayName={subareaLabel} />
       </Closing>

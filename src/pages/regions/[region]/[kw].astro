@@ -235,6 +235,13 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
           areaLabel={isTravelFeeExtra(regionName) ? travelFeeAreaLabel(displayName, regionName) : quickFacts.areaLabel(displayName)}
         />
       )}
+      <ContactForm
+        client:load
+        placement="top"
+        regionName={regionName}
+        areaLabel={displayName}
+        pagePath={path}
+      />
       {answerFirst && (
         <AnswerTarget text={answerFirst} voiceLine={voiceLine} />
       )}
@@ -303,7 +310,13 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
         regionBasePath={regionBasePath}
       />
       <KeywordMutualLinks regionId={regionId} regionName={regionName} currentSlug={kwSlug} />
-      <ContactForm client:visible regionName={regionName} />
+      <ContactForm
+        client:load
+        placement="bottom"
+        regionName={regionName}
+        areaLabel={displayName}
+        pagePath={path}
+      />
       <Closing regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
         <OperatorInfo regionName={regionName} displayName={displayName} />
       </Closing>

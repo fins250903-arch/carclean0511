@@ -148,6 +148,13 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={travelFeeAreaLabel(displayName, regionName)}
       />
+      <ContactForm
+        client:load
+        placement="top"
+        regionName={regionName}
+        areaLabel={displayName}
+        pagePath={path}
+      />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -193,7 +200,13 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
-      <ContactForm client:visible regionName={regionName} />
+      <ContactForm
+        client:load
+        placement="bottom"
+        regionName={regionName}
+        areaLabel={displayName}
+        pagePath={path}
+      />
       <Closing regionName={regionName} displayName={displayName} niche={niche} path={path}>
         <OperatorInfo regionName={regionName} displayName={displayName} />
       </Closing>
