@@ -84,6 +84,13 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
         durationLabel="作業 1.5〜3時間"
         areaLabel={travelFeeAreaLabel(LABEL, LABEL)}
       />
+      <ContactForm
+        client:load
+        placement="top"
+        regionName=""
+        areaLabel="地域を指定しないページ"
+        pagePath={path}
+      />
       <AnswerTarget
         text={buildRegionalAnswerFirst(LABEL, LABEL)}
         points={buildRegionalAnswerTargetPoints(LABEL, LABEL)}
@@ -135,7 +142,13 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
       <Expertise />
       <FAQ faqs={pageFaqs} />
       <RegionLocalTrust regionName={LABEL} displayName={LABEL} niche="car" neutral />
-      <ContactForm client:visible regionName={LABEL} areaPlaceholder="例：ご住所" />
+      <ContactForm
+        client:load
+        placement="bottom"
+        regionName=""
+        areaLabel="地域を指定しないページ"
+        pagePath={path}
+      />
       <Closing regionName={LABEL} displayName={LABEL} niche="car" path={path} showAreaList={false}>
         <OperatorInfo regionName={LABEL} displayName={LABEL} neutral />
       </Closing>

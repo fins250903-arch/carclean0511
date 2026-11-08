@@ -161,6 +161,13 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={`${displayName}（大阪府）へ出張費無料`}
       />
+      <ContactForm
+        client:load
+        placement="top"
+        regionName={REGION_NAME}
+        areaLabel={subareaLabel}
+        pagePath={path}
+      />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -220,7 +227,13 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
       <p class="text-center text-sm text-gray-500 py-4">
         <a href={regionPath('osaka', niche)} class="text-primary font-bold underline">大阪府全体のLPへ</a>
       </p>
-      <ContactForm client:visible regionName={REGION_NAME} />
+      <ContactForm
+        client:load
+        placement="bottom"
+        regionName={REGION_NAME}
+        areaLabel={subareaLabel}
+        pagePath={path}
+      />
       <Closing regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
         <OperatorInfo regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} />
       </Closing>
