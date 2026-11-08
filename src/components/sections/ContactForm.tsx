@@ -34,6 +34,7 @@ export default function ContactForm({
   const areaText = visibleArea(areaLabel, regionName);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [postal, setPostal] = useState('');
   const [message, setMessage] = useState('');
   const [gotcha, setGotcha] = useState('');
   const [errors, setErrors] = useState<InquiryErrors>({});
@@ -58,17 +59,23 @@ export default function ContactForm({
   const heading = placement === 'top' ? '無料相談・お見積もり' : '同じフォームを、下からも送れます';
   const lead =
     placement === 'top'
-      ? '必須はお名前と電話番号だけです。相談内容がまだ決まっていなくても、空欄のまま送れます。'
-      : '上のフォームと同じ項目です。どちらからでも送信できます。';
+      ? '必須はお名前と電話番号だけです。郵便番号と相談内容は、空欄のまま送れます。'
+      : '上のフォームと同じ4項目です。どちらからでも送信できます。';
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (sendingRef.current) return;
 
-    const nextErrors = validateInquiry({ name, phone, message });
+    const nextErrors = validateInquiry({ name, phone, postal, message });
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
-      pendingFocus.current = nextErrors.name ? ids.name : nextErrors.phone ? ids.phone : ids.message;
+      pendingFocus.current = nextErrors.name
+        ? ids.name
+        : nextErrors.phone
+          ? ids.phone
+          : nextErrors.postal
+            ? ids.postal
+            : ids.message;
       setPhase('error');
       setErrorText('まだ送信できていません。赤い文字の項目を確認してください。');
       return;
@@ -78,7 +85,7 @@ export default function ContactForm({
     setPhase('sending');
     setErrorText('');
     const result = await submitInquiry(
-      buildInquiryPayload({ name, phone, message }, { regionName, areaLabel, pagePath, placement }),
+      buildInquiryPayload({ name, phone, postal, message }, { regionName, areaLabel, pagePath, placement }),
       { gotcha },
     );
     if (result.ok) {
@@ -165,7 +172,7 @@ export default function ContactForm({
               <label htmlFor={ids.gotcha}>会社名</label>
               <input
                 id={ids.gotcha}
-                name="_gotcha"
+                name="_honey"
                 type="text"
                 tabIndex={-1}
                 autoComplete="off"
@@ -225,6 +232,33 @@ export default function ContactForm({
               {errors.phone ? (
                 <p id={ids.phoneError} className="mt-1 text-sm font-bold text-red-700">
                   {errors.phone}
+                </p>
+              ) : null}
+            </div>
+
+            <div>
+              <label htmlFor={ids.postal} className="mb-1 block text-base font-black text-gray-900">
+                郵便番号
+                <span className="ml-2 text-sm font-bold text-gray-600">任意</span>
+              </label>
+              <input
+                id={ids.postal}
+                name="postal"
+                type="text"
+                value={postal}
+                onChange={(event) => setPostal(event.target.value)}
+                autoComplete="postal-code"
+                inputMode="numeric"
+                maxLength={12}
+                aria-required="false"
+                aria-invalid={errors.postal ? 'true' : 'false'}
+                aria-describedby={errors.postal ? ids.postalError : undefined}
+                placeholder="例：530-0001"
+                className="w-full min-h-12 scroll-mb-32 rounded-xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+              />
+              {errors.postal ? (
+                <p id={ids.postalError} className="mt-1 text-sm font-bold text-red-700">
+                  {errors.postal}
                 </p>
               ) : null}
             </div>

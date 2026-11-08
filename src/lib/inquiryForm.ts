@@ -1,13 +1,19 @@
 /**
  * Short inquiry form shared by the top and bottom of regional landing pages.
  *
- * The browser posts JSON to the existing Formspree form. Success is only
- * `response.ok` plus JSON `{ ok: true }`. Timeouts, network errors, HTTP
- * errors, and non-JSON bodies stay failures so the page never claims success
- * for an unconfirmed send.
+ * The browser posts JSON to FormSubmit's documented AJAX endpoint. FormSubmit
+ * answers some refusals with HTTP 200 and success set to the string "false",
+ * so success is only the string "true" or boolean true. Timeouts, network
+ * errors, and any other body stay failures.
+ *
+ * The inbox layout is FormSubmit's documented `_template=table`. There is no
+ * documented free-form body for AJAX submissions.
  */
 
-export const INQUIRY_ENDPOINT = 'https://formspree.io/f/xknlodez';
+export const INQUIRY_RECIPIENT = 'info@insbs.net';
+export const INQUIRY_SUBJECT = '【車内清掃】お問い合わせ';
+export const INQUIRY_ENDPOINT = `https://formsubmit.co/ajax/${INQUIRY_RECIPIENT}`;
+const SITE_ORIGIN = 'https://carinteriorcleaning.jp';
 
 export const INQUIRY_SUCCESS_MESSAGE =
   '送信しました。お名前と電話番号を受け付けました。確認できしだい、お電話でご連絡します。お急ぎのときは、電話かLINEをご利用ください。';
@@ -30,6 +36,7 @@ export type InquiryFailureReason = keyof typeof FAILURE_MESSAGES;
 export type InquiryInput = {
   name: string;
   phone: string;
+  postal: string;
   message: string;
 };
 
@@ -68,6 +75,8 @@ export function inquiryDomIds(placement: InquiryPlacement) {
     nameError: `${prefix}-name-error`,
     phone: `${prefix}-phone`,
     phoneError: `${prefix}-phone-error`,
+    postal: `${prefix}-postal`,
+    postalError: `${prefix}-postal-error`,
     message: `${prefix}-message`,
     messageError: `${prefix}-message-error`,
     gotcha: `${prefix}-company`,
@@ -103,6 +112,15 @@ export function isAcceptableInquiryPhone(digits: string): boolean {
   return /^0\d{9,10}$/.test(digits);
 }
 
+/** Empty input stays empty. A real code becomes 123-4567. Anything else is invalid. */
+export function normalizeInquiryPostal(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+  const digits = asciiDigits(trimmed).replace(/\D/g, '');
+  if (digits.length !== 7) return null;
+  return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+}
+
 function formatPhone(digits: string): string {
   if (digits.length === 11) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
   return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
@@ -127,31 +145,45 @@ export function validateInquiry(input: InquiryInput): InquiryErrors {
     errors.phone = '電話番号を、0から始まる10桁か11桁で入力してください。';
   }
 
+  const postal = normalizeInquiryPostal(input.postal);
+  if (postal === null) errors.postal = '郵便番号は7桁で入力してください。空欄でも送れます。';
+
   if (input.message.trim().length > MESSAGE_MAX) {
     errors.message = '相談内容は400文字以内にしてください。';
   }
   return errors;
 }
 
+function pageUrl(path: string): string {
+  const trimmed = oneLine(path, 180);
+  if (!trimmed) return '不明';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith('/')) return `${SITE_ORIGIN}${trimmed}`;
+  return trimmed;
+}
+
 export function buildInquiryPayload(input: InquiryInput, context: InquiryContext): Record<string, string> {
   const name = oneLine(input.name, NAME_MAX);
   const digits = inquiryPhoneDigits(input.phone);
   const phone = isAcceptableInquiryPhone(digits) ? formatPhone(digits) : oneLine(input.phone, 20);
+  const postal = normalizeInquiryPostal(input.postal);
   const message = clip(input.message, MESSAGE_MAX);
   const area = oneLine(context.areaLabel, 80) || oneLine(context.regionName, 80) || '未設定';
   const prefecture = oneLine(context.regionName, 40) || '未設定';
-  const page = oneLine(context.pagePath, 180) || '不明';
   const placement = context.placement === 'top' ? 'ページ上部' : 'ページ下部';
 
   return {
-    _subject: oneLine(`お問合わせ ${name} / ${area}`, 120),
-    _gotcha: '',
+    _subject: INQUIRY_SUBJECT,
+    _template: 'table',
+    _captcha: 'false',
+    _honey: '',
     お名前: name,
     電話番号: phone,
+    郵便番号: postal || '未記入',
     相談内容: message || '未記入',
     地域: area,
     都道府県: prefecture,
-    ページ: page,
+    ページ: pageUrl(context.pagePath),
     フォーム位置: placement,
   };
 }
@@ -173,9 +205,12 @@ export async function interpretInquiryResponse(response: Response): Promise<Subm
   }
 
   if (!response.ok) return { ok: false, reason: 'http', status };
-  if (!data || typeof data !== 'object' || Array.isArray(data) || (data as { ok?: unknown }).ok !== true) {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
     return { ok: false, reason: 'invalid-response', status };
   }
+  const success = (data as { success?: unknown }).success;
+  if (success === false || success === 'false') return { ok: false, reason: 'rejected', status };
+  if (success !== true && success !== 'true') return { ok: false, reason: 'invalid-response', status };
   return { ok: true };
 }
 
