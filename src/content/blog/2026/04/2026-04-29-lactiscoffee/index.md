@@ -1,5 +1,5 @@
 ---
-date: 2026-06-04
+date: 2026-11-08
 title: 愛知県【豊田市】トヨタ・アクア通勤途中のくつろぎコーヒー事故
 shortSlug: lactiscoffee
 areaName: 愛知県豊田市
