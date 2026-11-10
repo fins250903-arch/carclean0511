@@ -1108,7 +1108,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             name: item.title,
 
             text:
-                item.title.includes('現地') || item.desc.includes('電源')
+                item.title.includes('訪問') || item.title.includes('現地') || item.desc.includes('電源')
                     ? powerFlowDesc(regionName)
                     : item.desc,
 

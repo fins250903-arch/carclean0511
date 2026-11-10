@@ -83,7 +83,7 @@ export function powerReasonTitle(_regionName?: string, _regionId?: string): stri
 }
 
 export function powerReasonDesc(_regionName?: string, _regionId?: string): string {
-  return 'コンセントが無い場所でも作業できます。外部電源の持込は別途費用です。';
+  return '作業車に発電機を積んでいます。コンセントが無いマンションの駐車場や青空駐車場でも作業できます。';
 }
 
 export function powerSupplyName(_regionName?: string, _regionId?: string): string {
@@ -103,12 +103,12 @@ export function localPowerConditionSentence(_regionName?: string, _regionId?: st
   return EXTERNAL_POWER_SENTENCE;
 }
 
-export function sameDayUndergroundParkingAnswer(regionName?: string, regionId?: string): string {
-  return `掲載エリア内ならスケジュール次第で最短即日対応が可能です。${localPowerConditionSentence(regionName, regionId)}左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。`;
+export function sameDayUndergroundParkingAnswer(_regionName?: string, _regionId?: string): string {
+  return '掲載エリア内ならスケジュール次第で最短即日対応が可能です。左右ドアが開くスペースがあれば作業可能。お急ぎの方は電話で空き状況をご確認ください。';
 }
 
-export function mansionUndergroundParkingAnswer(regionName?: string, regionId?: string): string {
-  return `はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。${localPowerConditionSentence(regionName, regionId)}詳しくはお電話でご確認ください。`;
+export function mansionUndergroundParkingAnswer(_regionName?: string, _regionId?: string): string {
+  return 'はい。駐車スペースがあり、左右のドアが開けられれば施工可能です。詳しくはお電話でご確認ください。';
 }
 
 const CROSS_REGION_POWER_CLAUSES: RegExp[] = [
@@ -139,15 +139,6 @@ function normalizeGeneratorClaim(answer: string): string {
   return answer.replace(GENERATOR_CLAIM_PATTERN, GENERATOR_NO_OUTLET_SENTENCE);
 }
 
-function applyBringInParkingCopy(answer: string): string {
-  const softened = answer.replace(
-    /電源・水道の確保は不要です[。.]?/g,
-    `${EXTERNAL_POWER_SENTENCE}`,
-  );
-  if (softened.includes('電源持込')) return softened;
-  return `${softened}${POWER_BRING_IN_PARKING_SENTENCE}`;
-}
-
 type FaqLike = { q: string; a: string };
 
 /**
@@ -160,9 +151,6 @@ export function rewriteFaqForRegion<T extends FaqLike>(faq: T, regionName?: stri
   if (needsPowerBringIn(regionName)) {
     if (faq.q.includes('電源') || faq.q.includes('水道や電源')) {
       return { ...faq, a: powerFaqAnswer(regionName) };
-    }
-    if (faq.q.includes('マンション') || faq.q.includes('駐車場')) {
-      return { ...faq, a: replaceCrossRegionPowerCopy(applyBringInParkingCopy(a), regionName) };
     }
     return { ...faq, a: replaceCrossRegionPowerCopy(a, regionName) };
   }
