@@ -611,7 +611,7 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     slug: 'shutchou-senmon',
     seoTitle: '出張 車内 清掃 専門店',
     seoDescription: (r) =>
-      `${r}の出張 車内 清掃専門店。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。嘔吐・臭い・灯油こぼしも最短即日対応。`,
+      `${r}の出張 車内 清掃専門店。嘔吐・臭い・灯油こぼしも最短即日対応。`,
     seoKeywords: (r) =>
       `出張 車内 清掃 ${r}, 出張 車内 クリーニング ${r}, 出張車内清掃 ${r}, 車内クリーニング 出張 ${r}, 車内清掃 出張 ${r}, シート洗浄 ${r}`,
     ogImage: KW_IMAGES.steam,
@@ -750,18 +750,18 @@ export const AD_KEYWORD_PAGES: AdKeywordPageDef[] = [
     seoKeywords: (r) =>
       `車内清掃 外部電源持込 ${r}, コンセント無し 車内清掃 ${r}, マンション 車内清掃 ${r}, 出張 車内 清掃 ${r}`,
     ogImage: KW_IMAGES.rinserWork,
-    heroSubtitle: (d) => `${d}｜外部電源持込可能（別途費用） 出張`,
-    heroHighlight: ['外部電源持込可能（別途費用）', 'マンション駐車場OK'],
+    heroSubtitle: (d) => `${d}｜マンション駐車場でも出張`,
+    heroHighlight: ['マンション駐車場OK', '青空駐車場も対応'],
     heroSubcatch: (d) => `${d}の出張車内清掃`,
     fvImage: KW_IMAGES.rinserWork,
     heroFooter: kwFooter('車内の汚れ・臭い'),
     problemHeader: '「マンションの地下駐車場で、電源が使えない…」',
-    problemSubHeader: '外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+    problemSubHeader: 'マンション地下や月極駐車場でも、その場で施工できます。',
     problemDealerQuote: '「近くの洗車店は電源が必要で、マンションでは断られた…」',
     problemBodyHtml: (_rn, dn) =>
-      `<strong>車内清掃 外部電源持込可能（別途費用）</strong>の出張施工。<strong>${dn}</strong>のマンション地下・月極駐車場でも対応します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
+      `<strong>${dn}</strong>のマンション地下・月極駐車場でも出張施工します。<br />嘔吐・臭い・シート汚れを、100℃スチームとリンサーで根本洗浄します。`,
     problemEmpathyImage: KW_IMAGES.steam,
-    problemEmpathyAlt: '外部電源持込可能（別途費用）の出張車内清掃・スチーム洗浄イメージ',
+    problemEmpathyAlt: '出張車内清掃・スチーム洗浄イメージ',
     mainTitle: (r) => `【${r}】外部電源持込可能（別途費用）の出張車内清掃！マンション地下駐車場でも即日施工`,
     deepTroubles: [
       'マンションの地下駐車場にコンセントがなく、他社に断られた',

@@ -18,7 +18,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     mainCopy: '栃木の車内クリーニング｜宇都宮・小山へ最短即日出張',
     subCopy: [
       'シートの黄ばみ・生活臭を丸ごと洗浄。ディーラー予約不要で最短即日。',
-      '足利・佐野・那須まで栃木県内契約スタッフが出張。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+      '足利・佐野・那須まで栃木県内契約スタッフが出張。',
       '栃木の車内洗浄・クリーニング　まとめて対応します。',
     ],
     marketingIntent: '地元密着×即日対応で清潔感を訴求。',
@@ -68,7 +68,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     mainCopy: '栃木の子供嘔吐対応｜翌日の送迎までに間に合わせます',
     subCopy: [
       '日光・那須高原ドライブの車酔いも即日対応。子ども用シートの奥まで洗浄。',
-      '宇都宮・小山・壬生まで栃木県内契約スタッフが駆けつけ。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+      '宇都宮・小山・壬生まで栃木県内契約スタッフが駆けつけ。',
       '栃木の子供嘔吐・車酔い　まとめて対応します。',
     ],
     marketingIntent: '家族観光ドライブ層の緊急ニーズに訴求。',
@@ -143,7 +143,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     mainCopy: '栃木で車の匂い消し｜スプレーでは消えない臭いを根絶',
     subCopy: [
       '生活臭・タバコ・ペット臭の原因をシート奥から洗い出す本格消臭洗浄。',
-      'マスキングではなく根本除去。栃木県内へ出張。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+      'マスキングではなく根本除去。栃木県内へ出張。',
       '栃木の車の匂い消し　まとめて対応します。',
     ],
     marketingIntent: 'スプレー失敗経験層をプロ洗浄へ誘導。',
@@ -242,7 +242,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     targetKeywords: ['出張 車内クリーニング', '車内クリーニング 専門店', '栃木 出張 車内清掃'],
     mainCopy: '栃木の出張車内クリーニング専門店｜最短即日対応',
     subCopy: [
-      '店舗に預けず駐車場で施工。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+      '店舗に預けず駐車場で施工。',
       '宇都宮・小山・佐野まで365日24時間受付。栃木県内契約スタッフが直撃。',
       '栃木の出張車内クリーニング　まとめて対応します。',
     ],
@@ -251,7 +251,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
       subtitle: '栃木｜出張車内クリーニング専門',
       mainTitle: '栃木の出張車内クリーニング専門店｜最短即日対応',
       highlightLine1: '出張専門',
-      highlightLine2: '外部電源持込・即日',
+      highlightLine2: '最短即日',
       subcatch: '栃木の出張車内クリーニング',
       footerText: '栃木の出張車内クリーニング　まとめて対応します。',
     },
@@ -273,12 +273,12 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     ],
     marketingIntent: '外部電源は別途費用で持込可能、という条件で訴求。',
     hero: {
-      subtitle: '{displayName}｜外部電源持込（別途費用）',
+      subtitle: '{displayName}｜マンション駐車場でも出張',
       mainTitle: '栃木の車内清掃｜外部電源持込可・マンション駐車場OK',
-      highlightLine1: '外部電源持込',
-      highlightLine2: '別途費用',
-      subcatch: '{displayName}の外部電源持込の出張清掃',
-      footerText: '{displayName}の外部電源持込の車内清掃　まとめて対応します。',
+      highlightLine1: 'マンション駐車場OK',
+      highlightLine2: '青空駐車場も対応',
+      subcatch: '{displayName}の出張車内清掃',
+      footerText: '{displayName}の出張車内清掃　まとめて対応します。',
     },
   },
   {
@@ -418,7 +418,7 @@ export const TOCHIGI_FV_AD_GROUP_COPY: FvAdGroupCopyDef[] = [
     mainCopy: '栃木の車シートクリーニング｜座席まるごとプロ洗浄',
     subCopy: [
       'わんぱく公園帰りの砂汚れ・長距離通勤の皮脂をシート全体から洗い流す本格クリーニング。',
-      '布シート・革シートに対応。栃木県内へ出張。外部電源持込可能（別途費用）。コンセントの無いところでも作業可能です。',
+      '布シート・革シートに対応。栃木県内へ出張。',
       '栃木の車シートクリーニング　まとめて対応します。',
     ],
     marketingIntent: 'シートクリーニング検索向け。',

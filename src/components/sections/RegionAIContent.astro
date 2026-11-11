@@ -1,6 +1,5 @@
 ---
 import { getRegionalPost } from '../../lib/getRegionalPost';
-import { powerHighlightLine } from '../../lib/powerPolicy';
 
 interface Props {
   regionName: string;
@@ -11,7 +10,6 @@ interface Props {
 
 const { regionName, displayName, neutralSummary } = Astro.props;
 const post = getRegionalPost(regionName);
-const powerLine = powerHighlightLine(regionName);
 const summary = post?.aiSummary ?? neutralSummary;
 const specs = post?.specs;
 
@@ -53,7 +51,6 @@ if (!summary || (post && !specs)) {
                 <p class="font-bold text-gray-800 mb-3 text-sm">【{displayName}の対応ポイント】</p>
                 <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
                     <li class="flex items-center gap-2">✓ 最短即日の出張対応</li>
-                    <li class="flex items-center gap-2">✓ {powerLine}</li>
                     <li class="flex items-center gap-2">✓ 嘔吐・灯油・ペット臭の専門洗浄</li>
                     <li class="flex items-center gap-2">✓ 一人で悩まない！安心の事前見積もり</li>
                 </ul>
