@@ -1,5 +1,5 @@
 ---
-date: 2026-06-13
+date: 2026-11-13
 title: 同乗者の車内嘔吐、個人賠償保険で清掃と申請手続きまで全部任せた話
 shortSlug: baisyohokennouto
 categories:
