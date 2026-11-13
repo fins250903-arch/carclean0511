@@ -38,8 +38,11 @@ function mdLink(label: string, href: string, detail?: string): string {
   return detail ? `- [${label}](${url}): ${detail}` : `- [${label}](${url})`;
 }
 
+/** Surcharge prefectures that also have an indexable region page. */
 function travelFeeExtraNames(): string[] {
-  return regions.filter((region) => isTravelFeeExtra(region.name)).map((region) => region.name);
+  return filterIndexableRegions(regions)
+    .filter((region) => isTravelFeeExtra(region.name))
+    .map((region) => region.name);
 }
 
 function areaSection(): string[] {

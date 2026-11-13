@@ -75,6 +75,7 @@ test('page links start with /aio/, then prefecture LPs, then /blog/', () => {
   }
 
   assert.equal(text.includes('/regions/kumamoto'), false);
+  assert.equal(text.includes('熊本'), false);
 });
 
 test('bus price matches the visible pricing table', () => {
