@@ -1,5 +1,5 @@
 ---
-date: 2026-06-10
+date: 2026-11-14
 title: 100均3品で解決！中古車のタバコ臭を業者並みに消す超簡単術
 shortSlug: tabacconioi
 categories:
