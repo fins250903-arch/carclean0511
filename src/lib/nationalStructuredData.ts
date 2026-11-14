@@ -1,5 +1,7 @@
 import { buildAioContentFaqs } from '@/data/aioKeywordContent';
+import { filterIndexableRegions } from '@/data/noindexRegions';
 import { CAR_PRICING } from '@/data/pricingConstants';
+import { regions } from '@/data/regions';
 import { dedupeFaqItems, type FAQItem } from '@/data/seoData';
 import { buildDisplayedFaqs, buildFaqPageJsonLd } from '@/lib/seo';
 import { ORGANIZATION_LOGO_URL, ORGANIZATION_SAME_AS } from '@/lib/structuredDataConstants';
@@ -66,7 +68,19 @@ export function buildNationalPageFaqs(): FAQItem[] {
 const HOME_URL = canonicalUrl('/aio');
 
 /**
- * Homepage JSON-LD. No self-served ratings and no prefecture or city names.
+ * Prefectures that have an indexable region landing page.
+ * Same set as the sitemap and llms.txt. Kumamoto is excluded.
+ */
+function servedPrefectureAreas(): { '@type': 'AdministrativeArea'; name: string }[] {
+  return filterIndexableRegions(regions).map((region) => ({
+    '@type': 'AdministrativeArea',
+    name: region.name,
+  }));
+}
+
+/**
+ * Homepage JSON-LD. No self-served ratings.
+ * areaServed lists served prefectures. Other fields stay free of place names.
  * Regional LPs keep their own structured data.
  */
 export function buildNationalJsonLd(): Record<string, unknown>[] {
@@ -100,10 +114,7 @@ export function buildNationalJsonLd(): Record<string, unknown>[] {
       '@type': 'PostalAddress',
       addressCountry: 'JP',
     },
-    areaServed: {
-      '@type': 'Country',
-      name: 'Japan',
-    },
+    areaServed: servedPrefectureAreas(),
     parentOrganization: { '@id': `${SITE_URL}/#organization` },
     sameAs,
   };

@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAioContentFaqs } from '../data/aioKeywordContent.ts';
+import { filterIndexableRegions } from '../data/noindexRegions.ts';
+import { regions } from '../data/regions.ts';
 import { mentionsJapanesePlace } from './placeNames.ts';
 import { buildArticleJsonLd } from './blogSeo.ts';
 import { buildNationalJsonLd, buildNationalPageFaqs } from './nationalStructuredData.ts';
@@ -35,28 +37,38 @@ test('JSON-LD logo is the brand mark, and the representative photo stays on Pers
   assert.equal(publisher.logo, ORGANIZATION_LOGO_URL);
 });
 
-test('national JSON-LD has no ratings and no Japanese place names', () => {
+test('national JSON-LD areaServed lists indexable prefectures and other fields omit place names', () => {
   const graph = buildNationalJsonLd();
   assert.deepEqual(
     graph.map((node) => node['@type']),
     ['Organization', 'LocalBusiness', 'WebSite', 'FAQPage'],
   );
 
-  const serialized = JSON.stringify(graph);
+  const business = graph.find((node) => node['@type'] === 'LocalBusiness');
+  assert.equal(business?.['@type'], 'LocalBusiness');
+  assert.equal(business?.url, 'https://carinteriorcleaning.jp/aio/');
+  assert.equal(business?.telephone, '070-8428-0866');
+
+  const served = filterIndexableRegions(regions).map((region) => region.name);
+  const area = business?.areaServed as { '@type': string; name: string }[];
+  assert.deepEqual(
+    area,
+    served.map((name) => ({ '@type': 'AdministrativeArea', name })),
+  );
+  assert.equal(area.some((item) => item.name.includes('熊本')), false);
+  assert.equal(area.length, served.length);
+
+  const withoutArea = JSON.parse(JSON.stringify(graph)) as Array<Record<string, unknown>>;
+  const businessCopy = withoutArea.find((node) => node['@type'] === 'LocalBusiness');
+  delete businessCopy?.areaServed;
+  const serialized = JSON.stringify(withoutArea);
   assert.equal(serialized.includes('AggregateRating'), false);
   assert.equal(serialized.includes('ratingValue'), false);
   assert.equal(serialized.includes('"Review"'), false);
   assert.equal(serialized.includes('AutoBodyShop'), false);
   assert.equal(serialized.includes('/blog/'), false);
+  assert.equal(serialized.includes('"Country"'), false);
   assert.equal(mentionsJapanesePlace(serialized), false);
-
-  const business = graph.find((node) => node['@type'] === 'LocalBusiness');
-  assert.equal(business?.['@type'], 'LocalBusiness');
-  assert.equal(business?.url, 'https://carinteriorcleaning.jp/aio/');
-  assert.equal(business?.telephone, '070-8428-0866');
-  const area = business?.areaServed as { '@type': string; name: string };
-  assert.equal(area['@type'], 'Country');
-  assert.equal(area.name, 'Japan');
 });
 
 test('national FAQPage matches the visible /aio/ FAQ and owner facts', () => {
