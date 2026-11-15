@@ -61,6 +61,7 @@ import QuestionnaireTestimonials from '../../components/sections/QuestionnaireTe
 import Testimonials from '../../components/sections/Testimonials';
 import Blog from '../../components/sections/Blog';
 import ContactForm from '../../components/sections/ContactForm';
+import InquiryJump from '../../components/sections/InquiryJump.astro';
 import FloatingCTA from '../../components/sections/FloatingCTA';
 
 export async function getStaticPaths() {
@@ -148,13 +149,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={travelFeeAreaLabel(displayName, regionName)}
       />
-      <ContactForm
-        client:load
-        placement="top"
-        regionName={regionName}
-        areaLabel={displayName}
-        pagePath={path}
-      />
+      <InquiryJump />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -202,7 +197,6 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
       <ContactForm
         client:load
-        placement="bottom"
         regionName={regionName}
         areaLabel={displayName}
         pagePath={path}

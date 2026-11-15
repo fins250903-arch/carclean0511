@@ -67,6 +67,7 @@ import QuestionnaireTestimonials from '../../../components/sections/Questionnair
 import Testimonials from '../../../components/sections/Testimonials';
 import Blog from '../../../components/sections/Blog';
 import ContactForm from '../../../components/sections/ContactForm';
+import InquiryJump from '../../../components/sections/InquiryJump.astro';
 import FloatingCTA from '../../../components/sections/FloatingCTA';
 
 export async function getStaticPaths() {
@@ -235,13 +236,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
           areaLabel={isTravelFeeExtra(regionName) ? travelFeeAreaLabel(displayName, regionName) : quickFacts.areaLabel(displayName)}
         />
       )}
-      <ContactForm
-        client:load
-        placement="top"
-        regionName={regionName}
-        areaLabel={displayName}
-        pagePath={path}
-      />
+      <InquiryJump />
       {answerFirst && (
         <AnswerTarget text={answerFirst} voiceLine={voiceLine} />
       )}
@@ -312,7 +307,6 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
       <KeywordMutualLinks regionId={regionId} regionName={regionName} currentSlug={kwSlug} />
       <ContactForm
         client:load
-        placement="bottom"
         regionName={regionName}
         areaLabel={displayName}
         pagePath={path}
