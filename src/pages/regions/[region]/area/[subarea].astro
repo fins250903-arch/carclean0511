@@ -42,6 +42,7 @@ import { RegionProvider } from '../../../../lib/RegionContext';
 import QuestionnaireTestimonials from '../../../../components/sections/QuestionnaireTestimonials';
 import Blog from '../../../../components/sections/Blog';
 import ContactForm from '../../../../components/sections/ContactForm';
+import InquiryJump from '../../../../components/sections/InquiryJump.astro';
 import FloatingCTA from '../../../../components/sections/FloatingCTA';
 import EmergencyChecklist from '../../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../../components/sections/AnswerTarget.astro';
@@ -162,13 +163,7 @@ const noindex = isNoindexRegionId(regionId);
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={travelFeeAreaLabel(subareaLabel, regionName)}
       />
-      <ContactForm
-        client:load
-        placement="top"
-        regionName={regionName}
-        areaLabel={subareaLabel}
-        pagePath={path}
-      />
+      <InquiryJump />
       {regionalAnswerFirst && (
         <AnswerTarget text={regionalAnswerFirst} points={regionalAnswerPoints} voiceLine={voiceLine} />
       )}
@@ -229,7 +224,6 @@ const noindex = isNoindexRegionId(regionId);
       </p>
       <ContactForm
         client:load
-        placement="bottom"
         regionName={regionName}
         areaLabel={subareaLabel}
         pagePath={path}

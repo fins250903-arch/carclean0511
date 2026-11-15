@@ -46,6 +46,7 @@ import CancelPolicy from '../components/sections/CancelPolicy.astro';
 import { RegionProvider } from '../lib/RegionContext';
 import QuestionnaireTestimonials from '../components/sections/QuestionnaireTestimonials';
 import ContactForm from '../components/sections/ContactForm';
+import InquiryJump from '../components/sections/InquiryJump.astro';
 import FloatingCTA from '../components/sections/FloatingCTA';
 
 /** Shown in place of any prefecture or city name. */
@@ -84,13 +85,7 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
         durationLabel="作業 1.5〜3時間"
         areaLabel={travelFeeAreaLabel(LABEL, LABEL)}
       />
-      <ContactForm
-        client:load
-        placement="top"
-        regionName=""
-        areaLabel="地域を指定しないページ"
-        pagePath={path}
-      />
+      <InquiryJump />
       <AnswerTarget
         text={buildRegionalAnswerFirst(LABEL, LABEL)}
         points={buildRegionalAnswerTargetPoints(LABEL, LABEL)}
@@ -144,7 +139,6 @@ const caseStudies = ['osaka-nbox-vomit', 'osaka-car-tobacco']
       <RegionLocalTrust regionName={LABEL} displayName={LABEL} niche="car" neutral />
       <ContactForm
         client:load
-        placement="bottom"
         regionName=""
         areaLabel="地域を指定しないページ"
         pagePath={path}

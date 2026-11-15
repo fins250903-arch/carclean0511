@@ -1,5 +1,6 @@
 /**
- * Short inquiry form shared by the top and bottom of regional landing pages.
+ * Short inquiry form at the bottom of regional, keyword, sub-area, and /aio pages.
+ * The same pages link to it with INQUIRY_JUMP_HREF instead of rendering a second form.
  *
  * The browser posts JSON to FormSubmit's documented AJAX endpoint. FormSubmit
  * answers some refusals with HTTP 200 and success set to the string "false",
@@ -7,8 +8,14 @@
  * errors, and any other body stay failures.
  *
  * The inbox layout is FormSubmit's documented `_template=table`. There is no
- * documented free-form body for AJAX submissions.
+ * documented free-form body for AJAX submissions. `_replyto` is set only when
+ * the visitor entered an email, so the inbox can reply directly. `_autoresponse`
+ * is never sent.
  */
+
+export const INQUIRY_SECTION_ID = 'contact';
+export const INQUIRY_JUMP_HREF = `#${INQUIRY_SECTION_ID}`;
+export const INQUIRY_JUMP_LABEL = 'お問い合わせフォームへ';
 
 export const INQUIRY_RECIPIENT = 'info@insbs.net';
 export const INQUIRY_SUBJECT = '【車内清掃】お問い合わせ';
@@ -36,6 +43,7 @@ export type InquiryFailureReason = keyof typeof FAILURE_MESSAGES;
 export type InquiryInput = {
   name: string;
   phone: string;
+  email: string;
   postal: string;
   message: string;
 };
@@ -63,18 +71,21 @@ type FetchLike = (input: string, init?: RequestInit) => Promise<Response>;
 
 const NAME_MAX = 40;
 const MESSAGE_MAX = 400;
+const EMAIL_MAX = 254;
 const DEFAULT_TIMEOUT_MS = 20000;
 
-export function inquiryDomIds(placement: InquiryPlacement) {
-  const prefix = placement === 'top' ? 'inquiry-top' : 'inquiry-bottom';
+export function inquiryDomIds() {
+  const prefix = 'inquiry-bottom';
   return {
-    section: placement === 'top' ? 'contact-top' : 'contact',
+    section: INQUIRY_SECTION_ID,
     title: `${prefix}-title`,
     form: `${prefix}-form`,
     name: `${prefix}-name`,
     nameError: `${prefix}-name-error`,
     phone: `${prefix}-phone`,
     phoneError: `${prefix}-phone-error`,
+    email: `${prefix}-email`,
+    emailError: `${prefix}-email-error`,
     postal: `${prefix}-postal`,
     postalError: `${prefix}-postal-error`,
     message: `${prefix}-message`,
@@ -112,6 +123,20 @@ export function isAcceptableInquiryPhone(digits: string): boolean {
   return /^0\d{9,10}$/.test(digits);
 }
 
+/**
+ * Empty input stays empty. A normal address is returned trimmed.
+ * Anything else, including a missing domain dot, is invalid.
+ */
+export function normalizeInquiryEmail(value: string): string | null {
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+  if (trimmed.length > EMAIL_MAX || /\s/.test(trimmed)) return null;
+  const localAndDomain =
+    /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/;
+  if (!localAndDomain.test(trimmed)) return null;
+  return trimmed;
+}
+
 /** Empty input stays empty. A real code becomes 123-4567. Anything else is invalid. */
 export function normalizeInquiryPostal(value: string): string | null {
   const trimmed = value.trim();
@@ -145,6 +170,10 @@ export function validateInquiry(input: InquiryInput): InquiryErrors {
     errors.phone = '電話番号を、0から始まる10桁か11桁で入力してください。';
   }
 
+  if (normalizeInquiryEmail(input.email) === null) {
+    errors.email = '返信用メールアドレスの形式を確認してください。空欄でも送れます。';
+  }
+
   const postal = normalizeInquiryPostal(input.postal);
   if (postal === null) errors.postal = '郵便番号は7桁で入力してください。空欄でも送れます。';
 
@@ -166,26 +195,32 @@ export function buildInquiryPayload(input: InquiryInput, context: InquiryContext
   const name = oneLine(input.name, NAME_MAX);
   const digits = inquiryPhoneDigits(input.phone);
   const phone = isAcceptableInquiryPhone(digits) ? formatPhone(digits) : oneLine(input.phone, 20);
+  const email = normalizeInquiryEmail(input.email);
+  const replyEmail = email ?? '';
   const postal = normalizeInquiryPostal(input.postal);
   const message = clip(input.message, MESSAGE_MAX);
   const area = oneLine(context.areaLabel, 80) || oneLine(context.regionName, 80) || '未設定';
   const prefecture = oneLine(context.regionName, 40) || '未設定';
   const placement = context.placement === 'top' ? 'ページ上部' : 'ページ下部';
 
-  return {
+  const payload: Record<string, string> = {
     _subject: INQUIRY_SUBJECT,
     _template: 'table',
     _captcha: 'false',
     _honey: '',
-    お名前: name,
-    電話番号: phone,
-    郵便番号: postal || '未記入',
-    相談内容: message || '未記入',
-    地域: area,
-    都道府県: prefecture,
-    ページ: pageUrl(context.pagePath),
-    フォーム位置: placement,
   };
+  if (replyEmail) payload._replyto = replyEmail;
+
+  payload['お名前'] = name;
+  payload['電話番号'] = phone;
+  payload['返信用メールアドレス'] = replyEmail || '未記入';
+  payload['郵便番号'] = postal || '未記入';
+  payload['相談内容'] = message || '未記入';
+  payload['地域'] = area;
+  payload['都道府県'] = prefecture;
+  payload['ページ'] = pageUrl(context.pagePath);
+  payload['フォーム位置'] = placement;
+  return payload;
 }
 
 function isAbortError(error: unknown): boolean {
