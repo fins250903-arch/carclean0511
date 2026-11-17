@@ -1,6 +1,7 @@
 ---
 import { STORE_NAME, LINE_URL, TEL } from '../../lib/site';
 import { IMG513 } from '../../lib/assets513';
+import LpImage from '../ui/LpImage.astro';
 import {
   TRUCK_PRICING,
   yen,
@@ -86,12 +87,12 @@ const gapTight = 'mb-2 max-md:mb-1 sm:mb-2';
 <section class="relative w-full overflow-hidden bg-white md:min-h-[88vh] md:flex md:items-start">
     {/* スマホ：上部写真帯（キャンペーンを折りたたみ内に残すため控えめ）。PC：全画面背景 */}
     <div class="relative z-0 w-full max-md:h-[28vw] max-md:min-h-[6.5rem] max-md:max-h-[8rem] md:absolute md:inset-0 md:h-full">
-        <img
+        <LpImage
             src={fvImage}
             alt={fvAlt}
             class="h-full w-full object-cover object-[center_32%] md:object-[center_bottom] md:object-right"
-            loading="eager"
-            fetchpriority="high"
+            sizes="100vw"
+            priority
         />
         {/* スマホは下端だけ白へ馴染ませる。PCは左テキスト用グラデ */}
         <div

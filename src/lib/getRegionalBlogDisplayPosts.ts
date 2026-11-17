@@ -8,6 +8,11 @@ export type RegionalBlogDisplayPost = {
   excerpt: string;
   date: string;
   image: string;
+  /** Original file, used if the WebP card fails to load. */
+  imageFallback?: string;
+  imageSrcSet?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   url: string;
   category: string;
   /** ISO publish date, used for Article.datePublished freshness */

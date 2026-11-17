@@ -1,5 +1,6 @@
 ---
 import { STORE_NAME } from '../../lib/site';
+import LpImage from '../ui/LpImage.astro';
 
 interface Props {
   displayName: string;
@@ -12,10 +13,11 @@ const { displayName } = Astro.props;
     <div class="container mx-auto px-8">
         <div class="max-w-4xl mx-auto bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm flex flex-col md:flex-row items-center gap-10">
             <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl border-4 border-white flex-shrink-0">
-                <img 
-                    src="/images/representative_new.webp" 
-                    alt="代表 今村 優作" 
+                <LpImage
+                    src="/images/representative_new.webp"
+                    alt="代表 今村 優作"
                     class="w-full h-full object-cover"
+                    sizes="256px"
                 />
             </div>
             <div class="flex-1 text-center md:text-left">

@@ -11,6 +11,7 @@ import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPos
 import { getLatestRegionalPosts } from '../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
 import JsonLd from '../../components/seo/JsonLd.astro';
+import HeroImagePreload from '../../components/seo/HeroImagePreload.astro';
 
 // Astro Components
 import Hero from '../../components/sections/Hero.astro';
@@ -137,6 +138,10 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
   noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
+  <HeroImagePreload
+    slot="head"
+    src={isTruck ? '/images/truck-fv.png' : isBus ? '/images/kw/bus-fv.png' : '/images/fv-passenger-hero.png'}
+  />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">
