@@ -68,7 +68,7 @@ export function buildBlogInternalLinks(options: {
   } else {
     links.push({
       label: '出張車内クリーニングの料金・対応エリア',
-      href: canonicalUrl('/'),
+      href: canonicalUrl('/aio'),
       description: '全国の対応エリアと、シート洗浄・消臭の料金目安をまとめています。',
     });
   }

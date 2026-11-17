@@ -64,19 +64,19 @@ const header = [
 
 rows.push(row(header));
 
-// `/` は大阪LPへの入口。AI検索用の全国ページは /aio/
+// `/` は全国ページ `/aio/` への入口。大阪府のLPは `/regions/osaka/`
 no += 1;
 rows.push(
   row([
     no,
     'リダイレクト',
-    'osaka',
-    '大阪府',
     '—',
-    '大阪LPへの入口',
+    '—',
+    '—',
+    '全国ページへの入口',
     `${SITE}/`,
     '/',
-    '301 → /regions/osaka/',
+    '301 → /aio/',
   ]),
 );
 no += 1;

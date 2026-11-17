@@ -18,6 +18,10 @@ test('JSON-LD logo is the brand mark, and the representative photo stays on Pers
   assert.equal(JSON.stringify(national).includes('representative_new'), false);
 
   const region = generateJsonLd('大阪府', '/regions/osaka/');
+  const website = region.find((node) => node['@type'] === 'WebSite');
+  assert.equal(website?.url, 'https://carinteriorcleaning.jp/aio/');
+  const osakaPage = region.find((node) => node['@type'] === 'LocalBusiness');
+  assert.equal(osakaPage?.url, 'https://carinteriorcleaning.jp/regions/osaka/');
   const logos = region.flatMap((node) => (typeof node.logo === 'string' ? [node.logo] : []));
   assert.equal(logos.length >= 2, true);
   assert.equal(logos.every((logo) => logo === ORGANIZATION_LOGO_URL), true);
