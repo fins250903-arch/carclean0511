@@ -9,6 +9,7 @@ import { getRegionalPost } from '../../lib/getRegionalPost';
 import { getCollection } from 'astro:content';
 import { getRegionalBlogDisplayPosts } from '../../lib/getRegionalBlogDisplayPosts';
 import { getLatestRegionalPosts } from '../../lib/regionalBlogFeed';
+import { resolveRegionalExplainerLinks } from '../../lib/regionalExplainerArticles';
 import { buildRegionSeoOverrides } from '../../lib/regionStructuredData';
 import JsonLd from '../../components/seo/JsonLd.astro';
 
@@ -50,6 +51,7 @@ import {
   REGIONAL_SITUATION_DIAGNOSIS,
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
+import RegionExplainerArticles from '../../components/sections/RegionExplainerArticles.astro';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
 import CancelPolicy from '../../components/sections/CancelPolicy.astro';
 import { CAR_PRICING, travelFeeAreaLabel, yen } from '../../data/pricingConstants';
@@ -99,7 +101,10 @@ const noindex = isNoindexRegionId(regionId ?? '');
 const post = getRegionalPost(regionName);
 const regionCustom = getRegionCustomization(regionName);
 const displayName = post?.displayName || regionName;
-const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
+const blogPosts = await getCollection('blog');
+const latestBlogPosts = getLatestRegionalPosts(blogPosts, regionId);
+const explainerArticles =
+  !isTruck && !isBus ? resolveRegionalExplainerLinks(blogPosts, regionId) : null;
 const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const regionOverrides = buildRegionSeoOverrides({
     regionName,
@@ -195,6 +200,15 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <RegionLocalTrust regionName={regionName} displayName={displayName} niche={niche} />
       <Blog client:visible regionName={regionName} displayName={displayName} posts={blogCases} />
       <ServiceMutualLink regionName={regionName} displayName={displayName} niche={niche} path={path} />
+      {explainerArticles && (
+        <RegionExplainerArticles
+          heading={explainerArticles.heading}
+          lead={explainerArticles.lead}
+          links={explainerArticles.links}
+          listHref={explainerArticles.listHref}
+          listLabel={explainerArticles.listLabel}
+        />
+      )}
       <ContactForm
         client:load
         regionName={regionName}
