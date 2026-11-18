@@ -1,15 +1,15 @@
 ---
 /**
- * `/` stays the Osaka LP entry.
- * Dev returns 301. Production Cloudflare `_redirects` also 301s to `/regions/osaka/`.
- * The built file keeps that meta refresh and includes the shared footer so the
- * HTML for `/` links to the nationwide page at `/aio/`.
+ * `/` redirects to the nationwide page.
+ * Dev returns 301. Production Cloudflare `_redirects` also 301s to `/aio/`.
+ * The built file keeps a noindex meta refresh so a missed redirect still
+ * lands on `/aio/`, and includes the shared footer.
  */
 import '../styles/globals.css';
 import SiteFooter from '../components/SiteFooter.astro';
 
 if (import.meta.env.DEV) {
-  return Astro.redirect('/regions/osaka/', 301);
+  return Astro.redirect('/aio/', 301);
 }
 ---
 
@@ -18,13 +18,13 @@ if (import.meta.env.DEV) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting to: /regions/osaka/</title>
-    <meta http-equiv="refresh" content="0;url=/regions/osaka/" />
+    <title>Redirecting to: /aio/</title>
+    <meta http-equiv="refresh" content="0;url=/aio/" />
     <meta name="robots" content="noindex" />
-    <link rel="canonical" href="https://carinteriorcleaning.jp/regions/osaka/" />
+    <link rel="canonical" href="https://carinteriorcleaning.jp/aio/" />
   </head>
   <body>
-    <a href="/regions/osaka/">Redirecting from <code>/</code> to <code>/regions/osaka/</code></a>
+    <a href="/aio/">Redirecting from <code>/</code> to <code>/aio/</code></a>
     <SiteFooter />
   </body>
 </html>

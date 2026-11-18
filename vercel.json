@@ -177,7 +177,7 @@
     },
     {
       "source": "/",
-      "destination": "/regions/osaka/",
+      "destination": "/aio/",
       "permanent": true
     },
     {

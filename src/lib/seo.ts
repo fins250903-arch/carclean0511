@@ -524,6 +524,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     const isBus = niche === 'bus';
 
     const url = canonicalUrl(path);
+    const homeUrl = canonicalUrl('/aio');
 
     const adKwSchema = schemaOptions?.adKeywordSchema;
 
@@ -583,7 +584,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         name: STORE_NAME,
 
-        url: SITE_URL,
+        url: homeUrl,
 
         telephone: OPERATOR.telephone,
 
@@ -681,7 +682,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
         '@id': `${SITE_URL}/#website`,
 
-        url: SITE_URL,
+        url: homeUrl,
 
         name: STORE_NAME,
 
@@ -907,7 +908,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
                 name: STORE_NAME,
 
-                item: SITE_URL,
+                item: homeUrl,
 
             },
 
@@ -971,7 +972,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
 
                 name: STORE_NAME,
 
-                url: SITE_URL,
+                url: homeUrl,
 
                 logo: ORGANIZATION_LOGO_URL,
 
@@ -1131,7 +1132,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
             '@id': `${SITE_URL}/#organization`,
         },
         description: AUTHOR.description,
-        url: SITE_URL,
+        url: homeUrl,
         sameAs: [...ORGANIZATION_SAME_AS],
         knowsAbout: [...AUTHOR.knowsAbout],
     };

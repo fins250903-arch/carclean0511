@@ -78,8 +78,8 @@
 /blog/2026/02/2026-02-22-fukuoknioi-copy/ /blog/2026/10/2026-10-26-neyagawa-stepwgn/ 301
 /blog/2026/02/2026-02-22-fukuoknioi-copy https://carinteriorcleaning.jp/blog/2026/10/2026-10-26-neyagawa-stepwgn/ 301
 
-# `/` stays the Osaka LP entry. The nationwide page for AI search is `/aio/`.
-/ /regions/osaka/ 301
+# `/` is the nationwide page. `/regions/osaka/` stays the Osaka LP.
+/ /aio/ 301
 
 # Ads Editor often requests region URLs without a trailing slash. Cloudflare's
 # html_handling would answer those with a relative 307; an absolute 301 is stable.

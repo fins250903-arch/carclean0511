@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import {
   collectRedirectSources,
@@ -39,15 +40,35 @@ test('redirect sources are the old URLs, not the national top or a live prefectu
   );
   assert.equal(isRedirectedSitemapUrl('https://carinteriorcleaning.jp/', sources), true);
   assert.equal(sources.has('/'), true);
+  assert.equal(sources.has('/regions/osaka/'), false);
   assert.equal(
     isRedirectedSitemapUrl('https://carinteriorcleaning.jp/aio/', sources),
     false,
   );
+  assert.equal(
+    isRedirectedSitemapUrl('https://carinteriorcleaning.jp/regions/osaka/', sources),
+    false,
+  );
+});
+
+test('the site root 301 target is /aio/ in Cloudflare redirects and the Astro fallback', () => {
+  const redirects = readFileSync(new URL('../../public/_redirects', import.meta.url), 'utf8');
+  const rootRule = redirects
+    .split('\n')
+    .map((line) => line.trim())
+    .find((line) => line.startsWith('/ '));
+  assert.equal(rootRule, '/ /aio/ 301');
+
+  const index = readFileSync(new URL('../pages/index.astro', import.meta.url), 'utf8');
+  assert.equal(index.includes('/regions/osaka/'), false);
+  assert.equal(index.includes("Astro.redirect('/aio/', 301)"), true);
+  assert.equal(index.includes('content="0;url=/aio/"'), true);
+  assert.equal(index.includes('https://carinteriorcleaning.jp/aio/'), true);
 });
 
 test('pattern rules are not treated as pages', () => {
   const sources = collectRedirectSources(
-    '/regions/:region https://carinteriorcleaning.jp/regions/:region/ 301\n/ /regions/osaka/ 301\n',
+    '/regions/:region https://carinteriorcleaning.jp/regions/:region/ 301\n/ /aio/ 301\n',
   );
   assert.deepEqual([...sources], ['/']);
 });

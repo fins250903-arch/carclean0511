@@ -1,9 +1,10 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { SITE_URL, STORE_NAME } from '@/lib/site';
+import { canonicalUrl, SITE_URL, STORE_NAME } from '@/lib/site';
 import { AUTHOR, ORGANIZATION_LOGO_URL } from '@/lib/structuredDataConstants';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'src/content/blog');
+const HOME_URL = canonicalUrl('/aio');
 
 /**
  * Images the CMS committed next to the Markdown file are published to
@@ -90,13 +91,13 @@ export function buildArticleJsonLd(input: ArticleJsonLdInput) {
       '@id': AUTHOR.id,
       name: AUTHOR.name,
       jobTitle: AUTHOR.jobTitle,
-      url: SITE_URL,
+      url: HOME_URL,
     },
     publisher: {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: input.publisherName ?? STORE_NAME,
-      url: SITE_URL,
+      url: HOME_URL,
       logo: ORGANIZATION_LOGO_URL,
     },
     /** AI / voice answers should read the Answer-First lead, not the diary body */
@@ -163,7 +164,7 @@ export function buildBlogBreadcrumbJsonLd(input: {
         '@type': 'ListItem',
         position: 1,
         name: STORE_NAME,
-        item: `${SITE_URL}/`,
+        item: HOME_URL,
       },
       {
         '@type': 'ListItem',
