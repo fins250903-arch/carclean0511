@@ -1,0 +1,58 @@
+---
+import type { RegionalExplainerLink } from '../../lib/regionalExplainerArticles';
+
+interface Props {
+  heading: string;
+  lead: string;
+  links: RegionalExplainerLink[];
+  listHref: string;
+  listLabel: string;
+}
+
+const { heading, lead, links, listHref, listLabel } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <section
+      class="border-t border-blue-100 bg-blue-50 py-12"
+      id="regional-articles"
+      aria-labelledby="regional-articles-heading"
+    >
+      <div class="container mx-auto max-w-6xl px-4 md:px-8">
+        <div class="mx-auto mb-8 max-w-3xl text-center">
+          <h2 id="regional-articles-heading" class="mb-3 text-2xl font-bold text-gray-900 md:text-3xl">
+            {heading}
+          </h2>
+          <p class="text-base leading-relaxed text-gray-600">{lead}</p>
+        </div>
+        <ul class="mx-auto grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                title={link.title}
+                class="group flex min-h-14 items-center justify-between gap-3 rounded-2xl border border-blue-100 bg-white px-4 py-4 no-underline shadow-sm transition-colors hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                <span class="text-base font-bold leading-snug text-gray-900 group-hover:text-primary">
+                  {link.label}
+                </span>
+                <span class="shrink-0 text-lg font-bold text-primary" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-8 text-center">
+          <a
+            href={listHref}
+            class="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-center text-base font-bold text-primary transition-all hover:bg-primary hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {listLabel}
+          </a>
+        </p>
+      </div>
+    </section>
+  )
+}

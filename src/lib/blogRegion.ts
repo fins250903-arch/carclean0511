@@ -1,5 +1,5 @@
-import { regions } from '@/data/regions';
-import { regionAreaData } from '@/data/regionAreaData';
+import { regions } from '../data/regions.ts';
+import { regionAreaData } from '../data/regionAreaData.ts';
 
 /**
  * Resolve the region (prefecture LP) a blog post belongs to.
