@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { trackFormSubmit, trackLineClick, trackPhoneClick } from '@/lib/analytics';
+import { trackInquirySubmit, trackLineClick, trackPhoneClick } from '@/lib/analytics';
 import {
   INQUIRY_SUCCESS_MESSAGE,
   buildInquiryPayload,
@@ -39,6 +39,7 @@ export default function ContactForm({
   const [phase, setPhase] = useState<Phase>('idle');
   const [errorText, setErrorText] = useState('');
   const sendingRef = useRef(false);
+  const trackedRef = useRef(false);
   const statusRef = useRef<HTMLParagraphElement>(null);
   const pendingFocus = useRef<string | null>(null);
 
@@ -89,7 +90,10 @@ export default function ContactForm({
       { gotcha },
     );
     if (result.ok) {
-      trackFormSubmit(location);
+      if (!trackedRef.current) {
+        trackedRef.current = true;
+        trackInquirySubmit(location, pagePath || window.location.pathname);
+      }
       setPhase('success');
       return;
     }
