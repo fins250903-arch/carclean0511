@@ -25,8 +25,11 @@
 |---|---|
 | `phone_click` | `tel:07084280866` 等の電話リンクをクリック |
 | `line_click` | `https://lin.ee/Xs8Orp2` のLINEリンクをクリック |
+| `inquiry_submit` | 地域LPのお問い合わせが FormSubmit に受理されたときだけ。1回の成功につき1回。名前・電話・メールは含めない |
 
 GTMでは **カスタムイベント** トリガーで各イベント名と完全一致させてください。
+
+`inquiry_submit` の dataLayer 変数は `form_location`（例: `inquiry_bottom`）と `page_path`（パスのみ）です。GA4の自動イベント `form_submit` はキーイベントにしないでください。ページを移動しない送信では発火せず、発火しても送信成功とは限りません。
 
 ---
 
@@ -37,6 +40,7 @@ GTMでは **カスタムイベント** トリガーで各イベント名と完�
 | Google広告 - コンバージョンリンカー | コンバージョン リンカー | All Pages |
 | Google広告 - CV 電話問い合わせ | Google 広告 コンバージョン | `phone_click` |
 | Google広告 - CV LINE問い合わせ | Google 広告 コンバージョン | `line_click` |
+| GA4 - inquiry_submit | Google アナリティクス: GA4 イベント（イベント名 `inquiry_submit`） | カスタムイベント `inquiry_submit` |
 
 ---
 

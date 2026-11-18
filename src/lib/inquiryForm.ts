@@ -7,6 +7,11 @@
  * so success is only the string "true" or boolean true. Timeouts, network
  * errors, and any other body stay failures.
  *
+ * A new recipient does not receive inquiries until someone opens FormSubmit's
+ * activation mail and clicks the link. Until then the endpoint answers
+ * success "false" ("This form needs Activation") and keeps the submission on
+ * FormSubmit's side instead of delivering it. That answer stays a failure.
+ *
  * The inbox layout is FormSubmit's documented `_template=table`. There is no
  * documented free-form body for AJAX submissions. `_replyto` is set only when
  * the visitor entered an email, so the inbox can reply directly. `_autoresponse`

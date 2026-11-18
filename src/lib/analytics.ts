@@ -1,3 +1,5 @@
+import { inquirySubmitEvent } from './inquiryTracking';
+
 /**
  * Google Tag Manager container ID.
  * Override with PUBLIC_GTM_ID in .env when a different container is required.
@@ -33,4 +35,14 @@ export function trackLineClick(location = 'floating_cta'): void {
 
 export function trackFormSubmit(): void {
   pushDataLayer('form_submit', { event_category: 'conversion', event_label: 'contact_form' });
+}
+
+/**
+ * One conversion for a regional inquiry that FormSubmit accepted.
+ * Call this only after submitInquiry returns ok. The payload is page and
+ * form location, never the visitor's name, phone, email, or message.
+ */
+export function trackInquirySubmit(formLocation: string, pagePath: string): void {
+  const { event, ...params } = inquirySubmitEvent(formLocation, pagePath);
+  pushDataLayer(event, params);
 }
