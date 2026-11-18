@@ -4,6 +4,7 @@ import {
   INQUIRY_ENDPOINT,
   INQUIRY_JUMP_HREF,
   INQUIRY_JUMP_LABEL,
+  INQUIRY_POSTAL_PATTERN,
   INQUIRY_RECIPIENT,
   INQUIRY_SECTION_ID,
   INQUIRY_SUBJECT,
@@ -22,54 +23,70 @@ import {
 const reasons: InquiryFailureReason[] = ['http', 'network', 'timeout', 'invalid-response', 'rejected'];
 
 function fields(overrides: Partial<InquiryInput> = {}): InquiryInput {
-  return { name: '山田', phone: '09012345678', email: '', postal: '', message: '', ...overrides };
+  return {
+    name: '山田',
+    phone: '09012345678',
+    email: 'yamada@example.com',
+    postal: '530-0001',
+    message: '後部座席の嘔吐',
+    ...overrides,
+  };
 }
 
-test('only a name and a phone number are required', () => {
-  const blank = { email: '', postal: '', message: '' };
-  assert.deepEqual(validateInquiry({ name: '山田', phone: '090-1234-5678', ...blank }), {});
-  assert.deepEqual(validateInquiry({ name: '山田', phone: '０９０１２３４５６７８', email: '  ', postal: '   ', message: '  ' }), {});
+test('every inquiry field is required', () => {
+  assert.deepEqual(validateInquiry(fields()), {});
+  assert.deepEqual(
+    validateInquiry(fields({ phone: '０９０１２３４５６７８', email: '  yamada@example.com  ', postal: '５３０ー０００１', message: ' 嘔吐 ' })),
+    {},
+  );
   assert.equal(inquiryPhoneDigits('+81 90-1234-5678'), '09012345678');
-  assert.equal(validateInquiry({ name: '山田', phone: '+81 90-1234-5678', ...blank }).phone, undefined);
+  assert.equal(validateInquiry(fields({ phone: '+81 90-1234-5678' })).phone, undefined);
 
-  const missing = validateInquiry({ name: '  ', phone: '', ...blank });
-  assert.equal(typeof missing.name, 'string');
-  assert.equal(typeof missing.phone, 'string');
-  assert.equal(missing.email, undefined);
-  assert.equal(missing.postal, undefined);
-  assert.equal(missing.message, undefined);
+  const missing = validateInquiry({ name: '  ', phone: '', email: '  ', postal: '   ', message: '  ' });
+  assert.match(missing.name ?? '', /お名前を入力してください/);
+  assert.match(missing.phone ?? '', /電話番号/);
+  assert.match(missing.email ?? '', /返信用メールアドレスを入力してください/);
+  assert.match(missing.postal ?? '', /郵便番号を入力してください/);
+  assert.match(missing.message ?? '', /相談内容を入力してください/);
 
-  const badPhone = validateInquiry({ name: '山田', phone: '電話番号', ...blank });
+  const badPhone = validateInquiry(fields({ phone: '電話番号' }));
   assert.equal(typeof badPhone.phone, 'string');
   assert.equal(badPhone.name, undefined);
   assert.equal(badPhone.email, undefined);
 });
 
-test('a reply email is optional and checked only when it is filled in', () => {
-  assert.equal(validateInquiry(fields({ email: '' })).email, undefined);
+test('a reply email is required and must be a normal address', () => {
+  assert.match(validateInquiry(fields({ email: '' })).email ?? '', /入力してください/);
   assert.equal(validateInquiry(fields({ email: '  yamada@example.com  ' })).email, undefined);
   const bad = validateInquiry(fields({ email: 'not-an-email' }));
-  assert.equal(typeof bad.email, 'string');
+  assert.match(bad.email ?? '', /形式を確認してください/);
   assert.equal(bad.name, undefined);
   assert.equal(bad.phone, undefined);
   assert.equal(validateInquiry(fields({ email: 'a@b' })).email === undefined, false);
   assert.equal(validateInquiry(fields({ email: `${'a'.repeat(250)}@example.com` })).email === undefined, false);
 });
 
-test('optional message and name stay within the length limits', () => {
+test('the message is required and name stays within the length limit', () => {
+  assert.match(validateInquiry(fields({ message: '   ' })).message ?? '', /相談内容を入力してください/);
   const longMessage = validateInquiry(fields({ message: 'あ'.repeat(401) }));
-  assert.equal(typeof longMessage.message, 'string');
+  assert.match(longMessage.message ?? '', /400文字以内/);
   const longName = validateInquiry(fields({ name: '山'.repeat(41), phone: '06-1234-5678' }));
   assert.equal(typeof longName.name, 'string');
   assert.equal(validateInquiry(fields({ phone: '06-1234-5678', message: '嘔吐' })).message, undefined);
 });
 
-test('an empty postal code is allowed and a 7-digit code is normalized', () => {
-  assert.equal(validateInquiry(fields({ postal: '' })).postal, undefined);
+test('a postal code is required and a 7-digit code is accepted with or without a hyphen', () => {
+  assert.match(validateInquiry(fields({ postal: '' })).postal ?? '', /郵便番号を入力してください/);
   assert.equal(validateInquiry(fields({ postal: '530-0001' })).postal, undefined);
+  assert.equal(validateInquiry(fields({ postal: '5300001' })).postal, undefined);
   assert.equal(validateInquiry(fields({ postal: '５３０ー０００１' })).postal, undefined);
+  const pattern = new RegExp(`^(?:${INQUIRY_POSTAL_PATTERN})$`);
+  assert.equal(pattern.test('123-4567'), true);
+  assert.equal(pattern.test('1234567'), true);
+  assert.equal(pattern.test('５３０ー０００１'), true);
+  assert.equal(pattern.test('123'), false);
   const short = validateInquiry(fields({ postal: '123' }));
-  assert.equal(typeof short.postal, 'string');
+  assert.match(short.postal ?? '', /7桁で入力してください/);
   assert.equal(short.name, undefined);
   const letters = validateInquiry(fields({ postal: '大阪市' }));
   assert.equal(typeof letters.postal, 'string');
@@ -84,36 +101,39 @@ test('region text keeps the page area and does not invent a city', () => {
 });
 
 test('the mail fields stay in the requested order and use the FormSubmit table settings', () => {
-  const blankEmail = buildInquiryPayload(fields({ name: '山田\n太郎', postal: '５３０0001' }), {
+  const filled = buildInquiryPayload(fields({ name: '山田\n太郎', postal: '５３０0001', email: ' yamada@example.com ' }), {
     regionName: '大阪府',
     areaLabel: '堺市（大阪府）',
     pagePath: '/regions/osaka/sakai/',
     placement: 'bottom',
   });
-  const visible = Object.keys(blankEmail).filter((key) => !key.startsWith('_'));
+  const visible = Object.keys(filled).filter((key) => !key.startsWith('_'));
   assert.deepEqual(visible, ['お名前', '電話番号', '返信用メールアドレス', '郵便番号', '相談内容', '地域', '都道府県', 'ページ', 'フォーム位置']);
-  assert.equal(blankEmail._subject, INQUIRY_SUBJECT);
-  assert.equal(blankEmail._template, 'table');
-  assert.equal(blankEmail._captcha, 'false');
-  assert.equal(blankEmail._honey, '');
-  assert.equal(blankEmail._replyto, undefined);
-  assert.equal('_autoresponse' in blankEmail, false);
-  assert.equal(blankEmail.お名前, '山田 太郎');
-  assert.equal(blankEmail.電話番号, '090-1234-5678');
-  assert.equal(blankEmail.返信用メールアドレス, '未記入');
-  assert.equal(blankEmail.郵便番号, '530-0001');
-  assert.equal(blankEmail.相談内容, '未記入');
-  assert.equal(blankEmail.地域, '堺市（大阪府）');
-  assert.equal(blankEmail.都道府県, '大阪府');
-  assert.equal(blankEmail.ページ, 'https://carinteriorcleaning.jp/regions/osaka/sakai/');
-  assert.equal(blankEmail.フォーム位置, 'ページ下部');
+  assert.equal(filled._subject, INQUIRY_SUBJECT);
+  assert.equal(filled._template, 'table');
+  assert.equal(filled._captcha, 'false');
+  assert.equal(filled._honey, '');
+  assert.equal(filled._replyto, 'yamada@example.com');
+  assert.equal('_autoresponse' in filled, false);
+  assert.equal(filled.お名前, '山田 太郎');
+  assert.equal(filled.電話番号, '090-1234-5678');
+  assert.equal(filled.返信用メールアドレス, 'yamada@example.com');
+  assert.equal(filled.郵便番号, '530-0001');
+  assert.equal(filled.相談内容, '後部座席の嘔吐');
+  assert.equal(filled.地域, '堺市（大阪府）');
+  assert.equal(filled.都道府県, '大阪府');
+  assert.equal(filled.ページ, 'https://carinteriorcleaning.jp/regions/osaka/sakai/');
+  assert.equal(filled.フォーム位置, 'ページ下部');
 
-  const withEmail = buildInquiryPayload(fields({ name: '佐藤', email: ' sato@example.com ', message: '後部座席の嘔吐' }), {
-    regionName: '愛知県',
-    areaLabel: '愛知県',
-    pagePath: '/regions/aichi/',
-    placement: 'bottom',
-  });
+  const withEmail = buildInquiryPayload(
+    fields({ name: '佐藤', email: ' sato@example.com ', postal: '1234567', message: '後部座席の嘔吐' }),
+    {
+      regionName: '愛知県',
+      areaLabel: '愛知県',
+      pagePath: '/regions/aichi/',
+      placement: 'bottom',
+    },
+  );
   assert.deepEqual(
     Object.keys(withEmail).filter((key) => !key.startsWith('_')),
     visible,
@@ -122,18 +142,30 @@ test('the mail fields stay in the requested order and use the FormSubmit table s
   assert.equal(withEmail.返信用メールアドレス, 'sato@example.com');
   assert.equal('_autoresponse' in withEmail, false);
   assert.equal(withEmail.フォーム位置, 'ページ下部');
-  assert.equal(withEmail.郵便番号, '未記入');
+  assert.equal(withEmail.郵便番号, '123-4567');
   assert.equal(withEmail.相談内容, '後部座席の嘔吐');
   assert.equal(withEmail.ページ, 'https://carinteriorcleaning.jp/regions/aichi/');
 
-  const legacyTop = buildInquiryPayload(fields(), {
+  const legacyTop = buildInquiryPayload(fields({ email: 'sato@example.com' }), {
     regionName: '大阪府',
     areaLabel: '大阪府',
     pagePath: '/regions/osaka/',
     placement: 'top',
   });
   assert.equal(legacyTop.フォーム位置, 'ページ上部');
-  assert.equal(legacyTop._replyto, undefined);
+  assert.equal(legacyTop._replyto, 'sato@example.com');
+
+  const missingEmail = buildInquiryPayload(fields({ email: '  ', postal: '', message: '' }), {
+    regionName: '大阪府',
+    areaLabel: '大阪府',
+    pagePath: '/regions/osaka/',
+    placement: 'bottom',
+  });
+  assert.equal(missingEmail._replyto, undefined);
+  assert.equal(missingEmail.返信用メールアドレス, '未記入');
+  assert.equal(missingEmail.郵便番号, '未記入');
+  assert.equal(missingEmail.相談内容, '未記入');
+  assert.equal(INQUIRY_ENDPOINT, `https://formsubmit.co/ajax/${INQUIRY_RECIPIENT}`);
 });
 
 test('the bottom form is the only form and the top link targets its id', () => {

@@ -13,9 +13,10 @@
  * FormSubmit's side instead of delivering it. That answer stays a failure.
  *
  * The inbox layout is FormSubmit's documented `_template=table`. There is no
- * documented free-form body for AJAX submissions. `_replyto` is set only when
- * the visitor entered an email, so the inbox can reply directly. `_autoresponse`
- * is never sent.
+ * documented free-form body for AJAX submissions. Every visitor field is
+ * required. `_replyto` is the visitor's email so the inbox can reply directly.
+ * It is omitted only when a caller builds a payload without an email.
+ * `_autoresponse` is never sent.
  */
 
 export const INQUIRY_SECTION_ID = 'contact';
@@ -28,7 +29,7 @@ export const INQUIRY_ENDPOINT = `https://formsubmit.co/ajax/${INQUIRY_RECIPIENT}
 const SITE_ORIGIN = 'https://carinteriorcleaning.jp';
 
 export const INQUIRY_SUCCESS_MESSAGE =
-  '送信しました。お名前と電話番号を受け付けました。確認できしだい、お電話でご連絡します。お急ぎのときは、電話かLINEをご利用ください。';
+  '送信しました。お名前、電話番号、メールアドレス、郵便番号を受け付けました。確認できしだい、メールまたはお電話でご連絡します。お急ぎのときは、電話かLINEをご利用ください。';
 
 const FAILURE_MESSAGES = {
   http: '送信できませんでした。入力内容はそのまま残しています。時間をおいてもう一度送るか、電話またはLINEでご連絡ください。',
@@ -78,6 +79,12 @@ const NAME_MAX = 40;
 const MESSAGE_MAX = 400;
 const EMAIL_MAX = 254;
 const DEFAULT_TIMEOUT_MS = 20000;
+
+/**
+ * HTML `pattern` for the postal field. The browser anchors it, so this matches
+ * the whole value: 123-4567 or 1234567, including fullwidth digits.
+ */
+export const INQUIRY_POSTAL_PATTERN = '[0-9０-９]{3}[-ー－]?[0-9０-９]{4}';
 
 export function inquiryDomIds() {
   const prefix = 'inquiry-bottom';
@@ -129,7 +136,8 @@ export function isAcceptableInquiryPhone(digits: string): boolean {
 }
 
 /**
- * Empty input stays empty. A normal address is returned trimmed.
+ * Empty input stays empty so validation can ask for it.
+ * A normal address is returned trimmed.
  * Anything else, including a missing domain dot, is invalid.
  */
 export function normalizeInquiryEmail(value: string): string | null {
@@ -142,7 +150,7 @@ export function normalizeInquiryEmail(value: string): string | null {
   return trimmed;
 }
 
-/** Empty input stays empty. A real code becomes 123-4567. Anything else is invalid. */
+/** Empty input stays empty so validation can ask for it. A real code becomes 123-4567. Anything else is invalid. */
 export function normalizeInquiryPostal(value: string): string | null {
   const trimmed = value.trim();
   if (!trimmed) return '';
@@ -175,16 +183,17 @@ export function validateInquiry(input: InquiryInput): InquiryErrors {
     errors.phone = '電話番号を、0から始まる10桁か11桁で入力してください。';
   }
 
-  if (normalizeInquiryEmail(input.email) === null) {
-    errors.email = '返信用メールアドレスの形式を確認してください。空欄でも送れます。';
-  }
+  const email = normalizeInquiryEmail(input.email);
+  if (email === '') errors.email = '返信用メールアドレスを入力してください。';
+  else if (email === null) errors.email = '返信用メールアドレスの形式を確認してください。例：yamada@example.com';
 
   const postal = normalizeInquiryPostal(input.postal);
-  if (postal === null) errors.postal = '郵便番号は7桁で入力してください。空欄でも送れます。';
+  if (postal === '') errors.postal = '郵便番号を入力してください。';
+  else if (postal === null) errors.postal = '郵便番号は7桁で入力してください。例：123-4567 または 1234567';
 
-  if (input.message.trim().length > MESSAGE_MAX) {
-    errors.message = '相談内容は400文字以内にしてください。';
-  }
+  const message = input.message.trim();
+  if (!message) errors.message = '相談内容を入力してください。';
+  else if (message.length > MESSAGE_MAX) errors.message = '相談内容は400文字以内にしてください。';
   return errors;
 }
 
