@@ -2,6 +2,7 @@ import type { CollectionEntry } from 'astro:content';
 import { buildBlogAnswerFirst, toExcerpt } from '@/lib/blogAnswerFirst';
 import { getRegionNameById, resolvePostRegionIds } from '@/lib/blogRegion';
 import { resolvePostImage } from '@/lib/blogSeo';
+import { resolveBlogCardImage } from '@/lib/blogCardImage';
 import { canonicalUrl } from '@/lib/site';
 import type { RegionalBlogDisplayPost } from '@/lib/getRegionalBlogDisplayPosts';
 
@@ -36,13 +37,18 @@ function toDisplayPost(post: BlogPost, fallbackArea?: string): RegionalBlogDispl
     resolvePostImage(post.data.coverImage, slug) ??
     resolvePostImage(post.data.ogp?.og_image, slug) ??
     FALLBACK_IMAGE;
+  const card = resolveBlogCardImage(image);
 
   return {
     title: post.data.title,
     excerpt: toExcerpt(answer.text, 110),
     date: formatDisplayDate(post.data.updatedDate ?? post.data.date),
     datePublished: post.data.date.toISOString(),
-    image,
+    image: card.src,
+    imageFallback: image,
+    imageSrcSet: card.srcSet,
+    imageWidth: card.width,
+    imageHeight: card.height,
     url: canonicalUrl(`/blog/${slug}`),
     category: '施工実例',
   };

@@ -1,0 +1,21 @@
+---
+import { resolveLpImage } from '../../lib/lpImage';
+
+interface Props {
+  src: string;
+  sizes?: string;
+}
+
+const { src, sizes = '100vw' } = Astro.props;
+const image = resolveLpImage(src);
+---
+
+<link
+  rel="preload"
+  as="image"
+  href={image.src}
+  imagesrcset={image.srcSet}
+  imagesizes={image.srcSet ? sizes : undefined}
+  fetchpriority="high"
+  type={image.srcSet ? 'image/webp' : undefined}
+/>

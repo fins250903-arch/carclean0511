@@ -1,5 +1,6 @@
 ---
 import { localCaseStudies } from '../../data/localCaseStudies';
+import LpImage from '../ui/LpImage.astro';
 
 interface Props {
   regionName: string;
@@ -48,10 +49,11 @@ const displayCases = regionCases.slice(0, 2);
             {displayCases.map((item) => (
                 <div class="bg-white rounded-[32px] shadow-2xl border border-gray-100 overflow-hidden flex flex-col group hover:scale-[1.02] transition-transform">
                     <div class="relative h-64 overflow-hidden">
-                        <img
+                        <LpImage
                             src={item.image}
                             alt={item.title}
                             class="w-full h-full object-cover transition-transform group-hover:scale-110"
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         />
                         <div class="absolute top-4 left-4 bg-primary text-white text-xs font-black px-4 py-2 rounded-full shadow-lg">
                             {item.city}

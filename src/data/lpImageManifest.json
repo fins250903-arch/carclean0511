@@ -1,0 +1,731 @@
+{
+  "/images/aio-promo.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/aio-promo-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/aio-promo-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/aio-promo-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/aio-promo-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/cases/nbox_odor_1.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/cases/nbox_odor_1.webp"
+  },
+  "/images/cases/nbox_odor_2.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/cases/nbox_odor_2.webp"
+  },
+  "/images/cases/nbox_odor_3.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/opt/cases/nbox_odor_3-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/cases/nbox_odor_3-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/cases/nbox_odor_3-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/cases/nbox_odor_4.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/cases/nbox_odor_4.webp"
+  },
+  "/images/cases/nbox_odor_5.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/cases/nbox_odor_5.webp"
+  },
+  "/images/cases/sienta_vomit_5.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/opt/cases/sienta_vomit_5-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/cases/sienta_vomit_5-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/cases/sienta_vomit_5-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/cases/truck_10t_cabin.png": {
+    "width": 1327,
+    "height": 762,
+    "src": "/images/opt/cases/truck_10t_cabin-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/cases/truck_10t_cabin-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/cases/truck_10t_cabin-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/cases/truck_10t_cabin-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "/images/opt/cases/truck_10t_cabin-1327.webp",
+        "width": 1327
+      }
+    ]
+  },
+  "/images/cases/user_upload_case.jpg": {
+    "width": 576,
+    "height": 1024,
+    "src": "/images/opt/cases/user_upload_case-576.webp",
+    "variants": [
+      {
+        "src": "/images/opt/cases/user_upload_case-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/cases/user_upload_case-576.webp",
+        "width": 576
+      }
+    ]
+  },
+  "/images/fv_change_v2.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/fv_change_v2-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/fv_change_v2-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/fv_change_v2-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/fv_change_v2-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/fv-passenger-hero.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/fv-passenger-hero-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/fv-passenger-hero-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/fv-passenger-hero-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/fv-passenger-hero-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/ac-nioi.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/kw/ac-nioi-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/ac-nioi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/ac-nioi-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/ac-nioi-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/bus-fv.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/kw/bus-fv-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/bus-fv-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/bus-fv-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/bus-fv-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/chuko-kareisyu.webp": {
+    "width": 600,
+    "height": 600,
+    "src": "/images/kw/chuko-kareisyu.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/chuko-kareisyu-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/kw/chuko-kareisyu.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/images/kw/chuko-tabako.jpg": {
+    "width": 1108,
+    "height": 1477,
+    "src": "/images/opt/kw/chuko-tabako-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/chuko-tabako-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/chuko-tabako-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/chuko-tabako-1108.webp",
+        "width": 1108
+      }
+    ]
+  },
+  "/images/kw/kuruma-nioitori.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/kw/kuruma-nioitori-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/kuruma-nioitori-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/kuruma-nioitori-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/kw/minivan-interior.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/kw/minivan-interior.webp"
+  },
+  "/images/kw/omorashi.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/kw/omorashi-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/omorashi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/omorashi-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/omorashi-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/pet-ke.jpg": {
+    "width": 1108,
+    "height": 1477,
+    "src": "/images/opt/kw/pet-ke-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/pet-ke-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/pet-ke-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/pet-ke-1108.webp",
+        "width": 1108
+      }
+    ]
+  },
+  "/images/kw/pet-mess.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/opt/kw/pet-mess-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/pet-mess-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/pet-mess-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/kw/pet-nioi.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/kw/pet-nioi-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/pet-nioi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/pet-nioi-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/kw/rinser-work.jpg": {
+    "width": 576,
+    "height": 1024,
+    "src": "/images/opt/kw/rinser-work-576.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/rinser-work-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/rinser-work-576.webp",
+        "width": 576
+      }
+    ]
+  },
+  "/images/kw/rinser.webp": {
+    "width": 800,
+    "height": 800,
+    "src": "/images/opt/kw/rinser-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/rinser-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/rinser-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/kw/seat-stain-dark.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/kw/seat-stain-dark.webp"
+  },
+  "/images/kw/shanai-nioi.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/kw/shanai-nioi-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/shanai-nioi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/shanai-nioi-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/kw/sienta3retume-before.jpg": {
+    "width": 1108,
+    "height": 1477,
+    "src": "/images/opt/kw/sienta3retume-before-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/sienta3retume-before-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/sienta3retume-before-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/sienta3retume-before-1108.webp",
+        "width": 1108
+      }
+    ]
+  },
+  "/images/kw/sienta3retumeafter.jpg": {
+    "width": 960,
+    "height": 1706,
+    "src": "/images/opt/kw/sienta3retumeafter-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/sienta3retumeafter-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/sienta3retumeafter-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/sienta3retumeafter-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/kw/steam.webp": {
+    "width": 800,
+    "height": 800,
+    "src": "/images/opt/kw/steam-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/steam-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/steam-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/kw/tabako-yani.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/kw/tabako-yani-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/tabako-yani-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/tabako-yani-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/tabako-yani-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/touyu-kobosi.webp": {
+    "width": 600,
+    "height": 600,
+    "src": "/images/opt/kw/touyu-kobosi-600.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/touyu-kobosi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/touyu-kobosi-600.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/images/kw/unko.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/kw/unko-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/unko-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/unko-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/kw/unko-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/kw/vomit-detail.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/kw/vomit-detail.webp"
+  },
+  "/images/kw/vomit-stain.webp": {
+    "width": 800,
+    "height": 600,
+    "src": "/images/opt/kw/vomit-stain-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/kw/vomit-stain-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/kw/vomit-stain-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/prosiyou.jpg": {
+    "width": 1108,
+    "height": 1477,
+    "src": "/images/opt/prosiyou-480.webp",
+    "variants": [
+      {
+        "src": "/images/opt/prosiyou-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/prosiyou.jpg",
+        "width": 1108
+      }
+    ]
+  },
+  "/images/questionnaires/dogsit.jpg": {
+    "width": 4963,
+    "height": 4449,
+    "src": "/images/opt/questionnaires/dogsit-1100.webp",
+    "variants": [
+      {
+        "src": "/images/opt/questionnaires/dogsit-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/opt/questionnaires/dogsit-1100.webp",
+        "width": 1100
+      },
+      {
+        "src": "/images/opt/questionnaires/dogsit-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/questionnaires/kodomo.jpg": {
+    "width": 5457,
+    "height": 3045,
+    "src": "/images/opt/questionnaires/kodomo-1100.webp",
+    "variants": [
+      {
+        "src": "/images/opt/questionnaires/kodomo-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/opt/questionnaires/kodomo-1100.webp",
+        "width": 1100
+      },
+      {
+        "src": "/images/opt/questionnaires/kodomo-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/questionnaires/touyu.jpg": {
+    "width": 5349,
+    "height": 3241,
+    "src": "/images/opt/questionnaires/touyu-1100.webp",
+    "variants": [
+      {
+        "src": "/images/opt/questionnaires/touyu-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/opt/questionnaires/touyu-1100.webp",
+        "width": 1100
+      },
+      {
+        "src": "/images/opt/questionnaires/touyu-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/questionnaires/used2.jpg": {
+    "width": 4721,
+    "height": 2605,
+    "src": "/images/opt/questionnaires/used2-1100.webp",
+    "variants": [
+      {
+        "src": "/images/opt/questionnaires/used2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/opt/questionnaires/used2-1100.webp",
+        "width": 1100
+      },
+      {
+        "src": "/images/opt/questionnaires/used2-1600.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/representative_new.webp": {
+    "width": 571,
+    "height": 641,
+    "src": "/images/representative_new.webp"
+  },
+  "/images/rinser.webp": {
+    "width": 800,
+    "height": 800,
+    "src": "/images/opt/rinser-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/rinser-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/rinser-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/steam.webp": {
+    "width": 800,
+    "height": 800,
+    "src": "/images/opt/steam-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/steam-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/steam-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/images/truck-cabin-dirty.png": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/images/opt/truck-cabin-dirty-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/truck-cabin-dirty-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/truck-cabin-dirty-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/truck-cabin-dirty-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/images/truck-fv.png": {
+    "width": 1408,
+    "height": 768,
+    "src": "/images/opt/truck-fv-800.webp",
+    "variants": [
+      {
+        "src": "/images/opt/truck-fv-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/truck-fv-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/images/opt/truck-fv-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "/images/opt/truck-fv-1408.webp",
+        "width": 1408
+      }
+    ]
+  },
+  "/images/voice_businessman.webp": {
+    "width": 600,
+    "height": 600,
+    "src": "/images/voice_businessman.webp"
+  },
+  "/images/voice_cheap_fail.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/voice_cheap_fail-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/voice_cheap_fail-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/voice_cheap_fail-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/voice_diy_fail.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/voice_diy_fail-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/voice_diy_fail-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/voice_diy_fail-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/voice_family.webp": {
+    "width": 600,
+    "height": 600,
+    "src": "/images/voice_family.webp",
+    "variants": [
+      {
+        "src": "/images/opt/voice_family-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/voice_family.webp",
+        "width": 600
+      }
+    ]
+  },
+  "/images/voice_time_saved.png": {
+    "width": 640,
+    "height": 640,
+    "src": "/images/opt/voice_time_saved-640.webp",
+    "variants": [
+      {
+        "src": "/images/opt/voice_time_saved-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/voice_time_saved-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/images/voice_young_man.webp": {
+    "width": 600,
+    "height": 600,
+    "src": "/images/opt/voice_young_man-600.webp",
+    "variants": [
+      {
+        "src": "/images/opt/voice_young_man-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/opt/voice_young_man-600.webp",
+        "width": 600
+      }
+    ]
+  }
+}

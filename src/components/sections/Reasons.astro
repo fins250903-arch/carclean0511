@@ -1,6 +1,7 @@
 ---
 import { powerReasonDesc, powerReasonTitle } from '../../lib/powerPolicy';
 import { CAR_PRICING, yen } from '../../data/pricingConstants';
+import LpImage from '../ui/LpImage.astro';
 
 interface Props {
   displayName: string;
@@ -86,10 +87,11 @@ const reasons = [
                     </p>
                 </div>
                 <div class="relative h-64 w-full rounded-xl overflow-hidden order-1 md:order-2">
-                    <img
+                    <LpImage
                         src="/images/steam.webp"
                         alt="スチーム洗浄による汚れ除去の様子"
                         class="w-full h-full object-cover"
+                        sizes="(min-width: 768px) 400px, 100vw"
                     />
                     <div class="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
                         スチーム洗浄の様子

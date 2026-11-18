@@ -1,0 +1,42 @@
+---
+import { resolveLpImage } from '../../lib/lpImage';
+
+interface Props {
+  src: string;
+  alt: string;
+  sizes: string;
+  class?: string;
+  /** First-view image. Eager + high priority so it can stay the LCP resource. */
+  priority?: boolean;
+  /** Override intrinsic width/height when the layout uses a cropped aspect ratio. */
+  width?: number;
+  height?: number;
+}
+
+const {
+  src,
+  alt,
+  sizes,
+  class: className,
+  priority = false,
+  width,
+  height,
+} = Astro.props;
+
+const image = resolveLpImage(src);
+const attrWidth = width ?? image.width;
+const attrHeight = height ?? image.height;
+---
+
+<img
+  src={image.src}
+  srcset={image.srcSet}
+  sizes={image.srcSet ? sizes : undefined}
+  width={attrWidth}
+  height={attrHeight}
+  alt={alt}
+  class={className}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'low'}
+  decoding={priority ? 'auto' : 'async'}
+/>

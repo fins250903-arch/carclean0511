@@ -12,6 +12,7 @@ import { getRegionalBlogDisplayPosts } from '../../../../lib/getRegionalBlogDisp
 import { getLatestRegionalPosts } from '../../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../../lib/regionStructuredData';
 import JsonLd from '../../../../components/seo/JsonLd.astro';
+import HeroImagePreload from '../../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../../lib/niche';
 import { travelFeeAreaLabel } from '../../../../data/pricingConstants';
 import { regionPath } from '../../../../lib/niche';
@@ -146,6 +147,7 @@ const noindex = isNoindexRegionId(regionId);
   noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
+  <HeroImagePreload slot="head" src={subareaFv} />
 
   <RegionProvider client:load regionName={regionName} displayName={subareaLabel} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">

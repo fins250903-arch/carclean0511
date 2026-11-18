@@ -12,6 +12,7 @@ import { getRegionalBlogDisplayPosts } from '../../../lib/getRegionalBlogDisplay
 import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import JsonLd from '../../../components/seo/JsonLd.astro';
+import HeroImagePreload from '../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../lib/niche';
 import { regionPath } from '../../../lib/niche';
 
@@ -145,6 +146,16 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
   }
 >
   <JsonLd slot="head" data={combinedJsonLd} />
+  <HeroImagePreload
+    slot="head"
+    src={
+      isTruck
+        ? (subareaFv ?? '/images/truck-fv.png')
+        : isBus
+          ? (subareaFv ?? '/images/kw/bus-fv.png')
+          : (subareaFv ?? '/images/fv-passenger-hero.png')
+    }
+  />
 
   <RegionProvider client:load regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 import { useRegion } from '@/lib/RegionContext';
+import LpImage from '@/components/ui/LpImage';
 
 export default function QuestionnaireTestimonials({ displayName: propDisplayName }: { displayName?: string }) {
     const context = useRegion();
@@ -28,10 +29,11 @@ export default function QuestionnaireTestimonials({ displayName: propDisplayName
                     {questionnaireTestimonials.map((item, index) => (
                         <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-amber-100 flex flex-col md:flex-row h-full">
                             <div className="md:w-1/2 relative bg-gray-100">
-                                <img
+                                <LpImage
                                     src={item.image}
                                     alt={`${item.name}様のアンケート原本`}
                                     className="w-full h-full object-contain p-4 md:p-2"
+                                    sizes="(min-width: 768px) 360px, 100vw"
                                 />
                                 <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
                                     アンケート原本

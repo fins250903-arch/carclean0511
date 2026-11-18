@@ -16,6 +16,7 @@ import { getLatestRegionalPosts } from '../../../lib/regionalBlogFeed';
 import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import { buildAdKeywordJsonLdOptions } from '../../../lib/keywordSchemaOptions';
 import JsonLd from '../../../components/seo/JsonLd.astro';
+import HeroImagePreload from '../../../components/seo/HeroImagePreload.astro';
 
 import Hero from '../../../components/sections/Hero.astro';
 import AIOContent from '../../../components/sections/AIOContent.astro';
@@ -223,6 +224,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
   noindex={noindex}
 >
   <JsonLd slot="head" data={combinedJsonLd} />
+  <HeroImagePreload slot="head" src={kw.fvImage} />
 
   <RegionProvider client:load regionName={regionName} displayName={displayName} niche={pageNiche} path={path}>
     <main class="min-h-screen bg-white pb-floating md:pb-20">

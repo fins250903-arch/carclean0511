@@ -2,12 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import { getRegionalBlogDisplayPosts, getRegionIdFromName } from '@/lib/getRegionalBlogDisplayPosts';
 import { useRegion } from '@/lib/RegionContext';
+import LpImage from '@/components/ui/LpImage';
 
 type BlogPost = {
     title: string;
     excerpt: string;
     date: string;
     image: string;
+    imageFallback?: string;
+    imageSrcSet?: string;
+    imageWidth?: number;
+    imageHeight?: number;
     category: string;
     url: string;
 };
@@ -45,14 +50,37 @@ export default function Blog({
     const cardBody = (post: BlogPost) => (
         <>
             <div className="h-48 overflow-hidden">
-                <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-full object-cover transition-transform hover:scale-110"
-                    onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/images/rinser.webp';
-                    }}
-                />
+                {post.imageSrcSet ? (
+                    <img
+                        src={post.image}
+                        srcSet={post.imageSrcSet}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        width={post.imageWidth}
+                        height={post.imageHeight}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform hover:scale-110"
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority="low"
+                        onError={(e) => {
+                            const img = e.target as HTMLImageElement;
+                            img.srcset = '';
+                            img.src = post.imageFallback || '/images/rinser.webp';
+                        }}
+                    />
+                ) : (
+                    <LpImage
+                        src={post.image}
+                        alt={post.title}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="w-full h-full object-cover transition-transform hover:scale-110"
+                        onError={(e) => {
+                            const img = e.target as HTMLImageElement;
+                            img.srcset = '';
+                            img.src = '/images/rinser.webp';
+                        }}
+                    />
+                )}
             </div>
             <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
@@ -142,10 +170,16 @@ export default function Blog({
                             </h2>
                             <p className="text-gray-400 text-sm mt-2">{selectedPost.date}</p>
                         </div>
-                        <img 
-                            src={selectedPost.image} 
-                            alt={selectedPost.title} 
+                        <img
+                            src={selectedPost.image}
+                            srcSet={selectedPost.imageSrcSet}
+                            sizes="(min-width: 768px) 640px, 100vw"
+                            width={selectedPost.imageWidth}
+                            height={selectedPost.imageHeight}
+                            alt={selectedPost.title}
                             className="w-full h-64 object-cover rounded-xl mb-6 shadow-md"
+                            loading="lazy"
+                            decoding="async"
                         />
                         <div className="prose prose-blue max-w-none">
                             <p className="text-gray-700 leading-relaxed text-lg">

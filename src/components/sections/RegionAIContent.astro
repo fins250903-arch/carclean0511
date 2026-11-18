@@ -1,5 +1,6 @@
 ---
 import { getRegionalPost } from '../../lib/getRegionalPost';
+import LpImage from '../ui/LpImage.astro';
 
 interface Props {
   regionName: string;
@@ -27,12 +28,13 @@ if (!summary || (post && !specs)) {
             </h2>
 
             <div class="mb-6 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
-                <img 
-                    src="/images/aio-promo.png" 
+                <LpImage
+                    src="/images/aio-promo.png"
                     alt={`${displayName}の車内クリーニング - 一人で悩まないでプロにお任せ`}
-                    width="800" 
-                    height="400" 
+                    width={800}
+                    height={400}
                     class="w-full h-auto object-cover"
+                    sizes="(min-width: 896px) 896px, 100vw"
                 />
             </div>
 
