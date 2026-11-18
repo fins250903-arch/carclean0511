@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { trackInquirySubmit, trackLineClick, trackPhoneClick } from '@/lib/analytics';
 import {
   INQUIRY_SUCCESS_MESSAGE,
+  INQUIRY_POSTAL_PATTERN,
   buildInquiryPayload,
   failureMessage,
   inquiryDomIds,
@@ -56,7 +57,7 @@ export default function ContactForm({
 
   const location = 'inquiry_bottom';
   const heading = '無料相談・お見積もり';
-  const lead = '必須はお名前と電話番号だけです。返信用メールアドレス、郵便番号、相談内容は空欄のまま送れます。';
+  const lead = 'すべての項目が必須です。返信のためメールアドレスを、出張できるかの確認のため郵便番号を入力してください。';
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -239,7 +240,7 @@ export default function ContactForm({
             <div>
               <label htmlFor={ids.email} className="mb-1 block text-base font-black text-gray-900">
                 返信用メールアドレス
-                <span className="ml-2 text-sm font-bold text-gray-600">任意</span>
+                <span className="ml-2 text-sm font-bold text-red-700">必須</span>
               </label>
               <input
                 id={ids.email}
@@ -251,7 +252,8 @@ export default function ContactForm({
                 inputMode="email"
                 maxLength={254}
                 spellCheck={false}
-                aria-required="false"
+                required
+                aria-required="true"
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? ids.emailError : undefined}
                 placeholder="例：yamada@example.com"
@@ -267,7 +269,7 @@ export default function ContactForm({
             <div>
               <label htmlFor={ids.postal} className="mb-1 block text-base font-black text-gray-900">
                 郵便番号
-                <span className="ml-2 text-sm font-bold text-gray-600">任意</span>
+                <span className="ml-2 text-sm font-bold text-red-700">必須</span>
               </label>
               <input
                 id={ids.postal}
@@ -278,7 +280,10 @@ export default function ContactForm({
                 autoComplete="postal-code"
                 inputMode="numeric"
                 maxLength={12}
-                aria-required="false"
+                required
+                aria-required="true"
+                pattern={INQUIRY_POSTAL_PATTERN}
+                title="郵便番号は7桁で入力してください。例：123-4567 または 1234567"
                 aria-invalid={errors.postal ? 'true' : 'false'}
                 aria-describedby={errors.postal ? ids.postalError : undefined}
                 placeholder="例：530-0001"
@@ -294,7 +299,7 @@ export default function ContactForm({
             <div>
               <label htmlFor={ids.message} className="mb-1 block text-base font-black text-gray-900">
                 相談内容
-                <span className="ml-2 text-sm font-bold text-gray-600">任意</span>
+                <span className="ml-2 text-sm font-bold text-red-700">必須</span>
               </label>
               <textarea
                 id={ids.message}
@@ -303,10 +308,11 @@ export default function ContactForm({
                 onChange={(event) => setMessage(event.target.value)}
                 rows={3}
                 maxLength={400}
-                aria-required="false"
+                required
+                aria-required="true"
                 aria-invalid={errors.message ? 'true' : 'false'}
                 aria-describedby={errors.message ? ids.messageError : undefined}
-                placeholder="市区町村、車種、汚れがわかればどうぞ。空欄でも送れます。"
+                placeholder="市区町村、車種、汚れの内容を書いてください。"
                 className="w-full scroll-mb-32 rounded-xl border border-gray-300 bg-white px-4 py-3 text-base leading-relaxed text-gray-900 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
               />
               {errors.message ? (
