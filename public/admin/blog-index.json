@@ -1,6 +1,33 @@
 {
-  "generatedAt": "2026-11-14T15:43:06.252Z",
+  "generatedAt": "2026-11-19T09:01:39.739Z",
   "posts": [
+    {
+      "slug": "2026-11-19-sendaimatsio",
+      "postSlug": "2026/11/2026-11-19-sendaimatsio",
+      "title": "【仙台市】冬の車のフロアマット、泥と凍結防止剤の白い跡が取れないときに",
+      "date": "2026-11-19",
+      "areaName": "仙台市",
+      "coverImage": "",
+      "imageUrl": ""
+    },
+    {
+      "slug": "2026-02-17-nagoyabannio",
+      "postSlug": "2026/02/2026-02-17-nagoyabannio",
+      "title": "[名古屋市] ３列シートのシエンタ 嘔吐 消臭",
+      "date": "2026-11-18",
+      "areaName": "愛知県,名古屋市",
+      "coverImage": "sienta-2retume.jpg",
+      "imageUrl": "/posts/2026/02/2026-02-17-nagoyabannio/images/sienta-2retume.jpg"
+    },
+    {
+      "slug": "2026-06-13-velfiretabaccoo",
+      "postSlug": "2026/06/2026-06-13-velfiretabaccoo",
+      "title": "消えないタバコ臭、横浜のヴェルファイアを58,000円で洗った話",
+      "date": "2026-11-17",
+      "areaName": "神奈川県横浜市",
+      "coverImage": "before.jpg",
+      "imageUrl": "/posts/2026/06/2026-06-13-velfiretabaccoo/images/before.jpg"
+    },
     {
       "slug": "2026-03-07-tabacconioi",
       "postSlug": "2026/03/2026-03-07-tabacconioi",
@@ -1163,15 +1190,6 @@
       "imageUrl": "/posts/2026/02/2026-02-22-funabasiru-mi/images/トヨタ-ルーミー.webp"
     },
     {
-      "slug": "2026-02-17-nagoyabannio",
-      "postSlug": "2026/02/2026-02-17-nagoyabannio",
-      "title": "[名古屋市] ３列シートのシエンタ 嘔吐 消臭",
-      "date": "2026-07-06",
-      "areaName": "愛知県,名古屋市",
-      "coverImage": "sienta-2retume.jpg",
-      "imageUrl": "/posts/2026/02/2026-02-17-nagoyabannio/images/sienta-2retume.jpg"
-    },
-    {
       "slug": "2026-02-17-nahasientaouto",
       "postSlug": "2026/02/2026-02-17-nahasientaouto",
       "title": "[那覇市] トヨタ・アクア 後部座席　嘔吐 消臭",
@@ -1188,15 +1206,6 @@
       "areaName": "栃木県宇都宮市",
       "coverImage": "toyota-yaris.jpg",
       "imageUrl": "/posts/2026/02/2026-02-17-utunimiyasienout/images/toyota-yaris.jpg"
-    },
-    {
-      "slug": "2026-06-13-velfiretabaccoo",
-      "postSlug": "2026/06/2026-06-13-velfiretabaccoo",
-      "title": "消えないタバコ臭、横浜のヴェルファイアを58,000円で洗った話",
-      "date": "2026-06-13",
-      "areaName": "",
-      "coverImage": "before.jpg",
-      "imageUrl": "/posts/2026/06/2026-06-13-velfiretabaccoo/images/before.jpg"
     }
   ]
 }
