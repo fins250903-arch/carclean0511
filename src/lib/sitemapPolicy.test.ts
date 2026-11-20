@@ -73,6 +73,34 @@ test('pattern rules are not treated as pages', () => {
   assert.deepEqual([...sources], ['/']);
 });
 
+test('/aio without a slash is a static 301 and does not drop /aio/ from the sitemap', () => {
+  const redirects = readFileSync(new URL('../../public/_redirects', import.meta.url), 'utf8');
+  const lines = redirects
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+  const aioRule = lines.findIndex((line) => line.startsWith('/aio '));
+  const firstPattern = lines.findIndex((line) => {
+    const source = line.split(/\s+/)[0] ?? '';
+    return source.includes(':') || source.includes('*');
+  });
+  assert.equal(lines[aioRule], '/aio https://carinteriorcleaning.jp/aio/ 301');
+  assert.equal(aioRule < firstPattern, true);
+
+  const sources = loadRedirectSources();
+  assert.equal(sources.has('/aio/'), false);
+  assert.equal(
+    isRedirectedSitemapUrl('https://carinteriorcleaning.jp/aio/', sources),
+    false,
+  );
+  assert.equal(
+    collectRedirectSources(
+      '/aio https://carinteriorcleaning.jp/aio/ 301\n/ /aio/ 301\n/coating/fukuoka/ /regions/fukuoka/ 301\n',
+    ).size,
+    2,
+  );
+});
+
 test('blog lastmod uses the later of date and updatedDate', () => {
   assert.equal(
     contentLastmod('date: 2026-02-22\nupdatedDate: 2026-10-26\n'),

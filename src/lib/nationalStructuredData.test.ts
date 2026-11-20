@@ -6,7 +6,8 @@ import { regions } from '../data/regions.ts';
 import { mentionsJapanesePlace } from './placeNames.ts';
 import { buildArticleJsonLd } from './blogSeo.ts';
 import { buildNationalJsonLd, buildNationalPageFaqs } from './nationalStructuredData.ts';
-import { ORGANIZATION_LOGO_URL } from './structuredDataConstants.ts';
+import { buildOperatorPostalAddress, ORGANIZATION_LOGO_URL } from './structuredDataConstants.ts';
+import { OPERATOR, STORE_NAME, SITE_URL } from './site.ts';
 import { generateJsonLd } from './seo.ts';
 
 test('JSON-LD logo is the brand mark, and the representative photo stays on Person', () => {
@@ -50,8 +51,21 @@ test('national JSON-LD areaServed lists indexable prefectures and other fields o
 
   const business = graph.find((node) => node['@type'] === 'LocalBusiness');
   assert.equal(business?.['@type'], 'LocalBusiness');
+  assert.equal(business?.name, STORE_NAME);
   assert.equal(business?.url, 'https://carinteriorcleaning.jp/aio/');
+  assert.equal(business?.['@id'], `${SITE_URL}/#localbusiness`);
   assert.equal(business?.telephone, '070-8428-0866');
+  assert.deepEqual(business?.paymentAccepted, ['現金', 'クレジットカード']);
+  assert.deepEqual(business?.address, buildOperatorPostalAddress());
+
+  const region = generateJsonLd('大阪府', '/regions/osaka/');
+  const regionBusiness = region.find((node) => node['@type'] === 'LocalBusiness');
+  const regionOrg = region.find((node) => node['@type'] === 'Organization' && node.address);
+  assert.deepEqual(business?.address, regionBusiness?.address);
+  assert.deepEqual(business?.address, regionOrg?.address);
+  assert.equal(business?.name, regionBusiness?.name);
+  assert.equal(business?.telephone, regionBusiness?.telephone);
+  assert.equal(business?.telephone, OPERATOR.telephone);
 
   const served = filterIndexableRegions(regions).map((region) => region.name);
   const area = business?.areaServed as { '@type': string; name: string }[];
@@ -65,6 +79,7 @@ test('national JSON-LD areaServed lists indexable prefectures and other fields o
   const withoutArea = JSON.parse(JSON.stringify(graph)) as Array<Record<string, unknown>>;
   const businessCopy = withoutArea.find((node) => node['@type'] === 'LocalBusiness');
   delete businessCopy?.areaServed;
+  delete businessCopy?.address;
   const serialized = JSON.stringify(withoutArea);
   assert.equal(serialized.includes('AggregateRating'), false);
   assert.equal(serialized.includes('ratingValue'), false);

@@ -81,6 +81,12 @@
 # `/` is the nationwide page. `/regions/osaka/` stays the Osaka LP.
 / /aio/ 301
 
+# `/aio` is the same page as `/aio/`. html_handling "auto-trailing-slash" would
+# answer the slashless URL with a relative 307. This static 301 wins because
+# `_redirects` is checked before HTML handling. It must stay above the pattern
+# rules so it counts against the static-redirect budget, not the dynamic one.
+/aio https://carinteriorcleaning.jp/aio/ 301
+
 # Ads Editor often requests region URLs without a trailing slash. Cloudflare's
 # html_handling would answer those with a relative 307; an absolute 301 is stable.
 # These pattern rules must stay last: Cloudflare counts every rule after the first
