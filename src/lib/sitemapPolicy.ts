@@ -28,9 +28,10 @@ export function normalizePathname(input: string): string {
 
 /**
  * Source paths in `public/_redirects` that send visitors somewhere else.
- * Pattern rules (`:region`) are not real pages. `/` is included because it
- * redirects to `/aio/`. `/aio/` and live prefecture LPs such as
- * `/regions/osaka/` stay in the sitemap.
+ * Pattern rules (`:region`) are not real pages. A rule whose destination is
+ * the same path (`/aio` → `/aio/`) only adds a trailing slash, so the page
+ * stays in the sitemap. `/` is included because it redirects to `/aio/`.
+ * `/aio/` and live prefecture LPs such as `/regions/osaka/` stay in the sitemap.
  */
 export function collectRedirectSources(redirectsText: string): Set<string> {
   const sources = new Set<string>();
@@ -39,8 +40,9 @@ export function collectRedirectSources(redirectsText: string): Set<string> {
     const line = rawLine.trim();
     if (!line || line.startsWith('#')) continue;
 
-    const source = line.split(/\s+/)[0];
+    const [source, destination] = line.split(/\s+/);
     if (!source || source.includes(':') || source.includes('*')) continue;
+    if (destination && normalizePathname(source) === normalizePathname(destination)) continue;
 
     sources.add(normalizePathname(source));
   }

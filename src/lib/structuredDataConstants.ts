@@ -1,4 +1,4 @@
-import { INSTAGRAM_URL, LINE_URL, SITE_URL, STORE_NAME } from '@/lib/site';
+import { INSTAGRAM_URL, LINE_URL, OPERATOR, SITE_URL, STORE_NAME } from '@/lib/site';
 
 /**
  * Square brand mark for JSON-LD Organization / LocalBusiness `logo`.
@@ -29,6 +29,21 @@ export const AUTHOR = {
     '近くの車内掃除業者の選び方',
   ],
 } as const;
+
+/**
+ * Headquarters PostalAddress for Organization / LocalBusiness JSON-LD.
+ * Values come from OPERATOR so region pages and /aio/ stay the same business.
+ */
+export function buildOperatorPostalAddress() {
+  return {
+    '@type': 'PostalAddress' as const,
+    postalCode: OPERATOR.postalCode,
+    addressRegion: OPERATOR.addressRegion,
+    addressLocality: OPERATOR.addressLocality,
+    streetAddress: OPERATOR.streetAddress,
+    addressCountry: OPERATOR.addressCountry,
+  };
+}
 
 /** Organization / LocalBusiness の sameAs（自社＋公開チャネル） */
 export const ORGANIZATION_SAME_AS = [

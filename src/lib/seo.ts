@@ -110,6 +110,7 @@ import {
     ORGANIZATION_SAME_AS,
     TRUST_REFERENCES,
     buildMobileInteriorCleaningDefinition,
+    buildOperatorPostalAddress,
     schemaDateModified,
 } from '@/lib/structuredDataConstants';
 
@@ -537,14 +538,7 @@ export const generateJsonLd = (regionName: string, path: string = '', regionOver
     const displayName = regionOverrides?.displayName || regionName;
 
     // 運営元の実所在地（LP表示の運営者情報と一致／E-E-A-T・信頼性強化）
-    const operatorPostalAddress = {
-        '@type': 'PostalAddress',
-        postalCode: OPERATOR.postalCode,
-        addressRegion: OPERATOR.addressRegion,
-        addressLocality: OPERATOR.addressLocality,
-        streetAddress: OPERATOR.streetAddress,
-        addressCountry: OPERATOR.addressCountry,
-    };
+    const operatorPostalAddress = buildOperatorPostalAddress();
 
     
 
