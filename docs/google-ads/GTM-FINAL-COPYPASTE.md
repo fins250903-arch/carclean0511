@@ -1,66 +1,40 @@
-# GTM 最終設定（コピペ用）— AW-17667339500
+# GTM に貼る値（IDが決まってから）
 
-ラベル確定済み。GTM（GTM-NC9FX82V）で以下をそのまま入力して **公開** してください。
+コードのコンテナは、まだ `GTM-NC9FX82V` です。新しいコンテナへ変える作業は、ユーザーが管理画面の ID を決めたあとです。このファイルの `AW-` と `G-` はプレースホルダです。実在の ID をここに書かないでください。
 
----
-
-## トリガー（2つ）
-
-### TR - phone_click
-
-| 項目 | 値 |
-|---|---|
-| 種類 | カスタムイベント |
-| イベント名 | `phone_click` |
-
-### TR - line_click
-
-| 項目 | 値 |
-|---|---|
-| 種類 | カスタムイベント |
-| イベント名 | `line_click` |
+古い `AW-17667339500` のラベルは [旧設定の記録](./GTM-TAG-SETTINGS-AW-17667339500.md) にあります。新しいタグには貼りません。
 
 ---
 
-## タグ（3つ）
+## トリガー
 
-### ① Google広告 - コンバージョンリンカー
+| 名前 | 種類 | イベント名 |
+|---|---|---|
+| TR - phone_click | カスタムイベント | `phone_click` |
+| TR - line_click | カスタムイベント | `line_click` |
+| TR - inquiry_submit | カスタムイベント | `inquiry_submit` |
 
-| 項目 | 値 |
-|---|---|
-| 種類 | コンバージョン リンカー |
-| コンバージョンID | `AW-17667339500` |
-| トリガー | All Pages |
-
-### ② Google広告 - CV 電話問い合わせ
-
-| 項目 | 値 |
-|---|---|
-| 種類 | Google 広告 コンバージョン トラッキング |
-| コンバージョンID | `AW-17667339500` |
-| コンバージョンラベル | `plLZCN-S0sscEOzpuOhB` |
-| コンバージョンの値 | （空欄） |
-| トリガー | TR - phone_click |
-
-### ③ Google広告 - CV LINE問い合わせ
-
-| 項目 | 値 |
-|---|---|
-| 種類 | Google 広告 コンバージョン トラッキング |
-| コンバージョンID | `AW-17667339500` |
-| コンバージョンラベル | `9Q7WCNu0t8scEOzpuOhB` |
-| トリガー | TR - line_click |
+クリック URL のトリガーは追加しないでください。
 
 ---
 
-## 公開後テスト
+## タグ
 
-1. GTM **プレビュー** → `https://carinteriorcleaning.jp/regions/osaka/`
-2. 電話タップ → Tags Fired: `Google広告 - CV 電話問い合わせ`
-3. LINEタップ → Tags Fired: `Google広告 - CV LINE問い合わせ`
-4. 右上 **公開**
+| タグ | 入れる値 | トリガー |
+|---|---|---|
+| GA4 設定 | 測定 ID `G-XXXXXXXXXX`（新しいプロパティ。ユーザーが管理画面で設定） | All Pages |
+| コンバージョンリンカー | コンバージョン ID `AW-XXXXXXXXXX` | All Pages |
+| Google 広告 - 電話 | 同じ `AW-` と、電話用ラベル（ユーザーが管理画面で設定） | TR - phone_click |
+| Google 広告 - LINE | 同じ `AW-` と、LINE用ラベル（ユーザーが管理画面で設定） | TR - line_click |
+| GA4 イベント inquiry_submit | イベント名 `inquiry_submit` | TR - inquiry_submit |
 
-## やってはいけないこと
+`G-LTFRTZY7FE` は、2026-11-22 時点で公開コンテナが送っていた古い共用プロパティです。新しい GA4 設定タグには入れません。
 
-- クリックURL（`tel:` / `lin.ee`）用トリガーを **追加しない**（CV二重計測になる）
-- 公開を忘れない
+---
+
+## 公開前
+
+1. GTM プレビューで https://carinteriorcleaning.jp/regions/osaka/ を開く
+2. 電話を1回タップし、`phone_click` が1回だけであることを確認する
+3. LINE を1回タップし、`line_click` が1回だけであることを確認する
+4. 公開する

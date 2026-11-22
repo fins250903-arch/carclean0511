@@ -133,7 +133,7 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
     shouldOfferContactButtons,
     textFromMessengerMessages,
   } from '@/lib/chatContactButtons';
-  import { pushDataLayer } from '@/lib/analytics';
+  import { trackLineClick, trackPhoneClick } from '@/lib/analytics';
   import { LINE_OA_ID, LINE_URL, TEL } from '@/lib/site';
 
   let contactLock = false;
@@ -264,9 +264,9 @@ const { projectId, agentId, location, enabled } = resolveChatWidget(import.meta.
   window.addEventListener('df-button-clicked', (event) => {
     const href = String((event as CustomEvent).detail?.actionLink || '');
     if (/^tel:/i.test(href)) {
-      pushDataLayer('phone_click', { event_category: 'conversion', event_label: 'chat_widget' });
+      trackPhoneClick('chat_widget');
     } else if (/lin\.ee|line\.me\/R\/oaMessage/i.test(href)) {
-      pushDataLayer('line_click', { event_category: 'conversion', event_label: 'chat_widget' });
+      trackLineClick('chat_widget');
     }
   });
 </script>

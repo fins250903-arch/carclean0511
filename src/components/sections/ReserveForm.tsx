@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { trackFormSubmit, trackLineClick } from '@/lib/analytics';
+import { trackFormSubmit } from '@/lib/analytics';
 import {
   AREA_OPTIONS,
   EMPTY_RESERVE,
@@ -204,7 +204,7 @@ export default function ReserveForm() {
           href={receipt.lineUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackLineClick('reserve_form')}
+          data-cta-location="reserve_form"
           className="block w-full rounded-full bg-[#06C755] py-4 text-center text-lg font-black text-white shadow-lg"
         >
           この内容をLINEで送る

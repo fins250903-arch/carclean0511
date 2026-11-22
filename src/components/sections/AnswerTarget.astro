@@ -13,7 +13,7 @@ const { text, points = [], voiceLine } = Astro.props;
 const contentUpdated = formatContentFreshnessJa();
 ---
 
-<section id="answer-target" aria-label="緊急時の結論" class="border-b border-green-200 bg-green-50 py-4 sm:py-6">
+<section id="answer-target" aria-label="緊急時の結論" class="border-b border-green-200 bg-green-50 py-4 sm:py-6" data-cta-section="answer_target">
   <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
     <p class="mb-2 text-xs font-bold tracking-wide text-blue-700">
       最終更新：{contentUpdated}

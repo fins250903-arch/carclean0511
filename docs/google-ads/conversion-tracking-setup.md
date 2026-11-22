@@ -1,46 +1,54 @@
-# Google Ads コンバージョン計測 設置手順
+# 計測の現状（carinteriorcleaning.jp）
 
-**結論: はい、掲載LP（全ページ）に設置すべきです。**  
-1LPだけではなく **サイト共通レイアウト（MainLayout）に1回設置** すれば、650 URL超すべてが計測対象になります。
+本番サイトは https://carinteriorcleaning.jp です。配信は Cloudflare Workers の静的サイトです。Vercel ではありません。
 
-詳細な画面操作手順は **[GTM-SETUP-WALKTHROUGH.md](./GTM-SETUP-WALKTHROUGH.md)** を参照してください。
+画面の操作手順は **[GTM-SETUP-WALKTHROUGH.md](./GTM-SETUP-WALKTHROUGH.md)** です。IDが揃ったあとに貼る欄は **[GTM-FINAL-COPYPASTE.md](./GTM-FINAL-COPYPASTE.md)** です。
 
----
-
-## 現状
-
-| 項目 | 状態 |
-|------|------|
-| GTMスニペット | `MainLayout.astro`（`GTM-NC9FX82V`） |
-| 全ボタン計測 | `ConversionTracking.astro` → `phone_click` / `line_click` |
-| FloatingCTA | 同上イベント（二重送信なし・1クリック1イベント） |
-| GTM側タグ | **要設定**（リンカー + 電話CV + LINE CV） |
-| Google広告CVアクション | **要確認**（ID・ラベル取得） |
+2026年7月までの `AW-17667339500` 手順は使いません。記録だけ [GTM-TAG-SETTINGS-AW-17667339500.md](./GTM-TAG-SETTINGS-AW-17667339500.md) に残しています。
 
 ---
 
-## dataLayer イベント（GTMトリガー用）
+## 方針
 
-| イベント名 | 発火タイミング |
+| サイト | 計測 |
 |---|---|
-| `phone_click` | `tel:07084280866` 等の電話リンクをクリック |
-| `line_click` | `https://lin.ee/Xs8Orp2` のLINEリンクをクリック |
-| `inquiry_submit` | 地域LPのお問い合わせが FormSubmit に受理されたときだけ。1回の成功につき1回。名前・電話・メールは含めない |
+| carinteriorcleaning.jp | 専用の新しい GA4 プロパティ ＋ そのサイト用の Google 広告。IDはユーザーが管理画面で作る |
+| insbs.net | GA4 のみ。このリポジトリの広告計測には使わない |
 
-GTMでは **カスタムイベント** トリガーで各イベント名と完全一致させてください。
+コードが読み込む GTM コンテナは、まだ **`GTM-NC9FX82V`** です。新しいコンテナができても、このリポジトリの ID はユーザーが `PUBLIC_GTM_ID` を変えるまで差し替えません。
 
-`inquiry_submit` の dataLayer 変数は `form_location`（例: `inquiry_bottom`）と `page_path`（パスのみ）です。GA4の自動イベント `form_submit` はキーイベントにしないでください。ページを移動しない送信では発火せず、発火しても送信成功とは限りません。
+2026-11-22 のタグ調査では、公開中の `GTM-NC9FX82V` は GA4 `G-LTFRTZY7FE`（プロパティ `510573829`、名前 `osak.insbs.net/wp1`）へ送っていました。これは INS と共用の古いプロパティです。carinteriorcleaning.jp の新しい測定 ID ではありません。新しい測定 ID は未定です（プレースホルダ `G-XXXXXXXXXX`）。
 
 ---
 
-## GTM タグ設定（最小構成）
+## コードが送る dataLayer
 
-| タグ名 | 種類 | トリガー |
+1回の操作につき、同じイベントは1回だけです。
+
+| イベント | いつ | 主な項目 |
 |---|---|---|
-| Google広告 - コンバージョンリンカー | コンバージョン リンカー | All Pages |
-| Google広告 - CV 電話問い合わせ | Google 広告 コンバージョン | `phone_click` |
-| Google広告 - CV LINE問い合わせ | Google 広告 コンバージョン | `line_click` |
-| GA4 - inquiry_submit | Google アナリティクス: GA4 イベント（イベント名 `inquiry_submit`） | カスタムイベント `inquiry_submit` |
+| `phone_click` | 店舗番号 `07084280866` の `tel:` リンクを1回タップ | `event_label`（CTAの位置） |
+| `line_click` | `lin.ee` または予約フォームの `line.me/R/oaMessage` を1回タップ | `event_label` |
+| `inquiry_submit` | 地域LPのお問い合わせが FormSubmit に受理されたときだけ | `form_location`、`page_path`。氏名・電話・メールは入れない |
+| `form_submit` | `/reserve/` のチェックリスト送信が成功したとき | `event_label` は `contact_form` |
+
+`event_label` の例: `hero_top_cta`、`main_cta`、`campaign_mid_cta`、`closing_bottom_cta`、`floating_cta_mobile`、`floating_cta_desktop`、`inquiry_bottom`、`reserve_form`、`pricing_cta`、`blog_cta`、`ad_quick_facts`、`answer_target`、`trouble_cta`、`operator_info`、`chat_widget`。位置が無いリンクは `sitewide` です。
+
+電話と LINE のページ内リンクは `ConversionTracking.astro` だけが push します。チャット枠（Dialogflow）のボタンは影の中にあるため、`ChatWidget.astro` の `df-button-clicked` だけが `chat_widget` を push します。
+
+GA4 の自動イベント `form_submit` はキーイベントにしないでください。ページを移動しない送信では発火せず、発火しても送信成功とは限りません。予約フォームの dataLayer イベントも同じ名前ですが、見るときは `event_label` が `contact_form` であることを確認します。
+
+---
+
+## GTM を読み込む場所
+
+| ホスト | GTM |
+|---|---|
+| `carinteriorcleaning.jp` と `www.carinteriorcleaning.jp` | `gtm.js` を読み込む |
+| `localhost`、`127.0.0.1`、`*.workers.dev`、それ以外 | 読み込まない |
+| `/admin/`（ブログ管理） | コンテナを置かない |
+
+静的HTMLはプレビューと本番で同じファイルです。noscript の iframe はホストを判定できないため、ページには出していません。JavaScript が動く本番アクセスは `gtm.js` を読みます。電話・LINE のイベントも JavaScript が必要です。
 
 ---
 
@@ -50,22 +58,4 @@ GTMでは **カスタムイベント** トリガーで各イベント名と完�
 PUBLIC_GTM_ID=GTM-NC9FX82V
 ```
 
----
-
-## 検証手順
-
-1. GTMプレビューで https://carinteriorcleaning.jp/ を接続
-2. 電話・LINEボタンをクリック → `phone_click` / `line_click` + CVタグ発火
-3. GTMを公開
-4. Google広告 → コンバージョン → 24時間以内に記録確認
-
----
-
-## Phase 1 との関係
-
-| 順序 | 作業 |
-|------|------|
-| 1 | **CVタグ設置・確認**（本手順） |
-| 2 | キーワードCSVインポート |
-| 3 | 手動CPCで2週間配信 |
-| 4 | CV10件以上で目標CPAへ移行 |
+空欄や `GTM-` 以外の値でも、コードは `GTM-NC9FX82V` に戻します。新しいコンテナ ID が決まるまで変更しません。

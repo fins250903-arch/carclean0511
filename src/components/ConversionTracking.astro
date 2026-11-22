@@ -1,70 +1,37 @@
 ---
 /**
- * Sitewide phone / LINE click → dataLayer for GTM → Google Ads conversions.
- * Fires on every matching <a href> (not only FloatingCTA).
+ * One phone_click or line_click per tap on a normal link.
+ *
+ * This capture listener is the only push for light-DOM tel: and LINE anchors,
+ * including links that have no component onClick. Do not also call
+ * trackPhoneClick / trackLineClick from those anchors.
+ *
+ * df-messenger renders its buttons in shadow DOM and fires df-button-clicked.
+ * ChatWidget owns that push (event_label chat_widget). Clicks inside
+ * df-messenger are ignored here so the two paths cannot double-push.
+ *
+ * Matchers live in src/lib/conversionClicks.mjs and are unit tested.
  */
 import { LINE_URL } from '@/lib/site';
+import { conversionClickSource } from '@/lib/conversionClicks.mjs';
 
 const phoneDigits = '07084280866';
 const lineMatch = LINE_URL.replace(/^https?:\/\//, '');
----
-
-<script is:inline define:vars={{ phoneDigits, lineMatch }}>
-  (function () {
-    function pushConversion(eventName, label) {
+const listenerScript = `(function () {
+${conversionClickSource}
+  var phoneDigits = ${JSON.stringify(phoneDigits)};
+  var lineMatch = ${JSON.stringify(lineMatch)};
+  document.addEventListener('click', function (event) {
+    handleConversionClick(event, phoneDigits, lineMatch, function (eventName, label) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: eventName,
         event_category: 'conversion',
         event_label: label || 'sitewide',
       });
-    }
+    });
+  }, true);
+})();`;
+---
 
-    function normalizeTel(href) {
-      return String(href || '')
-        .replace(/^tel:/i, '')
-        .replace(/[^\d]/g, '');
-    }
-
-    function isPhoneHref(href) {
-      if (!href || !/^tel:/i.test(href)) return false;
-      return normalizeTel(href) === phoneDigits;
-    }
-
-    function isLineHref(href) {
-      if (!href) return false;
-      return href.indexOf(lineMatch) !== -1 || /lin\.ee\//i.test(href);
-    }
-
-    function labelFromElement(el) {
-      if (el && el.dataset && el.dataset.ctaLocation) return el.dataset.ctaLocation;
-      if (el && el.closest) {
-        var section = el.closest('[data-cta-section]');
-        if (section && section.dataset.ctaSection) return section.dataset.ctaSection;
-      }
-      return 'sitewide';
-    }
-
-    document.addEventListener(
-      'click',
-      function (e) {
-        var target = e.target;
-        if (!target || !target.closest) return;
-        var link = target.closest('a[href]');
-        if (!link) return;
-
-        var href = link.getAttribute('href') || '';
-        var label = labelFromElement(link);
-
-        if (isPhoneHref(href)) {
-          pushConversion('phone_click', label);
-          return;
-        }
-        if (isLineHref(href)) {
-          pushConversion('line_click', label);
-        }
-      },
-      true,
-    );
-  })();
-</script>
+<script is:inline set:html={listenerScript}></script>
