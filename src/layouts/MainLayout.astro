@@ -2,6 +2,7 @@
 import '../styles/globals.css';
 import { STORE_NAME, SITE_URL, canonicalUrl, GOOGLE_SITE_VERIFICATION } from '@/lib/site';
 import { GTM_ID } from '@/lib/analytics';
+import { shouldLoadGtmSource } from '@/lib/gtmHost.mjs';
 import ConversionTracking from '@/components/ConversionTracking.astro';
 import ChatWidget from '@/components/ChatWidget.astro';
 
@@ -30,19 +31,26 @@ const {
 const resolvedCanonical = canonical ? canonicalUrl(canonical) : canonicalUrl(Astro.url.pathname);
 const fullOgImage = new URL(ogImage, SITE_URL).toString();
 
-/** Official GTM install snippet. Kept as a string so Astro does not bundle the script. */
+/**
+ * GTM loader. The HTML is static, so localhost, 127.0.0.1, and *.workers.dev
+ * receive the same file as production. shouldLoadGtm() requests gtm.js only
+ * on carinteriorcleaning.jp and www.carinteriorcleaning.jp.
+ *
+ * The noscript iframe is not emitted. It cannot read the host, and it would
+ * send hits from preview hosts when JavaScript is disabled. Phone and LINE
+ * events already require JavaScript. Production still loads gtm.js.
+ */
 const gtmHeadSnippet = `<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<script>(function(){
+${shouldLoadGtmSource}
+if (!shouldLoadGtm(location.hostname)) return;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');</script>
+})(window,document,'script','dataLayer',${JSON.stringify(GTM_ID)});
+})();</script>
 <!-- End Google Tag Manager -->`;
-
-const gtmNoscriptSnippet = `<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->`;
 ---
 
 <!doctype html>
@@ -84,7 +92,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<slot name="head" />
 	</head>
 	<body>
-		<Fragment set:html={gtmNoscriptSnippet} />
 		<slot />
 		<ConversionTracking />
 		{!hideChat && <ChatWidget />}

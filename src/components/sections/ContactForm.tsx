@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { trackInquirySubmit, trackLineClick, trackPhoneClick } from '@/lib/analytics';
+import { trackInquirySubmit } from '@/lib/analytics';
 import {
   INQUIRY_SUCCESS_MESSAGE,
   INQUIRY_POSTAL_PATTERN,
@@ -108,6 +108,7 @@ export default function ContactForm({
       id={ids.section}
       aria-labelledby={ids.title}
       data-inquiry-placement="bottom"
+      data-cta-section="inquiry_bottom"
       className="relative scroll-mt-6 border-t border-gray-200 bg-white py-10"
     >
       <div className="mx-auto max-w-xl px-4 sm:px-6">
@@ -125,7 +126,7 @@ export default function ContactForm({
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
           <a
             href={`tel:${TEL}`}
-            onClick={() => trackPhoneClick(location)}
+            data-cta-location={location}
             className="flex min-h-12 items-center justify-center rounded-xl bg-red-600 px-3 py-3 text-center text-base font-black text-white"
           >
             電話 {TEL}
@@ -134,7 +135,7 @@ export default function ContactForm({
             href={LINE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackLineClick(location)}
+            data-cta-location={location}
             className="flex min-h-12 items-center justify-center rounded-xl bg-[#06C755] px-3 py-3 text-center text-base font-black text-white"
           >
             LINE問合せ

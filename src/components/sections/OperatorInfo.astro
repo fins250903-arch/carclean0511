@@ -38,7 +38,7 @@ const rows = [
               <dt class="font-bold text-gray-600 md:col-span-1 text-sm md:text-base">{row.label}</dt>
               <dd class="text-gray-900 md:col-span-3 text-base md:text-lg font-medium">
                 {row.isTel ? (
-                  <a href={`tel:${row.value.replace(/-/g, '')}`} class="text-blue-700 font-black hover:underline">{row.value}</a>
+                  <a href={`tel:${row.value.replace(/-/g, '')}`} data-cta-location="operator_info" class="text-blue-700 font-black hover:underline">{row.value}</a>
                 ) : (
                   row.value
                 )}

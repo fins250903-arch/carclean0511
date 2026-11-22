@@ -18,13 +18,18 @@ declare global {
   }
 }
 
-/** Push custom events for GTM → Google Ads conversion tags */
+/** Push custom events for GTM → GA4 / Google Ads tags */
 export function pushDataLayer(event: string, params: Record<string, string> = {}): void {
   if (typeof window === 'undefined') return;
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ event, ...params });
 }
 
+/**
+ * phone_click / line_click for a surface that is not a normal page link.
+ * Page anchors are counted once by ConversionTracking.astro. Calling these
+ * from an <a> onClick pushes a second event for the same tap.
+ */
 export function trackPhoneClick(location = 'floating_cta'): void {
   pushDataLayer('phone_click', { event_category: 'conversion', event_label: location });
 }
