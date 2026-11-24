@@ -1,5 +1,5 @@
 ---
-import { AD_KEYWORD_PAGES, resolveAdField } from '../../data/adKeywordPages';
+import { listKeywordMutualLinks } from '../../lib/keywordMutualLinks';
 
 interface Props {
   regionId: string;
@@ -8,35 +8,7 @@ interface Props {
 }
 
 const { regionId, regionName, currentSlug } = Astro.props;
-
-// 相互リンク対象となる11個の主要緊急キーワードのslugリスト
-const targetSlugs = [
-  'vomit-cleaning',
-  'gero-cleaning',
-  'omorashi',
-  'pet-hair-odor',
-  'unko',
-  'seat-washing',
-  'tobacco-odor',
-  'chuko-tabako',
-  'touyu-kobosi',
-  'pet-nioi',
-  'pet-ke',
-  'pet-waste',
-];
-
-// 対象キーワードのデータを抽出
-const mutualLinks = AD_KEYWORD_PAGES
-  .filter(p => targetSlugs.includes(p.slug))
-  .map(p => {
-    // 表示用の短い名前を抽出 (seoTitleなどから)
-    let displayName = resolveAdField(p.seoTitle, regionName).replace(/｜車内清掃 特急便/g, '').replace(/｜.+/g, '');
-    return {
-      slug: p.slug,
-      name: displayName,
-      href: `/regions/${regionId}/${p.slug}/`
-    };
-  });
+const mutualLinks = listKeywordMutualLinks(regionId, regionName);
 ---
 
 {mutualLinks.length > 0 && (

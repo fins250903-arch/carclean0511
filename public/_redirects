@@ -13,6 +13,12 @@
 /regions/aichi/tabako-yani/ /regions/aichi/tobacco-odor/ 301
 /regions/aichi/pet-unko/ /regions/aichi/pet-waste/ 301
 /regions/osaka/shanai-nioi/ /regions/osaka/mold-odor/ 301
+# Osaka concern slugs that were never generated. Same symptom, live page.
+/regions/osaka/gero-cleaning/ /regions/osaka/vomit-cleaning/ 301
+/regions/osaka/pet-hair-odor/ /regions/osaka/pet-ke/ 301
+/regions/osaka/pet-waste/ /regions/osaka/pet-unko/ 301
+/regions/osaka/seat-washing/ /regions/osaka/seat-senjo/ 301
+/regions/osaka/tobacco-odor/ /regions/osaka/tabako-yani/ 301
 /regions/hyogo/oshikko/ /regions/hyogo/pet-hair-odor/ 301
 /regions/chiba/kyuto-cleaning/ /regions/chiba/vomit-cleaning/ 301
 /regions/aichi/kyuto-cleaning/ /regions/aichi/vomit-cleaning/ 301
@@ -51,6 +57,11 @@
 /regions/aichi/tabako-yani https://carinteriorcleaning.jp/regions/aichi/tobacco-odor/ 301
 /regions/aichi/pet-unko https://carinteriorcleaning.jp/regions/aichi/pet-waste/ 301
 /regions/osaka/shanai-nioi https://carinteriorcleaning.jp/regions/osaka/mold-odor/ 301
+/regions/osaka/gero-cleaning https://carinteriorcleaning.jp/regions/osaka/vomit-cleaning/ 301
+/regions/osaka/pet-hair-odor https://carinteriorcleaning.jp/regions/osaka/pet-ke/ 301
+/regions/osaka/pet-waste https://carinteriorcleaning.jp/regions/osaka/pet-unko/ 301
+/regions/osaka/seat-washing https://carinteriorcleaning.jp/regions/osaka/seat-senjo/ 301
+/regions/osaka/tobacco-odor https://carinteriorcleaning.jp/regions/osaka/tabako-yani/ 301
 /regions/hyogo/oshikko https://carinteriorcleaning.jp/regions/hyogo/pet-hair-odor/ 301
 /regions/chiba/kyuto-cleaning https://carinteriorcleaning.jp/regions/chiba/vomit-cleaning/ 301
 /regions/aichi/kyuto-cleaning https://carinteriorcleaning.jp/regions/aichi/vomit-cleaning/ 301

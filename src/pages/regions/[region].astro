@@ -154,7 +154,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <AdLpQuickFacts
         displayName={displayName}
         niche={niche}
-        intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内クリーニング'}
+        intentLabel={isTruck ? '出張トラックキャビン清掃' : isBus ? '出張バス車内清掃' : '出張車内清掃'}
         priceLabel={isTruck || isBus ? undefined : `1シート ${yen(CAR_PRICING.seatSingleBasic)}から／軽自動車 ${yen(CAR_PRICING.lightBasic)}〜`}
         durationLabel={isBus ? '1区画 約1.5〜2.5時間' : '作業 1.5〜3時間'}
         areaLabel={travelFeeAreaLabel(displayName, regionName)}

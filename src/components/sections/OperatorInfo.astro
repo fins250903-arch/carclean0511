@@ -27,7 +27,11 @@ const rows = [
   <div class="container mx-auto px-4 md:px-8 max-w-4xl">
     <div class="text-center mb-8">
       <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-2">運営者情報</h2>
-      <p class="text-sm text-gray-500">{displayName || regionName}の車内クリーニング・消臭洗浄を承る運営者の情報です。</p>
+      <p class="text-sm text-gray-500">
+        {neutral
+          ? '出張車内清掃は、現地の専門プロのスタッフがご指定の駐車場で承ります。'
+          : `${displayName || regionName}の出張車内清掃は、現地の専門プロのスタッフがご指定の駐車場で承ります。`}
+      </p>
     </div>
 
     <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
