@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { isMachineLabel } from '@/lib/blogAnswerFirst';
 import { canonicalUrl, SITE_URL, STORE_NAME } from '@/lib/site';
 import { AUTHOR, ORGANIZATION_LOGO_URL } from '@/lib/structuredDataConstants';
 
@@ -214,7 +215,9 @@ export function resolveBlogMeta(
   const title = data.seo?.meta_title || data.title;
   const authored = data.seo?.meta_description?.trim() || data.description?.trim();
   const usableAuthored =
-    authored && authored.length <= MAX_META_DESCRIPTION_LENGTH ? authored : undefined;
+    authored && !isMachineLabel(authored) && authored.length <= MAX_META_DESCRIPTION_LENGTH
+      ? authored
+      : undefined;
   const description =
     usableAuthored || answerFirstText?.trim() || authored || data.title;
   const noindex = data.seo?.noindex ?? false;

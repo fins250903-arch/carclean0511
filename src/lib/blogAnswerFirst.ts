@@ -181,6 +181,7 @@ const PLACE_ALIASES: [RegExp, string][] = [
   [/豊川市/, '愛知県豊川市'],
   [/大府市/, '愛知県大府市'],
   [/あま市/, '愛知県あま市'],
+  [/京都市/, '京都府京都市'],
   [/宇治市/, '京都府宇治市'],
   [/世田谷区/, '東京都世田谷区'],
   [/練馬区/, '東京都練馬区'],
@@ -223,9 +224,22 @@ export function toHalfWidthDigits(value: string): string {
   );
 }
 
-/** 「愛知県あま市・東海エリア」→「愛知県あま市」 */
+const JAPANESE_SCRIPT = /[\u3040-\u30ff\u3400-\u9fff]/;
+
+/**
+ * Decap sometimes saved the URL slug (`mazd2pet`) into areaName or
+ * meta_description. Those strings are not places and must not reach JSON-LD.
+ */
+export function isMachineLabel(value: string | undefined): boolean {
+  if (!value) return false;
+  const compact = value.replace(/[\s\u3000"'`]+/g, '');
+  if (!compact || JAPANESE_SCRIPT.test(compact)) return false;
+  return /^[A-Za-z0-9_-]+$/.test(compact);
+}
+
+/** 「愛知県あま市・東海エリア」→「愛知県あま市」. A slug is treated as missing. */
 export function normalizeAreaLabel(areaName: string | undefined): string | undefined {
-  if (!areaName) return undefined;
+  if (!areaName || isMachineLabel(areaName)) return undefined;
   const cleaned = collapseSpaces(areaName).replace(AREA_SUFFIX, '').trim();
   const withoutSpaces = cleaned.replace(/\s+/g, '');
   return withoutSpaces || undefined;
@@ -302,41 +316,143 @@ const PRICE_CONTEXT =
 const PRICE_SKIP =
   /相場|目安|前後|万円超|以上|カタログ|年間保険料|免責|買い替え|取り替え|十数万/;
 const PRICE_KEEP = /今回|かかった|なりました|でした|作業データ|総額|合計|請求|全部で|税込/;
+/**
+ * Dealer quotes and rough estimates are not our fee.
+ * 「10万円くらい」「お見積り」「10万円をオーバーする想定」must lose to 作業データ.
+ */
+const FEE_REJECT =
+  /見積|ディーラー|相場|目安|くらい|ぐらい|概算|想定|オーバー|カタログ|万円超|十数万|数万|何万|買い替え|取り替え|年間保険料|免責|査定|等級|かかりません/;
 /** 「2万5000円」「39,000円」「3万円」「55千円」 */
 const PRICE_PATTERN =
   /([0-9]+)\s*万\s*([0-9][0-9,]*)?\s*円|([0-9][0-9,]*)\s*千円|([0-9][0-9,]*)\s*円/g;
 
+/** Lower rank wins. 作業データ is the measured fee for that one job. */
+const EXPLICIT_FEE_RANK: [RegExp, number][] = [
+  [/作業データ/, 0],
+  [/かかった費用/, 1],
+  [/費用\s*[:：]|料金\s*[:：]|費用は|料金は|費用\s+[0-9]|料金\s+[0-9]/, 2],
+  [/総額|合計|全部で|合わせて/, 3],
+  [/作業時間/, 4],
+];
+
+function normalizeFeeLine(value: string): string {
+  return toHalfWidthDigits(value).replace(/\u3000/g, ' ').trim();
+}
+
+function isBareYenLine(line: string): boolean {
+  return (
+    /^[0-9][0-9,]*\s*円$/.test(line) ||
+    /^[0-9]+\s*万(?:\s*[0-9][0-9,]*)?\s*円$/.test(line) ||
+    /^[0-9]+\s*千円$/.test(line)
+  );
+}
+
+/**
+ * Pull a price that editors placed on the next non-empty line
+ * (`作業データ：3時間` / `55,000円`, or `作業時間` / `31,000円`).
+ */
+function feeLines(body: string): string[] {
+  const raw = body.split(/\r?\n/).map(normalizeFeeLine);
+  const lines: string[] = [];
+  for (let i = 0; i < raw.length; i += 1) {
+    let line = raw[i] ?? '';
+    if (!line) continue;
+    if (/作業データ|作業時間|費用|料金|金額|総額|合計/.test(line)) {
+      let j = i + 1;
+      while (j < raw.length && !(raw[j] ?? '')) j += 1;
+      const next = raw[j] ?? '';
+      if (next && isBareYenLine(next)) {
+        line = `${line} ${next}`;
+        i = j;
+      }
+    }
+    lines.push(line);
+  }
+  return lines;
+}
+
+function yenFromMatch(match: RegExpMatchArray): number {
+  const [, man, manRest, sen, plain] = match;
+  if (man) return Number(man) * 10000 + Number((manRest ?? '0').replace(/,/g, ''));
+  if (sen) return Number(sen.replace(/,/g, '')) * 1000;
+  return Number((plain ?? '0').replace(/,/g, ''));
+}
+
+function yenHits(line: string): { yen: number; index: number }[] {
+  const pattern = new RegExp(PRICE_PATTERN.source, 'g');
+  const hits: { yen: number; index: number }[] = [];
+  for (const match of line.matchAll(pattern)) {
+    const yen = yenFromMatch(match);
+    if (!Number.isFinite(yen) || yen < 3000 || yen > 300000) continue;
+    hits.push({ yen, index: match.index ?? 0 });
+  }
+  return hits;
+}
+
+/**
+ * Stated total on one line.
+ * 「合わせて／合計／総額／全部で」 points at the total that follows.
+ * Otherwise the largest figure is the job total and the smaller ones are
+ * parts (2席 22,000円 + 床 7,000円 = 施工費用 29,000円).
+ */
+function statedYen(line: string): number | undefined {
+  const hits = yenHits(line);
+  if (hits.length === 0) return undefined;
+  const cue = line.search(/合わせて|合計|総額|全部で/);
+  if (cue >= 0) {
+    const after = hits.filter((hit) => hit.index >= cue);
+    if (after.length > 0) return after[after.length - 1]?.yen;
+  }
+  return Math.max(...hits.map((hit) => hit.yen));
+}
+
+function explicitRank(line: string): number | undefined {
+  for (const [pattern, rank] of EXPLICIT_FEE_RANK) {
+    if (pattern.test(line)) return rank;
+  }
+  return undefined;
+}
+
+function formatYen(yen: number): string {
+  return `${yen.toLocaleString('ja-JP')}円`;
+}
+
 function shouldSkipPriceLine(line: string): boolean {
+  if (FEE_REJECT.test(line)) return true;
   if (PRICE_KEEP.test(line)) return false;
   return PRICE_SKIP.test(line);
 }
 
-/** Total price stated in the body, e.g. 「全部で39,000円でした」 */
+/**
+ * Our fee for one job. Prefer 作業データ / かかった費用 / 費用： over the
+ * largest yen amount, so a dealer's quote cannot replace the measured fee.
+ */
 export function extractPrice(body: string | undefined): string | undefined {
   if (!body) return undefined;
-  let best = 0;
-  const rawLines = body.split(/\r?\n/);
-  for (let i = 0; i < rawLines.length; i += 1) {
-    let line = toHalfWidthDigits(rawLines[i] ?? '');
-    const next = toHalfWidthDigits(rawLines[i + 1] ?? '');
-    if (/作業データ|費用|料金|金額/.test(line) && /^\s*[0-9,.]+円/.test(next)) {
-      line = `${line} ${next}`;
+  const lines = feeLines(body);
+  let best: { rank: number; order: number; yen: number } | undefined;
+  lines.forEach((line, order) => {
+    const rank = explicitRank(line);
+    if (rank === undefined) return;
+    if (rank !== 0 && FEE_REJECT.test(line)) return;
+    const yen = statedYen(line);
+    if (yen === undefined) return;
+    if (!best || rank < best.rank || (rank === best.rank && order > best.order)) {
+      best = { rank, order, yen };
     }
+  });
+  if (best) return formatYen(best.yen);
+
+  let fallback = 0;
+  for (const line of lines) {
     if (shouldSkipPriceLine(line)) continue;
     if (!PRICE_CONTEXT.test(line) && !/\d\s*千円/.test(line)) continue;
-    for (const match of line.matchAll(PRICE_PATTERN)) {
-      const [, man, manRest, sen, plain] = match;
-      const yen = man
-        ? Number(man) * 10000 + Number((manRest ?? '0').replace(/,/g, ''))
-        : sen
-          ? Number(sen.replace(/,/g, '')) * 1000
-          : Number((plain ?? '0').replace(/,/g, ''));
-      if (!Number.isFinite(yen)) continue;
-      if (yen >= 3000 && yen <= 300000 && yen > best) best = yen;
+    for (const hit of yenHits(line)) {
+      if (hit.yen > fallback) fallback = hit.yen;
     }
   }
-  if (best === 0) return undefined;
-  return `${best.toLocaleString('ja-JP')}円`;
+  if (fallback === 0) return undefined;
+  return formatYen(fallback);
 }
 
 const WORK_TIME_CONTEXT =
