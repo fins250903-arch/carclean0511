@@ -102,6 +102,7 @@ import { buildAioContentFaqs } from '@/data/aioKeywordContent';
 import { rewriteArrivalFaq } from '@/lib/arrivalGuidance';
 import { powerFlowDesc, rewriteFaqForRegion } from '@/lib/powerPolicy';
 import { mentionsJapanesePlace } from '@/lib/placeNames';
+import { getPrefecturePageCopy } from '@/data/prefecturePageMeta';
 import { CAR_PRICING, isTravelFeeExtra, rewriteTravelFeeText, TRAVEL_FEE_EXTRA_NOTE, TRUCK_PRICING } from '@/data/pricingConstants';
 
 import {
@@ -225,17 +226,22 @@ export const generateRegionMetadata = (regionName: string, path: string = '', ni
     const isTruck = niche === 'truck';
     const isBus = niche === 'bus';
 
+    const prefectureCopy = !isTruck && !isBus ? getPrefecturePageCopy(regionName) : undefined;
+
     const mainTitle = isTruck
         ? `${regionName}の出張トラックキャビン清掃専門店`
         : isBus
           ? `${regionName}の出張バス・マイクロバス車内清掃専門店`
-          : `${regionName}の${STORE_NAME} | 出張車内清掃・シート洗浄・嘔吐消臭`;
+          : prefectureCopy?.title ??
+            `${regionName}の${STORE_NAME} | 出張車内清掃・シート洗浄・嘔吐消臭`;
 
     const title = mainTitle;
 
     
 
-    const carDescription = `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
+    const carDescription =
+        prefectureCopy?.description ??
+        `${regionName}対応の${STORE_NAME}。出張 車内 清掃・車内クリーニング、シート洗浄、臭い消しまで一括対応。嘔吐や灯油こぼし、ペット臭などの緊急トラブルも最短即日で出張施工します。`;
 
     const truckDescription = `${regionName}の出張トラックキャビン清掃。35,000円から（税込）。汚れ・臭い・除菌まで徹底対応。最短即日出張。`;
 
