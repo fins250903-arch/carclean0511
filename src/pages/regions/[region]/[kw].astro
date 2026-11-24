@@ -42,6 +42,7 @@ import Closing from '../../../components/sections/Closing.astro';
 import ServiceMutualLink from '../../../components/sections/ServiceMutualLink.astro';
 import TroubleSympathy from '../../../components/sections/TroubleSympathy.astro';
 import KeywordMutualLinks from '../../../components/sections/KeywordMutualLinks.astro';
+import { parentRegionHref } from '../../../lib/childNavLinks';
 import EmergencyChecklist from '../../../components/sections/EmergencyChecklist.astro';
 import AnswerTarget from '../../../components/sections/AnswerTarget.astro';
 import NicheCaseStudy from '../../../components/sections/NicheCaseStudy.astro';
@@ -306,6 +307,9 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
         path={path}
         regionBasePath={regionBasePath}
       />
+      <p class="text-center text-sm text-gray-600 py-4">
+        <a href={parentRegionHref(regionId, 'car')} class="text-primary font-bold underline">{regionName}のページへ</a>
+      </p>
       <KeywordMutualLinks regionId={regionId} regionName={regionName} currentSlug={kwSlug} />
       <ContactForm
         client:load

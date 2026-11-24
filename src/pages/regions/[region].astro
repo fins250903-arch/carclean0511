@@ -53,6 +53,7 @@ import {
 } from '../../data/aioKeywordContent';
 import RegionLocalTrust from '../../components/sections/LpRegionLocalTrustFooter.astro';
 import RegionExplainerArticles from '../../components/sections/RegionExplainerArticles.astro';
+import AreaConcernNav from '../../components/sections/AreaConcernNav.astro';
 import AdLpQuickFacts from '../../components/sections/AdLpQuickFacts.astro';
 import CancelPolicy from '../../components/sections/CancelPolicy.astro';
 import { CAR_PRICING, travelFeeAreaLabel, yen } from '../../data/pricingConstants';
@@ -198,6 +199,7 @@ const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(displayName) : un
       <RegionalAchievements regionName={regionName} displayName={displayName} niche={niche} />
       <Targets />
       <AreaCoverage regionName={regionName} />
+      <AreaConcernNav regionId={regionId ?? ''} regionName={regionName} />
       <Flow niche={niche} regionName={regionName} />
       <Profile displayName={displayName} />
       <Expertise />
