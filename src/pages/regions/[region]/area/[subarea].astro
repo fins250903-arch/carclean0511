@@ -15,6 +15,9 @@ import JsonLd from '../../../../components/seo/JsonLd.astro';
 import HeroImagePreload from '../../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../../lib/niche';
 import { travelFeeAreaLabel } from '../../../../data/pricingConstants';
+import { STORE_NAME } from '../../../../lib/site';
+import { areaRedirectTarget, isKeptArea } from '../../../../data/consolidationPolicy';
+import { evidenceForArea } from '../../../../lib/keptPageEvidence';
 
 import Hero from '../../../../components/sections/Hero.astro';
 import AIOContent from '../../../../components/sections/AIOContent.astro';
@@ -70,6 +73,7 @@ export async function getStaticPaths() {
   const niches: ServiceNiche[] = ['car', 'truck', 'bus'];
   for (const { regionId, regionName, subarea } of ALL_SUBAREA_PATHS) {
     for (const niche of niches) {
+      if (areaRedirectTarget(regionId, subarea.id, niche)) continue;
       const suffix = niche === 'car' ? '' : niche === 'truck' ? '-truck' : '-bus';
       paths.push({
         params: { region: regionId, subarea: `${subarea.id}${suffix}` },
@@ -108,8 +112,14 @@ const {
 
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
+const keptCar = !isTruck && !isBus && isKeptArea(regionId, subareaId);
+const areaEvidence = keptCar
+  ? evidenceForArea(regionId, subareaId)
+  : { posts: [], caseIds: [], testimonialIds: [] };
 const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
-const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
+const blogCases = areaEvidence.posts.length
+  ? areaEvidence.posts
+  : getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const subareaLabel = `${displayName}（${regionName}）`;
 
 const regionOverrides = buildRegionSeoOverrides({
@@ -132,14 +142,19 @@ const heroMainTitle = isTruck
   ? `${subareaLabel}の出張トラックキャビン清掃`
   : isBus
     ? `${subareaLabel}の出張バス車内清掃`
-    : getRegionalHeroMainTitle(regionName);
+    : keptCar
+      ? `${displayName}の出張車内清掃`
+      : getRegionalHeroMainTitle(regionName);
+const pageTitle = keptCar
+  ? `${displayName}の出張車内清掃｜${regionName}｜${STORE_NAME}`
+  : metadata.title;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getRegionSubareaFvImage(regionId, subareaId, niche);
 const noindex = isNoindexRegionId(regionId);
 ---
 
 <MainLayout
-  title={metadata.title}
+  title={pageTitle}
   description={metadata.description}
   keywords={metadata.keywords}
   canonical={metadata.alternates?.canonical}
@@ -180,7 +195,7 @@ const noindex = isNoindexRegionId(regionId);
       <Pricing regionName={regionName} niche={niche} />
       <CancelPolicy />
       <CTA />
-      <QuestionnaireTestimonials client:visible displayName={subareaLabel} />
+      <QuestionnaireTestimonials client:visible displayName={subareaLabel} onlyIds={areaEvidence.testimonialIds} />
       {!isTruck && !isBus && (
         <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
@@ -201,7 +216,12 @@ const noindex = isNoindexRegionId(regionId);
       <Reasons displayName={subareaLabel} regionName={regionName} />
       <Benefits />
       <Roadmap displayName={subareaLabel} />
-      <RegionalAchievements regionName={regionName} displayName={subareaLabel} niche={niche} />
+      <RegionalAchievements
+        regionName={regionName}
+        displayName={subareaLabel}
+        niche={niche}
+        onlyIds={areaEvidence.caseIds}
+      />
       <Targets />
       <AreaCoverage regionName={regionName} />
       <Flow niche={niche} regionName={regionName} />

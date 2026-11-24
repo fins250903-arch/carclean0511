@@ -35,7 +35,8 @@
     "pdca:report": "node ./tools/ads-pdca/report.mjs",
     "pdca:ads-script": "node ./tools/ads-pdca/print-ads-script.mjs",
     "pdca:test": "node --test ./tools/ads-pdca/test.mjs",
-    "test:cms-auth": "node --test ./workers/cms-auth.test.mjs"
+    "test:cms-auth": "node --test ./workers/cms-auth.test.mjs",
+    "test": "node --import ./scripts/register-alias.mjs --test src/data/*.test.ts src/lib/*.test.ts workers/cms-auth.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.1",

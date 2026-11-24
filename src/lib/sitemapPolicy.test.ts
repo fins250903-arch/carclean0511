@@ -13,7 +13,7 @@ import {
 
 test('redirect sources are the old URLs, not the national top or a live prefecture LP', () => {
   const sources = loadRedirectSources();
-  assert.equal(sources.size, 39);
+  assert.equal(sources.size, 81);
   for (const osakaAlias of [
     '/regions/osaka/gero-cleaning/',
     '/regions/osaka/pet-hair-odor/',

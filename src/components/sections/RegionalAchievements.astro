@@ -7,9 +7,10 @@ interface Props {
   displayName: string;
   niche?: 'car' | 'truck' | 'bus';
   troubleType?: string;
+  onlyIds?: string[];
 }
 
-const { regionName, displayName, niche = 'car', troubleType } = Astro.props;
+const { regionName, displayName, niche = 'car', troubleType, onlyIds } = Astro.props;
 const isTruck = niche === 'truck';
 
 // Filter cases by niche and region
@@ -27,6 +28,11 @@ if (troubleType) {
   if (typed.length > 0) {
     regionCases = typed;
   }
+}
+
+if (onlyIds?.length) {
+  const picked = localCaseStudies.filter((c) => onlyIds.includes(c.id));
+  if (picked.length > 0) regionCases = picked;
 }
 
 // Get up to 2 cases
