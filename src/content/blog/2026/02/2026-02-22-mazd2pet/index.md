@@ -2,10 +2,10 @@
 date: 2026-07-12
 title: 【京都市】マツダ MAZDA2のペット（犬）の粗相トラブル解決！
 shortSlug: mazd2pet
-areaName: mazd2pet
+areaName: 京都府京都市
 coverImage: 2026053-a6-5.jpg
 seo:
-  meta_description: mazd2pet
+  meta_description: 京都市でマツダ MAZDA2の愛犬の粗相（おしっこ）によるアンモニア臭とシミを出張洗浄した事例です。作業時間は約3.5時間、費用は42,000円（税別）でした。
   noindex: false
 ogp:
   og_type: article
