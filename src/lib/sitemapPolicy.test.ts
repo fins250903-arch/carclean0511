@@ -4,14 +4,29 @@ import test from 'node:test';
 import {
   collectRedirectSources,
   contentLastmod,
+  followExactRedirect,
   isRedirectedSitemapUrl,
   loadBlogLastmods,
+  loadExactRedirectMap,
   loadRedirectSources,
 } from './sitemapPolicy.ts';
 
 test('redirect sources are the old URLs, not the national top or a live prefecture LP', () => {
   const sources = loadRedirectSources();
-  assert.equal(sources.size, 34);
+  assert.equal(sources.size, 39);
+  for (const osakaAlias of [
+    '/regions/osaka/gero-cleaning/',
+    '/regions/osaka/pet-hair-odor/',
+    '/regions/osaka/pet-waste/',
+    '/regions/osaka/seat-washing/',
+    '/regions/osaka/tobacco-odor/',
+  ]) {
+    assert.equal(sources.has(osakaAlias), true, osakaAlias);
+  }
+  assert.equal(
+    isRedirectedSitemapUrl('https://carinteriorcleaning.jp/regions/osaka/vomit-cleaning/', sources),
+    false,
+  );
   assert.equal(
     isRedirectedSitemapUrl('https://carinteriorcleaning.jp/coating/fukuoka/', sources),
     true,
@@ -64,6 +79,43 @@ test('the site root 301 target is /aio/ in Cloudflare redirects and the Astro fa
   assert.equal(index.includes("Astro.redirect('/aio/', 301)"), true);
   assert.equal(index.includes('content="0;url=/aio/"'), true);
   assert.equal(index.includes('https://carinteriorcleaning.jp/aio/'), true);
+});
+
+test('new Osaka concern redirects stay above the pattern rules', () => {
+  const redirects = readFileSync(new URL('../../public/_redirects', import.meta.url), 'utf8');
+  const lines = redirects
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+  const firstPattern = lines.findIndex((line) => (line.split(/\s+/)[0] ?? '').includes(':'));
+  for (const source of [
+    '/regions/osaka/gero-cleaning/',
+    '/regions/osaka/pet-hair-odor/',
+    '/regions/osaka/pet-waste/',
+    '/regions/osaka/seat-washing/',
+    '/regions/osaka/tobacco-odor/',
+  ]) {
+    const index = lines.findIndex((line) => line.startsWith(`${source} `));
+    assert.equal(index >= 0 && index < firstPattern, true, source);
+  }
+});
+
+test('exact redirects resolve to the live page', () => {
+  const map = loadExactRedirectMap();
+  assert.equal(
+    followExactRedirect('/regions/osaka/kyuto-cleaning/', map),
+    '/regions/osaka/vomit-cleaning/',
+  );
+  assert.equal(
+    followExactRedirect('/regions/osaka/gero-cleaning/', map),
+    '/regions/osaka/vomit-cleaning/',
+  );
+  assert.equal(
+    followExactRedirect('/regions/osaka/seat-washing/', map),
+    '/regions/osaka/seat-senjo/',
+  );
+  assert.equal(followExactRedirect('/regions/osaka/', map), '/regions/osaka/');
+  assert.equal(followExactRedirect('/', map), '/aio/');
 });
 
 test('pattern rules are not treated as pages', () => {

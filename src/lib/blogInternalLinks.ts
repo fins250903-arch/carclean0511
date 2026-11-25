@@ -2,6 +2,7 @@ import { canonicalUrl } from '@/lib/site';
 import { isNoindexRegionId } from '@/data/noindexRegions';
 import { getAdKeywordPage } from '@/data/adKeywordPages';
 import { getRegionNameById } from '@/lib/blogRegion';
+import { followExactRedirect, loadExactRedirectMap } from '@/lib/sitemapPolicy';
 
 export type BlogInternalLink = {
   label: string;
@@ -53,6 +54,8 @@ export function buildBlogInternalLinks(options: {
   title?: string;
 }): BlogInternalLink[] {
   const links: BlogInternalLink[] = [];
+  const redirectMap = loadExactRedirectMap();
+  const liveHref = (path: string) => canonicalUrl(followExactRedirect(path, redirectMap));
   const regionId = options.regionIds.find((id) => !isNoindexRegionId(id));
   const regionName = regionId ? getRegionNameById(regionId) : undefined;
   const keyword = options.trouble ? TROUBLE_KEYWORD_LP[options.trouble] : undefined;
@@ -62,13 +65,13 @@ export function buildBlogInternalLinks(options: {
   if (regionId && regionName) {
     links.push({
       label: `${regionName}の出張車内クリーニング`,
-      href: canonicalUrl(`/regions/${regionId}`),
+      href: liveHref(`/regions/${regionId}`),
       description: `${regionName}の料金・対応エリア・当日枠の空き状況をまとめています。`,
     });
   } else {
     links.push({
       label: '出張車内クリーニングの料金・対応エリア',
-      href: canonicalUrl('/aio'),
+      href: liveHref('/aio'),
       description: '全国の対応エリアと、シート洗浄・消臭の料金目安をまとめています。',
     });
   }
@@ -78,7 +81,7 @@ export function buildBlogInternalLinks(options: {
     const targetName = getRegionNameById(target.regionId) ?? moneyRegionName;
     links.push({
       label: `${targetName}の${keyword.label}`,
-      href: canonicalUrl(`/regions/${target.regionId}/${target.slug}`),
+      href: liveHref(`/regions/${target.regionId}/${target.slug}`),
       description: `同じ症状の作業手順・費用の目安・よくある質問を専門ページで解説しています。`,
     });
   }
@@ -86,7 +89,7 @@ export function buildBlogInternalLinks(options: {
   if (options.title && /保険|賠償/.test(options.title) && options.trouble?.includes('嘔吐')) {
     links.push({
       label: `${moneyRegionName}の保険対応・嘔吐清掃`,
-      href: canonicalUrl(`/regions/${moneyRegionId}/hoken-kyuto`),
+      href: liveHref(`/regions/${moneyRegionId}/hoken-kyuto`),
       description: '車両保険・個人賠償で車内嘔吐の清掃費を申請する流れをまとめています。',
     });
   }
@@ -94,8 +97,8 @@ export function buildBlogInternalLinks(options: {
   links.push({
     label: regionName ? `${regionName}の施工事例をもっと見る` : '施工事例をもっと見る',
     href: regionName
-      ? `${canonicalUrl('/blog')}?region=${encodeURIComponent(regionName)}`
-      : canonicalUrl('/blog'),
+      ? `${liveHref('/blog')}?region=${encodeURIComponent(regionName)}`
+      : liveHref('/blog'),
     description: '地域別の作業記録を公開しています。似た事例の仕上がりを確認できます。',
   });
 

@@ -3,8 +3,10 @@ import test from 'node:test';
 import { CAR_PRICING, isTravelFeeExtra, yen } from './pricingConstants.ts';
 import { regions } from './regions.ts';
 import {
+  HYOGO_TITLE_PREFECTURE_IDS,
   PREFECTURE_PAGE_COPY,
   PREFECTURE_SEO_FACTS,
+  buildPrefecturePageCopy,
   getPrefecturePageCopy,
   prefectureCopyCoversRegions,
 } from './prefecturePageMeta.ts';
@@ -61,6 +63,32 @@ test('prefecture titles and descriptions are unique, short, and carry the same f
       assert.equal(copy.description.includes(city), true);
     }
   }
+});
+
+test('every prefecture title contains 出張車内清掃 and titles stay unique', () => {
+  const hyogoForm = new Set<string>(HYOGO_TITLE_PREFECTURE_IDS);
+  const titles = new Set<string>();
+  for (const [index, facts] of PREFECTURE_SEO_FACTS.entries()) {
+    const copy = PREFECTURE_PAGE_COPY[index];
+    assert.equal(titles.has(copy.title), false, copy.title);
+    titles.add(copy.title);
+    assert.equal(copy.title.includes('出張車内清掃'), true, copy.id);
+    const shape = hyogoForm.has(facts.id) ? 0 : index % 3;
+    assert.equal(copy.title, buildPrefecturePageCopy(facts, shape).title, copy.id);
+  }
+  assert.equal(titles.size, PREFECTURE_PAGE_COPY.length);
+  assert.equal(
+    getPrefecturePageCopy('大阪府')?.title,
+    '大阪府の出張車内清掃｜大阪市・堺市｜車内清掃「特急便」',
+  );
+  assert.equal(
+    getPrefecturePageCopy('宮城県')?.title,
+    '宮城県の出張車内清掃｜仙台市・石巻市｜車内清掃「特急便」',
+  );
+  assert.equal(
+    getPrefecturePageCopy('兵庫県')?.title,
+    '兵庫県の出張車内清掃｜神戸市・姫路市｜車内清掃「特急便」',
+  );
 });
 
 test('coverage limits stay in the Okinawa and Yamaguchi descriptions', () => {

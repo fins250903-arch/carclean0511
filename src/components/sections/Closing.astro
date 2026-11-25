@@ -19,7 +19,7 @@ const { regionName, displayName, path, showAreaList = true } = Astro.props;
 // "北海道" "横浜市""名古屋市" "福岡市""広島県""京都市""岡山県" are to be excluded or standardized.
 // We'll use the standardized regions list.
 const regionalLinks = filterIndexableRegions(regions).map(r => ({
-    href: r.id === 'osaka' ? '/' : `/regions/${r.id}`,
+    href: `/regions/${r.id}/`,
     label: r.name
 })).filter(l => !["北海道", "横浜市", "名古屋市", "福岡市", "京都市", "広島県", "岡山県"].includes(l.label));
 ---

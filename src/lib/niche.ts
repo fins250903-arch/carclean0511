@@ -21,7 +21,7 @@ export function regionSlugFromParam(param: string): { baseId: string; niche: Ser
 }
 
 export function regionPath(baseId: string, niche: ServiceNiche): string {
-  if (niche === 'truck') return `/regions/${baseId}-truck`;
-  if (niche === 'bus') return `/regions/${baseId}-bus`;
-  return `/regions/${baseId}`;
+  if (niche === 'truck') return `/regions/${baseId}-truck/`;
+  if (niche === 'bus') return `/regions/${baseId}-bus/`;
+  return `/regions/${baseId}/`;
 }

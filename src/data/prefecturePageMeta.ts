@@ -68,6 +68,24 @@ const PRICE_LABEL = `軽${yen(CAR_PRICING.lightBasic)}〜`;
 const POWER_SENTENCE = powerReasonDesc();
 const CLOSING = `電話${TEL}。本部は岡山。`;
 
+/**
+ * These eight used title shape 1 (`市名の車内クリーニング｜県｜店名`), which
+ * omitted 出張車内清掃. They now use shape 0, the same form as Hyogo.
+ * The other 16 prefectures keep `index % 3`.
+ */
+export const HYOGO_TITLE_PREFECTURE_IDS = [
+  'osaka',
+  'miyagi',
+  'okinawa',
+  'ibaraki',
+  'kanagawa',
+  'tochigi',
+  'nara',
+  'yamaguchi',
+] as const;
+
+const HYOGO_TITLE_ID_SET = new Set<string>(HYOGO_TITLE_PREFECTURE_IDS);
+
 function buildTitle(label: string, cities: readonly [string, string, string], shape: number): string {
   const [first, second] = cities;
   if (shape === 1) return `${first}・${second}の車内クリーニング｜${label}｜${STORE_NAME}`;
@@ -89,7 +107,8 @@ export function buildPrefecturePageCopy(facts: PrefectureSeoFacts, shape: number
 }
 
 export const PREFECTURE_PAGE_COPY: readonly PrefecturePageCopy[] = PREFECTURE_SEO_FACTS.map(
-  (facts, index) => buildPrefecturePageCopy(facts, index % 3),
+  (facts, index) =>
+    buildPrefecturePageCopy(facts, HYOGO_TITLE_ID_SET.has(facts.id) ? 0 : index % 3),
 );
 
 const COPY_BY_NAME = new Map(PREFECTURE_PAGE_COPY.map((copy) => [copy.name, copy]));

@@ -63,6 +63,46 @@ export function isRedirectedSitemapUrl(
   return sources.has(normalizePathname(pageUrl));
 }
 
+/** Exact (non-pattern) redirects. Slash-only rules such as `/aio` → `/aio/` are omitted. */
+export function collectExactRedirectMap(redirectsText: string): Map<string, string> {
+  const map = new Map<string, string>();
+
+  for (const rawLine of redirectsText.split('\n')) {
+    const line = rawLine.trim();
+    if (!line || line.startsWith('#')) continue;
+
+    const [source, destination] = line.split(/\s+/);
+    if (!source || !destination || source.includes(':') || source.includes('*')) continue;
+
+    const from = normalizePathname(source);
+    const to = normalizePathname(destination);
+    if (from === to) continue;
+    map.set(from, to);
+  }
+
+  return map;
+}
+
+export function loadExactRedirectMap(
+  filePath: string = REDIRECTS_PATH,
+): Map<string, string> {
+  return collectExactRedirectMap(readFileSync(filePath, 'utf8'));
+}
+
+/** Follow exact 301s. Pattern rules that only add a slash are not in the map. */
+export function followExactRedirect(
+  pathname: string,
+  map: Map<string, string>,
+): string {
+  let current = normalizePathname(pathname);
+  const seen = new Set<string>();
+  while (map.has(current) && !seen.has(current)) {
+    seen.add(current);
+    current = map.get(current)!;
+  }
+  return current;
+}
+
 function walkMarkdown(dir: string, files: string[] = []): string[] {
   for (const name of readdirSync(dir)) {
     const full = path.join(dir, name);
