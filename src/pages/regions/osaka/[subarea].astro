@@ -14,6 +14,9 @@ import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 import HeroImagePreload from '../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../lib/niche';
+import { STORE_NAME } from '../../../lib/site';
+import { areaRedirectTarget, isKeptArea } from '../../../data/consolidationPolicy';
+import { evidenceForArea } from '../../../lib/keptPageEvidence';
 
 import Hero from '../../../components/sections/Hero.astro';
 import AIOContent from '../../../components/sections/AIOContent.astro';
@@ -71,6 +74,7 @@ export async function getStaticPaths() {
   const niches: ServiceNiche[] = ['car', 'truck', 'bus'];
   for (const sub of osakaSubRegions) {
     for (const niche of niches) {
+      if (areaRedirectTarget('osaka', sub.id, niche)) continue;
       const suffix = niche === 'car' ? '' : niche === 'truck' ? '-truck' : '-bus';
       paths.push({
         params: { subarea: `${sub.id}${suffix}` },
@@ -95,9 +99,15 @@ const { subareaId, displayName, niche, path } = Astro.props as {
 
 const isTruck = niche === 'truck';
 const isBus = niche === 'bus';
+const keptCar = !isTruck && !isBus && isKeptArea('osaka', subareaId);
+const areaEvidence = keptCar
+  ? evidenceForArea('osaka', subareaId)
+  : { posts: [], caseIds: [], testimonialIds: [] };
 const post = getRegionalPost(REGION_NAME);
 const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), 'osaka');
-const blogCases = getRegionalBlogDisplayPosts('osaka', REGION_NAME, latestBlogPosts);
+const blogCases = areaEvidence.posts.length
+  ? areaEvidence.posts
+  : getRegionalBlogDisplayPosts('osaka', REGION_NAME, latestBlogPosts);
 const custom = getRegionCustomization(REGION_NAME, subareaId);
 
 const regionOverrides = buildRegionSeoOverrides({
@@ -127,13 +137,18 @@ const heroMainTitle = isTruck
   ? `${subareaLabel}の出張トラックキャビン清掃`
   : isBus
     ? `${subareaLabel}の出張バス車内清掃`
-    : getRegionalHeroMainTitle(REGION_NAME);
+    : keptCar
+      ? `${displayName}の出張車内清掃`
+      : getRegionalHeroMainTitle(REGION_NAME);
+const pageTitle = keptCar
+  ? `${displayName}の出張車内清掃｜${REGION_NAME}｜${STORE_NAME}`
+  : metadata.title;
 const voiceLine = !isTruck && !isBus ? buildVoiceEmergencyLine(subareaLabel) : undefined;
 const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
 ---
 
 <MainLayout
-  title={metadata.title}
+  title={pageTitle}
   description={metadata.description}
   keywords={metadata.keywords}
   canonical={metadata.alternates?.canonical}
@@ -188,7 +203,11 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
       <Pricing regionName={REGION_NAME} niche={niche} />
       <CancelPolicy />
       <CTA />
-      <QuestionnaireTestimonials client:visible displayName={`${displayName}（大阪府）`} />
+      <QuestionnaireTestimonials
+        client:visible
+        displayName={`${displayName}（大阪府）`}
+        onlyIds={areaEvidence.testimonialIds}
+      />
       {!isTruck && !isBus && (
         <KeywordAioExtras situationDiagnosis={REGIONAL_SITUATION_DIAGNOSIS} />
       )}
@@ -209,7 +228,12 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
       <Reasons displayName={`${displayName}（大阪府）`} regionName={REGION_NAME} />
       <Benefits />
       <Roadmap displayName={`${displayName}（大阪府）`} />
-      <RegionalAchievements regionName={REGION_NAME} displayName={`${displayName}（大阪府）`} niche={niche} />
+      <RegionalAchievements
+        regionName={REGION_NAME}
+        displayName={`${displayName}（大阪府）`}
+        niche={niche}
+        onlyIds={areaEvidence.caseIds}
+      />
       <Targets />
       <AreaCoverage regionName={REGION_NAME} />
       <Flow niche={niche} regionName={REGION_NAME} />

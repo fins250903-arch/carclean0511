@@ -3,9 +3,19 @@ import { questionnaireTestimonials } from '@/data/questionnaireTestimonials';
 import { useRegion } from '@/lib/RegionContext';
 import LpImage from '@/components/ui/LpImage';
 
-export default function QuestionnaireTestimonials({ displayName: propDisplayName }: { displayName?: string }) {
+export default function QuestionnaireTestimonials({
+    displayName: propDisplayName,
+    onlyIds,
+}: {
+    displayName?: string;
+    onlyIds?: string[];
+}) {
     const context = useRegion();
     const displayName = propDisplayName || context.displayName;
+    const matched = onlyIds?.length
+        ? questionnaireTestimonials.filter((item) => onlyIds.includes(item.id))
+        : [];
+    const shown = matched.length > 0 ? matched : questionnaireTestimonials;
 
     return (
         <section className="bg-amber-50 py-16">
@@ -26,7 +36,7 @@ export default function QuestionnaireTestimonials({ displayName: propDisplayName
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-10">
-                    {questionnaireTestimonials.map((item, index) => (
+                    {shown.map((item, index) => (
                         <div key={index} className="bg-white rounded-3xl shadow-xl overflow-hidden border border-amber-100 flex flex-col md:flex-row h-full">
                             <div className="md:w-1/2 relative bg-gray-100">
                                 <LpImage

@@ -5,6 +5,8 @@ import {
   AD_KEYWORD_PAGES,
   getAdKeywordPage,
 } from '../../../data/adKeywordPages';
+import { keywordCanonicalPath, keywordRedirectTarget } from '../../../data/consolidationPolicy';
+import { evidenceForConcern } from '../../../lib/keptPageEvidence';
 import {
   generateAdKeywordRegionMetadata,
   generateJsonLd,
@@ -82,6 +84,7 @@ export async function getStaticPaths() {
       if (page.targetRegionIds && !page.targetRegionIds.includes(region.id)) {
         continue;
       }
+      if (keywordRedirectTarget(region.id, page.slug)) continue;
       paths.push({
         params: { region: region.id, kw: page.slug },
         props: { regionName: region.name, regionId: region.id },
@@ -104,7 +107,10 @@ const regionBasePath = `/regions/${regionId}`;
 const post = getRegionalPost(regionName);
 const displayName = post?.displayName || regionName;
 const latestBlogPosts = getLatestRegionalPosts(await getCollection('blog'), regionId);
-const blogCases = getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
+const concernEvidence = evidenceForConcern(regionId, kwSlug);
+const blogCases = concernEvidence.posts.length
+  ? concernEvidence.posts
+  : getRegionalBlogDisplayPosts(regionId, regionName, latestBlogPosts);
 const regionOverrides = buildRegionSeoOverrides({
   regionName,
   displayName,
@@ -220,7 +226,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
   title={metadata.title}
   description={metadata.description}
   keywords={metadata.keywords}
-  canonical={metadata.alternates?.canonical}
+  canonical={keywordCanonicalPath(regionId, kwSlug) ?? metadata.alternates?.canonical}
   ogImage={kw.ogImage}
   noindex={noindex}
 >
@@ -260,7 +266,11 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
       <Pricing regionName={regionName} niche={pageNiche} />
       <CancelPolicy />
       <CTA />
-      <QuestionnaireTestimonials client:visible displayName={displayName} />
+      <QuestionnaireTestimonials
+        client:visible
+        displayName={displayName}
+        onlyIds={concernEvidence.testimonialIds}
+      />
       <KeywordAioExtras
         smellCauseTable={aioKw?.smellCauseTable}
         keroseneSeverityMatrix={aioKw?.keroseneSeverityMatrix}
@@ -291,6 +301,7 @@ const noindex = isNoindexKeywordSlug(kwSlug) || isNoindexRegionId(regionId);
         displayName={displayName}
         niche={pageNiche}
         troubleType={aioKw?.troubleType}
+        onlyIds={concernEvidence.caseIds}
       />
       <Targets />
       <AreaCoverage regionName={regionName} />
