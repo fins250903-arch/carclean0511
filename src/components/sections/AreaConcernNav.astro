@@ -1,0 +1,55 @@
+---
+import { childNavFor } from '../../lib/childNavLinks';
+
+interface Props {
+  regionId: string;
+  regionName: string;
+}
+
+const { regionId, regionName } = Astro.props;
+const nav = childNavFor(regionId, regionName);
+const hasLinks = nav.areas.length > 0 || nav.concerns.length > 0;
+---
+
+{hasLinks && (
+  <section class="py-12 bg-white border-t border-gray-100" aria-label={`${regionName}のエリア別・お悩み別`}>
+    <div class="container mx-auto px-6 md:px-8 max-w-4xl">
+      <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">
+        {regionName}のエリア別・お悩み別
+      </h2>
+      <p class="text-sm text-gray-600 text-center mb-8">
+        市区と、症状ごとのページです。
+      </p>
+      <div class="grid gap-8 md:grid-cols-2">
+        {nav.areas.length > 0 && (
+          <div>
+            <h3 class="text-lg font-black text-gray-800 mb-3">エリア別</h3>
+            <ul class="flex flex-wrap gap-2">
+              {nav.areas.map((link) => (
+                <li>
+                  <a href={link.href} class="inline-block rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-sm font-bold text-blue-800 hover:bg-blue-700 hover:text-white">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {nav.concerns.length > 0 && (
+          <div>
+            <h3 class="text-lg font-black text-gray-800 mb-3">お悩み別</h3>
+            <ul class="flex flex-wrap gap-2">
+              {nav.concerns.map((link) => (
+                <li>
+                  <a href={link.href} class="inline-block rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm font-bold text-blue-800 hover:bg-blue-700 hover:text-white">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}

@@ -14,7 +14,6 @@ import { buildRegionSeoOverrides } from '../../../lib/regionStructuredData';
 import JsonLd from '../../../components/seo/JsonLd.astro';
 import HeroImagePreload from '../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../lib/niche';
-import { regionPath } from '../../../lib/niche';
 
 import Hero from '../../../components/sections/Hero.astro';
 import AIOContent from '../../../components/sections/AIOContent.astro';
@@ -63,6 +62,7 @@ import {
   REGIONAL_SITUATION_DIAGNOSIS,
 } from '../../../data/aioKeywordContent';
 import { getOsakaSubareaFvImage } from '../../../data/fvImageMap';
+import { parentRegionHref } from '../../../lib/childNavLinks';
 
 const REGION_NAME = '大阪府';
 
@@ -231,7 +231,7 @@ const subareaFv = getOsakaSubareaFvImage(subareaId, niche);
         regionBaseId="osaka"
       />
       <p class="text-center text-sm text-gray-500 py-4">
-        <a href={regionPath('osaka', niche)} class="text-primary font-bold underline">大阪府全体のLPへ</a>
+        <a href={parentRegionHref('osaka', niche)} class="text-primary font-bold underline">大阪府のページへ</a>
       </p>
       <ContactForm
         client:load

@@ -15,7 +15,6 @@ import JsonLd from '../../../../components/seo/JsonLd.astro';
 import HeroImagePreload from '../../../../components/seo/HeroImagePreload.astro';
 import type { ServiceNiche } from '../../../../lib/niche';
 import { travelFeeAreaLabel } from '../../../../data/pricingConstants';
-import { regionPath } from '../../../../lib/niche';
 
 import Hero from '../../../../components/sections/Hero.astro';
 import AIOContent from '../../../../components/sections/AIOContent.astro';
@@ -64,6 +63,7 @@ import {
 } from '../../../../data/aioKeywordContent';
 import { getRegionSubareaFvImage } from '../../../../data/fvImageMap';
 import { isNoindexRegionId } from '../../../../data/noindexRegions';
+import { parentRegionHref } from '../../../../lib/childNavLinks';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -222,7 +222,7 @@ const noindex = isNoindexRegionId(regionId);
         regionBaseId={regionId}
       />
       <p class="text-center text-sm text-gray-500 py-4">
-        <a href={regionPath(regionId, niche)} class="text-primary font-bold underline">{regionName}全体のLPへ</a>
+        <a href={parentRegionHref(regionId, niche)} class="text-primary font-bold underline">{regionName}のページへ</a>
       </p>
       <ContactForm
         client:load
