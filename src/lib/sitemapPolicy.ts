@@ -1,5 +1,7 @@
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
+import { isCanonicalAliasUrl } from '../data/consolidationPolicy.ts';
+import { isNoindexRegionPathname } from '../data/noindexRegions.ts';
 
 const REDIRECTS_PATH = path.resolve(process.cwd(), 'public/_redirects');
 const BLOG_ROOT = path.resolve(process.cwd(), 'src/content/blog');
@@ -61,6 +63,20 @@ export function isRedirectedSitemapUrl(
   sources: Set<string>,
 ): boolean {
   return sources.has(normalizePathname(pageUrl));
+}
+
+/**
+ * Pages the sitemap keeps. Same rules as the `@astrojs/sitemap` filter
+ * in `astro.config.mjs`: indexable, not `/reserve/`, not a redirect
+ * source, and not a live page whose canonical points elsewhere.
+ */
+export function isIncludedInSitemap(pageUrl: string, sources: Set<string>): boolean {
+  return (
+    !isNoindexRegionPathname(pageUrl) &&
+    !pageUrl.includes('/reserve/') &&
+    !isRedirectedSitemapUrl(pageUrl, sources) &&
+    !isCanonicalAliasUrl(pageUrl)
+  );
 }
 
 /** Exact (non-pattern) redirects. Slash-only rules such as `/aio` → `/aio/` are omitted. */

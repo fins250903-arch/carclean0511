@@ -5,6 +5,7 @@ import {
   collectRedirectSources,
   contentLastmod,
   followExactRedirect,
+  isIncludedInSitemap,
   isRedirectedSitemapUrl,
   loadBlogLastmods,
   loadExactRedirectMap,
@@ -98,6 +99,33 @@ test('new Osaka concern redirects stay above the pattern rules', () => {
     const index = lines.findIndex((line) => line.startsWith(`${source} `));
     assert.equal(index >= 0 && index < firstPattern, true, source);
   }
+});
+
+test('sitemap inclusion matches indexable, non-redirect, self-canonical URLs', () => {
+  const sources = loadRedirectSources();
+  assert.equal(isIncludedInSitemap('https://carinteriorcleaning.jp/regions/osaka/', sources), true);
+  assert.equal(
+    isIncludedInSitemap('https://carinteriorcleaning.jp/regions/osaka/osaka-city/', sources),
+    true,
+  );
+  assert.equal(
+    isIncludedInSitemap('https://carinteriorcleaning.jp/regions/fukuoka/area/chikugo/', sources),
+    true,
+  );
+  assert.equal(
+    isIncludedInSitemap('https://carinteriorcleaning.jp/regions/osaka/ase/', sources),
+    false,
+  );
+  assert.equal(
+    isIncludedInSitemap('https://carinteriorcleaning.jp/regions/osaka/kitakawachi/', sources),
+    false,
+  );
+  assert.equal(
+    isIncludedInSitemap('https://carinteriorcleaning.jp/regions/kumamoto/', sources),
+    false,
+  );
+  assert.equal(isIncludedInSitemap('https://carinteriorcleaning.jp/reserve/', sources), false);
+  assert.equal(isIncludedInSitemap('https://carinteriorcleaning.jp/', sources), false);
 });
 
 test('exact redirects resolve to the live page', () => {

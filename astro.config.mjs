@@ -3,10 +3,8 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
-import { isCanonicalAliasUrl } from './src/data/consolidationPolicy.ts';
-import { isNoindexRegionPathname } from './src/data/noindexRegions.ts';
 import {
-  isRedirectedSitemapUrl,
+  isIncludedInSitemap,
   loadBlogLastmods,
   loadRedirectSources,
   withBlogLastmod,
@@ -24,11 +22,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) =>
-        !isNoindexRegionPathname(page) &&
-        !page.includes('/reserve/') &&
-        !isRedirectedSitemapUrl(page, redirectSources) &&
-        !isCanonicalAliasUrl(page),
+      filter: (page) => isIncludedInSitemap(page, redirectSources),
       serialize(item) {
         return withBlogLastmod(item, blogLastmods);
       },

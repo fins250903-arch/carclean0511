@@ -1,3 +1,9 @@
+import {
+  FOCUS_REGION_IDS,
+  areaPagePath,
+  areaRedirectTarget,
+  isKeptArea,
+} from '../data/consolidationPolicy.ts';
 import { filterIndexableRegions } from '../data/noindexRegions.ts';
 import {
   CAR_PRICING,
@@ -6,8 +12,14 @@ import {
   TRUCK_PRICING,
   yen,
 } from '../data/pricingConstants.ts';
+import { osakaSubRegions } from '../data/regionCustomization.ts';
+import { getRegionSubareas } from '../data/regionSubareas.ts';
 import { regions } from '../data/regions.ts';
 import { regionPath } from './niche.ts';
+import {
+  isIncludedInSitemap,
+  loadRedirectSources,
+} from './sitemapPolicy.ts';
 import {
   buildServiceAreaLabel,
   canonicalUrl,
@@ -68,6 +80,60 @@ function areaSection(): string[] {
   return lines;
 }
 
+export type KeptCityPage = {
+  name: string;
+  regionName: string;
+  path: string;
+};
+
+type AreaRecord = { id: string; displayName: string };
+
+function areaRecords(regionId: string): readonly AreaRecord[] {
+  if (regionId === 'osaka') return osakaSubRegions;
+  return getRegionSubareas(regionId);
+}
+
+/**
+ * Car city/area pages kept after the Osaka, Hyogo, Fukuoka, and Miyagi
+ * consolidation. Truck and bus variants redirect, so they are omitted.
+ * Miyagi has no area pages. Each row is generated (not a 301), indexable,
+ * in the sitemap, and self-canonical: area templates set canonical to this path.
+ */
+export function listKeptCityPages(
+  redirectSources: Set<string> = loadRedirectSources(),
+): KeptCityPage[] {
+  const pages: KeptCityPage[] = [];
+
+  for (const regionId of FOCUS_REGION_IDS) {
+    const regionName = regions.find((region) => region.id === regionId)?.name;
+    if (!regionName) continue;
+
+    for (const area of areaRecords(regionId)) {
+      if (!isKeptArea(regionId, area.id)) continue;
+      if (areaRedirectTarget(regionId, area.id, 'car') !== null) continue;
+
+      const path = areaPagePath(regionId, area.id, 'car');
+      if (!isIncludedInSitemap(canonicalUrl(path), redirectSources)) continue;
+
+      pages.push({ name: area.displayName, regionName, path });
+    }
+  }
+
+  return pages;
+}
+
+function citySection(): string[] {
+  const pages = listKeptCityPages();
+  if (pages.length === 0) return [];
+
+  const lines = ['## 主な市区ページ', ''];
+  for (const page of pages) {
+    lines.push(mdLink(`${page.name}の出張車内清掃`, page.path, page.regionName));
+  }
+  lines.push('');
+  return lines;
+}
+
 /**
  * llmstxt.org document for the static site.
  * Facts come from published page copy and the data those pages render.
@@ -109,6 +175,7 @@ export function buildLlmsTxt(): string {
     ),
     '',
     ...areaSection(),
+    ...citySection(),
     '## ブログ',
     '',
     mdLink('施工実例ブログ', '/blog', '出張車内クリーニングの施工実例'),
