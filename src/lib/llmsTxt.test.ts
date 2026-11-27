@@ -8,9 +8,11 @@ import {
   yen,
 } from '../data/pricingConstants.ts';
 import { regions } from '../data/regions.ts';
+import { generateRegionMetadata } from './seo.ts';
 import { regionPath } from './niche.ts';
+import { isIncludedInSitemap, loadRedirectSources } from './sitemapPolicy.ts';
 import { canonicalUrl, LINE_URL, OPERATOR, STORE_NAME, TEL } from './site.ts';
-import { buildLlmsTxt } from './llmsTxt.ts';
+import { buildLlmsTxt, listKeptCityPages } from './llmsTxt.ts';
 
 const text = buildLlmsTxt();
 
@@ -76,6 +78,68 @@ test('page links start with /aio/, then prefecture LPs, then /blog/', () => {
 
   assert.equal(text.includes('/regions/kumamoto'), false);
   assert.equal(text.includes('熊本'), false);
+});
+
+test('主な市区ページ lists kept self-canonical city pages only', () => {
+  const expected = [
+    ['大阪市', '/regions/osaka/osaka-city/', '大阪府'],
+    ['北摂', '/regions/osaka/kitasen/', '大阪府'],
+    ['泉州・堺', '/regions/osaka/senshu/', '大阪府'],
+    ['神戸市', '/regions/hyogo/area/kobe/', '兵庫県'],
+    ['阪神', '/regions/hyogo/area/hanshin/', '兵庫県'],
+    ['福岡市', '/regions/fukuoka/area/fukuoka-city/', '福岡県'],
+    ['北九州', '/regions/fukuoka/area/kitakyushu/', '福岡県'],
+    ['筑後', '/regions/fukuoka/area/chikugo/', '福岡県'],
+  ] as const;
+
+  const pages = listKeptCityPages();
+  assert.deepEqual(
+    pages.map((page) => [page.name, page.path, page.regionName]),
+    expected.map((row) => [...row]),
+  );
+
+  const sources = loadRedirectSources();
+  const block = text.split('## 主な市区ページ\n\n')[1]?.split('\n## ブログ')[0] ?? '';
+  const lines = block.trim().split('\n').filter((line) => line.length > 0);
+  assert.equal(lines.length, expected.length);
+  assert.equal(text.indexOf('## 主な市区ページ') > text.lastIndexOf('### '), true);
+  assert.equal(text.indexOf('## 主な市区ページ') < text.indexOf('## ブログ'), true);
+  assert.equal(text.split('## 主な市区ページ').length, 2);
+
+  for (const page of pages) {
+    const url = canonicalUrl(page.path);
+    assert.equal(sources.has(page.path), false, page.path);
+    assert.equal(isIncludedInSitemap(url, sources), true, page.path);
+    assert.equal(
+      generateRegionMetadata(`${page.name}（${page.regionName}）`, page.path, 'car').alternates
+        ?.canonical,
+      url,
+      page.path,
+    );
+    assert.equal(
+      lines.includes(`- [${page.name}の出張車内清掃](${url}): ${page.regionName}`),
+      true,
+      page.path,
+    );
+  }
+
+  for (const dropped of [
+    '/regions/osaka/kitakawachi/',
+    '/regions/osaka/nakakawachi/',
+    '/regions/osaka/minamikawachi/',
+    '/regions/osaka/osaka-city-truck/',
+    '/regions/osaka/senshu-bus/',
+    '/regions/hyogo/area/himeji/',
+    '/regions/hyogo/area/higashi-harima/',
+    '/regions/hyogo/area/kobe-truck/',
+    '/regions/hyogo/area/hanshin-bus/',
+    '/regions/fukuoka/area/chikuho/',
+    '/regions/fukuoka/area/fukuoka-city-bus/',
+    '/regions/miyagi/area/sendai/',
+    '/regions/kumamoto/',
+  ]) {
+    assert.equal(text.includes(dropped), false, dropped);
+  }
 });
 
 test('bus price matches the visible pricing table', () => {
